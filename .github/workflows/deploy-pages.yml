@@ -6,7 +6,7 @@ name: Deploy site to GitHub Pages
 on:
   push:
     branches: [claude/tender-meitner-hrd0rx, main, master]
-    paths: [index.html, assets/**]
+    paths: [index.html, assets/**, learn/**]
   workflow_dispatch:
 
 permissions:
@@ -26,6 +26,7 @@ jobs:
           mkdir /tmp/dist
           cp index.html /tmp/dist/
           [ -d assets ] && cp -r assets /tmp/dist/ || true
+          [ -d learn ] && cp -r learn /tmp/dist/ || true
           touch /tmp/dist/.nojekyll
       - name: Push to gh-pages
         run: |

@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vanderbilt AI Academy — Learn to work with AI</title>
+<meta name="description" content="A warm, hands-on introduction to AI for Vanderbilt University staff. Plain-English lessons, working practice tools, and an AI opportunity simulator — no jargon required." />
+<meta name="theme-color" content="#0B0A07" />
+<meta property="og:title" content="Vanderbilt AI Academy — Learn to work with AI" />
+<meta property="og:description" content="Plain-English AI lessons, practice tools, and an opportunity simulator for Vanderbilt staff." />
+<meta property="og:type" content="website" />
+
+<!--
+  ══════════════════════════════════════════════════════════════════════════
+  VANDERBILT AI ACADEMY — CUSTOMIZE ME
+  Everything marked [EDIT] below is placeholder content. Search "[EDIT]" and swap in:
+    · Program name / eyebrow line             · Amplify URL + approval language
+    · Vanderbilt AI policy links (Responsible AI + Simulator watch-outs)
+    · Tool cost / license rows (Tools section) · Contact mailto (footer)
+    · Hero video source URL (see hero <video>)        · Disclaimer + ownership line
+    · Quiz pass thresholds if desired          · Department list (Simulator)
+  The three practice apps (Prompt Lab, Grader, Tool Match), the LLM demo, the
+  Simulator and the quiz are fully working, client-side, no backend required.
+  This is an internal training prototype — NOT an official Vanderbilt site,
+  and it deliberately avoids official logos and trademarks.
+  ══════════════════════════════════════════════════════════════════════════
+-->
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23E8D5A9'/%3E%3Cstop offset='1' stop-color='%238A6D3B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%230B0A07'/%3E%3Cpath d='M32 12c6 7 9 11 9 17a9 9 0 0 1-18 0c0-6 3-10 9-17z' fill='url(%23g)'/%3E%3Crect x='27' y='40' width='10' height='4' rx='2' fill='url(%23g)'/%3E%3Crect x='29' y='46' width='6' height='8' rx='2' fill='url(%23g)'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<script>document.documentElement.classList.add('js');</script>
+
+<style>
+/* ═════════════════════════ TOKENS ═════════════════════════ */
+:root{
+  --bg:#0B0A07; --bg2:#131008;
+  --surface:rgba(232,213,169,.045); --surface2:rgba(232,213,169,.08);
+  --line:rgba(232,213,169,.13); --line2:rgba(232,213,169,.24);
+  --text:#F5F1E8; --muted:#B8B0A0; --faint:#948B78;
+  --champ:#E8D5A9; --gold:#CFAE70; --bronze:#8A6D3B; --ember:#B08D4F;
+  --ink:#241B08; /* dark text on gold surfaces — keeps 4.5:1+ */
+  --grad:linear-gradient(115deg,#E8D5A9,#CFAE70 38%,#8A6D3B 64%,#E8D5A9); /* loops back to champagne so animated background-position never shows a seam */
+  --grad-soft:linear-gradient(115deg,rgba(232,213,169,.16),rgba(138,109,59,.07));
+  --maxw:1240px;
+  --ease:cubic-bezier(.22,.61,.36,1); --ease-out:cubic-bezier(.16,1,.3,1);
+  --font-d:'Space Grotesk',system-ui,sans-serif; --font-b:'Inter',system-ui,sans-serif;
+  --font-m:'JetBrains Mono',ui-monospace,monospace; --font-s:'Instrument Serif',Georgia,serif;
+}
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; scroll-padding-top:84px; }
+body{ font-family:var(--font-b); background:var(--bg); color:var(--text); line-height:1.65;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; min-height:100dvh; }
+h1,h2,h3,h4{ font-family:var(--font-d); font-weight:600; line-height:1.06; letter-spacing:-.026em; }
+a{ color:inherit; text-decoration:none; } img{ max-width:100%; display:block; }
+button{ font:inherit; color:inherit; } input,select,textarea{ font:inherit; }
+em.s{ font-family:var(--font-s); font-style:italic; font-weight:400; letter-spacing:-.01em; }
+::selection{ background:rgba(207,174,112,.5); color:#0B0A07; }
+::-webkit-scrollbar{ width:10px; } ::-webkit-scrollbar-track{ background:var(--bg); }
+::-webkit-scrollbar-thumb{ background:#33291a; border-radius:8px; border:2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover{ background:#4a3b24; }
+:focus-visible{ outline:2px solid var(--champ); outline-offset:3px; border-radius:6px; }
+
+.wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:clamp(20px,5vw,48px); }
+.grad-text{ background:var(--grad); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:gshift 9s ease infinite; }
+@keyframes gshift{ 0%,100%{background-position:0 0} 50%{background-position:200% 0} }
+.mono{ font-family:var(--font-m); font-size:.72rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--faint); }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; }
+.eyebrow .tick{ width:26px; height:1px; background:var(--grad); }
+.eyebrow .mono{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.skip{ position:absolute; left:-999px; top:10px; z-index:400; background:var(--gold); color:var(--ink); padding:12px 20px; border-radius:8px; font-weight:600; }
+.skip:focus{ left:16px; }
+.sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* ═════════════════════════ ATMOSPHERE ═════════════════════════ */
+.aurora{ position:fixed; inset:0; z-index:-2; overflow:hidden; background:
+  radial-gradient(1100px 700px at 80% -12%, rgba(207,174,112,.08), transparent 60%),
+  radial-gradient(900px 650px at -8% 108%, rgba(138,109,59,.1), transparent 60%), var(--bg); }
+.aurora i{ position:absolute; border-radius:50%; filter:blur(120px); opacity:.32; will-change:transform; }
+.aurora .a1{ width:620px; height:620px; top:-190px; left:-140px; background:radial-gradient(circle,#6b5426,transparent 60%); animation:dr1 28s ease-in-out infinite; }
+.aurora .a2{ width:560px; height:560px; top:28%; right:-180px; background:radial-gradient(circle,#8A6D3B,transparent 60%); animation:dr2 34s ease-in-out infinite; }
+.aurora .a3{ width:520px; height:520px; bottom:-210px; left:36%; background:radial-gradient(circle,#4a3a1c,transparent 60%); opacity:.28; animation:dr3 30s ease-in-out infinite; }
+@keyframes dr1{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(80px,50px) scale(1.12)} }
+@keyframes dr2{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-70px,60px) scale(1.09)} }
+@keyframes dr3{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(60px,-60px) scale(1.16)} }
+.glbg{ position:fixed; inset:0; z-index:-1; width:100%; height:100%; pointer-events:none; }
+.grain{ position:fixed; inset:0; z-index:90; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.progress{ position:fixed; top:0; left:0; height:2px; width:100%; z-index:300; background:var(--grad);
+  transform:scaleX(0); transform-origin:left; box-shadow:0 0 14px rgba(207,174,112,.8); }
+
+/* ═════════════════════════ CUSTOM CURSOR ═════════════════════════ */
+.cursor-dot,.cursor-ring{ position:fixed; top:0; left:0; z-index:500; pointer-events:none; border-radius:50%; opacity:0; will-change:transform; }
+.cursor-dot{ width:6px; height:6px; margin:-3px 0 0 -3px; background:#fff; mix-blend-mode:difference; }
+.cursor-ring{ width:38px; height:38px; margin:-19px 0 0 -19px; border:1.5px solid rgba(232,213,169,.7);
+  transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),border-color .3s,background-color .3s; }
+html.cursor-on body,html.cursor-on a,html.cursor-on button{ cursor:none; }
+html.cursor-on .cursor-dot,html.cursor-on .cursor-ring{ opacity:1; }
+.cursor-ring.hov{ width:56px; height:56px; margin:-28px 0 0 -28px; border-color:rgba(207,174,112,.95); background:rgba(207,174,112,.1); }
+
+/* ═════════════════════════ NAV ═════════════════════════ */
+header.nav{ position:fixed; inset:0 0 auto 0; z-index:200; }
+header.nav .bar{ display:flex; align-items:center; justify-content:space-between; height:78px; transition:height .4s var(--ease); }
+header.nav::before{ content:''; position:absolute; inset:0; opacity:0; transition:opacity .4s;
+  background:rgba(11,10,7,.72); backdrop-filter:blur(18px) saturate(150%); -webkit-backdrop-filter:blur(18px) saturate(150%); border-bottom:1px solid var(--line); }
+header.nav.scrolled::before{ opacity:1; }
+header.nav.scrolled .bar{ height:64px; }
+.logo{ position:relative; display:flex; align-items:center; gap:12px; font-family:var(--font-d); font-weight:600; z-index:2; }
+.logo .lm{ width:42px; height:42px; border-radius:12px; display:grid; place-items:center; flex-shrink:0;
+  background:linear-gradient(150deg,rgba(232,213,169,.14),rgba(138,109,59,.08)); border:1px solid var(--line2);
+  box-shadow:0 8px 24px -8px rgba(207,174,112,.45), inset 0 1px 0 rgba(232,213,169,.2); }
+.logo .lm svg{ width:22px; height:22px; }
+.logo small{ display:block; font-family:var(--font-m); font-weight:400; color:var(--faint); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; margin-top:2px; }
+nav.links{ position:relative; display:flex; align-items:center; gap:2px; z-index:2; }
+nav.links a{ position:relative; padding:10px 13px; color:var(--muted); font-size:.9rem; border-radius:9px; transition:color .25s; }
+nav.links a::after{ content:''; position:absolute; left:13px; right:13px; bottom:5px; height:1.5px; background:var(--grad);
+  border-radius:2px; transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease); }
+nav.links a:hover{ color:var(--text); } nav.links a:hover::after{ transform:scaleX(1); }
+nav.links .nav-cta{ margin-left:8px; } nav.links .nav-cta::after{ display:none; }
+.menu-btn{ position:relative; display:none; background:var(--surface); border:1px solid var(--line2); color:var(--text);
+  width:46px; height:46px; border-radius:12px; cursor:pointer; z-index:2; place-items:center; }
+.menu-btn .b{ display:block; width:18px; height:2px; background:currentColor; border-radius:2px; transition:transform .35s var(--ease),opacity .25s; }
+.menu-btn .b + .b{ margin-top:4px; }
+body.menu-open .menu-btn .b1{ transform:translateY(6px) rotate(45deg); }
+body.menu-open .menu-btn .b2{ opacity:0; }
+body.menu-open .menu-btn .b3{ transform:translateY(-6px) rotate(-45deg); }
+.mobile-menu{ position:fixed; inset:0; z-index:150; background:rgba(11,10,7,.96); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+  display:flex; flex-direction:column; justify-content:center; padding:100px clamp(24px,8vw,60px) 60px;
+  opacity:0; visibility:hidden; transition:opacity .4s var(--ease), visibility 0s .4s; }
+body.menu-open .mobile-menu{ opacity:1; visibility:visible; transition:opacity .4s var(--ease); }
+.mobile-menu a.mlink{ font-family:var(--font-d); font-size:clamp(1.7rem,8vw,2.7rem); font-weight:600; letter-spacing:-.03em; color:var(--text);
+  padding:13px 0; border-bottom:1px solid var(--line); display:flex; align-items:baseline; gap:16px;
+  opacity:0; transform:translateY(20px); transition:opacity .5s var(--ease-out), transform .5s var(--ease-out); }
+.mobile-menu a.mlink .mono{ font-size:.68rem; }
+body.menu-open .mobile-menu a.mlink{ opacity:1; transform:none; }
+body.menu-open .mobile-menu a.mlink:nth-child(2){ transition-delay:.05s } body.menu-open .mobile-menu a.mlink:nth-child(3){ transition-delay:.1s }
+body.menu-open .mobile-menu a.mlink:nth-child(4){ transition-delay:.15s } body.menu-open .mobile-menu a.mlink:nth-child(5){ transition-delay:.2s }
+body.menu-open .mobile-menu a.mlink:nth-child(6){ transition-delay:.25s }
+.mobile-menu .mfoot{ margin-top:34px; color:var(--faint); font-size:.85rem; }
+
+/* ═════════════════════════ BUTTONS ═════════════════════════ */
+.btn{ position:relative; display:inline-flex; align-items:center; justify-content:center; gap:10px; font-family:var(--font-d); font-size:.95rem; font-weight:600;
+  min-height:48px; padding:12px 26px; border-radius:14px; cursor:pointer; border:1px solid transparent; overflow:hidden; text-align:center;
+  transition:box-shadow .3s var(--ease), border-color .3s, background-color .3s, color .3s; will-change:transform; }
+.btn svg{ width:18px; height:18px; flex-shrink:0; }
+.btn-primary{ color:var(--ink); background:var(--grad); background-size:200% 200%; animation:gshift 8s ease infinite;
+  box-shadow:0 12px 34px -10px rgba(207,174,112,.55), inset 0 1px 0 rgba(255,251,240,.5); }
+.btn-primary:hover{ box-shadow:0 20px 50px -12px rgba(207,174,112,.75), inset 0 1px 0 rgba(255,251,240,.6); }
+.btn-ghost{ background:var(--surface); color:var(--text); border-color:var(--line2); }
+.btn-ghost:hover{ border-color:var(--gold); background:rgba(207,174,112,.1); }
+.btn-sm{ min-height:44px; padding:9px 18px; font-size:.86rem; border-radius:11px; }
+.btn[disabled]{ opacity:.45; cursor:not-allowed; box-shadow:none; }
+
+/* ═════════════════════════ HERO ═════════════════════════ */
+.hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:center; padding:140px 0 48px; overflow:hidden; }
+.hero-media{ position:absolute; inset:0; z-index:0; }
+.hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.24; mix-blend-mode:screen; }
+.hero-scrim{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(11,10,7,.4),rgba(11,10,7,.44) 55%,rgba(11,10,7,.66)); }
+#net{ position:absolute; inset:0; z-index:1; width:100%; height:100%; }
+.hero-grid{ position:absolute; inset:0; z-index:1; opacity:.4; pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px); background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 75% 55% at 50% 42%,#000 18%,transparent 72%); -webkit-mask-image:radial-gradient(ellipse 75% 55% at 50% 42%,#000 18%,transparent 72%); }
+.hero .wrap{ position:relative; z-index:3; }
+.hero-cols{ display:grid; grid-template-columns:1.25fr .75fr; gap:clamp(30px,5vw,60px); align-items:center; }
+.hero .eyebrow{ opacity:0; animation:fup .8s var(--ease-out) .15s forwards; }
+.hero h1{ font-size:clamp(2.35rem,6vw,5.2rem); font-weight:700; letter-spacing:-.04em; margin-top:26px; max-width:1000px; }
+.hero h1 .hl{ display:block; overflow:hidden; padding-bottom:.1em; margin-bottom:-.1em; }
+.hero h1 .hl > span{ display:inline-block; transform:translateY(112%); animation:rise 1s var(--ease-out) forwards; }
+.hero h1 .hl:nth-child(1) > span{ animation-delay:.25s } .hero h1 .hl:nth-child(2) > span{ animation-delay:.38s } .hero h1 .hl:nth-child(3) > span{ animation-delay:.51s }
+@keyframes rise{ to{ transform:none } }
+@keyframes fup{ from{ opacity:0; transform:translateY(24px) } to{ opacity:1; transform:none } }
+.hero h1 em.s{ font-size:1.05em; background:var(--grad); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:gshift 9s ease infinite; padding-right:.06em; }
+.hero .lead{ font-size:clamp(1.02rem,1.5vw,1.2rem); color:var(--muted); max-width:600px; margin-top:26px; opacity:0; animation:fup .8s var(--ease-out) .75s forwards; }
+.hero .cta-row{ display:flex; flex-wrap:wrap; gap:14px; margin-top:38px; opacity:0; animation:fup .8s var(--ease-out) .9s forwards; }
+/* floating glass badges */
+.badge-stack{ position:relative; display:flex; flex-direction:column; gap:18px; align-items:flex-end; opacity:0; animation:fup .9s var(--ease-out) 1.05s forwards; }
+.fbadge{ display:inline-flex; align-items:center; gap:12px; padding:15px 22px; border-radius:16px; border:1px solid var(--line2);
+  background:rgba(19,16,8,.55); backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%);
+  box-shadow:0 18px 44px -18px rgba(0,0,0,.8), inset 0 1px 0 rgba(232,213,169,.14); animation:bob 6s ease-in-out infinite; }
+.fbadge:nth-child(2){ animation-delay:1.2s; margin-right:clamp(0px,4vw,56px); }
+.fbadge:nth-child(3){ animation-delay:2.4s; margin-right:clamp(0px,2vw,24px); }
+@keyframes bob{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-10px) } }
+.fbadge .fb-ic{ width:38px; height:38px; border-radius:11px; display:grid; place-items:center; flex-shrink:0;
+  background:var(--grad-soft); border:1px solid var(--line); color:var(--gold); }
+.fbadge .fb-ic svg{ width:19px; height:19px; }
+.fbadge b{ display:block; font-family:var(--font-d); font-size:1rem; letter-spacing:-.01em; }
+.fbadge span{ display:block; font-family:var(--font-m); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); margin-top:2px; }
+.hero-meta{ display:flex; flex-wrap:wrap; gap:clamp(24px,5vw,64px); margin-top:clamp(44px,6vh,72px); padding-top:28px; border-top:1px solid var(--line);
+  opacity:0; animation:fup .8s var(--ease-out) 1.15s forwards; }
+.hero-meta .hm b{ display:block; font-family:var(--font-d); font-weight:700; font-size:clamp(1.4rem,2.4vw,1.9rem); letter-spacing:-.02em;
+  background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.hero-meta .hm span{ display:block; margin-top:4px; font-family:var(--font-m); font-size:.64rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); }
+.scroll-cue{ position:absolute; bottom:22px; right:clamp(20px,5vw,48px); z-index:3; display:flex; align-items:center; gap:12px; color:var(--faint);
+  font-family:var(--font-m); font-size:.62rem; letter-spacing:.24em; text-transform:uppercase; opacity:0; animation:fup 1s var(--ease-out) 1.5s forwards; }
+.scroll-cue .line{ width:1px; height:44px; background:linear-gradient(180deg,transparent,var(--gold)); overflow:hidden; position:relative; }
+.scroll-cue .line::after{ content:''; position:absolute; inset:0; background:var(--champ); transform:translateY(-100%); animation:cue 2s var(--ease) infinite; }
+@keyframes cue{ 60%{ transform:translateY(100%) } 100%{ transform:translateY(100%) } }
+
+/* ═════════════════════════ MARQUEE ═════════════════════════ */
+.marquee{ position:relative; border-block:1px solid var(--line); padding:20px 0; overflow:hidden; background:rgba(232,213,169,.02);
+  mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+.marquee .track{ display:flex; width:max-content; animation:mq 32s linear infinite; }
+.marquee:hover .track{ animation-play-state:paused; }
+.marquee .set{ display:flex; align-items:center; flex-shrink:0; }
+.marquee .it{ display:inline-flex; align-items:center; gap:26px; padding-inline:13px; font-family:var(--font-d); font-weight:600; font-size:1.02rem;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--faint); white-space:nowrap; }
+.marquee .it svg{ width:12px; height:12px; color:var(--gold); flex-shrink:0; }
+@keyframes mq{ to{ transform:translateX(-50%) } }
+
+/* ═════════════════════════ SECTIONS / SHARED ═════════════════════════ */
+section{ position:relative; padding:clamp(84px,11vw,148px) 0; }
+.sec-head{ max-width:820px; margin-bottom:clamp(40px,6vw,68px); }
+.sec-head h2{ font-size:clamp(2rem,4.8vw,3.5rem); margin-top:20px; }
+.sec-head p{ color:var(--muted); margin-top:18px; font-size:1.05rem; max-width:640px; }
+.js .reveal{ opacity:0; transform:translateY(34px); transition:opacity .9s var(--ease-out), transform .9s var(--ease-out); }
+.js .reveal.in{ opacity:1; transform:none; }
+.tilt{ transform-style:preserve-3d; transition:transform .35s var(--ease-out); will-change:transform; }
+.glare{ position:absolute; inset:0; border-radius:inherit; opacity:0; transition:opacity .3s; pointer-events:none;
+  background:radial-gradient(320px circle at var(--gx,50%) var(--gy,50%),rgba(245,236,214,.09),transparent 60%); }
+.tilt:hover .glare{ opacity:1; }
+.gborder{ position:relative; border:1px solid var(--line); }
+.gborder::before{ content:''; position:absolute; inset:-1px; border-radius:inherit; padding:1px; opacity:0; background:var(--grad);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; transition:opacity .4s; pointer-events:none; }
+.gborder:hover::before,.gborder:focus-within::before{ opacity:1; }
+.glass{ background:rgba(19,16,9,.5); backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%); }
+.chip{ display:inline-flex; align-items:center; gap:8px; font-family:var(--font-m); font-size:.64rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); border:1px solid var(--line2); border-radius:99px; padding:7px 14px; background:var(--surface); }
+
+/* ═════════════════════════ STATS BAND ═════════════════════════ */
+.stats{ padding:clamp(28px,5vw,52px) 0; }
+.stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.stat{ position:relative; padding:30px 26px; border-radius:20px; overflow:hidden; }
+.stat .num{ font-family:var(--font-d); font-weight:700; font-size:clamp(2.1rem,4.2vw,3.1rem); line-height:1;
+  background:var(--grad); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:gshift 9s ease infinite; }
+.stat .lbl{ color:var(--muted); font-size:.9rem; margin-top:13px; line-height:1.5; }
+.stat .k{ position:absolute; top:20px; right:20px; font-family:var(--font-m); font-size:.62rem; color:var(--faint); letter-spacing:.16em; }
+.stat .spark{ position:absolute; right:-14px; bottom:-14px; width:96px; height:96px; border-radius:50%; background:var(--grad); filter:blur(34px); opacity:.13; }
+
+/* ═════════════════════════ LEARN ═════════════════════════ */
+.module{ margin-top:clamp(52px,7vw,84px); }
+.module-head{ display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; margin-bottom:26px; }
+.module-head .mno{ font-family:var(--font-m); font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
+  background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.module-head h3{ font-size:clamp(1.45rem,2.8vw,2.1rem); }
+.module-head p{ flex-basis:100%; color:var(--muted); max-width:640px; margin-top:6px; }
+
+/* flip cards */
+.flip-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.fcard{ position:relative; min-height:344px; perspective:1100px; }
+.fcard button{ position:relative; width:100%; height:100%; min-height:344px; border:0; background:none; cursor:pointer; text-align:left;
+  transform-style:preserve-3d; transition:transform .7s var(--ease); border-radius:22px; }
+.fcard button.flipped{ transform:rotateY(180deg); }
+.fcard .face{ position:absolute; inset:0; border-radius:22px; padding:26px 24px; display:flex; flex-direction:column;
+  backface-visibility:hidden; -webkit-backface-visibility:hidden; border:1px solid var(--line);
+  background:rgba(19,16,9,.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); overflow:auto; }
+.fcard .face.back{ transform:rotateY(180deg); border-color:var(--line2); background:linear-gradient(155deg,rgba(207,174,112,.14),rgba(19,16,9,.6)); }
+.fcard .abbr{ font-family:var(--font-d); font-weight:700; font-size:2rem; letter-spacing:-.03em;
+  background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.fcard h4{ font-size:1.12rem; margin-top:10px; }
+.fcard .def{ color:var(--muted); font-size:.9rem; margin-top:10px; }
+.fcard .hint{ margin-top:auto; padding-top:14px; display:inline-flex; align-items:center; gap:8px; font-family:var(--font-m); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); }
+.fcard .hint svg{ width:13px; height:13px; color:var(--gold); }
+.fcard .back .tag{ font-family:var(--font-m); font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--champ); }
+.fcard .back p{ color:var(--text); font-size:.92rem; margin-top:12px; }
+.fcard .back p b{ color:var(--champ); font-weight:600; }
+
+/* LLM next-word demo */
+.llm{ position:relative; margin-top:4px; border-radius:26px; padding:clamp(26px,4vw,44px); overflow:hidden; }
+.llm .sentence{ font-family:var(--font-d); font-weight:600; font-size:clamp(1.25rem,2.6vw,1.9rem); letter-spacing:-.02em; line-height:1.35; max-width:820px; }
+.llm .sentence .blank{ display:inline-block; min-width:3.2em; border-bottom:2px dashed var(--gold); color:var(--champ); font-family:var(--font-s); font-style:italic; text-align:center; padding:0 .25em; }
+.llm-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(24px,4vw,48px); margin-top:30px; align-items:start; }
+.pbars{ display:flex; flex-direction:column; gap:12px; }
+.pbar{ display:grid; grid-template-columns:110px 1fr 52px; align-items:center; gap:12px; }
+.pbar .w{ font-family:var(--font-m); font-size:.82rem; color:var(--text); text-align:right; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.pbar .rail{ height:26px; border-radius:8px; background:rgba(232,213,169,.07); border:1px solid var(--line); overflow:hidden; }
+.pbar .fill{ height:100%; width:0%; border-radius:7px; background:var(--grad); box-shadow:0 0 18px rgba(207,174,112,.35); transition:width .8s var(--ease-out); }
+.pbar.top .fill{ box-shadow:0 0 24px rgba(232,213,169,.55); }
+.pbar .pct{ font-family:var(--font-m); font-size:.72rem; color:var(--muted); }
+.llm-ctrl{ display:flex; flex-direction:column; gap:20px; }
+.llm-ctrl .ctl-row{ display:flex; flex-wrap:wrap; align-items:center; gap:14px; }
+.llm-ctrl label{ font-family:var(--font-m); font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.llm-ctrl input[type=range]{ flex:1; min-width:140px; accent-color:var(--gold); height:28px; }
+.llm-ctrl .tval{ font-family:var(--font-m); font-size:.8rem; color:var(--champ); min-width:3ch; }
+.llm-note{ border-left:2px solid var(--bronze); padding:4px 0 4px 16px; color:var(--muted); font-size:.92rem; }
+.llm-note b{ color:var(--champ); font-weight:600; }
+.llm-note + .llm-note{ margin-top:12px; }
+
+/* myths */
+.myth-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.myth{ position:relative; border-radius:20px; overflow:hidden; }
+.myth > button{ width:100%; min-height:64px; border:0; background:none; cursor:pointer; text-align:left; padding:22px 58px 22px 24px;
+  font-family:var(--font-d); font-weight:600; font-size:1.05rem; line-height:1.4; color:var(--text); }
+.myth .flag{ position:absolute; top:20px; right:18px; width:30px; height:30px; border-radius:9px; display:grid; place-items:center;
+  border:1px solid var(--line2); color:var(--gold); background:var(--surface); transition:transform .4s var(--ease); pointer-events:none; }
+.myth .flag svg{ width:15px; height:15px; }
+.myth.open .flag{ transform:rotate(45deg); }
+.myth .verdict{ display:none; padding:0 24px 22px; }
+.myth.open .verdict{ display:block; }
+.myth .vtag{ display:inline-flex; align-items:center; gap:7px; font-family:var(--font-m); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase;
+  padding:6px 12px; border-radius:99px; border:1px solid; }
+.myth .vtag.myth-v{ color:#E6A9A9; border-color:rgba(230,169,169,.4); background:rgba(230,169,169,.08); }
+.myth .vtag.fact-v{ color:var(--champ); border-color:rgba(232,213,169,.4); background:rgba(232,213,169,.08); }
+.myth .verdict p{ color:var(--muted); font-size:.92rem; margin-top:12px; }
+</style>
+<style>
+/* ═════════════════════════ PLAYGROUND — TABS ═════════════════════════ */
+.honest{ display:inline-flex; align-items:flex-start; gap:10px; margin-top:18px; padding:12px 16px; border-radius:12px;
+  border:1px dashed var(--line2); color:var(--muted); font-size:.86rem; max-width:640px; background:rgba(232,213,169,.03); }
+.honest svg{ width:16px; height:16px; flex-shrink:0; color:var(--gold); margin-top:3px; }
+.ptabs{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:26px; border-bottom:1px solid var(--line); padding-bottom:14px; }
+.ptab{ position:relative; border:1px solid var(--line); background:var(--surface); color:var(--muted); cursor:pointer;
+  font-family:var(--font-d); font-weight:600; font-size:.92rem; min-height:48px; padding:11px 20px; border-radius:13px;
+  display:inline-flex; align-items:center; gap:10px; transition:color .25s,border-color .25s,background-color .25s; }
+.ptab svg{ width:17px; height:17px; }
+.ptab:hover{ color:var(--text); border-color:var(--line2); }
+.ptab[aria-selected="true"]{ color:var(--ink); background:var(--grad); border-color:transparent; box-shadow:0 10px 28px -10px rgba(207,174,112,.6); }
+.ppanel{ border-radius:26px; padding:clamp(24px,4vw,42px); }
+.ppanel[hidden]{ display:none; }
+.app-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,44px); align-items:start; }
+.field{ display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
+.field label{ font-family:var(--font-m); font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.field .hinttxt{ font-size:.8rem; color:var(--faint); margin-top:-2px; }
+.field input[type=text],.field textarea,.field select{ width:100%; min-height:48px; padding:12px 16px; border-radius:12px; color:var(--text);
+  background:rgba(11,10,7,.55); border:1px solid var(--line2); transition:border-color .25s, box-shadow .25s; }
+.field textarea{ resize:vertical; min-height:110px; line-height:1.6; }
+.field select{ appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23CFAE70' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 14px center; background-size:16px; padding-right:44px; cursor:pointer; }
+.field select option{ background:#171308; color:var(--text); }
+.field input:focus,.field textarea:focus,.field select:focus{ outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(207,174,112,.18); }
+.field input::placeholder,.field textarea::placeholder{ color:#7c745f; }
+.checks{ display:flex; flex-wrap:wrap; gap:12px 22px; margin:4px 0 18px; }
+.checks label{ display:inline-flex; align-items:center; gap:10px; font-size:.9rem; color:var(--muted); cursor:pointer; min-height:44px; }
+.checks input{ width:19px; height:19px; accent-color:var(--gold); cursor:pointer; }
+.nudge{ display:none; align-items:center; gap:10px; margin-top:14px; padding:12px 16px; border-radius:12px; font-size:.9rem;
+  color:var(--champ); background:rgba(207,174,112,.09); border:1px solid rgba(207,174,112,.3); }
+.nudge.show{ display:flex; }
+.nudge svg{ width:16px; height:16px; flex-shrink:0; }
+
+/* prompt lab preview */
+.preview-box{ position:sticky; top:96px; }
+.preview-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.preview-head .mono{ color:var(--gold); }
+.preview{ position:relative; border-radius:16px; border:1px solid var(--line2); background:rgba(11,10,7,.7); padding:20px 22px;
+  font-family:var(--font-m); font-size:.84rem; line-height:1.75; color:var(--text); white-space:pre-wrap; word-break:break-word;
+  min-height:200px; max-height:420px; overflow:auto; }
+.preview .ph{ color:#7c745f; font-style:italic; }
+.meter{ margin-top:18px; }
+.meter .mrow{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; }
+.meter .mlabel{ font-family:var(--font-m); font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.meter .mscore{ font-family:var(--font-d); font-weight:700; color:var(--champ); }
+.meter .rail{ height:8px; border-radius:6px; background:rgba(232,213,169,.08); border:1px solid var(--line); overflow:hidden; }
+.meter .fill{ height:100%; width:0%; border-radius:6px; background:var(--grad); transition:width .6s var(--ease-out); }
+.launch-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+.copied{ color:var(--champ) !important; border-color:var(--gold) !important; }
+
+/* grader */
+.grade-out{ margin-top:6px; }
+.grade-badge{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.grade-letter{ width:86px; height:86px; border-radius:22px; display:grid; place-items:center; font-family:var(--font-d); font-weight:700; font-size:2.6rem;
+  color:var(--ink); background:var(--grad); box-shadow:0 16px 40px -14px rgba(207,174,112,.6); }
+.grade-badge .gword{ font-family:var(--font-d); font-weight:600; font-size:1.3rem; }
+.grade-badge .gsub{ color:var(--muted); font-size:.92rem; max-width:400px; }
+.dim-bars{ display:flex; flex-direction:column; gap:14px; margin-top:26px; }
+.dim{ display:grid; grid-template-columns:130px 1fr 44px; gap:12px; align-items:center; }
+.dim .dl{ font-family:var(--font-m); font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); text-align:right; }
+.dim .rail{ height:10px; border-radius:6px; background:rgba(232,213,169,.08); border:1px solid var(--line); overflow:hidden; }
+.dim .fill{ height:100%; width:0%; border-radius:6px; background:var(--grad); transition:width .7s var(--ease-out); }
+.dim .dv{ font-family:var(--font-m); font-size:.72rem; color:var(--faint); }
+.sugg{ margin-top:26px; display:flex; flex-direction:column; gap:12px; }
+.sugg li{ list-style:none; display:flex; gap:12px; align-items:flex-start; color:var(--muted); font-size:.94rem;
+  padding:14px 16px; border-radius:14px; border:1px solid var(--line); background:rgba(232,213,169,.03); }
+.sugg li svg{ width:17px; height:17px; flex-shrink:0; color:var(--gold); margin-top:3px; }
+.sugg li b{ color:var(--text); font-weight:600; }
+
+/* tool match */
+.tm-q{ border:1px solid var(--line); border-radius:16px; padding:18px 20px; margin-bottom:14px; background:rgba(232,213,169,.025); }
+.tm-q legend{ float:left; width:100%; font-weight:600; font-size:.98rem; padding:0; margin-bottom:12px; color:var(--text); }
+.tm-q legend .qn{ font-family:var(--font-m); font-size:.66rem; letter-spacing:.16em; color:var(--gold); margin-right:10px; }
+.tm-opts{ display:flex; gap:10px; clear:both; }
+.tm-opts label{ flex:1; display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:46px; padding:10px 16px;
+  border-radius:12px; border:1px solid var(--line2); background:rgba(11,10,7,.4); color:var(--muted); cursor:pointer; font-size:.92rem;
+  transition:border-color .25s,color .25s,background-color .25s; }
+.tm-opts label:hover{ border-color:var(--gold); color:var(--text); }
+.tm-opts input{ accent-color:var(--gold); width:17px; height:17px; cursor:pointer; }
+.tm-opts label:has(input:checked){ border-color:var(--gold); color:var(--champ); background:rgba(207,174,112,.1); }
+.result-card{ position:relative; border-radius:22px; padding:28px; overflow:hidden;
+  background:linear-gradient(155deg,rgba(207,174,112,.13),rgba(19,16,9,.5)); border:1px solid var(--line2); }
+.result-card .rc-head{ display:flex; align-items:center; gap:16px; }
+.rc-glyph{ width:56px; height:56px; border-radius:16px; display:grid; place-items:center; flex-shrink:0;
+  background:var(--grad); color:var(--ink); box-shadow:0 14px 34px -12px rgba(207,174,112,.6); }
+.rc-glyph svg{ width:28px; height:28px; }
+.result-card h4{ font-size:1.4rem; }
+.result-card .rc-sub{ font-family:var(--font-m); font-size:.64rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin-top:4px; }
+.result-card ul{ list-style:none; margin-top:18px; display:flex; flex-direction:column; gap:10px; }
+.result-card li{ display:flex; gap:10px; align-items:flex-start; color:var(--muted); font-size:.92rem; }
+.result-card li svg{ width:16px; height:16px; flex-shrink:0; color:var(--champ); margin-top:4px; }
+
+/* ═════════════════════════ SIMULATOR ═════════════════════════ */
+.sim-shell{ border-radius:30px; padding:clamp(24px,4vw,48px); position:relative; overflow:hidden; }
+.sim-shell::after{ content:''; position:absolute; top:-160px; right:-160px; width:420px; height:420px; border-radius:50%;
+  background:radial-gradient(circle,rgba(207,174,112,.16),transparent 65%); pointer-events:none; }
+.sim-form{ position:relative; z-index:2; }
+.sim-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.sim-chips{ display:flex; flex-wrap:wrap; gap:10px; margin:2px 0 20px; }
+.sim-chip{ border:1px dashed var(--line2); background:rgba(232,213,169,.03); color:var(--muted); border-radius:99px;
+  min-height:44px; padding:9px 18px; font-size:.85rem; cursor:pointer; transition:color .25s,border-color .25s,background-color .25s; }
+.sim-chip:hover{ color:var(--champ); border-color:var(--gold); background:rgba(207,174,112,.08); }
+.sim-steps{ display:none; margin-top:30px; flex-direction:column; gap:12px; position:relative; z-index:2; }
+.sim-steps.show{ display:flex; }
+.sim-step{ display:flex; align-items:center; gap:14px; color:var(--faint); font-family:var(--font-m); font-size:.78rem; letter-spacing:.08em;
+  opacity:.4; transition:opacity .4s,color .4s; }
+.sim-step .dot{ width:26px; height:26px; border-radius:50%; border:1px solid var(--line2); display:grid; place-items:center; flex-shrink:0; }
+.sim-step .dot svg{ width:13px; height:13px; opacity:0; transition:opacity .3s; color:var(--ink); }
+.sim-step.active{ opacity:1; color:var(--champ); }
+.sim-step.active .dot{ border-color:var(--gold); box-shadow:0 0 14px rgba(207,174,112,.45); }
+.sim-step.done{ opacity:1; color:var(--muted); }
+.sim-step.done .dot{ background:var(--grad); border-color:transparent; }
+.sim-step.done .dot svg{ opacity:1; }
+.sim-out{ margin-top:34px; position:relative; z-index:2; }
+.sim-out .sub-h{ display:flex; align-items:baseline; gap:14px; margin:34px 0 16px; flex-wrap:wrap; }
+.sim-out .sub-h h4{ font-size:1.25rem; }
+.sim-out .sub-h:first-child{ margin-top:0; }
+.js .srev{ opacity:0; transform:translateY(22px); transition:opacity .7s var(--ease-out), transform .7s var(--ease-out); }
+.js .srev.in{ opacity:1; transform:none; }
+.opp-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.opp{ border:1px solid var(--line); border-radius:18px; padding:22px 20px; background:rgba(19,16,9,.55); display:flex; flex-direction:column; gap:10px; }
+.opp .o-top{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.opp h5{ font-family:var(--font-d); font-size:1.02rem; font-weight:600; }
+.opp .lvl{ font-family:var(--font-m); font-size:.58rem; letter-spacing:.16em; text-transform:uppercase; padding:5px 10px; border-radius:99px; white-space:nowrap; }
+.lvl.automate{ color:var(--champ); border:1px solid rgba(232,213,169,.45); background:rgba(232,213,169,.09); }
+.lvl.assist{ color:var(--gold); border:1px solid rgba(207,174,112,.4); background:rgba(207,174,112,.08); }
+.lvl.advise{ color:#C9BFA6; border:1px solid rgba(201,191,166,.35); background:rgba(201,191,166,.06); }
+.opp p{ color:var(--muted); font-size:.87rem; flex:1; }
+.opp .o-meta{ display:flex; justify-content:space-between; gap:10px; padding-top:12px; border-top:1px solid var(--line);
+  font-family:var(--font-m); font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
+.opp .o-meta b{ color:var(--champ); font-weight:500; }
+.sp-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.sp{ border:1px solid var(--line); border-radius:18px; padding:20px; background:rgba(11,10,7,.5); display:flex; flex-direction:column; gap:12px; }
+.sp .sp-txt{ font-family:var(--font-m); font-size:.76rem; line-height:1.7; color:var(--muted); flex:1; max-height:190px; overflow:auto; }
+.sp .btn{ align-self:flex-start; }
+.watchout{ border-radius:20px; border:1.5px solid var(--gold); background:linear-gradient(150deg,rgba(207,174,112,.14),rgba(19,16,9,.5));
+  padding:24px 26px; display:flex; gap:18px; align-items:flex-start; box-shadow:0 0 40px -14px rgba(207,174,112,.35); }
+.watchout .w-ic{ width:44px; height:44px; border-radius:13px; background:var(--grad); color:var(--ink); display:grid; place-items:center; flex-shrink:0; }
+.watchout .w-ic svg{ width:22px; height:22px; }
+.watchout h5{ font-family:var(--font-d); font-size:1.08rem; }
+.watchout p{ color:var(--muted); font-size:.92rem; margin-top:8px; }
+.watchout p b{ color:var(--champ); font-weight:600; }
+.watchout .hits{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.watchout .hits span{ font-family:var(--font-m); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--champ);
+  border:1px solid rgba(232,213,169,.4); border-radius:99px; padding:4px 11px; }
+.watchout.ok{ border-color:var(--line2); background:rgba(232,213,169,.04); box-shadow:none; }
+.roadmap{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.rstep{ position:relative; border:1px solid var(--line); border-radius:18px; padding:22px 20px; background:rgba(19,16,9,.55); }
+.rstep .rno{ font-family:var(--font-m); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase;
+  background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.rstep h5{ font-family:var(--font-d); font-size:1rem; margin-top:8px; }
+.rstep p{ color:var(--muted); font-size:.85rem; margin-top:8px; }
+
+/* ═════════════════════════ TOOLS ═════════════════════════ */
+.tool-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.tool{ position:relative; border-radius:24px; padding:30px 26px; overflow:hidden; display:flex; flex-direction:column; }
+.tool .t-glyph{ width:56px; height:56px; border-radius:16px; display:grid; place-items:center; margin-bottom:18px;
+  background:var(--grad-soft); border:1px solid var(--line2); color:var(--gold); }
+.tool .t-glyph svg{ width:28px; height:28px; }
+.tool h3{ font-size:1.4rem; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.tool .t-tag{ color:var(--muted); font-size:.9rem; margin-top:8px; }
+.tool .vu-badge{ display:inline-flex; align-items:center; gap:7px; font-family:var(--font-m); font-size:.58rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink); background:var(--grad); padding:6px 11px; border-radius:99px; font-weight:500; }
+.tool dl{ margin-top:20px; display:flex; flex-direction:column; }
+.tool dl div{ display:grid; grid-template-columns:96px 1fr; gap:12px; padding:12px 0; border-top:1px solid var(--line); }
+.tool dt{ font-family:var(--font-m); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); padding-top:3px; }
+.tool dd{ color:var(--muted); font-size:.9rem; }
+.tool dd b{ color:var(--champ); font-weight:600; }
+.tool .t-cta{ margin-top:auto; padding-top:22px; }
+.tool.hero-tool{ border:1px solid rgba(207,174,112,.45); background:linear-gradient(160deg,rgba(207,174,112,.12),rgba(19,16,9,.55)); }
+.rule-strip{ margin-top:28px; border-radius:18px; border:1px solid var(--line2); padding:20px 26px; display:flex; flex-wrap:wrap; gap:14px 34px;
+  align-items:center; justify-content:center; background:rgba(232,213,169,.04); text-align:center; }
+.rule-strip .r{ display:inline-flex; align-items:center; gap:10px; font-family:var(--font-d); font-weight:600; font-size:.98rem; }
+.rule-strip .r svg{ width:16px; height:16px; color:var(--gold); flex-shrink:0; }
+.rule-strip .r b{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+/* ═════════════════════════ RESPONSIBLE AI ═════════════════════════ */
+.resp-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.principle{ position:relative; border-radius:22px; padding:28px 24px; overflow:hidden; }
+.principle .p-ic{ width:48px; height:48px; border-radius:14px; display:grid; place-items:center; margin-bottom:18px;
+  background:var(--grad-soft); border:1px solid var(--line2); color:var(--gold); }
+.principle .p-ic svg{ width:24px; height:24px; }
+.principle h3{ font-size:1.15rem; }
+.principle p{ color:var(--muted); font-size:.92rem; margin-top:10px; }
+.never{ margin-top:28px; border-radius:22px; border:1.5px solid var(--gold); padding:28px clamp(22px,4vw,40px);
+  background:linear-gradient(150deg,rgba(207,174,112,.12),rgba(19,16,9,.5)); }
+.never h3{ display:flex; align-items:center; gap:12px; font-size:1.2rem; }
+.never h3 svg{ width:22px; height:22px; color:var(--gold); flex-shrink:0; }
+.never ul{ list-style:none; margin-top:16px; display:grid; grid-template-columns:repeat(4,1fr); gap:10px 22px; }
+.never li{ display:flex; gap:10px; align-items:flex-start; color:var(--muted); font-size:.9rem; }
+.never li svg{ width:15px; height:15px; flex-shrink:0; color:var(--champ); margin-top:5px; }
+.never .pol{ margin-top:18px; font-size:.88rem; color:var(--faint); }
+.never .pol a{ color:var(--gold); border-bottom:1px solid rgba(207,174,112,.4); transition:color .25s; }
+.never .pol a:hover{ color:var(--champ); }
+
+/* ═════════════════════════ QUIZ ═════════════════════════ */
+.quiz-shell{ border-radius:30px; padding:clamp(24px,4vw,48px); }
+.qz{ border:1px solid var(--line); border-radius:18px; padding:22px 24px; margin-bottom:16px; background:rgba(19,16,9,.45); }
+.qz legend{ float:left; width:100%; font-family:var(--font-d); font-weight:600; font-size:1.05rem; margin-bottom:14px; padding:0; }
+.qz legend .qn{ font-family:var(--font-m); font-size:.64rem; letter-spacing:.16em; color:var(--gold); margin-right:10px; }
+.qz .opts{ display:grid; grid-template-columns:1fr 1fr; gap:10px; clear:both; }
+.qz .opts label{ display:flex; align-items:center; gap:12px; min-height:48px; padding:11px 16px; border-radius:12px; cursor:pointer;
+  border:1px solid var(--line2); background:rgba(11,10,7,.4); color:var(--muted); font-size:.92rem;
+  transition:border-color .25s,color .25s,background-color .25s; }
+.qz .opts label:hover{ border-color:var(--gold); color:var(--text); }
+.qz .opts input{ accent-color:var(--gold); width:17px; height:17px; flex-shrink:0; cursor:pointer; }
+.qz .opts label:has(input:checked){ border-color:var(--gold); color:var(--champ); background:rgba(207,174,112,.09); }
+.qz.correct{ border-color:rgba(232,213,169,.55); box-shadow:0 0 24px -10px rgba(232,213,169,.4); }
+.qz.wrong{ border-color:rgba(230,169,169,.5); }
+.qz .expl{ display:none; margin-top:12px; clear:both; font-size:.88rem; color:var(--muted); border-left:2px solid var(--gold); padding-left:14px; }
+.qz.graded .expl{ display:block; }
+.qz .expl b{ color:var(--champ); font-weight:600; }
+.quiz-foot{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:8px; }
+.quiz-prog{ font-family:var(--font-m); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); }
+.quiz-result{ display:none; margin-top:26px; border-radius:22px; padding:30px; text-align:center;
+  border:1px solid var(--line2); background:linear-gradient(155deg,rgba(207,174,112,.13),rgba(19,16,9,.5)); }
+.quiz-result.show{ display:block; }
+.quiz-result .big-score{ font-family:var(--font-d); font-weight:700; font-size:clamp(2.4rem,6vw,3.6rem);
+  background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.quiz-result h3{ font-size:1.4rem; margin-top:8px; }
+.quiz-result p{ color:var(--muted); margin-top:10px; max-width:520px; margin-inline:auto; }
+.quiz-result .btn{ margin-top:20px; }
+
+/* ═════════════════════════ FOOTER ═════════════════════════ */
+footer{ border-top:1px solid var(--line); padding:0 0 46px; overflow:hidden; }
+.giant{ font-family:var(--font-d); font-weight:700; text-align:center; font-size:clamp(3.2rem,12.5vw,10.5rem); line-height:1; letter-spacing:-.04em;
+  padding:clamp(30px,5vw,56px) 0 clamp(20px,3vw,36px); color:transparent; -webkit-text-stroke:1px rgba(232,213,169,.16); user-select:none; white-space:nowrap; }
+.foot{ display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:22px; }
+.foot .cr{ color:var(--faint); font-size:.86rem; max-width:560px; }
+.foot .cr a{ color:var(--gold); border-bottom:1px solid rgba(207,174,112,.4); }
+.foot .cr a:hover{ color:var(--champ); }
+.foot .fl{ display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+.totop{ display:inline-flex; align-items:center; gap:8px; color:var(--faint); font-family:var(--font-m); font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; transition:color .3s; min-height:44px; }
+.totop:hover{ color:var(--text); } .totop svg{ width:14px; height:14px; }
+
+/* glass application */
+.stat,.llm,.myth,.ppanel,.sim-shell,.tool,.principle,.quiz-shell,.result-card{ background:rgba(19,16,9,.5); backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%); }
+.tool.hero-tool{ background:linear-gradient(160deg,rgba(207,174,112,.12),rgba(19,16,9,.5)); }
+.result-card{ background:linear-gradient(155deg,rgba(207,174,112,.13),rgba(19,16,9,.5)); }
+
+/* ═════════════════════════ RESPONSIVE ═════════════════════════ */
+@media (max-width:1024px){
+  .flip-grid{ grid-template-columns:1fr 1fr; }
+  .opp-grid,.sp-grid{ grid-template-columns:1fr 1fr; }
+  .roadmap{ grid-template-columns:1fr 1fr; }
+  .never ul{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:960px){
+  nav.links{ display:none; } .menu-btn{ display:grid; }
+  .hero-cols{ grid-template-columns:1fr; }
+  .badge-stack{ flex-direction:row; flex-wrap:wrap; align-items:stretch; justify-content:flex-start; margin-top:34px; }
+  .fbadge:nth-child(2),.fbadge:nth-child(3){ margin-right:0; }
+  .app-grid{ grid-template-columns:1fr; }
+  .preview-box{ position:static; }
+  .llm-grid{ grid-template-columns:1fr; }
+  .myth-grid{ grid-template-columns:1fr; }
+  .tool-grid{ grid-template-columns:1fr; }
+  .resp-grid{ grid-template-columns:1fr 1fr; }
+  .sim-row{ grid-template-columns:1fr; }
+  .stat-grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:640px){
+  .flip-grid{ grid-template-columns:1fr; }
+  .fcard,.fcard button{ min-height:300px; }
+  .opp-grid,.sp-grid,.roadmap,.resp-grid{ grid-template-columns:1fr; }
+  .never ul{ grid-template-columns:1fr; }
+  .qz .opts{ grid-template-columns:1fr; }
+  .pbar{ grid-template-columns:84px 1fr 44px; }
+  .pbar .w{ font-size:.72rem; }
+  .dim{ grid-template-columns:96px 1fr 40px; }
+  .foot .fl{ align-items:flex-start; }
+  .ptabs{ gap:6px; }
+  .ptab{ flex:1; justify-content:center; padding:11px 10px; font-size:.84rem; }
+  .ptab svg{ display:none; }
+}
+@media (max-width:480px){
+  .stat-grid{ grid-template-columns:1fr 1fr; gap:12px; } .stat{ padding:22px 18px; }
+  .hero .cta-row .btn{ flex:1; }
+  .hero-meta{ gap:18px 26px; }
+  .giant{ font-size:14vw; }
+  .launch-row .btn{ flex:1; }
+  .tm-opts{ flex-direction:row; }
+  .grade-letter{ width:70px; height:70px; font-size:2.1rem; border-radius:18px; }
+}
+
+/* ═════════════════════════ REDUCED MOTION ═════════════════════════ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation:none !important; transition:none !important; }
+  html{ scroll-behavior:auto !important; }
+  .js .reveal,.js .srev{ opacity:1 !important; transform:none !important; }
+  .hero h1 .hl > span{ transform:none !important; }
+  .hero .eyebrow,.hero .lead,.hero .cta-row,.hero-meta,.badge-stack,.scroll-cue{ opacity:1 !important; }
+  .hero-video,#net,#gl{ display:none !important; }
+  .cursor-dot,.cursor-ring{ display:none !important; }
+  .marquee .track{ animation:none !important; flex-wrap:wrap; width:auto; justify-content:center; }
+  .marquee .set:nth-child(2){ display:none; }
+  .fcard button{ transition:none !important; }
+  .pbar .fill,.meter .fill,.dim .fill{ transition:none !important; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+<canvas id="gl" class="glbg" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="cursor-dot" id="cdot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cring" aria-hidden="true"></div>
+
+<!-- ═════════════════════════ NAV ═════════════════════════ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="#top" aria-label="Vanderbilt AI Academy — home">
+        <span class="lm" aria-hidden="true">
+          <!-- lantern/torch mark — intentionally generic, NOT the official Vanderbilt logo -->
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8D5A9"/><stop offset="1" stop-color="#8A6D3B"/></linearGradient></defs><path d="M12 2.5c2.6 3.1 4 5 4 7.5a4 4 0 0 1-8 0c0-2.5 1.4-4.4 4-7.5z" fill="url(#lg1)"/><rect x="9.6" y="15.5" width="4.8" height="1.8" rx=".9" fill="url(#lg1)"/><rect x="10.6" y="18.4" width="2.8" height="3.4" rx="1.1" fill="url(#lg1)"/></svg>
+        </span>
+        <span>AI Academy<small>Vanderbilt · Staff Learning</small></span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <a href="#learn">Learn</a>
+        <a href="#playground">Playground</a>
+        <a href="#simulator">Simulator</a>
+        <a href="#tools">Tools</a>
+        <a href="#responsible">Responsible AI</a>
+        <a class="btn btn-primary btn-sm nav-cta magnetic" href="#quiz">Knowledge check</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span class="b b1" aria-hidden="true"></span><span class="b b2" aria-hidden="true"></span><span class="b b3" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile overlay menu -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+  <a class="mlink" href="#learn"><span class="mono">01</span>Learn</a>
+  <a class="mlink" href="#playground"><span class="mono">02</span>Playground</a>
+  <a class="mlink" href="#simulator"><span class="mono">03</span>Simulator</a>
+  <a class="mlink" href="#tools"><span class="mono">04</span>Tools</a>
+  <a class="mlink" href="#responsible"><span class="mono">05</span>Responsible AI</a>
+  <a class="mlink" href="#quiz"><span class="mono">06</span>Knowledge check</a>
+  <div class="mfoot">ai-academy@vanderbilt.edu <!-- [EDIT] program contact email --></div>
+</nav>
+
+<main id="main"><span id="top"></span>
+
+<!-- ═════════════════════════ HERO ═════════════════════════ -->
+<section class="hero" aria-label="Welcome">
+  <div class="hero-media" aria-hidden="true">
+    <!-- [EDIT] ambient hero video — the placeholder below is substituted with a real CDN URL after generation -->
+    <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260702_173210_181a49e0-dc27-463e-93e7-7d20f961726b.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-scrim"></div>
+  </div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <canvas id="net" aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <div class="hero-cols">
+      <div>
+        <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Vanderbilt University · Staff AI Academy <!-- [EDIT] program eyebrow --></span></span>
+        <h1>
+          <span class="hl"><span>AI is your new <em class="s">colleague.</em></span></span>
+          <span class="hl"><span>Let&rsquo;s teach you</span></span>
+          <span class="hl"><span>to <em class="s">work together.</em></span></span>
+        </h1>
+        <p class="lead">A friendly, hands-on introduction to AI for Vanderbilt staff. Plain English, examples from real campus work, and practice tools you can try right now — no computer science degree required.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary magnetic" href="#learn">Start learning
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn-ghost magnetic" href="#simulator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/></svg>Try the simulator</a>
+        </div>
+      </div>
+      <div class="badge-stack" aria-label="Highlights">
+        <div class="fbadge tilt"><span class="fb-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="3"/><path d="M8 21h8M12 18v3"/></svg></span><span><b>3 approved tools</b><span>ChatGPT · Amplify · Copilot</span></span></div>
+        <div class="fbadge tilt"><span class="fb-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span><b>15-min lessons</b><span>Built for busy weeks</span></span></div>
+        <div class="fbadge tilt"><span class="fb-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/></svg></span><span><b>No jargon</b><span>Plain English, promise</span></span></div>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <div class="hm"><b data-count="3">3</b><span>Approved tools</span></div>
+      <div class="hm"><b data-count="14">14</b><span>Workplace AI patterns</span></div>
+      <div class="hm"><b data-count="6">6</b><span>Interactive modules</span></div>
+      <div class="hm"><b data-count="0">0</b><span>Jargon required</span></div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">Scroll<span class="line"></span></div>
+</section>
+
+<!-- ═════════════════════════ MARQUEE ═════════════════════════ -->
+<div class="marquee" role="img" aria-label="Topics: prompt writing, next-word prediction, data safety, tool choice, myth-busting, responsible AI, everyday wins, FERPA-aware habits">
+  <div class="track" aria-hidden="true">
+    <div class="set">
+      <span class="it">Prompt writing<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Next-word prediction<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Data safety<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Tool choice<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Myth-busting<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Responsible AI<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Everyday wins<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">FERPA-aware habits<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+    </div>
+    <div class="set">
+      <span class="it">Prompt writing<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Next-word prediction<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Data safety<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Tool choice<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Myth-busting<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Responsible AI<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">Everyday wins<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+      <span class="it">FERPA-aware habits<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg></span>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════════════ STATS BAND ═════════════════════════ -->
+<section class="stats" aria-label="Academy at a glance">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat tilt gborder"><div class="glare"></div><span class="spark" aria-hidden="true"></span><span class="k" aria-hidden="true">/01</span>
+        <div class="num" data-count="3">3</div><div class="lbl">Working practice apps — no login, nothing leaves your browser</div></div>
+      <div class="stat tilt gborder"><div class="glare"></div><span class="spark" aria-hidden="true"></span><span class="k" aria-hidden="true">/02</span>
+        <div class="num" data-count="14">14</div><div class="lbl">Workplace task patterns the simulator can match against</div></div>
+      <div class="stat tilt gborder"><div class="glare"></div><span class="spark" aria-hidden="true"></span><span class="k" aria-hidden="true">/03</span>
+        <div class="num" data-count="8">8</div><div class="lbl">Knowledge-check questions to prove you've got it</div></div>
+      <div class="stat tilt gborder"><div class="glare"></div><span class="spark" aria-hidden="true"></span><span class="k" aria-hidden="true">/04</span>
+        <div class="num" data-count="30" data-suffix=" days">30 days</div><div class="lbl">From first lesson to a working AI habit — the plan is included</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ LEARN ═════════════════════════ -->
+<section id="learn" aria-label="Learn the fundamentals">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Learn / 01</span></span>
+      <h2>First, the <em class="s grad-text">plain-English</em> version.</h2>
+      <p>Three short modules. By the end you'll know what these tools actually are, how they really work, and which claims about them to politely ignore.</p>
+    </div>
+
+    <!-- Module A: What is AI, really? -->
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Module A</span>
+        <h3>What is AI, really?</h3>
+        <p>Four terms you'll hear constantly. Flip each card for the plain definition and a Vanderbilt example. (Click or press Enter.)</p>
+      </div>
+      <div class="flip-grid">
+        <div class="fcard">
+          <button type="button" class="flip-btn" aria-expanded="false">
+            <span class="face front">
+              <span class="abbr" aria-hidden="true">AI</span>
+              <h4>Artificial Intelligence</h4>
+              <span class="def">The umbrella term for all of it.</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the real story</span>
+            </span>
+            <span class="face back">
+              <span class="tag">Plain English</span>
+              <p>Software doing things we used to think needed a human brain — reading, writing, spotting patterns, making suggestions.</p>
+              <p><b>At Vanderbilt:</b> the spam filter quietly saving you from 200 junk emails a week. You've used AI for years.</p>
+            </span>
+          </button>
+        </div>
+        <div class="fcard">
+          <button type="button" class="flip-btn" aria-expanded="false">
+            <span class="face front">
+              <span class="abbr" aria-hidden="true">ML</span>
+              <h4>Machine Learning</h4>
+              <span class="def">AI that learns from examples, not rules.</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the real story</span>
+            </span>
+            <span class="face back">
+              <span class="tag">Plain English</span>
+              <p>Instead of a programmer writing every rule, the software studies thousands of examples and figures out the patterns itself.</p>
+              <p><b>At Vanderbilt:</b> predicting peak parking-garage demand from years of gate-swipe data — no one wrote a "football Saturday" rule.</p>
+            </span>
+          </button>
+        </div>
+        <div class="fcard">
+          <button type="button" class="flip-btn" aria-expanded="false">
+            <span class="face front">
+              <span class="abbr" aria-hidden="true">GenAI</span>
+              <h4>Generative AI</h4>
+              <span class="def">AI that creates new things.</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the real story</span>
+            </span>
+            <span class="face back">
+              <span class="tag">Plain English</span>
+              <p>AI that produces brand-new text, images, or code instead of just sorting or scoring what already exists.</p>
+              <p><b>At Vanderbilt:</b> drafting the first version of a program announcement so you spend ten minutes polishing instead of an hour staring at a blank page.</p>
+            </span>
+          </button>
+        </div>
+        <div class="fcard">
+          <button type="button" class="flip-btn" aria-expanded="false">
+            <span class="face front">
+              <span class="abbr" aria-hidden="true">LLM</span>
+              <h4>Large Language Model</h4>
+              <span class="def">The engine inside the chatbots.</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the real story</span>
+            </span>
+            <span class="face back">
+              <span class="tag">Plain English</span>
+              <p>A giant autocomplete trained on a huge slice of human writing. It predicts the next word — astonishingly well.</p>
+              <p><b>At Vanderbilt:</b> the technology inside ChatGPT, Amplify, and Copilot. Try it yourself in Module B, just below.</p>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module B: How an LLM actually works -->
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Module B</span>
+        <h3>How an LLM actually works</h3>
+        <p>An LLM writes by predicting the next word, one word at a time. Here's a live (canned-data) peek at what that prediction looks like.</p>
+      </div>
+      <div class="llm gborder tilt"><div class="glare"></div>
+        <p class="sentence" aria-live="polite">&ldquo;<span id="llmText">The staff meeting has been moved to</span> <span class="blank" id="llmBlank">?</span>&rdquo;</p>
+        <div class="llm-grid">
+          <div>
+            <div class="pbars" id="llmBars" role="img" aria-label="Probability bars showing the model's five most likely next words"></div>
+          </div>
+          <div class="llm-ctrl">
+            <div class="ctl-row">
+              <button type="button" class="btn btn-ghost btn-sm" id="llmShuffle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>Shuffle sentence</button>
+            </div>
+            <div class="ctl-row">
+              <label for="llmTemp">Temperature</label>
+              <input type="range" id="llmTemp" min="0.2" max="2" step="0.1" value="1" />
+              <span class="tval" id="llmTempVal">1.0</span>
+            </div>
+            <p class="llm-note"><b>Prediction:</b> the model scores every word it knows and usually picks a high scorer. That's it. No plan, no opinion — just very good statistics.</p>
+            <p class="llm-note"><b>Temperature:</b> slide it up and the model gets adventurous, giving unlikely words a real chance. Great for brainstorming, risky for facts.</p>
+            <p class="llm-note"><b>Hallucinations:</b> because it predicts what <em>sounds</em> right rather than checks what <em>is</em> right, it can state made-up things with total confidence. Always verify.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Module C: Myths vs Facts -->
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Module C</span>
+        <h3>Myths vs. facts</h3>
+        <p>Six claims you'll hear in the break room. Tap each one for the verdict.</p>
+      </div>
+      <div class="myth-grid">
+        <div class="myth gborder" data-verdict="myth">
+          <button type="button" aria-expanded="false">&ldquo;AI understands what I'm saying, like a human would.&rdquo;</button>
+          <span class="flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          <div class="verdict"><span class="vtag myth-v">Myth</span>
+            <p>It predicts patterns in text. There's no understanding, belief, or intent behind the words — which is exactly why your judgment still matters.</p></div>
+        </div>
+        <div class="myth gborder" data-verdict="fact">
+          <button type="button" aria-expanded="false">&ldquo;AI can confidently make things up.&rdquo;</button>
+          <span class="flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          <div class="verdict"><span class="vtag fact-v">Fact</span>
+            <p>They're called hallucinations: fluent, plausible, and wrong. Fake citations, invented policies, wrong dates. Verify anything that matters.</p></div>
+        </div>
+        <div class="myth gborder" data-verdict="myth">
+          <button type="button" aria-expanded="false">&ldquo;AI is coming for my job.&rdquo;</button>
+          <span class="flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          <div class="verdict"><span class="vtag myth-v">Mostly myth</span>
+            <p>AI takes over tasks, not whole jobs. Staff who learn to delegate the repetitive parts get hours back for the work only a person can do.</p></div>
+        </div>
+        <div class="myth gborder" data-verdict="myth">
+          <button type="button" aria-expanded="false">&ldquo;Whatever I type into a chatbot stays private.&rdquo;</button>
+          <span class="flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          <div class="verdict"><span class="vtag myth-v">Myth</span>
+            <p>Consumer tools may store or learn from what you paste. Anything sensitive or institutional belongs in Amplify, Vanderbilt's approved platform.</p></div>
+        </div>
+        <div class="myth gborder" data-verdict="fact">
+          <button type="button" aria-expanded="false">&ldquo;AI can save me real hours on first drafts.&rdquo;</button>
+          <span class="flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          <div class="verdict"><span class="vtag fact-v">Fact</span>
+            <p>Drafting, summarizing, and reformatting are where it shines. You bring the facts and the judgment; it brings the typing speed.</p></div>
+        </div>
+        <div class="myth gborder" data-verdict="myth">
+          <button type="button" aria-expanded="false">&ldquo;You need to be technical to use AI well.&rdquo;</button>
+          <span class="flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
+          <div class="verdict"><span class="vtag myth-v">Myth</span>
+            <p>If you can write a clear email to a new colleague, you can write a great prompt. The Playground below will prove it.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ PLAYGROUND ═════════════════════════ -->
+<section id="playground" aria-label="Practice playground">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Playground / 02</span></span>
+      <h2>Practice here, <em class="s grad-text">shine everywhere.</em></h2>
+      <p>Three working practice tools. Build a prompt, get it graded, and find the right tool for the job.</p>
+      <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+        Honesty corner: these are guided practice tools that run entirely in your browser — no AI, and nothing you type leaves this page. The real AI lives in ChatGPT, Amplify, and Copilot; take what you build here into those.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="ptabs" role="tablist" aria-label="Playground apps">
+        <button class="ptab" id="tab-lab" role="tab" aria-selected="true" aria-controls="panel-lab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v6L4 19a2 2 0 0 0 1.8 3h12.4A2 2 0 0 0 20 19L14 8V2"/><path d="M8 2h8"/></svg>Prompt Lab</button>
+        <button class="ptab" id="tab-grader" role="tab" aria-selected="false" aria-controls="panel-grader" tabindex="-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg>Prompt Grader</button>
+        <button class="ptab" id="tab-match" role="tab" aria-selected="false" aria-controls="panel-match" tabindex="-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 8.5L15.5 15.5M18 6h-5M6 18v-5"/></svg>Tool Match</button>
+      </div>
+
+      <!-- ── PROMPT LAB ── -->
+      <div class="ppanel gborder" id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" tabindex="0">
+        <div class="app-grid">
+          <form autocomplete="off" novalidate>
+            <div class="field">
+              <label for="plRole">Role — &ldquo;You are a…&rdquo;</label>
+              <input type="text" id="plRole" placeholder="e.g. an experienced university communications editor" />
+              <span class="hinttxt">Giving the AI a job title changes everything about the answer.</span>
+            </div>
+            <div class="field">
+              <label for="plTask">Task — what do you need?</label>
+              <textarea id="plTask" rows="3" placeholder="e.g. Draft a friendly reminder email about open enrollment deadlines"></textarea>
+            </div>
+            <div class="field">
+              <label for="plContext">Context — what should it know?</label>
+              <textarea id="plContext" rows="3" placeholder="e.g. Audience is 300 staff, deadline is Nov 15, tone should feel helpful not naggy"></textarea>
+            </div>
+            <div class="field">
+              <label for="plFormat">Format — how should the answer look?</label>
+              <input type="text" id="plFormat" placeholder="e.g. under 150 words, with a 3-bullet summary at the top" />
+            </div>
+            <div class="field">
+              <label for="plTone">Tone</label>
+              <select id="plTone">
+                <option value="">Choose a tone (optional)</option>
+                <option>Warm and friendly</option>
+                <option>Professional and concise</option>
+                <option>Encouraging and upbeat</option>
+                <option>Neutral and factual</option>
+                <option>Plain language, 8th-grade reading level</option>
+              </select>
+            </div>
+            <div class="checks">
+              <label><input type="checkbox" id="plReason" /> Ask it to show its reasoning</label>
+              <label><input type="checkbox" id="plCite" /> Ask it to cite sources</label>
+            </div>
+          </form>
+          <div class="preview-box">
+            <div class="preview-head">
+              <span class="mono">Live prompt preview</span>
+              <button type="button" class="btn btn-ghost btn-sm" id="plCopy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span id="plCopyLabel">Copy prompt</span></button>
+            </div>
+            <div class="preview" id="plPreview" aria-live="polite"><span class="ph">Your prompt assembles here as you type…</span></div>
+            <div class="meter">
+              <div class="mrow"><span class="mlabel">Prompt quality</span><span class="mscore" id="plMeterLabel">0 / 5 ingredients</span></div>
+              <div class="rail"><div class="fill" id="plMeterFill"></div></div>
+            </div>
+            <div class="launch-row">
+              <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+              <!-- [EDIT] confirm Amplify URL for your unit -->
+              <a class="btn btn-ghost btn-sm" href="https://amplify.vanderbilt.edu" target="_blank" rel="noopener">Open Amplify
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+              <a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROMPT GRADER ── -->
+      <div class="ppanel gborder" id="panel-grader" role="tabpanel" aria-labelledby="tab-grader" tabindex="0" hidden>
+        <div class="app-grid">
+          <div>
+            <div class="field">
+              <label for="grText">Paste a prompt you'd actually send</label>
+              <textarea id="grText" rows="9" placeholder="e.g. You are a financial analyst at a university. Summarize the attached budget notes into a one-page memo for leadership, with three bullet takeaways and a table of variances over 5%. Keep it under 300 words."></textarea>
+              <span class="hinttxt">The grader checks for a role, context, format, specificity, and constraints — the same five ingredients from the Prompt Lab.</span>
+            </div>
+            <button type="button" class="btn btn-primary" id="grBtn">Grade my prompt
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></button>
+            <p class="nudge" id="grNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Give me a prompt to chew on first — even one sentence works.</p>
+          </div>
+          <div class="grade-out" id="grOut" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- ── TOOL MATCH ── -->
+      <div class="ppanel gborder" id="panel-match" role="tabpanel" aria-labelledby="tab-match" tabindex="0" hidden>
+        <div class="app-grid">
+          <form id="tmForm" autocomplete="off">
+            <fieldset class="tm-q">
+              <legend><span class="qn">Q1</span>Does the task involve student records, health info, or any confidential Vanderbilt data?</legend>
+              <div class="tm-opts">
+                <label><input type="radio" name="tm1" value="yes" /> Yes</label>
+                <label><input type="radio" name="tm1" value="no" /> No</label>
+              </div>
+            </fieldset>
+            <fieldset class="tm-q">
+              <legend><span class="qn">Q2</span>Will you be working inside Word, Excel, Outlook, or Teams?</legend>
+              <div class="tm-opts">
+                <label><input type="radio" name="tm2" value="yes" /> Yes</label>
+                <label><input type="radio" name="tm2" value="no" /> No</label>
+              </div>
+            </fieldset>
+            <fieldset class="tm-q">
+              <legend><span class="qn">Q3</span>Do you need current information from the web?</legend>
+              <div class="tm-opts">
+                <label><input type="radio" name="tm3" value="yes" /> Yes</label>
+                <label><input type="radio" name="tm3" value="no" /> No</label>
+              </div>
+            </fieldset>
+            <fieldset class="tm-q">
+              <legend><span class="qn">Q4</span>Are you working with long documents (reports, policies, transcripts)?</legend>
+              <div class="tm-opts">
+                <label><input type="radio" name="tm4" value="yes" /> Yes</label>
+                <label><input type="radio" name="tm4" value="no" /> No</label>
+              </div>
+            </fieldset>
+            <fieldset class="tm-q">
+              <legend><span class="qn">Q5</span>Is this mostly general drafting or brainstorming?</legend>
+              <div class="tm-opts">
+                <label><input type="radio" name="tm5" value="yes" /> Yes</label>
+                <label><input type="radio" name="tm5" value="no" /> No</label>
+              </div>
+            </fieldset>
+            <button type="button" class="btn btn-primary" id="tmBtn">Find my tool
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <p class="nudge" id="tmNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Answer all five questions and I'll make the call.</p>
+          </form>
+          <div id="tmOut" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ SIMULATOR ═════════════════════════ -->
+<section id="simulator" aria-label="AI opportunity simulator">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Simulator / 03</span></span>
+      <h2>The AI Opportunity <em class="s grad-text">Simulator.</em></h2>
+      <p>Describe a real piece of your work and get an opportunity map, starter prompts, watch-outs, and a 30-day plan — built from common AI patterns.</p>
+      <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+        A guided framework based on common AI patterns — not a live AI. For the real thing, take these prompts into your tools.</p>
+    </div>
+
+    <div class="sim-shell gborder reveal">
+      <form class="sim-form" autocomplete="off" novalidate>
+        <div class="field">
+          <label for="simText">Your use case — describe a task, process, or headache from your week</label>
+          <textarea id="simText" rows="5" placeholder="e.g. Every Monday I compile updates from six teams into one status report, chase people for missing pieces, and rewrite everything into a consistent format for leadership…"></textarea>
+        </div>
+        <div class="sim-chips" aria-label="Example use cases">
+          <span class="mono" style="align-self:center">Try an example:</span>
+          <button type="button" class="sim-chip" data-dept="Admissions" data-case="Every fall I answer hundreds of emails from applicants asking about deadlines, transcripts, and campus visits. I also summarize application review notes for committee meetings and keep a spreadsheet of where each file stands.">Admissions inbox season</button>
+          <button type="button" class="sim-chip" data-dept="Human Resources" data-case="I onboard new hires: schedule orientation, send the same welcome documents, answer the same first-week questions, and track completion of required training in a spreadsheet. Writing the personalized welcome emails takes forever.">HR onboarding grind</button>
+          <button type="button" class="sim-chip" data-dept="Finance" data-case="I prepare a monthly budget variance report by pulling numbers from three systems, analyzing which lines are over, writing a summary memo for leadership, and emailing follow-ups to the units that overspent.">Finance monthly close</button>
+        </div>
+        <div class="sim-row">
+          <div class="field">
+            <label for="simDept">Your department</label>
+            <select id="simDept"><!-- [EDIT] adjust department list to your org chart -->
+              <option>Admissions</option><option>Human Resources</option><option>Finance</option>
+              <option>Information Technology</option><option>Research Administration</option><option>Advancement</option>
+              <option>Student Affairs</option><option>Facilities</option><option>Communications</option>
+              <option>Library</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="simGoal">Primary goal</label>
+            <select id="simGoal">
+              <option>Save time</option><option>Improve quality</option><option>Reduce backlog</option>
+              <option>Better decisions</option><option>Learn AI</option>
+            </select>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary magnetic" id="simBtn">Analyze my use case
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+        <p class="nudge" id="simNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Tell me a little about your work first — a sentence or two is plenty (or tap an example above).</p>
+      </form>
+
+      <div class="sim-steps" id="simSteps" aria-hidden="true">
+        <div class="sim-step" data-step="0"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Parsing your case…</div>
+        <div class="sim-step" data-step="1"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Mapping your tasks…</div>
+        <div class="sim-step" data-step="2"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Matching AI patterns…</div>
+        <div class="sim-step" data-step="3"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Checking data sensitivity…</div>
+        <div class="sim-step" data-step="4"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Building your plan…</div>
+      </div>
+
+      <div class="sim-out" id="simOut" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ TOOLS ═════════════════════════ -->
+<section id="tools" aria-label="Your three tools">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Tools / 04</span></span>
+      <h2>Three tools, <em class="s grad-text">zero guesswork.</em></h2>
+      <p>You don't need every AI product on Earth. You need to know which of these three to open — and when.</p>
+    </div>
+    <div class="tool-grid">
+      <!-- generic glyphs on purpose — not official product logos -->
+      <article class="tool tilt gborder reveal"><div class="glare"></div>
+        <span class="t-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1.1L3 20l1.1-5.3A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg></span>
+        <h3>ChatGPT</h3>
+        <p class="t-tag">The versatile all-rounder for public, non-sensitive work.</p>
+        <dl>
+          <div><dt>Best for</dt><dd>General drafting, brainstorming, rewriting, learning new topics, web-informed answers</dd></div>
+          <div><dt>Data allowed</dt><dd><b>Public info only.</b> Nothing sensitive, nothing institutional</dd></div>
+          <div><dt>Where it lives</dt><dd>chat.openai.com — browser or mobile app</dd></div>
+          <div><dt>Cost</dt><dd>Free tier; paid Plus optional <!-- [EDIT] verify current pricing/licensing --></dd></div>
+        </dl>
+        <div class="t-cta"><a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
+      </article>
+      <article class="tool hero-tool tilt reveal" style="transition-delay:.08s"><div class="glare"></div>
+        <span class="t-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.2-8 10.8-4.6-1.6-8-5.8-8-10.8V5.5L12 2z"/><path d="M9 13.5L12 7l3 6.5M10 12h4"/></svg></span>
+        <h3>Amplify <span class="vu-badge">Vanderbilt's platform</span></h3>
+        <p class="t-tag">Approved for institutional data. <!-- [EDIT] verify approval scope with ITS/policy owners --> When in doubt, start here.</p>
+        <dl>
+          <div><dt>Best for</dt><dd>Anything touching Vanderbilt data: long documents, internal reports, student-adjacent work</dd></div>
+          <div><dt>Data allowed</dt><dd><b>Institutional data</b> within policy <!-- [EDIT] link data classification guidance --></dd></div>
+          <div><dt>Where it lives</dt><dd>amplify.vanderbilt.edu <!-- [EDIT] confirm URL --> — VUNet ID login</dd></div>
+          <div><dt>Cost</dt><dd>Provided by Vanderbilt <!-- [EDIT] confirm funding/access model --></dd></div>
+        </dl>
+        <div class="t-cta"><a class="btn btn-primary btn-sm" href="https://amplify.vanderbilt.edu" target="_blank" rel="noopener">Open Amplify
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
+      </article>
+      <article class="tool tilt gborder reveal" style="transition-delay:.16s"><div class="glare"></div>
+        <span class="t-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 15.5c-2.6 0-4.5-1.8-4.5-3.5s1.9-3.5 4.5-3.5c3.5 0 3.9 7 7 7 2.6 0 4.5-1.8 4.5-3.5S18.1 8.5 15.5 8.5c-3.1 0-3.5 7-7 7z"/></svg></span>
+        <h3>Microsoft Copilot</h3>
+        <p class="t-tag">The one that lives where you already work.</p>
+        <dl>
+          <div><dt>Best for</dt><dd>Drafting in Word, formulas in Excel, taming Outlook, meeting recaps in Teams</dd></div>
+          <div><dt>Data allowed</dt><dd>Follow guidance for your <b>Vanderbilt Microsoft 365 account</b> <!-- [EDIT] confirm tenant data guidance --></dd></div>
+          <div><dt>Where it lives</dt><dd>copilot.microsoft.com + inside Office apps</dd></div>
+          <div><dt>Cost</dt><dd>Included with eligible M365 licenses <!-- [EDIT] verify license coverage --></dd></div>
+        </dl>
+        <div class="t-cta"><a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
+      </article>
+    </div>
+    <div class="rule-strip reveal" role="note" aria-label="Rule of thumb">
+      <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.2-8 10.8-4.6-1.6-8-5.8-8-10.8V5.5L12 2z"/></svg>Sensitive data → <b>Amplify</b></span>
+      <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/></svg>Office apps → <b>Copilot</b></span>
+      <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>Everything else → <b>your choice</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ RESPONSIBLE AI ═════════════════════════ -->
+<section id="responsible" aria-label="Responsible AI principles">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Responsible AI / 05</span></span>
+      <h2>Use it boldly. <em class="s grad-text">Use it well.</em></h2>
+      <p>Six habits that keep you — and Vanderbilt — on solid ground. They take seconds and save careers.</p>
+    </div>
+    <div class="resp-grid">
+      <article class="principle tilt gborder reveal"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></span>
+        <h3>Verify outputs</h3>
+        <p>AI writes confidently even when it's wrong. Check names, numbers, dates, and citations before anything leaves your desk.</p>
+      </article>
+      <article class="principle tilt gborder reveal" style="transition-delay:.06s"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+        <h3>Protect data</h3>
+        <p>FERPA and HIPAA don't pause for convenience. Student records, health info, and anything confidential go to Amplify only — or nowhere.</p>
+      </article>
+      <article class="principle tilt gborder reveal" style="transition-delay:.12s"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1.1L3 20l1.1-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg></span>
+        <h3>Disclose AI use</h3>
+        <p>If AI helped draft something substantive, say so. Simple transparency ("drafted with AI assistance, reviewed by me") builds trust.</p>
+      </article>
+      <article class="principle tilt gborder reveal" style="transition-delay:.06s"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/></svg></span>
+        <h3>Human makes the call</h3>
+        <p>AI advises; you decide. Hiring, grading, funding, discipline — decisions about people always need a person accountable for them.</p>
+      </article>
+      <article class="principle tilt gborder reveal" style="transition-delay:.12s"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18M12 7v5l3 2"/></svg></span>
+        <h3>Bias awareness</h3>
+        <p>Models learn from human writing, biases included. Watch for skewed assumptions, especially in anything touching admissions, hiring, or evaluation.</p>
+      </article>
+      <article class="principle tilt gborder reveal" style="transition-delay:.18s"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
+        <h3>Keep learning</h3>
+        <p>These tools change monthly. Fifteen curious minutes a week keeps your skills compounding while everyone else is still skeptical.</p>
+      </article>
+    </div>
+    <div class="never reveal">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.6L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Never paste these into a public AI tool</h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Social Security numbers</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Student records or grades (FERPA)</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Health information (HIPAA)</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Salaries &amp; personnel files</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Donor records &amp; gift data</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Passwords, keys &amp; credentials</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Unpublished research data</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Contracts &amp; legal matters</li>
+      </ul>
+      <p class="pol">Full guidance: <a href="#responsible">Vanderbilt AI Guidance <!-- [EDIT] link official AI policy --></a> · <a href="#responsible">Data Classification Policy <!-- [EDIT] link data classification policy --></a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ KNOWLEDGE CHECK ═════════════════════════ -->
+<section id="quiz" aria-label="Knowledge check">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Knowledge check / 06</span></span>
+      <h2>Prove it to <em class="s grad-text">yourself.</em></h2>
+      <p>Eight quick questions. No grade book, no pressure — just a friendly gut-check before you go be dangerous (responsibly).</p>
+    </div>
+    <div class="quiz-shell gborder reveal">
+      <form id="quizForm" autocomplete="off" novalidate>
+        <fieldset class="qz" data-answer="b">
+          <legend><span class="qn">1/8</span>A colleague wants AI help summarizing notes that include student grades. Which tool?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q1" value="a" /> ChatGPT — it's the most popular</label>
+            <label><input type="radio" name="q1" value="b" /> Amplify — it's approved for institutional data</label>
+            <label><input type="radio" name="q1" value="c" /> Copilot on a personal account</label>
+            <label><input type="radio" name="q1" value="d" /> Any of them, it's just a summary</label>
+          </div>
+          <p class="expl"><b>Amplify.</b> Student records are FERPA-protected — they only belong in Vanderbilt's approved platform.</p>
+        </fieldset>
+        <fieldset class="qz" data-answer="c">
+          <legend><span class="qn">2/8</span>Under the hood, what is a large language model actually doing?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q2" value="a" /> Searching a database of verified facts</label>
+            <label><input type="radio" name="q2" value="b" /> Thinking through the problem like a person</label>
+            <label><input type="radio" name="q2" value="c" /> Predicting the most likely next word, over and over</label>
+            <label><input type="radio" name="q2" value="d" /> Copying answers from the web in real time</label>
+          </div>
+          <p class="expl"><b>Predicting the next word.</b> That's the whole trick — which is why it's brilliant at drafting and unreliable on facts.</p>
+        </fieldset>
+        <fieldset class="qz" data-answer="b">
+          <legend><span class="qn">3/8</span>An AI gives you a beautifully written answer with two citations. What now?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q3" value="a" /> Send it — citations mean it's verified</label>
+            <label><input type="radio" name="q3" value="b" /> Check the facts and citations yourself first</label>
+            <label><input type="radio" name="q3" value="c" /> Ask the AI if it's sure</label>
+            <label><input type="radio" name="q3" value="d" /> Add more citations for safety</label>
+          </div>
+          <p class="expl"><b>Verify it yourself.</b> Models fabricate plausible-looking citations. Asking "are you sure?" just gets you a confident yes.</p>
+        </fieldset>
+        <fieldset class="qz" data-answer="a">
+          <legend><span class="qn">4/8</span>What's a &ldquo;hallucination&rdquo; in AI-speak?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q4" value="a" /> Confident, fluent information that's simply made up</label>
+            <label><input type="radio" name="q4" value="b" /> When the AI refuses to answer</label>
+            <label><input type="radio" name="q4" value="c" /> A visual glitch in the interface</label>
+            <label><input type="radio" name="q4" value="d" /> When the AI repeats itself</label>
+          </div>
+          <p class="expl"><b>Made-up but confident.</b> The model predicts what sounds right, not what is right — so wrong answers arrive sounding great.</p>
+        </fieldset>
+        <fieldset class="qz" data-answer="d">
+          <legend><span class="qn">5/8</span>Which prompt will get the best result?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q5" value="a" /> &ldquo;Write something about our event&rdquo;</label>
+            <label><input type="radio" name="q5" value="b" /> &ldquo;Make this good&rdquo;</label>
+            <label><input type="radio" name="q5" value="c" /> &ldquo;Email please&rdquo;</label>
+            <label><input type="radio" name="q5" value="d" /> A role, the task, context, and a format — all spelled out</label>
+          </div>
+          <p class="expl"><b>Role + task + context + format.</b> The five ingredients from the Prompt Lab. Specific in, useful out.</p>
+        </fieldset>
+        <fieldset class="qz" data-answer="c">
+          <legend><span class="qn">6/8</span>You're buried in Excel and need formula help. The natural first stop?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q6" value="a" /> ChatGPT in another tab</label>
+            <label><input type="radio" name="q6" value="b" /> Amplify</label>
+            <label><input type="radio" name="q6" value="c" /> Copilot — it lives inside Office</label>
+            <label><input type="radio" name="q6" value="d" /> A very patient coworker</label>
+          </div>
+          <p class="expl"><b>Copilot.</b> Office apps → Copilot is the rule of thumb. It can see your sheet, so you skip the copy-paste dance.</p>
+        </fieldset>
+        <fieldset class="qz" data-answer="b">
+          <legend><span class="qn">7/8</span>Before pasting anything into an AI tool, the one question to ask is:</legend>
+          <div class="opts">
+            <label><input type="radio" name="q7" value="a" /> Is this prompt long enough?</label>
+            <label><input type="radio" name="q7" value="b" /> Is this data sensitive, and is this tool approved for it?</label>
+            <label><input type="radio" name="q7" value="c" /> Will the AI find this interesting?</label>
+            <label><input type="radio" name="q7" value="d" /> Should I use a friendlier tone?</label>
+          </div>
+          <p class="expl"><b>Sensitive data check.</b> One second of "should this leave Vanderbilt?" prevents the mistakes that actually matter.</p>
+        </fieldset>
+        <fieldset class="qz" data-answer="a">
+          <legend><span class="qn">8/8</span>You crank the temperature setting way up. The model's output gets…</legend>
+          <div class="opts">
+            <label><input type="radio" name="q8" value="a" /> More random and creative — riskier for facts</label>
+            <label><input type="radio" name="q8" value="b" /> More accurate</label>
+            <label><input type="radio" name="q8" value="c" /> Faster</label>
+            <label><input type="radio" name="q8" value="d" /> Physically warmer</label>
+          </div>
+          <p class="expl"><b>More random.</b> High temperature gives unlikely words a bigger chance — great for brainstorming, bad for budget memos.</p>
+        </fieldset>
+        <div class="quiz-foot">
+          <button type="button" class="btn btn-primary magnetic" id="quizSubmit">Check my answers
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></button>
+          <span class="quiz-prog" id="quizProgress" aria-live="polite">0 of 8 answered</span>
+        </div>
+        <p class="nudge" id="quizNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>A few questions are still blank — answer them all and I'll tally you up.</p>
+      </form>
+      <div class="quiz-result" id="quizResult" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ═════════════════════════ FOOTER ═════════════════════════ -->
+<footer>
+  <div class="giant" aria-hidden="true">AI&nbsp;ACADEMY</div>
+  <div class="wrap foot">
+    <div class="cr">
+      © <span id="yr">2026</span> Vanderbilt AI Academy — internal training prototype, <b>not an official Vanderbilt University site</b>. Product names (ChatGPT, Amplify, Microsoft Copilot) belong to their respective owners. <!-- [EDIT] disclaimer / ownership line --><br/>
+      Questions or ideas? <a href="mailto:ai-academy@vanderbilt.edu">ai-academy@vanderbilt.edu</a> <!-- [EDIT] contact mailto -->
+    </div>
+    <div class="fl">
+      <a class="totop" href="#top">Back to top<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<!-- three.js (only script CDN dependency) — powers the golden knowledge-network scene; site degrades gracefully without it -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js" crossorigin="anonymous"></script>
+<script>
+(function(){
+'use strict';
+var reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+var reduce = reduceMq.matches;
+var fine = window.matchMedia('(pointer: fine)').matches;
+var clamp = function(v,a,b){ return Math.max(a, Math.min(b, v)); };
+var yr = document.getElementById('yr'); if(yr) yr.textContent = new Date().getFullYear();
+
+/* ── hero video: pause under reduced motion / when off-screen ── */
+var vid = document.getElementById('heroVideo');
+if(vid){
+  if(reduce){ try{ vid.pause(); vid.removeAttribute('autoplay'); }catch(e){} }
+  else if('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){
+      en.forEach(function(e){ try{ e.isIntersecting ? vid.play().catch(function(){}) : vid.pause(); }catch(err){} });
+    }, {threshold:0}).observe(vid);
+  }
+}
+
+/* ══════════ SIGNATURE: golden knowledge-network (three.js) ══════════
+   Graceful ladder: WebGL 3D scene → 2D canvas constellation → static gradients */
+var glActive = false;
+(function(){
+  if(reduce || typeof window.THREE === 'undefined') return;
+  var canvas = document.getElementById('gl'); if(!canvas) return;
+  var renderer;
+  try{
+    renderer = new THREE.WebGLRenderer({ canvas:canvas, alpha:true, antialias:true, powerPreference:'high-performance' });
+  }catch(err){ return; } /* WebGL unavailable → 2D fallback */
+  glActive = true;
+
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  renderer.setPixelRatio(dpr);
+  renderer.setClearColor(0x000000, 0);
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(58, window.innerWidth/window.innerHeight, .1, 100);
+  camera.position.z = 9;
+
+  /* ── golden particle constellation (capped: ~1200 desktop / ~450 mobile) ── */
+  var COUNT = window.innerWidth < 768 ? 450 : 1200;
+  var PAL = [new THREE.Color('#E8D5A9'), new THREE.Color('#CFAE70'), new THREE.Color('#B08D4F'), new THREE.Color('#8A6D3B')];
+  var pos = new Float32Array(COUNT*3), col = new Float32Array(COUNT*3);
+  for(var i=0;i<COUNT;i++){
+    var r = 3.5 + Math.random()*11, th = Math.random()*Math.PI*2, ph = Math.acos(2*Math.random()-1);
+    pos[i*3]   = r*Math.sin(ph)*Math.cos(th);
+    pos[i*3+1] = r*Math.sin(ph)*Math.sin(th)*.62;
+    pos[i*3+2] = r*Math.cos(ph) - 3;
+    var pc = PAL[(Math.random()*PAL.length)|0];
+    col[i*3] = pc.r; col[i*3+1] = pc.g; col[i*3+2] = pc.b;
+  }
+  var pgeo = new THREE.BufferGeometry();
+  pgeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  pgeo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  var field = new THREE.Points(pgeo, new THREE.PointsMaterial({
+    size:.05, vertexColors:true, transparent:true, opacity:.8,
+    blending:THREE.AdditiveBlending, depthWrite:false, sizeAttenuation:true }));
+  scene.add(field);
+
+  /* ── nested dodecahedron "lantern" ── */
+  var core = new THREE.Group(); scene.add(core);
+  var cChamp = new THREE.Color('#E8D5A9'), cGold = new THREE.Color('#CFAE70'), cBronze = new THREE.Color('#8A6D3B');
+  var outerMat = new THREE.LineBasicMaterial({ color:cChamp.clone(), transparent:true, opacity:.42 });
+  var outer = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.DodecahedronGeometry(2.8, 0)), outerMat);
+  core.add(outer);
+  var midMat = new THREE.LineBasicMaterial({ color:cGold.clone(), transparent:true, opacity:.4 });
+  var mid = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.DodecahedronGeometry(1.9, 0)), midMat);
+  mid.rotation.set(.6, .4, 0); core.add(mid);
+  var innerMat = new THREE.LineBasicMaterial({ color:cBronze.clone(), transparent:true, opacity:.5 });
+  var inner = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(1.05, 0)), innerMat);
+  core.add(inner);
+  var ringMat = new THREE.MeshBasicMaterial({ color:cGold.clone(), transparent:true, opacity:.26 });
+  var ring1 = new THREE.Mesh(new THREE.TorusGeometry(4.1, .011, 8, 140), ringMat);
+  ring1.rotation.x = Math.PI/2.35; core.add(ring1);
+  var ring2 = new THREE.Mesh(new THREE.TorusGeometry(4.9, .008, 8, 140), ringMat.clone());
+  ring2.rotation.x = Math.PI/1.65; ring2.rotation.y = .55; core.add(ring2);
+
+  /* ── interaction: lerped cursor parallax + scroll dolly + color morph ── */
+  var tx = 0, ty = 0, mx = 0, my = 0, running = false, raf = null;
+  window.addEventListener('pointermove', function(e){
+    tx = (e.clientX/window.innerWidth - .5) * 2;
+    ty = (e.clientY/window.innerHeight - .5) * 2;
+  }, {passive:true});
+
+  function resize(){
+    var w = window.innerWidth, h = window.innerHeight;
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+    renderer.setSize(w, h, false);
+  }
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+
+  function scrollP(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    return max > 0 ? clamp((window.scrollY || document.documentElement.scrollTop)/max, 0, 1) : 0;
+  }
+  function render(t){
+    raf = running ? requestAnimationFrame(render) : null;
+    var sec = t*.001, sp = scrollP();
+    mx += (tx-mx)*.05; my += (ty-my)*.05;
+    core.rotation.y = sec*.11 + mx*.55 + sp*3.2;
+    core.rotation.x = my*.32 + Math.sin(sec*.2)*.05 + sp*.85;
+    mid.rotation.y = -sec*.2; mid.rotation.z = sec*.13;
+    inner.rotation.y = sec*.34; inner.rotation.z = -sec*.2;
+    ring1.rotation.z = sec*.09; ring2.rotation.z = -sec*.07;
+    field.rotation.y = sec*.02 + sp*1.05;
+    var s = 1 - sp*.22; core.scale.set(s,s,s);
+    camera.position.z = 9 + sp*5.2;
+    camera.position.x = mx*.7; camera.position.y = -my*.45;
+    camera.lookAt(0,0,0);
+    /* champagne → bronze morph as you travel the page */
+    outerMat.color.lerpColors(cChamp, cBronze, sp);
+    midMat.color.lerpColors(cGold, cChamp, sp);
+    innerMat.color.lerpColors(cBronze, cGold, sp);
+    renderer.render(scene, camera);
+  }
+  function start(){ if(!running){ running = true; raf = requestAnimationFrame(render); } }
+  function stop(){ running = false; if(raf){ cancelAnimationFrame(raf); raf = null; } }
+  start();
+  document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+})();
+
+/* ══════════ fallback: 2D golden constellation in hero ══════════ */
+(function(){
+  if(glActive) return;
+  var c = document.getElementById('net'); if(!c || reduce) return;
+  var ctx = c.getContext('2d'); if(!ctx) return;
+  var hero = c.parentElement, dpr = Math.min(window.devicePixelRatio||1, 2);
+  var W=0, H=0, nodes=[], pulses=[], raf=null, running=false;
+  var mouse = {x:-9999, y:-9999};
+  var COLORS = ['#E8D5A9','#CFAE70','#B08D4F','#8A6D3B'];
+  var LINK = 130, MOUSE_R = 170;
+
+  function resize(){
+    W = hero.clientWidth; H = hero.clientHeight;
+    c.width = W*dpr; c.height = H*dpr;
+    c.style.width = W+'px'; c.style.height = H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    var target = clamp(Math.round(W*H/17000), 30, 110);
+    while(nodes.length < target) nodes.push(mkNode());
+    nodes.length = target;
+  }
+  function mkNode(){
+    return { x:Math.random()*W, y:Math.random()*H,
+      vx:(Math.random()-.5)*.35, vy:(Math.random()-.5)*.35,
+      r:Math.random()*1.6+.9, c:COLORS[(Math.random()*COLORS.length)|0] };
+  }
+  function frame(){
+    raf = running ? requestAnimationFrame(frame) : null;
+    ctx.clearRect(0,0,W,H);
+    var i,j,a,b,dx,dy,d;
+    for(i=0;i<nodes.length;i++){
+      a = nodes[i];
+      a.x += a.vx; a.y += a.vy;
+      if(a.x<-20) a.x=W+20; else if(a.x>W+20) a.x=-20;
+      if(a.y<-20) a.y=H+20; else if(a.y>H+20) a.y=-20;
+      dx = a.x-mouse.x; dy = a.y-mouse.y; d = Math.sqrt(dx*dx+dy*dy);
+      if(d < MOUSE_R && d > 0.001){
+        var f = (MOUSE_R-d)/MOUSE_R*.6;
+        a.x += dx/d*f; a.y += dy/d*f;
+      }
+    }
+    ctx.lineWidth = 1;
+    for(i=0;i<nodes.length;i++){
+      a = nodes[i];
+      for(j=i+1;j<nodes.length;j++){
+        b = nodes[j];
+        dx=a.x-b.x; if(dx>LINK||dx<-LINK) continue;
+        dy=a.y-b.y; if(dy>LINK||dy<-LINK) continue;
+        d = dx*dx+dy*dy;
+        if(d < LINK*LINK){
+          ctx.strokeStyle = 'rgba(207,174,112,'+((1-Math.sqrt(d)/LINK)*.15).toFixed(3)+')';
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+      dx=a.x-mouse.x; dy=a.y-mouse.y; d=dx*dx+dy*dy;
+      if(d < MOUSE_R*MOUSE_R){
+        ctx.strokeStyle = 'rgba(232,213,169,'+((1-Math.sqrt(d)/MOUSE_R)*.32).toFixed(3)+')';
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(mouse.x,mouse.y); ctx.stroke();
+      }
+    }
+    for(i=0;i<nodes.length;i++){
+      a = nodes[i];
+      ctx.fillStyle = a.c; ctx.globalAlpha = .8;
+      ctx.beginPath(); ctx.arc(a.x,a.y,a.r,0,6.2832); ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+    if(pulses.length < 4 && Math.random() < .02 && nodes.length > 2){
+      var s = nodes[(Math.random()*nodes.length)|0], t = null;
+      for(j=0;j<nodes.length;j++){
+        b = nodes[j]; if(b===s) continue;
+        dx=s.x-b.x; dy=s.y-b.y;
+        if(dx*dx+dy*dy < LINK*LINK*2.2){ t=b; break; }
+      }
+      if(t) pulses.push({a:s, b:t, t:0});
+    }
+    for(i=pulses.length-1;i>=0;i--){
+      var p = pulses[i]; p.t += .022;
+      if(p.t >= 1){ pulses.splice(i,1); continue; }
+      var px = p.a.x+(p.b.x-p.a.x)*p.t, py = p.a.y+(p.b.y-p.a.y)*p.t;
+      var g = ctx.createRadialGradient(px,py,0,px,py,9);
+      g.addColorStop(0,'rgba(232,213,169,.95)'); g.addColorStop(1,'rgba(232,213,169,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(px,py,9,0,6.2832); ctx.fill();
+    }
+  }
+  function start(){ if(!running){ running=true; raf=requestAnimationFrame(frame); } }
+  function stop(){ running=false; if(raf){ cancelAnimationFrame(raf); raf=null; } }
+
+  resize(); start();
+  window.addEventListener('resize', resize, {passive:true});
+  hero.addEventListener('pointermove', function(e){
+    var r = c.getBoundingClientRect(); mouse.x = e.clientX-r.left; mouse.y = e.clientY-r.top;
+  }, {passive:true});
+  hero.addEventListener('pointerleave', function(){ mouse.x=-9999; mouse.y=-9999; });
+  document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){
+      en.forEach(function(e){ (e.isIntersecting && !document.hidden) ? start() : stop(); });
+    }, {threshold:0}).observe(c);
+  }
+})();
+
+/* ══════════ nav / progress / mobile menu ══════════ */
+var nav = document.getElementById('nav'), progress = document.getElementById('progress');
+var menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+function setMenu(open){
+  document.body.classList.toggle('menu-open', open);
+  if(menuBtn){ menuBtn.setAttribute('aria-expanded', open?'true':'false'); menuBtn.setAttribute('aria-label', open?'Close menu':'Open menu'); }
+}
+if(menuBtn) menuBtn.addEventListener('click', function(){ setMenu(!document.body.classList.contains('menu-open')); });
+if(mobileMenu) mobileMenu.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
+
+var ticking = false;
+function update(){
+  ticking = false;
+  var y = window.scrollY || document.documentElement.scrollTop, vh = window.innerHeight;
+  if(nav) nav.classList.toggle('scrolled', y > 24);
+  if(progress){
+    var hgt = document.documentElement.scrollHeight - vh;
+    progress.style.transform = 'scaleX(' + (hgt>0 ? clamp(y/hgt,0,1) : 0) + ')';
+  }
+}
+window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
+window.addEventListener('resize', update, {passive:true});
+update();
+
+/* ══════════ reveal on scroll ══════════ */
+var revealEls = document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window && !reduce){
+  var io = new IntersectionObserver(function(en){
+    en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.1, rootMargin:'0px 0px -8% 0px'});
+  revealEls.forEach(function(el){ io.observe(el); });
+} else {
+  revealEls.forEach(function(el){ el.classList.add('in'); });
+}
+
+/* ══════════ animated counters ══════════ */
+(function(){
+  var els = document.querySelectorAll('[data-count]');
+  if(!els.length) return;
+  var seen = typeof WeakSet !== 'undefined' ? new WeakSet() : null;
+  function fmt(n){ return n.toLocaleString('en-US'); }
+  function animate(el){
+    if(seen){ if(seen.has(el)) return; seen.add(el); }
+    var target = parseFloat(el.getAttribute('data-count')) || 0, suffix = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = fmt(target)+suffix; return; }
+    var dur = 1500, start = performance.now();
+    (function tick(now){
+      var p = clamp((now-start)/dur, 0, 1), e = 1-Math.pow(1-p, 3);
+      el.textContent = fmt(Math.floor(e*target)) + suffix;
+      if(p < 1) requestAnimationFrame(tick); else el.textContent = fmt(target)+suffix;
+    })(start);
+  }
+  if('IntersectionObserver' in window && !reduce){
+    var cio = new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ animate(e.target); cio.unobserve(e.target); } });
+    }, {threshold:.4});
+    els.forEach(function(el){ cio.observe(el); });
+  } else {
+    els.forEach(animate);
+  }
+})();
+
+/* ══════════ helpers shared by the apps ══════════ */
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, function(ch){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+  });
+}
+function copyText(txt, labelEl, okMsg){
+  var orig = labelEl.textContent;
+  function done(msg){
+    labelEl.textContent = msg;
+    labelEl.classList.add('copied');
+    window.setTimeout(function(){ labelEl.textContent = orig; labelEl.classList.remove('copied'); }, 1800);
+  }
+  function fallback(){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      done(ok ? okMsg : 'Select & copy manually');
+    }catch(e){ done('Select & copy manually'); }
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ done(okMsg); }, fallback);
+  } else { fallback(); }
+}
+
+/* ══════════ LEARN A: flip cards ══════════ */
+document.querySelectorAll('.flip-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var flipped = btn.classList.toggle('flipped');
+    btn.setAttribute('aria-expanded', flipped ? 'true' : 'false');
+  });
+});
+
+/* ══════════ LEARN B: next-word prediction demo ══════════ */
+(function(){
+  var textEl = document.getElementById('llmText'), blankEl = document.getElementById('llmBlank');
+  var barsEl = document.getElementById('llmBars'), shuffleBtn = document.getElementById('llmShuffle');
+  var tempEl = document.getElementById('llmTemp'), tempVal = document.getElementById('llmTempVal');
+  if(!textEl || !barsEl) return;
+  var DATA = [
+    { text:'The staff meeting has been moved to', words:[['Thursday',.34],['tomorrow',.27],['Zoom',.18],['3 p.m.',.13],['Nashville',.08]] },
+    { text:'Please submit your timesheet by', words:[['Friday',.41],['noon',.22],['tomorrow',.17],['email',.12],['May',.08]] },
+    { text:'Thanks for your patience while we', words:[['review',.31],['process',.26],['investigate',.19],['update',.15],['celebrate',.09]] },
+    { text:'New student orientation will be held in', words:[['August',.36],['person',.22],['Rand Hall',.16],['October',.14],['Kissam',.12]] },
+    { text:'Our office will be closed for the', words:[['holiday',.38],['semester',.21],['afternoon',.18],['renovation',.14],['eclipse',.09]] }
+  ];
+  var idx = 0;
+  function withTemperature(words, T){
+    var exp = 1 / Math.max(T, .05), sum = 0, out = [];
+    words.forEach(function(w){ var q = Math.pow(w[1], exp); sum += q; out.push([w[0], q]); });
+    out.forEach(function(w){ w[1] = w[1] / (sum || 1); });
+    out.sort(function(a,b){ return b[1]-a[1]; });
+    return out;
+  }
+  function render(){
+    var T = parseFloat(tempEl && tempEl.value) || 1;
+    if(tempVal) tempVal.textContent = T.toFixed(1);
+    var item = DATA[idx], dist = withTemperature(item.words, T);
+    textEl.textContent = item.text;
+    if(blankEl) blankEl.textContent = dist[0][0];
+    barsEl.textContent = '';
+    var fills = [];
+    dist.forEach(function(w, i){
+      var row = document.createElement('div'); row.className = 'pbar' + (i===0 ? ' top' : '');
+      var word = document.createElement('span'); word.className = 'w'; word.textContent = w[0];
+      var rail = document.createElement('span'); rail.className = 'rail';
+      var fill = document.createElement('span'); fill.className = 'fill';
+      var pct = document.createElement('span'); pct.className = 'pct'; pct.textContent = Math.round(w[1]*100) + '%';
+      rail.appendChild(fill); row.appendChild(word); row.appendChild(rail); row.appendChild(pct);
+      barsEl.appendChild(row);
+      fills.push([fill, Math.max(w[1]*100, 2)]);
+    });
+    var apply = function(){ fills.forEach(function(f){ f[0].style.width = f[1] + '%'; }); };
+    if(reduce){ apply(); }
+    else { requestAnimationFrame(function(){ requestAnimationFrame(apply); }); }
+  }
+  if(shuffleBtn) shuffleBtn.addEventListener('click', function(){ idx = (idx + 1) % DATA.length; render(); });
+  if(tempEl) tempEl.addEventListener('input', render);
+  render();
+})();
+
+/* ══════════ LEARN C: myth toggles ══════════ */
+document.querySelectorAll('.myth > button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var card = btn.parentElement;
+    var open = card.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+});
+
+/* ══════════ PLAYGROUND: accessible tabs ══════════ */
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.ptab'));
+  if(!tabs.length) return;
+  function select(i, focus){
+    tabs.forEach(function(t, j){
+      var on = i === j;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      var panel = document.getElementById(t.getAttribute('aria-controls'));
+      if(panel) panel.hidden = !on;
+    });
+    if(focus) tabs[i].focus();
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ select(i, false); });
+    t.addEventListener('keydown', function(e){
+      var n = null;
+      if(e.key === 'ArrowRight' || e.key === 'ArrowDown') n = (i + 1) % tabs.length;
+      else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = (i - 1 + tabs.length) % tabs.length;
+      else if(e.key === 'Home') n = 0;
+      else if(e.key === 'End') n = tabs.length - 1;
+      if(n !== null){ e.preventDefault(); select(n, true); }
+    });
+  });
+})();
+
+/* ══════════ APP 1: Prompt Lab ══════════ */
+(function(){
+  var role = document.getElementById('plRole'), task = document.getElementById('plTask'),
+      ctx = document.getElementById('plContext'), fmt = document.getElementById('plFormat'),
+      tone = document.getElementById('plTone'), reason = document.getElementById('plReason'),
+      cite = document.getElementById('plCite'), preview = document.getElementById('plPreview'),
+      meterFill = document.getElementById('plMeterFill'), meterLabel = document.getElementById('plMeterLabel'),
+      copyBtn = document.getElementById('plCopy'), copyLabel = document.getElementById('plCopyLabel');
+  if(!preview) return;
+  var current = '';
+  function sentence(s){
+    s = s.trim();
+    return /[.!?]$/.test(s) ? s : s + '.';
+  }
+  function build(){
+    var parts = [], filled = 0;
+    var vRole = role && role.value.trim(), vTask = task && task.value.trim(),
+        vCtx = ctx && ctx.value.trim(), vFmt = fmt && fmt.value.trim(), vTone = tone && tone.value;
+    if(vRole){ filled++; parts.push(/^you( a|')re?\b|^you are\b/i.test(vRole) ? sentence(vRole) : 'You are ' + sentence(vRole)); }
+    if(vTask){ filled++; parts.push('Task: ' + sentence(vTask)); }
+    if(vCtx){ filled++; parts.push('Context: ' + sentence(vCtx)); }
+    if(vFmt){ filled++; parts.push('Format: ' + sentence(vFmt)); }
+    if(vTone){ filled++; parts.push('Tone: ' + vTone + '.'); }
+    if(reason && reason.checked) parts.push('Briefly explain your reasoning before giving the final answer.');
+    if(cite && cite.checked) parts.push('Cite your sources, and clearly flag anything you are not sure about.');
+    current = parts.join('\n\n');
+    if(current){
+      preview.textContent = current;
+    } else {
+      preview.innerHTML = '<span class="ph">Your prompt assembles here as you type…</span>';
+    }
+    if(meterFill) meterFill.style.width = (filled/5*100) + '%';
+    if(meterLabel){
+      var words = ['Blank page','Bare bones','Getting there','Respectable','Strong','Chef’s kiss'];
+      meterLabel.textContent = filled + ' / 5 ingredients · ' + words[filled];
+    }
+  }
+  [role, task, ctx, fmt].forEach(function(el){ if(el) el.addEventListener('input', build); });
+  if(tone) tone.addEventListener('change', build);
+  if(reason) reason.addEventListener('change', build);
+  if(cite) cite.addEventListener('change', build);
+  if(copyBtn) copyBtn.addEventListener('click', function(){
+    if(!current){
+      copyLabel.textContent = 'Nothing to copy yet';
+      window.setTimeout(function(){ copyLabel.textContent = 'Copy prompt'; }, 1600);
+      return;
+    }
+    copyText(current, copyLabel, 'Copied ✓');
+  });
+  build();
+})();
+
+/* ══════════ APP 2: Prompt Grader ══════════ */
+(function(){
+  var ta = document.getElementById('grText'), btn = document.getElementById('grBtn'),
+      out = document.getElementById('grOut'), nudge = document.getElementById('grNudge');
+  if(!ta || !btn || !out) return;
+  var TIPS = {
+    role:{ label:'Role', tip:'<b>Give it a job.</b> Start with “You are a…” — an editor, an analyst, a coach. A role reshapes the entire answer.' },
+    context:{ label:'Context', tip:'<b>Add context.</b> Who is this for, what’s going on, what’s the deadline? The AI only knows what you tell it.' },
+    format:{ label:'Format', tip:'<b>Describe the output.</b> “Three bullets then a short paragraph,” “a table,” “under 200 words” — shape saves rewrites.' },
+    specificity:{ label:'Specificity', tip:'<b>Swap vague for concrete.</b> Replace “some,” “stuff,” and “good” with how many, which ones, and by when.' },
+    constraints:{ label:'Constraints', tip:'<b>Add guardrails or an example.</b> “Avoid jargon,” “no more than 150 words,” or paste a sample you like.' }
+  };
+  var EXTRA = [
+    '<b>Ask for options.</b> “Give me three versions” costs nothing and triples your odds of a keeper.',
+    '<b>Invite pushback.</b> Add “ask me two clarifying questions first” for complex tasks.',
+    '<b>Flag uncertainty.</b> Ask it to say clearly when it isn’t sure — it will, if invited.'
+  ];
+  function grade(t){
+    var words = t.split(/\s+/).filter(Boolean), n = words.length, s = {};
+    s.role = /\b(you are|you're|act as|as an? [a-z]+|imagine you|pretend (you|to be)|take the role)\b/i.test(t) ? 100 : 8;
+    var ctxBase = n >= 60 ? 90 : n >= 35 ? 75 : n >= 20 ? 55 : n >= 10 ? 35 : 15;
+    if(/\b(audience|for (our|my|the) |background|we are|i work|deadline|goal|because|so that)\b/i.test(t)) ctxBase = Math.min(100, ctxBase + 15);
+    s.context = ctxBase;
+    s.format = /\b(bullet|list|table|step[- ]?by[- ]?step|steps|outline|heading|numbered|json|paragraph|memo|email|summary|one[- ]pager?|page|section|word(s)? or (less|fewer)|under \d+|\d+ words)\b/i.test(t) ? 100 : 12;
+    var spec = 68;
+    var vague = t.match(/\b(some|stuff|things?|good|nice|better|great|a lot|lots|maybe|whatever|etc\.?)\b/gi);
+    if(vague) spec -= vague.length * 12;
+    if(/\d/.test(t)) spec += 14;
+    if(n >= 25) spec += 10;
+    var isQuestionOnly = /\?\s*$/.test(t.trim()) && !/\b(write|draft|create|summarize|list|make|build|explain|rewrite|analyze)\b/i.test(t);
+    if(isQuestionOnly) spec -= 15; /* pure questions beat directives less often at work */
+    s.specificity = clamp(Math.round(spec), 5, 100);
+    s.constraints = /\b(don'?t|do not|avoid|must|only|no more than|at most|under \d|limit|fewer than|exclude|without|e\.g\.|for example|example:|such as|in the style|tone)\b/i.test(t) ? 100 : 15;
+    var overall = s.role*.15 + s.context*.25 + s.format*.2 + s.specificity*.25 + s.constraints*.15;
+    if(n < 6) overall = Math.min(overall, 30); /* tiny prompts can't score well */
+    var letter = overall >= 85 ? 'A' : overall >= 70 ? 'B' : overall >= 55 ? 'C' : overall >= 40 ? 'D' : 'F';
+    return { scores:s, overall:Math.round(overall), letter:letter };
+  }
+  var WORDS = { A:'Outstanding prompt.', B:'Strong prompt.', C:'Decent bones.', D:'Needs seasoning.', F:'A whisper, not a prompt.' };
+  var SUBS = {
+    A:'This has all five ingredients. Take it straight into your tool of choice.',
+    B:'You’d get a useful answer — one or two tweaks below make it excellent.',
+    C:'The AI will guess at too much. The suggestions below are quick wins.',
+    D:'Right idea, not enough to work with yet. Two minutes of detail pays off.',
+    F:'The AI will fill every gap with assumptions. Let’s give it something to hold onto.'
+  };
+  btn.addEventListener('click', function(){
+    var t = ta.value.trim();
+    if(t.length < 4){
+      if(nudge) nudge.classList.add('show');
+      out.innerHTML = '';
+      ta.focus();
+      return;
+    }
+    if(nudge) nudge.classList.remove('show');
+    var g = grade(t);
+    var keys = ['role','context','format','specificity','constraints'];
+    var weak = keys.slice().sort(function(a,b){ return g.scores[a]-g.scores[b]; }).filter(function(k){ return g.scores[k] < 70; }).slice(0,3);
+    var tips = weak.map(function(k){ return TIPS[k].tip; });
+    var e = 0;
+    while(tips.length < 3 && e < EXTRA.length){ tips.push(EXTRA[e++]); }
+    var html = '';
+    html += '<div class="grade-badge"><span class="grade-letter">' + g.letter + '</span><div>';
+    html += '<div class="gword">' + WORDS[g.letter] + ' <span style="color:var(--faint);font-weight:400">' + g.overall + '/100</span></div>';
+    html += '<p class="gsub">' + SUBS[g.letter] + '</p></div></div>';
+    html += '<div class="dim-bars">';
+    keys.forEach(function(k){
+      html += '<div class="dim"><span class="dl">' + TIPS[k].label + '</span><span class="rail"><span class="fill" data-w="' + g.scores[k] + '"></span></span><span class="dv">' + g.scores[k] + '</span></div>';
+    });
+    html += '</div><ul class="sugg">';
+    tips.forEach(function(tp){
+      html += '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg><span>' + tp + '</span></li>';
+    });
+    html += '</ul>';
+    out.innerHTML = html;
+    var fills = out.querySelectorAll('.dim .fill');
+    var apply = function(){ fills.forEach(function(f){ f.style.width = f.getAttribute('data-w') + '%'; }); };
+    if(reduce){ apply(); } else { requestAnimationFrame(function(){ requestAnimationFrame(apply); }); }
+  });
+})();
+
+/* ══════════ APP 3: Tool Match ══════════ */
+(function(){
+  var form = document.getElementById('tmForm'), btn = document.getElementById('tmBtn'),
+      out = document.getElementById('tmOut'), nudge = document.getElementById('tmNudge');
+  if(!form || !btn || !out) return;
+  var GLYPHS = {
+    chatgpt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1.1L3 20l1.1-5.3A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg>',
+    amplify:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.2-8 10.8-4.6-1.6-8-5.8-8-10.8V5.5L12 2z"/><path d="M9 13.5L12 7l3 6.5M10 12h4"/></svg>',
+    copilot:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 15.5c-2.6 0-4.5-1.8-4.5-3.5s1.9-3.5 4.5-3.5c3.5 0 3.9 7 7 7 2.6 0 4.5-1.8 4.5-3.5S18.1 8.5 15.5 8.5c-3.1 0-3.5 7-7 7z"/></svg>'
+  };
+  var NAMES = { chatgpt:'ChatGPT', amplify:'Amplify', copilot:'Microsoft Copilot' };
+  function val(name){
+    var el = form.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : null;
+  }
+  btn.addEventListener('click', function(){
+    var a = [val('tm1'), val('tm2'), val('tm3'), val('tm4'), val('tm5')];
+    if(a.indexOf(null) !== -1){
+      if(nudge) nudge.classList.add('show');
+      out.innerHTML = '';
+      var firstBlank = a.indexOf(null);
+      var input = form.querySelector('input[name="tm' + (firstBlank+1) + '"]');
+      if(input) input.focus();
+      return;
+    }
+    if(nudge) nudge.classList.remove('show');
+    var pick, why = [];
+    if(a[0] === 'yes'){
+      pick = 'amplify';
+      why.push('Your task touches student records, health info, or confidential data — that decides it, full stop.');
+      why.push('Amplify is Vanderbilt’s approved platform for institutional data; the others are not.');
+      if(a[1] === 'yes') why.push('You work in Office apps too — draft the sensitive parts in Amplify first, then paste into Word or Outlook.');
+      if(a[3] === 'yes') why.push('Bonus: Amplify is comfortable with long documents, so bring the whole file.');
+    } else if(a[1] === 'yes'){
+      pick = 'copilot';
+      why.push('You live in Word, Excel, Outlook, or Teams — Copilot is already standing next to your work.');
+      why.push('No copy-paste dance: it can see the document, sheet, or thread you’re in.');
+      if(a[2] === 'yes') why.push('It can also pull in current web results when you need them.');
+    } else if(a[2] === 'yes'){
+      pick = 'chatgpt';
+      why.push('You need current information from the web — ChatGPT handles browsing-style questions well.');
+      why.push('Keep it to public, non-sensitive material and you’re in its sweet spot.');
+      if(a[4] === 'yes') why.push('It’s also a strong everyday drafting partner once the research is done.');
+    } else if(a[3] === 'yes'){
+      pick = 'amplify';
+      why.push('Long documents are Amplify’s home turf — generous room for big reports and policies.');
+      why.push('And if a “harmless” campus document turns out to be sensitive, you’re already in the approved tool.');
+    } else if(a[4] === 'yes'){
+      pick = 'chatgpt';
+      why.push('General drafting and brainstorming with no sensitive data — the classic ChatGPT use case.');
+      why.push('Ask for three versions of anything; it’s free to be picky.');
+    } else {
+      pick = 'chatgpt';
+      why.push('No strong signals either way — ChatGPT is the friendliest place to build the habit.');
+      why.push('If institutional data ever enters the picture, switch to Amplify without a second thought.');
+    }
+    why.push('Rule of thumb: sensitive data → Amplify · Office apps → Copilot · everything else → your choice.');
+    var html = '<div class="result-card"><div class="rc-head"><span class="rc-glyph">' + GLYPHS[pick] + '</span><div><h4>' + NAMES[pick] + '</h4><span class="rc-sub">Our recommendation</span></div></div><ul>';
+    why.forEach(function(w){
+      html += '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>' + w + '</span></li>';
+    });
+    html += '</ul></div>';
+    out.innerHTML = html;
+  });
+})();
+
+/* ══════════ SIMULATOR: AI Opportunity engine ══════════ */
+(function(){
+  var ta = document.getElementById('simText'), dept = document.getElementById('simDept'),
+      goal = document.getElementById('simGoal'), btn = document.getElementById('simBtn'),
+      steps = document.getElementById('simSteps'), out = document.getElementById('simOut'),
+      nudge = document.getElementById('simNudge');
+  if(!ta || !btn || !out) return;
+  var running = false;
+
+  document.querySelectorAll('.sim-chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      ta.value = chip.getAttribute('data-case') || '';
+      var d = chip.getAttribute('data-dept');
+      if(d && dept){
+        for(var i=0;i<dept.options.length;i++){ if(dept.options[i].text === d){ dept.selectedIndex = i; break; } }
+      }
+      if(nudge) nudge.classList.remove('show');
+      ta.focus();
+    });
+  });
+
+  var PATTERNS = [
+    { re:/\b(draft|write|writing|written|compose|announce|memo|letter|newsletter|copy)\b/i, name:'Drafting & writing', level:'assist', what:'First drafts of memos, announcements, and letters in seconds — you supply the facts and the final read.', saved:'High', tool:'ChatGPT' },
+    { re:/\b(summar|condense|digest|recap|distill|key points)\b/i, name:'Summarizing', level:'automate', what:'Turn long notes, threads, and reports into crisp summaries at whatever length you ask for.', saved:'High', tool:'Amplify' },
+    { re:/\b(data|spreadsheet|excel|analy[sz]|metrics|numbers|variance|trends?|formulas?)\b/i, name:'Data analysis', level:'assist', what:'Explain formulas, spot trends, and draft the “what this means” paragraph under your tables.', saved:'Medium', tool:'Copilot' },
+    { re:/\b(schedul|calendar|coordinat|book(ing)?|logistics|reschedul)\b/i, name:'Scheduling & coordination', level:'assist', what:'Draft scheduling emails, agendas, and “finding a time” messages — and turn plans into checklists.', saved:'Medium', tool:'Copilot' },
+    { re:/\b(research|literature|investigate|sources|look(ing)? up|compare options|benchmark)\b/i, name:'Research & exploration', level:'advise', what:'Map a topic fast, generate the questions you should be asking, and get plain-English explainers.', saved:'Medium', tool:'ChatGPT' },
+    { re:/\b(email|inbox|repl(y|ies)|respond|correspond|messages?)\b/i, name:'Email & communication', level:'automate', what:'Draft replies, soften tricky messages, and build reusable templates for the questions you answer weekly.', saved:'High', tool:'Copilot' },
+    { re:/\b(meeting|minutes|agenda|action items|standup|notes)\b/i, name:'Meeting notes & follow-ups', level:'automate', what:'Convert raw notes into minutes, decisions, and action items — with owners and due dates.', saved:'High', tool:'Copilot' },
+    { re:/\b(report|dashboard|status update|monthly|quarterly|weekly update)\b/i, name:'Recurring reporting', level:'assist', what:'Standardize the format once, then let AI assemble each cycle’s draft from your bullet points.', saved:'High', tool:'Amplify' },
+    { re:/\b(review|evaluate|assess|score|rubric|feedback on|proofread|edit)\b/i, name:'Review & evaluation', level:'advise', what:'A second pair of eyes: apply a rubric, flag inconsistencies, and suggest improvements. You decide.', saved:'Medium', tool:'Amplify' },
+    { re:/\b(onboard|training|orientation|new hires?|upskill|how[- ]to|guide)\b/i, name:'Onboarding & training', level:'assist', what:'Draft welcome packets, FAQs, and step-by-step guides — then keep them fresh with quick rewrites.', saved:'Medium', tool:'ChatGPT' },
+    { re:/\b(support|help ?desk|faq|inquir|questions from|tickets?|front desk|answer(ing)?)\b/i, name:'Student & customer support', level:'assist', what:'Turn your ten most-asked questions into ready, warm responses — personalized in seconds.', saved:'High', tool:'Amplify' },
+    { re:/\b(translat|multilingual|spanish|mandarin|language access)\b/i, name:'Translation & plain language', level:'automate', what:'Translate and simplify — have a human fluent speaker review anything official.', saved:'Medium', tool:'ChatGPT' },
+    { re:/\b(brainstorm|ideas?|creative|name for|plan(ning)?|strateg)\b/i, name:'Brainstorming & planning', level:'advise', what:'Twenty options in a minute — themes, titles, approaches, risks you haven’t considered.', saved:'Medium', tool:'ChatGPT' },
+    { re:/\b(polic(y|ies)|handbook|manual|long documents?|pdf|contract|guidelines)\b/i, name:'Document Q&A', level:'assist', what:'Ask questions of long documents — “what does the policy say about X?” — and get pointed answers to verify.', saved:'High', tool:'Amplify' }
+  ];
+  var SENSITIVE = [
+    [/\bstudents?\b/i,'student'], [/\bgrades?\b/i,'grade'], [/\bferpa\b/i,'FERPA'],
+    [/\bpatients?\b/i,'patient'], [/\bhealth\b/i,'health'], [/\bhipaa\b/i,'HIPAA'],
+    [/\bssns?\b|social security/i,'SSN'], [/\bsalar(y|ies)\b/i,'salary'],
+    [/\bpersonnel\b/i,'personnel'], [/\bconfidential\b/i,'confidential'], [/\bdonors?\b/i,'donor'],
+    [/\bmedical\b/i,'medical'], [/\bapplicants?\b|\bapplications?\b/i,'applicant']
+  ];
+  var LEVEL_LABEL = { automate:'Automate', assist:'Assist', advise:'Advise' };
+  var GOAL_VERB = {
+    'Save time':'get this done in half the time',
+    'Improve quality':'raise the quality and consistency of the output',
+    'Reduce backlog':'clear this backlog steadily',
+    'Better decisions':'make better-informed decisions',
+    'Learn AI':'practice using AI on a real task'
+  };
+
+  function renderResults(txt){
+    var matches = PATTERNS.filter(function(p){ return p.re.test(txt); }).slice(0, 6);
+    var defaulted = false;
+    if(!matches.length){
+      defaulted = true;
+      matches = [PATTERNS[0], PATTERNS[1], PATTERNS[12]];
+    }
+    var hits = [];
+    SENSITIVE.forEach(function(s){ if(s[0].test(txt) && hits.indexOf(s[1]) === -1) hits.push(s[1]); });
+    var deptName = dept ? dept.value : 'Other';
+    var goalName = goal ? goal.value : 'Save time';
+    var verb = GOAL_VERB[goalName] || GOAL_VERB['Save time'];
+    var snippet = txt.length > 160 ? txt.slice(0, 157).replace(/\s+\S*$/, '') + '…' : txt;
+    var prompts = [
+      'You are an experienced ' + deptName + ' staff member at a university who is great at working with AI. Here is my situation: "' + snippet + '". Break this down into the 5 most time-consuming tasks, then tell me which ones AI could help with first — and why.',
+      'I work in ' + deptName + ' at a university. Here is a real task from my week: "' + snippet + '". Give me a practical, step-by-step way to use an AI assistant to ' + verb + '. Assume I’m new to AI, and keep each step under two sentences.',
+      'Act as a friendly AI coach. My use case: "' + snippet + '". Write one example prompt I could paste into an AI tool tomorrow morning to get a useful first draft — then list what I should double-check before trusting the output.'
+    ];
+    var html = '';
+    html += '<div class="srev"><div class="sub-h"><h4>Your AI opportunity map</h4><span class="chip">' + matches.length + (defaulted ? ' universal patterns (no direct keyword hits — these fit almost any desk)' : ' pattern' + (matches.length===1?'':'s') + ' matched') + '</span></div>';
+    html += '<div class="opp-grid">';
+    matches.forEach(function(m){
+      html += '<article class="opp"><div class="o-top"><h5>' + m.name + '</h5><span class="lvl ' + m.level + '">' + LEVEL_LABEL[m.level] + '</span></div>';
+      html += '<p>' + m.what + '</p>';
+      html += '<div class="o-meta"><span>Effort saved: <b>' + m.saved + '</b></span><span>Best fit: <b>' + m.tool + '</b></span></div></article>';
+    });
+    html += '</div></div>';
+    html += '<div class="srev"><div class="sub-h"><h4>Starter prompts — yours to steal</h4><span class="chip">Copy, paste, tweak</span></div><div class="sp-grid">';
+    prompts.forEach(function(p, i){
+      html += '<div class="sp"><div class="sp-txt">' + escapeHtml(p) + '</div><button type="button" class="btn btn-ghost btn-sm sp-copy" data-i="' + i + '"><span>Copy prompt</span></button></div>';
+    });
+    html += '</div></div>';
+    if(hits.length){
+      html += '<div class="srev"><div class="sub-h"><h4>Watch-outs</h4></div><div class="watchout">';
+      html += '<span class="w-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.6L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>';
+      html += '<div><h5>This use case may involve sensitive data</h5>';
+      html += '<p>Your description mentions terms that often signal protected or confidential information. Route this work through <b>Amplify</b>, Vanderbilt’s approved platform — and check the <a href="#responsible" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">AI guidance</a> before pasting real records anywhere. <!-- [EDIT] link official Vanderbilt AI policy --></p>';
+      html += '<div class="hits">';
+      hits.forEach(function(h){ html += '<span>' + escapeHtml(h) + '</span>'; });
+      html += '</div></div></div></div>';
+    } else {
+      html += '<div class="srev"><div class="sub-h"><h4>Watch-outs</h4></div><div class="watchout ok">';
+      html += '<span class="w-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.2-8 10.8-4.6-1.6-8-5.8-8-10.8V5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg></span>';
+      html += '<div><h5>No obvious sensitive-data keywords spotted</h5>';
+      html += '<p>Still run the one-second check before pasting anything real: <b>“Should this information leave Vanderbilt?”</b> If there’s any doubt, use Amplify.</p></div></div></div>';
+    }
+    html += '<div class="srev"><div class="sub-h"><h4>Your first 30 days</h4></div><div class="roadmap">';
+    var ROAD = [
+      ['Week 1','Pick one task','Choose the single most repetitive task from your map above. Just one — momentum beats ambition.'],
+      ['Week 2','Build the habit','Use a starter prompt on that task three times this week. Save the version that worked best.'],
+      ['Week 3','Share & compare','Show a colleague your prompt and result. Steal each other’s improvements shamelessly.'],
+      ['Week 4','Measure & expand','Estimate the minutes saved, tell your manager, and pick pattern number two from the map.']
+    ];
+    ROAD.forEach(function(r){
+      html += '<div class="rstep"><span class="rno">' + r[0] + '</span><h5>' + r[1] + '</h5><p>' + r[2] + '</p></div>';
+    });
+    html += '</div></div>';
+    html += '<div class="srev"><p class="honest" style="margin-top:26px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>A guided framework based on common AI patterns — not a live AI. For the real thing, take these prompts into your tools.</p></div>';
+    out.innerHTML = html;
+    out.querySelectorAll('.sp-copy').forEach(function(b){
+      b.addEventListener('click', function(){
+        var i = parseInt(b.getAttribute('data-i'), 10);
+        var label = b.querySelector('span');
+        if(prompts[i] != null && label) copyText(prompts[i], label, 'Copied ✓');
+      });
+    });
+    var revs = out.querySelectorAll('.srev');
+    if(reduce){
+      revs.forEach(function(r){ r.classList.add('in'); });
+    } else {
+      revs.forEach(function(r, i){
+        window.setTimeout(function(){ r.classList.add('in'); }, 120 + i * 160);
+      });
+    }
+  }
+
+  btn.addEventListener('click', function(){
+    if(running) return;
+    var txt = ta.value.trim();
+    if(txt.length < 12){
+      if(nudge) nudge.classList.add('show');
+      ta.focus();
+      return;
+    }
+    if(nudge) nudge.classList.remove('show');
+    out.innerHTML = '';
+    var stepEls = steps ? steps.querySelectorAll('.sim-step') : [];
+    if(reduce || !steps || !stepEls.length){
+      if(steps){
+        steps.classList.add('show');
+        stepEls.forEach(function(s){ s.classList.remove('active'); s.classList.add('done'); });
+      }
+      renderResults(txt);
+      return;
+    }
+    running = true;
+    btn.disabled = true;
+    var origLabel = btn.firstChild ? btn.firstChild.textContent : '';
+    if(btn.firstChild && btn.firstChild.nodeType === 3) btn.firstChild.textContent = 'Analyzing… ';
+    steps.classList.add('show');
+    stepEls.forEach(function(s){ s.classList.remove('active','done'); });
+    var i = 0;
+    (function step(){
+      if(i > 0){ stepEls[i-1].classList.remove('active'); stepEls[i-1].classList.add('done'); }
+      if(i >= stepEls.length){
+        running = false;
+        btn.disabled = false;
+        if(btn.firstChild && btn.firstChild.nodeType === 3 && origLabel) btn.firstChild.textContent = origLabel;
+        renderResults(txt);
+        return;
+      }
+      stepEls[i].classList.add('active');
+      i++;
+      window.setTimeout(step, 480);
+    })();
+  });
+})();
+
+/* ══════════ KNOWLEDGE CHECK ══════════ */
+(function(){
+  var form = document.getElementById('quizForm'), submit = document.getElementById('quizSubmit'),
+      result = document.getElementById('quizResult'), prog = document.getElementById('quizProgress'),
+      nudge = document.getElementById('quizNudge');
+  if(!form || !submit) return;
+  var sets = Array.prototype.slice.call(form.querySelectorAll('.qz'));
+  var TOTAL = sets.length;
+  function answered(fs){
+    return fs.querySelector('input[type=radio]:checked');
+  }
+  function updateProgress(){
+    var n = sets.filter(function(fs){ return !!answered(fs); }).length;
+    if(prog) prog.textContent = n + ' of ' + TOTAL + ' answered';
+    if(n === TOTAL && nudge) nudge.classList.remove('show');
+    return n;
+  }
+  form.addEventListener('change', updateProgress);
+  function setLocked(lock){
+    form.querySelectorAll('input[type=radio]').forEach(function(r){ r.disabled = lock; });
+  }
+  function tier(score){
+    if(score === TOTAL) return ['Gold standard.','Perfect score. You’re officially dangerous — the good kind. Go put it to work.'];
+    if(score >= 6) return ['Nearly flawless.','Skim the explanations under the questions you missed and you’re there.'];
+    if(score >= 4) return ['Solid start.','You’ve got the big ideas. A second pass through the modules above will lock in the rest.'];
+    return ['A perfect excuse to reread.','Module A is a 15-minute fix — and honestly, the myths section is the fun part.'];
+  }
+  submit.addEventListener('click', function(){
+    var n = updateProgress();
+    if(n < TOTAL){
+      if(nudge) nudge.classList.add('show');
+      var firstBlank = sets.filter(function(fs){ return !answered(fs); })[0];
+      if(firstBlank){
+        var input = firstBlank.querySelector('input[type=radio]');
+        if(input) input.focus();
+      }
+      return;
+    }
+    if(nudge) nudge.classList.remove('show');
+    var score = 0;
+    sets.forEach(function(fs){
+      var pick = answered(fs), ok = pick && pick.value === fs.getAttribute('data-answer');
+      fs.classList.add('graded');
+      fs.classList.toggle('correct', !!ok);
+      fs.classList.toggle('wrong', !ok);
+      if(ok) score++;
+    });
+    setLocked(true);
+    var t = tier(score);
+    if(result){
+      result.innerHTML = '<div class="big-score">' + score + ' / ' + TOTAL + '</div><h3>' + t[0] + '</h3><p>' + t[1] + '</p>' +
+        '<button type="button" class="btn btn-ghost" id="quizRetake"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Retake the check</button>';
+      result.classList.add('show');
+      var retake = document.getElementById('quizRetake');
+      if(retake) retake.addEventListener('click', function(){
+        form.reset();
+        setLocked(false);
+        sets.forEach(function(fs){ fs.classList.remove('graded','correct','wrong'); });
+        result.classList.remove('show');
+        result.innerHTML = '';
+        updateProgress();
+        var anchor = document.getElementById('quiz');
+        if(anchor) anchor.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+      });
+      result.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'nearest' });
+    }
+  });
+  updateProgress();
+})();
+
+if(reduce) return; /* everything below is pure motion garnish */
+
+/* ══════════ custom cursor ══════════ */
+(function(){
+  if(!fine) return;
+  var dot = document.getElementById('cdot'), ring = document.getElementById('cring');
+  if(!dot || !ring) return;
+  document.documentElement.classList.add('cursor-on');
+  var mx=-100, my=-100, rx=-100, ry=-100;
+  window.addEventListener('pointermove', function(e){
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform = 'translate('+mx+'px,'+my+'px)';
+    var t = e.target.closest ? e.target.closest('a,button,input,select,textarea,label') : null;
+    ring.classList.toggle('hov', !!t);
+  }, {passive:true});
+  (function loop(){
+    rx += (mx-rx)*.16; ry += (my-ry)*.16;
+    ring.style.transform = 'translate('+rx+'px,'+ry+'px)';
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* ══════════ magnetic buttons ══════════ */
+if(fine){
+  document.querySelectorAll('.magnetic').forEach(function(el){
+    el.addEventListener('pointermove', function(e){
+      var r = el.getBoundingClientRect();
+      el.style.transform = 'translate('+((e.clientX-r.left-r.width/2)*.18)+'px,'+((e.clientY-r.top-r.height/2)*.22)+'px)';
+    });
+    el.addEventListener('pointerleave', function(){ el.style.transform=''; });
+  });
+}
+
+/* ══════════ 3D tilt + glare ══════════ */
+if(fine){
+  document.querySelectorAll('.tilt').forEach(function(el){
+    el.addEventListener('pointermove', function(e){
+      var r = el.getBoundingClientRect();
+      var px = (e.clientX-r.left)/r.width, py = (e.clientY-r.top)/r.height;
+      el.style.transform = 'perspective(900px) rotateY('+((px-.5)*5).toFixed(2)+'deg) rotateX('+((.5-py)*5).toFixed(2)+'deg) translateY(-4px)';
+      var g = el.querySelector('.glare');
+      if(g){ g.style.setProperty('--gx',(px*100)+'%'); g.style.setProperty('--gy',(py*100)+'%'); }
+    });
+    el.addEventListener('pointerleave', function(){ el.style.transform=''; });
+  });
+}
+})();
+</script>
+</body>
+</html>
