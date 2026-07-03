@@ -20,6 +20,7 @@
     · Hero ambient video URL                 · Disclaimer + ownership line
     · Department list (Simulator)            · EAP / Work-Life link (Wellbeing)
     · Internal resources (Resources)         · Quiz pass thresholds if desired
+    · Feedback mailto (Knowledge check) — interim; swap for REDCap/Qualtrics
   Brand system: Vanderbilt black #1C1C1C / white / flat gold #CFAE70 accents.
   Logo files live in ./assets/ (v-lockup + vu-centered, black & white variants).
   The practice apps (Prompt Lab, Grader, Tool Match), the LLM demo, the
@@ -640,6 +641,30 @@ details.deeper .d-body b{ color:var(--tx); font-weight:600; }
 .quiz-result h3{ font-family:var(--serif); font-weight:400; font-size:1.5rem; margin-top:8px; }
 .quiz-result p{ color:var(--tx2); margin-top:10px; max-width:520px; margin-inline:auto; }
 .quiz-result .btn{ margin-top:20px; }
+/* ── course feedback (NPS + CSAT) ── */
+.fb-panel{ display:none; margin-top:26px; border:1px solid var(--bdg); border-radius:var(--r); background:var(--card2); padding:clamp(20px,3.5vw,36px); }
+.fb-panel.show{ display:block; }
+.fb-panel h3{ font-family:var(--serif); font-weight:400; font-size:1.5rem; }
+.fb-intro{ color:var(--tx2); margin-top:8px; font-size:.9375rem; }
+.fb-q{ border:1px solid var(--bd); border-radius:var(--r); background:var(--card); padding:18px 20px; margin-top:16px; }
+.fb-q legend{ float:left; width:100%; font-weight:600; font-size:.98rem; margin-bottom:12px; padding:0; color:var(--tx); }
+.nps-opts{ display:flex; flex-wrap:wrap; gap:8px; clear:both; }
+.nps-opts label{ position:relative; flex:1 1 44px; min-width:44px; max-width:72px; min-height:44px; display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--field-bd); background:var(--field); border-radius:var(--r); cursor:pointer; font-weight:600; color:var(--tx2); }
+.nps-opts input{ position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
+.nps-opts label:hover,.csat-opts label:hover{ border-color:var(--bdg); color:var(--tx); }
+.nps-opts label:has(input:checked),.csat-opts label:has(input:checked){ border-color:var(--strong); color:var(--tx); background:rgba(207,174,112,.14); }
+.nps-opts label:focus-within{ outline:2px solid var(--focus); outline-offset:2px; }
+.nps-ends{ display:flex; justify-content:space-between; clear:both; font-size:.78rem; color:var(--tx3); margin-top:8px; }
+.csat-opts{ display:flex; flex-wrap:wrap; gap:8px; clear:both; }
+.csat-opts label{ flex:1 1 160px; min-height:44px; display:inline-flex; align-items:center; gap:10px; padding:10px 14px; font-size:.875rem; color:var(--tx2);
+  border:1px solid var(--field-bd); background:var(--field); border-radius:var(--r); cursor:pointer; }
+.csat-opts input{ accent-color:var(--acc); width:17px; height:17px; flex-shrink:0; cursor:pointer; }
+.fb-count{ font-size:.8rem; color:var(--tx3); text-align:right; margin-top:-12px; margin-bottom:4px; }
+.fb-scoreline{ font-size:.875rem; color:var(--tx2); margin:16px 0 14px; }
+.fb-disclose{ font-size:.83rem; color:var(--tx3); margin-top:12px; max-width:60ch; }
+.fb-status{ margin-top:12px; font-size:.9375rem; color:var(--tx); font-weight:600; }
+.btn[aria-disabled="true"]{ opacity:.45; cursor:not-allowed; }
 
 /* ═══════════════════ RESOURCES ═══════════════════ */
 .res-group{ margin-top:34px; }
@@ -892,8 +917,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>These four terms nest inside each other like dolls. <b>AI</b> is the umbrella: any software doing things that used to need human judgment. <b>Machine learning</b> is how modern AI gets built — instead of a programmer writing rules, the system finds patterns in thousands of examples. <b>Generative AI</b> is machine learning that produces new things — text, images, code — instead of just sorting or scoring. And a <b>large language model</b> is the specific generative engine inside ChatGPT, Amplify, and Copilot. The newest doll is <b>agentic AI</b> — an LLM handed tools and a loop so it can act, not just answer. Same engine underneath; same limits underneath.</p>
-        <p><b>Notice as you flip:</b> the through-line is that none of these <em>understand</em> anything. They recognize patterns — and that one fact will follow us through the whole platform.</p>
+        <p>These four terms nest inside each other like dolls. <b>AI</b> is the umbrella: any software doing things that used to need human judgment. <b>Machine learning</b> is how modern AI gets built — instead of a programmer writing rules, the system finds patterns in thousands of examples. <b>Generative AI</b> is machine learning that produces new things — text, images, code — instead of just sorting or scoring. And a <b>large language model</b> is the specific generative engine inside ChatGPT, Amplify, and Copilot. The newest doll is <b>agentic AI</b> — an LLM handed tools and a loop so it can act, not just answer. It runs on the same engine as the chatbots — so it inherits the same limits.</p>
+        <p><b>Notice as you flip:</b> the common thread is that none of these systems <em>understand</em> anything. They recognize patterns — and that one fact will follow us through the whole platform.</p>
       </div>
       <div class="flip-grid five">
         <div class="fcard">
@@ -1068,32 +1093,32 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="concept reveal">
         <span class="c-label">The idea</span>
         <p>A hallucination is not a bug or a lie — it is the machine doing exactly what it was built to do: produce the most <em>plausible-sounding</em> next words. When the truth is common in its training data, plausible and true line up. But ask about something specific, rare, or internal — a policy number, a citation, a program name — and the model still completes the pattern, and the result sounds exactly as confident as a real fact.</p>
-        <p><b>Your job in this drill:</b> learn the tells — the over-precise number, the polished citation, the official-sounding name. Fluent, specific, and wrong look identical at a glance.</p>
+        <p><b>In this drill</b> you&rsquo;ll practice spotting the warning signs of a made-up answer — a suspiciously precise number, a citation that looks real but isn&rsquo;t, or a program name that sounds official. (Card players call these &ldquo;tells.&rdquo;) The danger: a wrong AI answer reads just as smoothly and confidently as a right one. You cannot tell the difference by tone — only by checking.</p>
       </div>
       <div class="hal-grid">
-        <div class="hal" data-tell="A polished citation to a source that doesn&rsquo;t exist — the single most common hallucination. Real memoir titles are checkable; invented ones just sound checkable.">
+        <div class="hal" data-tell="A polished citation to a source that doesn&rsquo;t exist — the single most common hallucination. A real book title can be searched for and found; an invented one only sounds like it could be.">
           <p class="hal-q">Q: &ldquo;When was Vanderbilt founded?&rdquo;</p>
           <p class="hal-a">Vanderbilt University was founded in <button type="button" class="hal-span" data-fab="0">1873</button> with a <button type="button" class="hal-span" data-fab="0">$1&nbsp;million gift</button> from Cornelius Vanderbilt, as recounted in Chancellor Kirkland&rsquo;s memoir <button type="button" class="hal-span" data-fab="1">&ldquo;Cornerstone: A History of West End&rdquo; (1912)</button>.</p>
           <p class="hal-reveal" role="status"></p>
         </div>
-        <div class="hal" data-tell="An invented policy number. Over-precise references — section, subsection, letter — are confidence theater. If you can&rsquo;t find the policy, the policy may not exist.">
+        <div class="hal" data-tell="An invented policy number. A hyper-specific reference (section, subsection, letter) makes an answer feel official — but the model can invent one as easily as a vague sentence. If you search for the policy and can&rsquo;t find it, it may not exist.">
           <p class="hal-q">Q: &ldquo;What if I miss the benefits deadline?&rdquo;</p>
           <p class="hal-a">Open enrollment typically runs in <button type="button" class="hal-span" data-fab="0">the fall</button>. Under <button type="button" class="hal-span" data-fab="1">HR Policy 4.7.2b</button>, staff who miss it may still enroll after a <button type="button" class="hal-span" data-fab="0">qualifying life event</button>.</p>
           <p class="hal-reveal" role="status"></p>
         </div>
-        <div class="hal" data-tell="A suspiciously precise statistic. &ldquo;Exactly 68.4%&rdquo; sounds measured; it was manufactured. Real numbers come with a source and a year you can check.">
+        <div class="hal" data-tell="A suspiciously precise statistic. &ldquo;Exactly 68.4%&rdquo; sounds like it came from a real survey — the model made it up. A real number comes with a source and a year you can check.">
           <p class="hal-q">Q: &ldquo;Why did staff parking zones change?&rdquo;</p>
           <p class="hal-a">Staff permits are <button type="button" class="hal-span" data-fab="0">zone-based</button>. A recent mobility survey found that <button type="button" class="hal-span" data-fab="1">exactly 68.4% of staff</button> drive alone, which shaped the <button type="button" class="hal-span" data-fab="0">zone expansion</button>.</p>
           <p class="hal-reveal" role="status"></p>
         </div>
-        <div class="hal" data-tell="A confidently invented program name. Branded-sounding initiatives (&ldquo;FirstShelf&rdquo;) are easy to generate and hard to disprove at a glance — search before you cite.">
+        <div class="hal" data-tell="A confidently invented program name. An official-sounding name like &ldquo;FirstShelf&rdquo; is easy for the model to make up and hard to spot as fake. Search for the name before you repeat it anywhere.">
           <p class="hal-q">Q: &ldquo;How does interlibrary loan work?&rdquo;</p>
           <p class="hal-a">The libraries offer <button type="button" class="hal-span" data-fab="0">interlibrary loan</button> for most materials, usually arriving in <button type="button" class="hal-span" data-fab="0">a few days to two weeks</button>, with rush handling for staff under the <button type="button" class="hal-span" data-fab="1">&ldquo;FirstShelf&rdquo; program</button>.</p>
           <p class="hal-reveal" role="status"></p>
         </div>
       </div>
       <p class="hal-status" id="halStatus" role="status" aria-live="polite">0 of 4 found — click the detail you&rsquo;d want to verify first.</p>
-      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now that you can spot a fabrication, let&rsquo;s sort the broader folklore — six break-room claims, <em>settled</em>.</p></div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now that you can spot a made-up detail, let&rsquo;s test the bigger claims — six things people say about AI, <em>settled</em>.</p></div>
     </div>
 
     <!-- Module C: Myths vs Facts -->
@@ -1147,7 +1172,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             <p>If you can write a clear email to a new colleague, you can write a great prompt. The Playground below will prove it.</p></div>
         </div>
       </div>
-      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Next, the limits those myths grow from — knowing them tells you when to trust and when to <em>check</em>.</p></div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Next: the four built-in limits those myths grow out of. Once you know them, you&rsquo;ll know when to trust an answer and when to <em>check</em> it.</p></div>
     </div>
 
     <!-- Module D: Limits to know -->
@@ -1213,12 +1238,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             <span class="face front">
               <span class="abbr" aria-hidden="true">≠</span>
               <h4>Confidence &ne; accuracy</h4>
-              <span class="def">Fluent is not the same as right.</span>
+              <span class="def">Smooth writing can still be wrong.</span>
               <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the counter-move</span>
             </span>
             <span class="face back">
               <span class="tag">The limit</span>
-              <p>The tone never wavers — the model sounds equally sure when it&rsquo;s brilliant and when it&rsquo;s wrong. Confidence is styling, not evidence.</p>
+              <p>The model sounds equally sure when it&rsquo;s right and when it&rsquo;s wrong. A confident tone is just how it writes — it tells you nothing about whether the answer is accurate.</p>
               <p><b>On campus:</b> an authoritative, specific, and wrong benefits deadline. <b>Counter-move:</b> let importance set your verification bar: the more it matters, the harder you check.</p>
             </span>
           </button>
@@ -1226,7 +1251,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="evidence reveal">
         <span class="e-label">The evidence — the jagged frontier</span>
-        <p>The largest workplace experiment to date put numbers on both sides of these limits. In 2023, Fabrizio Dell&rsquo;Acqua, Ethan Mollick, and colleagues at Harvard Business School and BCG gave <b>758 consultants</b> real consulting tasks. With AI, they completed <b>12.2% more tasks</b>, <b>25.1% faster</b>, at <b>40% higher quality</b> — on work <em>inside</em> AI&rsquo;s abilities. But on a task deliberately chosen to sit just <em>beyond</em> those abilities, consultants using AI fell from <b>84% correct to 60&ndash;70%</b>. The polish stayed; the correctness didn&rsquo;t.</p>
+        <p>The largest workplace experiment to date put numbers on both sides of these limits. In 2023, Fabrizio Dell&rsquo;Acqua, Ethan Mollick, and colleagues at Harvard Business School and BCG gave <b>758 consultants</b> real consulting tasks. With AI, they completed <b>12.2% more tasks</b>, <b>25.1% faster</b>, at <b>40% higher quality</b> — on work <em>inside</em> AI&rsquo;s abilities. But on a task deliberately chosen to sit just <em>beyond</em> those abilities, consultants using AI fell from <b>84% correct to 60&ndash;70%</b>. Their answers still sounded polished and confident — they were just wrong more often. The quality of the writing hid the drop in accuracy.</p>
         <p>The researchers&rsquo; name for this is the <b>jagged frontier</b>: AI&rsquo;s abilities form an edge that is spiky, not smooth. It aces some tasks you&rsquo;d bet against and flubs some you&rsquo;d bet on — so the working skill is knowing which side of the edge you&rsquo;re standing on. And since the edge is invisible from the outside, the only reliable test is the habit this module keeps landing on: <b>verify</b>.</p>
         <span class="e-src">Dell&rsquo;Acqua et&nbsp;al., &ldquo;Navigating the Jagged Technological Frontier,&rdquo; <a href="https://mitsloan.mit.edu/sites/default/files/2023-10/SSRN-id4573321.pdf" target="_blank" rel="noopener">Harvard Business School working paper, 2023 (PDF)</a></span>
       </div>
@@ -1332,7 +1357,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="ppanel" id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" tabindex="0">
         <div class="concept">
           <span class="c-label">What this trains</span>
-          <p>Building the pattern on purpose. <b>What you&rsquo;ll notice:</b> every field you fill visibly narrows what the AI could come back with — that shrinking of possibilities is the whole craft.</p>
+          <p>This tool trains you to build a prompt deliberately, piece by piece. <b>What you&rsquo;ll notice:</b> every field you fill narrows down what the AI could come back with — and steering it toward the answer you actually want is the whole skill.</p>
         </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>The five ingredients of a great prompt</span>
@@ -1403,7 +1428,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="ppanel" id="panel-grader" role="tabpanel" aria-labelledby="tab-grader" tabindex="0" hidden>
         <div class="concept">
           <span class="c-label">What this trains</span>
-          <p>Diagnosing weak patterns. <b>What you&rsquo;ll notice:</b> the lowest bar is almost always context or specificity — the two ingredients we assume the reader &ldquo;just knows.&rdquo; The AI never does.</p>
+          <p>This tool trains you to spot what&rsquo;s missing from a prompt. <b>What you&rsquo;ll notice:</b> the lowest score is almost always context or specificity — the details we assume any reader &ldquo;just knows.&rdquo; The AI doesn&rsquo;t know them unless you write them down.</p>
         </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What separates an A prompt from an F</span>
@@ -1415,7 +1440,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <div class="watchout" style="margin-bottom:22px" role="note" aria-label="Challenge">
           <span class="w-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4c0 2.5 1.3 4 3 4M17 6h3c0 2.5-1.3 4-3 4"/></svg></span>
           <div><h5>Challenge — the performance test</h5>
-          <p>Write a prompt for a real task from <b>your</b> week and earn an <b>A</b>. Recall quizzes measure memory; an A here measures a skill — the one this whole platform exists to build.</p></div>
+          <p>Write a prompt for a real task from <b>your</b> week and earn an <b>A</b>. A quiz can only measure what you remember — an A here proves you can actually do the thing this platform exists to teach.</p></div>
         </div>
         <div class="app-grid">
           <div>
@@ -1436,7 +1461,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="ppanel" id="panel-match" role="tabpanel" aria-labelledby="tab-match" tabindex="0" hidden>
         <div class="concept">
           <span class="c-label">What this trains</span>
-          <p>Routing by data sensitivity. <b>What you&rsquo;ll notice:</b> question one overrides everything else — sensitivity beats convenience, every single time.</p>
+          <p>This tool trains one decision: choosing your AI tool based on how sensitive the data is. <b>What you&rsquo;ll notice:</b> question one overrides everything else — if the data is sensitive, convenience never wins.</p>
         </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>How to pick the right tool, instantly</span>
@@ -1508,7 +1533,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <p>Open your tool, paste, read what comes back, and ask for one improvement. The second ask is where the magic happens.</p>
         <p><a href="https://chat.openai.com" target="_blank" rel="noopener">ChatGPT</a> &middot; <a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Amplify</a> &middot; <a href="https://copilot.microsoft.com" target="_blank" rel="noopener">Copilot</a></p></div>
       <div class="rstep"><span class="rno">Step 4</span><h5>Come back and reflect</h5>
-        <p>Answer the two questions below while it&rsquo;s fresh. The lesson lives in the gap between the two answers.</p></div>
+        <p>Answer the two questions below while it&rsquo;s fresh. Comparing the two answers — what it got right, what you had to fix — is where the learning happens.</p></div>
     </div>
     <div class="module reveal" style="margin-top:36px">
       <div class="module-head">
@@ -1528,7 +1553,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           </div>
           <button type="button" class="btn btn-primary" id="rrBtn">Log my rep
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></button>
-          <p class="nudge" id="rrNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Jot a line in both boxes first — the contrast between them is the whole lesson.</p>
+          <p class="nudge" id="rrNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Jot a line in both boxes first — comparing them is the whole exercise.</p>
         </form>
         <div id="rrOut" role="status" aria-live="polite"></div>
       </div>
@@ -1549,7 +1574,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: application. Now that you can write a strong prompt, let&rsquo;s find where AI benefits your actual job.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Simulator / 03</span></span>
       <h2>The AI Opportunity <em class="s">Simulator.</em></h2>
-      <p>Describe a real piece of your work and get an opportunity map, starter prompts, watch-outs, and a 30-day plan — built from common AI patterns. The best use cases share three tells: they <b style="color:var(--champ);font-weight:600">repeat</b> (weekly, monthly, every fall), they&rsquo;re <b style="color:var(--champ);font-weight:600">text-heavy</b> (emails, summaries, reports), and they follow <b style="color:var(--champ);font-weight:600">rules you could explain to a new hire</b>. The more concretely you describe yours — who, what, how often — the sharper your map. And describe freely: nothing you type is stored or sent anywhere.</p>
+      <p>Describe a real piece of your work and get an opportunity map, starter prompts, watch-outs, and a 30-day plan — built from common AI patterns. The best use cases share three features: they <b style="color:var(--champ);font-weight:600">repeat</b> (weekly, monthly, every fall), they&rsquo;re <b style="color:var(--champ);font-weight:600">text-heavy</b> (emails, summaries, reports), and they follow <b style="color:var(--champ);font-weight:600">rules you could explain to a new hire</b>. The more concretely you describe yours — who, what, how often — the sharper your map. And describe freely: nothing you type is stored or sent anywhere.</p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         A guided framework based on common AI patterns — not a live AI. For the real thing, take these prompts into your tools.</p>
       <div class="lframe">
@@ -1994,7 +2019,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI agents are, and which human skills appreciate in value</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Pick your skills, build a personal 90-day plan</span>
         <span class="lf-chip"><b>Time</b>5 min</span>
-        <p class="lf-why"><b>Why it matters to your work:</b> the best time to get ready for the next wave is while it&rsquo;s still a swell.</p>
+        <p class="lf-why"><b>Why it matters to your work:</b> AI agents are arriving in everyday tools now — learning the basics early gives you a real head start.</p>
       </div>
     </div>
 
@@ -2061,23 +2086,23 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Shift 03</span>
         <h3>The human skill stack</h3>
-        <p>Five skills that appreciate in value as AI gets better — because AI getting better is exactly what makes them scarce.</p>
+        <p>Five human skills that grow more valuable as AI improves — because the better AI gets at routine work, the more these skills stand out.</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>Why these five? Scarcity sets value. As agents absorb the drafting, summarizing, and assembling, what machines can&rsquo;t supply — choosing well, checking truth, briefing clearly, earning trust, knowing your unit&rsquo;s exceptions — becomes the scarce ingredient in every workflow. AI getting better doesn&rsquo;t threaten these skills; it&rsquo;s precisely what makes them <em>appreciate</em>. The builder below turns your pick of them into a 90-day plan.</p>
+        <p>Why these five? Because they&rsquo;re about to get scarce. As AI absorbs the drafting, summarizing, and assembling, the things machines can&rsquo;t supply — choosing well, checking truth, briefing clearly, earning trust, knowing your unit&rsquo;s exceptions — become the missing ingredient in every workflow. AI improving doesn&rsquo;t threaten these skills; it&rsquo;s exactly what makes them <em>more valuable</em>. The builder below turns your pick of them into a 90-day plan.</p>
       </div>
       <div class="resp-grid">
       <article class="principle reveal">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>
         <h3>Judgment</h3>
-        <p>AI produces options; someone still has to choose — and own the choice. The more drafts machines make, the more valuable the person who can say &ldquo;this one, because.&rdquo;</p>
+        <p>AI produces options; someone still has to choose — and own the choice. The more drafts machines produce, the more valuable the person who can pick one and explain why.</p>
         <p class="wb-counter"><b>Build it this quarter:</b> before accepting any AI draft, note one thing you&rsquo;d change and why.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.06s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></span>
         <h3>Verification</h3>
-        <p>When content is cheap, trust is expensive. The person who can quickly tell right from plausible becomes the safety rail for the whole team.</p>
+        <p>As AI makes drafts fast and cheap, checking what&rsquo;s true becomes the valuable part. The person who can quickly tell a right answer from a plausible-sounding one becomes the safety rail for the whole team.</p>
         <p class="wb-counter"><b>Build it this quarter:</b> verify every checkable fact in one AI draft per week — and time yourself getting faster.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.12s">
@@ -2294,7 +2319,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </div>
     <div class="concept reveal">
       <span class="c-label">The idea</span>
-      <p>What a good score means: the core ideas — prediction, verification, data routing — stuck well enough to use this week. What it doesn&rsquo;t mean: that you&rsquo;re finished. These tools change monthly, and no quiz can measure the habit that matters most — actually reaching for the right tool on a real task. A miss isn&rsquo;t a failure; it&rsquo;s a pointer back to the section worth a second look.</p>
+      <p>A good score means the core ideas — prediction, verification, data routing — stuck well enough to use this week. It doesn&rsquo;t mean you&rsquo;re finished: these tools change monthly, and no quiz can measure the habit that matters most, which is reaching for the right tool on a real task. A missed question isn&rsquo;t a failure — it&rsquo;s a pointer back to the section worth a second look.</p>
     </div>
     <div class="quiz-shell reveal">
       <form id="quizForm" autocomplete="off" novalidate>
@@ -2362,6 +2387,53 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <p class="nudge" id="quizNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>A few questions are still blank — answer them all and I'll tally you up.</p>
       </form>
       <div class="quiz-result" id="quizResult" role="status" aria-live="polite"></div>
+
+      <!-- Course feedback — revealed after the knowledge check is completed -->
+      <div class="fb-panel" id="fbPanel">
+        <h3>Before you go — <em class="s">rate this course.</em></h3>
+        <p class="fb-intro">Two quick ratings and an optional note. Your feedback goes straight to the program team and shapes the next version.</p>
+        <form id="fbForm" autocomplete="off" novalidate>
+          <fieldset class="fb-q">
+            <legend id="fbNpsLegend">How likely are you to recommend CHART to a colleague?</legend>
+            <div class="nps-opts" role="radiogroup" aria-labelledby="fbNpsLegend">
+              <label><input type="radio" name="fbNps" value="0" aria-label="0 — not likely" /><span aria-hidden="true">0</span></label>
+              <label><input type="radio" name="fbNps" value="1" /><span>1</span></label>
+              <label><input type="radio" name="fbNps" value="2" /><span>2</span></label>
+              <label><input type="radio" name="fbNps" value="3" /><span>3</span></label>
+              <label><input type="radio" name="fbNps" value="4" /><span>4</span></label>
+              <label><input type="radio" name="fbNps" value="5" /><span>5</span></label>
+              <label><input type="radio" name="fbNps" value="6" /><span>6</span></label>
+              <label><input type="radio" name="fbNps" value="7" /><span>7</span></label>
+              <label><input type="radio" name="fbNps" value="8" /><span>8</span></label>
+              <label><input type="radio" name="fbNps" value="9" /><span>9</span></label>
+              <label><input type="radio" name="fbNps" value="10" aria-label="10 — extremely likely" /><span aria-hidden="true">10</span></label>
+            </div>
+            <div class="nps-ends" aria-hidden="true"><span>Not likely</span><span>Extremely likely</span></div>
+          </fieldset>
+          <fieldset class="fb-q">
+            <legend id="fbCsatLegend">How satisfied are you with the course?</legend>
+            <div class="csat-opts" role="radiogroup" aria-labelledby="fbCsatLegend">
+              <label><input type="radio" name="fbCsat" value="1" /> Very dissatisfied</label>
+              <label><input type="radio" name="fbCsat" value="2" /> Dissatisfied</label>
+              <label><input type="radio" name="fbCsat" value="3" /> Neutral</label>
+              <label><input type="radio" name="fbCsat" value="4" /> Satisfied</label>
+              <label><input type="radio" name="fbCsat" value="5" /> Very satisfied</label>
+            </div>
+          </fieldset>
+          <div class="field" style="margin-top:16px">
+            <label for="fbComment">What should we improve? (optional)</label>
+            <textarea id="fbComment" rows="4" maxlength="800" placeholder="A confusing section, a missing topic, a tool you wish existed — anything helps."></textarea>
+          </div>
+          <p class="fb-count" id="fbCount">0 / 800</p>
+          <p class="fb-scoreline" id="fbScoreLine"></p>
+          <!-- [EDIT: interim feedback route — mailto matthew.estes@vanderbilt.edu below; replace with survey tool / REDCap / Qualtrics link when available] -->
+          <a class="btn btn-primary" id="fbSend" role="button" href="#" aria-disabled="true">Send feedback
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></a>
+          <p class="nudge show" id="fbNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Pick a 0&ndash;10 rating and a satisfaction rating, and the send button unlocks.</p>
+          <p class="fb-disclose">This opens your email app and sends from your address — nothing is submitted in the background.</p>
+          <p class="fb-status" id="fbStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -2371,7 +2443,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <img class="cta-lockup" src="assets/v-lockup-white@2x.png" alt="Vanderbilt University" width="250" height="54" loading="lazy" decoding="async" />
     <h2 class="metal">Intelligence that grows <em>your people</em>.</h2>
-    <p>You have the ideas, the reps, and the plan. One check closes the loop.</p>
+    <p>You&rsquo;ve learned the ideas, practiced the skills, and built a plan. One quick check shows you what stuck.</p>
     <a class="btn btn-gold" href="#quiz">Take the knowledge check
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
@@ -2710,7 +2782,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     html += '<div class="gword">' + WORDS[g.letter] + ' <span class="soft">' + g.overall + '/100</span></div>';
     html += '<p class="gsub">' + SUBS[g.letter] + '</p></div></div>';
     if(g.letter === 'A'){
-      html += '<p class="nudge show" style="margin-top:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4c0 2.5 1.3 4 3 4M17 6h3c0 2.5-1.3 4-3 4"/></svg>Challenge cleared. That’s a working skill now, not trivia — take this prompt straight into your tool.</p>';
+      html += '<p class="nudge show" style="margin-top:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4c0 2.5 1.3 4 3 4M17 6h3c0 2.5-1.3 4-3 4"/></svg>Challenge cleared. You just wrote a strong prompt for real work — take it straight into your tool.</p>';
     }
     html += '<div class="dim-bars">';
     keys.forEach(function(k){
@@ -2812,7 +2884,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     if(nudge) nudge.classList.remove('show');
     out.innerHTML = '<div class="result-card"><div class="rc-head"><span class="rc-glyph">' + GLYPH +
       '</span><div><h4>That’s a real rep.</h4><span class="rc-sub">One down — the habit starts here</span></div></div>' +
-      '<p class="rc-note">That gap you just described — that’s your job security. <b>You noticed what the machine couldn’t.</b> Do this once a week and both answers get more interesting: the “right” list grows as your prompts sharpen, and the “fix” list becomes your personal map of the jagged frontier.</p>' +
+      '<p class="rc-note">Look at your second answer: those fixes are mistakes the AI could not catch on its own — <b>you caught them</b>. That reviewing skill is exactly what keeps a person valuable when AI does the drafting. Repeat this exercise once a week. Your prompts will improve, so the “right” list grows — and your “fix” list becomes a personal map of what AI in your job can and can’t be trusted with.</p>' +
       '<p class="rc-fine">Reflection only — nothing is stored or sent anywhere. It’s gone when you close the tab.</p></div>';
   });
 })();
@@ -2994,6 +3066,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       result = document.getElementById('quizResult'), prog = document.getElementById('quizProgress'),
       nudge = document.getElementById('quizNudge');
   if(!form || !submit) return;
+  var lastScore = null; /* shared with the feedback panel below */
   var sets = Array.prototype.slice.call(form.querySelectorAll('.qz'));
   var TOTAL = sets.length;
   function answered(fs){
@@ -3036,6 +3109,8 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       if(ok) score++;
     });
     setLocked(true);
+    lastScore = score;
+    showFeedback();
     var t = tier(score);
     if(result){
       result.innerHTML = '<div class="big-score">' + score + ' / ' + TOTAL + '</div><h3>' + t[0] + '</h3><p>' + t[1] + '</p>' +
@@ -3056,6 +3131,61 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     }
   });
   updateProgress();
+
+  /* ── course feedback: NPS + CSAT + comment → mailto ── */
+  var fbPanel = document.getElementById('fbPanel'), fbForm = document.getElementById('fbForm'),
+      fbSend = document.getElementById('fbSend'), fbNudge = document.getElementById('fbNudge'),
+      fbComment = document.getElementById('fbComment'), fbCount = document.getElementById('fbCount'),
+      fbScoreLine = document.getElementById('fbScoreLine'), fbStatus = document.getElementById('fbStatus');
+  var FB_TO = 'matthew.estes@vanderbilt.edu'; /* [EDIT: interim — replace with survey tool / REDCap / Qualtrics link when available] */
+  var CSAT_LABELS = { 1:'Very dissatisfied', 2:'Dissatisfied', 3:'Neutral', 4:'Satisfied', 5:'Very satisfied' };
+  function fbVal(name){
+    var el = fbForm ? fbForm.querySelector('input[name="' + name + '"]:checked') : null;
+    return el ? el.value : null;
+  }
+  function fbHref(nps, csat){
+    var lines = [
+      'NPS (recommend to a colleague): ' + nps + '/10',
+      'CSAT (satisfaction): ' + csat + '/5 — ' + (CSAT_LABELS[csat] || ''),
+      'Knowledge-check score: ' + (lastScore === null ? 'not taken' : lastScore + '/8')
+    ];
+    var c = fbComment ? fbComment.value.trim() : '';
+    if(c) lines.push('', 'Comment:', c);
+    lines.push('', 'Sent from the CHART Platform feedback form');
+    return 'mailto:' + FB_TO + '?subject=' + encodeURIComponent('CHART course feedback') +
+           '&body=' + encodeURIComponent(lines.join('\n'));
+  }
+  function fbUpdate(){
+    if(!fbForm || !fbSend) return;
+    var nps = fbVal('fbNps'), csat = fbVal('fbCsat'), ready = nps !== null && csat !== null;
+    fbSend.setAttribute('aria-disabled', ready ? 'false' : 'true');
+    fbSend.setAttribute('href', ready ? fbHref(nps, csat) : '#');
+    if(fbNudge) fbNudge.classList.toggle('show', !ready);
+  }
+  function showFeedback(){
+    if(!fbPanel) return;
+    fbPanel.classList.add('show');
+    if(fbScoreLine) fbScoreLine.textContent = 'Your knowledge-check score (' + lastScore + ' / ' + TOTAL + ') is included in the email automatically.';
+    fbUpdate(); /* refresh the embedded score line if this was a retake */
+  }
+  if(fbForm){
+    fbForm.addEventListener('change', fbUpdate);
+    fbForm.addEventListener('submit', function(e){ e.preventDefault(); });
+  }
+  if(fbComment) fbComment.addEventListener('input', function(){
+    if(fbCount) fbCount.textContent = fbComment.value.length + ' / 800';
+    fbUpdate();
+  });
+  if(fbSend) fbSend.addEventListener('click', function(e){
+    if(fbSend.getAttribute('aria-disabled') === 'true'){
+      e.preventDefault();
+      if(fbNudge) fbNudge.classList.add('show');
+      return;
+    }
+    /* the anchor's mailto href opens the email app; the page stays put */
+    if(fbStatus) fbStatus.textContent = 'Thank you! Your email app should now be open with the feedback drafted — just hit send.';
+  });
+  fbUpdate();
 })();
 
 /* ══════════ ETHICS: dilemma widget ══════════ */
@@ -3153,7 +3283,7 @@ document.querySelectorAll('.tech-copy').forEach(function(b){
           }
           status.textContent = solved < items.length
             ? solved + ' of ' + items.length + ' found — keep that skepticism warm.'
-            : 'All ' + items.length + ' found, ' + firstTry + ' on the first try. Fluent, specific, and wrong all look identical at a glance — this is why we verify.';
+            : 'All ' + items.length + ' found, ' + firstTry + ' on the first try. Remember what this drill showed you: a made-up detail reads just as smoothly as a real one, so the only way to catch it is to check.';
         } else {
           tried = true;
           sp.classList.add('wrong');
