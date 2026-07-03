@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Vanderbilt AI Academy — Learn to work with AI</title>
-<meta name="description" content="A warm, hands-on introduction to AI for Vanderbilt University staff. Plain-English lessons, working practice tools, and an AI opportunity simulator — no jargon required." />
+<title>The CHART Platform — Vanderbilt's AI learning experience for staff</title>
+<meta name="description" content="CHART — Cultivating Human-AI Readiness and Thinking. Vanderbilt&#39;s warm, hands-on AI learning experience for staff: plain-English lessons, working practice tools, and a personal 90-day plan." />
 <meta name="theme-color" content="#0B0A07" />
-<meta property="og:title" content="Vanderbilt AI Academy — Learn to work with AI" />
-<meta property="og:description" content="Plain-English AI lessons, practice tools, and an opportunity simulator for Vanderbilt staff." />
+<meta property="og:title" content="The CHART Platform — Vanderbilt&#39;s AI learning experience for staff" />
+<meta property="og:description" content="Cultivating Human-AI Readiness and Thinking: plain-English lessons, practice tools, and an AI opportunity simulator for Vanderbilt staff." />
 <meta property="og:type" content="website" />
 
 <!--
   ══════════════════════════════════════════════════════════════════════════
-  VANDERBILT AI ACADEMY — CUSTOMIZE ME
+  THE CHART PLATFORM — CUSTOMIZE ME
   Everything marked [EDIT] below is placeholder content. Search "[EDIT]" and swap in:
     · Program name / eyebrow line             · Amplify URL + approval language
     · Vanderbilt AI policy links (Responsible AI + Simulator watch-outs)
@@ -546,6 +546,110 @@ footer{ border-top:1px solid var(--line); padding:0 0 46px; overflow:hidden; }
 .tool.hero-tool{ background:linear-gradient(160deg,rgba(207,174,112,.12),rgba(19,16,9,.5)); }
 .result-card{ background:linear-gradient(155deg,rgba(207,174,112,.13),rgba(19,16,9,.5)); }
 
+/* ═════════════════════════ CHART ACRONYM ═════════════════════════ */
+.acronym{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:12px 26px; margin:0 0 36px; }
+.acr{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+.acr b{ font-family:var(--font-d); font-weight:700; font-size:clamp(2.3rem,6vw,3.9rem); line-height:1;
+  background:var(--grad); background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:gshift 9s ease infinite; }
+.acr i{ font-style:normal; font-family:var(--font-m); font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); }
+.acr-and{ font-family:var(--font-s); font-style:italic; color:var(--gold); font-size:1.3rem; padding-bottom:16px; }
+.js .acronym .acr,.js .acronym .acr-and{ opacity:0; transform:translateY(16px); transition:opacity .6s var(--ease-out), transform .6s var(--ease-out); }
+.js .acronym.in .acr,.js .acronym.in .acr-and{ opacity:1; transform:none; }
+.js .acronym.in > :nth-child(2){ transition-delay:.08s } .js .acronym.in > :nth-child(3){ transition-delay:.16s }
+.js .acronym.in > :nth-child(4){ transition-delay:.24s } .js .acronym.in > :nth-child(5){ transition-delay:.32s }
+.js .acronym.in > :nth-child(6){ transition-delay:.4s }
+.you-are{ display:block; font-family:var(--font-m); font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--faint); margin-bottom:14px; }
+
+/* ═════════════════════════ CONCEPT CLIPS + VIDEO FACADES ═════════════════════════ */
+.clip{ margin:26px 0 8px; max-width:760px; }
+.clip-media{ position:relative; aspect-ratio:16/9; border-radius:18px; overflow:hidden; border:1px solid var(--line2);
+  background:radial-gradient(120% 130% at 18% 0%, rgba(207,174,112,.2), rgba(19,16,9,.65) 55%), var(--bg2); }
+.clip-media::after{ content:''; position:absolute; inset:0; background:radial-gradient(60% 70% at 80% 90%, rgba(138,109,59,.25), transparent 70%); pointer-events:none; }
+.clip-media video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; }
+.clip-media.noplay video{ display:none; }
+.clip-cap{ display:flex; flex-wrap:wrap; gap:4px 14px; align-items:baseline; padding:12px 6px 0; color:var(--muted); font-size:.88rem; }
+.clip-cap .mono{ color:var(--gold); }
+.yt{ position:relative; aspect-ratio:16/9; border-radius:18px; overflow:hidden; border:1px solid var(--line2); max-width:760px;
+  background:linear-gradient(150deg,rgba(207,174,112,.13),rgba(11,10,7,.72)); }
+.yt iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+.yt-btn{ position:absolute; inset:0; width:100%; height:100%; background:none; border:0; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:20px; }
+.yt-play{ width:70px; height:70px; border-radius:50%; background:var(--grad); display:grid; place-items:center; color:var(--ink);
+  box-shadow:0 14px 40px -12px rgba(207,174,112,.6); transition:transform .3s var(--ease), box-shadow .3s; }
+.yt-btn:hover .yt-play{ transform:scale(1.07); box-shadow:0 0 46px rgba(207,174,112,.55); }
+.yt-play svg{ width:26px; height:26px; margin-left:3px; }
+.yt-t{ font-family:var(--font-d); font-weight:600; font-size:1.02rem; color:var(--text); text-align:center; max-width:460px; }
+.yt-sub{ font-size:.58rem; }
+.yt-fallback{ margin:10px 6px 0; font-size:.84rem; color:var(--faint); }
+.yt-fallback a{ color:var(--gold); border-bottom:1px solid rgba(207,174,112,.4); }
+.yt-fallback a:hover{ color:var(--champ); }
+
+/* ═════════════════════════ GO-DEEPER EXPANDERS ═════════════════════════ */
+details.deeper{ margin-top:20px; border:1px solid var(--line); border-radius:16px; background:rgba(232,213,169,.03); max-width:900px; }
+details.deeper summary{ list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px; padding:15px 20px;
+  font-family:var(--font-d); font-weight:600; color:var(--muted); min-height:52px; transition:color .25s; }
+details.deeper summary::-webkit-details-marker{ display:none; }
+details.deeper summary:hover{ color:var(--text); }
+details.deeper summary .dx{ width:26px; height:26px; border-radius:8px; border:1px solid var(--line2); display:grid;
+  place-items:center; color:var(--gold); flex-shrink:0; transition:transform .3s var(--ease); }
+details.deeper summary .dx svg{ width:14px; height:14px; }
+details.deeper[open] summary .dx{ transform:rotate(45deg); }
+details.deeper .d-body{ padding:0 20px 20px; color:var(--muted); font-size:.93rem; }
+details.deeper .d-body p{ margin-top:10px; }
+details.deeper .d-body b{ color:var(--champ); font-weight:600; }
+
+/* ═════════════════════════ TECHNIQUES ═════════════════════════ */
+.tech-list{ display:flex; flex-direction:column; gap:12px; }
+.tech{ display:grid; grid-template-columns:40px 1fr; gap:16px; align-items:start; border:1px solid var(--line);
+  border-radius:16px; padding:18px 20px; background:rgba(19,16,9,.5); }
+.tech .t-no{ font-family:var(--font-m); font-size:.72rem; font-weight:500; color:var(--ink); background:var(--grad);
+  width:30px; height:30px; border-radius:9px; display:grid; place-items:center; margin-top:2px; }
+.tech h4{ font-size:1.02rem; }
+.tech .t-why{ color:var(--muted); font-size:.9rem; margin-top:4px; }
+.tech code{ display:block; font-family:var(--font-m); font-size:.78rem; line-height:1.7; color:var(--champ);
+  background:rgba(11,10,7,.55); border:1px solid var(--line); border-radius:10px; padding:10px 14px; margin-top:12px; white-space:pre-wrap; }
+.tech .btn{ margin-top:10px; }
+
+/* ═════════════════════════ SPOT THE HALLUCINATION ═════════════════════════ */
+.hal-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.hal{ border:1px solid var(--line); border-radius:18px; padding:20px 22px; background:rgba(19,16,9,.5); transition:border-color .3s; }
+.hal.done{ border-color:rgba(207,174,112,.5); }
+.hal-q{ font-family:var(--font-m); font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); }
+.hal-a{ margin-top:12px; color:var(--muted); font-size:.93rem; line-height:1.85; }
+button.hal-span{ display:inline; background:none; border:0; border-bottom:1.5px dashed var(--line2); color:var(--text);
+  cursor:pointer; font:inherit; padding:1px 3px; border-radius:4px; transition:color .25s, border-color .25s, background-color .25s; }
+button.hal-span:hover{ border-bottom-color:var(--gold); color:var(--champ); }
+button.hal-span.correct{ background:rgba(207,174,112,.18); border-bottom-color:var(--gold); color:var(--champ); }
+button.hal-span.wrong{ color:#E6A9A9; border-bottom-color:rgba(230,169,169,.5); }
+.hal-reveal{ display:none; margin-top:12px; font-size:.86rem; color:var(--muted); border-left:2px solid var(--gold); padding-left:12px; }
+.hal-status{ margin-top:18px; padding:14px 18px; border-radius:14px; border:1px solid var(--line2);
+  background:rgba(207,174,112,.07); color:var(--champ); font-size:.92rem; }
+
+/* ═════════════════════════ TRANSFORM / DEV PLAN ═════════════════════════ */
+.skill-picks{ display:flex; flex-wrap:wrap; gap:10px; }
+.skill-picks label{ display:inline-flex; align-items:center; gap:10px; min-height:46px; padding:10px 16px; border-radius:12px;
+  border:1px solid var(--line2); background:rgba(11,10,7,.4); color:var(--muted); cursor:pointer; font-size:.92rem;
+  transition:border-color .25s,color .25s,background-color .25s; }
+.skill-picks label:hover{ border-color:var(--gold); color:var(--text); }
+.skill-picks input{ accent-color:var(--gold); width:17px; height:17px; cursor:pointer; }
+.skill-picks label:has(input:checked){ border-color:var(--gold); color:var(--champ); background:rgba(207,174,112,.1); }
+.roadmap.three{ grid-template-columns:repeat(3,1fr); }
+.rstep ul{ list-style:none; margin-top:10px; display:flex; flex-direction:column; gap:9px; }
+.rstep li{ display:flex; gap:9px; align-items:flex-start; color:var(--muted); font-size:.84rem; }
+.rstep li svg{ width:14px; height:14px; flex-shrink:0; color:var(--champ); margin-top:4px; }
+.mobile-menu{ overflow-y:auto; }
+body.menu-open .mobile-menu a.mlink:nth-child(10){ transition-delay:.45s }
+.logo small{ white-space:nowrap; }
+nav.links .nav-cta{ white-space:nowrap; }
+@media (max-width:1380px){ .logo small{ display:none; } }
+@media (max-width:1024px){ .roadmap.three{ grid-template-columns:1fr 1fr; } }
+@media (max-width:960px){ .hal-grid{ grid-template-columns:1fr; } }
+@media (max-width:640px){ .roadmap.three{ grid-template-columns:1fr; } .tech{ grid-template-columns:1fr; } .tech .t-no{ margin-top:0; } }
+@media (prefers-reduced-motion:reduce){
+  .clip-media video[autoplay]{ display:none !important; }
+  .js .acronym .acr,.js .acronym .acr-and{ opacity:1 !important; transform:none !important; }
+}
+
 /* ═════════════════════════ HOW IT WORKS + LEARNING FRAMES ═════════════════════════ */
 .howworks{ padding:clamp(44px,6vw,80px) 0; }
 .hw-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -713,12 +817,12 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 <header class="nav" id="nav">
   <div class="wrap">
     <div class="bar">
-      <a class="logo" href="#top" aria-label="Vanderbilt AI Academy — home">
+      <a class="logo" href="#top" aria-label="CHART — home">
         <span class="lm" aria-hidden="true">
           <!-- lantern/torch mark — intentionally generic, NOT the official Vanderbilt logo -->
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8D5A9"/><stop offset="1" stop-color="#8A6D3B"/></linearGradient></defs><path d="M12 2.5c2.6 3.1 4 5 4 7.5a4 4 0 0 1-8 0c0-2.5 1.4-4.4 4-7.5z" fill="url(#lg1)"/><rect x="9.6" y="15.5" width="4.8" height="1.8" rx=".9" fill="url(#lg1)"/><rect x="10.6" y="18.4" width="2.8" height="3.4" rx="1.1" fill="url(#lg1)"/></svg>
         </span>
-        <span>AI Academy<small>Vanderbilt · Staff Learning</small></span>
+        <span>CHART<small>Vanderbilt &middot; Cultivating Human-AI Readiness and Thinking</small></span>
       </a>
       <nav class="links" aria-label="Primary">
         <a href="#learn">Learn</a>
@@ -726,7 +830,7 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
         <a href="#simulator">Simulator</a>
         <a href="#tools">Tools</a>
         <a href="#ethics">Ethics</a>
-        <a href="#wellbeing">Wellbeing</a>
+        <a href="#future">Transform</a>
         <a href="#resources">Resources</a>
         <a class="btn btn-primary btn-sm nav-cta magnetic" href="#quiz">Knowledge check</a>
       </nav>
@@ -746,9 +850,10 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
   <a class="mlink" href="#ethics"><span class="mono">05</span>Ethics</a>
   <a class="mlink" href="#responsible"><span class="mono">06</span>Responsible AI</a>
   <a class="mlink" href="#wellbeing"><span class="mono">07</span>Wellbeing</a>
-  <a class="mlink" href="#quiz"><span class="mono">08</span>Knowledge check</a>
-  <a class="mlink" href="#resources"><span class="mono">09</span>Resources</a>
-  <div class="mfoot">ai-academy@vanderbilt.edu <!-- [EDIT] program contact email --></div>
+  <a class="mlink" href="#future"><span class="mono">08</span>Transform</a>
+  <a class="mlink" href="#quiz"><span class="mono">09</span>Knowledge check</a>
+  <a class="mlink" href="#resources"><span class="mono">10</span>Resources</a>
+  <div class="mfoot">chart@vanderbilt.edu <!-- [EDIT] program contact email --></div>
 </nav>
 
 <main id="main"><span id="top"></span>
@@ -768,7 +873,7 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
   <div class="wrap">
     <div class="hero-cols">
       <div>
-        <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Vanderbilt University · Staff AI Academy <!-- [EDIT] program eyebrow --></span></span>
+        <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Vanderbilt University · The CHART Platform <!-- [EDIT] program eyebrow --></span></span>
         <h1>
           <span class="hl"><span>AI is your new <em class="s">colleague.</em></span></span>
           <span class="hl"><span>Let&rsquo;s teach you</span></span>
@@ -791,7 +896,7 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
     <div class="hero-meta">
       <div class="hm"><b data-count="3">3</b><span>Approved tools</span></div>
       <div class="hm"><b data-count="14">14</b><span>Workplace AI patterns</span></div>
-      <div class="hm"><b data-count="9">9</b><span>Interactive modules</span></div>
+      <div class="hm"><b data-count="13">13</b><span>Interactive modules</span></div>
       <div class="hm"><b data-count="0">0</b><span>Jargon required</span></div>
     </div>
   </div>
@@ -799,17 +904,25 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 </section>
 
 <!-- ═════════════════════════ HOW THIS ACADEMY WORKS ═════════════════════════ -->
-<section class="howworks" aria-label="How this academy works">
+<section class="howworks" aria-label="How CHART works">
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:28px">
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">How this works</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">How CHART works</span></span>
       <h2 style="font-size:clamp(1.5rem,3.2vw,2.3rem)">One path, three stops — <em class="s grad-text">at your pace.</em></h2>
+    </div>
+    <div class="acronym reveal" role="img" aria-label="CHART stands for Cultivating Human-AI Readiness and Thinking">
+      <span class="acr"><b aria-hidden="true">C</b><i aria-hidden="true">Cultivating</i></span>
+      <span class="acr"><b aria-hidden="true">H</b><i aria-hidden="true">Human-</i></span>
+      <span class="acr"><b aria-hidden="true">A</b><i aria-hidden="true">AI</i></span>
+      <span class="acr"><b aria-hidden="true">R</b><i aria-hidden="true">Readiness</i></span>
+      <span class="acr-and" aria-hidden="true">and</span>
+      <span class="acr"><b aria-hidden="true">T</b><i aria-hidden="true">Thinking</i></span>
     </div>
     <div class="hw-grid">
       <div class="hw reveal"><span class="hw-no" aria-hidden="true">01</span>
         <h3>Learn the ideas</h3>
         <p>You will get plain-English answers to &ldquo;what is this stuff, and how does it actually work?&rdquo;</p>
-        <span class="chip">~5 min</span></div>
+        <span class="chip">~8 min</span></div>
       <div class="hw reveal" style="transition-delay:.07s"><span class="hw-no" aria-hidden="true">02</span>
         <h3>Practice in the Playground</h3>
         <p>You will build, grade, and route real prompts — hands on keyboard, mistakes welcome.</p>
@@ -819,7 +932,13 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
         <p>You will turn one real task from your week into a map, prompts, and a 30-day plan.</p>
         <span class="chip">~4 min</span></div>
     </div>
-    <p class="hw-meta reveal">~15 minutes for the core path &middot; every module is skippable and self-paced &middot; nothing is tracked or reported — this is for you.</p>
+    <figure class="clip reveal" style="max-width:720px;margin:34px auto 0">
+      <div class="clip-media">
+        <video controls preload="metadata" aria-label="CHART in twenty seconds: a narrated overview — how AI predicts words, how a strong prompt is built, and the data rule that protects everything."><source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260703_002339_5fb0ef3c-44d1-411a-8dcb-7195305bb67f.mp4" type="video/mp4" /></video>
+      </div>
+      <figcaption class="clip-cap"><span class="mono">Watch first &middot; 20 sec</span><span>the whole platform in three sentences — with sound on.</span></figcaption>
+    </figure>
+    <p class="hw-meta reveal">~20 minutes for the core path &middot; every module is skippable and self-paced &middot; nothing is tracked or reported — this is for you.</p>
   </div>
 </section>
 
@@ -850,7 +969,7 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 </div>
 
 <!-- ═════════════════════════ STATS BAND ═════════════════════════ -->
-<section class="stats" aria-label="Academy at a glance">
+<section class="stats" aria-label="CHART at a glance">
   <div class="wrap">
     <div class="stat-grid">
       <div class="stat tilt gborder"><div class="glare"></div><span class="spark" aria-hidden="true"></span><span class="k" aria-hidden="true">/01</span>
@@ -869,6 +988,7 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 <section id="learn" aria-label="Learn the fundamentals">
   <div class="wrap">
     <div class="sec-head reveal">
+      <span class="you-are">You are here: foundations — the ideas everything else builds on.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Learn / 01</span></span>
       <h2>First, the <em class="s grad-text">plain-English</em> version.</h2>
       <p>Three short modules. By the end you'll know what these tools actually are, how they really work, and which claims about them to politely ignore.</p>
@@ -949,6 +1069,14 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
           </button>
         </div>
       </div>
+      <details class="deeper reveal">
+        <summary><span class="dx" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Go deeper: how learned systems differ from written rules</summary>
+        <div class="d-body">
+          <p><b>Rules vs. learned.</b> Traditional software follows instructions a human wrote: <em>if the form is missing a signature, reject it.</em> A learned system studied thousands of examples and wrote its own internal rules — millions of them, none of them readable by us. That trade is the whole story: astonishing flexibility, imperfect predictability.</p>
+          <p><b>Why generative models err.</b> They don&rsquo;t retrieve facts from a filing cabinet; they <em>reconstruct</em> patterns. That&rsquo;s why the same engine can draft a lovely paragraph and confidently misremember a date — both are pattern completions, and only one happens to be true.</p>
+          <p><b>Already on campus.</b> ML has quietly run parts of university life for years: spam filters, fraud alerts on procurement cards, building-energy optimization, journal recommendations in the library. Generative AI isn&rsquo;t the first wave — it&rsquo;s the first wave you can talk to.</p>
+        </div>
+      </details>
     </div>
 
     <!-- Module B: How an LLM actually works -->
@@ -964,6 +1092,12 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
         <p class="lf-why"><b>Why it matters to your work:</b> once you&rsquo;ve seen the guesswork underneath, you&rsquo;ll never skip verifying an AI answer again.</p>
       </div>
       </div>
+      <figure class="clip reveal">
+      <div class="clip-media" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="metadata"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260703_001710_75c8313a-56ca-4bd8-9957-a5ec2bec3831.mp4" type="video/mp4" /></video>
+      </div>
+      <figcaption class="clip-cap"><span class="mono">How it thinks</span><span>an LLM assembles answers one predicted word at a time.</span></figcaption>
+    </figure>
       <div class="llm gborder tilt"><div class="glare"></div>
         <p class="sentence" aria-live="polite">&ldquo;<span id="llmText">The staff meeting has been moved to</span> <span class="blank" id="llmBlank">?</span>&rdquo;</p>
         <div class="llm-grid">
@@ -986,6 +1120,65 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
           </div>
         </div>
       </div>
+      <div class="reveal" style="margin-top:20px">
+        <div class="yt reveal" data-embed="https://www.youtube-nocookie.com/embed/LPZh9BOjkQs" data-title="Watch: the best 8 minutes on how LLMs work">
+        <button type="button" class="yt-btn">
+          <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+          <span class="yt-t">Watch: the best 8 minutes on how LLMs work</span>
+          <span class="yt-sub mono">3Blue1Brown &middot; loads YouTube on click</span>
+        </button>
+      </div>
+      <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs" target="_blank" rel="noopener">Open on YouTube</a>.</p>
+      </div>
+      <details class="deeper reveal">
+        <summary><span class="dx" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Go deeper: temperature, memory, and what &ldquo;training&rdquo; really was</summary>
+        <div class="d-body">
+          <p><b>Temperature is a dial on the dice.</b> Low, and the model almost always picks the top word — predictable, safer for facts. High, and the underdogs get real chances — fresher ideas, shakier accuracy. Neither is &ldquo;correct&rdquo;; they&rsquo;re settings for different jobs.</p>
+          <p><b>A bigger window still isn&rsquo;t memory.</b> The model doesn&rsquo;t remember your chat — the whole conversation is re-read on every turn, inside a fixed window. When the window fills, the earliest turns fall out the back. That&rsquo;s the drift you feel in marathon chats, and why a fresh start with a clean summary often beats soldiering on.</p>
+          <p><b>&ldquo;Training&rdquo; wasn&rsquo;t reading.</b> It was billions of rounds of guess-the-next-word on public text, nudging internal dials after every miss until the guesses got eerily good. Everything you&rsquo;ve watched it do flows from that one game.</p>
+          <p style="margin-top:16px">Want the full hour? Andrej Karpathy&rsquo;s classic intro is the gold standard:</p>
+          <div class="yt reveal" data-embed="https://www.youtube-nocookie.com/embed/zjkBMFhNj_g" data-title="Karpathy — Intro to Large Language Models">
+        <button type="button" class="yt-btn">
+          <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+          <span class="yt-t">Karpathy — Intro to Large Language Models</span>
+          <span class="yt-sub mono">1 hour, worth it &middot; loads YouTube on click</span>
+        </button>
+      </div>
+      <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">Open on YouTube</a>.</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- Drill: Spot the hallucination -->
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Drill</span>
+        <h3>Spot the hallucination</h3>
+        <p>Four AI-style answers about plausible campus topics. One detail in each is invented — click the phrase you don&rsquo;t trust. (Every answer here was written for this drill; treat the &ldquo;facts&rdquo; accordingly. That&rsquo;s rather the point.)</p>
+      </div>
+      <div class="hal-grid">
+        <div class="hal" data-tell="A polished citation to a source that doesn&rsquo;t exist — the single most common hallucination. Real memoir titles are checkable; invented ones just sound checkable.">
+          <p class="hal-q">Q: &ldquo;When was Vanderbilt founded?&rdquo;</p>
+          <p class="hal-a">Vanderbilt University was founded in <button type="button" class="hal-span" data-fab="0">1873</button> with a <button type="button" class="hal-span" data-fab="0">$1&nbsp;million gift</button> from Cornelius Vanderbilt, as recounted in Chancellor Kirkland&rsquo;s memoir <button type="button" class="hal-span" data-fab="1">&ldquo;Cornerstone: A History of West End&rdquo; (1912)</button>.</p>
+          <p class="hal-reveal" role="status"></p>
+        </div>
+        <div class="hal" data-tell="An invented policy number. Over-precise references — section, subsection, letter — are confidence theater. If you can&rsquo;t find the policy, the policy may not exist.">
+          <p class="hal-q">Q: &ldquo;What if I miss the benefits deadline?&rdquo;</p>
+          <p class="hal-a">Open enrollment typically runs in <button type="button" class="hal-span" data-fab="0">the fall</button>. Under <button type="button" class="hal-span" data-fab="1">HR Policy 4.7.2b</button>, staff who miss it may still enroll after a <button type="button" class="hal-span" data-fab="0">qualifying life event</button>.</p>
+          <p class="hal-reveal" role="status"></p>
+        </div>
+        <div class="hal" data-tell="A suspiciously precise statistic. &ldquo;Exactly 68.4%&rdquo; sounds measured; it was manufactured. Real numbers come with a source and a year you can check.">
+          <p class="hal-q">Q: &ldquo;Why did staff parking zones change?&rdquo;</p>
+          <p class="hal-a">Staff permits are <button type="button" class="hal-span" data-fab="0">zone-based</button>. A recent mobility survey found that <button type="button" class="hal-span" data-fab="1">exactly 68.4% of staff</button> drive alone, which shaped the <button type="button" class="hal-span" data-fab="0">zone expansion</button>.</p>
+          <p class="hal-reveal" role="status"></p>
+        </div>
+        <div class="hal" data-tell="A confidently invented program name. Branded-sounding initiatives (&ldquo;FirstShelf&rdquo;) are easy to generate and hard to disprove at a glance — search before you cite.">
+          <p class="hal-q">Q: &ldquo;How does interlibrary loan work?&rdquo;</p>
+          <p class="hal-a">The libraries offer <button type="button" class="hal-span" data-fab="0">interlibrary loan</button> for most materials, usually arriving in <button type="button" class="hal-span" data-fab="0">a few days to two weeks</button>, with faculty priority under the <button type="button" class="hal-span" data-fab="1">&ldquo;FirstShelf&rdquo; program</button>.</p>
+          <p class="hal-reveal" role="status"></p>
+        </div>
+      </div>
+      <p class="hal-status" id="halStatus" role="status" aria-live="polite">0 of 4 found — click the detail you&rsquo;d want to verify first.</p>
     </div>
 
     <!-- Module C: Myths vs Facts -->
@@ -1040,6 +1233,133 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
         </div>
       </div>
     </div>
+
+    <!-- Module D: Limits to know -->
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Module D</span>
+        <h3>Limits to know</h3>
+        <p>Four built-in quirks of every LLM. None of them are dealbreakers — as long as you know the counter-move.</p>
+      </div>
+      <div class="flip-grid">
+        <div class="fcard">
+          <button type="button" class="flip-btn" aria-expanded="false">
+            <span class="face front">
+              <span class="abbr" aria-hidden="true">CTX</span>
+              <h4>Context window</h4>
+              <span class="def">The model&rsquo;s working memory.</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the counter-move</span>
+            </span>
+            <span class="face back">
+              <span class="tag">The limit</span>
+              <p>It can only &ldquo;see&rdquo; a limited amount of text at once. In marathon chats, the earliest details fall out the back — which is exactly why long threads drift.</p>
+              <p><b>On campus:</b> it forgets the constraints you set an hour ago. <b>Counter-move:</b> start a fresh chat and re-supply the key facts — paste the relevant policy section, not the whole handbook.</p>
+            </span>
+          </button>
+        </div>
+        <div class="fcard">
+          <button type="button" class="flip-btn" aria-expanded="false">
+            <span class="face front">
+              <span class="abbr" aria-hidden="true">T−1</span>
+              <h4>Knowledge cutoff</h4>
+              <span class="def">Trained on the past, not the present.</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the counter-move</span>
+            </span>
+            <span class="face back">
+              <span class="tag">The limit</span>
+              <p>The model learned from a snapshot of the world. Last week&rsquo;s policy update, this morning&rsquo;s org change — not in there unless you paste it in or the tool browses.</p>
+              <p><b>On campus:</b> it may cite an outdated procedure with total confidence. <b>Counter-move:</b> supply the current document yourself, and ask &ldquo;as of when is your information?&rdquo;</p>
+            </span>
+          </button>
+        </div>
+        <div class="fcard">
+          <button type="button" class="flip-btn" aria-expanded="false">
+            <span class="face front">
+              <span class="abbr" aria-hidden="true">RNG</span>
+              <h4>Non-determinism</h4>
+              <span class="def">Same question, different answers.</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the counter-move</span>
+            </span>
+            <span class="face back">
+              <span class="tag">The limit</span>
+              <p>Sampling means variation: ask twice, get two versions. That&rsquo;s a feature for brainstorming and a surprise for anyone expecting a calculator.</p>
+              <p><b>On campus:</b> three runs of the same announcement, three different drafts. <b>Counter-move:</b> ask for three options on purpose — and pin the exact wording yourself before anything ships.</p>
+            </span>
+          </button>
+        </div>
+        <div class="fcard">
+          <button type="button" class="flip-btn" aria-expanded="false">
+            <span class="face front">
+              <span class="abbr" aria-hidden="true">≠</span>
+              <h4>Confidence &ne; accuracy</h4>
+              <span class="def">Fluent is not the same as right.</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the counter-move</span>
+            </span>
+            <span class="face back">
+              <span class="tag">The limit</span>
+              <p>The tone never wavers — the model sounds equally sure when it&rsquo;s brilliant and when it&rsquo;s wrong. Confidence is styling, not evidence.</p>
+              <p><b>On campus:</b> an authoritative, specific, and wrong benefits deadline. <b>Counter-move:</b> let importance set your verification bar: the more it matters, the harder you check.</p>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bridge: five techniques -->
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Bridge</span>
+        <h3>Five techniques that change everything</h3>
+        <p>Small habits, outsized results. Copy any example and adapt it — then go practice them for real in the Playground below.</p>
+      </div>
+      <div class="tech-list">
+        <div class="tech reveal">
+          <span class="t-no" aria-hidden="true">1</span>
+          <div>
+            <h4>Show examples (few-shot)</h4>
+            <p class="t-why">The fastest way to get your style is to show it, not describe it.</p>
+            <code>Here are two subject lines I like: &ldquo;Quick favor, big impact&rdquo; and &ldquo;Three things before Friday.&rdquo; Write five more in the same voice.</code>
+            <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy example</span></button>
+          </div>
+        </div>
+        <div class="tech reveal">
+          <span class="t-no" aria-hidden="true">2</span>
+          <div>
+            <h4>Iterate — the first answer is a first draft</h4>
+            <p class="t-why">Treat it like one. The second ask is where the magic happens.</p>
+            <code>Good start. Now make it half as long, twice as warm, and end with one clear next step.</code>
+            <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy example</span></button>
+          </div>
+        </div>
+        <div class="tech reveal">
+          <span class="t-no" aria-hidden="true">3</span>
+          <div>
+            <h4>Give it your document</h4>
+            <p class="t-why">Grounding the model in your text beats its memory every time.</p>
+            <code>Using ONLY the policy text below, answer: can a new hire carry over vacation days? Quote the relevant line. [paste policy]</code>
+            <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy example</span></button>
+          </div>
+        </div>
+        <div class="tech reveal">
+          <span class="t-no" aria-hidden="true">4</span>
+          <div>
+            <h4>Ask it to critique — you, or itself</h4>
+            <p class="t-why">It&rsquo;s a surprisingly honest editor, especially of its own work.</p>
+            <code>Before you finalize, list three ways this draft could fail with a busy reader. Then revise it to fix all three.</code>
+            <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy example</span></button>
+          </div>
+        </div>
+        <div class="tech reveal">
+          <span class="t-no" aria-hidden="true">5</span>
+          <div>
+            <h4>Start fresh when it drifts</h4>
+            <p class="t-why">Long chats accumulate confusion. A clean start beats wrestling.</p>
+            <code>New chat: You are an experienced editor. Context you need: [two-sentence summary of where we left off]. Task: continue from there.</code>
+            <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy example</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1047,12 +1367,20 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 <section id="playground" aria-label="Practice playground">
   <div class="wrap">
     <div class="sec-head reveal">
+      <span class="you-are">You are here: practice — safe reps before the real thing.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Playground / 02</span></span>
       <h2>Practice here, <em class="s grad-text">shine everywhere.</em></h2>
       <p>Three working practice tools. Build a prompt, get it graded, and find the right tool for the job.</p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         Honesty corner: these are guided practice tools that run entirely in your browser — no AI, and nothing you type leaves this page. The real AI lives in ChatGPT, Amplify, and Copilot; take what you build here into those.</p>
     </div>
+
+    <figure class="clip reveal">
+      <div class="clip-media" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="metadata"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260703_001730_4665ec48-c531-4ea9-9c34-76aeafad127d.mp4" type="video/mp4" /></video>
+      </div>
+      <figcaption class="clip-cap"><span class="mono">Anatomy of a prompt</span><span>role, task, context, format: blocks that click together.</span></figcaption>
+    </figure>
 
     <div class="reveal">
       <div class="ptabs" role="tablist" aria-label="Playground apps">
@@ -1070,7 +1398,7 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
         <span class="lf-chip"><b>You&rsquo;ll learn</b>The five ingredients of a great prompt</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Build one live, watch it assemble, copy it out</span>
         <span class="lf-chip"><b>Time</b>4 min</span>
-        <p class="lf-why"><b>Why it matters to your work:</b> better prompts mean fewer rewrites — this is the single highest-leverage skill in the whole Academy.</p>
+        <p class="lf-why"><b>Why it matters to your work:</b> better prompts mean fewer rewrites — this is the single highest-leverage skill in all of CHART.</p>
       </div>
         <div class="micro"><span><i aria-hidden="true">1</i>Fill any three fields (five is better)</span><span><i aria-hidden="true">2</i>Watch the prompt assemble live</span><span><i aria-hidden="true">3</i>Copy it into your tool of choice</span></div>
         <div class="app-grid">
@@ -1216,9 +1544,10 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 <section id="simulator" aria-label="AI opportunity simulator">
   <div class="wrap">
     <div class="sec-head reveal">
+      <span class="you-are">You are here: application — your own work, mapped.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Simulator / 03</span></span>
       <h2>The AI Opportunity <em class="s grad-text">Simulator.</em></h2>
-      <p>Describe a real piece of your work and get an opportunity map, starter prompts, watch-outs, and a 30-day plan — built from common AI patterns.</p>
+      <p>Describe a real piece of your work and get an opportunity map, starter prompts, watch-outs, and a 30-day plan — built from common AI patterns. The best use cases share three tells: they <b style="color:var(--champ);font-weight:600">repeat</b> (weekly, monthly, every fall), they&rsquo;re <b style="color:var(--champ);font-weight:600">text-heavy</b> (emails, summaries, reports), and they follow <b style="color:var(--champ);font-weight:600">rules you could explain to a new hire</b>. The more concretely you describe yours — who, what, how often — the sharper your map. And describe freely: nothing you type is stored or sent anywhere.</p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         A guided framework based on common AI patterns — not a live AI. For the real thing, take these prompts into your tools.</p>
       <div class="lframe">
@@ -1282,9 +1611,10 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 <section id="tools" aria-label="Your three tools">
   <div class="wrap">
     <div class="sec-head reveal">
+      <span class="you-are">You are here: orientation — the three doors and which to open.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Tools / 04</span></span>
       <h2>Three tools, <em class="s grad-text">zero guesswork.</em></h2>
-      <p>You don't need every AI product on Earth. You need to know which of these three to open — and when.</p>
+      <p>You don't need every AI product on Earth. You need to know which of these three to open — and when. Why three at all? Because two different questions pick your tool: <b style="color:var(--champ);font-weight:600">how sensitive is the data</b> (that decides where work is <em>allowed</em> to happen) and <b style="color:var(--champ);font-weight:600">where are you already working</b> (that decides what&rsquo;s convenient). Vanderbilt&rsquo;s lineup covers both.</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What each tool is for, and what data it may touch</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Skim three cards, keep one rule of thumb</span>
@@ -1346,6 +1676,7 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 <section id="ethics" aria-label="AI ethics">
   <div class="wrap">
     <div class="sec-head reveal">
+      <span class="you-are">You are here: judgment — the gray areas policy hasn&rsquo;t reached.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Ethics / 05</span></span>
       <h2>Where policy ends, <em class="s grad-text">judgment begins.</em></h2>
       <p>Ethics is what you reach for when the handbook hasn't caught up yet. No compliance checkboxes here — five lenses for thinking clearly, and four dilemmas to practice on.</p>
@@ -1461,6 +1792,7 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 <section id="responsible" aria-label="Responsible AI principles">
   <div class="wrap">
     <div class="sec-head reveal">
+      <span class="you-are">You are here: guardrails — the bright lines that never move.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Responsible AI / 06</span></span>
       <h2>Use it boldly. <em class="s grad-text">Use it well.</em></h2>
       <p>Six habits that keep you — and Vanderbilt — on solid ground. They take seconds and save careers. (For the deeper judgment calls behind these habits, see <a href="#ethics" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">Ethics</a>, just above.)</p>
@@ -1471,6 +1803,12 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
         <p class="lf-why"><b>Why it matters to your work:</b> these habits take seconds and protect students, colleagues, and your own good name.</p>
       </div>
     </div>
+    <figure class="clip reveal">
+      <div class="clip-media" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="metadata"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260703_001741_990667d9-a85e-450c-8c11-b1713346a2d3.mp4" type="video/mp4" /></video>
+      </div>
+      <figcaption class="clip-cap"><span class="mono">Data guardrails</span><span>public tools for public work; Amplify when data is sensitive.</span></figcaption>
+    </figure>
     <div class="resp-grid">
       <article class="principle tilt gborder reveal"><div class="glare"></div>
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></span>
@@ -1524,6 +1862,7 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 <section id="wellbeing" aria-label="AI and your wellbeing">
   <div class="wrap">
     <div class="sec-head reveal">
+      <span class="you-are">You are here: sustainability — keeping the hours you save.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Wellbeing / 07</span></span>
       <h2>AI saves time — <em class="s grad-text">if you let it.</em></h2>
       <p>The promise was that AI reduces work. The research says: only if you're deliberate. A February 2026 Harvard Business Review study — <a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">&ldquo;AI Doesn&rsquo;t Reduce Work&mdash;It Intensifies It&rdquo;</a> by Ranganathan &amp; Ye, who followed about 200 employees at a U.S. tech company for eight months — found AI often <em>intensifies</em> work instead. Three patterns to watch, and a counter-move for each.</p>
@@ -1637,11 +1976,146 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
   </div>
 </section>
 
+<!-- ═════════════════════════ TRANSFORM: THE NEXT FIVE YEARS ═════════════════════════ -->
+<section id="future" aria-label="Transform: the next five years">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="you-are">You are here: horizon — what&rsquo;s coming, and how to be ready.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Transform / 08</span></span>
+      <h2>The next five years belong to the <em class="s grad-text">well-paired.</em></h2>
+      <p>Here&rsquo;s the honest forecast: AI keeps absorbing tasks, and the people who thrive are the ones who decide — on purpose — what to do with the time it frees. This section is your head start, beginning with the biggest shift of 2026: AI that <em>does</em>, not just answers.</p>
+      <div class="lframe">
+        <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI agents are, and which human skills appreciate in value</span>
+        <span class="lf-chip"><b>You&rsquo;ll do</b>Pick your skills, build a personal 90-day plan</span>
+        <span class="lf-chip"><b>Time</b>5 min</span>
+        <p class="lf-why"><b>Why it matters to your work:</b> the best time to get ready for the next wave is while it&rsquo;s still a swell.</p>
+      </div>
+    </div>
+    <figure class="clip reveal">
+      <div class="clip-media" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="metadata"><source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260703_001954_b393b22f-7ea8-4eb5-ba69-6bfbdee6e082.mp4" type="video/mp4" /></video>
+      </div>
+      <figcaption class="clip-cap"><span class="mono">Human + AI</span><span>agents take the tasks; you keep the judgment.</span></figcaption>
+    </figure>
+
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Shift 01</span>
+        <h3>From answering to acting: AI agents</h3>
+        <p>A chatbot answers when asked. An agent takes a goal and works toward it in steps — drafting, checking, filing, following up — pausing to ask when it&rsquo;s unsure. Same engine underneath, much bigger job description. The family tree:</p>
+      </div>
+      <div class="hw-grid">
+        <div class="hw reveal"><span class="hw-no" aria-hidden="true">A</span>
+          <h3>Chatbot</h3>
+          <p>Answers questions when you ask. You do all of the doing. Where most of us started — and still excellent for drafting and thinking out loud.</p>
+          <span class="chip">Answers</span></div>
+        <div class="hw reveal" style="transition-delay:.07s"><span class="hw-no" aria-hidden="true">B</span>
+          <h3>Copilot</h3>
+          <p>Works alongside you, inside your apps: suggests the formula, drafts the reply, recaps the meeting. You steer line by line.</p>
+          <span class="chip">Assists</span></div>
+        <div class="hw reveal" style="transition-delay:.14s"><span class="hw-no" aria-hidden="true">C</span>
+          <h3>Agent</h3>
+          <p>Takes a multi-step goal — &ldquo;collect the six team updates, draft the status report, flag what&rsquo;s missing&rdquo; — and executes it with your oversight. Arriving in your tools now; the skill it rewards most is clear delegation.</p>
+          <span class="chip">Acts</span></div>
+      </div>
+    </div>
+
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Shift 02</span>
+        <h3>Tasks change. Jobs get rebuilt.</h3>
+        <p>AI automates <em>tasks</em>, not jobs — no role is a single task. But as tasks get absorbed, roles get rebuilt around the freed time, and that&rsquo;s where the fork in the road is: the people who thrive are the ones who <b style="color:var(--champ);font-weight:600">redeploy the hours on purpose</b> — into judgment, relationships, and the parts of the work only a person can do.</p>
+      </div>
+      <div class="conseq" role="img" aria-label="The pattern: a task gets absorbed, time gets freed, the role gets rebuilt, and you choose what fills it">
+        <span class="c-lead mono" aria-hidden="true">The pattern to expect — and get ahead of</span>
+        <span class="step" aria-hidden="true">Task absorbed</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">Time freed</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">Role rebuilt</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">You choose what fills it</span>
+      </div>
+    </div>
+
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Shift 03</span>
+        <h3>The human skill stack</h3>
+        <p>Five skills that appreciate in value as AI gets better — because AI getting better is exactly what makes them scarce.</p>
+      </div>
+      <div class="resp-grid">
+      <article class="principle tilt gborder reveal"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>
+        <h3>Judgment</h3>
+        <p>AI produces options; someone still has to choose — and own the choice. The more drafts machines make, the more valuable the person who can say &ldquo;this one, because.&rdquo;</p>
+        <p class="wb-counter"><b>Build it this quarter:</b> before accepting any AI draft, note one thing you&rsquo;d change and why.</p>
+      </article>
+      <article class="principle tilt gborder reveal" style="transition-delay:.06s"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></span>
+        <h3>Verification</h3>
+        <p>When content is cheap, trust is expensive. The person who can quickly tell right from plausible becomes the safety rail for the whole team.</p>
+        <p class="wb-counter"><b>Build it this quarter:</b> verify every checkable fact in one AI draft per week — and time yourself getting faster.</p>
+      </article>
+      <article class="principle tilt gborder reveal" style="transition-delay:.12s"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M8.5 6H13a3 3 0 0 1 3 3v0M8.5 18H13a3 3 0 0 0 3-3v0"/></svg></span>
+        <h3>Delegation to AI</h3>
+        <p>Working with agents is management: clear goals, good context, sensible checkpoints. People who brief AI well will simply get more done than people who don&rsquo;t.</p>
+        <p class="wb-counter"><b>Build it this quarter:</b> hand one recurring task to AI weekly, briefed like you&rsquo;d brief a new colleague.</p>
+      </article>
+      <article class="principle tilt gborder reveal" style="transition-delay:.06s"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6.2 5.5 5.5 0 0 1 21.5 12c-2.5 4.4-9.5 9-9.5 9z"/></svg></span>
+        <h3>Relationship &amp; trust work</h3>
+        <p>Students, donors, colleagues — the conversations that move a university can&rsquo;t be automated, and freed hours make you better at them. This is where the saved time compounds.</p>
+        <p class="wb-counter"><b>Build it this quarter:</b> bank one AI-saved hour per week into a real, unhurried human conversation.</p>
+      </article>
+      <article class="principle tilt gborder reveal" style="transition-delay:.12s"><div class="glare"></div>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
+        <h3>Domain depth</h3>
+        <p>AI amplifies expertise; it doesn&rsquo;t replace it. Knowing what your unit uniquely knows — the history, the exceptions, the why — is what makes your AI output better than anyone else&rsquo;s.</p>
+        <p class="wb-counter"><b>Build it this quarter:</b> spend 15 min/week using AI as a tutor on your field&rsquo;s hard parts — verifying its answers.</p>
+      </article>
+      </div>
+    </div>
+
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Builder</span>
+        <h3>My AI development plan</h3>
+        <p>Pick your role family and up to three skills to focus on. You&rsquo;ll get a 90-day plan built from CHART&rsquo;s own tools — concrete enough to start Monday.</p>
+      </div>
+      <div class="app-grid">
+        <form id="fpForm" autocomplete="off">
+          <div class="field">
+            <label for="fpRole">Your role family</label>
+            <select id="fpRole">
+              <option>Admissions</option><option>Human Resources</option><option>Finance</option>
+              <option>Information Technology</option><option>Research Administration</option><option>Advancement</option>
+              <option>Student Affairs</option><option>Facilities</option><option>Communications</option>
+              <option>Library</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label id="fpSkillsLabel" for="fpRole" style="pointer-events:none">Your focus skills — pick up to three</label>
+            <div class="skill-picks" role="group" aria-labelledby="fpSkillsLabel">
+              <label><input type="checkbox" name="fpSkill" value="judgment" /> Judgment</label>
+              <label><input type="checkbox" name="fpSkill" value="verification" /> Verification</label>
+              <label><input type="checkbox" name="fpSkill" value="delegation" /> Delegation to AI</label>
+              <label><input type="checkbox" name="fpSkill" value="relationship" /> Relationship &amp; trust</label>
+              <label><input type="checkbox" name="fpSkill" value="domain" /> Domain depth</label>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary magnetic" id="fpBtn">Build my 90-day plan
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <p class="nudge" id="fpMax"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Three max — depth beats breadth. Uncheck one to swap.</p>
+          <p class="nudge" id="fpNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Pick at least one skill and I&rsquo;ll draft your plan.</p>
+        </form>
+        <div id="fpOut" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═════════════════════════ KNOWLEDGE CHECK ═════════════════════════ -->
 <section id="quiz" aria-label="Knowledge check">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Knowledge check / 08</span></span>
+      <span class="you-are">You are here: checkpoint — prove it to yourself.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Knowledge check / 09</span></span>
       <h2>Prove it to <em class="s grad-text">yourself.</em></h2>
       <p>Eight quick questions — a <b style="color:var(--champ);font-weight:600">self-assessment, not an exam</b>. It's unscored and untracked, nothing leaves this page, and you can retake it as many times as you like.</p>
       <div class="lframe">
@@ -1749,7 +2223,8 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 <section id="resources" aria-label="Helpful resources">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Resources / 09</span></span>
+      <span class="you-are">You are here: launchpad — where to keep going beyond CHART.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Resources / 10</span></span>
       <h2>Keep the curiosity <em class="s grad-text">compounding.</em></h2>
       <p>Hand-picked and staff-friendly — no rabbit holes required. Fifteen curious minutes a week is the whole assignment.</p>
       <div class="lframe"><span class="lf-chip"><b>Last reviewed</b>July 2026</span><span class="lf-chip"><b>Format</b>All free to start &middot; all external links</span></div>
@@ -1836,11 +2311,11 @@ body.menu-open .mobile-menu a.mlink:nth-child(9){ transition-delay:.4s }
 
 <!-- ═════════════════════════ FOOTER ═════════════════════════ -->
 <footer>
-  <div class="giant" aria-hidden="true">AI&nbsp;ACADEMY</div>
+  <div class="giant" aria-hidden="true">CHART</div>
   <div class="wrap foot">
     <div class="cr">
-      © <span id="yr">2026</span> Vanderbilt AI Academy — internal training prototype, <b>not an official Vanderbilt University site</b>. Product names (ChatGPT, Amplify, Microsoft Copilot) belong to their respective owners. <!-- [EDIT] disclaimer / ownership line --><br/>
-      Questions or ideas? <a href="mailto:ai-academy@vanderbilt.edu">ai-academy@vanderbilt.edu</a> <!-- [EDIT] contact mailto -->
+      © <span id="yr">2026</span> The CHART Platform · Vanderbilt — internal training prototype, <b>not an official Vanderbilt University site</b>. Product names (ChatGPT, Amplify, Microsoft Copilot) belong to their respective owners. <!-- [EDIT] disclaimer / ownership line --><br/>
+      Questions or ideas? <a href="mailto:chart@vanderbilt.edu">chart@vanderbilt.edu</a> <!-- [EDIT] contact mailto -->
     </div>
     <div class="fl">
       <a class="totop" href="#top">Back to top<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
@@ -2742,6 +3217,175 @@ document.querySelectorAll('.dilemma').forEach(function(card){
       '</h4><span class="rc-sub">' + yes + ' of ' + TOTAL + ' intensity signals</span></div></div>' +
       '<p style="color:var(--muted);margin-top:16px;font-size:.93rem">' + t[1] + '</p>' +
       '<p style="color:var(--faint);margin-top:12px;font-size:.83rem">Reflection only — nothing is stored or shared. Retake it whenever your workload shifts.</p></div>';
+  });
+})();
+
+/* ══════════ concept clips: error-hide + pause offscreen / reduced motion ══════════ */
+document.querySelectorAll('.clip').forEach(function(cl){
+  var media = cl.querySelector('.clip-media'), v = cl.querySelector('video');
+  if(!media || !v) return;
+  function kill(){ media.classList.add('noplay'); try{ v.pause(); }catch(e){} }
+  v.addEventListener('error', kill);
+  var s = v.querySelector('source');
+  if(s) s.addEventListener('error', kill);
+  if(v.hasAttribute('controls')) return; /* narrated content: user drives playback */
+  if(reduce){ try{ v.pause(); v.removeAttribute('autoplay'); }catch(e){} return; }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){
+      en.forEach(function(e){ try{ e.isIntersecting ? v.play().catch(function(){}) : v.pause(); }catch(err){} });
+    }, {threshold:0}).observe(v);
+  }
+});
+
+/* ══════════ YouTube facades: no iframe until click ══════════ */
+document.querySelectorAll('.yt').forEach(function(y){
+  var btn = y.querySelector('.yt-btn');
+  if(!btn) return;
+  btn.addEventListener('click', function(){
+    var f = document.createElement('iframe');
+    f.src = (y.getAttribute('data-embed') || '') + '?autoplay=1&rel=0';
+    f.title = y.getAttribute('data-title') || 'Video';
+    f.loading = 'lazy';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    f.setAttribute('allowfullscreen', '');
+    y.innerHTML = '';
+    y.appendChild(f);
+  });
+});
+
+/* ══════════ techniques: copy example ══════════ */
+document.querySelectorAll('.tech-copy').forEach(function(b){
+  b.addEventListener('click', function(){
+    var code = b.parentElement ? b.parentElement.querySelector('code') : null;
+    var label = b.querySelector('span');
+    if(code && label) copyText(code.textContent, label, 'Copied ✓');
+  });
+});
+
+/* ══════════ LEARN drill: spot the hallucination ══════════ */
+(function(){
+  var items = Array.prototype.slice.call(document.querySelectorAll('.hal'));
+  var status = document.getElementById('halStatus');
+  if(!items.length || !status) return;
+  var solved = 0, firstTry = 0;
+  items.forEach(function(item){
+    var tried = false, done = false;
+    var reveal = item.querySelector('.hal-reveal');
+    item.querySelectorAll('.hal-span').forEach(function(sp){
+      sp.addEventListener('click', function(){
+        if(done) return;
+        if(sp.getAttribute('data-fab') === '1'){
+          done = true; solved++;
+          if(!tried) firstTry++;
+          sp.classList.add('correct');
+          item.classList.add('done');
+          if(reveal){
+            reveal.style.display = 'block';
+            reveal.innerHTML = '<b style="color:var(--champ)">Found it — the tell:</b> ' + (item.getAttribute('data-tell') || '');
+          }
+          status.textContent = solved < items.length
+            ? solved + ' of ' + items.length + ' found — keep that skepticism warm.'
+            : 'All ' + items.length + ' found, ' + firstTry + ' on the first try. Fluent, specific, and wrong all look identical at a glance — this is why we verify.';
+        } else {
+          tried = true;
+          sp.classList.add('wrong');
+          if(reveal){
+            reveal.style.display = 'block';
+            reveal.innerHTML = '<b style="color:#E6A9A9">Not that one.</b> That detail is plausible — the fabrication is sneakier. Keep looking.';
+          }
+        }
+      });
+    });
+  });
+})();
+
+/* ══════════ TRANSFORM: my AI development plan ══════════ */
+(function(){
+  var form = document.getElementById('fpForm'), role = document.getElementById('fpRole'),
+      btn = document.getElementById('fpBtn'), out = document.getElementById('fpOut'),
+      nudge = document.getElementById('fpNudge'), maxNote = document.getElementById('fpMax');
+  if(!form || !btn || !out) return;
+  var CK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+  var TASKS = {
+    'Admissions':'applicant email triage', 'Human Resources':'onboarding packets', 'Finance':'the monthly variance memo',
+    'Information Technology':'ticket summaries and status updates', 'Research Administration':'proposal budget justifications',
+    'Advancement':'donor briefings', 'Student Affairs':'event communications', 'Facilities':'work-order updates',
+    'Communications':'newsletter drafts', 'Library':'research guide updates', 'Other':'your most repetitive weekly task'
+  };
+  var SKILLS = {
+    judgment:{ name:'Judgment',
+      p2:'Before accepting any AI draft, write one sentence on what you’d change and why — judgment grows one rep at a time.',
+      p3:'Once a week, catch a case where the AI answer is technically fine but contextually wrong — and note the context it missed.' },
+    verification:{ name:'Verification',
+      p2:'Pick one AI draft a week and verify every checkable fact against the source. Time yourself — you’ll get fast.',
+      p3:'Build a personal verify-first checklist for your three most common outputs, and share it with one colleague.' },
+    delegation:{ name:'Delegation to AI',
+      p2:'Brief AI like a new colleague — goal, context, format, deadline — and hand it one recurring task each week.',
+      p3:'Chain two AI steps on one real deliverable (draft → critique → revise). That’s agent-thinking in miniature.' },
+    relationship:{ name:'Relationship & trust',
+      p2:'Bank one AI-saved hour per week into human work: a check-in, office hours, one unhurried conversation.',
+      p3:'Lead a 20-minute team conversation: which parts of our work should stay human on purpose?' },
+    domain:{ name:'Domain depth',
+      p2:'Use AI as a tutor for 15 minutes a week: have it quiz you on the hard parts of your field — and verify its answers.',
+      p3:'Write one plain-English explainer of something only your unit knows. AI amplifies that knowledge; it can’t replace it.' }
+  };
+  function picks(){ return Array.prototype.slice.call(form.querySelectorAll('input[name="fpSkill"]:checked')); }
+  form.addEventListener('change', function(e){
+    if(e.target && e.target.name === 'fpSkill'){
+      if(picks().length > 3){
+        e.target.checked = false;
+        if(maxNote) maxNote.classList.add('show');
+        return;
+      }
+      if(maxNote) maxNote.classList.remove('show');
+    }
+  });
+  btn.addEventListener('click', function(){
+    var chosen = picks();
+    if(!chosen.length){
+      if(nudge) nudge.classList.add('show');
+      out.innerHTML = '';
+      var f = form.querySelector('input[name="fpSkill"]');
+      if(f) f.focus();
+      return;
+    }
+    if(nudge) nudge.classList.remove('show');
+    if(maxNote) maxNote.classList.remove('show');
+    var roleName = role ? role.value : 'Other';
+    var task = TASKS[roleName] || TASKS.Other;
+    var names = chosen.map(function(c){ return SKILLS[c.value].name; });
+    var p1 = ['Finish CHART’s core path (~20 minutes) and bookmark the Playground.',
+              'Run the Prompt Lab twice a week on real ' + task + ' — all five ingredients, every time.',
+              'Feed the Simulator one real case from your desk and save all three starter prompts.'];
+    var p2 = ['Grade one of your own prompts in the Prompt Grader weekly — apply one suggestion, then re-grade.'];
+    var p3 = [];
+    chosen.forEach(function(c){ p2.push(SKILLS[c.value].p2); p3.push(SKILLS[c.value].p3); });
+    p3.push('Share one win — time saved, a better draft — with your team, and teach one colleague one technique.');
+    p3.push('Pick your next skill from the stack and start the loop again.');
+    var phases = [['Days 1–30', 'Foundations', p1], ['Days 31–60', 'Deliberate reps', p2], ['Days 61–90', 'Compound & share', p3]];
+    var html = '<div class="lframe" style="margin:0 0 18px"><span class="lf-chip"><b>Role</b>' + escapeHtml(roleName) +
+      '</span><span class="lf-chip"><b>Focus</b>' + escapeHtml(names.join(' · ')) + '</span></div>';
+    html += '<div class="roadmap three">';
+    phases.forEach(function(ph){
+      html += '<div class="rstep"><span class="rno">' + ph[0] + '</span><h5>' + ph[1] + '</h5><ul>';
+      ph[2].forEach(function(a){ html += '<li>' + CK + '<span>' + escapeHtml(a) + '</span></li>'; });
+      html += '</ul></div>';
+    });
+    html += '</div><div style="margin-top:16px"><button type="button" class="btn btn-ghost btn-sm" id="fpCopy"><span>Copy my plan</span></button></div>';
+    html += '<p style="color:var(--faint);font-size:.83rem;margin-top:12px">Yours to edit — a plan you rewrote is a plan you’ll follow.</p>';
+    out.innerHTML = html;
+    var txt = 'MY 90-DAY AI DEVELOPMENT PLAN\nRole family: ' + roleName + '\nFocus skills: ' + names.join(', ') + '\n\n';
+    phases.forEach(function(ph){
+      txt += ph[0] + ' — ' + ph[1] + '\n';
+      ph[2].forEach(function(a){ txt += '  - ' + a + '\n'; });
+      txt += '\n';
+    });
+    txt += 'Built with CHART — Cultivating Human-AI Readiness and Thinking (Vanderbilt).';
+    var cb = document.getElementById('fpCopy');
+    if(cb) cb.addEventListener('click', function(){
+      var l = cb.querySelector('span');
+      if(l) copyText(txt, l, 'Copied ✓');
+    });
   });
 })();
 
