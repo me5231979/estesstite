@@ -158,6 +158,9 @@ body.menu-open .mobile-menu{ opacity:1; visibility:visible; transition:opacity .
 .hero .lead{ font-size:1.125rem; color:rgba(255,255,255,.78); max-width:54ch; margin-top:24px; }
 .hero .lead b{ color:#fff; font-weight:600; }
 .hero .lead .def{ color:var(--vu-gold); }
+.hero-outcomes{ list-style:none; margin:20px 0 0; padding:0; display:flex; flex-direction:column; gap:9px; }
+.hero-outcomes li{ position:relative; padding-left:24px; color:rgba(255,255,255,.85); font-size:1.0625rem; max-width:54ch; }
+.hero-outcomes li::before{ content:''; position:absolute; left:0; top:.62em; width:12px; height:2px; background:var(--vu-gold); }
 .hero .meta-line{ font-family:var(--cond); font-weight:700; font-size:.8125rem; letter-spacing:.03em; text-transform:uppercase;
   color:rgba(255,255,255,.55); margin-top:22px; }
 .hero .meta-line b{ color:var(--vu-gold); font-weight:700; }
@@ -832,9 +835,14 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <span class="mono">Vanderbilt University &middot; The CHART Platform <!-- [EDIT] program eyebrow — CHART can be renamed (e.g. Futures Learning Hub) --></span>
     <h1 class="metal">AI is your new <em>colleague</em>.</h1>
-    <p class="lead"><b>CHART</b>, <span class="def">Cultivating Human-AI Readiness and Thinking</span>, is Vanderbilt&rsquo;s
+    <p class="lead">Welcome. <b>CHART</b>, <span class="def">Cultivating Human-AI Readiness and Thinking</span>, is Vanderbilt&rsquo;s
       self-paced introduction to working with AI. Plain-English lessons, working practice tools,
       and a plan for your real work.</p>
+    <ul class="hero-outcomes" aria-label="What you will be able to do">
+      <li>Write prompts that get useful answers on the first try</li>
+      <li>Pick the right AI tool for any task, and any kind of data</li>
+      <li>Leave with your first AI use case mapped to your own job</li>
+    </ul>
     <p class="meta-line" aria-label="About 20 minutes, self-paced, nothing tracked"><b>~20 minutes</b> &middot; self-paced &middot; nothing tracked</p>
     <div class="cta-row">
       <a class="btn btn-gold" href="#start">Start learning
