@@ -230,6 +230,22 @@ section + section{ border-top:1px solid transparent; }
 .module-head p{ color:var(--tx2); max-width:66ch; margin-top:12px; }
 .module-head .lframe{ margin-top:16px; }
 
+/* concept block — the mental model before every activity */
+.concept{ margin:0 0 26px; padding:2px 0 2px 20px; border-left:3px solid var(--vu-gold); max-width:780px; }
+.concept .c-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); margin-bottom:8px; }
+.concept p{ color:var(--tx2); font-size:.9575rem; line-height:1.75; max-width:68ch; }
+.concept p + p{ margin-top:10px; }
+.concept p b{ color:var(--tx); font-weight:600; }
+.concept p em{ font-family:var(--serif-i); font-style:italic; }
+
+/* bridge — one connective sentence handing a section to the next */
+.bridge{ display:flex; align-items:baseline; flex-wrap:wrap; gap:10px 18px; margin-top:clamp(44px,6vw,64px); padding-top:24px; border-top:1px solid var(--bd); }
+.bridge.mid{ margin-top:32px; padding-top:20px; }
+.bridge .b-label{ display:inline-flex; align-items:center; gap:10px; font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--eyebrow); }
+.bridge .b-label::before{ content:''; width:26px; height:2px; background:var(--vu-gold); }
+.bridge p{ font-family:var(--serif); font-size:clamp(1.05rem,2.2vw,1.3rem); line-height:1.45; color:var(--tx); max-width:none; }
+.bridge p em{ font-family:var(--serif-i); font-style:italic; color:var(--strong); }
+
 /* ═══════════════════ LEARN — cards ═══════════════════ */
 .flip-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
 .fcard button{ width:100%; height:100%; border:1px solid var(--bd); border-radius:var(--r); background:var(--card);
@@ -834,6 +850,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     <p class="hw-meta reveal">~20 minutes for the core path &middot; every module is skippable and self-paced &middot; nothing is tracked or reported.</p>
     <!-- [EDIT] program name — CHART is a working title; the acronym line below updates with any rename -->
     <p class="acr-line reveal" role="img" aria-label="CHART stands for Cultivating Human-AI Readiness and Thinking"><b>C</b>ultivating&ensp;<b>H</b>uman-<b>A</b>I&ensp;<b>R</b>eadiness&ensp;and&ensp;<b>T</b>hinking</p>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Every tool on this platform builds on <em>one</em> idea — start there.</p></div>
   </div>
 </section>
 
@@ -859,6 +876,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="lf-chip"><b>Time</b>2 min</span>
         <p class="lf-why"><b>Why it matters to your work:</b> you&rsquo;ll stop nodding along in meetings and start knowing which AI conversations actually concern your job.</p>
       </div>
+      </div>
+      <div class="concept reveal">
+        <span class="c-label">The idea</span>
+        <p>These four terms nest inside each other like dolls. <b>AI</b> is the umbrella: any software doing things that used to need human judgment. <b>Machine learning</b> is how modern AI gets built — instead of a programmer writing rules, the system finds patterns in thousands of examples. <b>Generative AI</b> is machine learning that produces new things — text, images, code — instead of just sorting or scoring. And a <b>large language model</b> is the specific generative engine inside ChatGPT, Amplify, and Copilot.</p>
+        <p><b>Notice as you flip:</b> the through-line is that none of these <em>understand</em> anything. They recognize patterns — and that one fact will follow us through the whole platform.</p>
       </div>
       <div class="flip-grid">
         <div class="fcard">
@@ -930,6 +952,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <p><b>Already on campus.</b> ML has quietly run parts of university life for years: spam filters, fraud alerts on procurement cards, building-energy optimization, journal recommendations in the library. Generative AI isn&rsquo;t the first wave — it&rsquo;s the first wave you can talk to.</p>
         </div>
       </details>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>You know the words. Now watch the machine actually <em>think</em>.</p></div>
     </div>
 
     <!-- Module B: How an LLM actually works -->
@@ -944,6 +967,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="lf-chip"><b>Time</b>3 min</span>
         <p class="lf-why"><b>Why it matters to your work:</b> once you&rsquo;ve seen the guesswork underneath, you&rsquo;ll never skip verifying an AI answer again.</p>
       </div>
+      </div>
+      <div class="concept reveal">
+        <span class="c-label">The idea</span>
+        <p>During training, the model read a huge slice of human writing and learned which words tend to follow which. That was the entire education. It writes by scoring every word it knows, picking a high scorer, adding it to the sentence — then doing it again, one word at a time, until the answer sounds finished. The temperature dial below controls how adventurous each pick gets to be.</p>
+        <p><b>Notice as you play:</b> the model never <em>checks</em> anything — there is no lookup step, only pattern completion. That single fact explains almost everything else on this page.</p>
       </div>
       <div class="llm">
         <p class="sentence" aria-live="polite">&ldquo;<span id="llmText">The staff meeting has been moved to</span> <span class="blank" id="llmBlank">?</span>&rdquo;</p>
@@ -994,6 +1022,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">Open on YouTube</a>.</p>
         </div>
       </details>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>If it only predicts, it can predict <em>wrong</em>. Learn to catch it in the act.</p></div>
     </div>
 
     <!-- Drill: Spot the hallucination -->
@@ -1002,6 +1031,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="mno">Drill</span>
         <h3>Spot the hallucination</h3>
         <p>Four AI-style answers about plausible campus topics. One detail in each is invented — click the phrase you don&rsquo;t trust. (Every answer here was written for this drill; treat the &ldquo;facts&rdquo; accordingly. That&rsquo;s rather the point.)</p>
+      </div>
+      <div class="concept reveal">
+        <span class="c-label">The idea</span>
+        <p>A hallucination is not a bug or a lie — it is the machine doing exactly what it was built to do: produce the most <em>plausible-sounding</em> next words. When the truth is common in its training data, plausible and true line up. But ask about something specific, rare, or internal — a policy number, a citation, a program name — and the model still completes the pattern, and the result sounds exactly as confident as a real fact.</p>
+        <p><b>Your job in this drill:</b> learn the tells — the over-precise number, the polished citation, the official-sounding name. Fluent, specific, and wrong look identical at a glance.</p>
       </div>
       <div class="hal-grid">
         <div class="hal" data-tell="A polished citation to a source that doesn&rsquo;t exist — the single most common hallucination. Real memoir titles are checkable; invented ones just sound checkable.">
@@ -1021,11 +1055,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
         <div class="hal" data-tell="A confidently invented program name. Branded-sounding initiatives (&ldquo;FirstShelf&rdquo;) are easy to generate and hard to disprove at a glance — search before you cite.">
           <p class="hal-q">Q: &ldquo;How does interlibrary loan work?&rdquo;</p>
-          <p class="hal-a">The libraries offer <button type="button" class="hal-span" data-fab="0">interlibrary loan</button> for most materials, usually arriving in <button type="button" class="hal-span" data-fab="0">a few days to two weeks</button>, with faculty priority under the <button type="button" class="hal-span" data-fab="1">&ldquo;FirstShelf&rdquo; program</button>.</p>
+          <p class="hal-a">The libraries offer <button type="button" class="hal-span" data-fab="0">interlibrary loan</button> for most materials, usually arriving in <button type="button" class="hal-span" data-fab="0">a few days to two weeks</button>, with rush handling for staff under the <button type="button" class="hal-span" data-fab="1">&ldquo;FirstShelf&rdquo; program</button>.</p>
           <p class="hal-reveal" role="status"></p>
         </div>
       </div>
       <p class="hal-status" id="halStatus" role="status" aria-live="polite">0 of 4 found — click the detail you&rsquo;d want to verify first.</p>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>You caught the fabrications. Now the broader folklore — six break-room claims, <em>sorted</em>.</p></div>
     </div>
 
     <!-- Module C: Myths vs Facts -->
@@ -1079,6 +1114,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             <p>If you can write a clear email to a new colleague, you can write a great prompt. The Playground below will prove it.</p></div>
         </div>
       </div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Most myths grow from real limits. Here are the four built-in ones — and the <em>counter-moves</em>.</p></div>
     </div>
 
     <!-- Module D: Limits to know -->
@@ -1087,6 +1123,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="mno">Module D</span>
         <h3>Limits to know</h3>
         <p>Four built-in quirks of every LLM. None of them are dealbreakers — as long as you know the counter-move.</p>
+      </div>
+      <div class="concept reveal">
+        <span class="c-label">The idea</span>
+        <p>Every limit on these cards is a practical consequence of what you just watched in Module B. Limited memory (the context window), staleness (the training cutoff), randomness (two runs, two answers), and unearned confidence (no self-doubt meter) all follow from one design decision: the model <em>predicts</em> text; it doesn&rsquo;t consult anything.</p>
+        <p><b>Notice as you flip:</b> each limit comes paired with a counter-move — a limit you can name is a limit you can work around.</p>
       </div>
       <div class="flip-grid">
         <div class="fcard">
@@ -1150,14 +1191,19 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           </button>
         </div>
       </div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Knowing the limits, you can work around them — five moves that do <em>most</em> of the work.</p></div>
     </div>
 
     <!-- Bridge: five techniques -->
     <div class="module reveal">
       <div class="module-head">
-        <span class="mno">Bridge</span>
+        <span class="mno">Module E</span>
         <h3>Five techniques that change everything</h3>
         <p>Small habits, outsized results. Copy any example and adapt it — then go practice them for real in the Playground below.</p>
+      </div>
+      <div class="concept reveal">
+        <span class="c-label">The idea</span>
+        <p>Why does prompting matter at all? Because the model cannot read your mind — it completes <em>your</em> pattern. A vague prompt hands it a vague pattern, and it will happily complete that too, with confident generic filler. Each technique below is a way of narrowing the pattern — with examples, grounding text, or a fresh start — until the likeliest continuation is the one you actually wanted.</p>
       </div>
       <div class="tech-list">
         <div class="tech reveal">
@@ -1207,6 +1253,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
       </div>
     </div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Enough theory. Hands on <em>keyboard</em>.</p></div>
   </div>
 </section>
 
@@ -1222,6 +1269,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         Honesty corner: these are guided practice tools that run entirely in your browser — no AI, and nothing you type leaves this page. The real AI lives in ChatGPT, Amplify, and Copilot; take what you build here into those.</p>
     </div>
 
+    <div class="concept reveal">
+      <span class="c-label">The idea</span>
+      <p>Each app trains one specific muscle from the Learn section. The <b>Prompt Lab</b> is about building the pattern deliberately — handing the model a role, task, context, format, and tone instead of hoping it guesses. The <b>Grader</b> is about diagnosing weak patterns in prompts you&rsquo;ve already written. And <b>Tool Match</b> drills the one decision that isn&rsquo;t about quality at all: where the data is <em>allowed</em> to go.</p>
+    </div>
+
     <div class="reveal">
       <div class="ptabs" role="tablist" aria-label="Playground apps">
         <button class="ptab" id="tab-lab" role="tab" aria-selected="true" aria-controls="panel-lab">
@@ -1234,6 +1286,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
       <!-- ── PROMPT LAB ── -->
       <div class="ppanel" id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" tabindex="0">
+        <div class="concept">
+          <span class="c-label">What this trains</span>
+          <p>Building the pattern on purpose. <b>What you&rsquo;ll notice:</b> every field you fill visibly narrows what the AI could come back with — that shrinking of possibilities is the whole craft.</p>
+        </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>The five ingredients of a great prompt</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Build one live, watch it assemble, copy it out</span>
@@ -1301,6 +1357,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
       <!-- ── PROMPT GRADER ── -->
       <div class="ppanel" id="panel-grader" role="tabpanel" aria-labelledby="tab-grader" tabindex="0" hidden>
+        <div class="concept">
+          <span class="c-label">What this trains</span>
+          <p>Diagnosing weak patterns. <b>What you&rsquo;ll notice:</b> the lowest bar is almost always context or specificity — the two ingredients we assume the reader &ldquo;just knows.&rdquo; The AI never does.</p>
+        </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What separates an A prompt from an F</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Paste a prompt, get graded feedback</span>
@@ -1325,6 +1385,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
       <!-- ── TOOL MATCH ── -->
       <div class="ppanel" id="panel-match" role="tabpanel" aria-labelledby="tab-match" tabindex="0" hidden>
+        <div class="concept">
+          <span class="c-label">What this trains</span>
+          <p>Routing by data sensitivity. <b>What you&rsquo;ll notice:</b> question one overrides everything else — sensitivity beats convenience, every single time.</p>
+        </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>How to pick the right tool, instantly</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Answer five quick questions</span>
@@ -1335,7 +1399,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <div class="app-grid">
           <form id="tmForm" autocomplete="off">
             <fieldset class="tm-q">
-              <legend><span class="qn">Q1</span>Does the task involve student records, health info, or any confidential Vanderbilt data?</legend>
+              <legend><span class="qn">Q1</span>Does the task involve personnel records, health info, or any confidential Vanderbilt data?</legend>
               <div class="tm-opts"><label><input type="radio" name="tm1" value="yes" /> Yes</label> <label><input type="radio" name="tm1" value="no" /> No</label></div>
             </fieldset>
             <fieldset class="tm-q">
@@ -1362,6 +1426,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
       </div>
     </div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You can build a prompt. Now point it at your actual <em>job</em>.</p></div>
   </div>
 </section>
 
@@ -1383,6 +1448,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
     </div>
 
+    <div class="concept reveal">
+      <span class="c-label">The idea</span>
+      <p>One thing worth knowing before you press the button: this engine literally pattern-matches your description against fourteen common workplace patterns — drafting, summarizing, reporting, support, and so on. That&rsquo;s not a limitation to apologize for; it&rsquo;s a tiny, transparent demonstration of how AI itself thinks. <b>Notice:</b> the more concretely you describe the work, the more patterns it can catch — exactly like a real prompt.</p>
+    </div>
+
     <div class="sim-shell reveal">
       <form class="sim-form" autocomplete="off" novalidate>
         <div class="micro"><span><i aria-hidden="true">1</i>Describe a real task from your week</span><span><i aria-hidden="true">2</i>Pick your department</span><span><i aria-hidden="true">3</i>Get your map — then take one prompt and actually try it</span></div>
@@ -1392,7 +1462,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
         <div class="sim-chips" aria-label="Example use cases">
           <span class="mono" style="align-self:center">Try an example:</span>
-          <button type="button" class="sim-chip" data-dept="Admissions" data-case="Every fall I answer hundreds of emails from applicants asking about deadlines, transcripts, and campus visits. I also summarize application review notes for committee meetings and keep a spreadsheet of where each file stands.">Admissions inbox season</button>
+          <button type="button" class="sim-chip" data-dept="Communications" data-case="Every week I assemble a staff newsletter from submissions that arrive in wildly different formats, rewrite them into one voice, and chase contributors for missing details. I also draft event announcements and answer the same handful of questions about submission deadlines.">Communications newsletter week</button>
           <button type="button" class="sim-chip" data-dept="Human Resources" data-case="I onboard new hires: schedule orientation, send the same welcome documents, answer the same first-week questions, and track completion of required training in a spreadsheet. Writing the personalized welcome emails takes forever.">HR onboarding grind</button>
           <button type="button" class="sim-chip" data-dept="Finance" data-case="I prepare a monthly budget variance report by pulling numbers from three systems, analyzing which lines are over, writing a summary memo for leadership, and emailing follow-ups to the units that overspent.">Finance monthly close</button>
         </div>
@@ -1429,6 +1499,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
       <div class="sim-out" id="simOut" role="status" aria-live="polite"></div>
     </div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You know what to ask. Choose <em>where</em> to ask it.</p></div>
   </div>
 </section>
 
@@ -1467,7 +1538,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <h3>Amplify <span class="vu-badge">Vanderbilt's platform</span></h3>
         <p class="t-tag">Approved for institutional data. <!-- [EDIT] verify approval scope with ITS/policy owners --> When in doubt, start here.</p>
         <dl>
-          <div><dt>Best for</dt><dd>Anything touching Vanderbilt data: long documents, internal reports, student-adjacent work</dd></div>
+          <div><dt>Best for</dt><dd>Anything touching Vanderbilt data: long documents, internal reports, records-heavy work</dd></div>
           <div><dt>Data allowed</dt><dd><b>Institutional data</b> within policy <!-- [EDIT] link data classification guidance --></dd></div>
           <div><dt>Where it lives</dt><dd>www.vanderbilt.ai — VUNet ID login</dd></div>
           <div><dt>Cost</dt><dd>Provided by Vanderbilt <!-- [EDIT] confirm funding/access model --></dd></div>
@@ -1494,6 +1565,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/></svg>Office apps → <b>Copilot</b></span>
       <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>Everything else → <b>your choice</b></span>
     </div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>The tools are approved. The judgment calls are <em>yours</em>.</p></div>
   </div>
 </section>
 
@@ -1516,7 +1588,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <article class="principle reveal">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M8 21h8"/><path d="M12 6L5.5 7.8 8 13a3.2 3.2 0 0 1-5 0l2.5-5.2M12 6l6.5 1.8L16 13a3.2 3.2 0 0 0 5 0l-2.5-5.2"/></svg></span>
         <h3>Bias &amp; fairness</h3>
-        <p>Models learn from oceans of human writing and decisions — and inherit human bias along the way. In hiring or admissions support, &ldquo;the algorithm said so&rdquo; can quietly repeat old unfairness at new speed.</p>
+        <p>Models learn from oceans of human writing and decisions — and inherit human bias along the way. In hiring or promotion support, &ldquo;the algorithm said so&rdquo; can quietly repeat old unfairness at new speed.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.06s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
@@ -1545,6 +1617,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <h3>What would you do?</h3>
         <p>Pick your honest instinct, then compare notes. Reasonable people disagree on these — the goal is knowing <em>why</em> you'd choose, not passing a test.</p>
       </div>
+      <div class="concept reveal">
+        <span class="c-label">The idea</span>
+        <p>Rules answer the questions someone already thought of; judgment handles the ones nobody has yet. AI is moving faster than any handbook can, so the gray areas land on regular staff first — usually on a busy afternoon. Practicing on low-stakes scenarios now beats improvising on a real one later.</p>
+        <p><b>Notice as you choose:</b> the &ldquo;safe-looking&rdquo; middle option isn&rsquo;t automatically the right one — each scenario turns on <em>which</em> principle is actually at stake.</p>
+      </div>
       <div class="dilemma-grid">
         <article class="dilemma">
           <span class="d-no">Scenario 01</span>
@@ -1563,16 +1640,16 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </article>
         <article class="dilemma">
           <span class="d-no">Scenario 02</span>
-          <h4>The accommodation email</h4>
-          <p class="d-sit">You&rsquo;re drowning in email. A long message arrives from a student describing their disability accommodations. You&rsquo;re tempted to paste it into a public AI tool for a quick summary.</p>
+          <h4>The medical-leave email</h4>
+          <p class="d-sit">You&rsquo;re drowning in email. A long message arrives from an employee on your team describing the health situation behind their upcoming medical leave. You&rsquo;re tempted to paste it into a public AI tool for a quick summary.</p>
           <div class="d-choices" role="group" aria-label="Your response to scenario 02">
-            <button type="button" aria-pressed="false" data-react="&ldquo;That message holds protected student and health information. A public chatbot is the wrong room for it.&rdquo;">Paste it — it&rsquo;s just a summary, not a decision.</button>
+            <button type="button" aria-pressed="false" data-react="&ldquo;That message holds protected health and personnel information. A public chatbot is the wrong room for it.&rdquo;">Paste it — it&rsquo;s just a summary, not a decision.</button>
             <button type="button" aria-pressed="false" data-react="&ldquo;The approved platform is the right call — if AI should touch this at all.&rdquo;">Use Amplify instead.</button>
-            <button type="button" aria-pressed="false" data-react="&ldquo;Sometimes the human way is also the fast way — and this student wrote to a person.&rdquo;">Slow down and read it yourself.</button>
+            <button type="button" aria-pressed="false" data-react="&ldquo;Sometimes the human way is also the fast way — and this colleague wrote to a person.&rdquo;">Slow down and read it yourself.</button>
           </div>
           <div class="d-take" role="status" aria-live="polite">
             <span class="d-react"></span>
-            <p class="d-our"><b>Our take:</b> this is FERPA territory, possibly HIPAA-adjacent. If AI touches it at all, only in Amplify — and for a short, personal, high-stakes message, your own attention might be the whole point.</p>
+            <p class="d-our"><b>Our take:</b> this is protected health and personnel territory — HIPAA-adjacent at minimum. If AI touches it at all, only in Amplify — and for a short, personal, high-stakes message, your own attention might be the whole point.</p>
             <span class="chip">Principle: Human dignity &amp; data protection</span>
           </div>
         </article>
@@ -1610,6 +1687,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </div>
     <p class="honest reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
       Looking for the practical guardrails — what never to paste, which tool for which data? That&rsquo;s <a href="#responsible" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">Responsible AI</a>, right below.</p>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Principles become habits — <em>six</em> of them.</p></div>
   </div>
 </section>
 
@@ -1625,8 +1703,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Six guardrail habits and the never-paste list</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Read it once, remember it forever</span>
         <span class="lf-chip"><b>Time</b>2 min</span>
-        <p class="lf-why"><b>Why it matters to your work:</b> these habits take seconds and protect students, colleagues, and your own good name.</p>
+        <p class="lf-why"><b>Why it matters to your work:</b> these habits take seconds and protect colleagues, the institution, and your own good name.</p>
       </div>
+    </div>
+    <div class="concept reveal">
+      <span class="c-label">The idea</span>
+      <p>These six habits aren&rsquo;t etiquette — they follow from two facts you already know. Because the model predicts rather than looks anything up (Module B), you <b>verify</b>, you <b>disclose</b>, and you keep a <b>human on every decision</b>. And because what you paste can leave Vanderbilt&rsquo;s control, the data rules route anything sensitive to Amplify — or nowhere. Hold onto those two facts and every card below becomes obvious.</p>
     </div>
     <div class="resp-grid">
       <article class="principle reveal">
@@ -1637,7 +1719,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <article class="principle reveal" style="transition-delay:.06s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
         <h3>Protect data</h3>
-        <p>FERPA and HIPAA don't pause for convenience. Student records, health info, and anything confidential go to Amplify only — or nowhere.</p>
+        <p>FERPA and HIPAA don't pause for convenience. Personnel records, health info, and anything confidential go to Amplify only — or nowhere.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.12s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1.1L3 20l1.1-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg></span>
@@ -1647,12 +1729,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <article class="principle reveal" style="transition-delay:.06s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/></svg></span>
         <h3>Human makes the call</h3>
-        <p>AI advises; you decide. Hiring, grading, funding, discipline — decisions about people always need a person accountable for them.</p>
+        <p>AI advises; you decide. Hiring, promotion, funding, discipline — decisions about people always need a person accountable for them.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.12s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18M12 7v5l3 2"/></svg></span>
         <h3>Bias awareness</h3>
-        <p>Models learn from human writing, biases included. Watch for skewed assumptions, especially in anything touching admissions, hiring, or evaluation.</p>
+        <p>Models learn from human writing, biases included. Watch for skewed assumptions, especially in anything touching hiring, promotion, or evaluation.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.18s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
@@ -1674,6 +1756,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </ul>
       <p class="pol">Full guidance: <a href="#responsible">Vanderbilt AI Guidance <!-- [EDIT] link official AI policy --></a> · <a href="#responsible">Data Classification Policy <!-- [EDIT] link data classification policy --></a></p>
     </div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Using AI well also means not letting it use <em>you</em>.</p></div>
   </div>
 </section>
 
@@ -1725,6 +1808,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <h3>Intensity self-check</h3>
         <p>Six honest yes/nos. Nothing is stored or sent anywhere — this one is strictly between you and you.</p>
       </div>
+      <div class="concept reveal">
+        <span class="c-label">The idea</span>
+        <p>Intensification sneaks up because no single moment feels like the problem. Each &ldquo;quick&rdquo; AI task genuinely is quick; it&rsquo;s the accumulation — filled breaks, parallel threads, a to-do list that quietly refills itself — that adds up to a heavier week. By the time you <em>feel</em> it, the pattern is months old, which is why a deliberate check beats waiting.</p>
+        <p><b>Notice as you answer:</b> go by your actual last two weeks, not your intentions.</p>
+      </div>
       <div class="app-grid">
         <form id="wbForm" autocomplete="off">
           <fieldset class="tm-q">
@@ -1774,6 +1862,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <p>And if you want support beyond your team: <a href="#wellbeing">Vanderbilt Employee Assistance Program &amp; Work-Life resources <!-- [EDIT] link Vanderbilt EAP / Work-Life resources --></a>.</p>
       </div>
     </div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You&rsquo;ve protected today. Now build the next <em>five years</em>.</p></div>
   </div>
 </section>
 
@@ -1833,6 +1922,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <h3>The human skill stack</h3>
         <p>Five skills that appreciate in value as AI gets better — because AI getting better is exactly what makes them scarce.</p>
       </div>
+      <div class="concept reveal">
+        <span class="c-label">The idea</span>
+        <p>Why these five? Scarcity sets value. As agents absorb the drafting, summarizing, and assembling, what machines can&rsquo;t supply — choosing well, checking truth, briefing clearly, earning trust, knowing your unit&rsquo;s exceptions — becomes the scarce ingredient in every workflow. AI getting better doesn&rsquo;t threaten these skills; it&rsquo;s precisely what makes them <em>appreciate</em>. The builder below turns your pick of them into a 90-day plan.</p>
+      </div>
       <div class="resp-grid">
       <article class="principle reveal">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>
@@ -1855,7 +1948,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <article class="principle reveal" style="transition-delay:.06s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6.2 5.5 5.5 0 0 1 21.5 12c-2.5 4.4-9.5 9-9.5 9z"/></svg></span>
         <h3>Relationship &amp; trust work</h3>
-        <p>Students, donors, colleagues — the conversations that move a university can&rsquo;t be automated, and freed hours make you better at them. This is where the saved time compounds.</p>
+        <p>Colleagues, donors, campus partners — the conversations that move a university can&rsquo;t be automated, and freed hours make you better at them. This is where the saved time compounds.</p>
         <p class="wb-counter"><b>Build it this quarter:</b> bank one AI-saved hour per week into a real, unhurried human conversation.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.12s">
@@ -1902,6 +1995,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <div id="fpOut" role="status" aria-live="polite"></div>
       </div>
     </div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Keep going — the best voices, one <em>click</em> away.</p></div>
   </div>
 </section>
 
@@ -2002,6 +2096,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
     <p class="honest reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
       Program owners: this list is a starting point — add Vanderbilt-internal gems here (Amplify guides, ITS training calendar, communities of practice). <!-- [EDIT] add Vanderbilt-internal resources --></p>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Check what stuck. Nothing is tracked; retake <em>anytime</em>.</p></div>
   </div>
 </section>
 
@@ -2020,14 +2115,18 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <p class="lf-why"><b>Why it matters to your work:</b> a two-minute self-test locks knowledge in better than an hour of rereading.</p>
       </div>
     </div>
+    <div class="concept reveal">
+      <span class="c-label">The idea</span>
+      <p>What a good score means: the core ideas — prediction, verification, data routing — stuck well enough to use this week. What it doesn&rsquo;t mean: that you&rsquo;re finished. These tools change monthly, and no quiz can measure the habit that matters most — actually reaching for the right tool on a real task. A miss isn&rsquo;t a failure; it&rsquo;s a pointer back to the section worth a second look.</p>
+    </div>
     <div class="quiz-shell reveal">
       <form id="quizForm" autocomplete="off" novalidate>
         <fieldset class="qz" data-answer="b">
-          <legend><span class="qn">1/8</span>A colleague wants AI help summarizing notes that include student grades. Which tool?</legend>
+          <legend><span class="qn">1/8</span>A colleague wants AI help summarizing notes that include employee salary details. Which tool?</legend>
           <div class="opts">
             <label><input type="radio" name="q1" value="a" /> ChatGPT — it's the most popular</label> <label><input type="radio" name="q1" value="b" /> Amplify — it's approved for institutional data</label> <label><input type="radio" name="q1" value="c" /> Copilot on a personal account</label> <label><input type="radio" name="q1" value="d" /> Any of them, it's just a summary</label>
           </div>
-          <p class="expl"><b>Amplify.</b> Student records are FERPA-protected — they only belong in Vanderbilt's approved platform.</p>
+          <p class="expl"><b>Amplify.</b> Salary and personnel records are confidential — they only belong in Vanderbilt's approved platform.</p>
         </fieldset>
         <fieldset class="qz" data-answer="c">
           <legend><span class="qn">2/8</span>Under the hood, what is a large language model actually doing?</legend>
@@ -2241,7 +2340,7 @@ document.querySelectorAll('.flip-btn').forEach(function(btn){
     { text:'The staff meeting has been moved to', words:[['Thursday',.34],['tomorrow',.27],['Zoom',.18],['3 p.m.',.13],['Nashville',.08]] },
     { text:'Please submit your timesheet by', words:[['Friday',.41],['noon',.22],['tomorrow',.17],['email',.12],['May',.08]] },
     { text:'Thanks for your patience while we', words:[['review',.31],['process',.26],['investigate',.19],['update',.15],['celebrate',.09]] },
-    { text:'New student orientation will be held in', words:[['August',.36],['person',.22],['Rand Hall',.16],['October',.14],['Kissam',.12]] },
+    { text:'New employee orientation will be held in', words:[['August',.36],['person',.22],['Rand Hall',.16],['October',.14],['Kissam',.12]] },
     { text:'Our office will be closed for the', words:[['holiday',.38],['semester',.21],['afternoon',.18],['renovation',.14],['eclipse',.09]] }
   ];
   var idx = 0;
@@ -2477,7 +2576,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     var pick, why = [];
     if(a[0] === 'yes'){
       pick = 'amplify';
-      why.push('Your task touches student records, health info, or confidential data — that decides it, full stop.');
+      why.push('Your task touches personnel records, health info, or confidential data — that decides it, full stop.');
       why.push('Amplify is Vanderbilt’s approved platform for institutional data; the others are not.');
       if(a[1] === 'yes') why.push('You work in Office apps too — draft the sensitive parts in Amplify first, then paste into Word or Outlook.');
       if(a[3] === 'yes') why.push('Bonus: Amplify is comfortable with long documents, so bring the whole file.');
@@ -2544,9 +2643,9 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     { re:/\b(email|inbox|repl(y|ies)|respond|correspond|messages?)\b/i, name:'Email & communication', level:'automate', what:'Draft replies, soften tricky messages, and build reusable templates for the questions you answer weekly.', saved:'High', tool:'Copilot' },
     { re:/\b(meeting|minutes|agenda|action items|standup|notes)\b/i, name:'Meeting notes & follow-ups', level:'automate', what:'Convert raw notes into minutes, decisions, and action items — with owners and due dates.', saved:'High', tool:'Copilot' },
     { re:/\b(report|dashboard|status update|monthly|quarterly|weekly update)\b/i, name:'Recurring reporting', level:'assist', what:'Standardize the format once, then let AI assemble each cycle’s draft from your bullet points.', saved:'High', tool:'Amplify' },
-    { re:/\b(review|evaluate|assess|score|rubric|feedback on|proofread|edit)\b/i, name:'Review & evaluation', level:'advise', what:'A second pair of eyes: apply a rubric, flag inconsistencies, and suggest improvements. You decide.', saved:'Medium', tool:'Amplify' },
+    { re:/\b(review|evaluate|assess|score|rubric|feedback on|proofread|edit)\b/i, name:'Document review', level:'advise', what:'A second pair of eyes: apply your checklist, flag inconsistencies, and suggest improvements. You decide.', saved:'Medium', tool:'Amplify' },
     { re:/\b(onboard|training|orientation|new hires?|upskill|how[- ]to|guide)\b/i, name:'Onboarding & training', level:'assist', what:'Draft welcome packets, FAQs, and step-by-step guides — then keep them fresh with quick rewrites.', saved:'Medium', tool:'ChatGPT' },
-    { re:/\b(support|help ?desk|faq|inquir|questions from|tickets?|front desk|answer(ing)?)\b/i, name:'Student & customer support', level:'assist', what:'Turn your ten most-asked questions into ready, warm responses — personalized in seconds.', saved:'High', tool:'Amplify' },
+    { re:/\b(support|help ?desk|faq|inquir|questions from|tickets?|front desk|answer(ing)?)\b/i, name:'Frontline support & FAQs', level:'assist', what:'Turn your ten most-asked questions into ready, warm responses — personalized in seconds.', saved:'High', tool:'Amplify' },
     { re:/\b(translat|multilingual|spanish|mandarin|language access)\b/i, name:'Translation & plain language', level:'automate', what:'Translate and simplify — have a human fluent speaker review anything official.', saved:'Medium', tool:'ChatGPT' },
     { re:/\b(brainstorm|ideas?|creative|name for|plan(ning)?|strateg)\b/i, name:'Brainstorming & planning', level:'advise', what:'Twenty options in a minute — themes, titles, approaches, risks you haven’t considered.', saved:'Medium', tool:'ChatGPT' },
     { re:/\b(polic(y|ies)|handbook|manual|long documents?|pdf|contract|guidelines)\b/i, name:'Document Q&A', level:'assist', what:'Ask questions of long documents — “what does the policy say about X?” — and get pointed answers to verify.', saved:'High', tool:'Amplify' }
@@ -2603,7 +2702,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       html += '<div class="srev"><div class="sub-h"><h4>Watch-outs</h4></div><div class="watchout">';
       html += '<span class="w-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.6L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>';
       html += '<div><h5>This use case may involve sensitive data</h5>';
-      html += '<p>Your description mentions terms that often signal protected or confidential information. Route this work through <b>Amplify</b>, Vanderbilt’s approved platform — and check the <a href="#responsible" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">AI guidance</a> before pasting real records anywhere. <!-- [EDIT] link official Vanderbilt AI policy --></p>';
+      html += '<p>Your description mentions terms that often signal confidential or regulated records — personnel, health, financial, or donor information. Route this work through <b>Amplify</b>, Vanderbilt’s approved platform — and check the <a href="#responsible" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">AI guidance</a> before pasting real records anywhere. <!-- [EDIT] link official Vanderbilt AI policy --></p>';
       html += '<div class="hits">';
       hits.forEach(function(h){ html += '<span>' + escapeHtml(h) + '</span>'; });
       html += '</div></div></div></div>';
@@ -2872,7 +2971,7 @@ document.querySelectorAll('.tech-copy').forEach(function(b){
   if(!form || !btn || !out) return;
   var CK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
   var TASKS = {
-    'Admissions':'applicant email triage', 'Human Resources':'onboarding packets', 'Finance':'the monthly variance memo',
+    'Admissions':'inquiry email triage', 'Human Resources':'onboarding packets', 'Finance':'the monthly variance memo',
     'Information Technology':'ticket summaries and status updates', 'Research Administration':'proposal budget justifications',
     'Advancement':'donor briefings', 'Student Affairs':'event communications', 'Facilities':'work-order updates',
     'Communications':'newsletter drafts', 'Library':'research guide updates', 'Other':'your most repetitive weekly task'
