@@ -71,7 +71,9 @@
   --btn-bg:#1C1C1C; --btn-tx:#FFFFFF; --btn-hv:#946E24;
   --gold:#946E24; --champ:#946E24; --muted:#555555; --faint:#6E6E6E; --ink:#1C1C1C;
 }
-.th-cream{ background:var(--vu-cream); --card2:#FFFFFF; --bd:#E0D8C8; }
+.th-cream{ background:var(--vu-cream); --card2:#FFFFFF; --bd:#E0D8C8;
+  --eyebrow:#7A5C1E; --link:#7A5C1E; --strong:#7A5C1E; --focus:#7A5C1E; --acc:#7A5C1E;
+  --gold:#7A5C1E; --champ:#7A5C1E; }
 
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
 html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; scroll-padding-top:84px; }
@@ -152,8 +154,13 @@ body.menu-open .mobile-menu{ opacity:1; visibility:visible; transition:opacity .
 .hero-scrim{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(28,28,28,.55),rgba(28,28,28,.45) 55%,rgba(28,28,28,.86)); }
 .hero .wrap{ position:relative; z-index:2; }
 .hero h1{ font-size:clamp(2.75rem,7vw,5.5rem); line-height:1.05; letter-spacing:-.01em; margin-top:28px; max-width:1000px; }
-.hero .lead{ font-size:1.125rem; color:rgba(255,255,255,.78); max-width:44ch; margin-top:24px; }
-.hero .cta-row{ display:flex; flex-wrap:wrap; gap:14px; margin-top:40px; }
+.hero .lead{ font-size:1.125rem; color:rgba(255,255,255,.78); max-width:54ch; margin-top:24px; }
+.hero .lead b{ color:#fff; font-weight:600; }
+.hero .lead .def{ color:var(--vu-gold); }
+.hero .meta-line{ font-family:var(--cond); font-weight:700; font-size:.8125rem; letter-spacing:.03em; text-transform:uppercase;
+  color:rgba(255,255,255,.55); margin-top:22px; }
+.hero .meta-line b{ color:var(--vu-gold); font-weight:700; }
+.hero .cta-row{ display:flex; flex-wrap:wrap; gap:14px; margin-top:36px; }
 
 /* ═══════════════════ TOPIC BAR ═══════════════════ */
 .topics{ padding:44px 0 40px; border-bottom:1px solid var(--vu-gray-l); }
@@ -278,7 +285,7 @@ section + section{ border-top:1px solid transparent; }
 .myth.open .verdict{ display:block; }
 .myth .vtag{ display:inline-flex; align-items:center; font-family:var(--cond); font-weight:700; font-size:.7rem; letter-spacing:.05em;
   text-transform:uppercase; padding:5px 10px; border-radius:2px; border:1px solid; }
-.myth .vtag.myth-v{ color:var(--vu-oak); border-color:var(--vu-gold); background:rgba(207,174,112,.14); }
+.myth .vtag.myth-v{ color:#7A5C1E; border-color:var(--vu-gold); background:rgba(207,174,112,.14); }
 .myth .vtag.fact-v{ color:#42604A; border-color:var(--vu-sage); background:rgba(139,161,142,.16); }
 .myth .verdict p{ color:var(--tx2); font-size:.9375rem; margin-top:12px; }
 
@@ -457,7 +464,7 @@ details.deeper .d-body b{ color:var(--tx); font-weight:600; }
 .opp h5{ font-size:1rem; }
 .opp .lvl{ font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.05em; text-transform:uppercase; padding:5px 9px; border-radius:2px; white-space:nowrap; border:1px solid; }
 .lvl.automate{ color:#42604A; border-color:var(--vu-sage); background:rgba(139,161,142,.16); }
-.lvl.assist{ color:var(--vu-oak); border-color:var(--vu-gold); background:rgba(207,174,112,.14); }
+.lvl.assist{ color:#7A5C1E; border-color:var(--vu-gold); background:rgba(207,174,112,.14); }
 .lvl.advise{ color:#3E5A66; border-color:var(--vu-sky); background:rgba(179,201,205,.22); }
 .opp p{ color:var(--tx2); font-size:.875rem; flex:1; }
 .opp .o-meta{ display:flex; justify-content:space-between; gap:10px; padding-top:12px; border-top:1px solid var(--bd);
@@ -513,7 +520,7 @@ details.deeper .d-body b{ color:var(--tx); font-weight:600; }
   align-items:center; justify-content:center; background:var(--card2); text-align:center; }
 .rule-strip .r{ display:inline-flex; align-items:center; gap:10px; font-weight:500; font-size:.98rem; color:var(--tx); }
 .rule-strip .r svg{ width:16px; height:16px; color:var(--eyebrow); flex-shrink:0; }
-.rule-strip .r b{ color:var(--vu-oak); font-weight:600; }
+.rule-strip .r b{ color:#7A5C1E; font-weight:600; }
 
 /* ═══════════════════ PRINCIPLES / ETHICS / WELLBEING ═══════════════════ */
 .resp-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
@@ -757,7 +764,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <span class="mono">Vanderbilt University &middot; The CHART Platform <!-- [EDIT] program eyebrow — CHART can be renamed (e.g. Futures Learning Hub) --></span>
     <h1 class="metal">AI is your new <em>colleague</em>.</h1>
-    <p class="lead">Plain-English lessons, working practice tools, and a plan for your real work.</p>
+    <p class="lead"><b>CHART</b> &mdash; <span class="def">Cultivating Human-AI Readiness and Thinking</span> &mdash; is Vanderbilt&rsquo;s
+      self-paced introduction to working with AI. Plain-English lessons, working practice tools,
+      and a plan for your real work.</p>
+    <p class="meta-line" aria-label="About 20 minutes, self-paced, nothing tracked"><b>~20 minutes</b> &middot; self-paced &middot; nothing tracked</p>
     <div class="cta-row">
       <a class="btn btn-gold" href="#learn">Start learning
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
