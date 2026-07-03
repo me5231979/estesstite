@@ -327,9 +327,11 @@ prpm install @popular/package-name
 Have questions? Follow [@prpmdev](https://twitter.com/prpmdev) or [open an issue](https://github.com/pr-pm/prpm/issues)."
 ```
 
-## Voice Examples from PRPM
+## Voice Examples
 
-### Good (from VISION.md):
+(Drawn from a developer-tools project; the style transfers to any subject.)
+
+### Good:
 > "Codemods automate the first 60–80% of migrations. Docs explain the rest. Developers still wrestle with edge cases, conventions, and tests."
 
 **Why it works:** Specific percentages, clear problem statement, no fluff.
@@ -361,7 +363,7 @@ Before publishing, ask:
 
 1. **Would a human say this out loud?** If not, rewrite.
 2. **Is every claim backed by evidence?** If not, add specifics or remove the claim.
-3. **Could this sentence appear in any other company's blog?** If yes, make it specific to PRPM.
+3. **Could this sentence appear in any other organization's writing?** If yes, make it specific to your work, your numbers, your context.
 4. **Does this assume the reader is dumb?** If yes, trust them more.
 5. **Am I hedging because I'm uncertain?** If yes, verify facts or own the uncertainty.
 6. **Is this a transition I can delete?** If yes, delete it.
@@ -392,7 +394,7 @@ Before publishing, ask:
 
 ## Remember
 
-PRPM users are developers. They have good bullshit detectors. Write like you respect their intelligence and their time.
+Your readers have good bullshit detectors, whether they are developers, staff, or executives. Write like you respect their intelligence and their time.
 
 **Good writing is revision.** First draft: get ideas down. Second draft: cut 30%. Third draft: add specifics. Fourth draft: read it out loud.
 
