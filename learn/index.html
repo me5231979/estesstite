@@ -246,8 +246,18 @@ section + section{ border-top:1px solid transparent; }
 .bridge p{ font-family:var(--serif); font-size:clamp(1.05rem,2.2vw,1.3rem); line-height:1.45; color:var(--tx); max-width:none; }
 .bridge p em{ font-family:var(--serif-i); font-style:italic; color:var(--strong); }
 
+/* evidence — a real citation, named and linked, grounding the module */
+.evidence{ margin-top:24px; border:1px solid var(--bd); border-left:3px solid var(--vu-gold); border-radius:var(--r); background:var(--card); padding:20px 22px; max-width:820px; }
+.evidence .e-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); margin-bottom:10px; }
+.evidence p{ color:var(--tx2); font-size:.9375rem; line-height:1.75; max-width:none; }
+.evidence p + p{ margin-top:10px; }
+.evidence p b{ color:var(--tx); font-weight:600; }
+.evidence p em{ font-family:var(--serif-i); font-style:italic; }
+.evidence .e-src{ display:block; margin-top:12px; padding-top:10px; border-top:1px solid var(--bd); font-size:.83rem; color:var(--tx3); }
+
 /* ═══════════════════ LEARN — cards ═══════════════════ */
 .flip-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.flip-grid.five{ grid-template-columns:repeat(5,1fr); }
 .fcard button{ width:100%; height:100%; border:1px solid var(--bd); border-radius:var(--r); background:var(--card);
   cursor:pointer; text-align:left; padding:24px 22px; display:flex; flex-direction:column; transition:border-color .2s ease-out; }
 .fcard button:hover{ border-color:var(--bdg); }
@@ -358,8 +368,8 @@ details.deeper .d-body b{ color:var(--tx); font-weight:600; }
 .yt-t{ font-weight:600; font-size:1rem; color:#fff; text-align:center; max-width:460px; }
 .yt-sub{ font-size:.68rem; color:var(--vu-gold); }
 .yt-fallback{ margin:10px 2px 0; font-size:.85rem; color:var(--tx3); }
-.yt-fallback a,.pol a,.wb-practice p a,.honest a{ color:var(--link); border-bottom:1px solid var(--bdg); }
-.yt-fallback a:hover{ color:var(--strong); }
+.yt-fallback a,.pol a,.wb-practice p a,.honest a,.evidence a,.rstep a,.concept p a{ color:var(--link); border-bottom:1px solid var(--bdg); }
+.yt-fallback a:hover,.evidence a:hover,.rstep a:hover,.concept p a:hover{ color:var(--strong); }
 </style>
 <style>
 /* ═══════════════════ PLAYGROUND — TABS + FORMS ═══════════════════ */
@@ -669,7 +679,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
 /* ═══════════════════ RESPONSIVE ═══════════════════ */
 @media (max-width:1024px){
-  .flip-grid{ grid-template-columns:1fr 1fr; }
+  .flip-grid,.flip-grid.five{ grid-template-columns:1fr 1fr; }
+  .flip-grid.five .fcard:last-child{ grid-column:1 / -1; }
   .opp-grid,.sp-grid{ grid-template-columns:1fr 1fr; }
   .roadmap{ grid-template-columns:1fr 1fr; }
   .roadmap.three{ grid-template-columns:1fr 1fr; }
@@ -689,7 +700,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   .fcols{ grid-template-columns:1fr 1fr; }
 }
 @media (max-width:640px){
-  .flip-grid{ grid-template-columns:1fr; }
+  .flip-grid,.flip-grid.five{ grid-template-columns:1fr; }
+  .flip-grid.five .fcard:last-child{ grid-column:auto; }
   .opp-grid,.sp-grid,.roadmap,.roadmap.three,.resp-grid{ grid-template-columns:1fr; }
   .never ul{ grid-template-columns:1fr; }
   .qz .opts{ grid-template-columns:1fr; }
@@ -755,6 +767,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
   <a class="mlink" href="#learn"><span class="mono">01</span>Learn</a>
   <a class="mlink" href="#playground"><span class="mono">02</span>Playground</a>
+  <a class="mlink" href="#firstrep"><span class="mono">02.5</span>First rep</a>
   <a class="mlink" href="#simulator"><span class="mono">03</span>Simulator</a>
   <a class="mlink" href="#tools"><span class="mono">04</span>Tools</a>
   <a class="mlink" href="#ethics"><span class="mono">05</span>Ethics</a>
@@ -850,7 +863,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     <p class="hw-meta reveal">~20 minutes for the core path &middot; every module is skippable and self-paced &middot; nothing is tracked or reported.</p>
     <!-- [EDIT] program name — CHART is a working title; the acronym line below updates with any rename -->
     <p class="acr-line reveal" role="img" aria-label="CHART stands for Cultivating Human-AI Readiness and Thinking"><b>C</b>ultivating&ensp;<b>H</b>uman-<b>A</b>I&ensp;<b>R</b>eadiness&ensp;and&ensp;<b>T</b>hinking</p>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Every tool on this platform builds on <em>one</em> idea — start there.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>First, let&rsquo;s get the words right — every tool on this platform builds on <em>one</em> idea.</p></div>
   </div>
 </section>
 
@@ -858,7 +871,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="learn" class="th-light" aria-label="Learn the fundamentals">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: foundations — the ideas everything else builds on.</span>
+      <span class="you-are">You are here: foundations. First, let&rsquo;s get the words right — five terms everything else builds on.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Learn / 01</span></span>
       <h2>First, the <em class="s">plain-English</em> version.</h2>
       <p>Three short modules. By the end you'll know what these tools actually are, how they really work, and which claims about them to politely ignore.</p>
@@ -869,20 +882,20 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module A</span>
         <h3>What is AI, really?</h3>
-        <p>Four terms you'll hear constantly. Flip each card for the plain definition and a Vanderbilt example. (Click or press Enter.)</p>
+        <p>Five terms you'll hear constantly. Flip each card for the plain definition and a Vanderbilt example. (Click or press Enter.)</p>
         <div class="lframe">
-        <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI, ML, GenAI and LLMs actually are</span>
-        <span class="lf-chip"><b>You&rsquo;ll do</b>Flip four cards</span>
+        <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI, ML, GenAI, LLMs — and agents — actually are</span>
+        <span class="lf-chip"><b>You&rsquo;ll do</b>Flip five cards</span>
         <span class="lf-chip"><b>Time</b>2 min</span>
         <p class="lf-why"><b>Why it matters to your work:</b> you&rsquo;ll stop nodding along in meetings and start knowing which AI conversations actually concern your job.</p>
       </div>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>These four terms nest inside each other like dolls. <b>AI</b> is the umbrella: any software doing things that used to need human judgment. <b>Machine learning</b> is how modern AI gets built — instead of a programmer writing rules, the system finds patterns in thousands of examples. <b>Generative AI</b> is machine learning that produces new things — text, images, code — instead of just sorting or scoring. And a <b>large language model</b> is the specific generative engine inside ChatGPT, Amplify, and Copilot.</p>
+        <p>These four terms nest inside each other like dolls. <b>AI</b> is the umbrella: any software doing things that used to need human judgment. <b>Machine learning</b> is how modern AI gets built — instead of a programmer writing rules, the system finds patterns in thousands of examples. <b>Generative AI</b> is machine learning that produces new things — text, images, code — instead of just sorting or scoring. And a <b>large language model</b> is the specific generative engine inside ChatGPT, Amplify, and Copilot. The newest doll is <b>agentic AI</b> — an LLM handed tools and a loop so it can act, not just answer. Same engine underneath; same limits underneath.</p>
         <p><b>Notice as you flip:</b> the through-line is that none of these <em>understand</em> anything. They recognize patterns — and that one fact will follow us through the whole platform.</p>
       </div>
-      <div class="flip-grid">
+      <div class="flip-grid five">
         <div class="fcard">
           <button type="button" class="flip-btn" aria-expanded="false">
             <span class="face front">
@@ -943,6 +956,21 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             </span>
           </button>
         </div>
+        <div class="fcard">
+          <button type="button" class="flip-btn" aria-expanded="false">
+            <span class="face front">
+              <span class="abbr" aria-hidden="true">Agentic</span>
+              <h4>Agentic AI</h4>
+              <span class="def">AI that doesn&rsquo;t just answer — it acts.</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the real story</span>
+            </span>
+            <span class="face back">
+              <span class="tag">Plain English</span>
+              <p>An LLM given tools and a loop: it plans the steps toward a goal, uses search, files, and software, checks its own work, and keeps going — without a prompt for every step.</p>
+              <p><b>At Vanderbilt:</b> instead of drafting one email, an agent could work an inbox — read each inquiry, draft replies, flag the sensitive ones for a human. More autonomy means more human checkpoints, not fewer. (Agents get a full section in Transform.)</p>
+            </span>
+          </button>
+        </div>
       </div>
       <details class="deeper reveal">
         <summary><span class="dx" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Go deeper: how learned systems differ from written rules</summary>
@@ -952,7 +980,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <p><b>Already on campus.</b> ML has quietly run parts of university life for years: spam filters, fraud alerts on procurement cards, building-energy optimization, journal recommendations in the library. Generative AI isn&rsquo;t the first wave — it&rsquo;s the first wave you can talk to.</p>
         </div>
       </details>
-      <div class="bridge mid reveal"><span class="b-label">Next</span><p>You know the words. Now watch the machine actually <em>think</em>.</p></div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now that you have the words, let&rsquo;s watch how one of these machines actually <em>thinks</em>.</p></div>
     </div>
 
     <!-- Module B: How an LLM actually works -->
@@ -995,6 +1023,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           </div>
         </div>
       </div>
+      <div class="evidence reveal">
+        <span class="e-label">The research</span>
+        <p><b>This is why the twenty minutes you&rsquo;re spending here pays back.</b> In a randomized experiment published in <em>Science</em>, Shakked Noy and Whitney Zhang gave 453 professionals occupation-specific writing tasks. The group using ChatGPT finished <b>40% faster</b> and produced work rated <b>18% higher in quality</b> — and the tool narrowed the gap between weaker and stronger writers instead of widening it. The prediction machine you just played with is the same one behind those numbers.</p>
+        <span class="e-src">Noy &amp; Zhang, &ldquo;Experimental evidence on the productivity effects of generative artificial intelligence,&rdquo; <a href="https://www.science.org/doi/10.1126/science.adh2586" target="_blank" rel="noopener"><em>Science</em>, 2023</a></span>
+      </div>
       <div class="reveal" style="margin-top:20px">
         <div class="yt reveal" data-embed="https://www.youtube-nocookie.com/embed/LPZh9BOjkQs" data-title="Watch: the best 8 minutes on how LLMs work">
         <button type="button" class="yt-btn">
@@ -1022,7 +1055,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">Open on YouTube</a>.</p>
         </div>
       </details>
-      <div class="bridge mid reveal"><span class="b-label">Next</span><p>If it only predicts, it can predict <em>wrong</em>. Learn to catch it in the act.</p></div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now that you&rsquo;ve seen how prediction works, let&rsquo;s learn to catch it when it goes <em>wrong</em>.</p></div>
     </div>
 
     <!-- Drill: Spot the hallucination -->
@@ -1060,7 +1093,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
       </div>
       <p class="hal-status" id="halStatus" role="status" aria-live="polite">0 of 4 found — click the detail you&rsquo;d want to verify first.</p>
-      <div class="bridge mid reveal"><span class="b-label">Next</span><p>You caught the fabrications. Now the broader folklore — six break-room claims, <em>sorted</em>.</p></div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now that you can spot a fabrication, let&rsquo;s sort the broader folklore — six break-room claims, <em>settled</em>.</p></div>
     </div>
 
     <!-- Module C: Myths vs Facts -->
@@ -1114,7 +1147,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             <p>If you can write a clear email to a new colleague, you can write a great prompt. The Playground below will prove it.</p></div>
         </div>
       </div>
-      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Most myths grow from real limits. Here are the four built-in ones — and the <em>counter-moves</em>.</p></div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Next, the limits those myths grow from — knowing them tells you when to trust and when to <em>check</em>.</p></div>
     </div>
 
     <!-- Module D: Limits to know -->
@@ -1191,7 +1224,13 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           </button>
         </div>
       </div>
-      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Knowing the limits, you can work around them — five moves that do <em>most</em> of the work.</p></div>
+      <div class="evidence reveal">
+        <span class="e-label">The evidence — the jagged frontier</span>
+        <p>The largest workplace experiment to date put numbers on both sides of these limits. In 2023, Fabrizio Dell&rsquo;Acqua, Ethan Mollick, and colleagues at Harvard Business School and BCG gave <b>758 consultants</b> real consulting tasks. With AI, they completed <b>12.2% more tasks</b>, <b>25.1% faster</b>, at <b>40% higher quality</b> — on work <em>inside</em> AI&rsquo;s abilities. But on a task deliberately chosen to sit just <em>beyond</em> those abilities, consultants using AI fell from <b>84% correct to 60&ndash;70%</b>. The polish stayed; the correctness didn&rsquo;t.</p>
+        <p>The researchers&rsquo; name for this is the <b>jagged frontier</b>: AI&rsquo;s abilities form an edge that is spiky, not smooth. It aces some tasks you&rsquo;d bet against and flubs some you&rsquo;d bet on — so the working skill is knowing which side of the edge you&rsquo;re standing on. And since the edge is invisible from the outside, the only reliable test is the habit this module keeps landing on: <b>verify</b>.</p>
+        <span class="e-src">Dell&rsquo;Acqua et&nbsp;al., &ldquo;Navigating the Jagged Technological Frontier,&rdquo; <a href="https://mitsloan.mit.edu/sites/default/files/2023-10/SSRN-id4573321.pdf" target="_blank" rel="noopener">Harvard Business School working paper, 2023 (PDF)</a></span>
+      </div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now that you know how it works and where it breaks, let&rsquo;s make it work <em>for</em> you — five moves that narrow the pattern.</p></div>
     </div>
 
     <!-- Bridge: five techniques -->
@@ -1252,8 +1291,13 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           </div>
         </div>
       </div>
+      <div class="evidence reveal">
+        <span class="e-label">The research — made at Vanderbilt</span>
+        <p>The techniques you&rsquo;re about to practice were catalogued on this campus. In 2023, <b>Jules White</b> of Vanderbilt Computer Science and his colleagues published <a href="https://arxiv.org/abs/2302.11382" target="_blank" rel="noopener">&ldquo;A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT&rdquo;</a> — the paper that turned prompting folk wisdom into named, reusable patterns. The Prompt Lab&rsquo;s Role field below is White&rsquo;s <b>Persona pattern</b>, and his free Coursera course, <a href="https://www.coursera.org/learn/prompt-engineering" target="_blank" rel="noopener">Prompt Engineering for ChatGPT</a>, has become one of the most-taken AI courses anywhere.</p>
+        <span class="e-src">White et&nbsp;al., arXiv:2302.11382 (2023) &middot; more of the catalog under <a href="#resources">Resources</a></span>
+      </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Enough theory. Hands on <em>keyboard</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You have the concepts. Now let&rsquo;s build the skill — hands on <em>keyboard</em>.</p></div>
   </div>
 </section>
 
@@ -1261,7 +1305,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="playground" class="th-dark" aria-label="Practice playground">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: practice — safe reps before the real thing.</span>
+      <span class="you-are">You are here: practice. You have the concepts — now let&rsquo;s build the skill.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Playground / 02</span></span>
       <h2>Practice here, <em class="s">shine everywhere.</em></h2>
       <p>Three working practice tools. Build a prompt, get it graded, and find the right tool for the job.</p>
@@ -1302,7 +1346,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             <div class="field">
               <label for="plRole">Role — &ldquo;You are a…&rdquo;</label>
               <input type="text" id="plRole" placeholder="e.g. an experienced university communications editor" />
-              <span class="hinttxt">Giving the AI a job title changes everything about the answer.</span>
+              <span class="hinttxt">Giving the AI a job title changes everything about the answer — Vanderbilt&rsquo;s Jules White catalogued this as the &ldquo;Persona pattern.&rdquo;</span>
             </div>
             <div class="field">
               <label for="plTask">Task — what do you need?</label>
@@ -1368,6 +1412,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <p class="lf-why"><b>Why it matters to your work:</b> the fastest way to improve is honest feedback on something you actually wrote.</p>
       </div>
         <div class="micro"><span><i aria-hidden="true">1</i>Paste a prompt you&rsquo;d really send</span><span><i aria-hidden="true">2</i>Hit &ldquo;Grade my prompt&rdquo;</span><span><i aria-hidden="true">3</i>Apply one suggestion and grade again</span></div>
+        <div class="watchout" style="margin-bottom:22px" role="note" aria-label="Challenge">
+          <span class="w-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4c0 2.5 1.3 4 3 4M17 6h3c0 2.5-1.3 4-3 4"/></svg></span>
+          <div><h5>Challenge — the performance test</h5>
+          <p>Write a prompt for a real task from <b>your</b> week and earn an <b>A</b>. Recall quizzes measure memory; an A here measures a skill — the one this whole platform exists to build.</p></div>
+        </div>
         <div class="app-grid">
           <div>
             <div class="field">
@@ -1426,7 +1475,70 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>You can build a prompt. Now point it at your actual <em>job</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that you&rsquo;ve practiced, let&rsquo;s run one <em>real</em> task — this is where it starts paying you back.</p></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ YOUR FIRST REAL REP ═════════════════════════ -->
+<section id="firstrep" class="th-light" aria-label="Your first real rep">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="you-are">You are here: transfer. Now that you&rsquo;ve practiced, let&rsquo;s run one real task.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">First rep / 02.5</span></span>
+      <h2>Your first <em class="s">real</em> rep.</h2>
+      <p>The practice tools above teach the pattern. The learning sticks the day you run <b style="color:var(--champ);font-weight:600">one real task</b> — this week, from your actual desk. Here&rsquo;s the whole assignment, four steps.</p>
+      <div class="lframe">
+        <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI actually feels like on your own work</span>
+        <span class="lf-chip"><b>You&rsquo;ll do</b>One real task, start to finish, then two reflections</span>
+        <span class="lf-chip"><b>Time</b>~10 min, mostly in your own tool</span>
+        <p class="lf-why"><b>Why it matters to your work:</b> one real repetition beats ten perfect practice rounds — it&rsquo;s the rep you&rsquo;ll remember on Monday.</p>
+      </div>
+    </div>
+    <div class="concept reveal">
+      <span class="c-label">The idea</span>
+      <p>Ethan Mollick&rsquo;s practical rule, paraphrased: no list of tips can tell you where AI helps <em>your</em> job — <a href="https://www.oneusefulthing.org/" target="_blank" rel="noopener">bring it to the table for a while</a> and you&rsquo;ll find its jagged edges yourself. That&rsquo;s what this module is: your first deliberate trip to the frontier, with guardrails.</p>
+      <p><b>One rule:</b> safe data only. Nothing confidential, nothing about identifiable people — this rep is about the skill, not the stakes.</p>
+    </div>
+    <div class="roadmap reveal">
+      <div class="rstep"><span class="rno">Step 1</span><h5>Pick one real task</h5>
+        <p>Something from this week — an email, a summary, a first draft. Small and repetitive beats big and impressive. Safe data only.</p></div>
+      <div class="rstep"><span class="rno">Step 2</span><h5>Build the prompt properly</h5>
+        <p>Scroll back to the <a href="#playground">Prompt Lab</a> and assemble all five ingredients — role, task, context, format, tone. Copy it out.</p></div>
+      <div class="rstep"><span class="rno">Step 3</span><h5>Run it — then iterate once</h5>
+        <p>Open your tool, paste, read what comes back, and ask for one improvement. The second ask is where the magic happens.</p>
+        <p><a href="https://chat.openai.com" target="_blank" rel="noopener">ChatGPT</a> &middot; <a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Amplify</a> &middot; <a href="https://copilot.microsoft.com" target="_blank" rel="noopener">Copilot</a></p></div>
+      <div class="rstep"><span class="rno">Step 4</span><h5>Come back and reflect</h5>
+        <p>Answer the two questions below while it&rsquo;s fresh. The lesson lives in the gap between the two answers.</p></div>
+    </div>
+    <div class="module reveal" style="margin-top:36px">
+      <div class="module-head">
+        <span class="mno">Debrief</span>
+        <h3>How did it go?</h3>
+        <p>Two lines is plenty. Nothing you type is stored or sent anywhere — this page has no memory, on purpose.</p>
+      </div>
+      <div class="app-grid">
+        <form id="rrForm" autocomplete="off" novalidate>
+          <div class="field">
+            <label for="rrRight">What did it get right?</label>
+            <textarea id="rrRight" rows="3" placeholder="e.g. The structure was solid and the tone was 90% there — better than my usual first draft."></textarea>
+          </div>
+          <div class="field">
+            <label for="rrFix">What did you have to fix?</label>
+            <textarea id="rrFix" rows="3" placeholder="e.g. It invented a deadline and didn&rsquo;t know our office closes early on Fridays."></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" id="rrBtn">Log my rep
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></button>
+          <p class="nudge" id="rrNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Jot a line in both boxes first — the contrast between them is the whole lesson.</p>
+        </form>
+        <div id="rrOut" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="lframe reveal" style="margin-top:28px">
+      <span class="lf-chip"><b>Pattern</b>Prompt &rarr; run &rarr; iterate once &rarr; reflect</span>
+      <span class="lf-chip"><b>Cadence</b>One real rep a week compounds fast</span>
+      <span class="lf-chip"><b>Data rule</b>Safe data only — when in doubt, Amplify or nothing</span>
+    </div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that you&rsquo;ve run one task, let&rsquo;s map your whole <em>workflow</em>.</p></div>
   </div>
 </section>
 
@@ -1434,7 +1546,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="simulator" class="th-cream" aria-label="AI opportunity simulator">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: application — your own work, mapped.</span>
+      <span class="you-are">You are here: application. Now that you can write a strong prompt, let&rsquo;s find where AI benefits your actual job.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Simulator / 03</span></span>
       <h2>The AI Opportunity <em class="s">Simulator.</em></h2>
       <p>Describe a real piece of your work and get an opportunity map, starter prompts, watch-outs, and a 30-day plan — built from common AI patterns. The best use cases share three tells: they <b style="color:var(--champ);font-weight:600">repeat</b> (weekly, monthly, every fall), they&rsquo;re <b style="color:var(--champ);font-weight:600">text-heavy</b> (emails, summaries, reports), and they follow <b style="color:var(--champ);font-weight:600">rules you could explain to a new hire</b>. The more concretely you describe yours — who, what, how often — the sharper your map. And describe freely: nothing you type is stored or sent anywhere.</p>
@@ -1499,7 +1611,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
       <div class="sim-out" id="simOut" role="status" aria-live="polite"></div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>You know what to ask. Choose <em>where</em> to ask it.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that you know what to ask, let&rsquo;s choose <em>where</em> to ask it.</p></div>
   </div>
 </section>
 
@@ -1507,7 +1619,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="tools" class="th-light" aria-label="Your three tools">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: orientation — the three doors and which to open.</span>
+      <span class="you-are">You are here: orientation. Now that you know what to ask, let&rsquo;s choose where to ask it.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Tools / 04</span></span>
       <h2>Three tools, <em class="s">zero guesswork.</em></h2>
       <p>You don't need every AI product on Earth. You need to know which of these three to open — and when. Why three at all? Because two different questions pick your tool: <b style="color:var(--champ);font-weight:600">how sensitive is the data</b> (that decides where work is <em>allowed</em> to happen) and <b style="color:var(--champ);font-weight:600">where are you already working</b> (that decides what&rsquo;s convenient). Vanderbilt&rsquo;s lineup covers both.</p>
@@ -1560,12 +1672,16 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
       </article>
     </div>
+    <div class="evidence reveal">
+      <span class="e-label">The bench behind Amplify</span>
+      <p>Amplify isn&rsquo;t an off-the-shelf product with a Vanderbilt login — it&rsquo;s built and governed here. <b>Jesse Spencer-Smith</b>, Chief Data Scientist of the <a href="https://www.vanderbilt.edu/datascience/person/jesse-spencer-smith/" target="_blank" rel="noopener">Vanderbilt Data Science Institute</a>, leads the data-science bench behind it, and the Amplify Generative AI Innovation Center runs an <a href="https://vanderbilthustler.com/2025/09/25/amplify-generative-ai-innovation-center-and-data-science-institute-launch-enterprise-ai-and-computing-innovation-studio/" target="_blank" rel="noopener">Enterprise AI &amp; Computing Innovation Studio</a> with VUIT to push it further. That&rsquo;s who is on the other side of the &ldquo;approved for institutional data&rdquo; badge — colleagues, not a vendor. <!-- [EDIT] confirm current titles/affiliations with the DSI before launch --></p>
+    </div>
     <div class="rule-strip reveal" role="note" aria-label="Rule of thumb">
       <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.2-8 10.8-4.6-1.6-8-5.8-8-10.8V5.5L12 2z"/></svg>Sensitive data → <b>Amplify</b></span>
       <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/></svg>Office apps → <b>Copilot</b></span>
       <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>Everything else → <b>your choice</b></span>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>The tools are approved. The judgment calls are <em>yours</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that you can use the tools, let&rsquo;s talk about using them <em>well</em> — the judgment calls are yours.</p></div>
   </div>
 </section>
 
@@ -1573,7 +1689,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="ethics" class="th-dark" aria-label="AI ethics">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: judgment — the gray areas policy hasn&rsquo;t reached.</span>
+      <span class="you-are">You are here: judgment. Now that you can use the tools, let&rsquo;s talk about using them well.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Ethics / 05</span></span>
       <h2>Where policy ends, <em class="s">judgment begins.</em></h2>
       <p>Ethics is what you reach for when the handbook hasn't caught up yet. No compliance checkboxes here — five lenses for thinking clearly, and four dilemmas to practice on.</p>
@@ -1687,7 +1803,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </div>
     <p class="honest reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
       Looking for the practical guardrails — what never to paste, which tool for which data? That&rsquo;s <a href="#responsible" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">Responsible AI</a>, right below.</p>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Principles become habits — <em>six</em> of them.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Principles are choices — now let&rsquo;s make them habits, <em>six</em> of them.</p></div>
   </div>
 </section>
 
@@ -1695,7 +1811,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="responsible" class="th-light" aria-label="Responsible AI principles">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: guardrails — the bright lines that never move.</span>
+      <span class="you-are">You are here: guardrails. Principles are choices — now let&rsquo;s make them habits.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Responsible AI / 06</span></span>
       <h2>Use it boldly. <em class="s">Use it well.</em></h2>
       <p>Six habits that keep you — and Vanderbilt — on solid ground. They take seconds and save careers. (For the deeper judgment calls behind these habits, see <a href="#ethics" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">Ethics</a>, just above.)</p>
@@ -1756,7 +1872,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </ul>
       <p class="pol">Full guidance: <a href="#responsible">Vanderbilt AI Guidance <!-- [EDIT] link official AI policy --></a> · <a href="#responsible">Data Classification Policy <!-- [EDIT] link data classification policy --></a></p>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Using AI well also means not letting it use <em>you</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that AI is saving you time, let&rsquo;s make sure you actually <em>keep</em> it.</p></div>
   </div>
 </section>
 
@@ -1764,7 +1880,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="wellbeing" class="th-cream" aria-label="AI and your wellbeing">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: sustainability — keeping the hours you save.</span>
+      <span class="you-are">You are here: sustainability. Now that AI is saving you time, let&rsquo;s make sure you keep it.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Wellbeing / 07</span></span>
       <h2>AI saves time — <em class="s">if you let it.</em></h2>
       <p>The promise was that AI reduces work. The research says: only if you're deliberate. A February 2026 Harvard Business Review study — <a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">&ldquo;AI Doesn&rsquo;t Reduce Work&mdash;It Intensifies It&rdquo;</a> by Ranganathan &amp; Ye, who followed about 200 employees at a U.S. tech company for eight months — found AI often <em>intensifies</em> work instead. Three patterns to watch, and a counter-move for each.</p>
@@ -1862,7 +1978,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <p>And if you want support beyond your team: <a href="#wellbeing">Vanderbilt Employee Assistance Program &amp; Work-Life resources <!-- [EDIT] link Vanderbilt EAP / Work-Life resources --></a>.</p>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>You&rsquo;ve protected today. Now build the next <em>five years</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that today is protected, let&rsquo;s get you ready for what&rsquo;s next — and what it means for your <em>career</em>.</p></div>
   </div>
 </section>
 
@@ -1870,7 +1986,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="future" class="th-dark" aria-label="Transform: the next five years">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: horizon — what&rsquo;s coming, and how to be ready.</span>
+      <span class="you-are">You are here: horizon. Now that you can work with today&rsquo;s AI, let&rsquo;s get you ready for what&rsquo;s next.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Transform / 08</span></span>
       <h2>The next five years belong to the <em class="s">well-paired.</em></h2>
       <p>Here&rsquo;s the honest forecast: AI keeps absorbing tasks, and the people who thrive are the ones who decide — on purpose — what to do with the time it frees. This section is your head start, beginning with the biggest shift of 2026: AI that <em>does</em>, not just answers.</p>
@@ -1886,7 +2002,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Shift 01</span>
         <h3>From answering to acting: AI agents</h3>
-        <p>A chatbot answers when asked. An agent takes a goal and works toward it in steps — drafting, checking, filing, following up — pausing to ask when it&rsquo;s unsure. Same engine underneath, much bigger job description. The family tree:</p>
+        <p>You met agentic AI on a flip card in Module A — this is the deep dive. A chatbot answers when asked. An agent takes a goal and works toward it in steps — drafting, checking, filing, following up — pausing to ask when it&rsquo;s unsure. Same engine underneath, much bigger job description. The family tree:</p>
       </div>
       <div class="hw-grid">
         <div class="hw reveal"><span class="hw-no" aria-hidden="true">A</span>
@@ -1913,6 +2029,31 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="conseq" role="img" aria-label="The pattern: a task gets absorbed, time gets freed, the role gets rebuilt, and you choose what fills it">
         <span class="c-lead mono" aria-hidden="true">The pattern to expect — and get ahead of</span>
         <span class="step" aria-hidden="true">Task absorbed</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">Time freed</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">Role rebuilt</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">You choose what fills it</span>
+      </div>
+    </div>
+
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Working styles</span>
+        <h3>Centaur or cyborg — both are right</h3>
+        <p>In the same 758-consultant study from the Limits module, the top performers worked with AI in two distinct styles — and both beat working alone. Neither is the &ldquo;advanced&rdquo; one; they&rsquo;re temperaments.</p>
+      </div>
+      <div class="wb-cards">
+        <div class="wb-practice">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>The centaur — divide the work</h4>
+          <p>Like the mythical half-and-half: clean handoffs between human tasks and AI tasks. <b>You</b> keep the strategy, judgment calls, and anything with a name on it; <b>AI</b> gets the drafting, summarizing, and reformatting — with a clear line between the two.</p>
+          <p class="wb-example"><b>On campus:</b> you outline the announcement and decide the message; AI writes the first draft; you take back the final edit.</p>
+        </div>
+        <div class="wb-practice">
+          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4"/><circle cx="12" cy="12" r="3"/></svg>The cyborg — weave it together</h4>
+          <p>Constant back-and-forth: half-finished sentences handed over, drafts bouncing between you and the machine, every paragraph a little bit of both. Faster and more fluid — and it demands sharper verification instincts, because the seams disappear.</p>
+          <p class="wb-example"><b>On campus:</b> writing a report in a running conversation — &ldquo;tighten this,&rdquo; &ldquo;what am I missing?&rdquo;, &ldquo;three versions of that closing line.&rdquo;</p>
+        </div>
+      </div>
+      <div class="evidence reveal">
+        <span class="e-label">The evidence</span>
+        <p>Both styles come from Ethan Mollick&rsquo;s essay on the same HBS/BCG experiment, and both are legitimate. Our suggestion: <b>start centaur</b> — clean handoffs are easier to verify while your instincts are young — and <b>grow cyborg</b> as your sense of the frontier gets calibrated. The guiding stance of this whole platform is borrowed (paraphrased, not quoted) from his book <em>Co-Intelligence</em>: treat AI like a person — a tireless, overconfident colleague — always check its work, and stay the human in the loop.</p>
+        <span class="e-src">Ethan Mollick, <a href="https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged" target="_blank" rel="noopener">&ldquo;Centaurs and Cyborgs on the Jagged Frontier&rdquo;</a> (One Useful Thing, 2023) &middot; <em>Co-Intelligence: Living and Working with AI</em> (2024)</span>
       </div>
     </div>
 
@@ -1995,7 +2136,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <div id="fpOut" role="status" aria-live="polite"></div>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Keep going — the best voices, one <em>click</em> away.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You&rsquo;ve built the foundation. Here&rsquo;s where to keep growing — the best voices, one <em>click</em> away.</p></div>
   </div>
 </section>
 
@@ -2003,7 +2144,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="resources" class="th-light" aria-label="Helpful resources">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: launchpad — where to keep going beyond CHART.</span>
+      <span class="you-are">You are here: launchpad. You&rsquo;ve built the foundation — here&rsquo;s where to keep growing.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Resources / 10</span></span>
       <h2>Keep the curiosity <em class="s">compounding.</em></h2>
       <p>Hand-picked and staff-friendly — no rabbit holes required. Fifteen curious minutes a week is the whole assignment.</p>
@@ -2067,7 +2208,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
       </div>
       <div class="res-group reveal">
-        <h3>Reports &amp; guides <span class="mono">/ 4 picks</span></h3>
+        <h3>Reports &amp; guides <span class="mono">/ 6 picks</span></h3>
         <div class="res-grid">
         <a class="res" href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener">
           <span><b>Stanford HAI — AI Index Report 2026</b><span class="why">The definitive annual state-of-AI data, charts included.</span><span class="rtag">Annual</span></span>
@@ -2081,9 +2222,45 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <a class="res" href="https://academy.openai.com/" target="_blank" rel="noopener">
           <span><b>OpenAI Academy</b><span class="why">Free structured lessons, straight from the source.</span><span class="rtag">Free</span></span>
           <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://mitsloan.mit.edu/sites/default/files/2023-10/SSRN-id4573321.pdf" target="_blank" rel="noopener">
+          <span><b>&ldquo;Navigating the Jagged Technological Frontier&rdquo; — Dell&rsquo;Acqua et&nbsp;al.</b><span class="why">The 758-consultant experiment behind our Limits module, first-hand.</span><span class="rtag">Study</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://www.science.org/doi/10.1126/science.adh2586" target="_blank" rel="noopener">
+          <span><b>Noy &amp; Zhang — generative AI &amp; productivity (<em>Science</em>)</b><span class="why">The randomized experiment behind Module B: 40% faster, 18% better.</span><span class="rtag">Study</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
         </div>
       </div>
-          <div class="res-group reveal">
+      <div class="res-group reveal">
+        <h3>From the experts <span class="mono">/ 8 picks</span></h3>
+        <div class="res-grid">
+        <a class="res" href="https://www.coursera.org/specializations/prompt-engineering" target="_blank" rel="noopener">
+          <span><b>Jules White — Prompt Engineering Specialization (Coursera)</b><span class="why">The flagship series from Vanderbilt&rsquo;s own prompt-pattern pioneer; starts free.</span><span class="rtag">Vanderbilt</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://www.coursera.org/learn/prompt-engineering" target="_blank" rel="noopener">
+          <span><b>Jules White — Prompt Engineering for ChatGPT</b><span class="why">The single course that started it — one of Coursera&rsquo;s most-taken AI courses.</span><span class="rtag">Free</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://www.coursera.org/learn/advanced-prompt-engineering-for-everyone" target="_blank" rel="noopener">
+          <span><b>Jules White — Advanced Prompt Engineering for Everyone</b><span class="why">Ready for more? In-context learning, RAG, and structured outputs.</span><span class="rtag">Next level</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://arxiv.org/abs/2302.11382" target="_blank" rel="noopener">
+          <span><b>&ldquo;A Prompt Pattern Catalog&hellip;&rdquo; — White et&nbsp;al.</b><span class="why">The research paper behind the patterns you practiced in the Prompt Lab.</span><span class="rtag">Paper</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://www.penguinrandomhouse.com/books/741805/co-intelligence-by-ethan-mollick/" target="_blank" rel="noopener">
+          <span><b>Ethan Mollick — <em>Co-Intelligence</em></b><span class="why">The book behind this platform&rsquo;s guiding stance: treat AI like a colleague, check its work.</span><span class="rtag">Book</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged" target="_blank" rel="noopener">
+          <span><b>Mollick — &ldquo;Centaurs and Cyborgs on the Jagged Frontier&rdquo;</b><span class="why">The essay pairing with the HBS/BCG study — where our working styles come from.</span><span class="rtag">Essay</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://www.vanderbilt.edu/datascience/" target="_blank" rel="noopener">
+          <span><b>Vanderbilt Data Science Institute</b><span class="why">Jesse Spencer-Smith&rsquo;s team — seminars, workshops, and resources on campus.</span><span class="rtag">Vanderbilt</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://vanderbilthustler.com/2025/09/25/amplify-generative-ai-innovation-center-and-data-science-institute-launch-enterprise-ai-and-computing-innovation-studio/" target="_blank" rel="noopener">
+          <span><b>Enterprise AI &amp; Computing Innovation Studio</b><span class="why">Where Amplify&rsquo;s builders and VUIT push enterprise AI forward.</span><span class="rtag">On campus</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        </div>
+        <!-- [EDIT] DSI can supply a preferred publications/link list for Dr. Spencer-Smith — confirm before launch -->
+      </div>
+      <div class="res-group reveal">
         <h3>Go further <span class="mono">/ featured deep dive</span></h3>
         <div class="yt" data-embed="https://www.youtube-nocookie.com/embed/7xTGNNLPyMI" data-title="Karpathy — Deep Dive into LLMs like ChatGPT" style="margin-top:16px">
           <button type="button" class="yt-btn">
@@ -2096,7 +2273,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
     <p class="honest reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
       Program owners: this list is a starting point — add Vanderbilt-internal gems here (Amplify guides, ITS training calendar, communities of practice). <!-- [EDIT] add Vanderbilt-internal resources --></p>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Check what stuck. Nothing is tracked; retake <em>anytime</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Finally, let&rsquo;s see what stuck — nothing is tracked, retake <em>anytime</em>.</p></div>
   </div>
 </section>
 
@@ -2104,7 +2281,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="quiz" class="th-cream" aria-label="Knowledge check">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: checkpoint — prove it to yourself.</span>
+      <span class="you-are">You are here: checkpoint. You&rsquo;ve built the whole path — now let&rsquo;s see what stuck.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Knowledge check / 09</span></span>
       <h2>Prove it to <em class="s">yourself.</em></h2>
       <p>Eight quick questions — a <b style="color:var(--champ);font-weight:600">self-assessment, not an exam</b>. It's unscored and untracked, nothing leaves this page, and you can retake it as many times as you like.</p>
@@ -2216,6 +2393,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <h4>Practice</h4>
         <a href="#playground">Prompt Lab</a>
         <a href="#playground">Prompt Grader</a>
+        <a href="#firstrep">Your first real rep</a>
         <a href="#simulator">Opportunity Simulator</a>
         <a href="#quiz">Knowledge check</a>
       </div>
@@ -2531,6 +2709,9 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     html += '<div class="grade-badge"><span class="grade-letter">' + g.letter + '</span><div>';
     html += '<div class="gword">' + WORDS[g.letter] + ' <span class="soft">' + g.overall + '/100</span></div>';
     html += '<p class="gsub">' + SUBS[g.letter] + '</p></div></div>';
+    if(g.letter === 'A'){
+      html += '<p class="nudge show" style="margin-top:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4c0 2.5 1.3 4 3 4M17 6h3c0 2.5-1.3 4-3 4"/></svg>Challenge cleared. That’s a working skill now, not trivia — take this prompt straight into your tool.</p>';
+    }
     html += '<div class="dim-bars">';
     keys.forEach(function(k){
       html += '<div class="dim"><span class="dl">' + TIPS[k].label + '</span><span class="rail"><span class="fill" data-w="' + g.scores[k] + '"></span></span><span class="dv">' + g.scores[k] + '</span></div>';
@@ -2610,6 +2791,29 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     });
     html += '</ul></div>';
     out.innerHTML = html;
+  });
+})();
+
+/* ══════════ FIRST REAL REP: reflection debrief ══════════ */
+(function(){
+  var right = document.getElementById('rrRight'), fix = document.getElementById('rrFix'),
+      btn = document.getElementById('rrBtn'), out = document.getElementById('rrOut'),
+      nudge = document.getElementById('rrNudge');
+  if(!btn || !out || !right || !fix) return;
+  var GLYPH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V4"/><path d="M4 5h13l-2.5 4L17 13H4"/></svg>';
+  btn.addEventListener('click', function(){
+    var vr = right.value.trim(), vf = fix.value.trim();
+    if(vr.length < 3 || vf.length < 3){
+      if(nudge) nudge.classList.add('show');
+      out.innerHTML = '';
+      (vr.length < 3 ? right : fix).focus();
+      return;
+    }
+    if(nudge) nudge.classList.remove('show');
+    out.innerHTML = '<div class="result-card"><div class="rc-head"><span class="rc-glyph">' + GLYPH +
+      '</span><div><h4>That’s a real rep.</h4><span class="rc-sub">One down — the habit starts here</span></div></div>' +
+      '<p class="rc-note">That gap you just described — that’s your job security. <b>You noticed what the machine couldn’t.</b> Do this once a week and both answers get more interesting: the “right” list grows as your prompts sharpen, and the “fix” list becomes your personal map of the jagged frontier.</p>' +
+      '<p class="rc-fine">Reflection only — nothing is stored or sent anywhere. It’s gone when you close the tab.</p></div>';
   });
 })();
 
