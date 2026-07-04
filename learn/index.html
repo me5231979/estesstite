@@ -1307,7 +1307,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module E</span>
         <h3>Five techniques that change everything</h3>
-        <p>In this module, you will learn the five prompting techniques that do most of the work. Each comes with a short example you can copy and adapt. You will practice them for real in the Playground below.</p>
+        <p>In this module, you will learn the five prompting techniques that do most of the work.
+        Each comes with a short example you can copy. When you copy one, paste it into ChatGPT,
+        Amplify, or Copilot, swap the example details for your own, and send it. Reading a technique
+        shows you what it is; running it once is what makes it yours. You will practice all five,
+        with guidance, in the Playground below.</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
@@ -3406,7 +3410,7 @@ document.querySelectorAll('.tech-copy').forEach(function(b){
   b.addEventListener('click', function(){
     var code = b.parentElement ? b.parentElement.querySelector('code') : null;
     var label = b.querySelector('span');
-    if(code && label) copyText(code.textContent, label, 'Copied ✓');
+    if(code && label) copyText(code.textContent, label, 'Copied ✓ · paste into your AI tool');
   });
 });
 
