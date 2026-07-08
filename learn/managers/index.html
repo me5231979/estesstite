@@ -4,24 +4,23 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Manager Foundations · Vanderbilt's SHRM-level enablement for people leaders</title>
-<meta name="description" content="An immersive, interactive foundation for Vanderbilt managers: state-specific compliance, employee relations, and operational craft — with working FMLA and progressive-discipline simulators." />
+<meta name="description" content="An immersive, interactive foundation for Vanderbilt managers: state-specific compliance, employee relations, operational craft, and a six-module mastery track — 12 working simulators and decision labs." />
 <meta name="theme-color" content="#1C1C1C" />
 <meta property="og:title" content="Manager Foundations · Vanderbilt" />
-<meta property="og:description" content="Learn the manager role by doing it — compliance, employee relations, and operations, taught through working simulators." />
+<meta property="og:description" content="Learn the manager role by doing it — 12 working simulators across compliance, employee relations, operations, and the mastery track." />
 <meta property="og:type" content="website" />
 <!--
   ══════════════════════════════════════════════════════════════════════════
   MANAGER FOUNDATIONS — Vanderbilt people-leader enablement (internal prototype)
   Design system reused verbatim from the CHART Platform (learn/index.html):
   Vanderbilt black #1C1C1C / white / gold #CFAE70, Libre Caslon + Inter + Antonio.
-  All simulators, decks, the state selector, the desk-plan builder and the quiz
-  are client-side, no backend. Search "placeholder" / .ph tags to swap in live
-  Vanderbilt contacts & policy URLs. Hero video: silent looping ambient clip
-  (Higgsfield), faded like the CHART hero; degrades to the dark hero if the CDN
-  is unreachable or reduced-motion is on. Learning design: Knowles andragogy +
-  Merrill first principles (activation, application, integration), Kolb
-  reflection prompts, retrieval practice, unlimited retakes, progress on-device
-  only. Content is training guidance, NOT legal advice or official policy.
+  CORE: 3 domains (Compliance, Employee Relations, Operations) + 6 activities.
+  MASTERY: 6 more — Interview Room, Calibration Lab, Accommodation sim,
+  Hybrid deck, Reorg sim, Termination sim. All client-side, no backend.
+  Search "placeholder" / .ph tags to swap in live Vanderbilt contacts & URLs.
+  Learning design: Knowles andragogy + Merrill first principles, Kolb reflection
+  prompts, retrieval practice, unlimited retakes, progress on-device only.
+  Content is training guidance, NOT legal advice or official policy.
   ══════════════════════════════════════════════════════════════════════════
 -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231C1C1C'/%3E%3Cpath d='M14 16h11l7 20 7-20h11L36 50h-8z' fill='%23CFAE70'/%3E%3C/svg%3E" />
@@ -959,6 +958,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <a href="#compliance">Compliance</a>
       <a href="#relations">Employee Relations</a>
       <a href="#operations">Operations</a>
+      <a href="#mastery">Mastery</a>
       <a href="#assess">Assessment</a>
       <a href="#foundations" class="nav-cta btn btn-primary btn-sm">Begin the track</a>
     </nav>
@@ -973,7 +973,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <a class="mlink" href="#compliance"><span class="mono">02</span>Compliance</a>
   <a class="mlink" href="#relations"><span class="mono">03</span>Employee Relations</a>
   <a class="mlink" href="#operations"><span class="mono">04</span>Operations</a>
-  <a class="mlink" href="#assess"><span class="mono">05</span>Assessment</a>
+  <a class="mlink" href="#mastery"><span class="mono">05</span>Mastery</a>
+  <a class="mlink" href="#assess"><span class="mono">06</span>Assessment</a>
   <div class="mfoot">Vanderbilt University · Manager Foundations · An internal enablement prototype.</div>
 </div>
 
@@ -993,7 +994,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     <div class="eyebrow" style="margin-bottom:26px"><span class="tick"></span><span class="mono">Vanderbilt University · Manager Enablement</span></div>
     <h1 style="font-size:clamp(2.75rem,7vw,5.4rem);max-width:16ch">Being a manager is <em class="s metal">a discipline</em>, not a title.</h1>
     <p style="margin-top:26px;font-size:1.15rem;color:var(--tx2);max-width:54ch">A SHRM-level foundation for people leaders at Vanderbilt — compliance, employee relations, and the operational craft of the role. Learn it by <em class="s">doing it</em>, through working simulators, not slides.</p>
-    <p class="meta-line" aria-label="About 45 minutes, self-paced, progress saves only on this device, nothing is reported"><b>~45 minutes</b> &middot; self-paced &middot; your progress saves on this device only — <b>nothing is reported</b></p>
+    <p class="meta-line" aria-label="About 45 minutes, self-paced, progress saves only on this device, nothing is reported"><b>~45-minute core</b> &middot; six mastery modules &middot; self-paced &middot; progress saves on this device only — <b>nothing is reported</b></p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:38px">
       <a href="#foundations" class="btn btn-primary">Start the track</a>
       <a href="#operations" class="btn btn-ghost">Jump to the FMLA simulator</a>
@@ -1009,7 +1010,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     <div class="statrow">
       <div class="statcell"><span class="num">3</span><span class="lbl">core domains every Vanderbilt manager owns</span></div>
       <div class="statcell"><span class="num">4</span><span class="lbl">state compliance profiles — TN · NY · CA · FL</span></div>
-      <div class="statcell"><span class="num">6</span><span class="lbl">working simulators &amp; decision labs, not slideware</span></div>
+      <div class="statcell"><span class="num">12</span><span class="lbl">working simulators &amp; decision labs, not slideware</span></div>
       <div class="statcell"><span class="num">100%</span><span class="lbl">of the role is judgment under real conditions</span></div>
     </div>
   </div>
@@ -1237,19 +1238,69 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   </div>
 </section>
 
-<!-- ═════════════════════════ ROADMAP — WHAT'S NEXT ═════════════════════════ -->
-<section id="nextmodules" class="th-dark" aria-label="What's coming next">
+<!-- ═════════════════════════ MASTERY TRACK M1 — HIRING & GROWING ═════════════════════════ -->
+<section id="mastery" class="th-dark" aria-label="Mastery track: hiring and growing">
   <div class="wrap">
-    <div class="eyebrow" style="margin-bottom:16px"><span class="tick"></span><span class="mono">The track keeps growing</span></div>
-    <h2 style="font-size:clamp(1.8rem,4vw,2.9rem);max-width:22ch">Foundations first. <em class="s">Mastery</em> next.</h2>
-    <p style="margin-top:18px;color:var(--tx2);max-width:62ch">This release covers the moments that carry the most legal and human risk. Six more modules are planned — each with its own simulator. <span class="ph">Prioritize with HR</span></p>
-    <div class="topic-grid" style="margin-top:34px">
-      <div class="topic-card"><div class="tc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2M9 3a4 4 0 100 8 4 4 0 000-8zM19 8v6M22 11h-6"/></svg></div><h5>Interviewing legally</h5><p>What you can and cannot ask, structured interviews, and the bias traps that creep into hiring — with a mock-interview simulator.</p></div>
-      <div class="topic-card"><div class="tc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/></svg></div><h5>ADA &amp; reasonable accommodation</h5><p>The interactive process from first request to resolution — the leave-adjacent skill this release only touches inside the FMLA simulator.</p></div>
-      <div class="topic-card"><div class="tc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM14 2v6h6M9 13h6M9 17h6"/></svg></div><h5>Reviews, goals &amp; calibration</h5><p>Running a fair performance cycle: goal setting, review writing that survives scrutiny, and the calibration biases that skew ratings.</p></div>
-      <div class="topic-card"><div class="tc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s4 4 4 8a4 4 0 01-8 0c0-1 .5-2 .5-2S6 10 6 14a6 6 0 0012 0c0-5-6-12-6-12z"/></svg></div><h5>Leading through change</h5><p>Reorgs, new systems, new leadership: how to carry a change you didn’t choose, keep trust, and manage the rumor mill.</p></div>
-      <div class="topic-card"><div class="tc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 01-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1121 11.5z"/></svg></div><h5>Hybrid &amp; remote teams</h5><p>Proximity bias, timekeeping across locations, and building belonging when half the team is on a screen.</p></div>
-      <div class="topic-card"><div class="tc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 00-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 000-7.8z"/></svg></div><h5>Terminations, done humanely</h5><p>The last conversation: separation meetings, offboarding, references, and protecting the dignity of the person leaving — and the team staying.</p></div>
+    <div class="eyebrow" style="margin-bottom:16px"><span class="tick"></span><span class="mono">The Mastery Track · Six advanced modules</span></div>
+    <h2 style="font-size:clamp(2rem,4.5vw,3.4rem);max-width:20ch">Foundations first. <em class="s">Mastery</em> now.</h2>
+    <p style="margin-top:20px;color:var(--tx2);max-width:62ch">The foundations covered the moments of highest legal risk. These six modules cover the rest of the craft — hiring, growing, supporting, and, when it comes to it, saying goodbye. Same rules: you make the calls, the feedback is immediate, and nothing is reported.</p>
+
+    <!-- Interview Room -->
+    <div style="margin-top:56px">
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono">Mastery 01 · The Interview Room</span></div>
+      <h3 style="font-size:1.55rem;max-width:28ch">Eight interview questions. Which would <em class="s">you</em> ask?</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:62ch">You're hiring a program coordinator. A colleague drafted questions for the panel. Some are excellent, some carry legal risk, and a few should never be said out loud in an interview. Sort them — <b style="color:var(--strong)">Ask it</b>, <b style="color:var(--strong)">Rephrase it</b>, or <b style="color:var(--strong)">Never ask</b>.</p>
+      <div id="deck-interview" style="margin-top:26px"></div>
+    </div>
+
+    <!-- Calibration Lab -->
+    <div style="margin-top:64px">
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono">Mastery 02 · The Calibration Lab</span></div>
+      <h3 style="font-size:1.55rem;max-width:28ch">Spot the bias before it reaches the rating.</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:62ch">Review season. Six rating rationales are on the table — real quotes from real calibration meetings, lightly disguised. Diagnose each one: is it fair and specific, or is a bias doing the rating?</p>
+      <div id="deck-calibration" style="margin-top:26px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ MASTERY TRACK M2 — SUPPORTING ═════════════════════════ -->
+<section class="th-light" aria-label="Mastery track: supporting your people">
+  <div class="wrap">
+    <!-- ADA simulator -->
+    <div>
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Mastery 03 · Simulator · Reasonable accommodation</span></div>
+      <h3 style="font-size:1.7rem;max-width:28ch">The Accommodation Simulator</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:64ch">An employee asks for a change because of a medical condition. The ADA calls what happens next “the interactive process” — a structured, good-faith conversation most managers have never been taught. Walk it end to end without stepping on a legal rake.</p>
+      <div id="sim-ada" style="margin-top:26px"></div>
+    </div>
+
+    <!-- Hybrid deck -->
+    <div style="margin-top:64px">
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Mastery 04 · Hybrid &amp; remote teams</span></div>
+      <h3 style="font-size:1.55rem;max-width:28ch">Half the team is on a screen. What breaks first?</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:62ch">Hybrid work quietly created two new manager traps: <b>proximity bias</b> (the people you see get the opportunities) and <b>cross-state wage-and-hour exposure</b> (remote time you never see). Sort six everyday situations.</p>
+      <div id="deck-hybrid" style="margin-top:26px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ MASTERY TRACK M3 — THE HARD PARTS ═════════════════════════ -->
+<section class="th-cream" aria-label="Mastery track: leading through the hard parts">
+  <div class="wrap">
+    <!-- Change simulator -->
+    <div>
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Mastery 05 · Simulator · Leading through change</span></div>
+      <h3 style="font-size:1.7rem;max-width:28ch">The Reorg Simulator</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:64ch">Leadership announces a restructure you didn’t choose and privately have doubts about. Your team finds out Thursday. How you carry the next two weeks will determine whether you keep their trust — and your credibility with leadership.</p>
+      <div id="sim-change" style="margin-top:26px"></div>
+    </div>
+
+    <!-- Termination simulator -->
+    <div style="margin-top:64px">
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Mastery 06 · Simulator · The last conversation</span></div>
+      <h3 style="font-size:1.7rem;max-width:28ch">The Termination Simulator</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:64ch">The PIP ran its course. HR has signed off. Today is Dana’s last day — she just doesn’t know it yet. This is the hardest fifteen minutes in management. Do it with process <em class="s">and</em> dignity, because your team is watching how you treat people on the way out.</p>
+      <div id="sim-term" style="margin-top:26px"></div>
     </div>
   </div>
 </section>
@@ -1302,6 +1353,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <a href="#operations" style="color:var(--tx2);font-size:.92rem">Progressive Discipline</a>
           <a href="#relations" style="color:var(--tx2);font-size:.92rem">Difficult Conversation</a>
           <a href="#compliance" style="color:var(--tx2);font-size:.92rem">Report or Resolve?</a>
+          <a href="#mastery" style="color:var(--tx2);font-size:.92rem">The Interview Room</a>
+          <a href="#mastery" style="color:var(--tx2);font-size:.92rem">Accommodation &amp; Reorg sims</a>
         </div>
       </div>
     </div>
@@ -1354,6 +1407,12 @@ var MODULES = [
   {key:'escalate', label:'Handle or Escalate'},
   {key:'fmla', label:'FMLA Simulator'},
   {key:'discipline', label:'Progressive Discipline'},
+  {key:'interview', label:'Interview Room'},
+  {key:'calibration', label:'Calibration Lab'},
+  {key:'ada', label:'Accommodation'},
+  {key:'hybrid', label:'Hybrid Teams'},
+  {key:'change', label:'Reorg'},
+  {key:'term', label:'Last Conversation'},
   {key:'assess', label:'Assessment'},
   {key:'desk', label:'Desk plan'}
 ];
@@ -1854,6 +1913,233 @@ mountDeck('deck-escalate', {
     {scene:'A high performer gives notice, and you’d like to make a counter-offer to keep them.',
      correct:1, exp:'Partner with HR before promising anything. Counter-offers touch compensation policy, equity across the team, and precedent — not a solo decision.'}
   ]
+});
+
+/* ══════════ MASTERY: THE INTERVIEW ROOM ══════════ */
+mountDeck('deck-interview', {
+  key:'interview', title:'The Interview Room', kicker:'8 questions · ask, rephrase, or never', icon:'hire',
+  verdicts:['Ask it','Rephrase it','Never ask'],
+  cards:[
+    {scene:'“Tell me about a time you had to juggle competing deadlines. How did you decide what came first?”',
+     correct:0, exp:'A model behavioral question: job-related, past-focused, and it predicts real performance. Ask this kind of question of <b>every</b> candidate, in the same order, and score against the same rubric.'},
+    {scene:'“This role has occasional evening events. Do you have kids, or anything that would get in the way?”',
+     correct:1, exp:'The need is legitimate; the wording is unlawful territory. Never ask about children or family plans. Ask the requirement instead: <b>“This role requires roughly one evening event a month — can you meet that schedule?”</b> Same question to every candidate.'},
+    {scene:'“Where are you from originally? I can’t quite place your accent.”',
+     correct:2, exp:'National origin — a protected class with no legitimate interview purpose. Even as friendly small talk, it invites a discrimination claim. If work authorization matters, ask the standard question below, and ask it of everyone.'},
+    {scene:'“Are you legally authorized to work in the United States?”',
+     correct:0, exp:'Fine — provided it’s asked of every candidate identically, and you stop there. Don’t follow up with “where were you born?” or “what visa?” — verification happens at hire via I-9, not in the interview.'},
+    {scene:'“Have you ever been arrested or convicted of anything?”',
+     correct:1, exp:'Arrests are off-limits, and conviction questions are restricted by ban-the-box laws in several states (including NY and CA — timing matters). Route it through the official background-check process at the proper stage, per policy — not the interview.'},
+    {scene:'“The job requires lifting up to 50 pounds. Can you perform that, with or without a reasonable accommodation?”',
+     correct:0, exp:'Exactly the ADA-compliant form: name the essential function, then ask about ability <b>with or without accommodation</b>. What you may never ask: “Do you have any medical conditions or disabilities?”'},
+    {scene:'“What are you making at your current job? We want to make a fair offer.”',
+     correct:1, exp:'Salary-history questions are banned in New York, California, and a growing list of states — and they perpetuate pay gaps everywhere. Ask forward, not backward: <b>“What salary range are you looking for?”</b>'},
+    {scene:'“You seem young for this much responsibility — do you think people will take you seriously?”',
+     correct:2, exp:'Age is protected, and this question has no compliant rephrase — it’s commentary, not inquiry. If credibility with stakeholders is the concern, ask for evidence: “Tell me about a time you had to earn the confidence of a skeptical audience.”'}
+  ]
+});
+
+/* ══════════ MASTERY: THE CALIBRATION LAB ══════════ */
+mountDeck('deck-calibration', {
+  key:'calibration', title:'The Calibration Lab', kicker:'6 rating rationales · diagnose each', icon:'doc',
+  verdicts:['Fair & specific','Recency bias','Halo effect','Similar-to-me'],
+  cards:[
+    {scene:'“Maria was on fire the last three weeks before reviews. I’m bumping her to Exceeds.”',
+     correct:1, exp:'Three good weeks don’t outweigh fifty-two. Recency bias rewards a strong finish and punishes a strong start. Fix: keep a running note file all year and rate the <b>whole</b> period.'},
+    {scene:'“Jordan delivered four of five goals; the fifth slipped because of a vendor delay she flagged in March. Rating Meets, with the details documented.”',
+     correct:0, exp:'This is what a defensible rating looks like: specific, tied to goals, context noted, and written down. Calibration exists to make every rating in the room look like this one.'},
+    {scene:'“Sam’s April launch was a triumph, so I gave him Exceeds across every category — communication, teamwork, all of it.”',
+     correct:2, exp:'One shining achievement is lighting up every category — that’s the halo effect. Rate each competency on its own evidence; a great launch doesn’t make someone a great collaborator.'},
+    {scene:'“Devon and I came up the same way — same school, same first job. He just gets it. Strong rating from me.”',
+     correct:3, exp:'“He reminds me of me” is similarity bias, and it quietly reproduces the same background across your whole team. Ask: what did he <b>do</b> this year? If you can’t name it, you can’t rate it.'},
+    {scene:'“Chris had that rough incident in January, so I’m at Needs Improvement — even though the rest of the year was genuinely strong.”',
+     correct:1, exp:'Recency bias in reverse: one early stumble anchoring the whole year. The January incident belongs in the record — as one data point among twelve months, not as the rating itself.'},
+    {scene:'“Taylor’s presentation style is so polished — reminds me of myself at that age. Fast-track material.”',
+     correct:3, exp:'Style affinity is not performance. Polish is one skill; the question is results, growth, and impact. Bonus trap: “fast-track material” decisions made this way are how homogeneous leadership pipelines get built.'}
+  ]
+});
+
+/* ══════════ MASTERY: ACCOMMODATION SIMULATOR ══════════ */
+mountScenario('sim-ada', {
+  key:'ada', title:'The Accommodation Simulator', kicker:'5 decisions · the interactive process, end to end', icon:'shield',
+  badge:'Reasonable Accommodation — certified', pass:80, sceneWho:'Wednesday, after standup',
+  scene:[
+    'Elena, a grants specialist on your team, asks for five minutes. “My rheumatologist wants me to change how I work — the pain flares by mid-afternoon,” she says. “I’m wondering about a different chair, and maybe starting earlier so I can leave earlier.”',
+    'She hasn’t used the word “accommodation.” She doesn’t have to.'
+  ],
+  steps:[
+    {q:'What’s the right first response?',
+     options:[
+      {t:'“Thank you for telling me. Let’s take this seriously — I’ll connect with HR today so we can start the formal accommodation process together.”',correct:true,risk:0,fb:'Right. A request for a work change tied to a medical condition <b>is</b> an accommodation request, whatever words she used. You’ve triggered the interactive process and brought in the people who run it.'},
+      {t:'“What exactly is the diagnosis? I need details before I can do anything.”',correct:false,risk:3,fb:'Managers don’t collect diagnoses. Medical documentation flows through HR under strict confidentiality — your probing creates ADA liability on the spot.'},
+      {t:'“A new chair’s easy — done. Let’s just keep this between us and skip the paperwork.”',correct:false,risk:2,fb:'Generous, but wrong. Informal side-deals skip the documentation that protects Elena (the accommodation isn’t durable) and skip HR’s view of what’s consistent across the university.'},
+      {t:'“Everyone’s back hurts, Elena. Have you tried stretching?”',correct:false,risk:3,fb:'Dismissing a medical request is the fastest route to a failure-to-accommodate claim — and a betrayal of the trust it took to raise it.'}
+     ],
+     law:'No magic words are required. When an employee connects a work change to a medical condition, the ADA interactive process begins — and “the employer knew or should have known” is the standard you’ll be held to.'},
+    {q:'HR opens the interactive process. What is your role in it as the manager?',
+     options:[
+      {t:'Explain the job’s essential functions, try proposed accommodations honestly, and give feedback on what’s workable — while HR handles the medical side.',correct:true,risk:0,fb:'Exactly the division of labor: you are the expert on the job; HR is the channel for the medical information. Together that’s the “interactive” part.'},
+      {t:'Step back entirely — it’s HR’s problem now.',correct:false,risk:2,fb:'The process fails without you. Only you can say which functions are essential and whether a proposed change works operationally. Disengaging stalls it — and delays are themselves a violation risk.'},
+      {t:'Decide unilaterally what she gets, since you know the job best.',correct:false,risk:2,fb:'Half right — you know the job. But accommodation decisions are made <i>through the process</i>, with HR, not by manager fiat.'}
+     ],
+     law:'The interactive process is a genuine dialogue: employee, HR, and manager exploring options in good faith. Courts look hard at whether the employer engaged honestly and promptly.'},
+    {q:'Elena’s specific request — a 7am start — collides with a real constraint: her role covers a phone line that opens at 9 and runs to 5. What’s true?',
+     sceneWho:'The friction point',
+     options:[
+      {t:'You can propose an effective alternative — the law requires a reasonable accommodation, not necessarily the exact one requested.',correct:true,risk:0,fb:'Correct. If phone coverage 9-to-5 is an essential function, you can offer alternatives that address the medical need: the ergonomic chair plus scheduled breaks, coverage swaps, or a hybrid arrangement. The dialogue continues until something workable lands.'},
+      {t:'You must grant exactly what she asked for, full stop.',correct:false,risk:1,fb:'No — the employer can choose among effective accommodations. What you can’t do is refuse to engage or offer something that doesn’t actually address the need.'},
+      {t:'Since her exact request doesn’t work, the process is over and she gets nothing.',correct:false,risk:3,fb:'“Your first idea doesn’t work, goodbye” is a textbook failure to accommodate. One unworkable option ends nothing — it’s the start of the alternatives conversation.'}
+     ],
+     law:'Employers must provide a <b>reasonable</b> accommodation absent undue hardship — not the employee’s preferred one. But the burden is on the employer to keep the dialogue going toward something effective.'},
+    {q:'A teammate corners you: “Why does Elena suddenly get the fancy chair and different hours?” You say…',
+     sceneWho:'The team notices',
+     options:[
+      {t:'“I don’t discuss any individual’s work arrangements. If you ever need something to do your best work, my door’s open too.”',correct:true,risk:0,fb:'Perfect. Elena’s medical situation is confidential — full stop. And the open-door coda turns a gossip moment into a culture statement.'},
+      {t:'“She has a medical thing — arthritis, I think. Don’t spread it around.”',correct:false,risk:3,fb:'You just breached ADA confidentiality — “don’t spread it around” doesn’t un-ring the bell. Medical information is never team news.'},
+      {t:'“Honestly, HR made me do it.”',correct:false,risk:2,fb:'You dodged the confidentiality breach but torched the culture: you’ve framed accommodation as bureaucratic favoritism, which teaches your team to resent it — and never to ask.'}
+     ],
+     law:'ADA medical information is confidential and kept separate from personnel files. Curious coworkers are entitled to exactly none of it.'},
+    {q:'Three months in, the chair helps but Elena’s afternoon flares persist and her output is dipping. Now what?',
+     sceneWho:'The follow-up',
+     options:[
+      {t:'Reopen the dialogue: check in with her, loop HR back in, and adjust — accommodation is a process, not a one-time transaction.',correct:true,risk:0,fb:'Right. Conditions evolve and so do accommodations. Revisiting it early — before performance becomes “a problem” — is both the kind move and the legally sound one.'},
+      {t:'Start performance documentation now; the accommodation was provided, so the slate is clean.',correct:false,risk:3,fb:'Disciplining performance that flows from an under-accommodated condition, without reopening the dialogue, is how ADA claims are born.'},
+      {t:'Quietly reassign her hardest work to teammates and say nothing.',correct:false,risk:1,fb:'Silent redistribution breeds resentment, hides the real issue, and can itself become an adverse change to her role. Talk first.'}
+     ],
+     law:'The interactive process is ongoing. If an accommodation stops working, the employer’s duty to engage restarts — especially before any performance action.'}
+  ],
+  debrief:{
+    good:'Excellent. You recognized an unlabeled request, played your part in the interactive process, protected confidentiality under social pressure, and treated accommodation as a living arrangement, not a transaction. This is the ADA done the way it was written to work.',
+    ok:'You held the big lines but dropped a step — usually the confidentiality moment or the follow-up. Those are precisely where good managers slip. One more run.',
+    bad:'Several choices here would have generated a failure-to-accommodate or confidentiality claim. The pattern to internalize: you own the job expertise, HR owns the medical channel, and the dialogue never closes unilaterally. Run it again.'
+  },
+  reflect:'Does everyone on your team know they could ask you for what they need without it becoming team gossip? What would make that true?'
+});
+
+/* ══════════ MASTERY: HYBRID & REMOTE DECK ══════════ */
+mountDeck('deck-hybrid', {
+  key:'hybrid', title:'Two Traps of Hybrid Work', kicker:'6 situations · fine, bias, or exposure?', icon:'chat',
+  verdicts:['Fine as is','Proximity-bias trap','Wage & hour risk'],
+  cards:[
+    {scene:'A stretch project comes up. You hand it to Marcus because “he’s right here and we can iterate fast.” Your two remote analysts hear about it later.',
+     correct:1, exp:'“Right here” is how proximity bias sounds from the inside. Over a year, hallway convenience compounds into a promotion gap. Fix: assign visible work from a <b>roster</b>, not from line of sight.'},
+    {scene:'Your non-exempt coordinator in California mentions she usually “works through lunch to leave early.”',
+     correct:2, exp:'California requires meal breaks for non-exempt employees, and skipping them triggers premium pay — remote or not. You can’t see her desk; you can still be liable for it. Address it now, in writing.'},
+    {scene:'You rotate the team meeting between 9am Central and 1pm Central so neither coast always eats the bad slot.',
+     correct:0, exp:'Exactly right — small structural fairness beats big speeches. Rotation says “everyone’s time costs the same” without anyone having to ask.'},
+    {scene:'Performance reviews are due. Skimming your notes, you realize almost every specific example you wrote down this year involves the people you sit near.',
+     correct:1, exp:'Your evidence pipeline is biased even if your judgment isn’t. Fix the pipeline: standing 1:1s with remote staff, written win-logs everyone contributes to, and demo time in team meetings.'},
+    {scene:'A non-exempt employee answers your 9:40pm email thread “to stay on top of things.” No one logged the time.',
+     correct:2, exp:'Off-the-clock work — the email trail is literally the evidence. Non-exempt time worked is time paid, evenings included. Set the norm explicitly: after-hours replies are neither expected nor unpaid.'},
+    {scene:'For deep-focus days, you make cameras optional on internal calls and judge the work by the work.',
+     correct:0, exp:'Fine — and healthy. Presence theater (cameras always on, green dots watched) measures anxiety, not output. Judging the work by the work is the whole point of managing by results.'}
+  ]
+});
+
+/* ══════════ MASTERY: REORG SIMULATOR ══════════ */
+mountScenario('sim-change', {
+  key:'change', title:'The Reorg Simulator', kicker:'5 decisions · carry the change, keep the trust', icon:'route',
+  badge:'Leading Through Change — practiced', pass:80, sceneWho:'Tuesday, leadership briefing',
+  scene:[
+    'Leadership announces a restructure: your team merges with another unit in six weeks, two open roles will not be filled, and reporting lines change. You learned this an hour ago, under embargo until Thursday.',
+    'Privately, you have real doubts about parts of the plan. Publicly, your team will read the whole thing off your face.'
+  ],
+  steps:[
+    {q:'Thursday arrives. How do you present the change to your team?',
+     options:[
+      {t:'Straight and human: what’s changing, why leadership believes it’s needed, what you know, what you don’t yet — and when they’ll hear more.',correct:true,risk:0,fb:'Right. Clarity plus honesty about uncertainty is the whole formula. Teams don’t need you to have every answer; they need to trust the ones you give.'},
+      {t:'“Look, this wasn’t my call — leadership decided and we’re stuck with it.”',correct:false,risk:3,fb:'The “blame upstairs” move buys you an hour of sympathy and costs you your credibility both directions: leadership hears you undermined the plan, and your team learns you’ll dodge ownership when things get hard.'},
+      {t:'Spin it sunny: “This is all upside, nothing really changes for us!”',correct:false,risk:2,fb:'They can count the two unfilled roles. Overselling reads as either dishonest or clueless, and it forfeits your credibility for every future announcement.'},
+      {t:'Forward the official email and let it speak for itself.',correct:false,risk:2,fb:'Change lands through conversation, not distribution lists. An email with no face attached maximizes fear and rumor in one click.'}
+     ],
+     law:'A useful frame: people can handle hard truths; what corrodes teams is spin, silence, and blame. Own the message even when you didn’t write it.'},
+    {q:'Privately, you still disagree with part of the plan. What do you do with that?',
+     options:[
+      {t:'Argue it hard in the room with your own leadership — then, whatever they decide, carry the decision to your team without daylight.',correct:true,risk:0,fb:'That’s the discipline: dissent up, alignment down. It’s also the only version where your feedback actually shapes the plan instead of just leaking as sabotage.'},
+      {t:'Hint your doubts to a couple of trusted team members so they know you’re “on their side.”',correct:false,risk:3,fb:'Nothing stays hinted. You’ve now got a team that knows their manager doesn’t believe in the plan — which converts anxiety into cynicism and always finds its way upstairs.'},
+      {t:'Say nothing to anyone; doubts are unprofessional.',correct:false,risk:1,fb:'Swallowing real concerns wholesale robs leadership of ground truth — the thing only you can see. Loyal dissent, delivered up the chain, is part of the job.'}
+     ]},
+    {q:'By Monday the rumor mill says layoffs are coming beyond the two unfilled roles. It isn’t true, as far as you know. You…',
+     sceneWho:'The rumor mill',
+     options:[
+      {t:'Address it head-on at standup: “I’ve heard the layoff rumor. Here’s what I know, here’s what I don’t, and I’ll tell you the moment either changes.”',correct:true,risk:0,fb:'Rumors grow in silence and die in daylight. Naming it directly — with the honest limits of what you know — is the single strongest trust move available to you this week.'},
+      {t:'Ignore it; dignifying rumors spreads them.',correct:false,risk:2,fb:'Backwards. In a vacuum, the scariest story wins. Your silence is being read as confirmation right now.'},
+      {t:'Promise flatly: “Nobody is losing their job, period.”',correct:false,risk:2,fb:'You can’t underwrite that promise, and everyone knows it. Overpromising in a reorg is a loan against your credibility at 100% interest.'}
+     ]},
+    {q:'Rosa — your steadiest senior person — has gone quiet and started declining meetings about the transition. What’s your move?',
+     sceneWho:'The resister',
+     options:[
+      {t:'A private 1:1 that starts with listening: “Walk me through what worries you most.” Then give her a real role in shaping how the merge lands.',correct:true,risk:0,fb:'Resistance is information — usually about a real loss (autonomy, identity, relationships) the plan ignored. Heard people move; lectured people dig in. And ownership converts skeptics faster than any pitch.'},
+      {t:'Give her space and hope she comes around on her own.',correct:false,risk:2,fb:'Quiet disengagement from your most respected person is contagious — the team calibrates to her, not to your slide deck. Waiting cedes the room.'},
+      {t:'Remind her, kindly but firmly, that supporting the change is part of her job.',correct:false,risk:2,fb:'Compliance you can order; commitment you can’t. You’ll get silent-resister behavior with a thin professional coating — the most expensive kind.'}
+     ]},
+    {q:'Week four. The merge is real, workloads are lumpy, and the team is tired. What sustains the change through the messy middle?',
+     sceneWho:'The messy middle',
+     options:[
+      {t:'Mark visible progress out loud, keep feedback flowing up to leadership, and renegotiate priorities honestly — some things must wait, and you say which.',correct:true,risk:0,fb:'Change dies in the middle, not at the announcement. Small celebrated wins plus honest triage is what carries a tired team across — and sending ground truth upward is how the plan gets fixed while it still can be.'},
+      {t:'Push harder: “We just need to gut through this quarter.”',correct:false,risk:2,fb:'Gut-through-it leadership converts fatigue into burnout and quiet quitting. Effort isn’t the constraint — clarity about what can drop is.'},
+      {t:'Quietly let deadlines slip everywhere rather than formally deprioritizing anything.',correct:false,risk:1,fb:'Unnamed slippage feels like failure; named triage feels like leadership. Same delay, opposite effect on morale — say what waits.'}
+     ]},
+  ],
+  debrief:{
+    good:'This is change leadership at a professional grade: honest framing, dissent carried up instead of leaked down, rumors met in daylight, resisters heard into ownership, and a messy middle managed with visible wins and honest triage. Teams follow managers who do this — through almost anything.',
+    ok:'Strong instincts with one costly slip — usually the blame-upstairs moment or the unaddressed rumor. In a live reorg those single moments set the tone for the whole transition. Run it back.',
+    bad:'Several choices here would have converted a hard-but-survivable reorg into a trust collapse. The core pattern: own the message, dissent upward only, meet rumors with daylight, and treat resistance as information. Again — it’s cheaper to practice here.'
+  },
+  reflect:'Think of the last change you had to carry that you didn’t choose. Did your team hear ownership or daylight? What would you say differently now?'
+});
+
+/* ══════════ MASTERY: TERMINATION SIMULATOR ══════════ */
+mountScenario('sim-term', {
+  key:'term', title:'The Termination Simulator', kicker:'5 decisions · process and dignity, together', icon:'heart',
+  badge:'The Last Conversation — practiced', pass:80, sceneWho:'The night before',
+  scene:[
+    'Dana’s PIP has run its course: timeliness improved, but the core deliverables didn’t, and Employee Relations has reviewed the record and approved separation. The meeting is tomorrow at 10am.',
+    'You’ve never done this before. You barely slept.'
+  ],
+  steps:[
+    {q:'It’s 8pm the night before. What does responsible preparation look like?',
+     options:[
+      {t:'Confirm final details with HR/ER (final pay, benefits, logistics), agree who says what, book a private room, and script your first two sentences.',correct:true,risk:0,fb:'Right. A termination meeting is a performance under pressure — the humane version is the <b>prepared</b> version. Winging it is how cruel accidents happen.'},
+      {t:'Nothing special — you’ll speak from the heart in the moment.',correct:false,risk:2,fb:'The heart rambles. Unscripted terminations run long, say legally dangerous things, and leave the person more confused and more wounded. Prepare precisely because you care.'},
+      {t:'Draft a long document of every failure to read aloud, so she understands it’s justified.',correct:false,risk:2,fb:'The decision meeting is not a trial. Relitigating the record humiliates her and invites argument about a decision that is already made.'}
+     ],
+     law:'Before any separation meeting: final HR/ER sign-off, pay and benefits answers ready (state law governs final-pay timing — California means immediately), and a witness/HR partner arranged.'},
+    {q:'10:02am. Dana sits down. Your opening?',
+     options:[
+      {t:'“Dana, I have hard news and I’m going to be direct. We’re ending your employment, effective today. This decision is final. I want to walk you through what happens next.”',correct:true,risk:0,fb:'Direct, complete, and finished within the first fifteen seconds — which is exactly the kindness the moment allows. Ambiguity is cruelty here; she should never have to wonder mid-meeting what’s happening.'},
+      {t:'“So… how do you feel things have been going since the PIP started?”',correct:false,risk:3,fb:'A quiz she can’t win. Socratic openings in termination meetings are experienced as a trap — she’ll replay this false hope for years. Say the news first.'},
+      {t:'“This is honestly the hardest thing I’ve ever had to do, I’m so sorry, I fought this…”',correct:false,risk:2,fb:'You’ve made her comfort you — and “I fought this” both undermines the decision and hands a wrongful-termination narrative to whoever hears it next. Your feelings travel on your time.'}
+     ]},
+    {q:'She’s stunned, then angry: “This is because I pushed back on the reorg, isn’t it? I want specifics, right now.” You…',
+     sceneWho:'The reaction',
+     options:[
+      {t:'Stay calm, don’t debate: “I hear you. The decision followed the PIP process and it’s final. HR can walk through the documentation with you — let’s focus on what happens next for you.”',correct:true,risk:0,fb:'You acknowledged the anger without feeding it, restated finality without cruelty, and routed the record request to the proper channel. Anger is a normal stage — your composure is the container for it.'},
+      {t:'Defend the decision point-by-point from the file.',correct:false,risk:2,fb:'You’ve turned a closed decision into a live argument — every specific becomes a negotiation, and anything misstated becomes deposition material.'},
+      {t:'Soften under pressure: “Look, maybe I can talk to ER about a second extension…”',correct:false,risk:3,fb:'A promise you can’t keep, made to escape one uncomfortable minute. When it evaporates, it becomes evidence of unfairness — and the cruelest false hope you could offer.'}
+     ],
+     law:'The meeting is not the venue for debating the record. Keep it short (10–15 minutes), final, and forward-looking; direct documentation questions to HR/ER.'},
+    {q:'The logistics: how does Dana leave the building?',
+     options:[
+      {t:'With dignity by default: agree how she gets her things and says any goodbyes, handle access changes per policy but without theater, and offer the practical info in writing.',correct:true,risk:0,fb:'Right. Security-escort theater for a performance separation is a humiliation the situation doesn’t require — and your team will remember it longer than she will. Follow policy, skip the spectacle.'},
+      {t:'Have security walk her out immediately while IT kills her access mid-meeting.',correct:false,risk:2,fb:'Reserve the perp-walk for genuine security risk. Applied to Dana, it broadcasts to every watching employee: “this is what caring about people looks like here when it ends.”'},
+      {t:'Let her keep her badge and laptop “for a few days to wrap things up.”',correct:false,risk:1,fb:'Kind impulse, bad practice — lingering access after separation is a real security and data exposure, and “wrapping up” prolongs the goodbye for everyone. Clean and humane can coexist.'}
+     ]},
+    {q:'2pm. Your team knows something happened. What do you tell them?',
+     sceneWho:'The team, after',
+     options:[
+      {t:'Brief and respectful: “Dana is no longer with the university. I won’t discuss details out of respect for her. Here’s the coverage plan, and my door is open.”',correct:true,risk:0,fb:'Exactly. Confidentiality kept, workload addressed, door opened. How you speak about the person who just left is the loudest message your team will ever receive about how you’d speak about them.'},
+      {t:'Give the team the honest backstory so the rumor mill doesn’t invent one.',correct:false,risk:3,fb:'Her performance record is confidential after she’s gone, too. The backstory will reach her — with your name on it — and teach your team their own struggles would become content someday.'},
+      {t:'Say nothing at all and let everyone piece it together.',correct:false,risk:1,fb:'Total silence breeds a scarier story than the truth and leaves the workload question hanging. Acknowledge the departure; protect the details.'}
+     ],
+     law:'Post-separation: speak to the departure, never the reasons. Reference requests route through HR per policy — not through your personal recollections.'}
+  ],
+  debrief:{
+    good:'You did the hardest thing in management the right way: prepared thoroughly, said it directly, held finality without cruelty, skipped the humiliation theater, and protected her story afterward. Nobody enjoys this meeting — but done this way, everyone involved keeps their dignity, including you.',
+    ok:'You carried the big moments but wobbled once — usually softening under pressure or over-explaining. In this meeting a single wobble creates false hope or legal exposure. Practice the exact sentences.',
+    bad:'Several choices here would have compounded the pain and the legal risk at once. The pattern: prepare with HR, lead with the news, never debate or promise, skip the spectacle, guard her story. Run it again — this is the one simulator you most want to have practiced before the real thing.'
+  },
+  reflect:'If you had to have this conversation next month, what are the first two sentences you would say? Write them down now, while it costs nothing.'
 });
 
 /* ══════════ TAKE IT TO YOUR DESK — first-72-hours plan builder ══════════ */
