@@ -996,6 +996,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
 /* media must never depend on JS to appear */
 .js .yt, .js .yt.reveal, .js .flip, .js .flip.reveal{ opacity:1 !important; transform:none !important; }
+a.track-pill{ cursor:pointer; transition:border-color .2s ease-out, transform .2s ease-out; }
+a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); color:var(--tx); }
 
 </style>
 </head>
@@ -1270,7 +1272,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=LhoLuui9gX8" target="_blank" rel="noopener">Open on YouTube</a>.</p>
 
-      <div class="baro" style="margin-top:30px">
+      <div class="baro" id="barometer" style="margin-top:30px">
         <div class="sub-h" style="margin-bottom:6px"><span class="mono">The Safety Barometer · 7 signals</span></div>
         <h4 style="font-size:1.15rem;margin-bottom:4px">Check every statement that is honestly true of your team.</h4>
         <p style="font-size:.88rem;color:var(--tx3);margin-bottom:10px">Answer for how things are, not how you hope they are. Scored on this device only.</p>
@@ -1615,24 +1617,24 @@ var ICON = {
 
 /* ══════════ progress / completion tracking ══════════ */
 var MODULES = [
-  {key:'state', label:'State profiles'},
-  {key:'report', label:'Report or Resolve'},
-  {key:'convo', label:'Difficult Conversation'},
-  {key:'escalate', label:'Handle or Escalate'},
-  {key:'fmla', label:'FMLA Simulator'},
-  {key:'discipline', label:'Progressive Discipline'},
-  {key:'interview', label:'Interview Room'},
-  {key:'calibration', label:'Calibration Lab'},
-  {key:'ada', label:'Accommodation'},
-  {key:'hybrid', label:'Hybrid Teams'},
-  {key:'change', label:'Reorg'},
-  {key:'term', label:'Last Conversation'},
-  {key:'feedback', label:'Feedback Lab'},
-  {key:'psychsafe', label:'Safety Barometer'},
-  {key:'oneonone', label:'1:1 Simulator'},
-  {key:'assess', label:'Assessment'},
-  {key:'desk', label:'Desk plan'},
-  {key:'plan', label:'Manager plan'}
+  {key:'state', label:'State profiles', href:'#stateTabs'},
+  {key:'report', label:'Report or Resolve', href:'#deck-report'},
+  {key:'convo', label:'Difficult Conversation', href:'#sim-convo'},
+  {key:'escalate', label:'Handle or Escalate', href:'#deck-escalate'},
+  {key:'fmla', label:'FMLA Simulator', href:'#sim-fmla'},
+  {key:'discipline', label:'Progressive Discipline', href:'#sim-discipline'},
+  {key:'interview', label:'Interview Room', href:'#deck-interview'},
+  {key:'calibration', label:'Calibration Lab', href:'#deck-calibration'},
+  {key:'ada', label:'Accommodation', href:'#sim-ada'},
+  {key:'hybrid', label:'Hybrid Teams', href:'#deck-hybrid'},
+  {key:'change', label:'Reorg', href:'#sim-change'},
+  {key:'term', label:'Last Conversation', href:'#sim-term'},
+  {key:'feedback', label:'Feedback Lab', href:'#deck-feedback'},
+  {key:'psychsafe', label:'Safety Barometer', href:'#barometer'},
+  {key:'oneonone', label:'1:1 Simulator', href:'#sim-oneonone'},
+  {key:'assess', label:'Assessment', href:'#assess'},
+  {key:'desk', label:'Desk plan', href:'#desk'},
+  {key:'plan', label:'Manager plan', href:'#managerplan'}
 ];
 var STORE='vu_mgr_progress_v1', done={};
 try{ done = JSON.parse(localStorage.getItem(STORE)||'{}')||{}; }catch(e){ done={}; }
@@ -1641,7 +1643,7 @@ function renderTrack(){
   var strip = el('heroTrack'); if(!strip) return;
   strip.innerHTML = MODULES.map(function(m){
     var d = done[m.key];
-    return '<span class="track-pill'+(d?' done':'')+'"><span class="tk">'+ICON.check+'</span>'+esc(m.label)+'</span>';
+    return '<a class="track-pill'+(d?' done':'')+'" href="'+(m.href||'#foundations')+'" aria-label="'+esc(m.label)+(d?' — complete':' — not yet started')+'"><span class="tk">'+ICON.check+'</span>'+esc(m.label)+'</a>';
   }).join('');
 }
 
@@ -2862,6 +2864,13 @@ function boot(){
   try{ initBaro(); }catch(e){}
   try{ initPlan(); }catch(e){}
   try{ initHeroRotation(); }catch(e){}
+  // deep links: content mounts after the browser's initial anchor jump, so re-align
+  if(location.hash){
+    try{
+      var dlTarget=document.querySelector(location.hash);
+      if(dlTarget) setTimeout(function(){ dlTarget.scrollIntoView({block:'start'}); }, 250);
+    }catch(e){}
+  }
   try{ renderTrack(); }catch(e){}
   try{ initInfra(); }catch(e){}
   try{ initReveal(); }catch(e){}
