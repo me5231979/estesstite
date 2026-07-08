@@ -994,6 +994,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 .hero-media .hero-video.hv-on{ opacity:.3; }
 @media (prefers-reduced-motion: reduce){ .hero-media .hero-video{ transition:none; } }
 
+/* media must never depend on JS to appear */
+.js .yt, .js .yt.reveal, .js .flip, .js .flip.reveal{ opacity:1 !important; transform:none !important; }
+
 </style>
 </head>
 <body>
@@ -1242,7 +1245,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Watch · then practice</span></div>
       <h3 style="font-size:1.55rem;max-width:30ch">Care personally. Challenge directly.</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:62ch">Kim Scott ran teams at Google and Apple and wrote the book on saying the hard thing kindly. Ten minutes, then test your ear in the lab below.</p>
-      <div class="yt reveal" data-embed="https://www.youtube-nocookie.com/embed/vmxHUiiHgNk" data-title="Kim Scott · How to Lead With Radical Candor (TED)" style="margin-top:22px">
+      <div class="yt" data-embed="https://www.youtube-nocookie.com/embed/vmxHUiiHgNk" data-title="Kim Scott · How to Lead With Radical Candor (TED)" style="margin-top:22px">
         <button type="button" class="yt-btn" aria-label="Play: Kim Scott, How to Lead With Radical Candor">
           <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
           <span class="yt-t">Kim Scott · How to Lead With Radical Candor</span>
@@ -1258,7 +1261,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Watch · then measure</span></div>
       <h3 style="font-size:1.55rem;max-width:30ch">Would your team tell you the truth?</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:62ch">Amy Edmondson coined the term psychological safety and spent thirty years proving it predicts team performance. Watch her explain it — then take an honest reading of your own team.</p>
-      <div class="yt reveal" data-embed="https://www.youtube-nocookie.com/embed/LhoLuui9gX8" data-title="Amy Edmondson · Building a psychologically safe workplace (TEDx)" style="margin-top:22px">
+      <div class="yt" data-embed="https://www.youtube-nocookie.com/embed/LhoLuui9gX8" data-title="Amy Edmondson · Building a psychologically safe workplace (TEDx)" style="margin-top:22px">
         <button type="button" class="yt-btn" aria-label="Play: Amy Edmondson, Building a psychologically safe workplace">
           <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
           <span class="yt-t">Amy Edmondson · Building a psychologically safe workplace</span>
@@ -1648,7 +1651,7 @@ function topicCard(t){
 }
 var FLIP_ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M3.5 15a9 9 0 0014.9 3.4L23 14M1 10l4.6-4.4A9 9 0 0120.5 9"/></svg>';
 function flipCard(c){
-  return '<div class="flip reveal" tabindex="0" role="button" aria-expanded="false" aria-label="'+esc(c.h.replace(/&amp;/g,'&'))+' — flip for policy and course links">'+
+  return '<div class="flip" tabindex="0" role="button" aria-expanded="false" aria-label="'+esc(c.h.replace(/&amp;/g,'&'))+' — flip for policy and course links">'+
     '<div class="flip-inner">'+
       '<div class="flip-face flip-front"><div class="tc-ic">'+(ICON[c.i]||ICON.doc)+'</div><h5>'+c.h+'</h5><p>'+c.p+'</p>'+
         '<span class="flip-hint">'+FLIP_ARROW+' Flip for policy & course</span></div>'+
@@ -2823,7 +2826,7 @@ function initInfra(){
 }
 function initReveal(){
   var targets = Array.prototype.slice.call(document.querySelectorAll(
-    'section h2, .statrow, .pathcard, .topic-card, .sim-shell, .sc, .roadmap, .manifesto p, .dhead, .yt, .flip, .baro, .linklist'));
+    'section h2, .statrow, .pathcard, .topic-card, .sim-shell, .sc, .roadmap, .manifesto p, .dhead, .baro, .linklist'));
   function showAll(){ targets.forEach(function(t){ t.classList.add('in'); }); }
   if(reduce || !('IntersectionObserver' in window)){ targets.forEach(function(t){t.classList.remove('reveal');}); showAll(); return; }
   targets.forEach(function(t){ t.classList.add('reveal'); });
