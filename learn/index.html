@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The CHART Platform · Vanderbilt's AI learning experience for staff</title>
-<meta name="description" content="CHART stands for Cultivating Human-AI Readiness and Thinking. Vanderbilt&#39;s AI learning experience for staff: plain-English lessons, working practice tools, and a personal 90-day plan." />
+<meta name="description" content="CHART (Cultivating Human-AI Readiness and Thinking) is Vanderbilt&#39;s AI learning experience for staff: plain-English lessons, working practice tools, and a personal 90-day plan." />
 <meta name="theme-color" content="#1C1C1C" />
 <meta property="og:title" content="The CHART Platform · Vanderbilt&#39;s AI learning experience for staff" />
 <meta property="og:description" content="Cultivating Human-AI Readiness and Thinking: plain-English lessons, practice tools, and an AI opportunity simulator for Vanderbilt staff." />
@@ -158,6 +158,11 @@ body.menu-open .mobile-menu{ opacity:1; visibility:visible; transition:opacity .
 .hero .lead{ font-size:1.125rem; color:rgba(255,255,255,.78); max-width:54ch; margin-top:24px; }
 .hero .lead b{ color:#fff; font-weight:600; }
 .hero .lead .def{ color:var(--vu-gold); }
+.hero .hello{ font-family:var(--serif); font-size:1.375rem; color:#fff; margin-top:26px; }
+.hero .lead.closer em{ font-family:var(--serif); font-style:italic; color:var(--vu-gold); font-size:1.1em; }
+.hero-outcomes{ list-style:none; margin:20px 0 0; padding:0; display:flex; flex-direction:column; gap:9px; }
+.hero-outcomes li{ position:relative; padding-left:24px; color:rgba(255,255,255,.85); font-size:1.0625rem; max-width:54ch; }
+.hero-outcomes li::before{ content:''; position:absolute; left:0; top:.62em; width:12px; height:2px; background:var(--vu-gold); }
 .hero .meta-line{ font-family:var(--cond); font-weight:700; font-size:.8125rem; letter-spacing:.03em; text-transform:uppercase;
   color:rgba(255,255,255,.55); margin-top:22px; }
 .hero .meta-line b{ color:var(--vu-gold); font-weight:700; }
@@ -832,12 +837,19 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <span class="mono">Vanderbilt University &middot; The CHART Platform <!-- [EDIT] program eyebrow — CHART can be renamed (e.g. Futures Learning Hub) --></span>
     <h1 class="metal">AI is your new <em>colleague</em>.</h1>
-    <p class="lead"><b>CHART</b> (short for <span class="def">Cultivating Human-AI Readiness and Thinking</span>) is Vanderbilt&rsquo;s
-      self-paced introduction to working with AI. Plain-English lessons, working practice tools,
-      and a plan for your real work.</p>
+    <p class="hello">Welcome to CHART.</p>
+    <p class="lead"><b>CHART</b>, <span class="def">Cultivating Human-AI Readiness and Thinking</span>, is Vanderbilt&rsquo;s
+      self-paced introduction to working with AI. Built for staff, not technologists, it combines
+      simple, clear lessons with hands-on practice tools, so you learn by using AI, not just
+      reading about it.</p>
+    <p class="lead">By the end of your engagement, you will write prompts that get useful answers on the first try, know which
+      AI tool fits any task and any kind of data, and leave with your first AI use case mapped
+      to your own job.</p>
+    <p class="lead closer">This is not a course about AI. It is <em>practice</em> for the way you will work next.</p>
+    
     <p class="meta-line" aria-label="About 20 minutes, self-paced, nothing tracked"><b>~20 minutes</b> &middot; self-paced &middot; nothing tracked</p>
     <div class="cta-row">
-      <a class="btn btn-gold" href="#learn">Start learning
+      <a class="btn btn-gold" href="#start">Start learning
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
@@ -859,7 +871,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 </div>
 
 <!-- ═══════════════════ MANIFESTO ═══════════════════ -->
-<section class="manifesto th-cream" aria-label="Our belief">
+<section id="start" class="manifesto th-cream" aria-label="Our belief">
   <div class="wrap">
     <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">The belief</span></span>
     <p class="creed" id="creed">Technology should amplify humans, never replace them. CHART exists so every member of Vanderbilt&rsquo;s staff works with AI <em>clear-eyed, skilled, and in charge.</em></p>
@@ -872,20 +884,21 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     <div class="sec-head reveal" style="margin-bottom:0">
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">How CHART works</span></span>
       <h2>One path. Three stops. <em>Your pace.</em></h2>
-      <p>The order is deliberate. First you learn how the technology works, so nothing later feels like magic.
-        Then you practice on safe examples, so mistakes cost nothing. Only then do you point it at your own
-        job, where it starts paying you back. Each stop hands you to the next.</p>
+      <p>Learn how the tool works first, so nothing later feels like magic. Then practice on safe
+        examples, where mistakes cost nothing. Then point it at your own work, which is where the
+        payoff is.</p>
     </div>
     <div class="hw-list reveal">
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">01</span>
         <div>
           <h3>Learn the ideas</h3>
-          <p>Five short modules in plain English: what AI, machine learning, and agents actually are;
-            a live demonstration of how a language model writes (you will watch it choose its next word);
-            a drill where you catch AI inventing facts; the four built-in limits every user needs to know;
-            and the five prompting techniques that do most of the work.
-            <b>You leave knowing how the machine works, and when not to trust it.</b></p>
+          <p>In this section, you will complete five short modules and an activity. You will learn what AI,
+            machine learning, and agents actually are. You will watch a live demo of a language model
+            writing, one word at a time. You will practice catching it when it invents facts. You will
+            learn the four built-in limits every user needs to know, and the five prompting techniques
+            that do most of the work.
+            <b>By the end of this section, you will know how the machine works, and when not to trust it.</b></p>
         </div>
         <span class="chip">~8 min</span>
       </div>
@@ -893,11 +906,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="hw-no" aria-hidden="true">02</span>
         <div>
           <h3>Practice in the Playground</h3>
-          <p>Three working tools, no login required: a <b>Prompt Lab</b> that assembles a strong, copy-ready
-            prompt as you fill in five fields; a <b>Prompt Grader</b> that scores any prompt A&ndash;F and tells
-            you exactly what is missing; and a <b>Tool Match</b> that answers the most common question on
+          <p>In this section, you will practice in three working tools, with no system login required.
+            You will use the <b>Prompt Lab</b> to build a strong, copy-ready prompt by filling in five fields.
+            You will run any prompt through the <b>Prompt Grader</b> to get a score from A to F and see
+            exactly what is missing. You will use <b>Tool Match</b> to answer the most common question on
             campus: does this task belong in ChatGPT, Amplify, or Copilot?
-            <b>You leave with a real prompt for real work, built by you.</b></p>
+            <b>By the end of this section, you will have a real prompt for real work, built by you.</b></p>
         </div>
         <span class="chip">~6 min</span>
       </div>
@@ -905,10 +919,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="hw-no" aria-hidden="true">03</span>
         <div>
           <h3>Apply with the Simulator</h3>
-          <p>Describe one real task from your week (a report you write, an inbox you manage, a process
-            you run) and pick your department. The Simulator maps where AI can help, writes three starter
-            prompts around your own words, flags any data-sensitivity concerns, and lays out a 30-day plan.
-            <b>You leave with your first AI project already scoped.</b></p>
+          <p>In this section, you will describe one real task from your week: a report you write, an inbox
+            you manage, a process you run. You will pick your department. The <b>Simulator</b> will map where
+            AI can help, write three starter prompts around your own words, flag any data-sensitivity
+            concerns, and lay out a 30-day plan.
+            <b>By the end of this section, you will have your first AI project already scoped.</b></p>
         </div>
         <span class="chip">~4 min</span>
       </div>
@@ -916,7 +931,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     <p class="hw-meta reveal">~20 minutes for the core path &middot; every module is skippable and self-paced &middot; nothing is tracked or reported.</p>
     <!-- [EDIT] program name — CHART is a working title; the acronym line below updates with any rename -->
     <p class="acr-line reveal" role="img" aria-label="CHART stands for Cultivating Human-AI Readiness and Thinking"><b>C</b>ultivating&ensp;<b>H</b>uman-<b>A</b>I&ensp;<b>R</b>eadiness&ensp;and&ensp;<b>T</b>hinking</p>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>First, let&rsquo;s get the words right. Every tool on this platform builds on <em>one</em> idea.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>First, let&rsquo;s get the words right. Everything that follows builds on <em>one</em> idea.</p></div>
   </div>
 </section>
 
@@ -926,8 +941,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     <div class="sec-head reveal">
       <span class="you-are">You are here: foundations. First, let&rsquo;s get the words right: five terms everything else builds on.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Learn / 01</span></span>
-      <h2>First, the <em class="s">plain-English</em> version.</h2>
-      <p>Three short modules. By the end you'll know what these tools are, how they work, and which claims about them to politely ignore.</p>
+      <h2>Let&rsquo;s clarify what AI <em class="s">is</em>.</h2>
+      <p>In this section, you will complete five short modules and an activity. You will learn what
+        these tools are, how they work, and how to evaluate the claims made about them.</p>
     </div>
 
     <!-- Module A: What is AI, really? -->
@@ -935,18 +951,18 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module A</span>
         <h3>What is AI, really?</h3>
-        <p>Five terms you'll hear constantly. Flip each card for the plain definition and a Vanderbilt example. (Click or press Enter.)</p>
+        <p>In this activity, you will review five AI terms you will hear constantly. Flip each card to see a simple definition and a Vanderbilt example of the term in use. (Click or press Enter.)</p>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI, ML, GenAI, LLMs, and agents really are</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Flip five cards</span>
         <span class="lf-chip"><b>Time</b>2 min</span>
-        <p class="lf-why"><b>Why it matters to your work:</b> you&rsquo;ll stop nodding along in meetings and start knowing which AI conversations actually concern your job.</p>
+        <p class="lf-why"><b>Why it matters to your work:</b> you&rsquo;ll stop nodding along in meetings and start knowing which AI conversations actually matter for your job.</p>
       </div>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>These four terms nest inside each other like dolls. <b>AI</b> is the umbrella: any software doing things that used to need human judgment. <b>Machine learning</b> is how modern AI gets built: instead of a programmer writing rules, the system finds patterns in thousands of examples. <b>Generative AI</b> is machine learning that produces new things (text, images, code) instead of just sorting or scoring. And a <b>large language model</b> is the specific generative engine inside ChatGPT, Amplify, and Copilot. The newest doll is <b>agentic AI</b>: an LLM handed tools and a loop so it can act, not just answer. It runs on the same engine as the chatbots, so it inherits the same limits.</p>
-        <p><b>Notice as you flip:</b> the common thread is that none of these systems <em>understand</em> anything. They recognize patterns, and that one fact will follow us through the whole platform.</p>
+        <p>These five terms nest inside each other like dolls. <b>AI</b> is the umbrella: any software doing things that used to need human judgment. <b>Machine learning</b> is how modern AI gets built: instead of a programmer writing rules, the system finds patterns in thousands of examples. <b>Generative AI</b> is machine learning that produces new things (text, images, code) instead of just sorting or scoring. And a <b>large language model</b> is the specific generative engine inside ChatGPT, Amplify, and Copilot. The newest doll is <b>agentic AI</b>: an LLM handed tools and a loop so it can carry out multi-step work on its own. It runs on the same engine as the chatbots, so it inherits the same limits.</p>
+        <p><b>Notice as you flip:</b> the common thread is that none of these systems <em>understand</em> anything. They recognize patterns, and we&rsquo;ll keep coming back to that one fact.</p>
       </div>
       <div class="flip-grid five">
         <div class="fcard">
@@ -1041,7 +1057,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module B</span>
         <h3>How an LLM actually works</h3>
-        <p>An LLM writes by predicting the next word, one word at a time. Here's a live (canned-data) peek at what that prediction looks like.</p>
+        <p>In this activity, you will watch a language model write, one word at a time. Slide the temperature dial and shuffle the sentence to see how the prediction changes. (The demo runs on canned data; nothing is generated live.)</p>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Why AI writes so well and lies so confidently</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Play with a live prediction demo and its temperature dial</span>
@@ -1051,7 +1067,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>During training, the model read a huge slice of human writing and learned which words tend to follow which. That was the entire education. It writes by scoring every word it knows, picking a high scorer, adding it to the sentence, then doing it again, one word at a time, until the answer sounds finished. The temperature dial below controls how adventurous each pick gets to be.</p>
+        <p>During training, the model read a huge slice of human writing and learned which words tend to follow which. That was its entire education. It writes by scoring every word it knows, picking a high scorer, adding it to the sentence, then doing it again, one word at a time, until the answer sounds finished. The temperature dial below controls how adventurous each pick gets to be.</p>
         <p><b>Notice as you play:</b> the model never <em>checks</em> anything. There is no lookup step, only pattern completion. That single fact explains almost everything else on this page.</p>
       </div>
       <div class="llm">
@@ -1078,7 +1094,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="evidence reveal">
         <span class="e-label">The research</span>
-        <p><b>This is why the twenty minutes you&rsquo;re spending here pays back.</b> In a randomized experiment published in <em>Science</em>, Shakked Noy and Whitney Zhang gave 453 professionals occupation-specific writing tasks. The group using ChatGPT finished <b>40% faster</b> and produced work rated <b>18% higher in quality</b>, and the tool narrowed the gap between weaker and stronger writers instead of widening it. The prediction machine you just played with is the same one behind those numbers.</p>
+        <p><b>Here&rsquo;s why this is worth twenty minutes of your day.</b> In a randomized experiment published in <em>Science</em>, Shakked Noy and Whitney Zhang gave 453 professionals occupation-specific writing tasks. The group using ChatGPT finished <b>40% faster</b> and produced work rated <b>18% higher in quality</b>, and the tool narrowed the gap between weaker and stronger writers instead of widening it. The prediction machine you just played with is the same one behind those numbers.</p>
         <span class="e-src">Noy &amp; Zhang, &ldquo;Experimental evidence on the productivity effects of generative artificial intelligence,&rdquo; <a href="https://www.science.org/doi/10.1126/science.adh2586" target="_blank" rel="noopener"><em>Science</em>, 2023</a></span>
       </div>
       <div class="reveal" style="margin-top:20px">
@@ -1116,12 +1132,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Drill</span>
         <h3>Spot the hallucination</h3>
-        <p>Four AI-style answers about plausible campus topics. One detail in each is invented. Click the phrase you don&rsquo;t trust. (Every answer here was written for this drill; treat the &ldquo;facts&rdquo; accordingly. That&rsquo;s rather the point.)</p>
+        <p>In this activity, you will read four AI-style answers about plausible campus topics. One detail in each is invented. Click the phrase you do not trust, and you will see the warning sign it carries. (Every answer here was written for this drill; treat the facts accordingly.)</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
         <p>A hallucination is the machine doing what it was built to do: producing the most <em>plausible-sounding</em> next words. When the truth is common in its training data, plausible and true line up. But ask about something specific, rare, or internal (a policy number, a citation, a program name) and the model still completes the pattern, and the result sounds exactly as confident as a real fact.</p>
-        <p><b>In this drill</b> you&rsquo;ll practice spotting the warning signs of a made-up answer: a suspiciously precise number, a citation that looks real but isn&rsquo;t, or a program name that sounds official. (Card players call these &ldquo;tells.&rdquo;) The danger: a wrong AI answer reads just as smoothly and confidently as a right one. You cannot tell the difference by tone, only by checking.</p>
+        <p><b>In this drill</b> you&rsquo;ll practice spotting the warning signs of a made-up answer: a suspiciously precise number, a citation that looks real but isn&rsquo;t, or a program name that sounds official. (Card players call these &ldquo;tells.&rdquo;) The catch: a wrong AI answer reads just as smoothly and confidently as a right one. You can&rsquo;t tell the difference by tone, only by checking.</p>
       </div>
       <div class="hal-grid">
         <div class="hal" data-tell="A polished citation to a source that doesn&rsquo;t exist, the single most common hallucination. A real book title can be searched for and found; an invented one only sounds like it could be.">
@@ -1154,7 +1170,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module C</span>
         <h3>Myths vs. facts</h3>
-        <p>Six claims you'll hear in the break room. Tap each one for the verdict.</p>
+        <p>In this activity, you will review six claims about AI that you will hear around campus. Tap each one to see the verdict and the reasoning behind it.</p>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Which common AI claims are true</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Tap six claims for verdicts</span>
@@ -1197,7 +1213,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <button type="button" aria-expanded="false">&ldquo;You need to be technical to use AI well.&rdquo;</button>
           <span class="flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
           <div class="verdict"><span class="vtag myth-v">Myth</span>
-            <p>If you can write a clear email to a new colleague, you can write a great prompt. The Playground below will prove it.</p></div>
+            <p>If you can write a clear email to a new colleague, you can write a great prompt. You&rsquo;ll see that for yourself in the Playground below.</p></div>
         </div>
       </div>
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Next: the four built-in limits those myths grow out of. Once you know them, you&rsquo;ll know when to trust an answer and when to <em>check</em> it.</p></div>
@@ -1208,12 +1224,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module D</span>
         <h3>Limits to know</h3>
-        <p>Four built-in quirks of every LLM. None of them are dealbreakers once you know the counter-move.</p>
+        <p>In this module, you will learn the four built-in limits of every language model. Flip each card to see the limit, a campus example, and the counter-move. None of them are dealbreakers once you know what to do.</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
         <p>Every limit on these cards is a practical consequence of what you just watched in Module B. Limited memory (the context window), staleness (the training cutoff), randomness (two runs, two answers), and unearned confidence (no self-doubt meter) all follow from one design decision: the model <em>predicts</em> text; it doesn&rsquo;t consult anything.</p>
-        <p><b>Notice as you flip:</b> each limit comes paired with a counter-move. A limit you can name is a limit you can work around.</p>
+        <p><b>Notice as you flip:</b> each limit comes paired with a counter-move. Once you can name a limit, you can work around it.</p>
       </div>
       <div class="flip-grid">
         <div class="fcard">
@@ -1280,7 +1296,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="evidence reveal">
         <span class="e-label">The evidence: the jagged frontier</span>
         <p>The largest workplace experiment to date put numbers on both sides of these limits. In 2023, Fabrizio Dell&rsquo;Acqua, Ethan Mollick, and colleagues at Harvard Business School and BCG gave <b>758 consultants</b> real consulting tasks. With AI, they completed <b>12.2% more tasks</b>, <b>25.1% faster</b>, at <b>40% higher quality</b>, all on work <em>inside</em> AI&rsquo;s abilities. But on a task deliberately chosen to sit just <em>beyond</em> those abilities, consultants using AI fell from <b>84% correct to 60&ndash;70%</b>. Their answers still sounded polished and confident; they were just wrong more often. The quality of the writing hid the drop in accuracy.</p>
-        <p>The researchers&rsquo; name for this is the <b>jagged frontier</b>: AI&rsquo;s abilities form an edge that is spiky, not smooth. It aces some tasks you&rsquo;d bet against and flubs some you&rsquo;d bet on, so the working skill is knowing which side of the edge you&rsquo;re standing on. And since the edge is invisible from the outside, the only reliable test is the habit this module keeps landing on: <b>verify</b>.</p>
+        <p>The researchers&rsquo; name for this is the <b>jagged frontier</b>: AI&rsquo;s abilities form an edge that is spiky, not smooth. It aces some tasks you&rsquo;d bet against and flubs some you&rsquo;d bet on, so the working skill is knowing which side of the edge you&rsquo;re standing on. And since the edge is invisible from the outside, the only reliable test is the habit you&rsquo;ve now heard three times: <b>verify</b>.</p>
         <span class="e-src">Dell&rsquo;Acqua et&nbsp;al., &ldquo;Navigating the Jagged Technological Frontier,&rdquo; <a href="https://mitsloan.mit.edu/sites/default/files/2023-10/SSRN-id4573321.pdf" target="_blank" rel="noopener">Harvard Business School working paper, 2023 (PDF)</a></span>
       </div>
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now that you know how it works and where it breaks, let&rsquo;s make it work <em>for</em> you: five moves that narrow the pattern.</p></div>
@@ -1291,11 +1307,15 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module E</span>
         <h3>Five techniques that change everything</h3>
-        <p>Small habits, outsized results. Copy any example and adapt it, then go practice them for real in the Playground below.</p>
+        <p>In this module, you will learn the five prompting techniques that do most of the work.
+        Each comes with a short example you can copy. When you copy one, paste it into ChatGPT,
+        Amplify, or Copilot, swap the example details for your own, and send it. Reading a technique
+        shows you what it is; running it once is what makes it yours. You will practice all five,
+        with guidance, in the Playground below.</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>Why does prompting matter at all? Because the model cannot read your mind; it completes <em>your</em> pattern. A vague prompt hands it a vague pattern, and it will happily complete that too, with confident generic filler. Each technique below is a way of narrowing the pattern (with examples, grounding text, or a fresh start) until the likeliest continuation is the one you wanted.</p>
+        <p>Why does prompting matter at all? Because the model can&rsquo;t read your mind; it completes <em>your</em> pattern. A vague prompt hands it a vague pattern, and it will happily complete that too, with confident generic filler. Each technique below is a way of narrowing the pattern (with examples, grounding text, or a fresh start) until the likeliest continuation is the one you wanted.</p>
       </div>
       <div class="tech-list">
         <div class="tech reveal">
@@ -1329,7 +1349,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <span class="t-no" aria-hidden="true">4</span>
           <div>
             <h4>Ask it to critique you, or itself</h4>
-            <p class="t-why">It&rsquo;s a surprisingly honest editor, especially of its own work.</p>
+            <p class="t-why">It is a sharp editor, especially of its own work.</p>
             <code>Before you finalize, list three ways this draft could fail with a busy reader. Then revise it to fix all three.</code>
             <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy example</span></button>
           </div>
@@ -1338,7 +1358,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <span class="t-no" aria-hidden="true">5</span>
           <div>
             <h4>Start fresh when it drifts</h4>
-            <p class="t-why">Long chats accumulate confusion. A clean start beats wrestling.</p>
+            <p class="t-why">Long chats accumulate confusion. A clean start beats wrestling with it.</p>
             <code>New chat: You are an experienced editor. Context you need: [two-sentence summary of where we left off]. Task: continue from there.</code>
             <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy example</span></button>
           </div>
@@ -1361,7 +1381,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: practice. You have the concepts. Now let&rsquo;s build the skill.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Playground / 02</span></span>
       <h2>Practice here, <em class="s">shine everywhere.</em></h2>
-      <p>Three working practice tools. Build a prompt, get it graded, and find the right tool for the job.</p>
+      <p>In this section, you will practice in three working tools: the Prompt Lab, the Prompt Grader, and Tool Match. Everything runs on this page, and nothing you type is stored. <b>By the end of this section, you will have built, graded, and routed a real prompt.</b></p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         Honesty corner: these are guided practice tools that run entirely in your browser: no AI, and nothing you type leaves this page. The real AI lives in ChatGPT, Amplify, and Copilot; take what you build here into those.</p>
     </div>
@@ -1385,13 +1405,13 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="ppanel" id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" tabindex="0">
         <div class="concept">
           <span class="c-label">What this trains</span>
-          <p>This tool trains you to build a prompt deliberately, piece by piece. <b>What you&rsquo;ll notice:</b> every field you fill narrows down what the AI could come back with, and steering it toward the answer you want is the whole skill.</p>
+          <p>Here you build a prompt deliberately, piece by piece. <b>What you&rsquo;ll notice:</b> every field you fill narrows down what the AI could come back with, and steering it toward the answer you want is the whole skill.</p>
         </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>The five ingredients of a great prompt</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Build one live, watch it assemble, copy it out</span>
         <span class="lf-chip"><b>Time</b>4 min</span>
-        <p class="lf-why"><b>Why it matters to your work:</b> better prompts mean fewer rewrites. This is the single highest-leverage skill in CHART.</p>
+        <p class="lf-why"><b>Why it matters to your work:</b> better prompts mean fewer rewrites. No other skill in this course saves you more time.</p>
       </div>
         <div class="micro"><span><i aria-hidden="true">1</i>Fill any three fields (five is better)</span><span><i aria-hidden="true">2</i>Watch the prompt assemble live</span><span><i aria-hidden="true">3</i>Copy it into your tool of choice</span></div>
         <div class="app-grid">
@@ -1456,7 +1476,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="ppanel" id="panel-grader" role="tabpanel" aria-labelledby="tab-grader" tabindex="0" hidden>
         <div class="concept">
           <span class="c-label">What this trains</span>
-          <p>This tool trains you to spot what&rsquo;s missing from a prompt. <b>What you&rsquo;ll notice:</b> the lowest score is almost always context or specificity, the details we assume any reader &ldquo;just knows.&rdquo; The AI doesn&rsquo;t know them unless you write them down.</p>
+          <p>This one teaches you to spot what&rsquo;s missing from a prompt. <b>What you&rsquo;ll notice:</b> the lowest score is almost always context or specificity, the details we assume any reader &ldquo;just knows.&rdquo; The AI doesn&rsquo;t know them unless you write them down.</p>
         </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What separates an A prompt from an F</span>
@@ -1468,7 +1488,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <div class="watchout" style="margin-bottom:22px" role="note" aria-label="Challenge">
           <span class="w-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4c0 2.5 1.3 4 3 4M17 6h3c0 2.5-1.3 4-3 4"/></svg></span>
           <div><h5>Challenge: the performance test</h5>
-          <p>Write a prompt for a real task from <b>your</b> week and earn an <b>A</b>. A quiz can only measure what you remember. An A here proves you can do the thing this platform exists to teach.</p></div>
+          <p>Write a prompt for a real task from <b>your</b> week and earn an <b>A</b>. A quiz can only measure what you remember. An A here proves you can actually do it.</p></div>
         </div>
         <div class="app-grid">
           <div>
@@ -1489,7 +1509,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="ppanel" id="panel-match" role="tabpanel" aria-labelledby="tab-match" tabindex="0" hidden>
         <div class="concept">
           <span class="c-label">What this trains</span>
-          <p>This tool trains one decision: choosing your AI tool based on how sensitive the data is. <b>What you&rsquo;ll notice:</b> question one overrides everything else: if the data is sensitive, convenience never wins.</p>
+          <p>One decision, drilled until it&rsquo;s automatic: pick your AI tool by how sensitive the data is. <b>What you&rsquo;ll notice:</b> question one overrides everything else: if the data is sensitive, convenience never wins.</p>
         </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>How to pick the right tool, instantly</span>
@@ -1528,7 +1548,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that you&rsquo;ve practiced, let&rsquo;s run one <em>real</em> task. This is where it starts paying you back.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that you&rsquo;ve practiced, let&rsquo;s run one <em>real</em> task. This is where you&rsquo;ll feel the difference.</p></div>
   </div>
 </section>
 
@@ -1539,7 +1559,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: transfer. Now that you&rsquo;ve practiced, let&rsquo;s run one real task.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">First rep / 02.5</span></span>
       <h2>Your first <em class="s">real</em> rep.</h2>
-      <p>The practice tools above teach the pattern. The learning sticks the day you run <b style="color:var(--champ);font-weight:600">one real task</b> this week, from your own desk. The whole assignment is four steps.</p>
+      <p>In this section, you will run one real task through a real AI tool. You will pick a task from your week, build the prompt in the Prompt Lab, run it in ChatGPT, Amplify, or Copilot, and come back to reflect on what it got right and what you had to fix. Use safe data only, nothing confidential.</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI actually feels like on your own work</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>One real task, start to finish, then two reflections</span>
@@ -1567,7 +1587,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Debrief</span>
         <h3>How did it go?</h3>
-        <p>Two lines is plenty. Nothing you type is stored or sent anywhere; this page has no memory, on purpose.</p>
+        <p>Two lines is plenty. Nothing you type is stored or sent anywhere.</p>
       </div>
       <div class="app-grid">
         <form id="rrForm" autocomplete="off" novalidate>
@@ -1599,10 +1619,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="simulator" class="th-cream" aria-label="AI opportunity simulator">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: application. Now that you can write a strong prompt, let&rsquo;s find where AI benefits your actual job.</span>
+      <span class="you-are">You are here: application. Now that you can write a strong prompt, let&rsquo;s find where AI fits your actual job.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Simulator / 03</span></span>
       <h2>The AI Opportunity <em class="s">Simulator.</em></h2>
-      <p>Describe a real piece of your work and get an opportunity map, starter prompts, watch-outs, and a 30-day plan, built from common AI patterns. The best use cases share three features: they <b style="color:var(--champ);font-weight:600">repeat</b> (weekly, monthly, every fall), they&rsquo;re <b style="color:var(--champ);font-weight:600">text-heavy</b> (emails, summaries, reports), and they follow <b style="color:var(--champ);font-weight:600">rules you could explain to a new hire</b>. The more concretely you describe yours (who, what, how often), the sharper your map. And describe freely: nothing you type is stored or sent anywhere.</p>
+      <p>In this section, you will describe one real piece of your work and let the Simulator map it. You will get an opportunity map, three starter prompts written around your own words, any data-sensitivity flags, and a 30-day plan. A sentence or two is plenty, or tap an example to start. The best use cases share three features: they <b style="color:var(--champ);font-weight:600">repeat</b> (weekly, monthly, every fall), they are <b style="color:var(--champ);font-weight:600">text-heavy</b> (emails, summaries, reports), and they follow <b style="color:var(--champ);font-weight:600">rules you could explain to a new hire</b>. Nothing you type is stored or sent anywhere.</p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         A guided framework based on common AI patterns, not a live AI. For the real thing, take these prompts into your tools.</p>
       <div class="lframe">
@@ -1615,7 +1635,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
     <div class="concept reveal">
       <span class="c-label">The idea</span>
-      <p>One thing worth knowing before you press the button: this engine literally pattern-matches your description against fourteen common workplace patterns: drafting, summarizing, reporting, support, and so on. Consider it a tiny, transparent demonstration of how AI itself thinks. <b>Notice:</b> the more concretely you describe the work, the more patterns it can catch, exactly like a real prompt.</p>
+      <p>One thing worth knowing before you press the button: this engine literally pattern-matches your description against fourteen common workplace patterns: drafting, summarizing, reporting, support, and so on. It&rsquo;s a tiny, see-through version of how the real AI thinks. <b>Notice:</b> the more concretely you describe the work, the more patterns it can catch, exactly like a real prompt.</p>
     </div>
 
     <div class="sim-shell reveal">
@@ -1675,7 +1695,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: orientation. Now that you know what to ask, let&rsquo;s choose where to ask it.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Tools / 04</span></span>
       <h2>Three tools, <em class="s">zero guesswork.</em></h2>
-      <p>You don't need every AI product on Earth. You need to know which of these three to open, and when. Why three at all? Because two different questions pick your tool: <b style="color:var(--champ);font-weight:600">how sensitive is the data</b> (that decides where work is <em>allowed</em> to happen) and <b style="color:var(--champ);font-weight:600">where are you already working</b> (that decides what&rsquo;s convenient). Vanderbilt&rsquo;s lineup covers both.</p>
+      <p>In this section, you will compare the three AI tools available to Vanderbilt staff: ChatGPT, Amplify, and Copilot. You will learn what each is best at, what data each is approved for, and the one rule that decides most cases. Two questions pick your tool: <b style="color:var(--champ);font-weight:600">how sensitive is the data</b> (that decides where work is <em>allowed</em> to happen) and <b style="color:var(--champ);font-weight:600">where are you already working</b> (that decides what is convenient).</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What each tool is for, and what data it may touch</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Skim three cards, keep one rule of thumb</span>
@@ -1727,7 +1747,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </div>
     <div class="evidence reveal">
       <span class="e-label">The bench behind Amplify</span>
-      <p>Amplify is not an off-the-shelf product with a Vanderbilt login. It is Vanderbilt&rsquo;s own open-source generative AI platform, built internally and now in its <a href="https://computing.vanderbilt.edu/2026/01/06/amplify-2-0-ushers-in-a-new-era-of-ai-powered-productivity-at-vanderbilt/" target="_blank" rel="noopener">Amplify 2.0 era</a>. The team behind it is led by <b>Allen Karns</b>, Chief AI and Technology Officer of the <a href="https://news.vanderbilt.edu/2026/02/02/vanderbilt-launches-amplify-generative-ai-innovation-center-within-college-of-connected-computing/" target="_blank" rel="noopener">Amplify Generative AI Innovation Center</a>, who co-leads the center with Center Director <b>Jules White</b>, Professor of Computer Science and the same Jules White whose prompt patterns power our Prompt Lab. That is who stands behind the &ldquo;approved for institutional data&rdquo; badge: colleagues, not a vendor. <!-- [EDIT: confirm titles with the Amplify center before launch] --></p>
+      <p>Amplify isn&rsquo;t an off-the-shelf product with a Vanderbilt login. It&rsquo;s Vanderbilt&rsquo;s own open-source generative AI platform, built internally and now in its <a href="https://computing.vanderbilt.edu/2026/01/06/amplify-2-0-ushers-in-a-new-era-of-ai-powered-productivity-at-vanderbilt/" target="_blank" rel="noopener">Amplify 2.0 era</a>. The team behind it is led by <b>Allen Karns</b>, Chief AI and Technology Officer of the <a href="https://news.vanderbilt.edu/2026/02/02/vanderbilt-launches-amplify-generative-ai-innovation-center-within-college-of-connected-computing/" target="_blank" rel="noopener">Amplify Generative AI Innovation Center</a>, who co-leads the center with Center Director <b>Jules White</b>, Professor of Computer Science and the same Jules White whose prompt patterns power our Prompt Lab. That&rsquo;s who stands behind the &ldquo;approved for institutional data&rdquo; badge: colleagues, not a vendor. <!-- [EDIT: confirm titles with the Amplify center before launch] --></p>
     </div>
     <div class="rule-strip reveal" role="note" aria-label="Rule of thumb">
       <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.2-8 10.8-4.6-1.6-8-5.8-8-10.8V5.5L12 2z"/></svg>Sensitive data → <b>Amplify</b></span>
@@ -1745,7 +1765,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: judgment. Now that you can use the tools, let&rsquo;s talk about using them well.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Ethics / 05</span></span>
       <h2>Where policy ends, <em class="s">judgment begins.</em></h2>
-      <p>Ethics is what you reach for when the handbook hasn't caught up yet. No compliance checkboxes here, just five lenses for thinking clearly and four dilemmas to practice on.</p>
+      <p>In this section, you will work through four scenarios where the right answer is not obvious. Go with your honest instinct, then compare notes. The goal is knowing why you would choose, not passing a test.</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Five lenses for AI judgment calls</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Work through four workplace dilemmas</span>
@@ -1772,7 +1792,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <article class="principle reveal" style="transition-delay:.06s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.8 14.2L7 22l5-3 5 3-1.8-7.8"/></svg></span>
         <h3>Academic &amp; professional integrity</h3>
-        <p>Universities run on attribution, originality, and trust. Passing off AI work as purely your own spends credibility the whole institution depends on.</p>
+        <p>Universities run on attribution, originality, and trust. Passing off AI work as purely your own burns credibility the whole institution depends on.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.12s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1.5A5.5 5.5 0 0 1 8.5 13h1a5.5 5.5 0 0 1 5.5 5.5V20"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21 20v-1.2a5.5 5.5 0 0 0-4-5.3"/></svg></span>
@@ -1784,12 +1804,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Practice</span>
         <h3>What would you do?</h3>
-        <p>Pick your honest instinct, then compare notes. Reasonable people disagree on these. The goal is knowing <em>why</em> you'd choose, not passing a test.</p>
+        <p>Reasonable people disagree on these four scenarios; that is part of the point.</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
         <p>Rules answer the questions someone already thought of; judgment handles the ones nobody has yet. AI is moving faster than any handbook can, so the gray areas land on regular staff first, usually on a busy afternoon. Practicing on low-stakes scenarios now beats improvising on a real one later.</p>
-        <p><b>Notice as you choose:</b> the &ldquo;safe-looking&rdquo; middle option isn&rsquo;t automatically the right one. Each scenario turns on <em>which</em> principle is at stake.</p>
+        <p><b>Notice as you choose:</b> the &ldquo;safe-looking&rdquo; middle option isn&rsquo;t automatically the right one. What decides each scenario is <em>which</em> principle is at stake.</p>
       </div>
       <div class="dilemma-grid">
         <article class="dilemma">
@@ -1797,9 +1817,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <h4>The confident citation</h4>
           <p class="d-sit">A colleague asks you to look over a report before it goes to their director. It reads beautifully (clearly AI-assisted), but one citation is to a study you&rsquo;re fairly sure doesn&rsquo;t exist.</p>
           <div class="d-choices" role="group" aria-label="Your response to scenario 01">
-            <button type="button" aria-pressed="false" data-react="&ldquo;Tempting, but the fabrication is about to travel under Vanderbilt&rsquo;s name, with your silent sign-off.&rdquo;">Let it go; it&rsquo;s their report, not yours.</button>
+            <button type="button" aria-pressed="false" data-react="&ldquo;Tempting, but that fake source is about to go out under Vanderbilt&rsquo;s name, with your silent sign-off.&rdquo;">Let it go; it&rsquo;s their report, not yours.</button>
             <button type="button" aria-pressed="false" data-react="&ldquo;Kind and direct. Most people genuinely don&rsquo;t know AI invents sources.&rdquo;">Tell them privately so they can fix it first.</button>
-            <button type="button" aria-pressed="false" data-react="&ldquo;It gets fixed, and it torches a working relationship you didn&rsquo;t need to spend.&rdquo;">Flag it straight to their director.</button>
+            <button type="button" aria-pressed="false" data-react="&ldquo;It gets fixed, but it torches a working relationship for no good reason.&rdquo;">Flag it straight to their director.</button>
           </div>
           <div class="d-take" role="status" aria-live="polite">
             <span class="d-react"></span>
@@ -1827,7 +1847,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <h4>The name test</h4>
           <p class="d-sit">Your unit pilots an AI tool that pre-screens job applications. You run a quiet test: two nearly identical resumes, different names, and they come back with noticeably different scores.</p>
           <div class="d-choices" role="group" aria-label="Your response to scenario 03">
-            <button type="button" aria-pressed="false" data-react="&ldquo;Objectivity is the costume. The training data is human history, bias included.&rdquo;">Trust the tool; it&rsquo;s more objective than tired humans.</button>
+            <button type="button" aria-pressed="false" data-react="&ldquo;It only looks objective. The training data is human history, bias included.&rdquo;">Trust the tool; it&rsquo;s more objective than tired humans.</button>
             <button type="button" aria-pressed="false" data-react="&ldquo;Yes. Bias you can document is bias the institution can actually fix.&rdquo;">Document what you found and push for a review.</button>
             <button type="button" aria-pressed="false" data-react="&ldquo;Good instinct, wrong fix: silent patches hide the problem and make it yours alone.&rdquo;">Quietly adjust the scores yourself to compensate.</button>
           </div>
@@ -1856,7 +1876,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </div>
     <p class="honest reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
       Looking for the practical guardrails, like what never to paste and which tool for which data? That&rsquo;s <a href="#responsible" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">Responsible AI</a>, right below.</p>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Principles are choices. Now let&rsquo;s make them habits, <em>six</em> of them.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Those judgment calls get easier once they&rsquo;re habits. Let&rsquo;s build <em>six</em>.</p></div>
   </div>
 </section>
 
@@ -1864,10 +1884,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="responsible" class="th-light" aria-label="Responsible AI principles">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: guardrails. Principles are choices. Now let&rsquo;s make them habits.</span>
+      <span class="you-are">You are here: guardrails. Judgment calls get easier once they&rsquo;re habits. Let&rsquo;s build six.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Responsible AI / 06</span></span>
       <h2>Use it boldly. <em class="s">Use it well.</em></h2>
-      <p>Six habits that keep you (and Vanderbilt) on solid ground. They take seconds and save careers. (For the deeper judgment calls behind these habits, see <a href="#ethics" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">Ethics</a>, just above.)</p>
+      <p>In this section, you will learn six habits that keep you and Vanderbilt on solid ground. They take seconds, and they follow from what you already know about how these models work. (For the deeper judgment calls behind these habits, see <a href="#ethics" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">Ethics</a>, just above.)</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Six guardrail habits and the never-paste list</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Read it once, remember it forever</span>
@@ -1936,7 +1956,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: sustainability. Now that AI is saving you time, let&rsquo;s make sure you keep it.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Wellbeing / 07</span></span>
       <h2>AI saves time, <em class="s">if you let it.</em></h2>
-      <p>The promise was that AI reduces work. The research says: only if you're deliberate. A February 2026 Harvard Business Review study, <a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">&ldquo;AI Doesn&rsquo;t Reduce Work: It Intensifies It&rdquo;</a> by Ranganathan &amp; Ye (they followed about 200 employees at a U.S. tech company for eight months), found AI often <em>intensifies</em> work instead. Three patterns to watch, and a counter-move for each.</p>
+      <p>In this section, you will learn how AI quietly intensifies work, and how to keep the time it saves you. You will review three patterns from the research, then take a six-question self-check. Your answers stay between you and you. The research here: <a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">&ldquo;AI Doesn&rsquo;t Reduce Work: It Intensifies It&rdquo;</a> by Ranganathan &amp; Ye (Harvard Business Review, February 2026), who followed about 200 employees at a U.S. tech company for eight months.</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>How AI quietly intensifies work, per the HBR research</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Spot the three patterns, run a six-question self-check</span>
@@ -1975,7 +1995,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Self-check</span>
         <h3>Intensity self-check</h3>
-        <p>Six honest yes/nos. Nothing is stored or sent anywhere; this one is strictly between you and you.</p>
+        <p>Six honest yes/nos. Nothing is stored or sent anywhere.</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
@@ -2031,7 +2051,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <p>And if you want support beyond your team: <a href="#wellbeing">Vanderbilt Employee Assistance Program &amp; Work-Life resources <!-- [EDIT] link Vanderbilt EAP / Work-Life resources --></a>.</p>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that today is protected, let&rsquo;s get you ready for what&rsquo;s next, and what it means for your <em>career</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that your time is protected, let&rsquo;s get you ready for what&rsquo;s next, and what it means for your <em>career</em>.</p></div>
   </div>
 </section>
 
@@ -2042,7 +2062,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: horizon. Now that you can work with today&rsquo;s AI, let&rsquo;s get you ready for what&rsquo;s next.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Transform / 08</span></span>
       <h2>The next five years belong to the <em class="s">well-paired.</em></h2>
-      <p>The honest forecast: AI keeps absorbing tasks, and the people who thrive decide, on purpose, what to do with the time it frees. This section is your head start, beginning with the biggest shift of 2026: AI that <em>does</em>, not just answers.</p>
+      <p>In this section, you will look ahead: what AI agents change, which human skills grow more valuable, and how to build them. You will finish by drafting a 90-day development plan for your own role.</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI agents are, and which human skills appreciate in value</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Pick your skills, build a personal 90-day plan</span>
@@ -2105,7 +2125,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="evidence reveal">
         <span class="e-label">The evidence</span>
-        <p>Both styles come from Ethan Mollick&rsquo;s essay on the same HBS/BCG experiment, and both are legitimate. Our suggestion: <b>start centaur</b>, since clean handoffs are easier to verify while your instincts are young, and <b>grow cyborg</b> as your sense of the frontier gets calibrated. The guiding stance of this whole platform is borrowed (paraphrased, not quoted) from his book <em>Co-Intelligence</em>: treat AI like a person (a tireless, overconfident colleague), always check its work, and stay the human in the loop.</p>
+        <p>Both styles come from Ethan Mollick&rsquo;s essay on the same HBS/BCG experiment, and both are legitimate. Our suggestion: <b>start centaur</b>, because clean handoffs are easier to check while you&rsquo;re still building instincts, and <b>grow cyborg</b> as you get a feel for the frontier. The guiding stance of this whole platform is borrowed (paraphrased, not quoted) from his book <em>Co-Intelligence</em>: treat AI like a person (a tireless, overconfident colleague), always check its work, and stay the human in the loop.</p>
         <span class="e-src">Ethan Mollick, <a href="https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged" target="_blank" rel="noopener">&ldquo;Centaurs and Cyborgs on the Jagged Frontier&rdquo;</a> (One Useful Thing, 2023) &middot; <em>Co-Intelligence: Living and Working with AI</em> (2024)</span>
       </div>
     </div>
@@ -2189,7 +2209,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <div id="fpOut" role="status" aria-live="polite"></div>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>You&rsquo;ve built the foundation. Here is where to keep growing: the best voices, one <em>click</em> away.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You&rsquo;ve built the foundation. Here&rsquo;s where to keep growing: the best voices, one <em>click</em> away.</p></div>
   </div>
 </section>
 
@@ -2200,7 +2220,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: launchpad. You&rsquo;ve built the foundation. This is where to keep growing.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Resources / 10</span></span>
       <h2>Keep the curiosity <em class="s">compounding.</em></h2>
-      <p>Hand-picked and staff-friendly, no rabbit holes required. Fifteen curious minutes a week is the whole assignment.</p>
+      <p>In this section, you will find the podcasts, videos, articles, and reports we trust, including work from the Vanderbilt experts behind Amplify and the prompt patterns you practiced. Pick one and keep going. Fifteen curious minutes a week is the whole assignment.</p>
       <div class="lframe"><span class="lf-chip"><b>Last reviewed</b>July 2026</span><span class="lf-chip"><b>Format</b>All free to start &middot; all external links</span></div>
     </div>
       <div class="res-group reveal">
@@ -2339,7 +2359,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: checkpoint. You&rsquo;ve built the whole path. Now let&rsquo;s see what stuck.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Knowledge check / 09</span></span>
       <h2>Prove it to <em class="s">yourself.</em></h2>
-      <p>Eight quick questions, a <b style="color:var(--champ);font-weight:600">self-assessment, not an exam</b>. It's unscored and untracked, nothing leaves this page, and you can retake it as many times as you like.</p>
+      <p>In this section, you will answer eight questions covering the whole course. Nobody sees your score, and you can retake it anytime. When you finish, tell us how we did: two ratings and an optional note.</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Where your gaps are (if any)</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Answer eight questions, self-scored instantly</span>
@@ -2459,13 +2479,13 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <!-- [EDIT: interim feedback route — mailto matthew.estes@vanderbilt.edu below; replace with survey tool / REDCap / Qualtrics link when available] -->
           <a class="btn btn-primary" id="fbSend" role="button" href="#" aria-disabled="true">Send feedback
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></a>
-          <p class="nudge show" id="fbNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Pick a 0&ndash;10 rating and a satisfaction rating, and the send button unlocks.</p>
+          <p class="nudge show" id="fbNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Pick a 0&ndash;10 rating and a satisfaction rating, and you can send.</p>
           <p class="fb-disclose">This opens your email app and sends from your address; nothing is submitted in the background.</p>
           <p class="fb-status" id="fbStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Score in hand, take one short lap of review. Revisiting an idea right after learning it is what moves it into <em>long-term memory</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Score in hand, give everything one <em>quick review</em> before you go.</p></div>
   </div>
 </section>
 
@@ -2473,10 +2493,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="summary" class="th-light" aria-label="What you now know">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: consolidation. This recap is not a formality; a short revisit strengthens memory more than rereading ever does.</span>
+      <span class="you-are">You are here: consolidation. This recap isn&rsquo;t a formality; a quick revisit strengthens memory more than rereading ever does.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Summary / 11</span></span>
       <h2>What you now <em class="s">know.</em></h2>
-      <p>Six ideas came home with you today. Give each one ten more seconds and it will still be there in a month.</p>
+      <p>In this section, you will revisit the six ideas you picked up today. A quick review right after learning is what moves ideas into long-term memory.</p>
     </div>
     <div class="recap-grid">
       <article class="recap reveal">
@@ -2510,7 +2530,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="r-why"><b>At work:</b> the skill they reward is the one you practiced here, clear and complete delegation.</span>
       </article>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Knowing is half. The other half is a habit, and it starts <em>this week</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Knowing is only half of it. The other half is a habit, and it starts <em>this week</em>.</p></div>
   </div>
 </section>
 
@@ -2518,10 +2538,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="nextstep" class="th-cream" aria-label="Your next step">
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:0">
-      <span class="you-are">You are here: the handoff. The course ends; the habit begins.</span>
+      <span class="you-are">You are here: the handoff. This is where the course ends and the habit takes over.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Next step / 12</span></span>
       <h2>Put it to work <em class="s">this week.</em></h2>
-      <p>One loop, five steps. It takes about an hour spread across a normal week, and it turns everything above into a working habit.</p>
+      <p>In this section, you will turn the course into a habit. One loop, five steps, starting with a task from this week. The whole loop takes about an hour, spread across a normal week.</p>
     </div>
     <div class="hw-list reveal">
       <div class="hw-step">
@@ -2566,7 +2586,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
     </div>
     <p class="hw-meta reveal">Next month, pick a second task and run the same loop. It goes faster the second time.</p>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>That&rsquo;s the whole platform. One last line before you <em>go</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>That&rsquo;s the whole platform.</p></div>
   </div>
 </section>
 
@@ -3390,7 +3410,7 @@ document.querySelectorAll('.tech-copy').forEach(function(b){
   b.addEventListener('click', function(){
     var code = b.parentElement ? b.parentElement.querySelector('code') : null;
     var label = b.querySelector('span');
-    if(code && label) copyText(code.textContent, label, 'Copied ✓');
+    if(code && label) copyText(code.textContent, label, 'Copied ✓ · paste into your AI tool');
   });
 });
 
