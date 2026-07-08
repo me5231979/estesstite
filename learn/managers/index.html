@@ -1089,6 +1089,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     <div class="eyebrow" style="margin-bottom:20px"><span class="tick"></span><span class="mono" style="color:var(--eyebrow)">The role, honestly</span></div>
     <h2 style="font-size:clamp(2rem,4.5vw,3.4rem);max-width:18ch">A Vanderbilt manager holds <em class="s">three jobs</em> at once.</h2>
     <p style="margin-top:22px;color:var(--tx2);max-width:60ch">Most managers were promoted because they were excellent at the work. The role that follows is a different craft. Pick a domain to begin — each ends in a simulator where you make the calls a real manager makes. And beneath all three runs a fourth thing: the human craft that makes the other jobs work.</p>
+    <p style="margin-top:14px;font-size:.9rem;color:var(--tx3);max-width:62ch">Two Vanderbilt terms you'll see throughout: <b style="color:var(--tx2)">PCB</b> is People, Culture and Belonging — our name for HR — and your <b style="color:var(--tx2)">EC</b> is your Engagement Consultant, the PCB partner assigned to your unit.</p>
 
     <div class="pathgrid" style="margin-top:44px">
       <a class="pathcard" href="#compliance">
@@ -2822,7 +2823,7 @@ function initInfra(){
 }
 function initReveal(){
   var targets = Array.prototype.slice.call(document.querySelectorAll(
-    'section h2, .statrow, .pathcard, .topic-card, .sim-shell, .sc, .roadmap, .manifesto p, .dhead'));
+    'section h2, .statrow, .pathcard, .topic-card, .sim-shell, .sc, .roadmap, .manifesto p, .dhead, .yt, .flip, .baro, .linklist'));
   function showAll(){ targets.forEach(function(t){ t.classList.add('in'); }); }
   if(reduce || !('IntersectionObserver' in window)){ targets.forEach(function(t){t.classList.remove('reveal');}); showAll(); return; }
   targets.forEach(function(t){ t.classList.add('reveal'); });
