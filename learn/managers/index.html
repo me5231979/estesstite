@@ -771,6 +771,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 </style>
 
 <style>
+/* global failsafe: an svg with no sizing rule must never explode to full width */
+svg{ width:1em; height:1em; flex-shrink:0; }
 /* ═══════════════════ MANAGER FOUNDATIONS — SUPPLEMENTAL ═══════════════════ */
 
 /* ── trust bar / stat row ── */
@@ -856,8 +858,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 .sc-fb.good .fb-verdict{ color:#42604A; } .sc-fb.bad .fb-verdict{ color:var(--vu-err); }
 .sc-fb .fb-text{ color:var(--tx2); font-size:.95rem; margin-top:12px; }
 .sc-fb .fb-text b{ color:var(--tx); font-weight:600; }
-.sc-fb .fb-law{ margin-top:14px; padding-top:14px; border-top:1px solid var(--bd); font-size:.85rem; color:var(--tx3); display:flex; gap:10px; align-items:flex-start; }
-.sc-fb .fb-law svg{ width:15px; height:15px; flex-shrink:0; margin-top:3px; color:var(--eyebrow); }
+.fb-law{ margin-top:14px; padding-top:14px; border-top:1px solid var(--bd); font-size:.85rem; color:var(--tx3); display:flex; gap:10px; align-items:flex-start; }
+.fb-law svg{ width:15px; height:15px; flex-shrink:0; margin-top:3px; color:var(--eyebrow); }
 .sc-adv{ display:flex; justify-content:flex-end; margin-top:22px; }
 
 /* debrief / result */
@@ -1006,6 +1008,28 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
 .next-up a{ display:inline-flex; align-items:center; gap:10px; font-family:var(--cond); font-weight:700; font-size:.85rem; letter-spacing:.04em; text-transform:uppercase; color:var(--eyebrow); }
 .next-up a svg{ width:16px; height:16px; transition:transform .2s ease-out; }
 .next-up a:hover{ color:var(--strong); } .next-up a:hover svg{ transform:translateX(4px); }
+/* ═══════ DECISION PRIMERS (teach before you test) ═══════ */
+.primer{ margin-top:26px; border:1px solid var(--bd); border-left:3px solid var(--vu-gold); border-radius:var(--r); background:var(--card2); padding:18px 20px; display:flex; flex-direction:column; gap:12px; max-width:860px; }
+.pr-row{ display:grid; grid-template-columns:minmax(150px,190px) 1fr; gap:6px 16px; align-items:baseline; }
+.pr-row b{ font-size:.9rem; color:var(--tx); }
+.pr-row span{ font-size:.88rem; color:var(--tx2); line-height:1.5; }
+@media (max-width:640px){ .pr-row{ grid-template-columns:1fr; } }
+
+/* ═══════ ER MICRO-DRILLS ═══════ */
+.micro{ border:1px solid var(--bd); border-radius:var(--r); background:var(--card); overflow:hidden; }
+.micro .m-head{ width:100%; text-align:left; background:none; border:0; cursor:pointer; padding:20px 20px 16px; display:block; }
+.micro .m-head h5{ font-size:1rem; margin-bottom:6px; }
+.micro .m-head p{ font-size:.875rem; color:var(--tx2); line-height:1.5; }
+.micro .m-cta{ display:inline-flex; align-items:center; gap:7px; margin-top:12px; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--eyebrow); }
+.micro .m-cta svg{ width:12px; height:12px; }
+.micro.open .m-cta{ opacity:.45; }
+.micro .m-head:hover{ background:var(--card2); }
+.micro .m-body{ padding:4px 20px 20px; border-top:1px solid var(--bd); }
+.micro .m-deep{ font-size:.9rem; color:var(--tx2); line-height:1.6; padding-top:14px; }
+.micro .m-q{ font-weight:600; font-size:.92rem; margin:14px 0 10px; color:var(--tx); }
+.micro .esc-exp{ display:none; margin-top:12px; font-size:.875rem; color:var(--tx2); border-left:2px solid var(--vu-gold); padding-left:12px; line-height:1.55; }
+.micro .esc-exp.show{ display:block; }
+.micro .esc-btns{ flex-direction:column; }
 
 </style>
 </head>
@@ -1090,7 +1114,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
     <div class="statrow">
       <div class="statcell"><span class="num">3</span><span class="lbl">core domains every Vanderbilt manager owns</span></div>
       <div class="statcell"><span class="num">4</span><span class="lbl">state compliance profiles — TN · NY · CA · FL</span></div>
-      <div class="statcell"><span class="num">18</span><span class="lbl">interactive experiences — simulators, labs &amp; plan builders</span></div>
+      <div class="statcell"><span class="num">22</span><span class="lbl">interactive experiences — simulators, labs &amp; plan builders</span></div>
       <div class="statcell"><span class="num">100%</span><span class="lbl">hands-on — you make every call yourself, no slides</span></div>
     </div>
   </div>
@@ -1177,6 +1201,8 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <div class="eyebrow" style="margin-bottom:14px"><span class="mono">Simulator · Report or resolve?</span></div>
       <h3 style="font-size:1.55rem;max-width:26ch">Some things you handle. Some things you are <em class="s">required</em> to report.</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:62ch">The most consequential compliance mistake a manager makes is sitting on something the law says must go up immediately. Read each situation and make the call. Getting one wrong here is exactly how institutions end up in the headlines.</p>
+      
+      <div class="primer"><span class="mono" style="color:var(--eyebrow)">How to decide · the three lanes</span><div class="pr-row"><b>Resolve it yourself</b><span>Everyday management calls: schedules, workload, ordinary disagreements, a first-time minor lapse. No protected element, no legal duty in play.</span></div><div class="pr-row"><b>Loop in PCB / Compliance</b><span>Gray areas and patterns: possible conflicts of interest, gifts from vendors, repeat behavior, anything touching pay, leave, or policy where you want a second reader before acting.</span></div><div class="pr-row"><b>Report immediately</b><span>Legal duties, not judgment calls: suspected abuse of a minor, sexual misconduct (Title IX), safety threats, retaliation. You report the same day — and you never investigate it yourself.</span></div></div>
       <div id="deck-report" style="margin-top:26px"></div>
       <p class="next-up"><a href="#relations">Next up: Domain 02 · Employee Relations <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
     </div>
@@ -1196,6 +1222,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
     <p style="margin-top:8px;color:var(--tx2);max-width:62ch">With the ground rules in place, we turn to the part of the job that's actually about people. Employee Relations (ER) is everything that happens between the policy and the person: the coaching, the conflict, the conversation you'd rather not have. Managers who do this well are made, not born — and the making is mostly reps.</p>
 
     <h3 style="margin-top:52px;font-size:1.4rem">What it actually means to be a manager</h3>
+    <p style="margin-top:10px;color:var(--tx3);font-size:.92rem">Open any card for the deeper story — then try the call yourself. Six cards, six calls.</p>
     <div class="topic-grid" style="margin-top:20px" id="relationsTopics"></div>
 
     <!-- difficult conversation simulator -->
@@ -1211,6 +1238,8 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Simulator · Handle or escalate?</span></div>
       <h3 style="font-size:1.55rem;max-width:26ch">Knowing your lane is a <em class="s">skill</em>.</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:62ch">Great managers solve most things at their desk. The best ones also know the precise moment a situation stops being theirs to solve alone — and loop in Engagement Consultants (ECs), Employee Relations, or Title IX before it grows. Make the call on each.</p>
+      
+      <div class="primer"><span class="mono" style="color:var(--eyebrow)">How to decide · whose lane is it</span><div class="pr-row"><b>Handle it yourself</b><span>Coaching, performance, everyday friction. Most of the job lives here — escalating it trains your team to route around you.</span></div><div class="pr-row"><b>Partner with PCB</b><span>Patterns that persist after coaching, accommodation requests, anything touching pay or leave, counteroffers. You stay involved; you just stop deciding alone.</span></div><div class="pr-row"><b>Escalate to ER / Legal now</b><span>Anything touching a protected class, harassment, safety, wage violations, or retaliation — even when the person asks you to keep it quiet.</span></div></div>
       <div id="deck-escalate" style="margin-top:26px"></div>
       <p class="next-up"><a href="#operations">Next up: Domain 03 · Operational Craft <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
     </div>
@@ -1261,6 +1290,42 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
     <p style="margin-top:22px;color:var(--tx2);max-width:62ch">Everything in the first three domains fails without this one. One-on-ones, feedback, psychological safety, and growth conversations are the daily mechanics of trust — and they are learnable, practicable skills, not personality traits.</p>
 
     <div class="topic-grid" style="margin-top:36px" id="softTopics"></div>
+
+    <!-- 1:1 BUILDER -->
+    <div style="margin-top:60px">
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Build · Your 1:1 operating system</span></div>
+      <h3 style="font-size:1.55rem;max-width:30ch">Design the 1:1 you&rsquo;ll actually run.</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:64ch">Answer three questions and pick the coaching questions that sound like you — you&rsquo;ll get a personal 1:1 framework built on the research, ready to paste into your first calendar invite.</p>
+      <div class="sim-shell" style="margin-top:26px" id="oobuilder">
+        <div class="sim-row">
+          <div class="field">
+            <label for="oobSize">How many direct reports do you have?</label>
+            <select id="oobSize">
+              <option value="small" selected>1–4</option>
+              <option value="mid">5–8</option>
+              <option value="large">9 or more</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="oobPerson">Design this 1:1 for someone who is&hellip;</label>
+            <select id="oobPerson">
+              <option value="new" selected>New to the team (first 6 months)</option>
+              <option value="steady">A steady, solid performer</option>
+              <option value="struggling">Struggling right now</option>
+              <option value="senior">Senior and self-directed</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top:18px">
+          <p style="font-weight:600;margin-bottom:4px">Pick your three core questions <span style="font-weight:400;color:var(--tx3)">(the ones you&rsquo;ll ask every time)</span></p>
+          <p id="oobMax" style="display:none;color:var(--vu-err);font-size:.85rem;margin-bottom:6px">Three is the magic number — enough to go deep, few enough to remember.</p>
+          <div id="oobQs" class="baro" style="border:0;padding:0;background:transparent;max-width:640px"></div>
+        </div>
+        <div style="margin-top:20px"><button type="button" class="btn btn-primary" id="oobGo">Build my 1:1 framework</button></div>
+        <div id="oobOut" aria-live="polite"></div>
+        <p style="margin-top:22px;font-size:.78rem;color:var(--tx3);max-width:76ch">Built on: Andy Grove, <i>High Output Management</i> (the 1:1 as the employee&rsquo;s meeting) &middot; Michael Bungay Stanier, <i>The Coaching Habit</i> (the seven questions) &middot; Sir John Whitmore&rsquo;s GROW model (growth conversations) &middot; <a href="https://rework.withgoogle.com" target="_blank" rel="noopener">Google re:Work</a> manager guides &middot; <a href="https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx" target="_blank" rel="noopener">Gallup</a> research on manager-employee conversations &middot; consistent with <a href="https://www.shrm.org/topics-tools" target="_blank" rel="noopener">SHRM</a> people-manager guidance.</p>
+      </div>
+    </div>
 
     <!-- Feedback: watch + practice -->
     <div style="margin-top:60px">
@@ -1335,7 +1400,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
   <div class="wrap">
     <div class="eyebrow" style="margin-bottom:16px"><span class="tick"></span><span class="mono" style="color:var(--eyebrow)">Transfer · From simulator to Monday morning</span></div>
     <h2 style="font-size:clamp(1.9rem,4.2vw,3.1rem);max-width:20ch">Take it to <em class="s">your desk</em>.</h2>
-    <p style="margin-top:20px;color:var(--tx2);max-width:62ch">Training that stays on the screen is entertainment. Pick the hard moment you're most likely to face first — based on your actual team, this actual year — and get a personal first-72-hours plan you can keep.</p>
+    <p style="margin-top:20px;color:var(--tx2);max-width:62ch">Practice only counts if it changes what you do at your desk. Pick the hard moment you're most likely to face first — based on your actual team, this actual year — and get a first-72-hours plan you can keep.</p>
     <div class="sim-shell" style="margin-top:32px">
       <div class="sim-row">
         <div class="field">
@@ -1403,6 +1468,8 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <div class="eyebrow" style="margin-bottom:14px"><span class="mono">Mastery 01 · The Interview Room</span></div>
       <h3 style="font-size:1.55rem;max-width:28ch">Eight interview questions. Which would <em class="s">you</em> ask?</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:62ch">You're hiring a program coordinator. A colleague drafted questions for the panel. Some are excellent, some carry legal risk, and a few should never be said out loud in an interview. Sort them — <b style="color:var(--strong)">Ask it</b>, <b style="color:var(--strong)">Rephrase it</b>, or <b style="color:var(--strong)">Never ask</b>.</p>
+      
+      <div class="primer"><span class="mono" style="color:var(--eyebrow)">The rules before you sort</span><div class="pr-row"><b>Ask it</b><span>Job-related, about behavior or ability, and asked of every candidate in the same words. Behavioral questions (“tell me about a time…”) are the gold standard.</span></div><div class="pr-row"><b>Rephrase it</b><span>The need is legitimate but the wording touches protected territory. Ask about the job requirement — the schedule, the travel, the lifting “with or without reasonable accommodation” — never about the personal circumstance behind it.</span></div><div class="pr-row"><b>Never ask</b><span>No compliant version exists: age, national origin, family plans, religion, health, and — in New York, California, and a growing list of states — salary history. If it’s about who they are rather than what the job needs, it doesn’t belong in the room.</span></div></div>
       <div id="deck-interview" style="margin-top:26px"></div>
     </div>
 
@@ -1411,6 +1478,8 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <div class="eyebrow" style="margin-bottom:14px"><span class="mono">Mastery 02 · The Calibration Lab</span></div>
       <h3 style="font-size:1.55rem;max-width:28ch">Spot the bias before it reaches the rating.</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:62ch">Review season. Six rating rationales are on the table — real quotes from real calibration meetings, lightly disguised. Diagnose each one: is it fair and specific, or is a bias doing the rating?</p>
+      
+      <div class="primer"><span class="mono" style="color:var(--eyebrow)">Know the biases before you judge</span><div class="pr-row"><b>Recency bias</b><span>The last few weeks stand in for the whole year — a strong (or rough) finish rewrites twelve months of evidence.</span></div><div class="pr-row"><b>Halo effect</b><span>One shining result (or one failure) colors every category, so a great launch makes someone a “great communicator” too.</span></div><div class="pr-row"><b>Similar-to-me</b><span>Shared background, style, or career path quietly reads as performance. The most common bias in the room, and the hardest to spot on yourself.</span></div><div class="pr-row"><b>Fair &amp; specific</b><span>Evidence from the whole period, tied to goals, context noted, written down. What every rating in the room should look like.</span></div></div>
       <div id="deck-calibration" style="margin-top:26px"></div>
     </div>
   </div>
@@ -1635,6 +1704,8 @@ var ICON = {
   book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z"/></svg>',
   hire:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2M9 3a4 4 0 100 8 4 4 0 000-8zM19 8v6M22 11h-6"/></svg>'
 };
+ICON.play='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>';
+
 
 /* ══════════ progress / completion tracking ══════════ */
 var MODULES = [
@@ -1642,8 +1713,10 @@ var MODULES = [
   {key:'report', label:'Report or Resolve', href:'#deck-report'},
   {key:'convo', label:'Difficult Conversation', href:'#sim-convo'},
   {key:'escalate', label:'Handle or Escalate', href:'#deck-escalate'},
+  {key:'ermicro', label:'ER Drills', href:'#relationsTopics'},
   {key:'fmla', label:'FMLA Simulator', href:'#sim-fmla'},
   {key:'discipline', label:'Progressive Discipline', href:'#sim-discipline'},
+  {key:'opsmicro', label:'Ops Drills', href:'#operationsTopics'},
   {key:'interview', label:'Interview Room', href:'#deck-interview'},
   {key:'calibration', label:'Calibration Lab', href:'#deck-calibration'},
   {key:'ada', label:'Accommodation', href:'#sim-ada'},
@@ -1651,6 +1724,8 @@ var MODULES = [
   {key:'change', label:'Reorg', href:'#sim-change'},
   {key:'term', label:'Last Conversation', href:'#sim-term'},
   {key:'feedback', label:'Feedback Lab', href:'#deck-feedback'},
+  {key:'softmicro', label:'Craft Drills', href:'#softTopics'},
+  {key:'oob', label:'1:1 Builder', href:'#oobuilder'},
   {key:'psychsafe', label:'Safety Barometer', href:'#barometer'},
   {key:'oneonone', label:'1:1 Simulator', href:'#sim-oneonone'},
   {key:'assess', label:'Assessment', href:'#assess'},
@@ -1670,9 +1745,51 @@ function renderTrack(){
 
 /* ══════════ topic grids ══════════ */
 function topicCard(t){
-  return '<div class="topic-card reveal"><div class="tc-ic">'+(ICON[t.i]||ICON.doc)+'</div><h5>'+esc(t.h)+'</h5><p>'+t.p+'</p></div>';
+  return '<div class="topic-card reveal"><div class="tc-ic">'+(ICON[t.i]||ICON.doc)+'</div><h5>'+t.h+'</h5><p>'+t.p+'</p></div>';
 }
 var FLIP_ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M3.5 15a9 9 0 0014.9 3.4L23 14M1 10l4.6-4.4A9 9 0 0120.5 9"/></svg>';
+function mountMicro(id, items, doneKey){
+  var host=el(id); if(!host) return;
+  var answered={};
+  host.innerHTML=items.map(function(m,i){
+    return '<div class="micro" id="'+id+'-m'+i+'">'+
+      '<button type="button" class="m-head" aria-expanded="false" aria-controls="'+id+'-b'+i+'">'+
+        '<div class="tc-ic">'+(ICON[m.i]||ICON.doc)+'</div>'+
+        '<h5>'+m.h+'</h5><p>'+m.p+'</p>'+
+        '<span class="m-cta">'+ICON.play+' Try the call</span>'+
+      '</button>'+
+      '<div class="m-body" id="'+id+'-b'+i+'" hidden>'+
+        '<p class="m-deep">'+m.deep+'</p>'+
+        '<p class="m-q">'+m.q+'</p>'+
+        '<div class="esc-btns" data-i="'+i+'">'+m.opts.map(function(o,j){ return '<button type="button" data-j="'+j+'">'+o.t+'</button>'; }).join('')+'</div>'+
+        '<div class="esc-exp" data-exp="'+i+'"></div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+  host.addEventListener('click', function(e){
+    var head=e.target.closest('.m-head');
+    if(head){
+      var card=head.parentElement, body=card.querySelector('.m-body'), open=body.hidden;
+      body.hidden=!open; head.setAttribute('aria-expanded', open?'true':'false');
+      card.classList.toggle('open', open);
+      return;
+    }
+    var btn=e.target.closest('.esc-btns button');
+    if(btn && !btn.disabled){
+      var wrap=btn.parentElement, i=+wrap.getAttribute('data-i'), j=+btn.getAttribute('data-j');
+      var item=items[i], o=item.opts[j];
+      Array.prototype.forEach.call(wrap.children, function(bb,k){
+        bb.disabled=true;
+        if(k===j) bb.classList.add(o.ok?'right':'wrong');
+        else if(item.opts[k].ok) bb.classList.add('miss');
+      });
+      var exp=host.querySelector('[data-exp="'+i+'"]');
+      if(exp){ exp.innerHTML=(o.ok?'<b>Right call.</b> ':'<b>Not this one.</b> ')+o.fb; exp.classList.add('show'); }
+      answered[i]=true;
+      if(Object.keys(answered).length===items.length && doneKey) markDone(doneKey);
+    }
+  });
+}
 function flipCard(c){
   return '<div class="flip" tabindex="0" role="button" aria-expanded="false" aria-label="'+esc(c.h.replace(/&amp;/g,'&'))+' — flip for policy and course links">'+
     '<div class="flip-inner">'+
@@ -1740,21 +1857,93 @@ var COMPLIANCE_TOPICS=[
    back:'Equal Opportunity and Access (EOA) investigates discrimination, harassment, and retaliation. NY requires annual training; CA requires 2 supervisor hours every 2 years.',
    link:'https://www.vanderbilt.edu/eoa/', linkLabel:'VU Equal Opportunity & Access'}
 ];
-var RELATIONS_TOPICS=[
-  {i:'users',h:'What being a manager means',p:'Your output is now your team’s output. The shift from doing the work to enabling it is the hardest — and most important — part of the job.'},
-  {i:'chat',h:'Difficult conversations',p:'Feedback, performance, conduct. Lead with the specific behavior and its impact, listen more than you talk, and never make it personal.'},
-  {i:'route',h:'When to escalate',p:'The judgment that protects everyone: which issues you own, which you partner with PCB on, and which must go to Employee Relations or Title IX now.'},
-  {i:'shield',h:'Navigating ER issues',p:'Complaints, conflicts, and investigations. Stay neutral, protect confidentiality, avoid promises you can’t keep, and document facts.'},
-  {i:'doc',h:'Documentation &amp; fairness',p:'Contemporaneous, factual, consistent notes are how you treat people fairly — and how the record holds up if it ever needs to.'},
-  {i:'heart',h:'Coaching &amp; growth',p:'Most performance is coached, not disciplined. Set clear expectations, give feedback early, and invest before problems compound.'}
+var ER_MICRO=[
+  {i:'users',h:'What being a manager means',p:'Your output is now your team\u2019s output. The shift from doing the work to enabling it is the hardest \u2014 and most important \u2014 part of the job.',
+   deep:'The promotion quietly rewrote your job description. The work you were best at is now the work you hand to someone else \u2014 and your success is measured by how well <i>they</i> do it. Most new managers relapse into doing instead of enabling, because doing feels productive and coaching feels slow. It\u2019s backwards: every task you take back teaches your team to bring you tasks, and teaches you to be the bottleneck.',
+   q:'Friday, 4pm. A report your old self could polish in an hour is rough, and Priya \u2014 who owns it now \u2014 is struggling. The deadline is Monday. Your move?',
+   opts:[
+    {t:'Take it home and fix it yourself \u2014 fastest path to quality.',ok:false,fb:'Fast tonight, expensive forever. Priya learns nothing except that you\u2019ll take work back, and you\u2019ve booked yourself as the permanent rewrite desk.'},
+    {t:'Sit with her for thirty minutes, show her the two weak sections and why they\u2019re weak, and let her do the fixing.',ok:true,fb:'Right. Slower tonight, faster every week after. Coaching the fix builds the skill; doing the fix just rents the deadline.'},
+    {t:'Quietly push the deadline and hope it improves.',ok:false,fb:'You moved the deadline and left the skill gap exactly where it was \u2014 you\u2019ll be back here next month with less goodwill.'}]},
+  {i:'chat',h:'Difficult conversations',p:'Feedback, performance, conduct. Lead with the specific behavior and its impact, listen more than you talk, and never make it personal.',
+   deep:'The formula is simple and almost nobody does it under pressure: name the <b>situation</b>, the observed <b>behavior</b>, and its <b>impact</b> \u2014 then stop talking and listen. No character verdicts, no \u201Cpeople are saying,\u201D no stockpiling six months of grievances into one ambush. And have it soon: feedback loses accuracy and fairness with every week it waits.',
+   q:'Jordan steamrolled a teammate in Tuesday\u2019s review and the room noticed. Pick your opener:',
+   opts:[
+    {t:'\u201CJordan, people are saying you\u2019ve been difficult in meetings lately.\u201D',ok:false,fb:'Anonymous accusers and a character label \u2014 Jordan can\u2019t answer \u201Cpeople\u201D and can\u2019t fix \u201Cdifficult.\u201D This opener starts a defense, not a conversation.'},
+    {t:'\u201CJordan, in Tuesday\u2019s review you cut Sam off three times, and the room went quiet \u2014 we lost her input. Can we talk about what was going on?\u201D',ok:true,fb:'Situation, behavior, impact, then an open question. Hard to argue with, easy to act on \u2014 and it invites his side before any verdict.'},
+    {t:'\u201CJordan, quick chat \u2014 nothing serious, don\u2019t worry!\u201D',ok:false,fb:'The minimizing preamble betrays itself \u2014 he now knows it IS serious and that you\u2019ll soften truths. Say the real thing, kindly.'}]},
+  {i:'route',h:'When to escalate',p:'The judgment that protects everyone: which issues you own, which you partner with PCB on, and which must go to Employee Relations or Title IX now.',
+   deep:'Three lanes. <b>Yours:</b> everyday coaching, performance, ordinary friction. <b>Partner with PCB:</b> patterns that won\u2019t break, accommodations, anything touching pay or leave. <b>Escalate now, no matter what:</b> anything touching a protected class, harassment, safety, or retaliation \u2014 even when the person asks you to keep it quiet. The most expensive mistakes are handled-it-myself cases that were never yours to handle.',
+   q:'Which one goes to Employee Relations today \u2014 not next week?',
+   opts:[
+    {t:'Two analysts keep bickering over meeting-room bookings.',ok:false,fb:'Annoying, but squarely your lane: coach them, set a norm, move on. Escalating this trains your team to skip you.'},
+    {t:'Dev mentions, offhand, that a teammate keeps commenting on her body \u201Cas a joke.\u201D',ok:true,fb:'Yes \u2014 today. That\u2019s potential harassment; you report it, you don\u2019t investigate it, and \u201Cshe didn\u2019t complain formally\u201D changes nothing.'},
+    {t:'A solid performer has been ten minutes late twice this month.',ok:false,fb:'A coaching conversation, maybe not even that yet. Save the escalation lane for what it\u2019s for.'}]},
+  {i:'shield',h:'Navigating ER issues',p:'Complaints, conflicts, and investigations. Stay neutral, protect confidentiality, avoid promises you can\u2019t keep, and document facts.',
+   deep:'When something lands on your desk, your role is conduit, not judge: receive it well, keep it to the people who genuinely need to know, and write down facts while they\u2019re fresh. The classic trap is the secrecy promise \u2014 warm-hearted and impossible, because some things you\u2019re <i>required</i> to act on. Honest discretion beats false secrecy every time.',
+   q:'\u201CCan I tell you something \u2014 if you promise it stays just between us?\u201D Your answer:',
+   opts:[
+    {t:'\u201COf course. You can trust me.\u201D',ok:false,fb:'A promise you may be legally unable to keep. If what follows involves harassment or safety, you must act \u2014 and now you\u2019ve betrayed them on top of it.'},
+    {t:'\u201CI\u2019ll be discreet, and I\u2019ll only involve people who genuinely need to know. But if it\u2019s something serious I\u2019m required to act on, I have to \u2014 I\u2019d rather be honest about that up front. Still want to talk?\u201D',ok:true,fb:'Exactly \u2014 honest discretion. Almost everyone still talks, and nobody gets betrayed later by a promise that was never yours to make.'},
+    {t:'\u201CIf it\u2019s about someone on this team, honestly, I\u2019d rather not know.\u201D',ok:false,fb:'You just taught your whole team that problems should route around you. What you don\u2019t hear early, you inherit late \u2014 and worse.'}]},
+  {i:'doc',h:'Documentation &amp; fairness',p:'Contemporaneous, factual, consistent notes are how you treat people fairly \u2014 and how the record holds up if it ever needs to.',
+   deep:'Five sentences, written the same day: the date, what happened (facts, not adjectives), the expectation you set, the support you offered, and the follow-up date. Same standard for your favorite person as for your least. Notes reconstructed months later from memory don\u2019t just fail legally \u2014 they read as retaliation, because by then they usually are.',
+   q:'Which note survives scrutiny?',
+   opts:[
+    {t:'\u201C3/12: Maya has had an attitude problem lately.\u201D',ok:false,fb:'A label with a date on it. No facts, nothing Maya could act on, and \u201Cattitude\u201D is exactly the word that falls apart under questioning.'},
+    {t:'\u201C3/12: Maya missed the 3/10 grant deadline \u2014 second this quarter (2/1). Reset expectation: drafts due 48 hours ahead. Offered a weekly check-in. Follow up 3/26.\u201D',ok:true,fb:'Dated, factual, expectation set, support offered, follow-up scheduled. Five sentences that protect Maya and you equally.'},
+    {t:'Skip the notes now \u2014 write it all up carefully at review time in December.',ok:false,fb:'December memory is not March fact. Reconstructed records are the ones that get picked apart \u2014 and the fairness they were supposed to protect is long gone.'}]},
+  {i:'heart',h:'Coaching &amp; growth',p:'Most performance is coached, not disciplined. Set clear expectations, give feedback early, and invest before problems compound.',
+   deep:'Discipline is the failure mode, not the tool. The real work happens earlier: expectations people could repeat back to you, feedback in the same week as the behavior, and stretch work before boredom curdles into disengagement. By the time something needs a formal process, five cheaper interventions have usually been skipped.',
+   q:'Your steadiest performer has gone quiet and a little flat. Nothing\u2019s missed \u2014 yet. Your move?',
+   opts:[
+    {t:'Nothing \u2014 there\u2019s no performance problem to address.',ok:false,fb:'Boredom is usually the first step out the door \u2014 by the time it shows up as a missed deadline, the recruiter has already called. Quiet-and-flat IS the signal.'},
+    {t:'Hand them the gnarly cross-team project and book a growth conversation this week.',ok:true,fb:'Stretch plus attention \u2014 the two cheapest retention tools you own, deployed before there\u2019s anything to fix.'},
+    {t:'Mention that their engagement \u201Cseems to be slipping\u201D so they know you\u2019ve noticed.',ok:false,fb:'A warning aimed at a motivation problem. Discipline-flavored feedback for boredom reads as punishment for honesty \u2014 and speeds the exit.'}]}
 ];
-var OPERATIONS_TOPICS=[
-  {i:'hire',h:'Hiring &amp; onboarding',p:'Structured, consistent, bias-aware hiring — and a first 90 days that sets a new employee up to succeed.'},
-  {i:'cal',h:'FMLA &amp; leave',p:'Recognize a potential leave trigger even when the employee never says “FMLA,” notify PCB, keep it confidential, and protect the job.'},
-  {i:'cash',h:'Pay &amp; PTO',p:'Approving time, understanding exempt vs. non-exempt, PTO accrual and use, and never adjusting pay outside policy.'},
-  {i:'receipt',h:'Expense reports',p:'Timely, policy-compliant, well-documented reimbursement — you’re the control that catches problems before Finance does.'},
-  {i:'scale',h:'Progressive discipline',p:'The ladder from coaching to termination, run consistently and documented so it’s fair to the employee and defensible for the institution.'},
-  {i:'clock',h:'Timekeeping &amp; FLSA',p:'Accurate time records, no off-the-clock work, and correct overtime. Wage-and-hour errors are among the costliest a manager can make.'}
+var OPS_MICRO=[
+  {i:'users',h:'Hiring &amp; onboarding',p:'Structured, consistent, bias-aware hiring \u2014 and a first 90 days that sets a new employee up to succeed.',
+   deep:'Two rules carry most of hiring: ask every candidate the <b>same job-related questions</b>, and score against a <b>rubric you wrote before</b> you met anyone. Charm is not a competency, and \u201Cculture fit\u201D is usually similar-to-me bias with a friendlier name. Then onboarding: the offer letter isn\u2019t the finish line \u2014 a 90-day plan, an early win, and a named go-to person cut new-hire failure dramatically.',
+   q:'Your top pick crushed the friendly coffee chat. A different candidate scored highest on the panel\u2019s rubric. The offer goes to\u2026',
+   opts:[
+    {t:'The coffee-chat star \u2014 you know chemistry when you feel it.',ok:false,fb:'\u201CChemistry\u201D is how similar-to-me bias feels from the inside. The rubric existed precisely to protect the decision from this moment.'},
+    {t:'The rubric leader \u2014 or back to the panel to compare evidence against the criteria before anyone decides on feel.',ok:true,fb:'Right. Structured beats charming: rubric-based decisions predict performance better and survive scrutiny if the choice is ever questioned.'},
+    {t:'Offer the chat star, but at a lower salary to hedge the risk.',ok:false,fb:'Now it\u2019s a biased decision <i>and</i> a pay-equity problem. Hedging a gut call with compensation makes both problems worse.'}]},
+  {i:'cal',h:'FMLA &amp; leave',p:'Recognize a potential leave trigger even when the employee never says \u201CFMLA,\u201D notify PCB, keep it confidential, and protect the job.',
+   deep:'No magic words are required. \u201CMy dad had a stroke,\u201D \u201Cthe pregnancy is complicated,\u201D \u201CI need surgery\u201D \u2014 each may start a legal clock whether or not anyone says the four letters. Your job is a relay: show care, route it to Leave Administration the same day, keep the reason confidential, and promise nothing about time or pay. The full simulator below lets you feel it in motion.',
+   q:'Sunday text from Marcus: \u201CDad had a stroke. I need to be out this week.\u201D Monday morning, your first move is\u2026',
+   opts:[
+    {t:'Approve it as PTO \u2014 the fastest way to give him what he needs.',ok:false,fb:'Kind, but it may bury a job-protected FMLA entitlement inside his vacation balance. Care for a parent with a serious condition likely qualifies \u2014 route it.'},
+    {t:'Reply with care, then connect him with Leave Administration the same day so his protections start.',ok:true,fb:'Exactly the relay: empathy from you, eligibility and paperwork from the people who own it, protections preserved either way.'},
+    {t:'Ask him for the medical details so you can decide what kind of leave fits.',ok:false,fb:'Managers don\u2019t collect diagnoses \u2014 ever. Medical detail flows through PCB\u2019s confidential process, not your inbox.'}]},
+  {i:'cash',h:'Pay &amp; PTO',p:'Approving time, understanding exempt vs. non-exempt, PTO accrual and use, and never adjusting pay outside policy.',
+   deep:'One distinction does most of the work: <b>non-exempt</b> means every hour worked is paid and overtime rules apply; <b>exempt</b> means salaried for the role, not the hours. PTO runs on policy, applied identically to your favorite person and your least. And pay changes of any kind \u2014 raises, bonuses, \u201Ccomp time\u201D \u2014 are never a solo decision, however good the intention.',
+   q:'Sam had a great year. You have budget room and want to hand him a spot bonus on Friday. You\u2026',
+   opts:[
+    {t:'Just do it \u2014 your budget, your call, and he\u2019s earned it.',ok:false,fb:'Compensation lives in a system: team equity, precedent, payroll and tax handling. A generous solo pay decision is still an unauthorized pay decision.'},
+    {t:'Run it through PCB / compensation first \u2014 then enjoy delivering the good news properly.',ok:true,fb:'Right. Same generosity, zero exposure \u2014 it arrives as an official award instead of a private arrangement someone else will eventually hear about.'},
+    {t:'Skip the money \u2014 quietly give him a few days of \u201Coff the books\u201D comp time instead.',ok:false,fb:'Off-the-books time is a wage-and-hour trap and an unrecorded absence. Informal comp time is how well-meaning managers create FLSA problems.'}]},
+  {i:'receipt',h:'Expense reports',p:'Timely, policy-compliant, well-documented reimbursement \u2014 you\u2019re the control that catches problems before Finance does.',
+   deep:'Your approval is not a formality \u2014 it <i>is</i> the internal control. Read the lines, not the total: dates, attendees, business purpose, receipts. When something looks off, the move is a neutral question \u2014 \u201Chelp me understand this one\u201D \u2014 asked before you approve, not after. An approved report carries your name on its problems.',
+   q:'In Friday\u2019s pile: \u201CClient dinner \u2014 $400.\u201D Suspiciously round number, no attendee list, no itemized receipt. You\u2026',
+   opts:[
+    {t:'Approve it \u2014 they\u2019re trustworthy and the quarter closes today.',ok:false,fb:'Trust isn\u2019t the control \u2014 review is. Approving the exception under deadline pressure is exactly how the exception becomes the norm.'},
+    {t:'Hold it and ask the neutral question: \u201CWalk me through this one \u2014 I need the attendees and the itemized receipt before I can approve.\u201D',ok:true,fb:'Right: a question, not an accusation, and the standard applied evenly. Ninety-nine times it\u2019s sloppy paperwork \u2014 the hundredth time is why you check.'},
+    {t:'Reject it without comment and let them work out why.',ok:false,fb:'Silent rejection teaches nothing and reads as an accusation. Ask first \u2014 most of these resolve in one reply.'}]},
+  {i:'scale',h:'Progressive discipline',p:'The ladder from coaching to termination, run consistently and documented so it\u2019s fair to the employee and defensible for the institution.',
+   deep:'The ladder \u2014 coach, document, warn, final, separate \u2014 exists so consequences are proportionate, predictable, and identical for everyone. Two rails run beside every step: write the facts down the same day, and <b>stop the train</b> the moment anything protected surfaces \u2014 health, family, a complaint. The full simulator below walks the whole ladder.',
+   q:'Halfway through a documented warning meeting, Dana mentions her missed deadlines started \u201Cwhen the new medication kicked in.\u201D You\u2026',
+   opts:[
+    {t:'Stay on script \u2014 the performance facts haven\u2019t changed.',ok:false,fb:'They may be about to. A health disclosure mid-discipline can convert the whole matter into an accommodation or leave issue \u2014 pushing through is how lawsuits start.'},
+    {t:'Pause the discipline track, skip the medical questions, and loop in PCB before taking another step.',ok:true,fb:'Exactly: pause, don\u2019t probe, partner. The performance issues can still be addressed \u2014 but only after the ADA/FMLA picture is properly handled.'},
+    {t:'Cancel the discipline entirely and never revisit it \u2014 too risky now.',ok:false,fb:'Overcorrection. Protected status isn\u2019t immunity from expectations; it means the process routes through PCB first. Abandoning standards helps no one, including Dana.'}]},
+  {i:'clock',h:'Timekeeping &amp; FLSA',p:'Accurate time records, no off-the-clock work, and correct overtime. Wage-and-hour errors are among the costliest a manager can make.',
+   deep:'For non-exempt staff the rule has no exceptions: time worked is time paid \u2014 evenings, \u201Cquick\u201D emails, working lunches, all of it. Unpaid off-the-clock work is wage theft even when the employee volunteers it, and the timestamps are the plaintiff\u2019s exhibit A. California adds meal-break premiums and daily overtime on top.',
+   q:'Your non-exempt coordinator has been answering email threads at 10pm \u201Cjust to stay ahead\u201D \u2014 none of it logged. You\u2026',
+   opts:[
+    {t:'Appreciate the hustle \u2014 she chose it, and the team benefits.',ok:false,fb:'Volunteered or not, it\u2019s compensable time \u2014 and every timestamped reply is evidence. \u201CShe wanted to\u201D has never once won a wage-and-hour case.'},
+    {t:'Stop it in writing, pay the time already worked, and set the norm: after-hours replies are neither expected nor unpaid.',ok:true,fb:'All three moves matter: the written expectation, the back pay, and the norm \u2014 because your own late-night emails are what taught her to answer.'},
+    {t:'Tell her to work more efficiently during business hours instead.',ok:false,fb:'That blames her for a compliance problem you\u2019re responsible for \u2014 and leaves the unpaid time unpaid. Fix the record and the norm, not the person.'}]}
 ];
 var RESOURCES=[
   {i:'users',h:'Engagement Consultant (EC)',p:'Your first call for almost anything people-related. <span class="ph">Add contact</span>'},
@@ -1764,11 +1953,35 @@ var RESOURCES=[
   {i:'cal',h:'Leave Administration',p:'FMLA, disability, and all forms of leave. <span class="ph">Add contact</span>'},
   {i:'heart',h:'EAP / Work-Life',p:'Confidential support for employees in distress. <span class="ph">Add contact</span>'}
 ];
-var SOFT_TOPICS=[
-  {i:'cal',h:'The 1:1 that isn’t a status meeting',p:'Weekly or biweekly, 30 minutes, <b>their</b> agenda first. Three questions carry it: What’s going well? Where are you stuck? What do you need from me? Status goes last — or in an email.'},
-  {i:'chat',h:'Feedback that lands: SBI',p:'<b>Situation</b> (when and where), <b>Behavior</b> (what they actually did), <b>Impact</b> (what it caused). No labels, no “attitude,” no “everyone thinks.” Works identically for praise and correction.'},
-  {i:'shield',h:'Psychological safety',p:'Not niceness — the shared belief that no one gets punished for questions, mistakes, or dissent. Google’s Project Aristotle found it the #1 predictor of team performance. It’s built or burned in every meeting you run.'},
-  {i:'route',h:'Growth ≠ promotion',p:'Development is scope, skills, visibility, and relationships — most of it inside your control today. The growth conversation, twice a year per person, is the single strongest retention tool you own.'}
+var SOFT_MICRO=[
+  {i:'cal',h:'The 1:1 that isn\u2019t a status meeting',p:'Weekly or biweekly, 30 minutes, <b>their</b> agenda first. Three questions carry it: What\u2019s going well? Where are you stuck? What do you need from me?',
+   deep:'The 1:1 is the only meeting that exists purely for the other person \u2014 which is why it\u2019s the first thing managers cancel and the first thing employees notice. Three questions carry it: <b>What\u2019s going well? Where are you stuck? What do you need from me?</b> Status goes last or in an email. And the cadence is the message: every cancellation says, precisely, \u201Cyou are my lowest priority this week.\u201D',
+   q:'Crunch week. Three deadlines collide with your 1:1s. You\u2026',
+   opts:[
+    {t:'Cancel them \u2014 everyone understands during crunch.',ok:false,fb:'They understand perfectly: deadlines outrank them. Cancel twice in a row and watch what people stop bringing you. The meeting was never about the 30 minutes.'},
+    {t:'Shrink them to 15 minutes \u2014 but hold every single one.',ok:true,fb:'Right. Half the time, all of the signal. A short 1:1 kept during chaos says more about your priorities than a long one in a quiet week.'},
+    {t:'Keep them, but use the time to coordinate the three deadlines.',ok:false,fb:'That\u2019s a status meeting sitting in the 1:1\u2019s slot. The deadline talk ate the one slot that belonged to them \u2014 book project syncs separately.'}]},
+  {i:'chat',h:'Feedback that lands: SBI',p:'<b>Situation</b> (when and where), <b>Behavior</b> (what they actually did), <b>Impact</b> (what it caused). No labels, no \u201Cattitude,\u201D no \u201Ceveryone thinks.\u201D',
+   deep:'Three parts, in order: the <b>Situation</b> anchors it in a real moment, the <b>Behavior</b> names what a camera would have recorded, the <b>Impact</b> explains why anyone should care. It works identically for praise and correction \u2014 and praise needs the specificity just as much, because \u201Cgreat job\u201D can\u2019t be repeated on purpose. Deliver it the same week \u2014 a month-old observation reads as an ambush, not coaching.',
+   q:'The demo went brilliantly and you want Maya to know. Which version actually teaches her something?',
+   opts:[
+    {t:'\u201CGreat energy in the demo today!\u201D',ok:false,fb:'Kind and useless \u2014 what exactly should she do again? \u201CEnergy\u201D isn\u2019t repeatable; behavior is.'},
+    {t:'\u201CIn today\u2019s demo, when you opened with the customer\u2019s own words, the room leaned in and the VP asked for a follow-up. Do that every time.\u201D',ok:true,fb:'Situation, behavior, impact \u2014 for praise. Now she knows precisely which move worked and can repeat it on purpose. That\u2019s the difference between a compliment and coaching.'},
+    {t:'\u201CYou\u2019re a natural presenter.\u201D',ok:false,fb:'A label \u2014 flattering, but it teaches nothing repeatable and quietly implies the skill is inborn rather than earned. Name the move, not the identity.'}]},
+  {i:'shield',h:'Psychological safety',p:'Not niceness \u2014 the shared belief that no one gets punished for questions, mistakes, or dissent. Google\u2019s Project Aristotle found it the #1 predictor of team performance.',
+   deep:'Amy Edmondson\u2019s definition is precise: a shared belief that the team is safe for <i>interpersonal risk-taking</i> \u2014 asking the dumb question, admitting the miss, disagreeing with you. It isn\u2019t comfort, and it isn\u2019t low standards; the best teams are safe <b>and</b> demanding. And it\u2019s built or burned in tiny moments: how you receive bad news, who gets asked to speak, what happens to the person who was wrong.',
+   q:'In front of the whole team, a junior analyst points out a serious error in <i>your</i> report. You\u2026',
+   opts:[
+    {t:'Thank her on the spot \u2014 genuinely \u2014 fix it, and credit her when you send the correction.',ok:true,fb:'That ten-second reaction just taught nine other people it\u2019s safe to tell you the truth. The public credit is the part they\u2019ll remember longest.'},
+    {t:'Explain why the numbers are technically defensible as written.',ok:false,fb:'Maybe they are \u2014 but the team just watched truth-telling get met with a defense attorney. The next error will reach you six weeks later, from a hallway rumor.'},
+    {t:'Thank her publicly \u2014 then mention privately that next time, corrections go through DM first.',ok:false,fb:'The \u201Clater\u201D erases the \u201Cthank you.\u201D She\u2019ll hear: public honesty gets private punishment. The team hears it too, within a day \u2014 they always do.'}]},
+  {i:'route',h:'Growth &#8800; promotion',p:'Development is scope, skills, visibility, and relationships \u2014 most of it inside your control today. The growth conversation, twice a year, is the strongest retention tool you own.',
+   deep:'Promotions are scarce; growth isn\u2019t. You control four currencies right now: <b>scope</b> (a harder problem), <b>skills</b> (deliberate stretch with support), <b>visibility</b> (their name on the work, in the rooms that matter), and <b>relationships</b> (mentors, cross-unit exposure). Managers who treat the org chart as the only ladder lose people to the first recruiter who offers a rung.',
+   q:'Nina asks about promotion. You know there\u2019s realistically no opening for 18 months. You\u2026',
+   opts:[
+    {t:'Tell her to be patient \u2014 promotion is what real growth looks like, and her time will come.',ok:false,fb:'You just confirmed the org chart is the only ladder \u2014 and hers is missing a rung for 18 months. She now has a date to leave by instead of a reason to stay.'},
+    {t:'Be straight about the timeline \u2014 and build the growth she can have now: bigger scope, a visible project, a mentor in the unit she\u2019s curious about.',ok:true,fb:'Honesty about the ladder plus real movement on the other four currencies. People forgive a slow org chart; they don\u2019t forgive stagnation dressed up as patience.'},
+    {t:'Hint that something might open up sooner than it will \u2014 it keeps her motivated.',ok:false,fb:'A promise you can\u2019t keep, made to buy a few months of motivation. When the hinted promotion doesn\u2019t land, you won\u2019t just lose Nina \u2014 you\u2019ll lose everyone she talks to on the way out.'}]}
 ];
 
 function renderTopics(){
@@ -1776,9 +1989,9 @@ function renderTopics(){
     el('complianceTopics').className='flip-grid';
     el('complianceTopics').innerHTML = COMPLIANCE_TOPICS.map(flipCard).join('');
   }
-  if(el('relationsTopics')) el('relationsTopics').innerHTML = RELATIONS_TOPICS.map(topicCard).join('');
-  if(el('operationsTopics')) el('operationsTopics').innerHTML = OPERATIONS_TOPICS.map(topicCard).join('');
-  if(el('softTopics')) el('softTopics').innerHTML = SOFT_TOPICS.map(topicCard).join('');
+  if(el('relationsTopics')) mountMicro('relationsTopics', ER_MICRO, 'ermicro');
+  if(el('operationsTopics')) mountMicro('operationsTopics', OPS_MICRO, 'opsmicro');
+  if(el('softTopics')) mountMicro('softTopics', SOFT_MICRO, 'softmicro');
   if(el('resourceGrid')) el('resourceGrid').innerHTML = RESOURCES.map(topicCard).join('');
 }
 
@@ -2374,7 +2587,7 @@ mountScenario('sim-change', {
      options:[
       {t:'Address it head-on at standup: “I’ve heard the layoff rumor. Here’s what I know, here’s what I don’t, and I’ll tell you the moment either changes.”',correct:true,risk:0,fb:'Rumors grow in silence and die in daylight. Naming it directly — with the honest limits of what you know — is the single strongest trust move available to you this week.'},
       {t:'Ignore it; dignifying rumors spreads them.',correct:false,risk:2,fb:'Backwards. In a vacuum, the scariest story wins. Your silence is being read as confirmation right now.'},
-      {t:'Promise flatly: “Nobody is losing their job, period.”',correct:false,risk:2,fb:'You can’t underwrite that promise, and everyone knows it. Overpromising in a reorg is a loan against your credibility at 100% interest.'}
+      {t:'Promise flatly: “Nobody is losing their job, period.”',correct:false,risk:2,fb:'You can’t underwrite that promise, and everyone knows it. Overpromising in a reorg spends credibility you can\u2019t get back.'}
      ]},
     {q:'Rosa — your steadiest senior person — has gone quiet and started declining meetings about the transition. What’s your move?',
      sceneWho:'The resister',
@@ -2411,7 +2624,7 @@ mountScenario('sim-term', {
     {q:'It’s 8pm the night before. What does responsible preparation look like?',
      options:[
       {t:'Confirm final details with PCB/ER (final pay, benefits, logistics), agree who says what, book a private room, and script your first two sentences.',correct:true,risk:0,fb:'Right. A termination meeting is a performance under pressure — the humane version is the <b>prepared</b> version. Winging it is how cruel accidents happen.'},
-      {t:'Nothing special — you’ll speak from the heart in the moment.',correct:false,risk:2,fb:'The heart rambles. Unscripted terminations run long, say legally dangerous things, and leave the person more confused and more wounded. Prepare precisely because you care.'},
+      {t:'Nothing special — you’ll speak from the heart in the moment.',correct:false,risk:2,fb:'Unscripted terminations run long, say legally dangerous things, and leave the person more confused and more wounded. Prepare precisely because you care.'},
       {t:'Draft a long document of every failure to read aloud, so she understands it’s justified.',correct:false,risk:2,fb:'The decision meeting is not a trial. Relitigating the record humiliates her and invites argument about a decision that is already made.'}
      ],
      law:'Before any separation meeting: final PCB/ER sign-off, pay and benefits answers ready (state law governs final-pay timing — California means immediately), and a witness/PCB partner arranged.'},
@@ -2458,7 +2671,7 @@ mountDeck('deck-feedback', {
   verdicts:['Lands — SBI','Too vague to help','It got personal'],
   cards:[
     {scene:'“Great job on the presentation!”',
-     correct:1, exp:'Kind — and empty. What exactly should they do again next time? Praise without specifics is a mint, not a meal. Name the behavior: what they did, where, and what it caused.'},
+     correct:1, exp:'Kind — and empty. What exactly should they do again next time? Praise without specifics feels nice and changes nothing. Name the behavior: what they did, where, and what it caused.'},
     {scene:'“In yesterday’s client call, when you paused to summarize their concerns before answering, the client visibly relaxed and agreed to next steps. Do more of that.”',
      correct:0, exp:'Textbook SBI: <b>Situation</b> (yesterday’s call), <b>Behavior</b> (paused to summarize), <b>Impact</b> (client relaxed, agreed). Specific enough to repeat on purpose.'},
     {scene:'“You’re just not a detail person.”',
@@ -2662,6 +2875,72 @@ function initHeroRotation(){
       if(v.duration && v.duration - v.currentTime <= FADE) swap();
     });
     v.addEventListener('ended', function(){ if(v===vids[cur]) swap(); });
+  });
+}
+
+/* ══════════ 1:1 BUILDER — personal framework generator ══════════ */
+var OOB_QS=[
+  {t:'\u201CWhat\u2019s on your mind?\u201D', src:'The Coaching Habit \u2014 the opener that hands them the agenda'},
+  {t:'\u201CWhat\u2019s going well right now?\u201D', src:'starts from strength, not from the fire of the week'},
+  {t:'\u201CWhere are you stuck?\u201D', src:'surfaces blockers while they\u2019re still cheap to fix'},
+  {t:'\u201CWhat do you need from me?\u201D', src:'Google re:Work \u2014 the manager-as-unblocker question'},
+  {t:'\u201CAnd what else?\u201D', src:'The Coaching Habit \u2014 the follow-up that roughly doubles what you hear'},
+  {t:'\u201CWhat\u2019s one thing I could do better for you?\u201D', src:'upward feedback, normalized by asking every time'},
+  {t:'\u201CHow are you \u2014 really?\u201D', src:'the wellbeing check that catches what status updates hide'},
+  {t:'\u201CWhat would make this week a win?\u201D', src:'turns the meeting toward priorities, not history'}
+];
+var OOB_CADENCE={
+  small:{ line:'Weekly \u00B7 30 minutes', note:'With a small team there\u2019s no excuse tighter than weekly \u2014 this is where your leverage lives.' },
+  mid:{ line:'Weekly \u00B7 30 minutes', note:'At five to eight directs this is 3\u20134 hours a week. Protect it anyway \u2014 it\u2019s the highest-leverage block on your calendar (Andy Grove\u2019s math: one hour of 1:1 informs two weeks of their work).' },
+  large:{ line:'Biweekly \u00B7 45 minutes, half the team each week', note:'Past nine directs, weekly-with-everyone collapses. Biweekly-but-longer keeps depth; a group standup carries the status load.' }
+};
+var OOB_PERSON={
+  new:{ h:'For someone in their first six months', p:'Go weekly no matter what your default is. Add ten minutes of context each time \u2014 how decisions get made here, who to know, what good looks like. Their questions are your curriculum; the habit of asking them is what you\u2019re really building.' },
+  steady:{ h:'For your steady performer', p:'The risk with reliable people is benign neglect \u2014 they get the shortest 1:1s and the least growth attention. Keep the full slot, and make the quarterly growth conversation non-negotiable. Steady is who recruiters poach.' },
+  struggling:{ h:'For someone who\u2019s struggling', p:'Weekly, no skips, and add one segment: expectations out loud. Each week: what does good look like by Friday, what\u2019s in the way, what did we agree last week. Write the agreements down after every session \u2014 kindness and documentation are not opposites.' },
+  senior:{ h:'For your senior, self-directed person', p:'Biweekly can work \u2014 but don\u2019t confuse independence with not needing you. Shift the mix: less how-is-the-work, more obstacles you can remove, visibility you can create, and what they\u2019re seeing that you\u2019re not. They\u2019ll tell you things in a protected slot they\u2019d never put in Slack.' }
+};
+function initOOB(){
+  var qbox=el('oobQs'), go=el('oobGo'), out=el('oobOut'), size=el('oobSize'), person=el('oobPerson'), maxN=el('oobMax');
+  if(!qbox||!go||!out) return;
+  qbox.innerHTML=OOB_QS.map(function(q,i){
+    return '<label><input type="checkbox" name="oobq" value="'+i+'"> <span><b>'+q.t+'</b><br><span style="font-size:.8rem;color:var(--tx3)">'+q.src+'</span></span></label>';
+  }).join('');
+  qbox.addEventListener('change', function(e){
+    if(e.target && e.target.name==='oobq'){
+      var n=qbox.querySelectorAll('input:checked').length;
+      if(n>3){ e.target.checked=false; if(maxN) maxN.style.display='block'; }
+      else if(maxN) maxN.style.display='none';
+    }
+  });
+  go.addEventListener('click', function(){
+    var picks=Array.prototype.slice.call(qbox.querySelectorAll('input:checked')).map(function(i){ return OOB_QS[+i.value]; });
+    if(picks.length<3){ out.innerHTML='<p style="margin-top:16px;color:var(--vu-err);font-weight:600">Pick your three questions first \u2014 they\u2019re the spine of the meeting.</p>'; return; }
+    var cad=OOB_CADENCE[size.value], per=OOB_PERSON[person.value];
+    var qlist=picks.map(function(q){ return '<p style="margin-top:8px"><b>'+q.t+'</b> <span style="font-size:.82rem;color:var(--tx3)">('+q.src+')</span></p>'; }).join('');
+    out.innerHTML='<div style="margin-top:26px">'+
+      '<div class="sub-h" style="margin-bottom:16px"><span class="mono">Your 1:1 operating system</span></div>'+
+      '<div class="roadmap three">'+
+        '<div class="rstep"><span class="rno">Cadence</span><h5>'+cad.line+'</h5><p>'+cad.note+'</p><p style="margin-top:8px"><b>The one rule:</b> never cancel \u2014 shrink. A 10-minute 1:1 held beats a 30-minute 1:1 moved.</p></div>'+
+        '<div class="rstep"><span class="rno">The agenda</span><h5>Their meeting, in four beats</h5>'+
+          '<p style="margin-top:8px"><b>1.</b> Their agenda first \u2014 whatever they brought (10 min)</p>'+
+          '<p style="margin-top:6px"><b>2.</b> Your three questions, every time:</p>'+qlist+
+          '<p style="margin-top:6px"><b>3.</b> Feedback both ways \u2014 one specific thing each (5 min)</p>'+
+          '<p style="margin-top:6px"><b>4.</b> Status last, or in the doc \u2014 it will eat the meeting if you let it</p></div>'+
+        '<div class="rstep"><span class="rno">'+per.h+'</span><h5>Tuning for this person</h5><p>'+per.p+'</p>'+
+          '<p style="margin-top:8px"><b>Plus, quarterly:</b> a separate 30-minute growth conversation \u2014 GROW structure: their Goal, current Reality, Options, and what they Will do (Whitmore).</p></div>'+
+      '</div>'+
+      '<div style="margin-top:16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button type="button" class="btn btn-ghost btn-sm" id="oobCopy">Copy my framework</button><span id="oobCopied" class="mono" style="display:none">Copied</span></div>'+
+      '</div>';
+    markDone('oob');
+    el('oobCopy').addEventListener('click', function(){
+      var strip=function(s){ return s.replace(/<[^>]+>/g,''); };
+      var txt='MY 1:1 OPERATING SYSTEM\n\nCADENCE: '+strip(cad.line)+'\nRule: never cancel \u2014 shrink.\n\nAGENDA (their meeting):\n1. Their agenda first (10 min)\n2. My three questions:\n'+picks.map(function(q){ return '   \u2022 '+strip(q.t); }).join('\n')+'\n3. Feedback both ways \u2014 one specific thing each\n4. Status last, or async\n\n'+strip(per.h).toUpperCase()+':\n'+strip(per.p)+'\n\nQUARTERLY: separate 30-min growth conversation (GROW: Goal, Reality, Options, Will)\n\nSources: Grove, High Output Management \u00B7 Bungay Stanier, The Coaching Habit \u00B7 Whitmore, GROW \u00B7 Google re:Work \u00B7 Gallup';
+      function ok(){ var c=el('oobCopied'); if(c){ c.style.display='inline'; setTimeout(function(){ c.style.display='none'; },2200); } }
+      function fb2(){ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} document.body.removeChild(ta); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok,fb2); } else fb2();
+    });
+    out.scrollIntoView({behavior:reduce?'auto':'smooth', block:'nearest'});
   });
 }
 
@@ -2886,6 +3165,7 @@ function boot(){
   try{ initYt(); }catch(e){}
   try{ initBaro(); }catch(e){}
   try{ initPlan(); }catch(e){}
+  try{ initOOB(); }catch(e){}
   try{ initHeroRotation(); }catch(e){}
   // deep links: content mounts after the browser's initial anchor jump, so re-align
   if(location.hash){
