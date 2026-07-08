@@ -998,6 +998,14 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 .js .yt, .js .yt.reveal, .js .flip, .js .flip.reveal{ opacity:1 !important; transform:none !important; }
 a.track-pill{ cursor:pointer; transition:border-color .2s ease-out, transform .2s ease-out; }
 a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); color:var(--tx); }
+/* flip-card icons: same scale as topic cards (fixes full-card icon blowup) */
+.flip-face .tc-ic{ width:40px; height:40px; border-radius:var(--r); border:1px solid var(--bdg); display:grid; place-items:center; color:var(--eyebrow); margin-bottom:4px; flex-shrink:0; }
+.flip-face .tc-ic svg{ width:20px; height:20px; }
+/* domain-to-domain signpost link */
+.next-up{ margin-top:34px; padding-top:18px; border-top:1px solid var(--bd); }
+.next-up a{ display:inline-flex; align-items:center; gap:10px; font-family:var(--cond); font-weight:700; font-size:.85rem; letter-spacing:.04em; text-transform:uppercase; color:var(--eyebrow); }
+.next-up a svg{ width:16px; height:16px; transition:transform .2s ease-out; }
+.next-up a:hover{ color:var(--strong); } .next-up a:hover svg{ transform:translateX(4px); }
 
 </style>
 </head>
@@ -1044,11 +1052,20 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
 <!-- ═══════════════════ HERO ═══════════════════ -->
 <section class="hero th-dark" aria-label="Welcome">
   <div class="hero-media" aria-hidden="true">
-    <!-- ambient hero rotation — two silent Higgsfield office clips crossfading in an endless loop; degrades to the dark hero under reduced motion -->
-    <video class="hero-video hv-on" id="heroVideo" autoplay muted playsinline preload="auto" aria-hidden="true">
+    <!-- ambient hero rotation — five silent Higgsfield clips (dining, office, facilities, lab, office) crossfading in an endless loop; ordered so the first look isn't corporate; degrades to the dark hero under reduced motion -->
+    <video class="hero-video hv-on" autoplay muted playsinline preload="auto" aria-hidden="true">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260708_232004_cd3a425d-714f-4d40-b9dc-d2645f30510f.mp4" type="video/mp4" />
+    </video>
+    <video class="hero-video" muted playsinline preload="auto" aria-hidden="true">
       <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260708_171248_ac4c2f3f-4abe-4a4b-9274-0b524b35f6ac.mp4" type="video/mp4" />
     </video>
-    <video class="hero-video" id="heroVideo2" muted playsinline preload="auto" aria-hidden="true">
+    <video class="hero-video" muted playsinline preload="metadata" aria-hidden="true">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260708_232006_077f50f3-b700-45c4-9d09-d16fa5437937.mp4" type="video/mp4" />
+    </video>
+    <video class="hero-video" muted playsinline preload="metadata" aria-hidden="true">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260708_232009_bdec7488-1d21-48d0-814c-0b40c87c27ec.mp4" type="video/mp4" />
+    </video>
+    <video class="hero-video" muted playsinline preload="metadata" aria-hidden="true">
       <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260708_162340_0f075586-ea1d-4500-b383-21a4e0b2e660.mp4" type="video/mp4" />
     </video>
     <div class="hero-scrim"></div>
@@ -1056,7 +1073,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
   <div class="wrap" style="position:relative;z-index:2">
     <div class="eyebrow" style="margin-bottom:26px"><span class="tick"></span><span class="mono">Vanderbilt University · Manager Enablement</span></div>
     <h1 style="font-size:clamp(2.75rem,7vw,5.4rem);max-width:16ch">Being a manager is <em class="s metal">a discipline</em>, not a title.</h1>
-    <p style="margin-top:26px;font-size:1.15rem;color:var(--tx2);max-width:54ch">A SHRM-level foundation for people leaders at Vanderbilt — compliance, employee relations, and the operational craft of the role. Learn it by <em class="s">doing it</em>, through working simulators, not slides.</p>
+    <p style="margin-top:26px;font-size:1.15rem;color:var(--tx2);max-width:54ch">A SHRM-level foundation for people leaders at Vanderbilt — compliance, employee relations, and the day-to-day processes you now own. Learn it by <em class="s">doing it</em>, through working simulators, not slides.</p>
     <p class="meta-line" aria-label="About 45 minutes, self-paced, progress saves only on this device, nothing is reported"><b>~45-minute core</b> &middot; six mastery modules &middot; self-paced &middot; progress saves on this device only — <b>nothing is reported</b></p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:38px">
       <a href="#foundations" class="btn btn-primary">Start the track</a>
@@ -1074,7 +1091,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <div class="statcell"><span class="num">3</span><span class="lbl">core domains every Vanderbilt manager owns</span></div>
       <div class="statcell"><span class="num">4</span><span class="lbl">state compliance profiles — TN · NY · CA · FL</span></div>
       <div class="statcell"><span class="num">18</span><span class="lbl">interactive experiences — simulators, labs &amp; plan builders</span></div>
-      <div class="statcell"><span class="num">100%</span><span class="lbl">of the role is judgment under real conditions</span></div>
+      <div class="statcell"><span class="num">100%</span><span class="lbl">hands-on — you make every call yourself, no slides</span></div>
     </div>
   </div>
 </section>
@@ -1114,7 +1131,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <a class="pathcard" href="#operations">
         <span class="pno">03</span>
         <h3>Operational Craft</h3>
-        <p>The machinery you're accountable for: hiring, FMLA and leave, pay and PTO, expense reports, and progressive discipline. The two flagship simulators live here.</p>
+        <p>The processes you now own: hiring, FMLA and leave, pay and PTO, expense reports, and progressive discipline. The two flagship simulators live here.</p>
         <div class="ptags"><span>FMLA</span><span>Progressive discipline</span><span>Hiring</span><span>Pay &amp; PTO</span></div>
         <span class="go">Enter domain <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
@@ -1139,7 +1156,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       </div>
       <span class="dno" aria-hidden="true">01</span>
     </div>
-    <p style="margin-top:8px;color:var(--tx2);max-width:62ch">Compliance is the floor, not the ceiling. As a manager you carry duties an individual contributor never had: you are often a <b style="color:var(--strong)">mandatory reporter</b>, a <b style="color:var(--strong)">steward of safety</b>, and the first line of a legal obligation the university owes its people. Here is the baseline.</p>
+    <p style="margin-top:8px;color:var(--tx2);max-width:62ch">First things first. Compliance is the floor, not the ceiling. As a manager you carry duties an individual contributor never had: you are often a <b style="color:var(--strong)">mandatory reporter</b>, a <b style="color:var(--strong)">steward of safety</b>, and the first line of a legal obligation the university owes its people. Here is the baseline.</p>
 
     <h3 style="margin-top:52px;font-size:1.4rem">The eight compliance areas you own</h3>
     <div class="flip-grid" style="margin-top:20px" id="complianceTopics"></div>
@@ -1161,6 +1178,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <h3 style="font-size:1.55rem;max-width:26ch">Some things you handle. Some things you are <em class="s">required</em> to report.</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:62ch">The most consequential compliance mistake a manager makes is sitting on something the law says must go up immediately. Read each situation and make the call. Getting one wrong here is exactly how institutions end up in the headlines.</p>
       <div id="deck-report" style="margin-top:26px"></div>
+      <p class="next-up"><a href="#relations">Next up: Domain 02 · Employee Relations <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -1175,7 +1193,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       </div>
       <span class="dno" aria-hidden="true">02</span>
     </div>
-    <p style="margin-top:8px;color:var(--tx2);max-width:62ch">Employee Relations (ER) is everything that happens between the policy and the person: the coaching, the conflict, the conversation you'd rather not have. Managers who do this well are made, not born — and the making is mostly reps.</p>
+    <p style="margin-top:8px;color:var(--tx2);max-width:62ch">With the ground rules in place, we turn to the part of the job that's actually about people. Employee Relations (ER) is everything that happens between the policy and the person: the coaching, the conflict, the conversation you'd rather not have. Managers who do this well are made, not born — and the making is mostly reps.</p>
 
     <h3 style="margin-top:52px;font-size:1.4rem">What it actually means to be a manager</h3>
     <div class="topic-grid" style="margin-top:20px" id="relationsTopics"></div>
@@ -1194,6 +1212,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <h3 style="font-size:1.55rem;max-width:26ch">Knowing your lane is a <em class="s">skill</em>.</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:62ch">Great managers solve most things at their desk. The best ones also know the precise moment a situation stops being theirs to solve alone — and loop in Engagement Consultants (ECs), Employee Relations, or Title IX before it grows. Make the call on each.</p>
       <div id="deck-escalate" style="margin-top:26px"></div>
+      <p class="next-up"><a href="#operations">Next up: Domain 03 · Operational Craft <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -1204,11 +1223,11 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
     <div class="dhead">
       <div>
         <div class="eyebrow" style="margin-bottom:16px"><span class="tick"></span><span class="mono" style="color:var(--eyebrow)">Domain 03 · Operational Craft · ~15 min</span></div>
-        <h2 style="font-size:clamp(2rem,4.5vw,3.4rem);max-width:22ch">The machinery of the role — <em class="s">run correctly</em>.</h2>
+        <h2 style="font-size:clamp(2rem,4.5vw,3.4rem);max-width:22ch">Hiring, leave, pay, discipline — <em class="s">done right</em>.</h2>
       </div>
       <span class="dno" aria-hidden="true">03</span>
     </div>
-    <p style="margin-top:8px;color:var(--tx2);max-width:62ch">This is where policy meets paperwork: hiring, leave, pay, PTO, expenses, and discipline. Small process errors here create large legal and financial exposure. The two most error-prone processes — FMLA and progressive discipline — each get a full simulator.</p>
+    <p style="margin-top:8px;color:var(--tx2);max-width:62ch">Two domains down, two to go. This is where policy meets paperwork: hiring, leave, pay, PTO, expenses, and discipline. Small process errors here create large legal and financial exposure. The two most error-prone processes — FMLA and progressive discipline — each get a full simulator.</p>
 
     <h3 style="margin-top:52px;font-size:1.4rem">Baseline operational responsibilities</h3>
     <div class="topic-grid" style="margin-top:20px" id="operationsTopics"></div>
@@ -1227,6 +1246,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <h3 style="font-size:1.7rem;max-width:26ch">The Progressive Discipline Simulator</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:64ch">A capable employee's performance is slipping. You want to fix it, not fire someone — but if it comes to that, the record has to hold up. Walk the ladder: coach, document, warn, and know exactly when to bring in Employee Relations. Consistency is the whole game.</p>
       <div id="sim-discipline" style="margin-top:26px"></div>
+      <p class="next-up"><a href="#softskills">Next up: Domain 04 · The Human Craft <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -1288,6 +1308,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <h3 style="font-size:1.7rem;max-width:28ch">The 1:1 Simulator</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:64ch">Your quietly excellent person just said “I feel stuck.” What you do in the next five minutes is the difference between a growth plan and a resignation letter. Run it here first.</p>
       <div id="sim-oneonone" style="margin-top:26px"></div>
+      <p class="next-up"><a href="#assess">That's the core four. Ready? Let's review <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
     </div>
   </div>
 </section>
@@ -1297,7 +1318,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
   <div class="wrap">
     <div class="eyebrow" style="margin-bottom:16px"><span class="tick"></span><span class="mono">Assessment · Manager Foundations</span></div>
     <h2 style="font-size:clamp(2rem,4.5vw,3.4rem);max-width:20ch">Prove the <em class="s">judgment</em>.</h2>
-    <p style="margin-top:22px;color:var(--tx2);max-width:60ch">Ten questions drawn from all three domains. Score 80% or higher to earn your Manager Foundations completion badge. You can retake it as many times as you need — the point is the reps, not the grade. Your answers stay on this device; no one at Vanderbilt sees your score.</p>
+    <p style="margin-top:22px;color:var(--tx2);max-width:60ch">You've walked all four domains — now let's review. Ten questions, Score 80% or higher to earn your Manager Foundations completion badge. You can retake it as many times as you need — the point is the reps, not the grade. Your answers stay on this device; no one at Vanderbilt sees your score.</p>
     <div class="quiz-shell th-dark" style="margin-top:34px">
       <form id="quizForm"></form>
       <div class="quiz-foot">
@@ -1354,7 +1375,7 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
     <div class="roadmap three" style="margin-top:38px">
       <div class="rstep"><span class="rno">Domain 01</span><h5>You can spot a duty before it becomes a crisis</h5><p>State-specific obligations, the eight compliance areas, and the reflex to report what must be reported.</p></div>
       <div class="rstep"><span class="rno">Domain 02</span><h5>You can carry a hard conversation and know your lane</h5><p>Run a difficult conversation with structure, and escalate to ER, PCB, or Title IX at the right moment — not too early, never too late.</p></div>
-      <div class="rstep"><span class="rno">Domain 03</span><h5>You can run the machinery without creating exposure</h5><p>Handle an FMLA trigger correctly and walk progressive discipline so the record holds up and people are treated consistently.</p></div>
+      <div class="rstep"><span class="rno">Domain 03</span><h5>You can run the processes without creating legal risk</h5><p>Handle an FMLA trigger correctly and walk progressive discipline so the record holds up and people are treated consistently.</p></div>
     </div>
 
     <div style="margin-top:60px">
@@ -2617,19 +2638,21 @@ function initPlan(){
 
 /* ══════════ HERO: two-clip crossfade rotation ══════════ */
 function initHeroRotation(){
-  var a=el('heroVideo'), b=el('heroVideo2');
-  if(!a||!b) return;
-  if(reduce){ try{ a.pause(); b.pause(); }catch(e){} return; }
-  var vids=[a,b], cur=0, FADE=1.4, switching=false;
+  var vids=Array.prototype.slice.call(document.querySelectorAll('.hero-media .hero-video'));
+  if(vids.length<2) return;
+  if(reduce){ vids.forEach(function(v){ try{ v.pause(); v.removeAttribute('autoplay'); }catch(e){} }); return; }
+  var cur=0, FADE=1.4, switching=false;
+  function warm(i){ var v=vids[i%vids.length]; if(v.preload!=='auto'){ v.preload='auto'; try{ v.load(); }catch(e){} } }
+  warm(1);
   function swap(){
     if(switching) return; switching=true;
-    var nxt=(cur+1)%2, from=vids[cur], to=vids[nxt];
+    var nxt=(cur+1)%vids.length, from=vids[cur], to=vids[nxt];
     try{ to.currentTime=0; }catch(e){}
     var p=to.play();
     function go(){
       to.classList.add('hv-on'); from.classList.remove('hv-on');
       setTimeout(function(){ try{ from.pause(); }catch(e){} switching=false; }, FADE*1000+100);
-      cur=nxt;
+      cur=nxt; warm(cur+1);
     }
     if(p && p.then){ p.then(go).catch(function(){ switching=false; }); } else { go(); }
   }
