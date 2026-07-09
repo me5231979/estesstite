@@ -788,6 +788,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 }
 </style>
 <style>
+
 /* global failsafe: an svg with no sizing rule must never explode to full width */
 svg{ width:1em; height:1em; flex-shrink:0; }
 /* ═══════════════════ MANAGER FOUNDATIONS — SUPPLEMENTAL ═══════════════════ */
@@ -1145,6 +1146,17 @@ nav.links a{ white-space:nowrap; }
 @media (max-width:640px){ .ck-row{ grid-template-columns:1fr auto; } .ck-h{ display:none; } }
 
 @media (max-width:1200px){ nav.links{ gap:0; } nav.links a{ padding:10px 8px; font-size:.84rem; } nav.links a::after{ left:8px; right:8px; } nav.links .nav-cta{ margin-left:6px; } }
+
+
+/* ═══════ RECAP: WHAT YOU NOW KNOW ═══════ */
+.recap-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:18px; margin-top:38px; }
+.recap-card{ background:var(--card); border:1px solid var(--bd); border-top:3px solid var(--vu-gold); border-radius:var(--r);
+  padding:24px 24px 20px; display:flex; flex-direction:column; }
+.recap-card h3{ font-family:var(--serif); font-weight:400; font-size:1.3rem; line-height:1.25; }
+.recap-card p{ margin-top:10px; font-size:.92rem; color:var(--tx2); line-height:1.6; }
+.recap-card p.atwork{ margin-top:auto; padding-top:14px; border-top:1px solid var(--bd); font-size:.88rem; }
+.recap-card p:not(.atwork){ margin-bottom:16px; }
+.recap-card .atwork b{ color:var(--strong); }
 
 </style>
 </head>
@@ -1967,6 +1979,60 @@ nav.links a{ white-space:nowrap; }
   </div>
 </section>
 
+<!-- ═══════════════════ RECAP: WHAT YOU NOW KNOW ═══════════════════ -->
+<section id="recap" class="th-cream" aria-label="What you now know">
+  <div class="wrap">
+    <div class="eyebrow" style="margin-bottom:16px"><span class="tick"></span><span class="mono" style="color:var(--eyebrow)">Summary · the eight ideas</span></div>
+    <h2 style="font-size:clamp(2rem,4.5vw,3.2rem);max-width:20ch">What you now <em class="s">know</em>.</h2>
+    <p style="margin-top:20px;color:var(--tx2);max-width:62ch">Before you go, one pass through the ideas this whole course is built on. This recap is not a formality; a quick review right after learning is what moves ideas into long-term memory. Each card ends with the habit that puts the idea to work.</p>
+
+    <div class="recap-grid">
+      <div class="recap-card">
+        <h3>The three jobs</h3>
+        <p>A Vanderbilt manager holds three jobs at once: keeping the rules, leading the people, and running the processes. Underneath all three sit the people skills that make them work.</p>
+        <p class="atwork"><b>At work:</b> when a week feels chaotic, name which job each fire belongs to. The lane tells you the next move.</p>
+      </div>
+      <div class="recap-card">
+        <h3>Compliance is state-specific</h3>
+        <p>The federal floor is the same everywhere; the obligations stacked on top are not. Tennessee, New York, California, and Florida each change what a manager must know, do, and report.</p>
+        <p class="atwork"><b>At work:</b> before advising anyone who works outside Tennessee, check their state profile first.</p>
+      </div>
+      <div class="recap-card">
+        <h3>The three lanes</h3>
+        <p>Handle it yourself, partner with your EC, or escalate now. Most of the job is Lane 1. Pay, leave, accommodations, and persistent patterns are Lane 2. Protected classes, harassment, safety, and retaliation are Lane 3, same day, every time.</p>
+        <p class="atwork"><b>At work:</b> Lane 3 stays Lane 3 even when the person asks you to keep it quiet.</p>
+      </div>
+      <div class="recap-card">
+        <h3>If it is not written down, it did not happen</h3>
+        <p>Documentation is what makes decisions fair and defensible. A note that holds up has five parts: the date, facts a camera would record, the expectation you set, the support you offered, and a follow-up date.</p>
+        <p class="atwork"><b>At work:</b> write the note the same day. December memory is not March fact.</p>
+      </div>
+      <div class="recap-card">
+        <h3>Leave rarely arrives labeled</h3>
+        <p>FMLA shows up as a life event in a hallway conversation. What you say in the next five minutes protects the person and the university, or exposes both. Its sibling, the ADA, covers changes to how someone works rather than time away.</p>
+        <p class="atwork"><b>At work:</b> say the protective sentence, then stop: &ldquo;You may be entitled to job-protected leave; let me connect you with Leave Administration today.&rdquo;</p>
+      </div>
+      <div class="recap-card">
+        <h3>Time and money are legal records</h3>
+        <p>For non-exempt staff, all hours worked are paid hours; off-the-clock work does not legally exist. And your expense approval is the university&rsquo;s front-line financial control, with your name on it.</p>
+        <p class="atwork"><b>At work:</b> fix the record, then fix the norm that produced it. Read the lines, not the total.</p>
+      </div>
+      <div class="recap-card">
+        <h3>Managers are talent scouts</h3>
+        <p>Everyone has talent. Not everyone is talent in the succession sense. High potential is ability, aspiration, and engagement together, and spotting it early is part of your job, not a favor.</p>
+        <p class="atwork"><b>At work:</b> tell people they have a future here, out loud, before a recruiter does.</p>
+      </div>
+      <div class="recap-card">
+        <h3>Coach before you correct</h3>
+        <p>The line between coaching and discipline is whether the person can&rsquo;t yet or won&rsquo;t anymore. Growth conversations, real 1:1s, and psychological safety are what keep your best people; discipline is for when coaching has genuinely run out.</p>
+        <p class="atwork"><b>At work:</b> one piece of specific, behavior-based feedback every week, so hard conversations are never your first conversations.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:34px;color:var(--tx2);max-width:62ch;font-size:.95rem">If any card feels shaky, its section is one click up the page, and the <a href="job-aid.html" style="color:var(--link);border-bottom:1px solid var(--bdg)">pocket card</a> carries the structure with you. The <a href="#assess" style="color:var(--link);border-bottom:1px solid var(--bdg)">assessment</a> is how you prove the rest.</p>
+  </div>
+</section>
+
 <!-- ═══════════════════ CLOSING CTA ═══════════════════ -->
 <section class="cta th-dark" aria-label="Begin">
   <div class="wrap" style="text-align:center">
@@ -2016,7 +2082,6 @@ nav.links a{ white-space:nowrap; }
   </div>
 </footer>
 </main>
-
 <script>
 (function(){
 "use strict";
@@ -4025,7 +4090,6 @@ function boot(){
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', boot);
 else boot();
 })();
-
 </script>
 </body>
 </html>
