@@ -1131,6 +1131,21 @@ nav.links a{ white-space:nowrap; }
 .ck-total .mono{ font-size:.72rem; color:var(--tx3); }
 @media (max-width:640px){ .ck-row{ grid-template-columns:1fr auto; } .ck-h{ display:none; } }
 
+/* ═══════ AI TASK AUDITOR (special module) ═══════ */
+.aw-task{ border:1px solid var(--bd); border-radius:var(--r); background:var(--card2); padding:16px 16px 4px; margin-top:12px; }
+.aw-head{ display:flex; gap:10px; align-items:flex-end; }
+.aw-head .field{ flex:1; margin-bottom:14px; min-width:0; }
+.aw-x{ width:44px; height:44px; flex-shrink:0; margin-bottom:14px; border-radius:var(--r); border:1px solid var(--field-bd); background:var(--field); color:var(--tx3); cursor:pointer; display:grid; place-items:center; transition:border-color .2s ease-out,color .2s ease-out; }
+.aw-x:hover{ border-color:var(--vu-err); color:var(--vu-err); }
+.aw-x svg{ width:14px; height:14px; }
+.aw-sels{ display:grid; grid-template-columns:repeat(3,1fr); gap:0 10px; }
+.aw-sels .field{ margin-bottom:14px; }
+@media (max-width:760px){ .aw-sels{ grid-template-columns:1fr; } }
+/* footer link columns: collapse the inline 3-col grid on small screens (fixes 375px overflow) */
+@media (max-width:720px){ footer .wrap > div:first-child{ grid-template-columns:1fr !important; } }
+/* nav: eight links need tighter spacing before the burger takes over at 960 */
+@media (max-width:1200px){ nav.links{ gap:0; } nav.links a{ padding:10px 8px; font-size:.84rem; } nav.links a::after{ left:8px; right:8px; } nav.links .nav-cta{ margin-left:6px; } }
+
 </style>
 </head>
 <body>
@@ -1149,6 +1164,7 @@ nav.links a{ white-space:nowrap; }
       <a href="#operations">Responsibilities</a>
       <a href="#softskills">People Skills</a>
       <a href="#mastery">Mastery</a>
+      <a href="#aiwork">AI Readiness</a>
       <a href="#assess">Assessment</a>
       <a href="#resources">Resources</a>
       <a href="#foundations" class="nav-cta btn btn-primary btn-sm">Begin the track</a>
@@ -1165,8 +1181,9 @@ nav.links a{ white-space:nowrap; }
   <a class="mlink" href="#operations"><span class="mono">03</span>Responsibilities</a>
   <a class="mlink" href="#softskills"><span class="mono">04</span>People Skills</a>
   <a class="mlink" href="#mastery"><span class="mono">05</span>Mastery</a>
-  <a class="mlink" href="#assess"><span class="mono">06</span>Assessment</a>
-  <a class="mlink" href="#resources"><span class="mono">07</span>Resources</a>
+  <a class="mlink" href="#aiwork"><span class="mono">06</span>AI Readiness</a>
+  <a class="mlink" href="#assess"><span class="mono">07</span>Assessment</a>
+  <a class="mlink" href="#resources"><span class="mono">08</span>Resources</a>
   <div class="mfoot">Vanderbilt University · Manager Voyage · Manager Foundations</div>
 </div>
 
@@ -1214,7 +1231,7 @@ nav.links a{ white-space:nowrap; }
     <div class="statrow">
       <div class="statcell"><span class="num">4</span><span class="lbl">core domains every Vanderbilt manager owns</span></div>
       <div class="statcell"><span class="num">4</span><span class="lbl">state compliance profiles. TN · NY · CA · FL</span></div>
-      <div class="statcell"><span class="num">36</span><span class="lbl">interactive experiences, simulators, labs &amp; plan builders</span></div>
+      <div class="statcell"><span class="num">37</span><span class="lbl">interactive experiences, simulators, labs &amp; plan builders</span></div>
       <div class="statcell"><span class="num">100%</span><span class="lbl">hands-on, you make every call yourself, no slides</span></div>
     </div>
   </div>
@@ -1841,6 +1858,80 @@ nav.links a{ white-space:nowrap; }
   </div>
 </section>
 
+<!-- ═════════════════════════ SPECIAL MODULE. AI & WORKFORCE READINESS ═════════════════════════ -->
+<section id="aiwork" class="th-light" aria-label="AI and workforce readiness">
+  <div class="wrap">
+    <div class="eyebrow" style="margin-bottom:16px"><span class="tick"></span><span class="mono" style="color:var(--eyebrow)">Special module · AI &amp; workforce readiness · ~12 min</span></div>
+    <h2 style="font-size:clamp(2rem,4.5vw,3.2rem);max-width:22ch">AI shows up as <em class="s">tasks</em>, not job titles.</h2>
+    <p style="margin-top:20px;color:var(--tx2);max-width:62ch">One more thing the role now asks of you. AI doesn&rsquo;t show up for a job title; it shows up for a task. Every job on your team is really a bundle of tasks, and the bundle is lumpy: some tasks sit squarely in AI&rsquo;s wheelhouse, others barely register, and most jobs hold a messy mix of both. When researchers mapped AI capability against the U.S. workforce this way, they found that <a href="https://arxiv.org/abs/2303.10130" target="_blank" rel="noopener" style="color:var(--link);border-bottom:1px solid var(--bdg)">about 80% of workers could see at least 10% of their tasks affected, and about 19% could see half or more</a>. So the manager&rsquo;s unit of analysis is each person&rsquo;s <b>task list</b>, and nobody at Vanderbilt reads your team&rsquo;s task lists better than you.</p>
+    <p style="margin-top:14px;color:var(--tx2);max-width:62ch">Hold onto the second finding just as tightly: <b>exposure is not elimination</b>. When Anthropic measured how people actually use AI at work, usage split roughly <a href="https://www.anthropic.com/news/the-anthropic-economic-index" target="_blank" rel="noopener" style="color:var(--link);border-bottom:1px solid var(--bdg)">57% augmentation (working with AI) to 43% automation (handing work over)</a>, with about 36% of occupations using AI in at least a quarter of their tasks. Exposure is a planning signal, full stop: it is never, by itself, grounds for eliminating a role, and nothing in this module treats it that way. The point of mapping it is agency, for you and for your people, to get ahead of the change and shape it. The outputs are development plans, redesigned workflows, and a sharper hiring signal, a plan for each person, not a verdict on anyone.</p>
+    <div class="primer" style="margin-top:26px"><span class="mono" style="color:var(--eyebrow)">What this module gives you</span><div class="pr-row"><b>You&rsquo;ll learn</b><span>Why AI exposes tasks rather than jobs, where it is strong and where it is quietly wrong, and how fast the skill mix under your team is moving.</span></div><div class="pr-row"><b>You&rsquo;ll practice</b><span>Auditing one real person&rsquo;s week with the Task Auditor: three plain answers per task sort the list into delegate, redesign, and human-core.</span></div><div class="pr-row"><b>You&rsquo;ll leave with</b><span>A copyable readiness brief for that person: the call on every task you named, the skills to build first, and a 30/60/90 you can start Monday.</span></div></div>
+
+    <!-- concept: the jagged frontier -->
+    <div style="margin-top:52px">
+      <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Concept · The jagged frontier</span>
+      <h4 style="font-size:1.15rem">AI is strong and weak in places you can&rsquo;t guess from the job description.</h4>
+      <p style="margin-top:10px;color:var(--tx2);max-width:64ch;font-size:.95rem">The largest workplace experiment to date, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321" target="_blank" rel="noopener" style="color:var(--link);border-bottom:1px solid var(--bdg)">a 2023 Harvard Business School study of 758 BCG consultants</a> (working paper 24-013), found that on tasks <i>inside</i> AI&rsquo;s abilities, consultants using it finished <b>12.2% more tasks</b>, <b>25.1% faster</b>, at <b>more than 40% higher quality</b>. On a task deliberately chosen to sit just <i>outside</i> those abilities, the same consultants were <b>19 percentage points more likely to be wrong</b>, and their answers still sounded polished and confident. The researchers called the shape of this edge the <b>jagged frontier</b>: AI aces work you would bet against and quietly flubs work you would bet on.</p>
+      <p style="margin-top:10px;color:var(--tx2);max-width:64ch;font-size:.95rem">For a manager the lesson is precise: the frontier sits differently for <i>your</i> team&rsquo;s work, and mapping it is now part of your job. That is why <b>verification matters as much as prompting</b>. Any task your team hands to AI needs a named check built into the workflow, especially where a confident wrong answer would travel far before anyone caught it.</p>
+    </div>
+
+    <!-- concept: skills churn + the ladder -->
+    <div style="margin-top:44px">
+      <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Concept · Skills churn to 2030</span>
+      <h4 style="font-size:1.15rem">The skills are moving. Work the ladder in order.</h4>
+      <p style="margin-top:10px;color:var(--tx2);max-width:64ch;font-size:.95rem">In the World Economic Forum&rsquo;s <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener" style="color:var(--link);border-bottom:1px solid var(--bdg)"><i>Future of Jobs Report 2025</i></a>, employers expect <b>39% of core skills to change by 2030</b>, with analytical thinking the top core skill and AI and big data the fastest growing. When that churn opens a gap on your team, the response has an order of operations, and hiring is the last rung, not the first.</p>
+      <div class="conseq" style="margin-top:18px"><p class="c-lead">When a skill gap opens, climb in this order</p><span class="step">1 · Upskill the person</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step">2 · Reskill toward adjacent work</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step">3 · Redesign the role</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step">4 · Hire, last</span></div>
+    </div>
+
+    <!-- the manager's four moves -->
+    <div class="primer" style="margin-top:44px"><span class="mono" style="color:var(--eyebrow)">The manager&rsquo;s four moves</span>
+      <div class="pr-row"><b>1. Inventory the tasks</b><span>Sit with each person and write down what they actually do in a week, real tasks, not the job description. The conversation is half the value.</span></div>
+      <div class="pr-row"><b>2. Sort into three buckets</b><span><b>Delegate with oversight</b> (AI drafts, a person checks and signs), <b>redesign together</b> (person plus AI, side by side), or <b>human-core</b> (the work AI reaches least). Every task goes in exactly one.</span></div>
+      <div class="pr-row"><b>3. Name the skills each bucket demands</b><span>Delegated work needs specification and review habits. Redesigned work needs prompting, iteration, and verification. Human-core work needs deliberate depth, because value concentrates there.</span></div>
+      <div class="pr-row"><b>4. Turn it into plans, and a hiring signal</b><span>A per-person development plan from the buckets, and a note to PCB about the skills you keep needing, so they show up in your next posting instead of your next crisis.</span></div>
+    </div>
+    <p style="margin-top:12px;font-size:.78rem;color:var(--tx3);max-width:76ch">Figures and framing: Eloundou, Manning, Mishkin &amp; Rock, <a href="https://arxiv.org/abs/2303.10130" target="_blank" rel="noopener">&ldquo;GPTs are GPTs&rdquo;</a> (2023, later published in <i>Science</i>) &middot; Dell&rsquo;Acqua et&nbsp;al., <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321" target="_blank" rel="noopener">HBS working paper 24-013</a> (2023) &middot; <a href="https://www.anthropic.com/news/the-anthropic-economic-index" target="_blank" rel="noopener">Anthropic Economic Index</a> (2025) &middot; World Economic Forum, <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener"><i>Future of Jobs Report 2025</i></a>. Verify figures before quoting them in a budget document.</p>
+
+    <!-- WIDGET: THE TASK AUDITOR -->
+    <div style="margin-top:64px" id="aiaudit">
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Interactive · The Task Auditor</span></div>
+      <h3 style="font-size:1.55rem;max-width:30ch">One person&rsquo;s week, sorted into <em class="s">three buckets</em>.</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:62ch">Pick one person on your team, or start with yourself. Type their real tasks, not the job title: &ldquo;draft the weekly donor newsletter&rdquo; sorts cleanly; &ldquo;communications&rdquo; doesn&rsquo;t. Three answers place each task in a bucket, and the report turns the buckets into skills, routes to build them, and a 30/60/90 you can run.</p>
+      <div class="sim-shell" style="margin-top:26px">
+        <div class="field" style="max-width:520px"><label for="awRole">Whose task list is this?</label><input type="text" id="awRole" placeholder="Program coordinator on my admissions team" autocomplete="off"></div>
+        <div id="awTasks"></div>
+        <div style="margin-top:14px"><button type="button" class="btn btn-ghost btn-sm" id="awAdd">+ Add another task (up to 6)</button></div>
+        <div class="sim-row" style="margin-top:18px">
+          <div class="field"><label for="awFlu">How much has this person used AI tools so far?</label>
+            <select id="awFlu">
+              <option value="new" selected>They have not really started</option>
+              <option value="some">They experiment now and then</option>
+              <option value="fluent">They use them regularly</option>
+            </select></div>
+          <div class="field"><label for="awData">What kind of information does their work touch?</label>
+            <select id="awData">
+              <option value="public" selected>Public or routine internal information</option>
+              <option value="confidential">Confidential university business</option>
+              <option value="regulated">Regulated records, like those covered by FERPA or HIPAA</option>
+            </select></div>
+        </div>
+        <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap"><button type="button" class="btn btn-primary" id="awGo">Build the readiness report</button><button type="button" class="btn btn-ghost" id="awReset">Start over</button></div>
+        <div id="awOut" aria-live="polite"></div>
+      </div>
+      <details class="deeper" style="margin-top:18px">
+        <summary><span class="dx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>How this assessment is built</summary>
+        <div class="d-body">
+          <p><b>Why we ask about tasks, not jobs:</b> the workforce study that mapped AI against U.S. occupations worked at the task level, and found about 80% of workers could see at least 10% of their tasks affected. <a href="https://arxiv.org/abs/2303.10130" target="_blank" rel="noopener">Eloundou et&nbsp;al., &ldquo;GPTs are GPTs&rdquo; (2023)</a>.</p>
+          <p><b>Why three buckets:</b> real-world usage splits between augmentation (working with AI, about 57%) and automation (handing work over, about 43%), so a task list needs more than one destiny. <a href="https://www.anthropic.com/news/the-anthropic-economic-index" target="_blank" rel="noopener">Anthropic Economic Index (2025)</a>.</p>
+          <p><b>Why we ask how the result is checked:</b> in the Harvard/BCG field experiment, people using AI on tasks it was quietly bad at were 19 percentage points more likely to be wrong, and their answers still sounded confident. Checkability decides how safely a task can be delegated. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321" target="_blank" rel="noopener">Dell&rsquo;Acqua et&nbsp;al., HBS working paper 24-013 (2023)</a>.</p>
+          <p><b>Where the skills list comes from:</b> employers expect 39% of core skills to change by 2030, with analytical thinking on top and AI and big data the fastest growing. <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener">World Economic Forum, <i>Future of Jobs Report 2025</i></a>.</p>
+        </div>
+      </details>
+      <p style="margin-top:16px;font-size:.92rem;color:var(--tx2);max-width:64ch">Building your own AI skills too? This module&rsquo;s sibling site, <a href="../" style="color:var(--link);border-bottom:1px solid var(--bdg)"><b>CHART, Vanderbilt&rsquo;s AI learning platform</b></a>, teaches the prompting, verification, and tool judgment the buckets above ask for, and it has a staff-facing version of this auditor.</p>
+      <p class="next-up"><a href="#managerplan">Next up: build your manager plan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+  </div>
+</section>
 
 <!-- ═════════════════════════ MY MANAGER PLAN ═════════════════════════ -->
 <section id="managerplan" class="th-dark" aria-label="Build your manager plan">
@@ -1980,6 +2071,7 @@ nav.links a{ white-space:nowrap; }
           <a href="#compliance" style="color:var(--tx2);font-size:.92rem">Compliance &amp; Duty</a>
           <a href="#relations" style="color:var(--tx2);font-size:.92rem">Employee Relations</a>
           <a href="#operations" style="color:var(--tx2);font-size:.92rem">Human-Centered Responsibilities</a>
+          <a href="#aiwork" style="color:var(--tx2);font-size:.92rem">AI &amp; Workforce Readiness</a>
           <a href="#assess" style="color:var(--tx2);font-size:.92rem">Assessment</a>
         </div>
       </div>
@@ -2068,6 +2160,7 @@ var MODULES = [
   {key:'hybrid', label:'Hybrid Teams', href:'#deck-hybrid'},
   {key:'change', label:'Reorg', href:'#sim-change'},
   {key:'term', label:'Last Conversation', href:'#sim-term'},
+  {key:'aiwork', label:'AI Task Auditor', href:'#aiaudit'},
   {key:'feedback', label:'Feedback Lab', href:'#deck-feedback'},
   {key:'softmicro', label:'Skill Drills', href:'#softTopics'},
   {key:'oob', label:'1:1 Builder', href:'#oobuilder'},
@@ -3976,6 +4069,243 @@ function initHeroVideo(){
   }
 }
 
+/* ══════════ WIDGET: THE TASK AUDITOR (AI & workforce readiness) ══════════ */
+var AW_PLACEHOLDERS=[
+  'Draft the weekly status update for leadership',
+  'Answer routine email about deadlines and logistics',
+  'Reconcile the monthly budget report',
+  'Onboard and schedule student workers',
+  'Summarize meeting notes and send action items',
+  'Plan the spring donor event'
+];
+var AW_BUCKETS={
+  delegate:{ label:'Delegate with oversight', cls:'automate' },
+  redesign:{ label:'Redesign together', cls:'assist' },
+  core:{ label:'Human-core', cls:'advise' }
+};
+function awClassify(t){
+  if(t.mode==='person' || t.rep==='novel') return 'core';
+  if(t.mode==='screen' && t.rep==='same' && t.chk==='quick') return 'delegate';
+  return 'redesign';
+}
+function awReason(t){
+  if(t.bucket==='delegate')
+    return 'Screen based, the same shape every time, and quick to check: a strong candidate for an AI first draft, with the person spot-checking and signing every output.';
+  if(t.bucket==='core'){
+    if(t.mode==='person' && t.rep==='novel')
+      return 'In person and high stakes: the human core of this role. Protect it, and name it in the development plan so it grows on purpose, not by accident.';
+    if(t.mode==='person')
+      return 'Mostly in person or relational: the work AI reaches least. Time freed elsewhere should flow toward this, not away from it.';
+    return 'New or high stakes each time, so judgment carries it: keep the person at the center and let AI help only at the edges, an outline here, a checklist there.';
+  }
+  var mode = t.mode==='screen' ? 'Screen based' : 'Part screen work, part people';
+  var rep = t.rep==='same' ? ' and the same shape every time' : ', with judgment calls each time';
+  if(t.chk==='hard')
+    return mode+rep+', but the output is hard to check without redoing it. Verification is the constraint here: keep the person and AI side by side, and build the review habit before raising the volume.';
+  if(t.chk==='effort')
+    return mode+rep+', and checking takes real effort: redesign it as person plus AI, with the person owning the review and the result.';
+  return mode+rep+': redesign it as person plus AI, with the person shaping the judgment calls and owning the result.';
+}
+function initAiAudit(){
+  var host=el('awTasks'), addBtn=el('awAdd'), go=el('awGo'), resetBtn=el('awReset'), out=el('awOut');
+  var role=el('awRole'), flu=el('awFlu'), data=el('awData');
+  if(!host||!addBtn||!go||!out) return;
+  var uid=0;
+  function selHtml(id,label,opts){
+    return '<div class="field"><label for="'+id+'">'+label+'</label><select id="'+id+'">'+
+      opts.map(function(o){ return '<option value="'+o[0]+'">'+o[1]+'</option>'; }).join('')+'</select></div>';
+  }
+  function addRow(){
+    if(host.children.length>=6) return;
+    var i=uid++;
+    var row=h('<div class="aw-task"></div>');
+    row.innerHTML=
+      '<div class="aw-head">'+
+        '<div class="field"><label for="awT'+i+'"><span class="aw-n">Task</span> · what they actually do</label>'+
+        '<input type="text" id="awT'+i+'" class="aw-name" placeholder="'+esc(AW_PLACEHOLDERS[host.children.length]||AW_PLACEHOLDERS[0])+'" autocomplete="off"></div>'+
+        '<button type="button" class="aw-x" aria-label="Remove this task">'+ICON.x+'</button>'+
+      '</div>'+
+      '<div class="aw-sels">'+
+        selHtml('awM'+i,'What does this task mostly involve?',[['screen','Mostly writing, numbers, or other screen work'],['mix','A mix of screen work and working with people'],['person','Mostly hands-on or face-to-face work']])+
+        selHtml('awR'+i,'How similar is it each time they do it?',[['same','It follows the same steps every time'],['judgment','Familiar, but it needs judgment calls'],['novel','Different every time, or the stakes are high']])+
+        selHtml('awC'+i,'How easily could someone else check the result?',[['quick','Quickly, at a glance'],['effort','With some real effort'],['hard','Only by redoing the work themselves']])+
+      '</div>';
+    row.querySelector('.aw-x').addEventListener('click', function(){
+      if(host.children.length<=1) return;
+      host.removeChild(row); renumber();
+    });
+    host.appendChild(row); renumber();
+  }
+  function renumber(){
+    Array.prototype.forEach.call(host.children, function(r,idx){
+      var n=r.querySelector('.aw-n'); if(n) n.textContent='Task '+(idx+1);
+      var x=r.querySelector('.aw-x'); if(x){ x.setAttribute('aria-label','Remove task '+(idx+1)); x.style.visibility = host.children.length<=1?'hidden':'visible'; }
+    });
+    addBtn.disabled = host.children.length>=6;
+  }
+  function gather(){
+    return Array.prototype.map.call(host.children, function(r){
+      var sels=r.querySelectorAll('select');
+      return { name:r.querySelector('.aw-name').value.trim(), mode:sels[0].value, rep:sels[1].value, chk:sels[2].value };
+    }).filter(function(t){ return t.name; });
+  }
+  function skillList(bk, tasks){
+    var s=[];
+    if(flu.value==='new') s.push(['Tool fundamentals first','This person has not really started with AI tools. Start with the basics, what these tools are, where they fail, how to ask, before assigning any AI-heavy workflow. CHART, linked below, is built for exactly this.']);
+    if(data.value!=='public') s.push(['Data judgment','Knowing which details never leave approved tools. Regulations such as FERPA and HIPAA set the legal floor; Vanderbilt policy sets the working rules.']);
+    if(bk.delegate.length) s.push(['Delegation with verification','Writing a handoff an AI can follow, and a spot-check the person will actually run. For delegated tasks the skill shifts from doing the work to specifying and checking it.']);
+    if(bk.redesign.length) s.push(['Prompting and iteration','Working a task with AI in the loop: drafts, critique, second passes. The redesign bucket lives or dies on this skill.']);
+    if(tasks.some(function(t){ return t.chk==='hard'; })) s.push(['Verification judgment','Some of these outputs are hard to check without redoing them. Deciding what evidence a good output must carry matters as much as any prompt.']);
+    if(bk.core.length) s.push(['Human-core depth','The relational and high-stakes work concentrates value in the person doing it. Grow it deliberately: analytical thinking and judgment top the 2030 skill list.']);
+    return s.slice(0,5);
+  }
+  function tierRead(bk, total, who){
+    if(bk.delegate.length*2>total)
+      return '<b>Higher exposure.</b> Most of the tasks you named, including &ldquo;'+esc(bk.delegate[0].name)+'&rdquo;, could run as AI first drafts with oversight. Read that as a <b>role redesign conversation, not a headcount signal</b>: '+who+'&rsquo;s week moves toward the redesign and human-core work, and the skills to get there are trainable. Role redesign and reclassification run through PCB, never through a quiet reshuffle. <span class="ph">Add PCB workforce-planning contact</span>';
+    if(bk.core.length*2>total)
+      return '<b>Lower exposure.</b> Most of this work is relational, new, or high stakes, the parts AI reaches least. Still run one pilot from the redesign bucket: even a low-exposure role usually has a task worth an AI first pass, and the practice builds the judgment for later.';
+    return '<b>Moderate exposure.</b> The week splits: part of it sits within AI&rsquo;s reach, and the rest stays human-core. That balance is the normal case, and it is good news, because delegating and redesigning the exposed half buys time for the half only a person can do.';
+  }
+  function dataCard(){
+    if(data.value==='regulated')
+      return '<div class="watchout" style="margin-top:22px"><div class="w-ic">'+ICON.alert+'</div><div><h5>Data judgment comes first</h5><p>This work touches regulated records, the kind covered by <b>FERPA</b> or <b>HIPAA</b>. Before any task in the delegate or redesign bucket goes near an AI tool, the rule is simple: regulated and institutional data stays inside Vanderbilt-approved platforms such as <a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener" style="color:var(--link);border-bottom:1px solid var(--bdg)">Amplify</a>, never in a personal or public tool. When in doubt, ask before you paste. <span class="ph">Confirm the approved-tool list</span></p></div></div>';
+    if(data.value==='confidential')
+      return '<div class="watchout ok" style="margin-top:22px"><div class="w-ic">'+ICON.shield+'</div><div><h5>Data judgment, worth a team norm</h5><p>This work handles confidential university business. Set the norm before the first pilot: anything confidential, or anything identifying a student, patient, or employee, goes only into Vanderbilt-approved platforms such as <a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener" style="color:var(--link);border-bottom:1px solid var(--bdg)">Amplify</a>. When in doubt, ask before you paste.</p></div></div>';
+    return '<div class="watchout ok" style="margin-top:22px"><div class="w-ic">'+ICON.shield+'</div><div><h5>Data judgment, still the standing rule</h5><p>Even in routine work, the norm holds: nothing identifying a student, patient, or employee goes into a personal or public AI tool. Vanderbilt-approved platforms such as <a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener" style="color:var(--link);border-bottom:1px solid var(--bdg)">Amplify</a> exist for exactly that reason.</p></div></div>';
+  }
+  go.addEventListener('click', function(){
+    var tasks=gather();
+    if(tasks.length<2){
+      out.innerHTML='<p style="margin-top:16px;color:var(--vu-err);font-weight:600">Name at least two real tasks first, the report is built from them. Verbs help: &ldquo;draft,&rdquo; &ldquo;reconcile,&rdquo; &ldquo;schedule.&rdquo;</p>';
+      var firstEmpty=Array.prototype.find ? Array.prototype.find.call(host.querySelectorAll('.aw-name'), function(i){ return !i.value.trim(); }) : null;
+      if(firstEmpty) firstEmpty.focus();
+      return;
+    }
+    var bk={delegate:[],redesign:[],core:[]};
+    tasks.forEach(function(t){ t.bucket=awClassify(t); bk[t.bucket].push(t); });
+    var total=tasks.length;
+    var who=role.value.trim()?esc(role.value.trim()):'this person';
+    var oppCards=tasks.map(function(t){
+      var B=AW_BUCKETS[t.bucket];
+      return '<div class="opp"><div class="o-top"><h5>'+esc(t.name.charAt(0).toUpperCase()+t.name.slice(1))+'</h5><span class="lvl '+B.cls+'">'+B.label+'</span></div><p>'+awReason(t)+'</p></div>';
+    }).join('');
+    var skills=skillList(bk,tasks);
+    var skillsHtml=skills.map(function(s){
+      return '<li>'+ICON.check+'<span><b>'+s[0]+'.</b> '+s[1]+'</span></li>';
+    }).join('');
+    var sixty = bk.delegate.length
+      ? 'Pilot an AI first draft of &ldquo;'+esc(bk.delegate[0].name)+'&rdquo; and one redesign-bucket task, each with explicit verification and a named reviewer.'
+      : 'Pick one redesign-bucket task and pilot a person-plus-AI version of it, with explicit verification and a named reviewer.';
+    /* the two-track learning plan: resilience + oversight, weighted by the buckets */
+    var delegateHeavy = bk.delegate.length*2>total;
+    var coreN = bk.core.length?bk.core[0].name:null;
+    var delN = bk.delegate.length?bk.delegate[0].name:null;
+    var rdN = bk.redesign.length?bk.redesign[0].name:null;
+    var resTrack={
+      name:'Resilience, the durable skills', icon:ICON.heart,
+      why:'Durable skills keep '+who+' valuable where AI cannot do the work.'+(bk.core.length?' The human-core tasks above are where they live.':''),
+      items:[
+        ['Analytical thinking and judgment', coreN
+          ? 'Have them take the lead on the next round of “'+coreN+'”, then debrief together what only a person could have done.'
+          : 'Assign the most judgment-heavy task on this list end to end, then debrief together what only a person could have done.'],
+        ['Relationship and coaching craft', 'Move one hour a week from screen work toward the face-to-face parts of the role; that is where the durable value concentrates.'],
+        ['Adaptability', 'Rotate in one unfamiliar assignment this quarter and treat the learning curve as the point, not the obstacle.']
+      ]};
+    var overTrack={
+      name:'AI oversight, staying the decision-maker', icon:ICON.route,
+      why:'Oversight skills keep '+who+' the decision-maker where AI will clearly absorb a task.',
+      items:[
+        ['Writing instructions AI can follow', delN
+          ? 'Pilot an AI first draft of “'+delN+'” and keep a checklist of every correction; the checklist becomes the delegation prompt.'
+          : (rdN
+            ? 'Pilot a person-plus-AI version of “'+rdN+'” and keep a checklist of every correction; the checklist becomes the delegation prompt.'
+            : 'Pick one routine screen task, pilot an AI first draft, and keep a checklist of every correction.')],
+        ['Verifying against a standard', 'Before reading any AI draft, write down what a good output must contain, then check the draft against the list. The Harvard/BCG experiment is the reason: outside its frontier, AI is confidently wrong.'],
+        ['Quality bars, and when to reject', 'Agree in advance on the bar below which an output gets rejected rather than repaired. Knowing when to say no is the oversight skill most teams skip.']
+      ]};
+    if(data.value!=='public') overTrack.items.push(['Data-handling judgment','Set the rule out loud: confidential or regulated details go only into approved platforms, and when in doubt, ask before pasting.']);
+    var primary = delegateHeavy?overTrack:resTrack, secondary = delegateHeavy?resTrack:overTrack;
+    var planLead = delegateHeavy
+      ? '<p style="margin-top:14px;color:var(--tx2);max-width:64ch;font-size:.95rem">An honest read first: much of this role&rsquo;s routine work is likely to be absorbed by AI tools over time, so this plan leans into oversight skills, and role redesign is a conversation to have with PCB. That is a development path, never on its own a case for cutting the role.</p>'
+      : '<p style="margin-top:14px;color:var(--tx2);max-width:64ch;font-size:.95rem">Both tracks below run at once: the first deepens the work AI reaches least, the second builds the habits for directing and checking it where it clearly helps.</p>';
+    function trackCard(tr,n){
+      return '<div class="wb-practice"><h4>'+tr.icon+' Track '+n+' · '+tr.name+'</h4><p>'+tr.why+'</p><ul>'+
+        tr.items.map(function(it){ return '<li>'+ICON.check+'<span><b>'+it[0]+'.</b> '+esc(it[1])+'</span></li>'; }).join('')+'</ul></div>';
+    }
+    var seqMonth=[primary.items[0][1], secondary.items[0][1]];
+    var seqQuarter=[primary.items[1][1], secondary.items[1][1]];
+    var planHtml =
+      '<div class="sub-h"><h4>Your learning plan for '+who+'</h4></div>'+planLead+
+      '<div class="wb-cards" style="margin-top:16px">'+trackCard(primary,1)+trackCard(secondary,2)+'</div>'+
+      '<div class="primer" style="margin-top:16px"><span class="mono" style="color:var(--eyebrow)">The sequence</span>'+
+        '<div class="pr-row"><b>This month</b><span>1. '+esc(seqMonth[0])+'<br>2. '+esc(seqMonth[1])+'</span></div>'+
+        '<div class="pr-row"><b>This quarter</b><span>3. '+esc(seqQuarter[0])+'<br>4. '+esc(seqQuarter[1])+'</span></div>'+
+      '</div>';
+    out.innerHTML=
+      '<div class="sim-out">'+
+      '<div class="sub-h" style="margin-top:30px"><h4>The calls, task by task</h4><span class="mono" style="font-size:.72rem;color:var(--tx3)">'+bk.delegate.length+' delegate · '+bk.redesign.length+' redesign · '+bk.core.length+' human-core</span></div>'+
+      '<div class="opp-grid">'+oppCards+'</div>'+
+      dataCard()+
+      '<div class="sub-h"><h4>The exposure read</h4></div>'+
+      '<p style="border-left:2px solid var(--vu-gold);padding-left:12px;color:var(--tx2);font-size:.95rem;line-height:1.7;max-width:66ch">'+tierRead(bk,total,who)+'</p>'+
+      '<div class="sub-h"><h4>Skills to build first</h4></div>'+
+      '<ul class="sugg" style="margin-top:0">'+skillsHtml+'</ul>'+
+      planHtml+
+      '<div class="sub-h"><h4>Where to build them</h4></div>'+
+      '<div class="launch-row" style="margin-top:0">'+
+        '<a class="btn btn-ghost btn-sm" href="../">CHART · Vanderbilt&rsquo;s AI learning platform</a>'+
+        '<a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Amplify · Vanderbilt&rsquo;s AI platform</a>'+
+        '<span class="ph" style="align-self:center">L&amp;D catalog · link pending</span>'+
+      '</div>'+
+      '<div class="sub-h"><h4>Your 30/60/90 as the manager</h4></div>'+
+      '<div class="roadmap three">'+
+        '<div class="rstep"><span class="rno">30 days</span><h5>The inventory conversation</h5><p>Thirty minutes with each person on the team, building their task list together with the three questions you just used. The conversation is the deliverable: people should hear this as investment, because it is.</p></div>'+
+        '<div class="rstep"><span class="rno">60 days</span><h5>Two pilots, named checks</h5><p>'+sixty+' Keep both small enough to abandon cheaply.</p></div>'+
+        '<div class="rstep"><span class="rno">90 days</span><h5>Plans, and the hiring signal</h5><p>Write a per-person development plan from the buckets, and send PCB a short note on the emerging skills your team keeps needing, so they appear in your next posting instead of your next crisis. <span class="ph">Add PCB talent contact</span></p></div>'+
+      '</div>'+
+      '<p class="honest">'+ICON.alert+'<span>A guided framework, not a live AI and not an HR determination. Exposure here is a development signal: the outputs are training plans, redesigned workflows, and a hiring signal, never on their own a case for changing anyone&rsquo;s employment. Real workforce decisions run through PCB.</span></p>'+
+      '<div style="margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button type="button" class="btn btn-ghost btn-sm" id="awCopy">Copy the readiness brief</button><span id="awCopied" class="mono" style="display:none">Copied</span></div>'+
+      '</div>';
+    markDone('aiwork');
+    var brief='AI READINESS BRIEF · '+(role.value.trim()||'one role on my team')+'\n'
+      +'Built with the Task Auditor (Manager Foundations) · a guided framework, not an HR determination\n\n'
+      +'DELEGATE WITH OVERSIGHT (AI drafts, a person checks and signs)\n'
+      +(bk.delegate.length?bk.delegate.map(function(t){ return '• '+t.name; }).join('\n'):'• nothing named yet; start in the redesign bucket')+'\n\n'
+      +'REDESIGN TOGETHER (person plus AI, side by side)\n'
+      +(bk.redesign.length?bk.redesign.map(function(t){ return '• '+t.name+(t.chk==='hard'?' (verification is the constraint)':''); }).join('\n'):'• move one delegate task here first to learn where AI is reliable')+'\n\n'
+      +'HUMAN-CORE (protect and develop on purpose)\n'
+      +(bk.core.length?bk.core.map(function(t){ return '• '+t.name; }).join('\n'):'• none named, worth asking what only this person can do')+'\n\n'
+      +'EXPOSURE READ: '+(bk.delegate.length*2>total?'Higher':(bk.core.length*2>total?'Lower':'Moderate'))+' (from the bucket split, '+bk.delegate.length+'/'+bk.redesign.length+'/'+bk.core.length+' of '+total+')\n'
+      +'SKILLS TO BUILD FIRST: '+skills.map(function(s){ return s[0]; }).join(' · ')+'\n\n'
+      +'LEARNING PLAN\n'
+      +(delegateHeavy?'Honest read: much of this role’s routine work is likely to be absorbed by AI tools, so the plan leans into oversight skills, and role redesign is a conversation to have with PCB. Development path only, never a case for cutting the role.\n':'')
+      +'Track 1 · '+primary.name+'\n'+primary.items.map(function(it){ return '• '+it[0]+': '+it[1]; }).join('\n')+'\n'
+      +'Track 2 · '+secondary.name+'\n'+secondary.items.map(function(it){ return '• '+it[0]+': '+it[1]; }).join('\n')+'\n'
+      +'THIS MONTH: 1) '+seqMonth[0]+' 2) '+seqMonth[1]+'\n'
+      +'THIS QUARTER: 3) '+seqQuarter[0]+' 4) '+seqQuarter[1]+'\n\n'
+      +'30 DAYS: task-inventory conversation with each person.\n'
+      +'60 DAYS: '+sixty.replace(/&ldquo;|&rdquo;/g,'"').replace(/<[^>]+>/g,'')+'\n'
+      +'90 DAYS: per-person development plans + emerging-talent-needs note to PCB.\n\n'
+      +'Routes: CHART (Vanderbilt AI learning platform) · Amplify (https://www.vanderbilt.ai/) · L&D catalog (link pending)\n'
+      +'Note: development, redesign, and hiring signal only. Nothing here is a case for cutting a role.';
+    el('awCopy').addEventListener('click', function(){
+      function ok(){ var c=el('awCopied'); if(c){ c.style.display='inline'; setTimeout(function(){ c.style.display='none'; },2200); } }
+      function fb(){ var ta=document.createElement('textarea'); ta.value=brief; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} document.body.removeChild(ta); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(brief).then(ok,fb); } else fb();
+    });
+    out.scrollIntoView({behavior:reduce?'auto':'smooth', block:'nearest'});
+  });
+  resetBtn.addEventListener('click', function(){
+    host.innerHTML=''; uid=0;
+    addRow(); addRow(); addRow();
+    role.value=''; flu.value='new'; data.value='rare';
+    out.innerHTML='';
+    role.focus();
+  });
+  addBtn.addEventListener('click', addRow);
+  addRow(); addRow(); addRow();
+}
+
 /* ══════════ boot ══════════ */
 function boot(){
   try{ renderTopics(); }catch(e){}
@@ -3994,6 +4324,7 @@ function boot(){
   try{ initAudit(); }catch(e){}
   try{ initClock(); }catch(e){}
   try{ initIcs(); }catch(e){}
+  try{ initAiAudit(); }catch(e){}
   try{ initHeroRotation(); }catch(e){}
   document.addEventListener('click', function(e){ var pl=e.target.closest('.olink[data-pending]'); if(pl) e.preventDefault(); });
   // deep links: content mounts after the browser's initial anchor jump, so re-align

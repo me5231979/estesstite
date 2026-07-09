@@ -153,7 +153,8 @@ body.menu-open .mobile-menu{ opacity:1; visibility:visible; transition:opacity .
 /* ═══════════════════ HERO ═══════════════════ */
 .hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:center; padding:140px 0 96px; overflow:hidden; }
 .hero-media{ position:absolute; inset:0; z-index:0; }
-.hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.3; mix-blend-mode:screen; filter:saturate(.85); }
+.hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.3; mix-blend-mode:screen; filter:saturate(.85); transition:opacity 1.8s ease; }
+.hero-video.hv-hidden{ opacity:0; }
 .hero-scrim{ position:absolute; inset:0; background:linear-gradient(180deg,rgba(28,28,28,.55),rgba(28,28,28,.45) 55%,rgba(28,28,28,.86)); }
 .hero .wrap{ position:relative; z-index:2; }
 .hero h1{ font-size:clamp(2.75rem,7vw,5.5rem); line-height:1.05; letter-spacing:-.01em; margin-top:28px; max-width:1000px; }
@@ -757,6 +758,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 .ra-cluster{ font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.06em; text-transform:uppercase;
   color:var(--eyebrow); margin:22px 0 12px; }
 .ra-buckets{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px; }
+.ra-buckets.two{ grid-template-columns:1fr 1fr; }
 .ra-block{ margin-top:26px; }
 .ra-block > h5{ font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.06em; text-transform:uppercase; color:var(--eyebrow); }
 .ra-block a{ color:var(--link); border-bottom:1px solid var(--bdg); }
@@ -774,7 +776,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 .rt-sels .field{ margin-bottom:0; min-width:0; }
 .rt-sels select{ font-size:.9rem; max-width:100%; }
 .ra-addrow{ margin-top:4px; }
-@media (max-width:960px){ .ra-buckets{ grid-template-columns:1fr; } }
+@media (max-width:960px){ .ra-buckets, .ra-buckets.two{ grid-template-columns:1fr; } }
 @media (max-width:860px){ .rt-sels{ grid-template-columns:1fr; } }
 @media (max-width:640px){ .qz .opts.o3{ grid-template-columns:1fr; } }
 @media (max-width:480px){ .ra-actions .btn{ flex:1; } }
@@ -890,9 +892,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <!-- ═══════════════════ HERO ═══════════════════ -->
 <section class="hero th-dark" aria-label="Welcome">
   <div class="hero-media" aria-hidden="true">
-    <!-- [EDIT] ambient hero video — looping abstract gold/black; swap the CDN URL below -->
+    <!-- [EDIT] ambient hero videos — an antique nautical chart crossfading into a team working with AI, 20-second cycle; swap the CDN URLs below -->
     <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260703_013120_023686aa-7d3d-43f7-b6da-0aa32a45f860.mp4" type="video/mp4" />
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260709_030038_319bb7b6-12bc-4562-831d-31401aa442df.mp4" type="video/mp4" />
+    </video>
+    <video class="hero-video hv-hidden" id="heroVideoB" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_3CCurpI0FW75YAnAl4Hbz3vPdBv/hf_20260709_030234_aaf67ac9-529b-4e2e-8e4b-71322ebae331.mp4" type="video/mp4" />
     </video>
     <div class="hero-scrim"></div>
   </div>
@@ -1037,8 +1042,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             </span>
             <span class="face back">
               <span class="tag">Plain English</span>
-              <p>Software doing things we used to think needed a human brain: reading, writing, spotting patterns, making suggestions.</p>
-              <p><b>At Vanderbilt:</b> the spam filter quietly saving you from 200 junk emails a week. You've used AI for years.</p>
+              <p>AI is a computer program that can do things that normally take a human brain, like understanding language, recognizing patterns, or making a decision.</p>
+              <p><b>At Vanderbilt:</b> Your spam filter catching a phishing email before you see it. That&rsquo;s AI. You&rsquo;ve been using it for years without calling it that.</p>
             </span>
           </button>
         </div>
@@ -1052,8 +1057,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             </span>
             <span class="face back">
               <span class="tag">Plain English</span>
-              <p>Instead of a programmer writing every rule, the software studies thousands of examples and figures out the patterns itself.</p>
-              <p><b>At Vanderbilt:</b> predicting peak parking-garage demand from years of gate-swipe data. No one wrote a "football Saturday" rule.</p>
+              <p>ML is a way of teaching a computer to get better at something by showing it lots of examples, instead of programming in a strict set of rules for every situation.</p>
+              <p><b>At Vanderbilt:</b> Nobody wrote a rule saying &ldquo;parking fills up faster on football Saturdays.&rdquo; The system figured that out by looking at years of past gate swipes.</p>
             </span>
           </button>
         </div>
@@ -1067,8 +1072,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             </span>
             <span class="face back">
               <span class="tag">Plain English</span>
-              <p>AI that produces brand-new text, images, or code instead of just sorting or scoring what already exists.</p>
-              <p><b>At Vanderbilt:</b> drafting the first version of a program announcement so you spend ten minutes polishing instead of an hour staring at a blank page.</p>
+              <p>GenAI is AI that creates original content, writing, images, or code, instead of just analyzing or sorting content that already exists.</p>
+              <p><b>At Vanderbilt:</b> Ask it for a first draft of a program announcement. You get something to edit, not a blank page to fill.</p>
             </span>
           </button>
         </div>
@@ -1082,8 +1087,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             </span>
             <span class="face back">
               <span class="tag">Plain English</span>
-              <p>A giant autocomplete trained on a huge slice of human writing. It predicts the next word, astonishingly well.</p>
-              <p><b>At Vanderbilt:</b> the technology inside ChatGPT, Amplify, and Copilot. Try it yourself in Module B, just below.</p>
+              <p>An LLM is a program that has read a massive amount of text and learned to predict what word comes next. That one skill, done at huge scale, lets it write, answer questions, and hold a conversation.</p>
+              <p><b>At Vanderbilt:</b> This is the engine running inside ChatGPT, Amplify, and Copilot. Try one yourself in Module B.</p>
             </span>
           </button>
         </div>
@@ -1097,8 +1102,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             </span>
             <span class="face back">
               <span class="tag">Plain English</span>
-              <p>An LLM given tools and a loop: it plans the steps toward a goal, uses search, files, and software, checks its own work, and keeps going, without a prompt for every step.</p>
-              <p><b>At Vanderbilt:</b> instead of drafting one email, an agent could work an inbox: read each inquiry, draft replies, flag the sensitive ones for a human. More autonomy means more human checkpoints, not fewer. (Agents get a full section in Transform.)</p>
+              <p>Agentic AI is AI that doesn&rsquo;t just answer one question and stop. Give it a goal, and it works toward it on its own: taking multiple steps, using tools, and checking its own progress without needing instructions for each move.</p>
+              <p><b>At Vanderbilt:</b> Instead of drafting one reply, it works an entire inbox. Reading messages, drafting responses, flagging anything sensitive for a person. More independence means more checkpoints, not fewer.</p>
             </span>
           </button>
         </div>
@@ -2282,24 +2287,26 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: the map table. You&rsquo;ve transformed how you work. Now see where a real role meets AI, task by task.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">AI readiness / 08.5</span></span>
       <h2>Your role, <em class="s">task by task.</em></h2>
-      <p>In this section, you will look at a role the way AI actually meets it: task by task.
-        Four short ideas, each grounded in a named study, then an assessment that turns a real
-        task list into an exposure read, three task buckets, and a development plan.
-        <b>By the end of this section, you will be able to map any role this way, starting with
-        your own.</b></p>
+      <p>In this section, you will look at a role the way AI actually meets it: task by task.</p>
     </div>
 
     <div class="concept reveal">
       <span class="c-label">The idea</span>
-      <p>AI does not arrive at a job title; it arrives at a <em>task</em>. Every role, including
-        yours, is a bundle of tasks, and the bundle is uneven: some tasks are highly exposed to
-        AI, some barely at all, and both kinds usually live inside the same job. The unit of
-        analysis is the <b>task list</b>, not the job title, and the output is a
-        <b>development plan</b>, not a verdict.</p>
-      <p>One rule frames everything in this section: exposure is a planning signal for
-        development and role design. It is never, on its own, a case for cutting a role, and
-        nothing below treats it as one. For you, knowing your own task exposure is agency: it is
-        how you steer your development instead of waiting for the change to arrive.</p>
+      <p>AI doesn&rsquo;t show up for a job title. It shows up for a task. Every role, yours
+        included, is really just a bundle of tasks, and that bundle is lumpy: some tasks sit
+        squarely in AI&rsquo;s wheelhouse, others barely register, and most jobs contain a messy
+        mix of both. That&rsquo;s why the <b>task list</b>, not the job title, is the right unit
+        to analyze, and why the point of doing this isn&rsquo;t to hand down a verdict but to
+        build a <b>development plan</b>.</p>
+      <p>One rule sits underneath everything in this section: exposure is a signal for planning
+        and development, full stop. It&rsquo;s never, by itself, grounds for eliminating a role,
+        and nothing here treats it that way. Understanding your own task exposure is a form of
+        agency. It lets you get ahead of the change and shape your own development, rather than
+        just waiting to see what happens to you.</p>
+      <p>This section walks through four short ideas, each anchored to a named study, and then
+        puts them to work: turning a real task list into a read on exposure, sorting it into
+        three buckets, and building a development plan from there. <b>By the end, you&rsquo;ll be
+        able to do this same mapping for any role, starting with your own.</b></p>
     </div>
 
     <!-- Module A: the four ideas -->
@@ -2444,30 +2451,30 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
                   </div>
                   <div class="rt-sels">
                     <div class="field">
-                      <label for="raT1m">What the task mostly is</label>
+                      <label for="raT1m">What does this task mostly involve?</label>
                       <select id="raT1m" class="rt-mode">
                         <option value="">Choose one</option>
-                        <option value="screen">Words, numbers, or code on a screen</option>
-                        <option value="mix">A mix of screen work and people</option>
-                        <option value="person">Mostly in person, hands on, or relational</option>
+                        <option value="screen">Mostly writing, numbers, or other screen work</option>
+                        <option value="mix">A mix of screen work and working with people</option>
+                        <option value="person">Mostly hands-on or face-to-face work</option>
                       </select>
                     </div>
                     <div class="field">
-                      <label for="raT1r">How it repeats</label>
+                      <label for="raT1r">How similar is this task each time you do it?</label>
                       <select id="raT1r" class="rt-rep">
                         <option value="">Choose one</option>
-                        <option value="same">Same shape every time</option>
-                        <option value="judgment">Familiar, with judgment calls</option>
-                        <option value="novel">New each time or high stakes</option>
+                        <option value="same">It follows the same steps every time</option>
+                        <option value="judgment">It is familiar, but it needs judgment calls</option>
+                        <option value="novel">It is different every time, or the stakes are high</option>
                       </select>
                     </div>
                     <div class="field">
-                      <label for="raT1c">How checkable the output is</label>
+                      <label for="raT1c">How easily could someone else check the result?</label>
                       <select id="raT1c" class="rt-check">
                         <option value="">Choose one</option>
-                        <option value="quick">Someone else can check it quickly</option>
-                        <option value="effort">Checking takes real effort</option>
-                        <option value="hard">Hard to check without redoing it</option>
+                        <option value="quick">Quickly, at a glance</option>
+                        <option value="effort">With some real effort</option>
+                        <option value="hard">Only by redoing the work themselves</option>
                       </select>
                     </div>
                   </div>
@@ -2481,30 +2488,30 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
                   </div>
                   <div class="rt-sels">
                     <div class="field">
-                      <label for="raT2m">What the task mostly is</label>
+                      <label for="raT2m">What does this task mostly involve?</label>
                       <select id="raT2m" class="rt-mode">
                         <option value="">Choose one</option>
-                        <option value="screen">Words, numbers, or code on a screen</option>
-                        <option value="mix">A mix of screen work and people</option>
-                        <option value="person">Mostly in person, hands on, or relational</option>
+                        <option value="screen">Mostly writing, numbers, or other screen work</option>
+                        <option value="mix">A mix of screen work and working with people</option>
+                        <option value="person">Mostly hands-on or face-to-face work</option>
                       </select>
                     </div>
                     <div class="field">
-                      <label for="raT2r">How it repeats</label>
+                      <label for="raT2r">How similar is this task each time you do it?</label>
                       <select id="raT2r" class="rt-rep">
                         <option value="">Choose one</option>
-                        <option value="same">Same shape every time</option>
-                        <option value="judgment">Familiar, with judgment calls</option>
-                        <option value="novel">New each time or high stakes</option>
+                        <option value="same">It follows the same steps every time</option>
+                        <option value="judgment">It is familiar, but it needs judgment calls</option>
+                        <option value="novel">It is different every time, or the stakes are high</option>
                       </select>
                     </div>
                     <div class="field">
-                      <label for="raT2c">How checkable the output is</label>
+                      <label for="raT2c">How easily could someone else check the result?</label>
                       <select id="raT2c" class="rt-check">
                         <option value="">Choose one</option>
-                        <option value="quick">Someone else can check it quickly</option>
-                        <option value="effort">Checking takes real effort</option>
-                        <option value="hard">Hard to check without redoing it</option>
+                        <option value="quick">Quickly, at a glance</option>
+                        <option value="effort">With some real effort</option>
+                        <option value="hard">Only by redoing the work themselves</option>
                       </select>
                     </div>
                   </div>
@@ -2518,30 +2525,30 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
                   </div>
                   <div class="rt-sels">
                     <div class="field">
-                      <label for="raT3m">What the task mostly is</label>
+                      <label for="raT3m">What does this task mostly involve?</label>
                       <select id="raT3m" class="rt-mode">
                         <option value="">Choose one</option>
-                        <option value="screen">Words, numbers, or code on a screen</option>
-                        <option value="mix">A mix of screen work and people</option>
-                        <option value="person">Mostly in person, hands on, or relational</option>
+                        <option value="screen">Mostly writing, numbers, or other screen work</option>
+                        <option value="mix">A mix of screen work and working with people</option>
+                        <option value="person">Mostly hands-on or face-to-face work</option>
                       </select>
                     </div>
                     <div class="field">
-                      <label for="raT3r">How it repeats</label>
+                      <label for="raT3r">How similar is this task each time you do it?</label>
                       <select id="raT3r" class="rt-rep">
                         <option value="">Choose one</option>
-                        <option value="same">Same shape every time</option>
-                        <option value="judgment">Familiar, with judgment calls</option>
-                        <option value="novel">New each time or high stakes</option>
+                        <option value="same">It follows the same steps every time</option>
+                        <option value="judgment">It is familiar, but it needs judgment calls</option>
+                        <option value="novel">It is different every time, or the stakes are high</option>
                       </select>
                     </div>
                     <div class="field">
-                      <label for="raT3c">How checkable the output is</label>
+                      <label for="raT3c">How easily could someone else check the result?</label>
                       <select id="raT3c" class="rt-check">
                         <option value="">Choose one</option>
-                        <option value="quick">Someone else can check it quickly</option>
-                        <option value="effort">Checking takes real effort</option>
-                        <option value="hard">Hard to check without redoing it</option>
+                        <option value="quick">Quickly, at a glance</option>
+                        <option value="effort">With some real effort</option>
+                        <option value="hard">Only by redoing the work themselves</option>
                       </select>
                     </div>
                   </div>
@@ -2559,19 +2566,19 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             <div class="rs-body">
               <p class="ra-cluster" style="margin-top:0">The conditions around the work</p>
               <fieldset class="qz">
-                <legend><span class="qn">1/2</span>Where are you (or the team) on AI today?</legend>
+                <legend><span class="qn">1/2</span>How much have you (or your team) used AI tools so far?</legend>
                 <div class="opts o3">
-                  <label><input type="radio" name="raFluency" value="0" /> Not started</label>
-                  <label><input type="radio" name="raFluency" value="1" /> Experimenting</label>
-                  <label><input type="radio" name="raFluency" value="2" /> Regular users</label>
+                  <label><input type="radio" name="raFluency" value="0" /> We have not really started</label>
+                  <label><input type="radio" name="raFluency" value="1" /> We experiment now and then</label>
+                  <label><input type="radio" name="raFluency" value="2" /> We use them regularly</label>
                 </div>
               </fieldset>
               <fieldset class="qz" style="margin-bottom:0">
-                <legend><span class="qn">2/2</span>How sensitive is the data this work touches?</legend>
+                <legend><span class="qn">2/2</span>What kind of information does this work touch?</legend>
                 <div class="opts o3">
-                  <label><input type="radio" name="raSens" value="0" /> Public or internal</label>
-                  <label><input type="radio" name="raSens" value="1" /> Confidential</label>
-                  <label><input type="radio" name="raSens" value="2" /> Regulated, e.g. FERPA or HIPAA</label>
+                  <label><input type="radio" name="raSens" value="0" /> Public or routine internal information</label>
+                  <label><input type="radio" name="raSens" value="1" /> Confidential university business</label>
+                  <label><input type="radio" name="raSens" value="2" /> Regulated records, like those covered by FERPA or HIPAA</label>
                 </div>
               </fieldset>
               <p class="nudge" id="raNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the readout builds itself.</p>
@@ -2585,6 +2592,15 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <span>A directional conversation starter built from your answers, not a job evaluation, a
           reclassification, or an HR determination. Real workforce decisions run through HR;
           your development is yours to steer. <!-- [EDIT] HR workforce planning contact --></span></p>
+        <details class="deeper">
+          <summary><span class="dx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>How this assessment is built</summary>
+          <div class="d-body">
+            <p><b>Why we ask about tasks, not jobs:</b> the study that mapped AI against U.S. occupations worked at the task level, and found about 80 percent of workers could see at least 10 percent of their tasks affected. Source: Eloundou, Manning, Mishkin, and Rock (2023), &ldquo;GPTs are GPTs,&rdquo; <a href="https://arxiv.org/abs/2303.10130" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2303.10130</a>.</p>
+            <p><b>Why three buckets:</b> real-world usage splits about 57 percent augmentation (working with AI) to 43 percent automation (handing work over), so a task list needs more than one destiny. Source: <a href="https://www.anthropic.com/news/the-anthropic-economic-index" target="_blank" rel="noopener noreferrer">Anthropic Economic Index (2025)</a>.</p>
+            <p><b>Why we ask about checking:</b> in the Harvard/BCG field experiment, people using AI on tasks it was quietly bad at were 19 percentage points more likely to be wrong, and the answers still sounded confident. Checkability decides how safely a task can be delegated. Source: Dell&rsquo;Acqua et&nbsp;al. (2023), HBS working paper 24-013, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321" target="_blank" rel="noopener noreferrer">papers.ssrn.com</a>.</p>
+            <p><b>Where the skills list comes from:</b> employers expect 39 percent of core skills to change by 2030, with analytical thinking on top and AI and big data the fastest growing. Source: World Economic Forum, <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener noreferrer"><em>Future of Jobs Report 2025</em></a>.</p>
+          </div>
+        </details>
       </div>
     </div>
 
@@ -3039,14 +3055,26 @@ var reduce = reduceMq.matches;
 var clamp = function(v,a,b){ return Math.max(a, Math.min(b, v)); };
 var yr = document.getElementById('yr'); if(yr) yr.textContent = new Date().getFullYear();
 
-/* ── hero video: pause under reduced motion / when off-screen ── */
-var vid = document.getElementById('heroVideo');
-if(vid){
-  if(reduce){ try{ vid.pause(); vid.removeAttribute('autoplay'); }catch(e){} }
-  else if('IntersectionObserver' in window){
-    new IntersectionObserver(function(en){
-      en.forEach(function(e){ try{ e.isIntersecting ? vid.play().catch(function(){}) : vid.pause(); }catch(err){} });
-    }, {threshold:0}).observe(vid);
+/* ── hero videos: 20s chart-to-people crossfade; pause under reduced motion / off-screen ── */
+var vid = document.getElementById('heroVideo'), vidB = document.getElementById('heroVideoB');
+var heroVids = [vid, vidB].filter(Boolean);
+if(heroVids.length){
+  if(reduce){
+    heroVids.forEach(function(v){ try{ v.pause(); v.removeAttribute('autoplay'); }catch(e){} });
+  } else {
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(en){
+        en.forEach(function(e){
+          heroVids.forEach(function(v){ try{ e.isIntersecting ? v.play().catch(function(){}) : v.pause(); }catch(err){} });
+        });
+      }, {threshold:0}).observe(vid);
+    }
+    if(vidB){
+      window.setInterval(function(){
+        vid.classList.toggle('hv-hidden');
+        vidB.classList.toggle('hv-hidden');
+      }, 10000);
+    }
   }
 }
 
@@ -4045,9 +4073,9 @@ function addRow(){
     '<button type="button" class="rt-remove" aria-label="Remove task">' +
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>' +
     '<div class="rt-sels">' +
-    selectHtml(id + 'm', 'rt-mode', 'What the task mostly is', [['screen','Words, numbers, or code on a screen'],['mix','A mix of screen work and people'],['person','Mostly in person, hands on, or relational']]) +
-    selectHtml(id + 'r', 'rt-rep', 'How it repeats', [['same','Same shape every time'],['judgment','Familiar, with judgment calls'],['novel','New each time or high stakes']]) +
-    selectHtml(id + 'c', 'rt-check', 'How checkable the output is', [['quick','Someone else can check it quickly'],['effort','Checking takes real effort'],['hard','Hard to check without redoing it']]) +
+    selectHtml(id + 'm', 'rt-mode', 'What does this task mostly involve?', [['screen','Mostly writing, numbers, or other screen work'],['mix','A mix of screen work and working with people'],['person','Mostly hands-on or face-to-face work']]) +
+    selectHtml(id + 'r', 'rt-rep', 'How similar is this task each time you do it?', [['same','It follows the same steps every time'],['judgment','It is familiar, but it needs judgment calls'],['novel','It is different every time, or the stakes are high']]) +
+    selectHtml(id + 'c', 'rt-check', 'How easily could someone else check the result?', [['quick','Quickly, at a glance'],['effort','With some real effort'],['hard','Only by redoing the work themselves']]) +
     '</div>';
   rowsWrap.appendChild(row);
   renumber();
@@ -4173,7 +4201,7 @@ function skillList(fluency, sens, vv){
   skills.sort(function(a, b){ return b.p - a.p || a.i - b.i; });
   return skills;
 }
-function brief(name, tier, why, bk, skills){
+function brief(name, tier, why, bk, skills, plan){
   var L = [
     'Role readiness assessment: ' + name,
     'Exposure read: ' + tier + ' (directional, not a score). ' + why,
@@ -4190,6 +4218,16 @@ function brief(name, tier, why, bk, skills){
   else L.push('- name the human core explicitly with the person in the role');
   L.push('', 'Top skills to build:');
   skills.slice(0, 3).forEach(function(s, i){ L.push((i + 1) + '. ' + s.n); });
+  if(plan){
+    L.push('', 'Your learning plan:');
+    if(plan.lead) L.push(plan.lead);
+    L.push('Track 1 - ' + plan.primary.n);
+    plan.primary.items.forEach(function(it){ L.push('- ' + it[0] + ': ' + it[1]); });
+    L.push('Track 2 - ' + plan.secondary.n);
+    plan.secondary.items.forEach(function(it){ L.push('- ' + it[0] + ': ' + it[1]); });
+    L.push('This month: 1) ' + plan.month[0] + ' 2) ' + plan.month[1]);
+    L.push('This quarter: 3) ' + plan.quarter[0] + ' 4) ' + plan.quarter[1]);
+  }
   L.push('',
     '30 days: write the full task inventory for this role, using the three buckets, and pick the two skills above to build first.',
     '60 days: ' + (bk.delegate.length
@@ -4235,6 +4273,59 @@ function render(name, tasks, fluency, sens){
     return (i === 0 ? '<b>Start here.</b> ' : '') + '<b>' + s.n + '.</b> ' + s.d;
   });
   html += '<div class="ra-block"><h5>Skills to build</h5><div class="dd" style="margin-top:14px">' + ul(sItems) + '</div></div>';
+  /* ── your learning plan: two tracks, weighted by where the tasks landed ── */
+  var delegateHeavy = bk.delegate.length * 2 > total;
+  var planCoreName = bk.core.length ? bk.core[0].name : null;
+  var planDelName = bk.delegate.length ? bk.delegate[0].name : null;
+  var planRdName = bk.redesign.length ? bk.redesign[0].name : null;
+  var resilTrack = {
+    n: 'Resilience: the durable skills',
+    why: 'Durable skills keep you valuable where AI cannot do the work' + (bk.core.length ? ': the human-core tasks you named are where they live.' : '.'),
+    items: [
+      ['Analytical thinking and judgment', planCoreName
+        ? 'Take the lead on the next round of "' + planCoreName + '" and debrief afterward what only a person could have done.'
+        : 'Own the most judgment-heavy task you named end to end, then debrief what only a person could have done.'],
+      ['Relationship and coaching skills', 'Move one hour a week toward the face-to-face parts of the work; that is where the durable value concentrates.'],
+      ['Adaptability', 'Take on one unfamiliar assignment this quarter and treat the learning curve as the point, not the obstacle.']
+    ]
+  };
+  var overTrack = {
+    n: 'AI oversight: staying the decision-maker',
+    why: 'Oversight skills keep you the decision-maker where AI will clearly absorb a task.',
+    items: [
+      ['Writing effective instructions and delegation prompts', planDelName
+        ? 'Pilot an AI first draft of "' + planDelName + '" and keep a checklist of what you had to correct; the checklist becomes your delegation prompt.'
+        : (planRdName
+          ? 'Pilot a human plus AI version of "' + planRdName + '" and keep a checklist of what you had to correct; the checklist becomes your delegation prompt.'
+          : 'Pick one routine screen task, pilot an AI first draft, and keep a checklist of what you had to correct.')],
+      ['Verifying outputs against a standard', 'Write down what a good output must contain before you read the AI draft, then check the draft against the list. The jagged-frontier experiment is the reason: outside its frontier, AI is confidently wrong.'],
+      ['Setting quality bars, and knowing when to reject', 'Decide in advance the bar below which an output gets rejected rather than repaired. Saying no to a plausible draft is an oversight skill of its own.']
+    ]
+  };
+  if(sens > 0) overTrack.items.push(['Data-handling judgment', 'Confidential or regulated details go only into approved tools, and when in doubt, ask before pasting.']);
+  var planPrimary = delegateHeavy ? overTrack : resilTrack;
+  var planSecondary = delegateHeavy ? resilTrack : overTrack;
+  var planLeadHtml = delegateHeavy
+    ? 'An honest read first: much of this role&rsquo;s routine work is likely to be absorbed by AI tools over time, so this plan leans into oversight skills, and role redesign is a conversation to have with your manager. Exposure is a development signal, never on its own a case for cutting a role.'
+    : 'Both tracks run at once: the first deepens the work AI reaches least, the second builds the habit of directing and checking AI where it clearly helps.';
+  var planLeadText = delegateHeavy
+    ? 'Honest read: much of this role’s routine work is likely to be absorbed by AI tools over time, so this plan leans into oversight skills, and role redesign is a conversation to have with your manager. Exposure is never on its own a case for cutting a role.'
+    : '';
+  function trackHtml(tr, n){
+    return '<div class="dd"><h5>' + CHECK + 'Track ' + n + ' &middot; ' + tr.n + '</h5>' +
+      '<p class="rc-note" style="margin-top:8px;font-size:.9rem">' + tr.why + '</p>' +
+      ul(tr.items.map(function(it){ return '<b>' + it[0] + '.</b> ' + esc(it[1]); })) + '</div>';
+  }
+  var planMonth = [planPrimary.items[0][1], planSecondary.items[0][1]];
+  var planQuarter = [planPrimary.items[1][1], planSecondary.items[1][1]];
+  html += '<div class="ra-block"><h5>Your learning plan</h5>' +
+    '<p class="rc-note" style="margin-top:10px;max-width:72ch">' + planLeadHtml + '</p>' +
+    '<div class="ra-buckets two">' + trackHtml(planPrimary, 1) + trackHtml(planSecondary, 2) + '</div>' +
+    '<div class="dd" style="margin-top:14px">' + ul([
+      '<b>This month.</b> ' + esc(planMonth[0]) + ' Then: ' + esc(planMonth[1]),
+      '<b>This quarter.</b> ' + esc(planQuarter[0]) + ' Then: ' + esc(planQuarter[1])
+    ]) + '</div></div>';
+  var plan = { lead: planLeadText, primary: planPrimary, secondary: planSecondary, month: planMonth, quarter: planQuarter };
   var redesignLine = bk.delegate.length * 2 > total
     ? 'For ' + roleEsc + ', most of the tasks you named land in the delegate bucket. That is a <b>role redesign conversation with your manager and HR</b>, not a reason to panic: exposure is a development signal, never on its own a case for cutting a role. [EDIT: HR workforce planning contact]'
     : 'When most of a role&rsquo;s named tasks land in the delegate bucket, that is a <b>role redesign conversation with your manager and HR</b>, not a training assignment and not a reason to panic. [EDIT: HR workforce planning contact]';
@@ -4258,7 +4349,7 @@ function render(name, tasks, fluency, sens){
   out.innerHTML = html;
   var copyBtn = document.getElementById('raCopy'), copyLabel = document.getElementById('raCopyLabel');
   if(copyBtn && copyLabel) copyBtn.addEventListener('click', function(){
-    copyText(brief(name, tier, why, bk, skills), copyLabel, 'Copied ✓');
+    copyText(brief(name, tier, why, bk, skills, plan), copyLabel, 'Copied ✓');
   });
   var re = document.getElementById('raRestart');
   if(re) re.addEventListener('click', function(){
