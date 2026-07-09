@@ -20,6 +20,8 @@
     · Hero ambient video URL                 · Disclaimer + ownership line
     · Department list (Simulator)            · EAP / Work-Life link (Wellbeing)
     · Internal resources (Resources)         · Quiz pass thresholds if desired
+    · AI readiness: L&D catalog link, HR workforce planning contact, and the
+      development planning resource (Your role, task by task)
     · Feedback mailto (Knowledge check) — interim; swap for REDCap/Qualtrics
   Brand system: Vanderbilt black #1C1C1C / white / flat gold #CFAE70 accents.
   Logo files live in ./assets/ (v-lockup + vu-centered, black & white variants).
@@ -388,6 +390,7 @@ details.deeper .d-body b{ color:var(--tx); font-weight:600; }
 .ptab[aria-selected="true"]{ color:#1C1C1C; background:var(--vu-gold); border-color:var(--vu-gold); }
 .ppanel{ border:1px solid var(--bdg); border-radius:var(--r); background:var(--card2); padding:clamp(22px,4vw,40px); }
 .ppanel[hidden]{ display:none; }
+.btn[hidden]{ display:none; }
 .app-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,44px); align-items:start; }
 .field{ display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
 .field label{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--tx2); }
@@ -719,6 +722,63 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; margin-top:22px; min-height:44px; transition:color .2s ease-out; }
 .totop:hover{ color:#fff; } .totop svg{ width:14px; height:14px; }
 
+/* ═══════════════════ AI READINESS (your role, task by task) ═══════════════════ */
+.ra-idea{ margin-top:30px; max-width:820px; }
+.ra-idea h4{ font-family:var(--serif); font-weight:400; font-size:1.3rem; display:flex; align-items:baseline; gap:12px; }
+.ra-idea h4 .no{ font-family:var(--cond); font-weight:700; font-size:.8rem; color:#1C1C1C; background:var(--vu-gold);
+  border-radius:2px; padding:3px 9px; flex-shrink:0; }
+.ra-idea > p{ color:var(--tx2); font-size:.9575rem; line-height:1.75; margin-top:10px; max-width:70ch; }
+.ra-idea > p b{ color:var(--tx); font-weight:600; }
+.canon{ margin-top:20px; border:1px solid var(--bdg); border-radius:var(--r); background:var(--card2); padding:22px 24px; }
+.canon h5{ font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.06em; text-transform:uppercase; color:var(--eyebrow); }
+.canon ol{ margin:12px 0 0 0; padding-left:0; list-style:none; counter-reset:cn; display:flex; flex-direction:column; gap:10px; }
+.canon ol li{ counter-increment:cn; display:flex; gap:12px; align-items:flex-start; color:var(--tx2); font-size:.9rem; }
+.canon ol li::before{ content:counter(cn,decimal-leading-zero); font-family:var(--cond); font-weight:700; font-size:.8rem; color:#1C1C1C;
+  background:var(--vu-gold); border-radius:2px; min-width:26px; height:22px; display:inline-grid; place-items:center; flex-shrink:0; }
+.canon ol li b{ color:var(--tx); font-weight:600; }
+.canon .c-fine{ margin-top:14px; font-size:.83rem; color:var(--tx3); max-width:none; }
+.dd{ border:1px solid var(--bd); border-radius:var(--r); background:var(--card2); padding:20px 22px; }
+.dd h5{ display:flex; align-items:center; gap:10px; font-size:1rem; }
+.dd h5 svg{ width:18px; height:18px; flex-shrink:0; color:var(--eyebrow); }
+.dd ul{ list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:9px; }
+.dd li{ display:flex; gap:9px; align-items:flex-start; color:var(--tx2); font-size:.875rem; }
+.dd li svg{ width:14px; height:14px; flex-shrink:0; color:var(--eyebrow); margin-top:4px; }
+.dd li b{ color:var(--tx); font-weight:600; }
+.ra-shell{ border:1px solid var(--bd); border-radius:var(--r); background:var(--card); padding:clamp(22px,4vw,42px); }
+.ra-step{ margin-top:30px; }
+.ra-step:first-child{ margin-top:0; }
+.ra-step > .rs-head{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+.ra-step > .rs-head .rs-no{ font-family:var(--cond); font-weight:700; font-size:.85rem; color:#1C1C1C; background:var(--vu-gold);
+  border-radius:2px; min-width:30px; height:26px; display:inline-grid; place-items:center; }
+.ra-step > .rs-head h4{ font-family:var(--serif); font-weight:400; font-size:1.35rem; }
+.ra-step > .rs-body{ margin-top:14px; }
+.ra-actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+.qz .opts.o3{ grid-template-columns:repeat(3,1fr); }
+.ra-cluster{ font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--eyebrow); margin:22px 0 12px; }
+.ra-buckets{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px; }
+.ra-block{ margin-top:26px; }
+.ra-block > h5{ font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.06em; text-transform:uppercase; color:var(--eyebrow); }
+.ra-block a{ color:var(--link); border-bottom:1px solid var(--bdg); }
+.ra-block a:hover{ color:var(--strong); }
+.rt-intro{ color:var(--tx2); font-size:.9rem; max-width:62ch; margin-bottom:14px; }
+.ra-trow{ border:1px solid var(--bd); border-radius:var(--r); background:var(--card2); padding:18px 18px 20px; margin-bottom:12px; }
+.ra-trow .rt-head{ display:flex; align-items:flex-end; gap:10px; }
+.ra-trow .rt-head .field{ flex:1; margin-bottom:0; }
+.rt-remove{ display:inline-flex; align-items:center; justify-content:center; width:48px; height:48px; flex-shrink:0;
+  border:1px solid var(--bd); border-radius:var(--r); background:transparent; color:var(--tx3); cursor:pointer;
+  transition:color .2s ease-out, border-color .2s ease-out; }
+.rt-remove:hover{ color:var(--vu-err); border-color:var(--vu-err); }
+.rt-remove svg{ width:16px; height:16px; }
+.rt-sels{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:14px; }
+.rt-sels .field{ margin-bottom:0; min-width:0; }
+.rt-sels select{ font-size:.9rem; max-width:100%; }
+.ra-addrow{ margin-top:4px; }
+@media (max-width:960px){ .ra-buckets{ grid-template-columns:1fr; } }
+@media (max-width:860px){ .rt-sels{ grid-template-columns:1fr; } }
+@media (max-width:640px){ .qz .opts.o3{ grid-template-columns:1fr; } }
+@media (max-width:480px){ .ra-actions .btn{ flex:1; } }
+
 /* ═══════════════════ RESPONSIVE ═══════════════════ */
 @media (max-width:1024px){
   .flip-grid,.flip-grid.five{ grid-template-columns:1fr 1fr; }
@@ -795,6 +855,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <a href="#playground">Practice</a>
         <a href="#simulator">Simulator</a>
         <a href="#future">Transform</a>
+        <a href="#readiness">Readiness</a>
         <a href="#resources">Resources</a>
         <a class="btn btn-gold btn-sm nav-cta" href="#quiz">Knowledge check</a>
       </nav>
@@ -816,6 +877,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <a class="mlink" href="#responsible"><span class="mono">06</span>Responsible AI</a>
   <a class="mlink" href="#wellbeing"><span class="mono">07</span>Wellbeing</a>
   <a class="mlink" href="#future"><span class="mono">08</span>Transform</a>
+  <a class="mlink" href="#readiness"><span class="mono">08.5</span>AI readiness</a>
   <a class="mlink" href="#resources"><span class="mono">09</span>Resources</a>
   <a class="mlink" href="#quiz"><span class="mono">10</span>Knowledge check</a>
   <a class="mlink" href="#summary"><span class="mono">11</span>What you know</a>
@@ -2209,7 +2271,324 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <div id="fpOut" role="status" aria-live="polite"></div>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>You&rsquo;ve built the foundation. Here&rsquo;s where to keep growing: the best voices, one <em>click</em> away.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You&rsquo;ve built the plan. Now point the lens at your own week: where <em>your role</em> meets AI, task by task.</p></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ AI & ROLE READINESS ═════════════════════════ -->
+<section id="readiness" class="th-cream" aria-label="AI and role readiness">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="you-are">You are here: the map table. You&rsquo;ve transformed how you work. Now see where a real role meets AI, task by task.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">AI readiness / 08.5</span></span>
+      <h2>Your role, <em class="s">task by task.</em></h2>
+      <p>In this section, you will look at a role the way AI actually meets it: task by task.
+        Four short ideas, each grounded in a named study, then an assessment that turns a real
+        task list into an exposure read, three task buckets, and a development plan.
+        <b>By the end of this section, you will be able to map any role this way, starting with
+        your own.</b></p>
+    </div>
+
+    <div class="concept reveal">
+      <span class="c-label">The idea</span>
+      <p>AI does not arrive at a job title; it arrives at a <em>task</em>. Every role, including
+        yours, is a bundle of tasks, and the bundle is uneven: some tasks are highly exposed to
+        AI, some barely at all, and both kinds usually live inside the same job. The unit of
+        analysis is the <b>task list</b>, not the job title, and the output is a
+        <b>development plan</b>, not a verdict.</p>
+      <p>One rule frames everything in this section: exposure is a planning signal for
+        development and role design. It is never, on its own, a case for cutting a role, and
+        nothing below treats it as one. For you, knowing your own task exposure is agency: it is
+        how you steer your development instead of waiting for the change to arrive.</p>
+    </div>
+
+    <!-- Module A: the four ideas -->
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Module A</span>
+        <h3>How AI meets your work</h3>
+        <p>In this activity, you will read four short ideas, each grounded in a named study.
+          Together they are the lens the assessment below applies to your task list.</p>
+        <div class="lframe">
+          <span class="lf-chip"><b>You&rsquo;ll learn</b>Exposure, the jagged frontier, and skills churn</span>
+          <span class="lf-chip"><b>You&rsquo;ll do</b>Read four ideas and the evidence under each</span>
+          <span class="lf-chip"><b>Time</b>3 min</span>
+          <p class="lf-why"><b>Why it matters to your work:</b> people who map their tasks first choose their training on purpose, not under pressure.</p>
+        </div>
+      </div>
+
+      <div class="ra-idea">
+        <h4><span class="no" aria-hidden="true">01</span>AI exposes tasks, not jobs</h4>
+        <p>A role is a bundle of tasks, and AI meets the bundle unevenly: the weekly report is
+          highly exposed, the vendor negotiation barely at all, and both belong to the same
+          person. People who ask &ldquo;will AI take my job?&rdquo; get stuck. Ask instead
+          <b>&ldquo;which of my tasks does AI touch?&rdquo;</b> and you get a plan.</p>
+        <div class="evidence">
+          <span class="e-label">The evidence</span>
+          <p><b>About 80 percent of the US workforce could see at least 10 percent of their tasks
+            affected by large language models, and about 19 percent could see half or more
+            affected.</b> The research team rated occupations task by task, which is exactly the
+            method this section hands to you: exposure lives in the task list, not the job title.</p>
+          <span class="e-src">Source: Eloundou, Manning, Mishkin, and Rock (2023), &ldquo;GPTs are GPTs,&rdquo; later published in <em>Science</em>, <a href="https://arxiv.org/abs/2303.10130" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2303.10130</a>.</span>
+        </div>
+      </div>
+
+      <div class="ra-idea">
+        <h4><span class="no" aria-hidden="true">02</span>Exposure is not elimination</h4>
+        <p>An exposed task is a task AI can help with, not a task that disappears. In real
+          workplaces, usage leans toward augmentation: a person working with AI, checking it,
+          and owning the result. So the practical question for each exposed task is not
+          &ldquo;does this task survive?&rdquo; but <b>&ldquo;which level fits: automate it with
+          oversight, or redesign it as human plus AI?&rdquo;</b></p>
+        <div class="evidence">
+          <span class="e-label">The evidence</span>
+          <p><b>Real usage splits about 57 percent augmentation to 43 percent automation.</b>
+            Built from millions of anonymized Claude conversations, the index also finds that
+            about 36 percent of occupations already use AI in at least a quarter of their
+            tasks. Most exposed work is being reshaped with a person in the loop, not removed.</p>
+          <span class="e-src">Source: Anthropic Economic Index (2025), <a href="https://www.anthropic.com/news/the-anthropic-economic-index" target="_blank" rel="noopener noreferrer">anthropic.com/news/the-anthropic-economic-index</a>.</span>
+        </div>
+      </div>
+
+      <div class="ra-idea">
+        <h4><span class="no" aria-hidden="true">03</span>The frontier is jagged</h4>
+        <p>AI is strong on some tasks and quietly bad at adjacent ones, and the boundary follows
+          neither job titles nor difficulty. The only way to know where the line runs for your
+          work is to test task by task. That is also why <b>verification skill matters as much as
+          prompting skill</b>: someone has to catch the confident wrong answer.</p>
+        <div class="evidence">
+          <span class="e-label">The evidence</span>
+          <p><b>Inside the frontier, consultants with AI finished 12.2 percent more tasks, worked
+            25.1 percent faster, and produced over 40 percent higher quality. On a task outside
+            the frontier, they were 19 percentage points more likely to get it wrong.</b>
+            A field experiment with 758 BCG consultants: same people, same tool, opposite
+            results, depending on the task.</p>
+          <span class="e-src">Source: Dell&rsquo;Acqua, McFowland, Mollick, Lifshitz-Assaf, Kellogg, Rajendran, Krayer, Candelon, and Lakhani (2023), Harvard Business School working paper 24-013, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321" target="_blank" rel="noopener noreferrer">papers.ssrn.com</a>. Ethan Mollick, whose work grounds this platform&rsquo;s research base, is a co-author.</span>
+        </div>
+      </div>
+
+      <div class="ra-idea">
+        <h4><span class="no" aria-hidden="true">04</span>Skills churn is the planning horizon</h4>
+        <p>The stable plan is not a stable skill list. When a large share of core skills changes
+          within a few years, the response runs in a fixed order: <b>upskill first, reskill
+          where tasks shift, redesign roles where the shift is large, and only then hire</b>
+          for what remains. For an individual, the same order reads: build on what you have
+          before you assume you need something new.</p>
+        <div class="evidence">
+          <span class="e-label">The evidence</span>
+          <p><b>Employers expect 39 percent of workers&rsquo; core skills to change by 2030.</b>
+            In a survey of over 1,000 employers, analytical thinking remains the top core skill,
+            and AI and big data is the fastest-growing one. Skills churn, not headcount, is the
+            planning horizon this section is built around.</p>
+          <span class="e-src">Source: World Economic Forum, <em>Future of Jobs Report 2025</em>, <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener noreferrer">weforum.org</a>.</span>
+        </div>
+      </div>
+
+      <div class="canon" style="margin-top:30px">
+        <h5>The four moves</h5>
+        <ol>
+          <li><span><b>Inventory the tasks.</b> Write down what your week actually contains, or sit with each person on your team and do the same. The list, not the job description, is the raw material.</span></li>
+          <li><span><b>Sort into three buckets.</b> Delegate with oversight, redesign together, or human-core. Every task goes in exactly one.</span></li>
+          <li><span><b>Name the skills.</b> Each bucket demands something: review habits for delegated work, fluency for redesigned work, depth for the human core.</span></li>
+          <li><span><b>Turn it into action.</b> A development plan for yourself, or a plan per person if you manage the role. An inventory that never becomes a development conversation changes nothing.</span></li>
+        </ol>
+        <p class="c-fine">Development plans are yours to run. Role redesign, reclassification, and staffing changes run through HR. <!-- [EDIT] HR workforce planning / talent contact --></p>
+      </div>
+
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>That&rsquo;s the lens. Now point it at <em>one real role</em>, starting with your own.</p></div>
+    </div>
+
+    <!-- Module B: the role readiness assessment -->
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Module B &middot; Centerpiece</span>
+        <h3>The role readiness assessment</h3>
+        <p>In this activity, you will name a role, yours or one you manage, write down the real
+          tasks that fill its week in your own words, and answer three quick questions about
+          each task. The page then sorts every task you named into one of the three buckets,
+          with a reason, and builds the rest of the readout: a directional exposure read, the
+          skills to build, and a 30/60/90 plan you can copy into your notes.</p>
+        <div class="lframe">
+          <span class="lf-chip"><b>You&rsquo;ll learn</b>Which of the role&rsquo;s tasks are exposed and which are protected</span>
+          <span class="lf-chip"><b>You&rsquo;ll do</b>List a week&rsquo;s real tasks, sort them, copy a plan</span>
+          <span class="lf-chip"><b>Time</b>5 min</span>
+          <p class="lf-why"><b>Why it matters to your work:</b> a development conversation goes better when you arrive with a map instead of a mood.</p>
+        </div>
+      </div>
+      <div class="ra-shell">
+        <form id="raForm" autocomplete="off" novalidate>
+          <div class="ra-step">
+            <div class="rs-head"><span class="rs-no" aria-hidden="true">01</span><h4>The role</h4></div>
+            <div class="rs-body">
+              <div class="field" style="margin-bottom:0; max-width:560px">
+                <label for="raRole">The role you are assessing (yours, or one you manage)</label>
+                <input type="text" id="raRole" maxlength="80" placeholder="Example: financial analyst, events coordinator, grants administrator" />
+                <p class="hinttxt">Stays on this page; nothing is stored or sent.</p>
+              </div>
+            </div>
+          </div>
+          <div class="ra-step">
+            <div class="rs-head"><span class="rs-no" aria-hidden="true">02</span><h4>The task inventory</h4></div>
+            <div class="rs-body">
+              <p class="ra-cluster" style="margin-top:0">The real tasks, in your own words</p>
+              <p class="rt-intro">Write the tasks the way you would say them out loud, then answer
+                three quick questions about each. Two tasks are enough to start; six paint a
+                fuller week.</p>
+              <div id="raRows">
+                <div class="ra-trow">
+                  <div class="rt-head">
+                    <div class="field">
+                      <label class="rt-tlabel" for="raT1">Task 1</label>
+                      <input type="text" id="raT1" class="rt-task" maxlength="120" placeholder="Example: assemble the monthly budget variance report" />
+                    </div>
+                  </div>
+                  <div class="rt-sels">
+                    <div class="field">
+                      <label for="raT1m">What the task mostly is</label>
+                      <select id="raT1m" class="rt-mode">
+                        <option value="">Choose one</option>
+                        <option value="screen">Words, numbers, or code on a screen</option>
+                        <option value="mix">A mix of screen work and people</option>
+                        <option value="person">Mostly in person, hands on, or relational</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="raT1r">How it repeats</label>
+                      <select id="raT1r" class="rt-rep">
+                        <option value="">Choose one</option>
+                        <option value="same">Same shape every time</option>
+                        <option value="judgment">Familiar, with judgment calls</option>
+                        <option value="novel">New each time or high stakes</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="raT1c">How checkable the output is</label>
+                      <select id="raT1c" class="rt-check">
+                        <option value="">Choose one</option>
+                        <option value="quick">Someone else can check it quickly</option>
+                        <option value="effort">Checking takes real effort</option>
+                        <option value="hard">Hard to check without redoing it</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="ra-trow">
+                  <div class="rt-head">
+                    <div class="field">
+                      <label class="rt-tlabel" for="raT2">Task 2</label>
+                      <input type="text" id="raT2" class="rt-task" maxlength="120" placeholder="Example: run onboarding sessions for new hires" />
+                    </div>
+                  </div>
+                  <div class="rt-sels">
+                    <div class="field">
+                      <label for="raT2m">What the task mostly is</label>
+                      <select id="raT2m" class="rt-mode">
+                        <option value="">Choose one</option>
+                        <option value="screen">Words, numbers, or code on a screen</option>
+                        <option value="mix">A mix of screen work and people</option>
+                        <option value="person">Mostly in person, hands on, or relational</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="raT2r">How it repeats</label>
+                      <select id="raT2r" class="rt-rep">
+                        <option value="">Choose one</option>
+                        <option value="same">Same shape every time</option>
+                        <option value="judgment">Familiar, with judgment calls</option>
+                        <option value="novel">New each time or high stakes</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="raT2c">How checkable the output is</label>
+                      <select id="raT2c" class="rt-check">
+                        <option value="">Choose one</option>
+                        <option value="quick">Someone else can check it quickly</option>
+                        <option value="effort">Checking takes real effort</option>
+                        <option value="hard">Hard to check without redoing it</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="ra-trow">
+                  <div class="rt-head">
+                    <div class="field">
+                      <label class="rt-tlabel" for="raT3">Task 3</label>
+                      <input type="text" id="raT3" class="rt-task" maxlength="120" placeholder="Example: answer routine email from students and families" />
+                    </div>
+                  </div>
+                  <div class="rt-sels">
+                    <div class="field">
+                      <label for="raT3m">What the task mostly is</label>
+                      <select id="raT3m" class="rt-mode">
+                        <option value="">Choose one</option>
+                        <option value="screen">Words, numbers, or code on a screen</option>
+                        <option value="mix">A mix of screen work and people</option>
+                        <option value="person">Mostly in person, hands on, or relational</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="raT3r">How it repeats</label>
+                      <select id="raT3r" class="rt-rep">
+                        <option value="">Choose one</option>
+                        <option value="same">Same shape every time</option>
+                        <option value="judgment">Familiar, with judgment calls</option>
+                        <option value="novel">New each time or high stakes</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="raT3c">How checkable the output is</label>
+                      <select id="raT3c" class="rt-check">
+                        <option value="">Choose one</option>
+                        <option value="quick">Someone else can check it quickly</option>
+                        <option value="effort">Checking takes real effort</option>
+                        <option value="hard">Hard to check without redoing it</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ra-actions ra-addrow">
+                <button type="button" class="btn btn-ghost" id="raAdd">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                  Add another task</button>
+              </div>
+            </div>
+          </div>
+          <div class="ra-step">
+            <div class="rs-head"><span class="rs-no" aria-hidden="true">03</span><h4>The conditions</h4></div>
+            <div class="rs-body">
+              <p class="ra-cluster" style="margin-top:0">The conditions around the work</p>
+              <fieldset class="qz">
+                <legend><span class="qn">1/2</span>Where are you (or the team) on AI today?</legend>
+                <div class="opts o3">
+                  <label><input type="radio" name="raFluency" value="0" /> Not started</label>
+                  <label><input type="radio" name="raFluency" value="1" /> Experimenting</label>
+                  <label><input type="radio" name="raFluency" value="2" /> Regular users</label>
+                </div>
+              </fieldset>
+              <fieldset class="qz" style="margin-bottom:0">
+                <legend><span class="qn">2/2</span>How sensitive is the data this work touches?</legend>
+                <div class="opts o3">
+                  <label><input type="radio" name="raSens" value="0" /> Public or internal</label>
+                  <label><input type="radio" name="raSens" value="1" /> Confidential</label>
+                  <label><input type="radio" name="raSens" value="2" /> Regulated, e.g. FERPA or HIPAA</label>
+                </div>
+              </fieldset>
+              <p class="nudge" id="raNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the readout builds itself.</p>
+              <div class="ra-actions"><button type="button" class="btn btn-primary" id="raBuild">Build the readout
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+            </div>
+          </div>
+        </form>
+        <div id="raOut" role="status" aria-live="polite"></div>
+        <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          <span>A directional conversation starter built from your answers, not a job evaluation, a
+          reclassification, or an HR determination. Real workforce decisions run through HR;
+          your development is yours to steer. <!-- [EDIT] HR workforce planning contact --></span></p>
+      </div>
+    </div>
+
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Map in hand, keep the inputs coming: the best voices, one <em>click</em> away.</p></div>
   </div>
 </section>
 
@@ -2496,7 +2875,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: consolidation. This recap isn&rsquo;t a formality; a quick revisit strengthens memory more than rereading ever does.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Summary / 11</span></span>
       <h2>What you now <em class="s">know.</em></h2>
-      <p>In this section, you will revisit the six ideas you picked up today. A quick review right after learning is what moves ideas into long-term memory.</p>
+      <p>In this section, you will revisit the seven ideas you picked up today. A quick review right after learning is what moves ideas into long-term memory.</p>
     </div>
     <div class="recap-grid">
       <article class="recap reveal">
@@ -2528,6 +2907,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <h3>What comes next</h3>
         <p>Agents take goals instead of questions and work in steps under your oversight, on the same engine and with the same limits.</p>
         <span class="r-why"><b>At work:</b> the skill they reward is the one you practiced here, clear and complete delegation.</span>
+      </article>
+      <article class="recap reveal">
+        <h3>Tasks, not jobs</h3>
+        <p>AI meets a role task by task: delegate the routine with oversight, redesign the middle together, and invest in the human core. Exposure is a development signal, never a verdict on a person.</p>
+        <span class="r-why"><b>At work:</b> one task inventory turns AI anxiety into a development plan.</span>
       </article>
     </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>Knowing is only half of it. The other half is a habit, and it starts <em>this week</em>.</p></div>
@@ -2625,6 +3009,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <h4>Grow</h4>
         <a href="#wellbeing">Wellbeing</a>
         <a href="#future">Transform</a>
+        <a href="#readiness">AI readiness</a>
         <a href="#resources">Resources</a>
         <a href="#summary">What you now know</a>
         <a href="#nextstep">Your next step</a>
@@ -3571,6 +3956,340 @@ document.querySelectorAll('.tech-copy').forEach(function(b){
     en.forEach(function(e){ if(e.isIntersecting){ creed.classList.add('in'); io.unobserve(creed); } });
   }, {threshold:.35}).observe(creed);
 })();
+})();
+</script>
+<script>
+/* ══════════ AI READINESS: the role readiness assessment ══════════
+   Directional only, on purpose. Each named task is sorted by three plain
+   answers; nothing here is a score, an evaluation, or an HR determination. */
+(function(){
+'use strict';
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+var WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3l9-16z"/><path d="M12 10v4M12 17.5h.01"/></svg>';
+var COMPASS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></svg>';
+var form = document.getElementById('raForm'), roleInput = document.getElementById('raRole'),
+    build = document.getElementById('raBuild'), nudge = document.getElementById('raNudge'),
+    out = document.getElementById('raOut'), rowsWrap = document.getElementById('raRows'),
+    addBtn = document.getElementById('raAdd');
+if(!form || !build || !out || !rowsWrap) return;
+form.addEventListener('submit', function(e){ e.preventDefault(); });
+var MAXROWS = 6, uid = 3;
+var PLACEHOLDERS = [
+  'Example: assemble the monthly budget variance report',
+  'Example: run onboarding sessions for new hires',
+  'Example: answer routine email from students and families',
+  'Example: reconcile the team purchasing card statements',
+  'Example: plan the fall staff retreat',
+  'Example: summarize survey feedback for leadership'
+];
+function esc(s){
+  return String(s).replace(/[&<>"']/g, function(ch){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+  });
+}
+function val(name){
+  var el = form.querySelector('input[name="' + name + '"]:checked');
+  return el ? parseInt(el.value, 10) : null;
+}
+function copyText(txt, labelEl, okMsg){
+  var orig = labelEl.textContent;
+  function done(msg){
+    labelEl.textContent = msg;
+    labelEl.classList.add('copied');
+    window.setTimeout(function(){ labelEl.textContent = orig; labelEl.classList.remove('copied'); }, 1800);
+  }
+  function fallback(){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      done(ok ? okMsg : 'Select & copy manually');
+    }catch(e){ done('Select & copy manually'); }
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ done(okMsg); }, fallback);
+  } else { fallback(); }
+}
+/* ── task rows: add, remove, renumber ── */
+function rows(){ return Array.prototype.slice.call(rowsWrap.querySelectorAll('.ra-trow')); }
+function renumber(){
+  rows().forEach(function(row, i){
+    var lab = row.querySelector('.rt-tlabel');
+    if(lab) lab.textContent = 'Task ' + (i + 1);
+    var rm = row.querySelector('.rt-remove');
+    if(rm) rm.setAttribute('aria-label', 'Remove task ' + (i + 1));
+  });
+  if(addBtn) addBtn.hidden = rows().length >= MAXROWS;
+}
+function selectHtml(id, cls, label, opts){
+  return '<div class="field"><label for="' + id + '">' + label + '</label>' +
+    '<select id="' + id + '" class="' + cls + '"><option value="">Choose one</option>' +
+    opts.map(function(o){ return '<option value="' + o[0] + '">' + o[1] + '</option>'; }).join('') +
+    '</select></div>';
+}
+function addRow(){
+  if(rows().length >= MAXROWS) return;
+  uid += 1;
+  var id = 'raT' + uid;
+  var ph = PLACEHOLDERS[Math.min(rows().length, PLACEHOLDERS.length - 1)];
+  var row = document.createElement('div');
+  row.className = 'ra-trow';
+  row.innerHTML =
+    '<div class="rt-head"><div class="field">' +
+    '<label class="rt-tlabel" for="' + id + '">Task</label>' +
+    '<input type="text" id="' + id + '" class="rt-task" maxlength="120" placeholder="' + ph + '" /></div>' +
+    '<button type="button" class="rt-remove" aria-label="Remove task">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>' +
+    '<div class="rt-sels">' +
+    selectHtml(id + 'm', 'rt-mode', 'What the task mostly is', [['screen','Words, numbers, or code on a screen'],['mix','A mix of screen work and people'],['person','Mostly in person, hands on, or relational']]) +
+    selectHtml(id + 'r', 'rt-rep', 'How it repeats', [['same','Same shape every time'],['judgment','Familiar, with judgment calls'],['novel','New each time or high stakes']]) +
+    selectHtml(id + 'c', 'rt-check', 'How checkable the output is', [['quick','Someone else can check it quickly'],['effort','Checking takes real effort'],['hard','Hard to check without redoing it']]) +
+    '</div>';
+  rowsWrap.appendChild(row);
+  renumber();
+  var input = row.querySelector('.rt-task');
+  if(input) input.focus();
+}
+if(addBtn) addBtn.addEventListener('click', addRow);
+rowsWrap.addEventListener('click', function(e){
+  var t = e.target;
+  var btn = t && t.closest ? t.closest('.rt-remove') : null;
+  if(!btn) return;
+  var row = btn.closest('.ra-trow');
+  if(row && row.parentNode) row.parentNode.removeChild(row);
+  renumber();
+  if(addBtn){ addBtn.hidden = false; addBtn.focus(); }
+  maybeClearNudge();
+});
+/* ── gathering and validation ── */
+function gather(){
+  var tasks = [], badEl = null, emptyEl = null;
+  rows().forEach(function(row){
+    var nameEl = row.querySelector('.rt-task');
+    var name = nameEl ? nameEl.value.trim() : '';
+    var mode = row.querySelector('.rt-mode'), rep = row.querySelector('.rt-rep'), chk = row.querySelector('.rt-check');
+    if(!name){ if(!emptyEl && nameEl) emptyEl = nameEl; return; }
+    if(!mode || !rep || !chk || !mode.value || !rep.value || !chk.value){
+      if(!badEl) badEl = (mode && !mode.value) ? mode : (rep && !rep.value) ? rep : chk;
+      return;
+    }
+    tasks.push({ name:name, mode:mode.value, rep:rep.value, chk:chk.value });
+  });
+  return { tasks:tasks, badEl:badEl, emptyEl:emptyEl };
+}
+function formComplete(){
+  var name = roleInput ? roleInput.value.trim() : '';
+  if(!name) return false;
+  if(val('raFluency') === null || val('raSens') === null) return false;
+  var g = gather();
+  return !g.badEl && g.tasks.length >= 2;
+}
+function maybeClearNudge(){
+  if(nudge && nudge.classList.contains('show') && formComplete()) nudge.classList.remove('show');
+}
+form.addEventListener('change', maybeClearNudge);
+form.addEventListener('input', maybeClearNudge);
+/* ── the sorting logic: three plain answers place each task ── */
+function classify(t){
+  if(t.mode === 'person' || t.rep === 'novel') return 'core';
+  if(t.mode === 'screen' && t.rep === 'same' && t.chk === 'quick') return 'delegate';
+  return 'redesign';
+}
+function reason(t){
+  if(t.bucket === 'delegate')
+    return 'Screen based, repeats in the same shape, and quick to check: a strong candidate for an AI first draft with your review.';
+  if(t.bucket === 'core'){
+    if(t.mode === 'person' && t.rep === 'novel')
+      return 'In person or relational, and new or high stakes each time: this is the human core of the role. Protect it and develop it on purpose.';
+    if(t.mode === 'person')
+      return 'Mostly in person, hands on, or relational: the work AI reaches least. Use time freed elsewhere to do more of it, not less.';
+    return 'New each time or high stakes, so judgment carries it: keep a person at the center and let AI help only at the edges.';
+  }
+  var mode = t.mode === 'screen' ? 'Screen based' : 'Part screen work, part people';
+  var rep = t.rep === 'same' ? 'repeats in the same shape' : 'comes with judgment calls';
+  if(t.chk === 'hard')
+    return mode + ' and ' + rep + ', but the output is hard to check without redoing it. Verification is the constraint: this is exactly where a confident wrong answer slips through, so work with AI side by side and build the review habit before raising the volume.';
+  if(t.chk === 'effort')
+    return mode + ', ' + rep + ', and checking takes real effort: a fit for working side by side with AI, with the person owning the review and the result.';
+  return mode + ' and ' + rep + ': a fit for working side by side with AI, with the person shaping the judgment calls and owning the result.';
+}
+function buildBuckets(tasks){
+  var delegate = [], redesign = [], core = [];
+  tasks.forEach(function(t){
+    t.bucket = classify(t);
+    if(t.bucket === 'delegate') delegate.push(t);
+    else if(t.bucket === 'core') core.push(t);
+    else redesign.push(t);
+  });
+  return { delegate:delegate, redesign:redesign, core:core };
+}
+function capFirst(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+function itemHtml(t){ return '<b>' + esc(capFirst(t.name)) + '.</b> ' + esc(reason(t)); }
+function q(name){ return '“' + name + '”'; }
+function listNames(arr, n){
+  var names = arr.slice(0, n).map(function(t){ return q(t.name); });
+  return names.length === 2 ? names[0] + ' and ' + names[1] : names.join('');
+}
+function whySentence(bk, tier){
+  if(tier === 'Higher')
+    return 'Most of the tasks you named, including ' + listNames(bk.delegate, 2) + ', are screen based, repeat in the same shape, and are quick to check, which puts much of this week within AI’s reach.';
+  if(tier === 'Lower')
+    return 'Most of the tasks you named, including ' + listNames(bk.core, 2) + ', stay anchored in in-person, relational, or high-stakes work, the work AI reaches least.';
+  var exposed = bk.delegate.concat(bk.redesign);
+  if(exposed.length && bk.core.length)
+    return 'The week splits: ' + listNames(exposed, 1) + ' sits within AI’s reach, while ' + listNames(bk.core, 1) + ' stays human-core, which lands the read in the middle.';
+  if(exposed.length)
+    return 'Tasks like ' + listNames(exposed, 1) + ' sit near AI, but most of what you named calls for a person working alongside the tool rather than a clean handoff, which lands the read in the middle.';
+  return 'The tasks you named split between AI-adjacent and human-core work, which lands the read in the middle.';
+}
+function skillList(fluency, sens, vv){
+  var skills = [
+    { n:'Verification and review habits', p: 2 + vv,
+      d: vv === 2
+        ? 'At least one task you named is hard to check without redoing it, which makes this the first skill to build: named reviewers, spot checks, and the habit of asking where a number came from.'
+        : vv === 1
+        ? 'Checking some of this work takes real effort, so build a light review routine now, before AI raises the volume of plausible-looking output.'
+        : 'The outputs here are quick to check, which is an advantage: make the check a habit, because whoever delegates a task to AI owns the review of it.' },
+    { n:'Prompting and delegation fluency', p: 1 + (2 - fluency),
+      d: fluency === 0
+        ? 'AI use has not started yet, so fluency comes early: what to hand to a tool, how to describe it, and how to judge what comes back. The Playground on this page is the fastest on-ramp.'
+        : fluency === 1
+        ? 'Experimenting already? Turn scattered experiments into steady practice: a weekly routine, saved prompts, and honest notes on what failed.'
+        : 'Regular use means the emphasis shifts from prompting to delegation quality: clearer handoffs and better review.' },
+    { n:'Data handling judgment', p: 0.5 + sens * 1.6,
+      d: sens === 2
+        ? 'This work touches regulated data, so knowing what may never enter an open tool comes before any other AI skill. FERPA and HIPAA obligations apply to AI tools exactly as they apply to email.'
+        : sens === 1
+        ? 'Confidential work needs a bright line the whole team can recite: which data may go into which tool, and what stays out.'
+        : 'Even public-facing work needs the habit of matching data to approved tools. Cheap to build now, costly to retrofit.' },
+    { n:'Durable human skills', p: 2,
+      d: 'Analytical thinking, coaching, and judgment. Employers rank these at the top of the 2030 skill list, and every bucket above depends on them.' }
+  ];
+  skills.forEach(function(s, i){ s.i = i; });
+  skills.sort(function(a, b){ return b.p - a.p || a.i - b.i; });
+  return skills;
+}
+function brief(name, tier, why, bk, skills){
+  var L = [
+    'Role readiness assessment: ' + name,
+    'Exposure read: ' + tier + ' (directional, not a score). ' + why,
+    '',
+    'Delegate with oversight:'
+  ];
+  if(bk.delegate.length) bk.delegate.forEach(function(t){ L.push('- ' + t.name); });
+  else L.push('- nothing yet; start in the redesign bucket');
+  L.push('Redesign together:');
+  if(bk.redesign.length) bk.redesign.forEach(function(t){ L.push('- ' + t.name + (t.chk === 'hard' ? ' (verification is the constraint)' : '')); });
+  else L.push(bk.delegate.length ? '- move one delegate-bucket task here to learn where AI is reliable' : '- trial one human plus AI task');
+  L.push('Human-core, invest here:');
+  if(bk.core.length) bk.core.forEach(function(t){ L.push('- ' + t.name); });
+  else L.push('- name the human core explicitly with the person in the role');
+  L.push('', 'Top skills to build:');
+  skills.slice(0, 3).forEach(function(s, i){ L.push((i + 1) + '. ' + s.n); });
+  L.push('',
+    '30 days: write the full task inventory for this role, using the three buckets, and pick the two skills above to build first.',
+    '60 days: ' + (bk.delegate.length
+      ? 'pilot an AI first draft of "' + bk.delegate[0].name + '" and one redesign-bucket task, with explicit verification.'
+      : 'pick one redesign-bucket task and pilot a human plus AI version of it, with explicit verification.'),
+    '90 days: bring the inventory to a development conversation: with your manager if the role is yours, or with the person in the role if you manage it.',
+    '',
+    'A directional conversation starter from CHART, not an HR determination.');
+  return L.join('\n');
+}
+function render(name, tasks, fluency, sens){
+  var roleEsc = esc(name);
+  var bk = buildBuckets(tasks);
+  var total = tasks.length;
+  var tier = bk.delegate.length * 2 > total ? 'Higher' : bk.core.length * 2 > total ? 'Lower' : 'Moderate';
+  var why = whySentence(bk, tier);
+  var vv = tasks.some(function(t){ return t.chk === 'hard'; }) ? 2
+         : tasks.some(function(t){ return t.chk === 'effort'; }) ? 1 : 0;
+  var skills = skillList(fluency, sens, vv);
+  var html = '<div class="result-card" style="margin-top:26px"><div class="rc-head"><span class="rc-glyph">' + COMPASS + '</span>' +
+    '<div><h4>' + roleEsc + '</h4><span class="rc-sub">' + tier + ' exposure across ' + total + ' named tasks &middot; a directional read, not a score</span></div></div>' +
+    '<p class="rc-note">' + esc(why) + '</p>' +
+    '<p class="rc-fine">Exposure describes how much of the named work AI can plausibly touch. It is a planning signal for development and role design, never a statement about the value of the person doing the work.</p></div>';
+  var dItems = bk.delegate.map(itemHtml);
+  if(!dItems.length) dItems.push('Nothing you named lands here yet. Start in the redesign bucket and revisit after a quarter of regular use.');
+  var rItems = bk.redesign.map(itemHtml);
+  if(!rItems.length){
+    rItems.push(bk.delegate.length
+      ? 'Move one delegate-bucket task here first: side-by-side use is how the team learns where AI is reliable and where it is not.'
+      : 'Pick one writing or analysis task and trial a human plus AI version of it. This bucket is where the quality gains live.');
+  }
+  var cItems = bk.core.map(itemHtml);
+  if(!cItems.length) cItems.push('<b>Every role has a human core</b>, even when the task list hides it: judgment, context, and accountability for outcomes. Name it explicitly with the person in the role.');
+  function ul(items){
+    return '<ul>' + items.map(function(t){ return '<li>' + CHECK + '<span>' + t + '</span></li>'; }).join('') + '</ul>';
+  }
+  html += '<div class="ra-block"><h5>Your tasks, sorted into the three buckets</h5><div class="ra-buckets">' +
+    '<div class="dd"><h5>' + CHECK + 'Delegate with oversight</h5>' + ul(dItems) + '</div>' +
+    '<div class="dd"><h5>' + CHECK + 'Redesign together</h5>' + ul(rItems) + '</div>' +
+    '<div class="dd"><h5>' + CHECK + 'Human-core, invest here</h5>' + ul(cItems) + '</div>' +
+    '</div></div>';
+  var sItems = skills.map(function(s, i){
+    return (i === 0 ? '<b>Start here.</b> ' : '') + '<b>' + s.n + '.</b> ' + s.d;
+  });
+  html += '<div class="ra-block"><h5>Skills to build</h5><div class="dd" style="margin-top:14px">' + ul(sItems) + '</div></div>';
+  var redesignLine = bk.delegate.length * 2 > total
+    ? 'For ' + roleEsc + ', most of the tasks you named land in the delegate bucket. That is a <b>role redesign conversation with your manager and HR</b>, not a reason to panic: exposure is a development signal, never on its own a case for cutting a role. [EDIT: HR workforce planning contact]'
+    : 'When most of a role&rsquo;s named tasks land in the delegate bucket, that is a <b>role redesign conversation with your manager and HR</b>, not a training assignment and not a reason to panic. [EDIT: HR workforce planning contact]';
+  html += '<div class="ra-block"><h5>Upskill and reskill routes</h5><div class="dd" style="margin-top:14px"><ul>' +
+    '<li>' + CHECK + '<span><b><a href="#playground">The Playground</a>, one scroll up.</b> Practice the prompting and delegation the redesign bucket asks for, on this page, today.</span></li>' +
+    '<li>' + CHECK + '<span><b><a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener noreferrer">Amplify</a>, for hands-on practice.</b> Guided practice on Vanderbilt&rsquo;s approved platform beats a workshop that never touches real work.</span></li>' +
+    '<li>' + CHECK + '<span><b>Role-specific reskilling.</b> The Vanderbilt learning and development catalog, and LinkedIn Learning if licensed. [EDIT: link the L&amp;D catalog and confirm LinkedIn Learning licensing]</span></li>' +
+    '<li>' + WARN + '<span>' + redesignLine + '</span></li>' +
+    '</ul></div></div>';
+  var sixty = bk.delegate.length
+    ? 'Pilot an AI first draft of &ldquo;' + esc(bk.delegate[0].name) + '&rdquo; and one redesign-bucket task, with explicit verification and a named reviewer.'
+    : 'Pick one redesign-bucket task and pilot a human plus AI version of it, with explicit verification and a named reviewer.';
+  html += '<div class="canon"><h5>The 30 / 60 / 90 plan</h5><ol>' +
+    '<li><span><b>30 days.</b> Write the full task inventory for ' + roleEsc + ' work, using the three buckets, and pick the two skills above you will build first. If you manage the role, do it as a conversation with the person in it.</span></li>' +
+    '<li><span><b>60 days.</b> ' + sixty + '</span></li>' +
+    '<li><span><b>90 days.</b> Bring the inventory and what you learned to a development conversation: with your manager if the role is yours, or with the person in the role if you manage it. [EDIT: link development planning resource]</span></li>' +
+    '</ol><p class="c-fine">If most of the role keeps landing in the delegate bucket, that conversation includes role redesign with HR, not just training.</p></div>';
+  html += '<div class="ra-actions"><button type="button" class="btn btn-primary" id="raCopy"><span id="raCopyLabel">Copy the brief</span>' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>' +
+    '<button type="button" class="btn btn-ghost" id="raRestart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Start over with a new role</button></div>';
+  out.innerHTML = html;
+  var copyBtn = document.getElementById('raCopy'), copyLabel = document.getElementById('raCopyLabel');
+  if(copyBtn && copyLabel) copyBtn.addEventListener('click', function(){
+    copyText(brief(name, tier, why, bk, skills), copyLabel, 'Copied ✓');
+  });
+  var re = document.getElementById('raRestart');
+  if(re) re.addEventListener('click', function(){
+    form.reset();
+    rows().forEach(function(row){ if(row.querySelector('.rt-remove') && row.parentNode) row.parentNode.removeChild(row); });
+    renumber();
+    out.innerHTML = '';
+    if(nudge) nudge.classList.remove('show');
+    var shell = document.querySelector('#readiness .ra-shell');
+    if(shell) shell.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' });
+    if(roleInput) roleInput.focus();
+  });
+  out.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' });
+}
+build.addEventListener('click', function(){
+  var name = roleInput ? roleInput.value.trim() : '';
+  var g = gather();
+  var fluency = val('raFluency'), sens = val('raSens');
+  var problem = null;
+  if(!name) problem = roleInput;
+  else if(g.badEl) problem = g.badEl;
+  else if(g.tasks.length < 2) problem = g.emptyEl || (rows()[0] && rows()[0].querySelector('.rt-task'));
+  else if(fluency === null || sens === null) problem = form.querySelector('input[name="' + (fluency === null ? 'raFluency' : 'raSens') + '"]');
+  if(problem){
+    if(nudge) nudge.classList.add('show');
+    problem.focus();
+    return;
+  }
+  if(nudge) nudge.classList.remove('show');
+  render(name, g.tasks, fluency, sens);
+});
 })();
 </script>
 </body>
