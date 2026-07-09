@@ -1144,7 +1144,7 @@ nav.links a{ white-space:nowrap; }
     <div class="statrow">
       <div class="statcell"><span class="num">4</span><span class="lbl">core domains every Vanderbilt manager owns</span></div>
       <div class="statcell"><span class="num">4</span><span class="lbl">state compliance profiles. TN · NY · CA · FL</span></div>
-      <div class="statcell"><span class="num">26</span><span class="lbl">interactive experiences, simulators, labs &amp; plan builders</span></div>
+      <div class="statcell"><span class="num">29</span><span class="lbl">interactive experiences, simulators, labs &amp; plan builders</span></div>
       <div class="statcell"><span class="num">100%</span><span class="lbl">hands-on, you make every call yourself, no slides</span></div>
     </div>
   </div>
@@ -1251,7 +1251,7 @@ nav.links a{ white-space:nowrap; }
       <span class="dno" aria-hidden="true">02</span>
     </div>
     <p style="margin-top:8px;color:var(--tx2);max-width:62ch">With the ground rules in place, we turn to the part of the job that's actually about people. Employee Relations (ER) is everything that happens between the policy and the person: the coaching, the conflict, the conversation you'd rather not have. Managers who do this well are made, not born, and the making is mostly reps.</p>
-    <div class="primer" style="margin-top:26px"><span class="mono" style="color:var(--eyebrow)">What this domain gives you</span><div class="pr-row"><b>You&rsquo;ll learn</b><span>What the job actually asks of you day to day, and the three lanes: handle it, partner with PCB, or escalate now.</span></div><div class="pr-row"><b>You&rsquo;ll practice</b><span>Eight judgment calls on the moments managers get wrong, a full difficult conversation one choice at a time, and the progressive discipline ladder end to end.</span></div><div class="pr-row"><b>You&rsquo;ll leave with</b><span>The confidence to open the conversation you have been putting off, and certainty about when a situation stops being yours to solve alone.</span></div></div>
+    <div class="primer" style="margin-top:26px"><span class="mono" style="color:var(--eyebrow)">What this domain gives you</span><div class="pr-row"><b>You&rsquo;ll learn</b><span>What the job actually asks of you day to day, and the three lanes: handle it, partner with PCB, or escalate now.</span></div><div class="pr-row"><b>You&rsquo;ll practice</b><span>Eight judgment calls on the moments managers get wrong, a full difficult conversation one choice at a time, and the progressive discipline ladder end to end, with practice decks for your notes, your first response to a complaint, and the coach-or-correct call.</span></div><div class="pr-row"><b>You&rsquo;ll leave with</b><span>The confidence to open the conversation you have been putting off, and certainty about when a situation stops being yours to solve alone.</span></div></div>
 
     <h3 style="margin-top:52px;font-size:1.4rem">What it actually means to be a manager</h3>
     <p style="margin-top:10px;color:var(--tx3);font-size:.92rem">Open any card for the deeper story, then try the call yourself. Eight cards, eight calls.</p>
@@ -1273,6 +1273,26 @@ nav.links a{ white-space:nowrap; }
       
       <div class="primer"><span class="mono" style="color:var(--eyebrow)">How to decide · whose lane is it</span><div class="pr-row"><b>Handle it yourself</b><span>Coaching, performance, everyday friction. Most of the job lives here, escalating it trains your team to route around you.</span></div><div class="pr-row"><b>Partner with PCB</b><span>Patterns that persist after coaching, accommodation requests, anything touching pay or leave, counteroffers. You stay involved; you just stop deciding alone.</span></div><div class="pr-row"><b>Escalate to ER / Legal now</b><span>Anything touching a protected class, harassment, safety, wage violations, or retaliation, even when the person asks you to keep it quiet.</span></div></div>
       <div id="deck-escalate" style="margin-top:26px"></div>
+    <!-- ER DEEP-DIVES -->
+    <div style="margin-top:60px">
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Go deeper · The moments between the policies</span></div>
+      <h3 style="font-size:1.55rem;max-width:32ch">Three skills that decide how every ER story ends.</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:64ch">What you write down, what you say in the first thirty seconds, and which tool you reach for. Practice each one against real moments.</p>
+
+      <div style="margin-top:34px">
+        <h4 style="font-size:1.15rem">The Note File · documentation &amp; fairness</h4>
+        <div id="deck-notes" style="margin-top:16px"></div>
+      </div>
+      <div style="margin-top:44px">
+        <h4 style="font-size:1.15rem">First Response · when someone brings you a complaint</h4>
+        <div id="deck-firstresp" style="margin-top:16px"></div>
+      </div>
+      <div style="margin-top:44px">
+        <h4 style="font-size:1.15rem">Coach or Correct? · picking the right tool</h4>
+        <div id="deck-coach" style="margin-top:16px"></div>
+      </div>
+    </div>
+
 
     <!-- Progressive discipline simulator (Employee Relations) -->
     <div style="margin-top:64px">
@@ -1803,6 +1823,9 @@ var MODULES = [
   {key:'escalate', label:'Handle or Escalate', href:'#deck-escalate'},
   {key:'ermicro', label:'ER Drills', href:'#relationsTopics'},
   {key:'discipline', label:'Progressive Discipline', href:'#sim-discipline'},
+  {key:'notes', label:'Note File', href:'#deck-notes'},
+  {key:'firstresp', label:'First Response', href:'#deck-firstresp'},
+  {key:'coach', label:'Coach or Correct', href:'#deck-coach'},
   {key:'fmla', label:'FMLA Simulator', href:'#sim-fmla'},
   {key:'opsmicro', label:'Ops Drills', href:'#operationsTopics'},
   {key:'payq', label:'Approval Queue', href:'#deck-pay'},
@@ -2010,7 +2033,7 @@ var ER_MICRO=[
     {t:'\u201CJordan, people are saying you\u2019ve been difficult in meetings lately.\u201D',ok:false,fb:'Anonymous accusers and a character label. Jordan can\u2019t answer \u201Cpeople\u201D and can\u2019t fix \u201Cdifficult.\u201D This opener starts a defense, not a conversation.'},
     {t:'\u201CJordan, in Tuesday\u2019s review you cut Sam off three times, and the room went quiet, we lost her input. Can we talk about what was going on?\u201D',ok:true,fb:'Situation, behavior, impact, then an open question. Hard to argue with, easy to act on, and it invites his side before any verdict.'},
     {t:'\u201CJordan, quick chat, nothing serious, don\u2019t worry!\u201D',ok:false,fb:'The minimizing preamble betrays itself, he now knows it IS serious and that you\u2019ll soften truths. Say the real thing, kindly.'}]},
-  {i:'route',h:'When to escalate',p:'The judgment that protects everyone: which issues you own, which you partner with PCB on, and which must go to Employee Relations or Title IX now.',
+  {i:'route',h:'When to escalate an issue',p:'The judgment that protects everyone: which issues you own, which you partner with PCB on, and which must go to Employee Relations or Title IX now.',
    deep:'Three lanes. <b>Yours:</b> everyday coaching, performance, ordinary friction. <b>Partner with PCB:</b> patterns that won\u2019t break, accommodations, anything touching pay or leave. <b>Escalate now, no matter what:</b> anything touching a protected class, harassment, safety, or retaliation, even when the person asks you to keep it quiet. The most expensive mistakes are handled-it-myself cases that were never yours to handle.',
    q:'Which one goes to Employee Relations today, not next week?',
    opts:[
@@ -2038,7 +2061,7 @@ var ER_MICRO=[
     {t:'Stay on script, the performance facts haven\u2019t changed.',ok:false,fb:'They may be about to. A health disclosure mid-discipline can convert the whole matter into an accommodation or leave issue, pushing through is how lawsuits start.'},
     {t:'Pause the discipline track, skip the medical questions, and loop in PCB before taking another step.',ok:true,fb:'Exactly: pause, don\u2019t probe, partner. The performance issues can still be addressed, but only after the ADA/FMLA picture is properly handled.'},
     {t:'Cancel the discipline entirely and never revisit it, too risky now.',ok:false,fb:'Overcorrection. Protected status isn\u2019t immunity from expectations; it means the process routes through PCB first. Abandoning standards helps no one, including Dana.'}]},
-  {i:'flag',h:'Managers are talent scouts',p:'Your duty to talent does not stop at your own org chart. Everyone has talent. Not everyone is <i>talent</i>. Managers help the university tell the difference, and pull people up and through.',
+  {i:'flag',h:'Managers are talent scouts',p:'Your duty to talent does not stop at your own org chart. Everyone has talent; not everyone is <i>talent</i> in the succession sense. Managers help the university tell the difference, and pull people up and through.',
    deep:'Scouting is an organizational duty, not a team one: noticing the person two units over who keeps solving hard problems, saying their name in rooms they are not in, and connecting them to stretch work wherever it lives. Gartner\u2019s research on high potentials draws the line cleanly: HIPOs show all three of <b>ability, aspiration, and engagement</b>. Strong performance alone is one leg of three. Your job in that space is to spot the three-legged people early and make sure the institution knows.',
    q:'A consistently excellent analyst on a peer\u2019s team keeps solving your team\u2019s gnarliest data problems, and nobody seems to have noticed. Your move?',
    opts:[
@@ -2878,6 +2901,57 @@ mountDeck('deck-time', {
      correct:2, exp:'Accuracy cuts both directions. Records that overstate hours are as much a liability as ones that understate them; correct it and remind everyone the timesheet is a legal document, not a formality.'},
     {scene:'A non-exempt staffer eats lunch at her desk \u201Coff the clock\u201D while covering the phones.',
      correct:0, exp:'A lunch where you are still working is not a lunch; she is owed the time (and in California, a meal-period premium on top). Relieve people completely or pay them completely.'}
+  ]
+});
+
+
+/* ══════════ ER DEEP-DIVES: NOTE FILE / FIRST RESPONSE / COACH OR CORRECT ══════════ */
+mountDeck('deck-notes', {
+  key:'notes', title:'The Note File', kicker:'5 notes \u00B7 which ones hold up?', icon:'doc',
+  verdicts:['Holds up','Fix it','Never write this'],
+  cards:[
+    {scene:'\u201C4/12: Missed the grant deadline (second this quarter, after 3/3). Reset expectation: drafts 48 hours ahead. Offered weekly check-in. Follow up 4/26.\u201D',
+     correct:0, exp:'Dated, factual, expectation set, support offered, follow-up scheduled. Five sentences written the same day; this is the note that protects both of you.'},
+    {scene:'\u201C4/12: Jordan has had a bad attitude in meetings lately.\u201D',
+     correct:1, exp:'A label with a date. Rewrite it as what a camera would have recorded: which meeting, what he did, what it cost. \u201CAttitude\u201D is the first word a lawyer circles.'},
+    {scene:'\u201C4/12: Late again. Probably her anxiety flaring up; she mentioned meds once.\u201D',
+     correct:2, exp:'Medical speculation in a performance note is a lawsuit with a timestamp. Record the lateness, never your diagnosis; if health is genuinely in play, that conversation belongs to PCB.'},
+    {scene:'It is December. You sit down to write up the whole year of issues from memory before review season.',
+     correct:1, exp:'Better than nothing, barely. Label them clearly as written-in-December recollections, never date them as if contemporaneous, and start the same-day habit now; reconstructed notes read as a case being built backwards.'},
+    {scene:'\u201CSO done with this guy. Third time he\u2019s made me look bad in front of the dean. Documenting everything from now on.\u201D',
+     correct:2, exp:'Venting is human; venting <i>in the file</i> is evidence of animus. Every note is discoverable, and this one turns his lawyer\u2019s opening statement into a copy-paste job. Call a friend instead.'}
+  ]
+});
+mountDeck('deck-firstresp', {
+  key:'firstresp', title:'First Response', kicker:'5 replies \u00B7 someone just brought you a complaint', icon:'chat',
+  verdicts:['Good first response','Risky','Do not say this'],
+  cards:[
+    {scene:'\u201CThank you for telling me. That took guts, and I\u2019m taking it seriously.\u201D',
+     correct:0, exp:'The gold standard opener. It rewards the courage, commits you to nothing you cannot deliver, and keeps them talking.'},
+    {scene:'\u201CAre you sure you\u2019re not reading too much into it?\u201D',
+     correct:2, exp:'You just told them, and everyone they talk to, that complaints get doubted here. The next concern goes to a lawyer or nowhere, and both are worse for everyone.'},
+    {scene:'\u201CThis stays just between us, I promise.\u201D',
+     correct:2, exp:'A promise you may be legally forbidden to keep. Offer honest discretion instead: only the people who genuinely need to know, plus the truth that some things you are required to act on.'},
+    {scene:'\u201CDo you mind if I write down the facts while they\u2019re fresh? Dates, what was said, who was there.\u201D',
+     correct:0, exp:'Contemporaneous facts, captured respectfully. It signals seriousness and gives whoever handles it next something real to work with.'},
+    {scene:'\u201COh, that\u2019s just how he is. He\u2019s harmless, honestly.\u201D',
+     correct:2, exp:'The institutional shrug. \u201CThat\u2019s just how he is\u201D is how organizations explain, years later, why everyone knew and nobody acted. If it was worth bringing to you, it is worth taking seriously.'}
+  ]
+});
+mountDeck('deck-coach', {
+  key:'coach', title:'Coach or Correct?', kicker:'5 moments \u00B7 pick the right tool', icon:'heart',
+  verdicts:['Coach it','Correct it','Let it go'],
+  cards:[
+    {scene:'A three-week-old hire formats her first big report completely wrong.',
+     correct:0, exp:'She cannot fail a standard nobody taught her. Show the model, explain why it matters, and check the next one; this is onboarding, not performance.'},
+    {scene:'A veteran makes the same data error a third time, after two patient coaching rounds you documented.',
+     correct:1, exp:'Coaching has been tried and recorded, which is exactly what makes correction fair now. Move up the ladder: clear expectation, consequence named, date set.'},
+    {scene:'A solid performer outlines project plans in a completely different style than you would, and they work.',
+     correct:2, exp:'Preference is not performance. Managing the how when the what is excellent teaches people to hide their methods from you, and costs you the exact diversity of thinking you hired for.'},
+    {scene:'Your steadiest person has been flat for two weeks. You know her mother is ill.',
+     correct:0, exp:'Coach in the widest sense: a check-in, flexibility where you can offer it, EAP if it fits. Support now is also what makes any later performance conversation fair and human.'},
+    {scene:'A teammate takes his full lunch at exactly noon every day, even mid-crunch, and his work is on time.',
+     correct:2, exp:'He is doing it right. A protected lunch is the law for non-exempt staff and a healthy norm for everyone; the itch you feel is culture debt, not a performance issue.'}
   ]
 });
 
