@@ -1052,6 +1052,14 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
 @keyframes mmIn{ from{ opacity:0; transform:translateY(10px) scale(.985);} to{ opacity:1; transform:none; } }
 .mm-foot[hidden]{ display:none; }
 .mmodal[hidden]{ display:none; }
+/* modal process block (per-responsibility job aid) */
+.mm-proc{ margin-top:20px; border-top:1px solid #E4E4E4; padding-top:14px; }
+.mm-proc ol{ margin:10px 0 0 20px; display:flex; flex-direction:column; gap:6px; }
+.mm-proc li{ font-size:.9rem; color:#555; line-height:1.5; }
+.mm-links{ display:flex; gap:18px; flex-wrap:wrap; margin-top:14px; }
+.mm-links .olink{ color:#946E24; border-bottom:1px solid rgba(148,110,36,.4); font-size:.88rem; font-weight:500; }
+.mm-links .olink .ph{ margin-left:6px; }
+nav.links a{ white-space:nowrap; }
 
 </style>
 </head>
@@ -1066,13 +1074,13 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
       <img src="assets/v-lockup-white@2x.png" alt="Vanderbilt University" />
     </a>
     <nav class="links" aria-label="Primary">
-      <a href="#foundations">Foundations</a>
       <a href="#compliance">Compliance</a>
       <a href="#relations">Employee Relations</a>
       <a href="#operations">Responsibilities</a>
       <a href="#softskills">People Skills</a>
       <a href="#mastery">Mastery</a>
       <a href="#assess">Assessment</a>
+      <a href="#resources">Resources</a>
       <a href="#foundations" class="nav-cta btn btn-primary btn-sm">Begin the track</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
@@ -1082,13 +1090,13 @@ a.track-pill:hover{ border-color:var(--vu-gold); transform:translateY(-1px); col
 </header>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <a class="mlink" href="#foundations"><span class="mono">01</span>Foundations</a>
-  <a class="mlink" href="#compliance"><span class="mono">02</span>Compliance</a>
-  <a class="mlink" href="#relations"><span class="mono">03</span>Employee Relations</a>
-  <a class="mlink" href="#operations"><span class="mono">04</span>Responsibilities</a>
-  <a class="mlink" href="#softskills"><span class="mono">05</span>People Skills</a>
-  <a class="mlink" href="#mastery"><span class="mono">06</span>Mastery</a>
-  <a class="mlink" href="#assess"><span class="mono">07</span>Assessment</a>
+  <a class="mlink" href="#compliance"><span class="mono">01</span>Compliance</a>
+  <a class="mlink" href="#relations"><span class="mono">02</span>Employee Relations</a>
+  <a class="mlink" href="#operations"><span class="mono">03</span>Responsibilities</a>
+  <a class="mlink" href="#softskills"><span class="mono">04</span>People Skills</a>
+  <a class="mlink" href="#mastery"><span class="mono">05</span>Mastery</a>
+  <a class="mlink" href="#assess"><span class="mono">06</span>Assessment</a>
+  <a class="mlink" href="#resources"><span class="mono">07</span>Resources</a>
   <div class="mfoot">Vanderbilt University · Manager Voyage · Manager Foundations</div>
 </div>
 
@@ -1866,6 +1874,11 @@ function microOpen(i){
     '<p class="mm-q">'+m.q+'</p>'+
     '<div class="esc-btns" data-i="'+i+'">'+m.opts.map(function(o,j){ return '<button type="button" data-j="'+j+'"'+(isAnswered?' disabled':'')+'>'+o.t+'</button>'; }).join('')+'</div>'+
     '<div class="esc-exp"></div>'+
+    (m.process?('<div class="mm-proc"><span class="mono" style="color:var(--vu-oak)">The Vanderbilt process</span>'+
+      '<span class="ph" style="margin-left:10px">Placeholder \u00B7 swap for the official steps</span>'+
+      '<ol>'+m.process.map(function(s){ return '<li>'+s+'</li>'; }).join('')+'</ol>'+
+      (m.links?'<div class="mm-links">'+m.links.map(function(l){ return '<a href="#" class="olink" data-pending="1">'+l.label+' \u203A <span class="ph">URL pending</span></a>'; }).join('')+'</div>':'')+
+      '</div>'):'')+
     '<div class="mm-foot" '+(isAnswered?'':'hidden')+'>'+
       (nextIdx!==null?'<button type="button" class="btn btn-primary btn-sm" data-next="'+nextIdx+'">Next card &rarr;</button>':'')+
       '<button type="button" class="btn btn-ghost btn-sm" data-close="1">Done</button>'+
@@ -2024,42 +2037,54 @@ var OPS_MICRO=[
    opts:[
     {t:'The coffee-chat star, you know chemistry when you feel it.',ok:false,fb:'\u201CChemistry\u201D is how similar-to-me bias feels from the inside. The rubric existed precisely to protect the decision from this moment.'},
     {t:'The rubric leader, or back to the panel to compare evidence against the criteria before anyone decides on feel.',ok:true,fb:'Right. Structured beats charming: rubric-based decisions predict performance better and survive scrutiny if the choice is ever questioned.'},
-    {t:'Offer the chat star, but at a lower salary to hedge the risk.',ok:false,fb:'Now it\u2019s a biased decision <i>and</i> a pay-equity problem. Hedging a gut call with compensation makes both problems worse.'}]},
+    {t:'Offer the chat star, but at a lower salary to hedge the risk.',ok:false,fb:'Now it\u2019s a biased decision <i>and</i> a pay-equity problem. Hedging a gut call with compensation makes both problems worse.'}],
+   process:['Open the requisition and route it for approval.','Build the panel, write the rubric, and interview every candidate the same way.','Extend the offer through PCB compensation, never as a side agreement.','Run the first-90-days plan: an early win, a named go-to person, a 30/60/90 check-in.'],
+   links:[{label:'Oracle training \u00B7 Hiring &amp; onboarding'},{label:'Process documentation \u00B7 Hiring guide'}]},
   {i:'cal',h:'FMLA &amp; leave',p:'Recognize a potential leave trigger even when the employee never says \u201CFMLA,\u201D notify PCB, keep it confidential, and protect the job.',
    deep:'No magic words are required. \u201CMy dad had a stroke,\u201D \u201Cthe pregnancy is complicated,\u201D \u201CI need surgery\u201D, each may start a legal clock whether or not anyone says the four letters. Your job is a relay: show care, route it to Leave Administration the same day, keep the reason confidential, and promise nothing about time or pay. The full simulator below lets you feel it in motion.',
    q:'Sunday text from Marcus: \u201CDad had a stroke. I need to be out this week.\u201D Monday morning, your first move is\u2026',
    opts:[
     {t:'Approve it as PTO, the fastest way to give him what he needs.',ok:false,fb:'Kind, but it may bury a job-protected FMLA entitlement inside his vacation balance. Care for a parent with a serious condition likely qualifies, route it.'},
     {t:'Reply with care, then connect him with Leave Administration the same day so his protections start.',ok:true,fb:'Exactly the relay: empathy from you, eligibility and paperwork from the people who own it, protections preserved either way.'},
-    {t:'Ask him for the medical details so you can decide what kind of leave fits.',ok:false,fb:'Managers don\u2019t collect diagnoses, ever. Medical detail flows through PCB\u2019s confidential process, not your inbox.'}]},
+    {t:'Ask him for the medical details so you can decide what kind of leave fits.',ok:false,fb:'Managers don\u2019t collect diagnoses, ever. Medical detail flows through PCB\u2019s confidential process, not your inbox.'}],
+   process:['Connect the employee with Leave Administration the same day you have notice.','Leave Administration owns eligibility, certification, and the paperwork.','You plan coverage without posting the role, and keep the reason confidential.','Coordinate the return: schedule, restored role, no leave-based decisions.'],
+   links:[{label:'Oracle training \u00B7 FMLA &amp; leave'},{label:'Process documentation \u00B7 Leave process'}]},
   {i:'shield',h:'Reasonable accommodation (ADA)',p:'When someone needs a change to <i>how</i> they work rather than time away: a schedule shift, equipment, a quieter space. No magic words required, and you never decide alone.',
    deep:'The ADA starts working the moment a work change is connected to a medical condition, and the employee never has to say \u201CADA\u201D or \u201Caccommodation.\u201D Your part is a relay, the same shape as FMLA: take the request seriously, skip the medical questions, and start the interactive process with PCB the same day. You are the expert on the job (what is essential, what could flex); PCB owns the medical side. The full Accommodation Simulator in the Mastery track walks the whole process end to end.',
    q:'\u201CMy back has been rough since the surgery. Could I get a different chair, and maybe start later on PT days?\u201D Your first move?',
    opts:[
     {t:'Say yes to the chair, no to the schedule, and settle it yourself on the spot.',ok:false,fb:'Half-generous and fully informal. Side deals skip the documentation that protects her and the consistency PCB needs across the university. Route it properly and she may get both.'},
     {t:'Take it seriously, skip the diagnosis questions, and loop in PCB the same day to start the interactive process.',ok:true,fb:'Exactly the relay: care from you, process from PCB, options worked out together. That was an accommodation request even though she never said the word, and now it is protected like one.'},
-    {t:'Ask what the surgery was for, so you can judge whether it qualifies.',ok:false,fb:'Managers never collect diagnoses. Medical detail flows through PCB confidentially; the probing itself creates ADA liability.'}]},
+    {t:'Ask what the surgery was for, so you can judge whether it qualifies.',ok:false,fb:'Managers never collect diagnoses. Medical detail flows through PCB confidentially; the probing itself creates ADA liability.'}],
+   process:['Recognize the request and notify PCB the same day; no magic words required.','PCB opens the interactive process and handles all medical documentation.','You weigh in on essential functions and what could flex operationally.','The accommodation is documented, implemented, and revisited if it stops working.'],
+   links:[{label:'Oracle training \u00B7 ADA &amp; accommodation'},{label:'Process documentation \u00B7 Accommodation process'}]},
   {i:'cash',h:'Pay &amp; PTO',p:'Approving time, understanding exempt vs. non-exempt, PTO accrual and use, and never adjusting pay outside policy.',
    deep:'One distinction does most of the work: <b>non-exempt</b> means every hour worked is paid and overtime rules apply; <b>exempt</b> means salaried for the role, not the hours. PTO runs on policy, applied identically to your favorite person and your least. And pay changes of any kind, raises, bonuses, \u201Ccomp time\u201D, are never a solo decision, however good the intention.',
    q:'Sam had a great year. You have budget room and want to hand him a spot bonus on Friday. You\u2026',
    opts:[
     {t:'Just do it, your budget, your call, and he\u2019s earned it.',ok:false,fb:'Compensation lives in a system: team equity, precedent, payroll and tax handling. A generous solo pay decision is still an unauthorized pay decision.'},
     {t:'Run it through PCB / compensation first, then enjoy delivering the good news properly.',ok:true,fb:'Right. Same generosity, zero exposure, it arrives as an official award instead of a private arrangement someone else will eventually hear about.'},
-    {t:'Skip the money, quietly give him a few days of \u201Coff the books\u201D comp time instead.',ok:false,fb:'Off-the-books time is a wage-and-hour trap and an unrecorded absence. Informal comp time is how well-meaning managers create FLSA problems.'}]},
+    {t:'Skip the money, quietly give him a few days of \u201Coff the books\u201D comp time instead.',ok:false,fb:'Off-the-books time is a wage-and-hour trap and an unrecorded absence. Informal comp time is how well-meaning managers create FLSA problems.'}],
+   process:['Review and approve time for your team on the payroll calendar.','PTO requests and accrual balances live in the system of record; apply the policy identically for everyone.','Any pay change, bonus, or comp-time arrangement routes through PCB compensation first.','When in doubt on exempt vs. non-exempt, ask your EC before acting.'],
+   links:[{label:'Oracle training \u00B7 Pay, time &amp; PTO'},{label:'Process documentation \u00B7 Pay &amp; PTO policy'}]},
   {i:'receipt',h:'Expense reports',p:'Timely, policy-compliant, well-documented reimbursement, you\u2019re the control that catches problems before Finance does.',
    deep:'Your approval is not a formality, it <i>is</i> the internal control. Read the lines, not the total: dates, attendees, business purpose, receipts. When something looks off, the move is a neutral question, \u201Chelp me understand this one\u201D, asked before you approve, not after. An approved report carries your name on its problems.',
    q:'In Friday\u2019s pile: \u201CClient dinner, $400.\u201D Suspiciously round number, no attendee list, no itemized receipt. You\u2026',
    opts:[
     {t:'Approve it, they\u2019re trustworthy and the quarter closes today.',ok:false,fb:'Trust isn\u2019t the control, review is. Approving the exception under deadline pressure is exactly how the exception becomes the norm.'},
     {t:'Hold it and ask the neutral question: \u201CWalk me through this one. I need the attendees and the itemized receipt before I can approve.\u201D',ok:true,fb:'Right: a question, not an accusation, and the standard applied evenly. Ninety-nine times it\u2019s sloppy paperwork, the hundredth time is why you check.'},
-    {t:'Reject it without comment and let them work out why.',ok:false,fb:'Silent rejection teaches nothing and reads as an accusation. Ask first, most of these resolve in one reply.'}]},
+    {t:'Reject it without comment and let them work out why.',ok:false,fb:'Silent rejection teaches nothing and reads as an accusation. Ask first, most of these resolve in one reply.'}],
+   process:['Employees submit with itemized receipts, attendees, and business purpose.','You review the lines, not just the total.','Question anything unclear before approving; approve or return with the ask.','Finance audits behind you; your approval is the first control, not a formality.'],
+   links:[{label:'Oracle training \u00B7 Expense reports'},{label:'Process documentation \u00B7 Expense policy'}]},
   {i:'clock',h:'Timekeeping &amp; FLSA',p:'Accurate time records, no off-the-clock work, and correct overtime. Wage-and-hour errors are among the costliest a manager can make.',
    deep:'For non-exempt staff the rule has no exceptions: time worked is time paid, evenings, \u201Cquick\u201D emails, working lunches, all of it. Unpaid off-the-clock work is wage theft even when the employee volunteers it, and the timestamps are the plaintiff\u2019s exhibit A. California adds meal-break premiums and daily overtime on top.',
    q:'Your non-exempt coordinator has been answering email threads at 10pm \u201Cjust to stay ahead\u201D, none of it logged. You\u2026',
    opts:[
     {t:'Appreciate the hustle, she chose it, and the team benefits.',ok:false,fb:'Volunteered or not, it\u2019s compensable time, and every timestamped reply is evidence. \u201CShe wanted to\u201D has never once won a wage-and-hour case.'},
     {t:'Stop it in writing, pay the time already worked, and set the norm: after-hours replies are neither expected nor unpaid.',ok:true,fb:'All three moves matter: the written expectation, the back pay, and the norm, because your own late-night emails are what taught her to answer.'},
-    {t:'Tell her to work more efficiently during business hours instead.',ok:false,fb:'That blames her for a compliance problem you\u2019re responsible for, and leaves the unpaid time unpaid. Fix the record and the norm, not the person.'}]}
+    {t:'Tell her to work more efficiently during business hours instead.',ok:false,fb:'That blames her for a compliance problem you\u2019re responsible for, and leaves the unpaid time unpaid. Fix the record and the norm, not the person.'}],
+   process:['Non-exempt staff record all time worked, including remote and after-hours.','You review and approve time each period and correct errors through payroll, never informally.','Overtime is pre-approved per policy, and always paid when worked regardless.','Set the norm in writing: after-hours replies are neither expected nor unpaid.'],
+   links:[{label:'Oracle training \u00B7 Timekeeping &amp; FLSA'},{label:'Process documentation \u00B7 Wage &amp; hour guide'}]}
 ];
 var RESOURCES=[
   {i:'users',h:'Engagement Consultant (EC)',p:'Your first call for almost anything people-related. <span class="ph">Add contact</span>'},
@@ -3300,6 +3325,7 @@ function boot(){
   try{ initPlan(); }catch(e){}
   try{ initOOB(); }catch(e){}
   try{ initHeroRotation(); }catch(e){}
+  document.addEventListener('click', function(e){ var pl=e.target.closest('.olink[data-pending]'); if(pl) e.preventDefault(); });
   // deep links: content mounts after the browser's initial anchor jump, so re-align
   if(location.hash){
     try{
