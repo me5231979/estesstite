@@ -22,6 +22,8 @@
     · FMLA: notification window, Vanderbilt absence-management administration,
       and the manager's contact for leave questions
     · ER partner / HR contact lines            · Policy library link
+    · AI readiness: L&D catalog / LinkedIn Learning licensing + HR workforce
+      planning / talent contact
     · Feedback mailto (interim; swap for REDCap/Qualtrics)
     · Footer disclaimer + legal line
   COMPLIANCE NOTE: this site teaches PROCESS and JUDGMENT, never legal
@@ -586,6 +588,24 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; margin-top:22px; min-height:44px; transition:color .2s ease-out; }
 .totop:hover{ color:#fff; } .totop svg{ width:14px; height:14px; }
 
+/* ═══════════════════ AI READINESS ═══════════════════ */
+.ra-idea{ margin-top:30px; max-width:820px; }
+.ra-idea h4{ font-family:var(--serif); font-weight:400; font-size:1.3rem; display:flex; align-items:baseline; gap:12px; }
+.ra-idea h4 .no{ font-family:var(--cond); font-weight:700; font-size:.8rem; color:#1C1C1C; background:var(--vu-gold);
+  border-radius:2px; padding:3px 9px; flex-shrink:0; }
+.ra-idea > p{ color:var(--tx2); font-size:.9575rem; line-height:1.75; margin-top:10px; max-width:70ch; }
+.ra-idea > p b{ color:var(--tx); font-weight:600; }
+.qz .opts.o3{ grid-template-columns:repeat(3,1fr); }
+.ra-cluster{ font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--eyebrow); margin:22px 0 12px; }
+.ra-buckets{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px; }
+.ra-block{ margin-top:26px; }
+.ra-block > h5{ font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.06em; text-transform:uppercase; color:var(--eyebrow); }
+.ra-block a{ color:var(--link); border-bottom:1px solid var(--bdg); }
+.ra-block a:hover{ color:var(--strong); }
+@media (max-width:960px){ .ra-buckets{ grid-template-columns:1fr; } }
+@media (max-width:640px){ .qz .opts.o3{ grid-template-columns:1fr; } }
+
 /* ═══════════════════ RESPONSIVE ═══════════════════ */
 @media (max-width:1024px){
   .flip-grid{ grid-template-columns:1fr 1fr; }
@@ -642,6 +662,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <a href="#compliance">Compliance</a>
         <a href="#relations">Employee Relations</a>
         <a href="#operations">Operations</a>
+        <a href="#readiness">AI Readiness</a>
         <a href="../learn/">CHART</a>
         <a class="btn btn-gold btn-sm nav-cta" href="#quiz">Knowledge check</a>
       </nav>
@@ -658,9 +679,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <a class="mlink" href="#compliance"><span class="mono">01</span>Compliance</a>
   <a class="mlink" href="#relations"><span class="mono">02</span>Employee Relations</a>
   <a class="mlink" href="#operations"><span class="mono">03</span>Operations</a>
-  <a class="mlink" href="#quiz"><span class="mono">04</span>Knowledge check</a>
-  <a class="mlink" href="#summary"><span class="mono">05</span>What you know</a>
-  <a class="mlink" href="#thirty"><span class="mono">06</span>Your first 30 days</a>
+  <a class="mlink" href="#readiness"><span class="mono">04</span>AI readiness</a>
+  <a class="mlink" href="#quiz"><span class="mono">05</span>Knowledge check</a>
+  <a class="mlink" href="#summary"><span class="mono">06</span>What you know</a>
+  <a class="mlink" href="#thirty"><span class="mono">07</span>Your first 30 days</a>
   <a class="mlink" href="../learn/"><span class="mono">&rarr;</span>CHART (AI skills)</a>
   <div class="mfoot">manager.essentials@vanderbilt.edu <!-- [EDIT] program contact email --></div>
 </nav>
@@ -1370,7 +1392,247 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
     </div>
 
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Rules, conversations, operations. Time to see what <em>stuck</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>The steady work is covered. One more responsibility is newer: the work itself is changing shape, and <em>planning for that</em> is yours too.</p></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ AI & WORKFORCE READINESS ═════════════════════════ -->
+<section id="readiness" class="th-dark" aria-label="AI and workforce readiness">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="you-are">You are here: the horizon. The same team, seen through the work itself and where it is heading.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">AI readiness / 04</span></span>
+      <h2>The work is changing. <em class="s">Plan for it.</em></h2>
+      <p>In this section, you will look at your team the way AI actually meets it: task by task.
+        Four short ideas, each grounded in a named study, then an assessment that turns one
+        role&rsquo;s answers into an exposure read, three task buckets, and a development plan.
+        <b>By the end of this section, you will be able to run that conversation with anyone on
+        your team.</b></p>
+    </div>
+
+    <div class="concept reveal">
+      <span class="c-label">The idea</span>
+      <p>AI does not arrive at a job title; it arrives at a <em>task</em>. Every role on your team is
+        a bundle of tasks, and the bundle is uneven: some tasks are highly exposed to AI, some
+        barely at all, and both kinds usually live inside the same job. The manager&rsquo;s unit of
+        analysis is the <b>task list</b>, not the job title, and the manager&rsquo;s output is a
+        <b>development plan</b>, not a verdict.</p>
+      <p>One rule frames everything in this section: exposure is a planning signal for development,
+        role design, and hiring. It is never, on its own, a case for cutting a role, and nothing
+        below treats it as one.</p>
+    </div>
+
+    <!-- Module A: the four ideas -->
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Module A</span>
+        <h3>How AI meets a team&rsquo;s work</h3>
+        <p>In this activity, you will read four short ideas, each grounded in a named study.
+          Together they are the lens the assessment below applies to your team.</p>
+        <div class="lframe">
+          <span class="lf-chip"><b>You&rsquo;ll learn</b>Exposure, the jagged frontier, and skills churn</span>
+          <span class="lf-chip"><b>You&rsquo;ll do</b>Read four ideas and the evidence under each</span>
+          <span class="lf-chip"><b>Time</b>3 min</span>
+          <p class="lf-why"><b>Why it matters to your work:</b> managers who map their team&rsquo;s tasks first choose training and hiring on purpose, not under pressure.</p>
+        </div>
+      </div>
+
+      <div class="ra-idea">
+        <h4><span class="no" aria-hidden="true">01</span>AI exposes tasks, not jobs</h4>
+        <p>A role is a bundle of tasks, and AI meets the bundle unevenly: the weekly report is
+          highly exposed, the vendor negotiation barely at all, and both belong to the same
+          person. Managers who ask &ldquo;will AI take this job?&rdquo; get stuck. Managers who ask
+          <b>&ldquo;which of this role&rsquo;s tasks does AI touch?&rdquo;</b> get a plan.</p>
+        <div class="evidence">
+          <span class="e-label">The evidence</span>
+          <p><b>About 80 percent of the US workforce could see at least 10 percent of their tasks
+            affected by large language models, and about 19 percent could see half or more
+            affected.</b> The research team rated occupations task by task, which is exactly the
+            method this section hands to you: exposure lives in the task list, not the job title.</p>
+          <span class="e-src">Source: Eloundou, Manning, Mishkin, and Rock (2023), &ldquo;GPTs are GPTs,&rdquo; later published in <em>Science</em>, <a href="https://arxiv.org/abs/2303.10130" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2303.10130</a>.</span>
+        </div>
+      </div>
+
+      <div class="ra-idea">
+        <h4><span class="no" aria-hidden="true">02</span>Exposure is not elimination</h4>
+        <p>An exposed task is a task AI can help with, not a task that disappears. In real
+          workplaces, usage leans toward augmentation: a person working with AI, checking it,
+          and owning the result. So the practical question for each exposed task is not
+          &ldquo;does this task survive?&rdquo; but <b>&ldquo;which level fits: automate it with
+          oversight, or redesign it as human plus AI?&rdquo;</b></p>
+        <div class="evidence">
+          <span class="e-label">The evidence</span>
+          <p><b>Real usage splits about 57 percent augmentation to 43 percent automation.</b>
+            Built from millions of anonymized Claude conversations, the index also finds that
+            about 36 percent of occupations already use AI in at least a quarter of their
+            tasks. Most exposed work is being reshaped with a person in the loop, not removed.</p>
+          <span class="e-src">Source: Anthropic Economic Index (2025), <a href="https://www.anthropic.com/news/the-anthropic-economic-index" target="_blank" rel="noopener noreferrer">anthropic.com/news/the-anthropic-economic-index</a>.</span>
+        </div>
+      </div>
+
+      <div class="ra-idea">
+        <h4><span class="no" aria-hidden="true">03</span>The frontier is jagged</h4>
+        <p>AI is strong on some tasks and quietly bad at adjacent ones, and the boundary follows
+          neither job titles nor difficulty. The only way to know where the line runs for your
+          team is to test task by task. That is also why <b>verification skill matters as much as
+          prompting skill</b>: someone has to catch the confident wrong answer.</p>
+        <div class="evidence">
+          <span class="e-label">The evidence</span>
+          <p><b>Inside the frontier, consultants with AI finished 12.2 percent more tasks, worked
+            25.1 percent faster, and produced over 40 percent higher quality. On a task outside
+            the frontier, they were 19 percentage points more likely to get it wrong.</b>
+            A field experiment with 758 BCG consultants: same people, same tool, opposite
+            results, depending on the task.</p>
+          <span class="e-src">Source: Dell&rsquo;Acqua, McFowland, Mollick, Lifshitz-Assaf, Kellogg, Rajendran, Krayer, Candelon, and Lakhani (2023), Harvard Business School working paper 24-013, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321" target="_blank" rel="noopener noreferrer">papers.ssrn.com</a>.</span>
+        </div>
+      </div>
+
+      <div class="ra-idea">
+        <h4><span class="no" aria-hidden="true">04</span>Skills churn is the planning horizon</h4>
+        <p>The stable plan is not a stable skill list. When a large share of core skills changes
+          within a few years, the manager&rsquo;s response runs in a fixed order: <b>upskill the
+          people you have, reskill where tasks shift, redesign roles where the shift is large,
+          and only then hire</b> for what remains.</p>
+        <div class="evidence">
+          <span class="e-label">The evidence</span>
+          <p><b>Employers expect 39 percent of workers&rsquo; core skills to change by 2030.</b>
+            In a survey of over 1,000 employers, analytical thinking remains the top core skill,
+            and AI and big data is the fastest-growing one. Skills churn, not headcount, is the
+            planning horizon this section is built around.</p>
+          <span class="e-src">Source: World Economic Forum, <em>Future of Jobs Report 2025</em>, <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener noreferrer">weforum.org</a>.</span>
+        </div>
+      </div>
+
+      <div class="canon" style="margin-top:30px">
+        <h5>The manager&rsquo;s four moves</h5>
+        <ol>
+          <li><span><b>Inventory the tasks.</b> Sit with each person and write down what the week actually contains. The list, not the job description, is the raw material.</span></li>
+          <li><span><b>Sort into three buckets.</b> Delegate with oversight, redesign together, or human-core. Every task goes in exactly one.</span></li>
+          <li><span><b>Name the skills.</b> Each bucket demands something: review habits for delegated work, fluency for redesigned work, depth for the human core.</span></li>
+          <li><span><b>Turn it into action.</b> A development plan per person and a hiring signal for the team. An assessment that never becomes a development conversation changes nothing.</span></li>
+        </ol>
+        <p class="c-fine">Development plans are yours to run. Role redesign, reclassification, and staffing changes run through HR. [EDIT: HR workforce planning / talent contact]</p>
+      </div>
+
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>That is the lens. Now point it at <em>one real role</em> on your team.</p></div>
+    </div>
+
+    <!-- Module B: team role assessment -->
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Module B &middot; Centerpiece</span>
+        <h3>The team role assessment</h3>
+        <p>In this activity, you will describe one role on your team and answer eight questions
+          about its week. The page then builds a readout: a directional exposure read, the three
+          task buckets, the skills to build, and a 30/60/90 plan you can copy into your notes.</p>
+        <div class="lframe">
+          <span class="lf-chip"><b>You&rsquo;ll learn</b>Where one role is exposed and where it is protected</span>
+          <span class="lf-chip"><b>You&rsquo;ll do</b>Answer eight questions, copy a plan</span>
+          <span class="lf-chip"><b>Time</b>4 min</span>
+          <p class="lf-why"><b>Why it matters to your work:</b> a development conversation goes better when the manager arrives with a map instead of a mood.</p>
+        </div>
+      </div>
+      <div class="fm-shell">
+        <form id="raForm" autocomplete="off" novalidate>
+          <div class="fm-step">
+            <div class="fs-head"><span class="fs-no" aria-hidden="true">01</span><h4>The role</h4></div>
+            <div class="fs-body">
+              <div class="field" style="margin-bottom:0; max-width:560px">
+                <label for="raRole">The role or work you are assessing</label>
+                <input type="text" id="raRole" maxlength="80" placeholder="Example: financial analyst, events coordinator, grants administrator" />
+                <p class="hinttxt">Stays on this page; nothing is stored or sent.</p>
+              </div>
+            </div>
+          </div>
+          <div class="fm-step">
+            <div class="fs-head"><span class="fs-no" aria-hidden="true">02</span><h4>The task mix</h4></div>
+            <div class="fs-body">
+              <p class="ra-cluster" style="margin-top:0">How the week is actually spent</p>
+              <fieldset class="qz">
+                <legend><span class="qn">1/8</span>How much of the week goes to producing or editing documents, email, and summaries?</legend>
+                <div class="opts o3">
+                  <label><input type="radio" name="raDocs" value="0" /> Little of it</label>
+                  <label><input type="radio" name="raDocs" value="1" /> A meaningful share</label>
+                  <label><input type="radio" name="raDocs" value="2" /> Most of it</label>
+                </div>
+              </fieldset>
+              <fieldset class="qz">
+                <legend><span class="qn">2/8</span>How much goes to data pulls, reports, and analysis?</legend>
+                <div class="opts o3">
+                  <label><input type="radio" name="raData" value="0" /> Little of it</label>
+                  <label><input type="radio" name="raData" value="1" /> A meaningful share</label>
+                  <label><input type="radio" name="raData" value="2" /> Most of it</label>
+                </div>
+              </fieldset>
+              <fieldset class="qz">
+                <legend><span class="qn">3/8</span>How much of the work is routine and repeatable digital work?</legend>
+                <div class="opts o3">
+                  <label><input type="radio" name="raRoutine" value="0" /> Little of it</label>
+                  <label><input type="radio" name="raRoutine" value="1" /> A meaningful share</label>
+                  <label><input type="radio" name="raRoutine" value="2" /> Most of it</label>
+                </div>
+              </fieldset>
+              <fieldset class="qz">
+                <legend><span class="qn">4/8</span>How much requires physical presence or hands-on work?</legend>
+                <div class="opts o3">
+                  <label><input type="radio" name="raPhysical" value="0" /> Little of it</label>
+                  <label><input type="radio" name="raPhysical" value="1" /> A meaningful share</label>
+                  <label><input type="radio" name="raPhysical" value="2" /> Most of it</label>
+                </div>
+              </fieldset>
+              <fieldset class="qz" style="margin-bottom:0">
+                <legend><span class="qn">5/8</span>How much is built on relationships, trust, judgment, or sensitive conversations?</legend>
+                <div class="opts o3">
+                  <label><input type="radio" name="raRelational" value="0" /> Little of it</label>
+                  <label><input type="radio" name="raRelational" value="1" /> A meaningful share</label>
+                  <label><input type="radio" name="raRelational" value="2" /> Most of it</label>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="fm-step">
+            <div class="fs-head"><span class="fs-no" aria-hidden="true">03</span><h4>The readiness</h4></div>
+            <div class="fs-body">
+              <p class="ra-cluster" style="margin-top:0">The conditions around the work</p>
+              <fieldset class="qz">
+                <legend><span class="qn">6/8</span>Where is the team on AI today?</legend>
+                <div class="opts o3">
+                  <label><input type="radio" name="raFluency" value="0" /> Not started</label>
+                  <label><input type="radio" name="raFluency" value="1" /> Experimenting</label>
+                  <label><input type="radio" name="raFluency" value="2" /> Regular users</label>
+                </div>
+              </fieldset>
+              <fieldset class="qz">
+                <legend><span class="qn">7/8</span>How sensitive is the data this work touches?</legend>
+                <div class="opts o3">
+                  <label><input type="radio" name="raSens" value="0" /> Public or internal</label>
+                  <label><input type="radio" name="raSens" value="1" /> Confidential</label>
+                  <label><input type="radio" name="raSens" value="2" /> Regulated, e.g. FERPA or HIPAA</label>
+                </div>
+              </fieldset>
+              <fieldset class="qz" style="margin-bottom:0">
+                <legend><span class="qn">8/8</span>How easily can someone other than the author check this work&rsquo;s outputs?</legend>
+                <div class="opts o3">
+                  <label><input type="radio" name="raVerify" value="0" /> Easily</label>
+                  <label><input type="radio" name="raVerify" value="1" /> With moderate effort</label>
+                  <label><input type="radio" name="raVerify" value="2" /> With difficulty</label>
+                </div>
+              </fieldset>
+              <p class="nudge" id="raNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Name the role and answer all eight questions, and the readout builds itself.</p>
+              <div class="fm-actions"><button type="button" class="btn btn-primary" id="raBuild">Build the readout
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+            </div>
+          </div>
+        </form>
+        <div id="raOut" role="status" aria-live="polite"></div>
+        <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+          <span>A directional conversation starter built from your answers, not a job evaluation, a
+          reclassification, or an HR determination. Real workforce decisions run through HR.
+          <!-- [EDIT] HR workforce planning contact --></span></p>
+      </div>
+    </div>
+
+    <div class="bridge reveal"><span class="b-label">Next</span><p>The fastest upskilling route is <em>one click</em> away. Then the knowledge check shows what stuck.</p></div>
   </div>
 </section>
 
@@ -1391,7 +1653,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="you-are">You are here: checkpoint. You have walked the whole path. Now see what stuck.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Knowledge check / 04</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Knowledge check / 05</span></span>
       <h2>Prove it to <em class="s">yourself.</em></h2>
       <p>In this section, you will answer eight questions covering compliance, employee relations,
         and operations. Nobody sees your score, and you can retake it anytime. When you finish,
@@ -1557,9 +1819,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="you-are">You are here: consolidation. A quick revisit strengthens memory more than rereading ever does.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Summary / 05</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Summary / 06</span></span>
       <h2>What you now <em class="s">know.</em></h2>
-      <p>In this section, you will revisit the six ideas you picked up today. Each one is short
+      <p>In this section, you will revisit the seven ideas you picked up today. Each one is short
         enough to carry into Monday.</p>
     </div>
     <div class="recap-grid">
@@ -1599,6 +1861,13 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           and follow the same sequence for everyone. Skipped steps are how cases are lost.</p>
         <span class="r-why"><b>At work:</b> the question &ldquo;would I do this for anyone on the team?&rdquo; catches most mistakes before they happen.</span>
       </article>
+      <article class="recap reveal">
+        <h3>Tasks, not jobs</h3>
+        <p>AI meets a role task by task: delegate the routine with oversight, redesign the middle
+          together, and invest in the human core. Exposure is a planning signal for development,
+          never a verdict on a person.</p>
+        <span class="r-why"><b>At work:</b> one task inventory per person turns AI anxiety into a development plan.</span>
+      </article>
     </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>Knowing is half of it. The other half starts <em>this month</em>.</p></div>
   </div>
@@ -1609,9 +1878,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:0">
       <span class="you-are">You are here: the handoff. This is where the course ends and the practice begins.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">First 30 days / 06</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">First 30 days / 07</span></span>
       <h2>Your first <em class="s">30 days.</em></h2>
-      <p>In this section, you will turn the course into a routine: five concrete steps, each small
+      <p>In this section, you will turn the course into a routine: six concrete steps, each small
         enough to finish in a week. Do them in order and the whole foundation is live within a month.</p>
     </div>
     <div class="hw-list reveal">
@@ -1660,6 +1929,16 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
         <span class="chip">Week 4</span>
       </div>
+      <div class="hw-step">
+        <span class="hw-no" aria-hidden="true">06</span>
+        <div>
+          <h3>Run one team role assessment</h3>
+          <p>Pick one role, run it through the <a href="#readiness">AI readiness assessment</a>, and
+            bring the readout into that person&rsquo;s next development conversation. Emerging talent
+            needs go to your HR consultant. <!-- [EDIT] HR workforce planning / talent contact --></p>
+        </div>
+        <span class="chip">Week 4</span>
+      </div>
     </div>
     <p class="hw-meta reveal">Then repeat one simulator each quarter. The reps stay sharp only if you take them.</p>
     <div class="bridge reveal"><span class="b-label">Next</span><p>That is the whole foundation.</p></div>
@@ -1689,6 +1968,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <a href="#compliance">Compliance baseline</a>
         <a href="#relations">Employee Relations</a>
         <a href="#operations">Operations</a>
+        <a href="#readiness">AI readiness</a>
       </div>
       <div class="fcol">
         <h4>Practice</h4>
@@ -2510,6 +2790,243 @@ var WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wi
   });
   fbUpdate();
 })();
+})();
+</script>
+<script>
+/* ══════════ AI READINESS: team role assessment ══════════
+   Directional only, on purpose. The task-mix answers move a plain tier up or
+   down; nothing here is a score, an evaluation, or an HR determination. */
+(function(){
+'use strict';
+var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+var WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 16H3l9-16z"/><path d="M12 10v4M12 17.5h.01"/></svg>';
+var COMPASS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2z"/></svg>';
+var form = document.getElementById('raForm'), roleInput = document.getElementById('raRole'),
+    build = document.getElementById('raBuild'), nudge = document.getElementById('raNudge'),
+    out = document.getElementById('raOut');
+if(!form || !build || !out) return;
+form.addEventListener('submit', function(e){ e.preventDefault(); });
+var QS = ['raDocs','raData','raRoutine','raPhysical','raRelational','raFluency','raSens','raVerify'];
+var UPS = ['raDocs','raData','raRoutine'], DOWNS = ['raPhysical','raRelational'];
+var TASK = {
+  raDocs:'recurring documents, email, and summaries',
+  raData:'data pulls, reports, and standard analysis',
+  raRoutine:'routine, repeatable digital work',
+  raPhysical:'hands-on, in-person work',
+  raRelational:'relationship, trust, and judgment work'
+};
+function esc(s){
+  return String(s).replace(/[&<>"']/g, function(ch){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+  });
+}
+function val(name){
+  var el = form.querySelector('input[name="' + name + '"]:checked');
+  return el ? parseInt(el.value, 10) : null;
+}
+function joinNames(keys){
+  var list = keys.map(function(k){ return TASK[k]; });
+  if(list.length <= 1) return list.join('');
+  if(list.length === 2) return list[0] + ' and ' + list[1];
+  return list.slice(0, -1).join(', ') + ', and ' + list[list.length - 1];
+}
+function copyText(txt, labelEl, okMsg){
+  var orig = labelEl.textContent;
+  function done(msg){
+    labelEl.textContent = msg;
+    labelEl.classList.add('copied');
+    window.setTimeout(function(){ labelEl.textContent = orig; labelEl.classList.remove('copied'); }, 1800);
+  }
+  function fallback(){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      done(ok ? okMsg : 'Select & copy manually');
+    }catch(e){ done('Select & copy manually'); }
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ done(okMsg); }, fallback);
+  } else { fallback(); }
+}
+function whySentence(v){
+  var upMax = Math.max(v.raDocs, v.raData, v.raRoutine);
+  var dnMax = Math.max(v.raPhysical, v.raRelational);
+  var upTop = UPS.filter(function(k){ return v[k] === upMax && upMax > 0; });
+  var dnTop = DOWNS.filter(function(k){ return v[k] === dnMax && dnMax > 0; });
+  if(upTop.length && dnTop.length) return 'A real share of the week goes to ' + joinNames(upTop) + ', which raises exposure, while the time spent on ' + joinNames(dnTop) + ' pulls it back down.';
+  if(upTop.length) return 'A real share of the week goes to ' + joinNames(upTop) + ', the task types AI reaches most easily.';
+  if(dnTop.length) return 'The week is anchored in ' + joinNames(dnTop) + ', the work AI reaches least.';
+  return 'Little of the week sits in the task types AI reaches most easily, and little of it is anchored in hands-on or relational work either. Watch how the role evolves.';
+}
+function skillList(v){
+  var skills = [
+    { n:'Verification and review habits', p: 2 + v.raVerify,
+      d: v.raVerify === 2
+        ? 'Outputs here are hard for anyone but the author to check, which makes this the first skill to build: named reviewers, spot checks, and the habit of asking where a number came from.'
+        : v.raVerify === 1
+        ? 'Checking takes moderate effort, so build a light review routine now, before AI raises the volume of plausible-looking output.'
+        : 'Outputs are easy to check, which is an advantage: make the check a habit, because whoever delegates a task to AI owns the review of it.' },
+    { n:'Prompting and delegation fluency', p: 1 + (2 - v.raFluency),
+      d: v.raFluency === 0
+        ? 'The team has not started, so fluency comes early: what to hand to a tool, how to describe it, and how to judge what comes back.'
+        : v.raFluency === 1
+        ? 'The team is experimenting. Turn scattered experiments into shared practice: working sessions, shared prompts, and honest notes on what failed.'
+        : 'The team already uses AI regularly, so shift the emphasis from prompting to delegation quality: clearer handoffs and better review.' },
+    { n:'Data handling judgment', p: 0.5 + v.raSens * 1.6,
+      d: v.raSens === 2
+        ? 'This work touches regulated data, so knowing what may never enter an open tool comes before any other AI skill. FERPA and HIPAA obligations apply to AI tools exactly as they apply to email.'
+        : v.raSens === 1
+        ? 'Confidential work needs a bright line the whole team can recite: which data may go into which tool, and what stays out.'
+        : 'Even public-facing work needs the habit of matching data to approved tools. Cheap to build now, costly to retrofit.' },
+    { n:'Durable human skills', p: 2,
+      d: 'Analytical thinking, coaching, and judgment. Employers rank these at the top of the 2030 skill list, and every bucket above depends on them.' }
+  ];
+  skills.forEach(function(s, i){ s.i = i; });
+  skills.sort(function(a, b){ return b.p - a.p || a.i - b.i; });
+  return skills;
+}
+function buildBuckets(v){
+  var delegate = [], redesign = [], core = [];
+  UPS.forEach(function(k){ if(v[k] === 2) delegate.push(k); else if(v[k] === 1) redesign.push(k); });
+  DOWNS.forEach(function(k){ if(v[k] >= 1) core.push(k); });
+  var DEL = {
+    raDocs:'<b>Pilot AI first drafts</b> of the recurring documents, email, and summaries. A named person reviews every draft before it leaves the team.',
+    raData:'<b>Let AI take the first pass</b> at data pulls and standard reports. A person checks the numbers and owns the conclusion.',
+    raRoutine:'<b>Move one routine digital task at a time</b> to an AI-assisted version, starting with the lowest-stakes item, with a human spot check.'
+  };
+  var RED = {
+    raDocs:'<b>Draft together.</b> A person plus an AI draft of the documents and summaries, with the person deciding what stays.',
+    raData:'<b>Analyze together.</b> AI proposes the cut of the data; the person questions it and writes the interpretation.',
+    raRoutine:'<b>Rebuild the routine.</b> Redesign the repeatable work so AI handles the mechanical middle and the person handles the edges.'
+  };
+  var CORE = {
+    raPhysical:'<b>The hands-on, in-person work stays human.</b> Use any time freed elsewhere to do more of it, not less.',
+    raRelational:'<b>The relationship, trust, and judgment work is the core of the role.</b> Develop it on purpose: coaching, facilitation, and the sensitive conversations.'
+  };
+  var dItems = delegate.map(function(k){ return DEL[k]; });
+  if(!dItems.length) dItems.push('Nothing lands here yet for this role. Start in the redesign bucket and revisit after a quarter of regular use.');
+  var rItems = redesign.map(function(k){ return RED[k]; });
+  if(!rItems.length){
+    rItems.push(delegate.length
+      ? 'Move one delegate-bucket task here first: side-by-side use is how the team learns where AI is reliable and where it is not.'
+      : 'Pick one writing or analysis task and trial a human plus AI version of it. This bucket is where the quality gains live.');
+  }
+  var cItems = core.map(function(k){ return CORE[k]; });
+  if(!cItems.length) cItems.push('<b>Every role has a human core</b>, even when the task list hides it: judgment, context, and accountability for outcomes. Name it explicitly with the person in the role.');
+  return { delegate:delegate, redesign:redesign, core:core, dItems:dItems, rItems:rItems, cItems:cItems };
+}
+function ul(items, icon){
+  return '<ul>' + items.map(function(t){ return '<li>' + icon + '<span>' + t + '</span></li>'; }).join('') + '</ul>';
+}
+function brief(name, tier, why, bk, skills){
+  var dLine = bk.delegate.length ? joinNames(bk.delegate) : 'nothing yet; start in the redesign bucket';
+  var rLine = bk.redesign.length ? joinNames(bk.redesign)
+    : (bk.delegate.length ? 'move one delegate-bucket task here to learn where AI is reliable' : 'trial one human plus AI task');
+  var cLine = bk.core.length ? joinNames(bk.core) : 'name the human core explicitly with the person in the role';
+  var L = [
+    'Team role assessment: ' + name,
+    'Exposure read: ' + tier + ' (directional, not a score). ' + why,
+    '',
+    'Delegate with oversight: ' + dLine,
+    'Redesign together: ' + rLine,
+    'Human-core, invest here: ' + cLine,
+    '',
+    'Top skills to build:'
+  ];
+  skills.slice(0, 3).forEach(function(s, i){ L.push((i + 1) + '. ' + s.n); });
+  L.push('',
+    '30 days: task inventory conversation with each person, using the three buckets.',
+    '60 days: pilot one delegate-bucket task and one redesign-bucket task, with explicit verification.',
+    '90 days: development plan per person naming the skills above, plus a note to HR on emerging talent needs.',
+    '',
+    'A directional conversation starter from the Manager Essentials team role assessment, not an HR determination.');
+  return L.join('\n');
+}
+function render(name, v){
+  var roleEsc = esc(name);
+  var exposure = v.raDocs + v.raData + v.raRoutine - v.raPhysical - v.raRelational;
+  var tier = exposure >= 4 ? 'Higher' : exposure >= 1 ? 'Moderate' : 'Lower';
+  var why = whySentence(v);
+  var bk = buildBuckets(v);
+  var skills = skillList(v);
+  var html = '<div class="result-card" style="margin-top:26px"><div class="rc-head"><span class="rc-glyph">' + COMPASS + '</span>' +
+    '<div><h4>' + roleEsc + '</h4><span class="rc-sub">' + tier + ' exposure &middot; a directional read, not a score</span></div></div>' +
+    '<p class="rc-note">' + why + '</p>' +
+    '<p class="rc-fine">Exposure describes how much of the week AI can plausibly touch. It is a planning signal for development and role design, never a statement about the value of the person doing the work.</p></div>';
+  html += '<div class="ra-block"><h5>The three buckets for ' + roleEsc + '</h5><div class="ra-buckets">' +
+    '<div class="dd"><h5>' + CHECK + 'Delegate with oversight</h5>' + ul(bk.dItems, CHECK) + '</div>' +
+    '<div class="dd"><h5>' + CHECK + 'Redesign together</h5>' + ul(bk.rItems, CHECK) + '</div>' +
+    '<div class="dd"><h5>' + CHECK + 'Human-core, invest here</h5>' + ul(bk.cItems, CHECK) + '</div>' +
+    '</div></div>';
+  var sItems = skills.map(function(s, i){
+    return (i === 0 ? '<b>Start here.</b> ' : '') + '<b>' + s.n + '.</b> ' + s.d;
+  });
+  html += '<div class="ra-block"><h5>Skills to build</h5><div class="dd" style="margin-top:14px">' + ul(sItems, CHECK) + '</div></div>';
+  var redesignLine = bk.delegate.length >= 2
+    ? 'For ' + roleEsc + ', most of the task mix lands in the delegate bucket. That conversation is <b>role redesign with HR</b>, not a training assignment. [EDIT: HR workforce planning contact]'
+    : 'When most of a role lands in the delegate bucket, the conversation is <b>role redesign with HR</b>, not a training assignment. [EDIT: HR workforce planning contact]';
+  html += '<div class="ra-block"><h5>Upskill and reskill routes</h5><div class="dd" style="margin-top:14px"><ul>' +
+    '<li>' + CHECK + '<span><b><a href="../learn/">CHART</a>, the ready-now AI fluency path.</b> Vanderbilt&rsquo;s self-paced AI learning experience for staff: send the team there this month.</span></li>' +
+    '<li>' + CHECK + '<span><b><a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener noreferrer">Amplify</a>, for hands-on practice.</b> Guided practice on an approved platform beats a workshop that never touches real work.</span></li>' +
+    '<li>' + CHECK + '<span><b>Role-specific reskilling.</b> The Vanderbilt learning and development catalog, and LinkedIn Learning if licensed. [EDIT: link the L&amp;D catalog and confirm LinkedIn Learning licensing]</span></li>' +
+    '<li>' + WARN + '<span>' + redesignLine + '</span></li>' +
+    '</ul></div></div>';
+  html += '<div class="canon"><h5>The 30 / 60 / 90 plan</h5><ol>' +
+    '<li><span><b>30 days.</b> Hold a task inventory conversation with each person doing ' + roleEsc + ' work, using the three buckets as the agenda.</span></li>' +
+    '<li><span><b>60 days.</b> Pick one delegate-bucket task and one redesign-bucket task and pilot both, with explicit verification and a named reviewer.</span></li>' +
+    '<li><span><b>90 days.</b> Write a short development plan per person naming the skills above, and send your HR consultant a note on the team&rsquo;s emerging talent needs. [EDIT: HR workforce planning / talent contact]</span></li>' +
+    '</ol><p class="c-fine">If most of the role keeps landing in the delegate bucket, the 90-day conversation is role redesign with HR, not a training assignment.</p></div>';
+  html += '<div class="fm-actions"><button type="button" class="btn btn-primary" id="raCopy"><span id="raCopyLabel">Copy the brief</span>' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>' +
+    '<button type="button" class="btn btn-ghost" id="raRestart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Start over with a new role</button></div>';
+  out.innerHTML = html;
+  var copyBtn = document.getElementById('raCopy'), copyLabel = document.getElementById('raCopyLabel');
+  if(copyBtn && copyLabel) copyBtn.addEventListener('click', function(){
+    copyText(brief(name, tier, why, bk, skills), copyLabel, 'Copied ✓');
+  });
+  var re = document.getElementById('raRestart');
+  if(re) re.addEventListener('click', function(){
+    form.reset();
+    out.innerHTML = '';
+    if(nudge) nudge.classList.remove('show');
+    var shell = document.querySelector('#readiness .fm-shell');
+    if(shell) shell.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' });
+    if(roleInput) roleInput.focus();
+  });
+  out.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' });
+}
+build.addEventListener('click', function(){
+  var name = roleInput ? roleInput.value.trim() : '';
+  var vals = {}, missing = null;
+  QS.forEach(function(q){
+    var v = val(q);
+    vals[q] = v;
+    if(v === null && !missing) missing = q;
+  });
+  if(!name || missing !== null){
+    if(nudge) nudge.classList.add('show');
+    if(!name){ if(roleInput) roleInput.focus(); }
+    else {
+      var r = form.querySelector('input[name="' + missing + '"]');
+      if(r) r.focus();
+    }
+    return;
+  }
+  if(nudge) nudge.classList.remove('show');
+  render(name, vals);
+});
+form.addEventListener('change', function(){
+  if(nudge && nudge.classList.contains('show')){
+    var name = roleInput ? roleInput.value.trim() : '';
+    var complete = name && QS.every(function(q){ return val(q) !== null; });
+    if(complete) nudge.classList.remove('show');
+  }
+});
 })();
 </script>
 </body>
