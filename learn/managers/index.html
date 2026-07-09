@@ -1144,7 +1144,7 @@ nav.links a{ white-space:nowrap; }
     <div class="statrow">
       <div class="statcell"><span class="num">4</span><span class="lbl">core domains every Vanderbilt manager owns</span></div>
       <div class="statcell"><span class="num">4</span><span class="lbl">state compliance profiles. TN · NY · CA · FL</span></div>
-      <div class="statcell"><span class="num">23</span><span class="lbl">interactive experiences, simulators, labs &amp; plan builders</span></div>
+      <div class="statcell"><span class="num">26</span><span class="lbl">interactive experiences, simulators, labs &amp; plan builders</span></div>
       <div class="statcell"><span class="num">100%</span><span class="lbl">hands-on, you make every call yourself, no slides</span></div>
     </div>
   </div>
@@ -1297,11 +1297,31 @@ nav.links a{ white-space:nowrap; }
       <span class="dno" aria-hidden="true">03</span>
     </div>
     <p style="margin-top:8px;color:var(--tx2);max-width:62ch">Two domains down, two to go. This is where policy meets paperwork, and behind every piece of paperwork is a person: someone’s paycheck, someone’s parent in the hospital, someone’s career. Run these well and people feel taken care of. Run them badly and the cost is human first, legal second. The most error-prone process of them all, FMLA, gets a full simulator below, with its sibling, ADA accommodation, right beside it.</p>
-    <div class="primer" style="margin-top:26px"><span class="mono" style="color:var(--eyebrow)">What this domain gives you</span><div class="pr-row"><b>You&rsquo;ll learn</b><span>How hiring, leave, pay, time, and expenses actually route at Vanderbilt, where each one can hurt you, and where FMLA ends and the ADA begins.</span></div><div class="pr-row"><b>You&rsquo;ll practice</b><span>Six process calls, a talent-spotting deck, and the flagship FMLA simulator.</span></div><div class="pr-row"><b>You&rsquo;ll leave with</b><span>Process confidence: you can run the paperwork side of the job without creating legal or financial risk, and you know it.</span></div></div>
+    <div class="primer" style="margin-top:26px"><span class="mono" style="color:var(--eyebrow)">What this domain gives you</span><div class="pr-row"><b>You&rsquo;ll learn</b><span>How hiring, leave, pay, time, and expenses actually route at Vanderbilt, where each one can hurt you, and where FMLA ends and the ADA begins.</span></div><div class="pr-row"><b>You&rsquo;ll practice</b><span>Six process calls, three desk-pile decks (PTO, expenses, time), a talent-spotting deck, and the flagship FMLA simulator.</span></div><div class="pr-row"><b>You&rsquo;ll leave with</b><span>Process confidence: you can run the paperwork side of the job without creating legal or financial risk, and you know it.</span></div></div>
 
     <h3 style="margin-top:52px;font-size:1.4rem">Baseline operational responsibilities</h3>
     <p style="margin-top:10px;color:var(--tx3);font-size:.92rem">Open a card for the deeper story, then make the call yourself. Six responsibilities, six calls.</p>
     <div class="topic-grid" style="margin-top:20px" id="operationsTopics"></div>
+
+    <!-- OPS DEEP-DIVES -->
+    <div style="margin-top:60px">
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Go deeper · The calls that cross your desk</span></div>
+      <h3 style="font-size:1.55rem;max-width:30ch">Three piles land on every manager’s desk. Work through each one.</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:64ch">PTO requests, expense lines, and time records look like paperwork until one of them turns into a grievance or an audit. Practice the real calls here; the official process steps and Oracle courses live inside each card above.</p>
+
+      <div style="margin-top:34px">
+        <h4 style="font-size:1.15rem">The Approval Queue · pay &amp; PTO</h4>
+        <div id="deck-pay" style="margin-top:16px"></div>
+      </div>
+      <div style="margin-top:44px">
+        <h4 style="font-size:1.15rem">The Friday Pile · expense reports</h4>
+        <div id="deck-expense" style="margin-top:16px"></div>
+      </div>
+      <div style="margin-top:44px">
+        <h4 style="font-size:1.15rem">The Time Card · timekeeping &amp; FLSA</h4>
+        <div id="deck-time" style="margin-top:16px"></div>
+      </div>
+    </div>
 
     <!-- TALENT ID → SUCCESSION -->
     <div style="margin-top:60px">
@@ -1785,6 +1805,9 @@ var MODULES = [
   {key:'discipline', label:'Progressive Discipline', href:'#sim-discipline'},
   {key:'fmla', label:'FMLA Simulator', href:'#sim-fmla'},
   {key:'opsmicro', label:'Ops Drills', href:'#operationsTopics'},
+  {key:'payq', label:'Approval Queue', href:'#deck-pay'},
+  {key:'expq', label:'Expense Pile', href:'#deck-expense'},
+  {key:'timeq', label:'Time Card', href:'#deck-time'},
   {key:'talent', label:'Spot the Signal', href:'#deck-talent'},
   {key:'interview', label:'Interview Room', href:'#deck-interview'},
   {key:'calibration', label:'Calibration Lab', href:'#deck-calibration'},
@@ -2806,6 +2829,57 @@ mountScenario('sim-term', {
   reflect:'If you had to have this conversation next month, what are the first two sentences you would say? Write them down now, while it costs nothing.'
 });
 
+
+
+/* ══════════ OPS DEEP-DIVES: APPROVAL QUEUE / FRIDAY PILE / TIME CARD ══════════ */
+mountDeck('deck-pay', {
+  key:'payq', title:'The Approval Queue', kicker:'5 requests \u00B7 approve, decline, or route', icon:'cash',
+  verdicts:['Approve it','Don\u2019t approve it','Route to PCB first'],
+  cards:[
+    {scene:'Marcus requests two PTO days next month. His balance covers it and coverage is easy.',
+     correct:0, exp:'Routine and predictable: approve it fast. People plan their lives around these answers, and slow yeses read as reluctant ones.'},
+    {scene:'Sam, non-exempt, offers to \u201Cwork Saturday and just take comp time next week instead.\u201D',
+     correct:1, exp:'Generous, and illegal. For non-exempt staff, overtime worked is overtime <b>paid</b>; swapping it for informal comp time violates the FLSA even when the employee suggests it. If Saturday happens, it goes on the clock.'},
+    {scene:'A grateful department head wants to add a $200 gift card to Priya\u2019s next paycheck for saving their event.',
+     correct:2, exp:'Lovely gesture, comp decision. Cash and gift cards are taxable compensation with policy rules; route it through PCB so Priya gets recognized without anyone creating a payroll problem.'},
+    {scene:'Dana, exempt, asks to come in two hours late Monday after a brutal launch week, and offers to log PTO for it.',
+     correct:0, exp:'Say yes, and skip the PTO. Exempt work is measured by the role, not the clock; metering a salaried person\u2019s Monday morning burns goodwill and, done systematically, can even threaten the exemption.'},
+    {scene:'Your strongest performer asks for the holiday week that a teammate already requested. Policy says first request wins. She asked second.',
+     correct:1, exp:'The tiebreaker exists precisely for this moment. Bend it for a favorite once and every future PTO decision you make gets read as favoritism.'}
+  ]
+});
+mountDeck('deck-expense', {
+  key:'expq', title:'The Friday Pile', kicker:'5 expense lines \u00B7 approve, ask, or send back', icon:'receipt',
+  verdicts:['Approve it','Ask before approving','Send it back'],
+  cards:[
+    {scene:'Team lunch, itemized receipt, attendee list, business purpose noted, within the per-person limit.',
+     correct:0, exp:'This is what compliant looks like. Approve it and quietly notice who always files clean reports; they make your control job easy.'},
+    {scene:'A bottle of wine at a working dinner, charged to a federal grant line.',
+     correct:2, exp:'Alcohol is unallowable on federal funds, full stop. Send it back to be split to an allowable funding source; approving it invites findings that outlive everyone at the table.'},
+    {scene:'Conference hotel bill $180 over the conference rate. The note says the block \u201Csold out,\u201D but there is no documentation.',
+     correct:1, exp:'Plausible and verifiable are different things. Ask for the sold-out confirmation or an exception note before approving; the question takes one email, the undocumented exception becomes the precedent.'},
+    {scene:'A month of rideshare receipts for the daily trip between home and campus.',
+     correct:2, exp:'Commuting is not reimbursable, however it is labeled. Send it back with the policy reference, kindly; this one is usually a misunderstanding, not mischief.'},
+    {scene:'A conference registration paid personally five months ago, submitted for reimbursement today.',
+     correct:1, exp:'Most policies have a submission window, and very late reimbursements can even become taxable. Ask what happened and whether an exception applies before it goes anywhere.'}
+  ]
+});
+mountDeck('deck-time', {
+  key:'timeq', title:'The Time Card', kicker:'5 situations \u00B7 what counts as work?', icon:'clock',
+  verdicts:['Paid work time','Not work time','Fix the record'],
+  cards:[
+    {scene:'Your non-exempt coordinator answered a work email thread from 9 to 10pm Tuesday. It is not on her timesheet.',
+     correct:2, exp:'It was work, so it is paid, and the record gets corrected. Then fix the norm that produced it, starting with whoever sent the 9pm thread.'},
+    {scene:'Her regular morning commute to campus.',
+     correct:1, exp:'Ordinary home-to-work commuting is not compensable time. (Travel <i>between</i> work sites during the day is a different story.)'},
+    {scene:'A required two-hour compliance webinar she watched over her lunch break.',
+     correct:0, exp:'Required training is work time, lunch hour or not. If attendance is mandatory, the clock is running.'},
+    {scene:'The timesheet shows a perfect 8-to-5 week, but you know she left at 3pm twice for appointments she never made up.',
+     correct:2, exp:'Accuracy cuts both directions. Records that overstate hours are as much a liability as ones that understate them; correct it and remind everyone the timesheet is a legal document, not a formality.'},
+    {scene:'A non-exempt staffer eats lunch at her desk \u201Coff the clock\u201D while covering the phones.',
+     correct:0, exp:'A lunch where you are still working is not a lunch; she is owed the time (and in California, a meal-period premium on top). Relieve people completely or pay them completely.'}
+  ]
+});
 
 /* ══════════ TALENT ID: SPOT THE SIGNAL (Gartner HIPO lens) ══════════ */
 mountDeck('deck-talent', {
