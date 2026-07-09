@@ -601,6 +601,19 @@ details.deeper .d-body b{ color:var(--tx); font-weight:600; }
 .wb-practice li svg{ width:15px; height:15px; flex-shrink:0; color:var(--eyebrow); margin-top:5px; }
 .wb-practice li b{ color:var(--tx); font-weight:600; }
 .wb-practice p{ color:var(--tx2); font-size:.9rem; margin-top:12px; }
+/* the "where to learn it" shelf inside each learning-plan track */
+.wb-res{ margin-top:16px; border-top:1px dashed var(--bd); padding-top:14px; }
+.wb-res .wr-h{ display:block; font-family:var(--cond); font-weight:700; font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; color:var(--eyebrow); }
+.wb-res ul{ margin-top:10px; gap:12px; }
+.wb-res li{ display:block; color:var(--tx2); font-size:.85rem; line-height:1.6; min-width:0; }
+.wb-res a{ color:var(--link); border-bottom:1px solid var(--bdg); overflow-wrap:anywhere; }
+.wb-res a:hover{ color:var(--strong); }
+.wb-res .wr-top{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.wb-res .wr-top a{ font-weight:600; }
+.wb-res .wr-tag{ font-family:var(--cond); font-weight:700; font-size:.62rem; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--eyebrow); border:1px solid var(--bdg); border-radius:2px; padding:2px 7px; white-space:nowrap; }
+.wb-res .wr-cost{ font-size:.75rem; color:var(--tx3); }
+.wb-res .wr-why{ display:block; margin-top:3px; }
 .skill-picks{ display:flex; flex-wrap:wrap; gap:10px; }
 .skill-picks label{ display:inline-flex; align-items:center; gap:10px; min-height:46px; padding:10px 16px; border-radius:var(--r);
   border:1px solid var(--field-bd); background:var(--field); color:var(--tx2); cursor:pointer; font-size:.9rem;
@@ -4083,6 +4096,64 @@ var AW_BUCKETS={
   redesign:{ label:'Redesign together', cls:'assist' },
   core:{ label:'Human-core', cls:'advise' }
 };
+/* the "where to learn it" shelf: real, verified resources only. Static picks,
+   no user text interpolated; the engine chooses 3 or 4 per track to match the
+   plan. Placeholder: swap or extend as PCB/L&D confirm preferred providers. */
+var AW_RES={
+  peSpec:{ t:'Prompt Engineering Specialization (Coursera)', u:'https://www.coursera.org/specializations/prompt-engineering',
+    tag:'Certificate course', cost:'Subscription, certificate on completion', why:'The full program, taught by Vanderbilt’s own Jules White.' },
+  peOne:{ t:'Prompt Engineering for ChatGPT (Coursera)', u:'https://www.coursera.org/learn/prompt-engineering',
+    tag:'Certificate course', cost:'Subscription, certificate on completion', why:'The single-course starting point, also taught by Vanderbilt’s Jules White.' },
+  genEss:{ t:'Career Essentials in Generative AI by Microsoft and LinkedIn', u:'https://www.linkedin.com/learning/paths/career-essentials-in-generative-ai-by-microsoft-and-linkedin',
+    tag:'LinkedIn Learning', cost:'Free, certificate included', why:'GenAI basics, ethics, and Copilot in one path; free to everyone, with or without a license.', lil:true },
+  gglEss:{ t:'Google AI Essentials', u:'https://grow.google/ai-essentials/',
+    tag:'Certificate course', cost:'Paid, certificate on completion', why:'Practical AI-at-work skills in a structured course.' },
+  gpt3b1b:{ t:'“But what is a GPT?” · 3Blue1Brown', u:'https://www.youtube.com/watch?v=wjZofJX0v4M',
+    tag:'Video', cost:'Free', why:'Seeing the prediction engine at work is the fastest route to understanding why outputs need checking.' },
+  karpathy:{ t:'“Intro to Large Language Models” · Andrej Karpathy', u:'https://www.youtube.com/watch?v=zjkBMFhNj_g',
+    tag:'Video', cost:'Free', why:'A one-hour, plain-spoken tour by one of the field’s builders.' },
+  useful:{ t:'One Useful Thing · Ethan Mollick', u:'https://www.oneusefulthing.org/',
+    tag:'Newsletter', cost:'Free', why:'The research-grounded read on working with AI, from a co-author of the jagged-frontier study.' },
+  worklab:{ t:'WorkLab · Microsoft', u:'https://www.microsoft.com/en-us/worklab/podcast',
+    tag:'Podcast', cost:'Free', why:'A podcast specifically about AI and the changing workplace.' },
+  hardfork:{ t:'Hard Fork · The New York Times', u:'https://www.nytimes.com/column/hard-fork',
+    tag:'Podcast', cost:'Free', why:'Weekly, plain-English coverage of what just changed.' },
+  cointel:{ t:'Co-Intelligence · Ethan Mollick', u:'https://www.penguinrandomhouse.com/books/741805/co-intelligence-by-ethan-mollick/',
+    tag:'Book', cost:'', why:'Working alongside AI without losing your judgment.' },
+  crit:{ t:'Critical Thinking · Mike Figliuolo', u:'https://www.linkedin.com/learning/critical-thinking',
+    tag:'LinkedIn Learning', cost:'Subscription', why:'The durable skill AI raises the premium on.', lil:true },
+  coach:{ t:'Coaching Skills for Leaders and Managers', u:'https://www.linkedin.com/learning/coaching-skills-for-leaders-and-managers',
+    tag:'LinkedIn Learning', cost:'Subscription', why:'For the relational, human-core work of managing people.', lil:true }
+};
+var AW_LIL_PH=' <span class="ph">Confirm access under Vanderbilt’s LinkedIn Learning license</span>';
+function awResilShelf(){ return [AW_RES.coach, AW_RES.crit, AW_RES.cointel, AW_RES.hardfork]; }
+function awOverShelf(fluVal, hardCheck){
+  var prompting = fluVal==='fluent' ? [AW_RES.peSpec]
+                : fluVal==='some' ? [AW_RES.peOne, AW_RES.gglEss]
+                : [AW_RES.peOne, AW_RES.genEss];
+  var verifying = [AW_RES.gpt3b1b, hardCheck ? AW_RES.karpathy : AW_RES.useful];
+  /* when verification is the constraint, it leads the shelf */
+  var list = hardCheck ? verifying.concat(prompting) : prompting.concat(verifying);
+  if(list.length<4) list.push(AW_RES.worklab);
+  return list.slice(0,4);
+}
+function awResShelf(tr){
+  if(!tr.res || !tr.res.length) return '';
+  var lis = tr.res.map(function(r){
+    return '<li><span class="wr-top"><a href="'+r.u+'" target="_blank" rel="noopener">'+r.t+'</a>'+
+      '<span class="wr-tag">'+r.tag+'</span>'+(r.cost?'<span class="wr-cost">'+r.cost+'</span>':'')+'</span>'+
+      '<span class="wr-why">'+r.why+(r.lil?AW_LIL_PH:'')+'</span></li>';
+  });
+  if(tr.resNote) lis.push('<li><span class="wr-why">'+tr.resNote+'</span></li>');
+  return '<div class="wb-res"><span class="wr-h">Where to learn it</span><ul>'+lis.join('')+'</ul></div>';
+}
+function awResBrief(tr){
+  if(!tr.res || !tr.res.length) return '';
+  return 'Where to learn it:\n'+tr.res.map(function(r){
+    return '• '+r.t+' ('+r.tag+(r.cost?' · '+r.cost:'')+'): '+r.u+
+      (r.lil?' (confirm access under Vanderbilt’s LinkedIn Learning license)':'');
+  }).join('\n')+(tr.resNote?'\n• Data judgment: Amplify (https://www.vanderbilt.ai/) and CHART’s Responsible AI section.':'')+'\n';
+}
 function awClassify(t){
   if(t.mode==='person' || t.rep==='novel') return 'core';
   if(t.mode==='screen' && t.rep==='same' && t.chk==='quick') return 'delegate';
@@ -4224,13 +4295,17 @@ function initAiAudit(){
         ['Quality bars, and when to reject', 'Agree in advance on the bar below which an output gets rejected rather than repaired. Knowing when to say no is the oversight skill most teams skip.']
       ]};
     if(data.value!=='public') overTrack.items.push(['Data-handling judgment','Set the rule out loud: confidential or regulated details go only into approved platforms, and when in doubt, ask before pasting.']);
+    resTrack.res=awResilShelf();
+    overTrack.res=awOverShelf(flu.value, tasks.some(function(t){ return t.chk==='hard'; }));
+    if(data.value!=='public') overTrack.resNote='Data-handling judgment has no outside course: the working rules live in <a href="../#responsible">CHART&rsquo;s Responsible AI section</a>, and safe practice belongs on <a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Amplify</a>.';
     var primary = delegateHeavy?overTrack:resTrack, secondary = delegateHeavy?resTrack:overTrack;
     var planLead = delegateHeavy
       ? '<p style="margin-top:14px;color:var(--tx2);max-width:64ch;font-size:.95rem">An honest read first: much of this role&rsquo;s routine work is likely to be absorbed by AI tools over time, so this plan leans into oversight skills, and role redesign is a conversation to have with PCB. That is a development path, never on its own a case for cutting the role.</p>'
       : '<p style="margin-top:14px;color:var(--tx2);max-width:64ch;font-size:.95rem">Both tracks below run at once: the first deepens the work AI reaches least, the second builds the habits for directing and checking it where it clearly helps.</p>';
     function trackCard(tr,n){
       return '<div class="wb-practice"><h4>'+tr.icon+' Track '+n+' · '+tr.name+'</h4><p>'+tr.why+'</p><ul>'+
-        tr.items.map(function(it){ return '<li>'+ICON.check+'<span><b>'+it[0]+'.</b> '+esc(it[1])+'</span></li>'; }).join('')+'</ul></div>';
+        tr.items.map(function(it){ return '<li>'+ICON.check+'<span><b>'+it[0]+'.</b> '+esc(it[1])+'</span></li>'; }).join('')+'</ul>'+
+        awResShelf(tr)+'</div>';
     }
     var seqMonth=[primary.items[0][1], secondary.items[0][1]];
     var seqQuarter=[primary.items[1][1], secondary.items[1][1]];
@@ -4280,7 +4355,9 @@ function initAiAudit(){
       +'LEARNING PLAN\n'
       +(delegateHeavy?'Honest read: much of this role’s routine work is likely to be absorbed by AI tools, so the plan leans into oversight skills, and role redesign is a conversation to have with PCB. Development path only, never a case for cutting the role.\n':'')
       +'Track 1 · '+primary.name+'\n'+primary.items.map(function(it){ return '• '+it[0]+': '+it[1]; }).join('\n')+'\n'
+      +awResBrief(primary)
       +'Track 2 · '+secondary.name+'\n'+secondary.items.map(function(it){ return '• '+it[0]+': '+it[1]; }).join('\n')+'\n'
+      +awResBrief(secondary)
       +'THIS MONTH: 1) '+seqMonth[0]+' 2) '+seqMonth[1]+'\n'
       +'THIS QUARTER: 3) '+seqQuarter[0]+' 4) '+seqQuarter[1]+'\n\n'
       +'30 DAYS: task-inventory conversation with each person.\n'
@@ -4298,7 +4375,7 @@ function initAiAudit(){
   resetBtn.addEventListener('click', function(){
     host.innerHTML=''; uid=0;
     addRow(); addRow(); addRow();
-    role.value=''; flu.value='new'; data.value='rare';
+    role.value=''; flu.value='new'; data.value='public';
     out.innerHTML='';
     role.focus();
   });
