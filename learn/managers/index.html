@@ -1085,6 +1085,51 @@ nav.links a{ white-space:nowrap; }
 .rb-row .mono{ text-align:right; }
 #rbOut{ margin-top:18px; font-size:.92rem; color:var(--tx2); border-left:2px solid var(--vu-gold); padding-left:12px; max-width:66ch; line-height:1.6; }
 @media (max-width:640px){ .rb-row{ grid-template-columns:1fr 44px; } .rb-row .rb-track{ display:none; } }
+/* ═══════ WIDGETS: expense audit / overtime clock ═══════ */
+.xa-table{ border:1px solid var(--bd); border-radius:var(--r); overflow:hidden; }
+.xa-row{ display:grid; grid-template-columns:minmax(64px,84px) 1fr auto auto; gap:14px; align-items:center;
+  width:100%; text-align:left; padding:13px 16px; border:0; border-bottom:1px solid var(--bd); background:transparent;
+  color:var(--tx); cursor:pointer; font:inherit; transition:background .2s, border-color .2s; }
+.xa-row:last-child{ border-bottom:0; }
+.xa-row:hover{ background:var(--card2); }
+.xa-when{ font-size:.7rem; color:var(--tx3); }
+.xa-desc b{ display:block; font-size:.92rem; font-weight:600; }
+.xa-desc small{ display:block; font-size:.78rem; color:var(--tx3); margin-top:2px; }
+.xa-amt{ font-size:.8rem; text-align:right; }
+.xa-flag{ font-size:.62rem; letter-spacing:.08em; border:1px solid var(--bd); border-radius:999px; padding:3px 10px; color:var(--tx3); transition:all .2s; }
+.xa-row.on{ background:rgba(207,174,112,.12); }
+.xa-row.on .xa-flag{ background:var(--vu-gold); border-color:var(--vu-gold); color:#1C1C1C; font-weight:700; }
+.xa-exp{ display:none; grid-column:1/-1; font-size:.84rem; color:var(--tx2); line-height:1.55; padding-left:12px; border-left:2px solid var(--bd); }
+.xa-table.graded .xa-row{ cursor:default; }
+.xa-table.graded .xa-row:hover{ background:transparent; }
+.xa-table.graded .xa-exp{ display:block; }
+.xa-row.hit .xa-exp, .xa-row.clean .xa-exp{ border-left-color:var(--vu-sage); }
+.xa-row.miss .xa-exp, .xa-row.over .xa-exp{ border-left-color:var(--vu-err); }
+.xa-row.hit .xa-flag{ background:var(--vu-sage); border-color:var(--vu-sage); color:#fff; font-weight:700; }
+.xa-row.miss .xa-flag{ background:var(--vu-err); border-color:var(--vu-err); color:#fff; font-weight:700; }
+.xa-row.miss .xa-flag::after{ content:" MISSED"; }
+.xa-row.over .xa-flag::after{ content:" · THIS LINE WAS CLEAN"; }
+.xa-row.clean .xa-flag::after{ content:" NOT NEEDED"; }
+@media (max-width:640px){ .xa-row{ grid-template-columns:1fr auto; } .xa-when,.xa-amt{ display:none; } }
+.ck-row{ display:grid; grid-template-columns:1fr 52px auto; gap:14px; align-items:center; padding:12px 0; border-bottom:1px solid var(--bd); }
+.ck-row:last-child{ border-bottom:0; }
+.ck-desc{ font-size:.92rem; color:var(--tx); }
+.ck-h{ font-size:.78rem; color:var(--tx3); text-align:right; }
+.ck-btns{ display:flex; gap:6px; }
+.ck-btns button{ font-family:var(--cond); font-weight:700; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase;
+  padding:7px 12px; border-radius:999px; border:1px solid var(--bd); background:transparent; color:var(--tx3); cursor:pointer; transition:all .18s; }
+.ck-row.set.on .ck-on{ background:var(--vu-gold); border-color:var(--vu-gold); color:#1C1C1C; }
+.ck-row.set:not(.on) .ck-off{ background:var(--tx3); border-color:var(--tx3); color:var(--card); }
+.ck-exp{ display:none; grid-column:1/-1; font-size:.84rem; color:var(--tx2); line-height:1.55; padding-left:12px; border-left:2px solid var(--bd); }
+#ckRows.graded .ck-exp{ display:block; }
+#ckRows.graded .ck-btns button{ cursor:default; }
+.ck-row.hit .ck-exp{ border-left-color:var(--vu-sage); }
+.ck-row.miss .ck-exp{ border-left-color:var(--vu-err); }
+.ck-row.miss .ck-desc{ color:var(--vu-err); }
+.ck-total{ margin-top:16px; font-size:.98rem; }
+.ck-total b{ font-family:var(--cond); font-size:1.3rem; letter-spacing:.02em; color:var(--strong); }
+.ck-total .mono{ font-size:.72rem; color:var(--tx3); }
+@media (max-width:640px){ .ck-row{ grid-template-columns:1fr auto; } .ck-h{ display:none; } }
 
 </style>
 </head>
@@ -1169,7 +1214,7 @@ nav.links a{ white-space:nowrap; }
     <div class="statrow">
       <div class="statcell"><span class="num">4</span><span class="lbl">core domains every Vanderbilt manager owns</span></div>
       <div class="statcell"><span class="num">4</span><span class="lbl">state compliance profiles. TN · NY · CA · FL</span></div>
-      <div class="statcell"><span class="num">32</span><span class="lbl">interactive experiences, simulators, labs &amp; plan builders</span></div>
+      <div class="statcell"><span class="num">35</span><span class="lbl">interactive experiences, simulators, labs &amp; plan builders</span></div>
       <div class="statcell"><span class="num">100%</span><span class="lbl">hands-on, you make every call yourself, no slides</span></div>
     </div>
   </div>
@@ -1301,14 +1346,14 @@ nav.links a{ white-space:nowrap; }
     <!-- ER DEEP-DIVES -->
     <div style="margin-top:60px">
       <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Go deeper · The moments between the policies</span></div>
-      <h3 style="font-size:1.55rem;max-width:32ch">Three skills that decide how every ER story ends.</h3>
-      <p style="margin-top:14px;color:var(--tx2);max-width:64ch">What you write down, what you say in the first thirty seconds, and which tool you reach for. Practice each one against real moments.</p>
+      <h3 style="font-size:1.55rem;max-width:32ch">The skills that decide how every ER story ends.</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:64ch">Seven activities, in a deliberate order. First, two tools take stock: the Rebalancer looks honestly at your week, and the Triage Machine routes whatever is sitting on your desk. Then you practice the three skills underneath every ER case: the first thirty seconds, the note you write afterward, and knowing whether to coach or correct. The Growth Planner closes the loop with the conversation good managers have <i>before</i> anything goes wrong. Each activity names the topic it deepens, so you can jump to the one you need.</p>
 
 
       <!-- WIDGET: WEEK REBALANCER -->
       <div style="margin-top:44px" id="rebal">
-        <h4 style="font-size:1.15rem">The Week Rebalancer · what being a manager means, in hours</h4>
-        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">Slide your real week around: how much do you produce, coach, connect, and administer? The read-out tells you what your mix is quietly teaching your team.</p>
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · What being a manager means</span><h4 style="font-size:1.15rem">The Week Rebalancer · your 40 hours, honestly</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">Here is why this tool exists: most new managers keep doing the job they were promoted from, just with meetings on top. Where your hours actually go is the truest statement of what you think this job is, and your team reads it clearly. Slide the four bars until they match your real week, not your ideal one, and the read-out tells you what that mix is quietly teaching the people who work for you.</p>
         <div class="sim-shell" style="margin-top:18px">
           <div class="rb-row"><label for="rbDoing">Doing the work yourself</label><input type="range" id="rbDoing" min="0" max="40" value="22"><div class="rb-track"><i id="rbBarDoing"></i></div><span class="mono" id="rbBarDoingLbl">22h</span></div>
           <div class="rb-row"><label for="rbCoaching">Coaching &amp; 1:1s</label><input type="range" id="rbCoaching" min="0" max="40" value="4"><div class="rb-track"><i id="rbBarCoaching"></i></div><span class="mono" id="rbBarCoachingLbl">4h</span></div>
@@ -1321,8 +1366,8 @@ nav.links a{ white-space:nowrap; }
 
       <!-- WIDGET: ESCALATION TRIAGE -->
       <div style="margin-top:44px" id="triage">
-        <h4 style="font-size:1.15rem">The Triage Machine · when to escalate an issue</h4>
-        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">Think of a real situation on your desk right now. Flip the three switches that describe it and watch which lane lights up.</p>
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · When to escalate an issue</span><h4 style="font-size:1.15rem">The Triage Machine</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">The deck above taught you the three lanes. This tool turns them into a reflex, because on the day a real issue lands you will not have time to reread a policy. Think of a situation sitting on your desk right now, flip the switches that honestly describe it, and watch which lane lights up. The routing logic is the same one your Engagement Consultant would walk you through.</p>
         <div class="sim-shell" style="margin-top:18px">
           <div class="tri-switches">
             <label><input type="checkbox" id="trProtected"><span>It touches a protected class, harassment, safety, or possible retaliation</span></label>
@@ -1339,10 +1384,17 @@ nav.links a{ white-space:nowrap; }
         </div>
       </div>
 
+      <div style="margin-top:44px">
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · Navigating ER issues</span><h4 style="font-size:1.15rem">First Response · the first thirty seconds of a complaint</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">The Triage Machine told you where an issue routes. This deck goes one step earlier: the moment someone is still standing in your doorway, deciding from your face whether telling you was a mistake. Five openers below. For each, pick the response that keeps them talking without promising what you cannot promise. Most managers get this wrong in the same direction, by reassuring too fast.</p>
+        <div id="deck-firstresp" style="margin-top:16px"></div>
+      </div>
+
       <!-- WIDGET: NOTE BUILDER -->
       <div style="margin-top:44px" id="notebuilder">
-        <h4 style="font-size:1.15rem">The Note Builder · write one that holds up</h4>
-        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">Type a real note about a real situation. The builder watches for the words that sink files (labels, absolutes, medical speculation) and assembles the five-part note you can paste anywhere.</p>
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · Documentation &amp; fairness</span><h4 style="font-size:1.15rem">The Note Builder · document a real situation, properly</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">Here is why this tool exists. When something on your team is worth remembering, a missed deadline, a warning conversation, a pattern you are starting to see, the working rule in Employee Relations is blunt: if it is not written down, it did not happen. The five-minute note you write today is what makes a decision look fair, and be defensible, if it is questioned two years from now. It also protects your employee: a good note records the support you offered, not just the problem.</p>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem"><b>How to use it:</b> bring a real situation from your own team and fill in the five parts below. As you type, the builder flags the words that sink files (labels like &ldquo;lazy,&rdquo; absolutes like &ldquo;always,&rdquo; medical guesses like &ldquo;seems depressed&rdquo;), because notes get read by lawyers, not just by you. It then assembles the finished note; keep it, it is yours.</p>
         <div class="sim-shell" style="margin-top:18px">
           <div class="sim-row">
             <div class="field"><label for="nbDate">Date</label><input type="text" id="nbDate" placeholder="4/12"></div>
@@ -1360,16 +1412,44 @@ nav.links a{ white-space:nowrap; }
       </div>
 
       <div style="margin-top:34px">
-        <h4 style="font-size:1.15rem">The Note File · now grade five real notes</h4>
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · Documentation &amp; fairness</span><h4 style="font-size:1.15rem">The Note File · now grade five real notes</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">You just built a note of your own. Now sit on the other side of the table: five notes from other managers&rsquo; files. Some hold up, some can be fixed, and one should never have been written. Grading someone else&rsquo;s writing is the fastest way to start seeing your own.</p>
         <div id="deck-notes" style="margin-top:16px"></div>
       </div>
+      
       <div style="margin-top:44px">
-        <h4 style="font-size:1.15rem">First Response · when someone brings you a complaint</h4>
-        <div id="deck-firstresp" style="margin-top:16px"></div>
-      </div>
-      <div style="margin-top:44px">
-        <h4 style="font-size:1.15rem">Coach or Correct? · picking the right tool</h4>
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · Coaching &amp; growth</span><h4 style="font-size:1.15rem">Coach or Correct? · picking the right tool</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">Not every problem is a discipline problem, and not every problem can be coached away. The line between the two is whether the person <i>can&rsquo;t</i> yet or <i>won&rsquo;t</i> anymore, and it decides which conversation you owe them. Five situations below sit right on that line. Make each call, and notice which tool you reach for by default; most managers over-use one of the two.</p>
         <div id="deck-coach" style="margin-top:16px"></div>
+
+      <!-- WIDGET: GROWTH PLANNER -->
+      <div style="margin-top:44px" id="growthplanner">
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · Coaching &amp; growth · Managers are talent scouts</span>
+        <h4 style="font-size:1.15rem">The Growth Planner · build a real growth conversation</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">Pick one person on your team, or one you have been quietly scouting. Fill in what you know, choose the currencies you can genuinely offer, and walk out with the conversation planned on the GROW structure.</p>
+        <div class="sim-shell" style="margin-top:18px">
+          <div class="sim-row">
+            <div class="field"><label for="gpWho">Who is this conversation for?</label><input type="text" id="gpWho" placeholder="First name is enough"></div>
+            <div class="field"><label for="gpGoal">The growth they have named (or you suspect)</label><input type="text" id="gpGoal" placeholder="More strategic, cross-department work"></div>
+          </div>
+          <div class="field" style="margin-top:14px"><label for="gpReality">Reality: where they are today</label><input type="text" id="gpReality" placeholder="Excellent at the core work; little visibility outside our unit"></div>
+          <div style="margin-top:16px">
+            <p style="font-weight:600;margin-bottom:6px">The currencies you can offer <span style="font-weight:400;color:var(--tx3)">(growth you control today)</span></p>
+            <div id="gpCur" class="baro" style="border:0;padding:0;background:transparent;max-width:640px">
+              <label><input type="checkbox" value="scope"> <span><b>Scope</b> · a harder problem with real stakes</span></label>
+              <label><input type="checkbox" value="skills"> <span><b>Skills</b> · deliberate stretch with support</span></label>
+              <label><input type="checkbox" value="visibility"> <span><b>Visibility</b> · their name in rooms that matter</span></label>
+              <label><input type="checkbox" value="relationships"> <span><b>Relationships</b> · a mentor or cross-unit connection</span></label>
+            </div>
+          </div>
+          <div class="sim-row" style="margin-top:14px">
+            <div class="field"><label for="gpWill">The first concrete step</label><input type="text" id="gpWill" placeholder="Lead the intake redesign kickoff"></div>
+            <div class="field"><label for="gpWhen">By when</label><input type="text" id="gpWhen" placeholder="End of month"></div>
+          </div>
+          <div style="margin-top:16px"><button type="button" class="btn btn-primary btn-sm" id="gpGo">Build the conversation plan</button></div>
+          <div id="gpOut" aria-live="polite"></div>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -1397,7 +1477,7 @@ nav.links a{ white-space:nowrap; }
       <span class="dno" aria-hidden="true">03</span>
     </div>
     <p style="margin-top:8px;color:var(--tx2);max-width:62ch">Two domains down, two to go. This is where policy meets paperwork, and behind every piece of paperwork is a person: someone’s paycheck, someone’s parent in the hospital, someone’s career. Run these well and people feel taken care of. Run them badly and the cost is human first, legal second. The most error-prone process of them all, FMLA, gets a full simulator below, with its sibling, ADA accommodation, right beside it.</p>
-    <div class="primer" style="margin-top:26px"><span class="mono" style="color:var(--eyebrow)">What this domain gives you</span><div class="pr-row"><b>You&rsquo;ll learn</b><span>How hiring, leave, pay, time, and expenses actually route at Vanderbilt, where each one can hurt you, and where FMLA ends and the ADA begins.</span></div><div class="pr-row"><b>You&rsquo;ll practice</b><span>Six process calls, three desk-pile decks (PTO, expenses, time), a talent-spotting deck, and the flagship FMLA simulator.</span></div><div class="pr-row"><b>You&rsquo;ll leave with</b><span>Process confidence: you can run the paperwork side of the job without creating legal or financial risk, and you know it.</span></div></div>
+    <div class="primer" style="margin-top:26px"><span class="mono" style="color:var(--eyebrow)">What this domain gives you</span><div class="pr-row"><b>You&rsquo;ll learn</b><span>How hiring, leave, pay, time, and expenses actually route at Vanderbilt, where each one can hurt you, and where FMLA ends and the ADA begins.</span></div><div class="pr-row"><b>You&rsquo;ll practice</b><span>Six process calls, three desk-pile decks (PTO, expenses, time), a full expense-report audit, an overtime clock that shows what a week legally costs, a talent-spotting deck, and the flagship FMLA simulator.</span></div><div class="pr-row"><b>You&rsquo;ll leave with</b><span>Process confidence: you can run the paperwork side of the job without creating legal or financial risk, and you know it.</span></div></div>
 
     <h3 style="margin-top:52px;font-size:1.4rem">Baseline operational responsibilities</h3>
     <p style="margin-top:10px;color:var(--tx3);font-size:.92rem">Open a card for the deeper story, then make the call yourself. Six responsibilities, six calls.</p>
@@ -1405,27 +1485,64 @@ nav.links a{ white-space:nowrap; }
 
     <!-- OPS DEEP-DIVES -->
     <div style="margin-top:60px">
-      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Go deeper · The calls that cross your desk</span></div>
-      <h3 style="font-size:1.55rem;max-width:30ch">Three piles land on every manager’s desk. Work through each one.</h3>
-      <p style="margin-top:14px;color:var(--tx2);max-width:64ch">PTO requests, expense lines, and time records look like paperwork until one of them turns into a grievance or an audit. Practice the real calls here; the official process steps and Oracle courses live inside each card above.</p>
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Go deeper · Pay &amp; PTO · Expense reports · Timekeeping &amp; FLSA</span></div>
+      <h3 style="font-size:1.55rem;max-width:30ch">Three piles land on every manager’s desk. Learn the rules, then make the calls.</h3>
+      <p style="margin-top:14px;color:var(--tx2);max-width:64ch">PTO requests, expense lines, and time records look like paperwork until one of them turns into a grievance or an audit. Each pile below follows the same pattern: first the handful of rules you are actually applying, then a deck of real calls, and for expenses and time, a working tool that puts the rules together. The official Vanderbilt process steps and Oracle courses live inside the cards above.</p>
 
-      <div style="margin-top:34px">
-        <h4 style="font-size:1.15rem">The Approval Queue · pay &amp; PTO</h4>
-        <div id="deck-pay" style="margin-top:16px"></div>
+      <!-- PILE 1: PAY & PTO -->
+      <div style="margin-top:40px">
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · Pay &amp; PTO</span><h4 style="font-size:1.15rem">The Approval Queue · five requests, your name on each answer</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">Every approval you click is a policy decision with your signature on it. This deck hands you five requests the way they actually arrive: a routine PTO ask, a generous-sounding comp-time offer, a gift card, a flex request, a tiebreaker. You are practicing the judgment behind the click, not the Oracle steps.</p>
+        <div class="primer"><span class="mono" style="color:var(--eyebrow)">The rules you are applying</span><div class="pr-row"><b>Non-exempt time</b><span>Overtime worked is overtime paid. There is no informal comp-time swap, even when the employee suggests it.</span></div><div class="pr-row"><b>Exempt time</b><span>Measured by the role, not the clock. Metering a salaried person&rsquo;s hours burns goodwill and can even threaten the exemption.</span></div><div class="pr-row"><b>Anything that adds money</b><span>Cash, gift cards, and bonuses are taxable compensation with policy rules. Route them through PCB, never through goodwill.</span></div><div class="pr-row"><b>Consistency</b><span>Apply tiebreakers as written. Bend one rule for a favorite and every future decision you make gets read as favoritism.</span></div></div>
+        <div id="deck-pay" style="margin-top:20px"></div>
       </div>
-      <div style="margin-top:44px">
-        <h4 style="font-size:1.15rem">The Friday Pile · expense reports</h4>
-        <div id="deck-expense" style="margin-top:16px"></div>
+
+      <!-- PILE 2: EXPENSE REPORTS -->
+      <div style="margin-top:56px">
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · Expense reports</span><h4 style="font-size:1.15rem">The Friday Pile · approve, ask, or send back</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">When you approve an expense report, you are certifying that the spend is legitimate, documented, and on the right funds. That makes you Vanderbilt&rsquo;s front-line financial control; auditors start with the approver, not the spender. First, five single lines. Then the audit below hands you a whole report.</p>
+        <div class="primer"><span class="mono" style="color:var(--eyebrow)">The rules you are applying</span><div class="pr-row"><b>Three tests per line</b><span>A stated business purpose, an itemized receipt, and the right funding source. A line missing any of the three is not ready for your signature.</span></div><div class="pr-row"><b>Federal money is different</b><span>Grant funds carry extra rules: alcohol is never allowable, and neither is anything outside the award&rsquo;s terms. Findings outlive everyone at the table.</span></div><div class="pr-row"><b>Commuting is personal</b><span>The daily trip between home and campus is not reimbursable, however the line is labeled.</span></div><div class="pr-row"><b>&ldquo;Ask&rdquo; is a real verdict</b><span>A clarifying email costs a day. An undocumented exception becomes the precedent everyone cites next year.</span></div></div>
+        <div id="deck-expense" style="margin-top:20px"></div>
       </div>
-      <div style="margin-top:44px">
-        <h4 style="font-size:1.15rem">The Time Card · timekeeping &amp; FLSA</h4>
-        <div id="deck-time" style="margin-top:16px"></div>
+
+      <!-- WIDGET: EXPENSE AUDIT -->
+      <div style="margin-top:44px" id="expenseaudit">
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · Expense reports</span><h4 style="font-size:1.15rem">The Expense Audit · one report, six lines, your signature</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">The pile above trained your eye one line at a time. Real reports arrive whole, and the problems hide between the clean lines. Below is a full month of expenses from one employee. Read it the way an auditor would: click every line you would question before signing, then check your audit. The habit you are building is reading the lines, not the total.</p>
+        <div class="sim-shell" style="margin-top:18px">
+          <p class="mono" style="font-size:.72rem;color:var(--eyebrow)">EXPENSE REPORT · J. RIVERA · MARCH · 6 LINES</p>
+          <div class="xa-table" id="xaTable" style="margin-top:12px"></div>
+          <p id="xaStatus" aria-live="polite" style="margin-top:14px;font-size:.92rem;color:var(--tx2)">Click every line you would question before signing. Clean lines stay unclicked.</p>
+          <div style="margin-top:14px"><button type="button" class="btn btn-primary btn-sm" id="xaGo">Check my audit</button></div>
+          <div id="xaOut" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- PILE 3: TIMEKEEPING & FLSA -->
+      <div style="margin-top:56px">
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · Timekeeping &amp; FLSA</span><h4 style="font-size:1.15rem">The Time Card · what counts as work?</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">The FLSA, the federal wage-and-hour law, has one rule managers break more than any other: if a non-exempt employee works, the time is paid, whether or not you asked for it, saw it, or approved it. Timesheets are legal records, not formalities. Five situations below; decide what counts as work and when the record needs fixing.</p>
+        <div class="primer"><span class="mono" style="color:var(--eyebrow)">The rules you are applying</span><div class="pr-row"><b>The core rule</b><span>For non-exempt staff, all hours worked are paid hours. &ldquo;Off the clock&rdquo; work does not legally exist.</span></div><div class="pr-row"><b>Suffered or permitted</b><span>The 9pm email counts even though nobody asked for it. If work happened and you knew or should have known, the clock ran.</span></div><div class="pr-row"><b>Required means paid</b><span>Mandatory training, midday travel between work sites, and a lunch spent covering the phones are all work time.</span></div><div class="pr-row"><b>Records cut both ways</b><span>Overstated hours are as much a liability as understated ones. Fix the record, then fix the norm that produced it.</span></div></div>
+        <div id="deck-time" style="margin-top:20px"></div>
+      </div>
+
+      <!-- WIDGET: OVERTIME CLOCK -->
+      <div style="margin-top:44px" id="otclock">
+        <span class="mono" style="color:var(--eyebrow);display:block;margin-bottom:6px">Deepens · Timekeeping &amp; FLSA</span><h4 style="font-size:1.15rem">The Overtime Clock · rebuild the week the law sees</h4>
+        <p style="margin-top:10px;color:var(--tx2);max-width:62ch;font-size:.95rem">The deck taught the rules one at a time. This is where they compound. Maya, a non-exempt coordinator, is scheduled for 38 hours. Six other things happened in her week. Put each one on or off the clock and watch her real, legal week take shape; the running total decides whether Vanderbilt owes her overtime.</p>
+        <div class="sim-shell" style="margin-top:18px">
+          <p class="mono" style="font-size:.72rem;color:var(--eyebrow)">MAYA · NON-EXEMPT · SCHEDULED 38.0 HRS</p>
+          <div id="ckRows" style="margin-top:12px"></div>
+          <p class="ck-total" aria-live="polite">Paid hours this week: <b id="ckHours">38.0</b><span id="ckOt" class="mono"></span></p>
+          <div style="margin-top:14px"><button type="button" class="btn btn-primary btn-sm" id="ckGo">Check my timesheet</button></div>
+          <div id="ckOut" aria-live="polite"></div>
+        </div>
       </div>
     </div>
 
     <!-- TALENT ID → SUCCESSION -->
     <div style="margin-top:60px">
-      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Hiring&rsquo;s second half &middot; Talent ID &amp; succession</span></div>
+      <div class="eyebrow" style="margin-bottom:14px"><span class="mono" style="color:var(--eyebrow)">Deepens · Hiring &amp; onboarding · Talent ID &amp; succession</span></div>
       <h3 style="font-size:1.55rem;max-width:30ch">Hiring fills a seat. Succession fills the future.</h3>
       <p style="margin-top:14px;color:var(--tx2);max-width:64ch">Everyone has talent. Not everyone is <i>talent</i>, in the succession sense: someone the university should be deliberately preparing for bigger things. Gartner&rsquo;s research puts the gap plainly: <a href="https://www.gartner.com/en/human-resources/topics/succession-planning" target="_blank" rel="noopener">61% of HR leaders say succession plans focus too narrowly on senior roles</a>, and the fix starts with managers like you spotting the right people early.</p>
       <div class="primer">
@@ -1909,11 +2026,14 @@ var MODULES = [
   {key:'notes', label:'Note File', href:'#deck-notes'},
   {key:'firstresp', label:'First Response', href:'#deck-firstresp'},
   {key:'coach', label:'Coach or Correct', href:'#deck-coach'},
+  {key:'growth', label:'Growth Planner', href:'#growthplanner'},
   {key:'fmla', label:'FMLA Simulator', href:'#sim-fmla'},
   {key:'opsmicro', label:'Ops Drills', href:'#operationsTopics'},
   {key:'payq', label:'Approval Queue', href:'#deck-pay'},
   {key:'expq', label:'Expense Pile', href:'#deck-expense'},
+  {key:'audit', label:'Expense Audit', href:'#expenseaudit'},
   {key:'timeq', label:'Time Card', href:'#deck-time'},
+  {key:'clock', label:'Overtime Clock', href:'#otclock'},
   {key:'talent', label:'Spot the Signal', href:'#deck-talent'},
   {key:'interview', label:'Interview Room', href:'#deck-interview'},
   {key:'calibration', label:'Calibration Lab', href:'#deck-calibration'},
@@ -3431,6 +3551,152 @@ function initRebalance(){
   update();
 }
 
+
+/* ══════════ WIDGET: THE GROWTH PLANNER (GROW conversation, assembled) ══════════ */
+var GROWTH_CURRENCIES={
+  scope:'a stretch assignment with real stakes (scope)',
+  skills:'deliberate skill-building with support and airtime to practice (skills)',
+  visibility:'their name on the work in rooms that matter (visibility)',
+  relationships:'a mentor or cross-unit connection (relationships)'
+};
+function initGrowth(){
+  var who=el('gpWho'), goal=el('gpGoal'), real=el('gpReality'), will=el('gpWill'), when=el('gpWhen'), go=el('gpGo'), out=el('gpOut'), box=el('gpCur');
+  if(!who||!go||!out) return;
+  go.addEventListener('click', function(){
+    if(!who.value.trim()||!goal.value.trim()){ out.innerHTML='<p style="margin-top:14px;color:var(--vu-err);font-weight:600">Give it a name and a goal; the plan is built from those.</p>'; (who.value.trim()?goal:who).focus(); return; }
+    var cur=Array.prototype.slice.call(box.querySelectorAll('input:checked')).map(function(i){ return GROWTH_CURRENCIES[i.value]; });
+    var opts=cur.length?cur:['pick at least one currency above; growth you cannot name is growth that will not happen'];
+    var plan='<div class="roadmap three" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:18px">'
+      +'<div class="rstep"><span class="rno">Goal · theirs</span><h5>'+esc(who.value)+' wants</h5><p>'+esc(goal.value.trim())+'</p></div>'
+      +'<div class="rstep"><span class="rno">Reality · today</span><h5>Where they are now</h5><p>'+(real.value.trim()?esc(real.value.trim()):'Name the honest starting point together in the conversation.')+'</p></div>'
+      +'<div class="rstep"><span class="rno">Options · yours to offer</span><h5>Growth you control</h5>'+opts.map(function(o){ return '<p style="margin-top:6px">\u2022 '+esc(o.charAt(0).toUpperCase()+o.slice(1))+'</p>'; }).join('')+'</div>'
+      +'<div class="rstep"><span class="rno">Will · the commitment</span><h5>First step</h5><p>'+(will.value.trim()?esc(will.value.trim()):'They name the first step; you sponsor it.')+(when.value?' By '+esc(when.value)+'.':'')+'</p><p style="margin-top:8px"><b>Then:</b> put the next growth check-in on the calendar before you leave the room.</p></div>'
+      +'</div>'
+      +'<p style="margin-top:12px;font-size:.78rem;color:var(--tx3)">Structure: the GROW model (Whitmore, <i>Coaching for Performance</i>); the four currencies come from the Growth &#8800; promotion card above.</p>'
+      +'<div style="margin-top:12px;display:flex;gap:12px;align-items:center"><button type="button" class="btn btn-ghost btn-sm" id="gpCopy">Copy the plan</button><span id="gpCopied" class="mono" style="display:none">Copied</span></div>';
+    out.innerHTML=plan;
+    markDone('growth');
+    var txt='GROWTH CONVERSATION PLAN \u00B7 '+who.value+'\nGOAL (theirs): '+goal.value.trim()+'\nREALITY: '+(real.value.trim()||'name it together')+'\nOPTIONS I CAN OFFER: '+opts.join('; ')+'\nWILL / FIRST STEP: '+(will.value.trim()||'they name it')+(when.value?' by '+when.value:'')+'\nNEXT: calendar the next growth check-in now.\n(GROW: Whitmore, Coaching for Performance)';
+    el('gpCopy').addEventListener('click', function(){
+      function ok(){ var c=el('gpCopied'); if(c){ c.style.display='inline'; setTimeout(function(){ c.style.display='none'; },2200); } }
+      function fb(){ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(e){} document.body.removeChild(ta); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok,fb); } else fb();
+    });
+    out.scrollIntoView({behavior:reduce?'auto':'smooth', block:'nearest'});
+  });
+}
+
+/* ══════════ WIDGET: EXPENSE AUDIT ══════════ */
+var XA_LINES = [
+  {d:'Mar 4',  t:'Team working lunch, Trattoria', s:'Itemized receipt · six attendees listed · project purpose noted', amt:'$84.50', bad:false,
+   exp:'Clean. Itemized, attendees named, purpose stated, within the per-person limit. Approving this fast is part of the control too; clean filers should never wait.'},
+  {d:'Mar 9',  t:'“Misc. office supplies”', s:'No receipt attached · no itemization', amt:'$212.40', bad:true,
+   exp:'No receipt, no itemization, and “misc.” is not a business purpose. Above the receipt threshold, documentation is not optional. Send it back.'},
+  {d:'Mar 12', t:'Working dinner, includes two glasses of wine', s:'Charged to federal grant 27-XXX', amt:'$96.20', bad:true,
+   exp:'Alcohol is unallowable on federal funds, always. The dinner itself may be fine; the wine has to move to a non-federal source before you sign.'},
+  {d:'Mar 14', t:'Conference registration, HigherEd Ops Summit', s:'Receipt attached · pre-approved travel request on file', amt:'$450.00', bad:false,
+   exp:'Clean. Receipt plus pre-approval on file. The biggest number on the report is the healthiest line on it; amounts are not the signal, documentation is.'},
+  {d:'Mar 17-28', t:'Rideshare, home to campus, nine trips', s:'Labeled “client travel”', amt:'$171.00', bad:true,
+   exp:'Commuting is not reimbursable, however the line is labeled. The relabeling is the part worth a real conversation, not just a rejection.'},
+  {d:'Mar 21', t:'Hotel, one night above the conference rate', s:'Note says the block “sold out” · no documentation', amt:'$180 over rate', bad:true,
+   exp:'Plausible and documented are different things. Ask for the sold-out confirmation or an exception approval; the question costs one email, the undocumented exception becomes the precedent.'}
+];
+function initAudit(){
+  var table=el('xaTable'), go=el('xaGo'), out=el('xaOut'), status=el('xaStatus');
+  if(!table||!go) return;
+  XA_LINES.forEach(function(L,i){
+    var row=document.createElement('button');
+    row.type='button'; row.className='xa-row'; row.setAttribute('data-i',i); row.setAttribute('aria-pressed','false');
+    row.innerHTML='<span class="xa-when mono">'+L.d+'</span>'
+      +'<span class="xa-desc"><b>'+L.t+'</b><small>'+L.s+'</small></span>'
+      +'<span class="xa-amt mono">'+L.amt+'</span>'
+      +'<span class="xa-flag mono">FLAG</span>'
+      +'<span class="xa-exp">'+L.exp+'</span>';
+    row.addEventListener('click', function(){
+      if(table.classList.contains('graded')) return;
+      row.classList.toggle('on');
+      row.setAttribute('aria-pressed', row.classList.contains('on')?'true':'false');
+    });
+    table.appendChild(row);
+  });
+  go.addEventListener('click', function(){
+    if(table.classList.contains('graded')) return;
+    table.classList.add('graded');
+    var caught=0, missed=0, falseFlags=0;
+    Array.prototype.forEach.call(table.children, function(row,i){
+      var flagged=row.classList.contains('on'), bad=XA_LINES[i].bad;
+      if(bad&&flagged){ caught++; row.classList.add('hit'); }
+      else if(bad&&!flagged){ missed++; row.classList.add('miss'); }
+      else if(!bad&&flagged){ falseFlags++; row.classList.add('over'); }
+      else { row.classList.add('clean'); }
+    });
+    var read;
+    if(caught===4&&falseFlags===0) read='A perfect audit: all four problem lines caught, both clean lines approved. That is exactly the balance the job asks for: real scrutiny without punishing clean filers.';
+    else if(missed===0) read='You caught all four problem lines, and also flagged '+falseFlags+' clean one'+(falseFlags>1?'s':'')+'. Scrutiny is good; the second habit to build is letting compliant lines through fast, so the control never feels like suspicion.';
+    else read='You caught '+caught+' of 4 problem lines'+(falseFlags?' and flagged '+falseFlags+' clean one'+(falseFlags>1?'s':''):'')+'. The missed lines are marked below with what an auditor would have seen. This eye develops with repetition; read one report a week this closely and it becomes reflex.';
+    out.innerHTML='<p style="margin-top:16px;font-size:.92rem;color:var(--tx2);border-left:2px solid var(--vu-gold);padding-left:12px;max-width:66ch;line-height:1.6">'+read+' <b>Remember why this matters: your approval is the control. Once you sign, the exposure carries your name.</b></p>';
+    if(status) status.textContent='Graded. Every line now shows what an auditor would say about it.';
+    go.disabled=true; go.style.opacity=.5;
+    markDone('audit');
+  });
+}
+
+/* ══════════ WIDGET: OVERTIME CLOCK ══════════ */
+var CK_BASE=38, CK_ROWS = [
+  {t:'Answered a work email thread, Tuesday 9 to 10pm', h:1.0, on:true,
+   exp:'On the clock. She worked, so it is paid. The FLSA counts work that is “suffered or permitted,” even work nobody asked for.'},
+  {t:'Morning commute, home to campus, all week', h:2.5, on:false,
+   exp:'Off the clock. Ordinary home-to-work commuting is not compensable time.'},
+  {t:'Required compliance webinar, watched over lunch', h:2.0, on:true,
+   exp:'On the clock. Mandatory training is work time, lunch hour or not.'},
+  {t:'Midday shuttle between two campus buildings for meetings', h:1.5, on:true,
+   exp:'On the clock. Travel between work sites during the day is work time; only the home commute is not.'},
+  {t:'Optional team happy hour on Thursday', h:1.0, on:false,
+   exp:'Off the clock, as long as it is genuinely optional and no work happens there. The moment attendance is expected, it flips.'},
+  {t:'Ate at her desk covering the phones, 30 min × 5 days', h:2.5, on:true,
+   exp:'On the clock. A lunch where she is still working is not a lunch. Relieve people completely or pay them completely.'}
+];
+function initClock(){
+  var host=el('ckRows'), go=el('ckGo'), out=el('ckOut'), hoursEl=el('ckHours'), otEl=el('ckOt');
+  if(!host||!go) return;
+  var picks=CK_ROWS.map(function(){ return false; });
+  function total(){ var t=CK_BASE; CK_ROWS.forEach(function(r,i){ if(picks[i]) t+=r.h; }); return t; }
+  function refresh(){
+    var t=total();
+    if(hoursEl) hoursEl.textContent=t.toFixed(1);
+    if(otEl) otEl.textContent = t>40 ? ' · '+(t-40).toFixed(1)+'h overtime at time and a half' : ' · no overtime yet';
+  }
+  CK_ROWS.forEach(function(r,i){
+    var row=document.createElement('div');
+    row.className='ck-row';
+    row.innerHTML='<span class="ck-desc">'+r.t+'</span><span class="ck-h mono">'+r.h.toFixed(1)+'h</span>'
+      +'<span class="ck-btns"><button type="button" class="ck-on">On the clock</button><button type="button" class="ck-off">Off</button></span>'
+      +'<span class="ck-exp">'+r.exp+'</span>';
+    var onB=row.querySelector('.ck-on'), offB=row.querySelector('.ck-off');
+    onB.addEventListener('click', function(){ if(host.classList.contains('graded')) return; picks[i]=true; row.classList.add('on'); row.classList.add('set'); refresh(); });
+    offB.addEventListener('click', function(){ if(host.classList.contains('graded')) return; picks[i]=false; row.classList.remove('on'); row.classList.add('set'); refresh(); });
+    host.appendChild(row);
+  });
+  refresh();
+  go.addEventListener('click', function(){
+    if(host.classList.contains('graded')) return;
+    var unset=Array.prototype.filter.call(host.children, function(r){ return !r.classList.contains('set'); });
+    if(unset.length){ out.innerHTML='<p style="margin-top:14px;color:var(--vu-err);font-weight:600">'+unset.length+' item'+(unset.length>1?'s':'')+' still need'+(unset.length>1?'':'s')+' a call. Every line goes on or off the clock; that is the job.</p>'; return; }
+    host.classList.add('graded');
+    var right=0;
+    Array.prototype.forEach.call(host.children, function(row,i){
+      var correct = picks[i]===CK_ROWS[i].on;
+      row.classList.add(correct?'hit':'miss');
+      if(correct) right++;
+    });
+    var legal=CK_BASE; CK_ROWS.forEach(function(r){ if(r.on) legal+=r.h; });
+    var ot=legal-40;
+    out.innerHTML='<p style="margin-top:16px;font-size:.92rem;color:var(--tx2);border-left:2px solid var(--vu-gold);padding-left:12px;max-width:66ch;line-height:1.6">You called '+right+' of 6 correctly; each line below now shows the rule. Maya’s legal week is <b>'+legal.toFixed(1)+' hours</b>: 40 regular plus <b>'+ot.toFixed(1)+' hours of overtime</b> she is owed at time and a half. <b>That is the point of this tool: the week you scheduled was 38 hours, but the law counts what actually happened.</b> Overtime you never see is still overtime you owe, so manage the norms (the 9pm threads, the desk lunches), not just the timesheet.</p>';
+    go.disabled=true; go.style.opacity=.5;
+    markDone('clock');
+  });
+}
+
 /* ══════════ TAKE IT TO YOUR DESK, first-72-hours plan builder ══════════ */
 var DESK_PLANS = {
   fmla:{ name:'A health or family event needing time away',
@@ -3656,6 +3922,9 @@ function boot(){
   try{ initNoteBuilder(); }catch(e){}
   try{ initTriage(); }catch(e){}
   try{ initRebalance(); }catch(e){}
+  try{ initGrowth(); }catch(e){}
+  try{ initAudit(); }catch(e){}
+  try{ initClock(); }catch(e){}
   try{ initHeroRotation(); }catch(e){}
   document.addEventListener('click', function(e){ var pl=e.target.closest('.olink[data-pending]'); if(pl) e.preventDefault(); });
   // deep links: content mounts after the browser's initial anchor jump, so re-align
