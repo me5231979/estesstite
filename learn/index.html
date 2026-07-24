@@ -836,6 +836,28 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 @media (max-width:1200px){ .prog-btn .pw{ display:none; } }
 @media (max-width:400px){ .prog-btn{ padding:8px 10px; } }
 
+/* ═══════════════════ RIGHT-EDGE PROGRESS RAIL ═══════════════════ */
+.rail-nav{ position:fixed; top:50%; right:8px; transform:translateY(-50%); z-index:190;
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  padding:10px 5px 8px; background:rgba(28,28,28,.8); border:1px solid rgba(207,174,112,.4);
+  border-radius:var(--r); }
+@supports ((-webkit-backdrop-filter:blur(4px)) or (backdrop-filter:blur(4px))){
+  .rail-nav{ -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); background:rgba(28,28,28,.66); }
+}
+.rail-nav .rn-count{ font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.04em;
+  color:var(--vu-gold); margin-bottom:3px; }
+.rail-nav a.rn-dot{ display:grid; place-items:center; width:22px; height:20px; border-radius:2px; }
+.rail-nav a.rn-dot .dot{ display:block; width:9px; height:9px; border-radius:50%;
+  border:1.5px solid var(--vu-gold); background:transparent;
+  transition:background-color .2s ease-out, transform .2s ease-out, box-shadow .2s ease-out; }
+.rail-nav a.rn-dot.done .dot{ background:var(--vu-gold); }
+.rail-nav a.rn-dot.cur .dot{ transform:scale(1.35); box-shadow:0 0 0 2px rgba(236,183,72,.55); }
+.rail-nav a.rn-dot:hover .dot{ background:rgba(207,174,112,.5); }
+.rail-nav a.rn-dot.done:hover .dot{ background:var(--vu-highlight); }
+.rail-nav a.rn-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1px; }
+@media (max-width:1099px){ .rail-nav{ display:none; } }
+@media (max-height:540px){ .rail-nav{ display:none; } }
+
 /* ═══════════════════ CRIT ═══════════════════ */
 .cr-chips{ display:flex; flex-wrap:wrap; gap:10px; margin:-6px 0 18px; }
 .cr-chips.last{ margin-bottom:0; }
@@ -914,6 +936,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="bar-r">
         <nav class="links" aria-label="Primary">
           <a href="#learn">Learn</a>
+          <a href="#crit">CRIT</a>
           <a href="#playground">Practice</a>
           <a href="#simulator">Simulator</a>
           <a href="#future">Transform</a>
@@ -945,8 +968,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <!-- mobile overlay menu -->
 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
   <a class="mlink" href="#learn" data-prog="learn"><span class="mono">01</span>Learn<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#playground" data-prog="playground"><span class="mono">02</span>Playground<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#crit" data-prog="crit"><span class="mono">03</span>CRIT framework<span class="mdone" aria-hidden="true">Done</span></a>
+  <a class="mlink" href="#crit" data-prog="crit"><span class="mono">02</span>CRIT framework<span class="mdone" aria-hidden="true">Done</span></a>
+  <a class="mlink" href="#playground" data-prog="playground"><span class="mono">03</span>Playground<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#firstrep" data-prog="firstrep"><span class="mono">04</span>First rep<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#simulator" data-prog="simulator"><span class="mono">05</span>Simulator<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#tools" data-prog="tools"><span class="mono">06</span>Tools<span class="mdone" aria-hidden="true">Done</span></a>
@@ -1027,36 +1050,27 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     <div class="sec-head reveal" style="margin-bottom:0">
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">How CHART works</span></span>
       <h2>One path. Three stops. <em>Your pace.</em></h2>
-      <p>Learn how the tool works first, so nothing later feels like magic. Then practice on safe
-        examples, where mistakes cost nothing. Then point it at your own work, which is where the
-        payoff is.</p>
+      <p>Learn how the tool works, practice where mistakes cost nothing, then point it at your own work.</p>
     </div>
     <div class="hw-list reveal">
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">01</span>
         <div>
           <h3>Learn the ideas</h3>
-          <p>In this section, you will complete five short modules and an activity. You will learn what AI,
-            machine learning, and agents actually are. You will watch a live demo of a language model
-            writing, one word at a time. You will practice catching it when it invents facts. You will
-            learn the four built-in limits every user needs to know, and the five prompting techniques
-            that do most of the work.
-            <b>By the end of this section, you will know how the machine works, and when not to trust it.</b></p>
+          <p>In this section, you will learn what AI actually is, watch a language model write one word
+            at a time, and practice catching it when it invents facts.
+            <b>By the end, you will know how the machine works, and when not to trust it.</b></p>
         </div>
         <span class="chip">~8 min</span>
       </div>
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">02</span>
         <div>
-          <h3>Practice in the Playground</h3>
-          <p>In this section, you will practice in three working tools, with no system login required.
-            You will use the <b>Prompt Lab</b> to build a strong, copy-ready prompt by filling in five fields.
-            You will run any prompt through the <b>Prompt Grader</b> to get a score from A to F and see
-            exactly what is missing. You will use <b>Tool Match</b> to answer the most common question on
-            campus: does this task belong in ChatGPT, Amplify, or Copilot? You will also meet
-            <b>CRIT</b>, a four-part framework whose signature move is making the model interview
-            you before it answers.
-            <b>By the end of this section, you will have a real prompt for real work, built by you.</b></p>
+          <h3>Learn to talk to it, then practice</h3>
+          <p>In this section, you will learn <b>CRIT</b>, the four-part way to brief an AI. Its
+            signature move is making the model interview you before it answers. Then you will drill it
+            in three working tools: the <b>Prompt Lab</b>, the <b>Prompt Grader</b>, and <b>Tool Match</b>.
+            <b>By the end, you will have a real prompt for real work, built by you.</b></p>
         </div>
         <span class="chip">~9 min</span>
       </div>
@@ -1064,16 +1078,15 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="hw-no" aria-hidden="true">03</span>
         <div>
           <h3>Apply with the Simulator</h3>
-          <p>In this section, you will describe one real task from your week: a report you write, an inbox
-            you manage, a process you run. You will pick your department. The <b>Simulator</b> will map where
-            AI can help, write three starter prompts around your own words, flag any data-sensitivity
-            concerns, and lay out a 30-day plan.
-            <b>By the end of this section, you will have your first AI project already scoped.</b></p>
+          <p>In this section, you will run one real task through a real AI tool, then let the
+            <b>Simulator</b> map your week: where AI helps, three starter prompts in your own words,
+            and a 30-day plan.
+            <b>By the end, you will have your first AI project scoped.</b></p>
         </div>
         <span class="chip">~4 min</span>
       </div>
     </div>
-    <p class="hw-meta reveal">~20 minutes for the core path &middot; every module is skippable and self-paced &middot; progress saves only in this browser, and nothing is sent or reported.</p>
+    <p class="hw-meta reveal">~20 minutes for the core path &middot; every module is skippable and self-paced.</p>
     <p class="hw-meta reveal" id="progTopLine" style="margin-top:10px">Section tracking: you have 14 sections ahead. Progress saves only in this browser.</p>
     <!-- [EDIT] program name — CHART is a working title; the acronym line below updates with any rename -->
     <p class="acr-line reveal" role="img" aria-label="CHART stands for Cultivating Human-AI Readiness and Thinking"><b>C</b>ultivating&ensp;<b>H</b>uman-<b>A</b>I&ensp;<b>R</b>eadiness&ensp;and&ensp;<b>T</b>hinking</p>
@@ -1088,8 +1101,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: foundations. First, let&rsquo;s get the words right: five terms everything else builds on.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Learn / 01</span></span>
       <h2>Let&rsquo;s clarify what AI <em class="s">is</em>.</h2>
-      <p>In this section, you will complete five short modules and an activity. You will learn what
-        these tools are, how they work, and how to evaluate the claims made about them.</p>
+      <p>In this section, you will learn what these tools are, how they work, and when to trust them.</p>
     </div>
 
     <!-- Module A: What is AI, really? -->
@@ -1097,7 +1109,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module A</span>
         <h3>What is AI, really?</h3>
-        <p>In this activity, you will review five AI terms you will hear constantly. Flip each card to see a simple definition and a Vanderbilt example of the term in use. (Click or press Enter.)</p>
+        <p>In this activity, you will flip five cards: a plain definition and a Vanderbilt example for each term. (Click or press Enter.)</p>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI, ML, GenAI, LLMs, and agents really are</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Flip five cards</span>
@@ -1187,14 +1199,6 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           </button>
         </div>
       </div>
-      <details class="deeper reveal">
-        <summary><span class="dx" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Go deeper: how learned systems differ from written rules</summary>
-        <div class="d-body">
-          <p><b>Rules vs. learned.</b> Traditional software follows instructions a human wrote: <em>if the form is missing a signature, reject it.</em> A learned system studied thousands of examples and wrote its own internal rules, millions of them, none readable by us. The trade-off is real flexibility in exchange for imperfect predictability.</p>
-          <p><b>Why generative models err.</b> They don&rsquo;t retrieve facts from a filing cabinet; they <em>reconstruct</em> patterns. That&rsquo;s why the same engine can draft a lovely paragraph and confidently misremember a date: both are pattern completions, and only one happens to be true.</p>
-          <p><b>Already on campus.</b> ML has quietly run parts of university life for years: spam filters, fraud alerts on procurement cards, building-energy optimization, journal recommendations in the library. Generative AI is not the first wave of AI on campus, just the first one you can talk to.</p>
-        </div>
-      </details>
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now that you have the words, let&rsquo;s watch how one of these machines <em>thinks</em>.</p></div>
     </div>
 
@@ -1213,7 +1217,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>During training, the model read a huge slice of human writing and learned which words tend to follow which. That was its entire education. It writes by scoring every word it knows, picking a high scorer, adding it to the sentence, then doing it again, one word at a time, until the answer sounds finished. The temperature dial below controls how adventurous each pick gets to be.</p>
+        <p>The model learned one thing from a huge slice of human writing: which word tends to come next. It writes by predicting that next word, over and over, until the answer sounds finished. The temperature dial below controls how adventurous each pick gets to be.</p>
         <p><b>Notice as you play:</b> the model never <em>checks</em> anything. There is no lookup step, only pattern completion. That single fact explains almost everything else on this page.</p>
       </div>
       <div class="llm">
@@ -1240,7 +1244,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="evidence reveal">
         <span class="e-label">The research</span>
-        <p><b>Here&rsquo;s why this is worth twenty minutes of your day.</b> In a randomized experiment published in <em>Science</em>, Shakked Noy and Whitney Zhang gave 453 professionals occupation-specific writing tasks. The group using ChatGPT finished <b>40% faster</b> and produced work rated <b>18% higher in quality</b>, and the tool narrowed the gap between weaker and stronger writers instead of widening it. The prediction machine you just played with is the same one behind those numbers.</p>
+        <p>In a randomized experiment in <em>Science</em>, 453 professionals did real writing tasks. The group using ChatGPT finished <b>40% faster</b> with work rated <b>18% higher in quality</b>, and the tool narrowed the gap between weaker and stronger writers. The machine you just played with is the one behind those numbers.</p>
         <span class="e-src">Noy &amp; Zhang, &ldquo;Experimental evidence on the productivity effects of generative artificial intelligence,&rdquo; <a href="https://www.science.org/doi/10.1126/science.adh2586" target="_blank" rel="noopener"><em>Science</em>, 2023</a></span>
       </div>
       <div class="reveal" style="margin-top:20px">
@@ -1253,23 +1257,6 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs" target="_blank" rel="noopener">Open on YouTube</a>.</p>
       </div>
-      <details class="deeper reveal">
-        <summary><span class="dx" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>Go deeper: temperature, memory, and what &ldquo;training&rdquo; really was</summary>
-        <div class="d-body">
-          <p><b>Temperature is a dial on the dice.</b> Low, and the model almost always picks the top word: predictable, safer for facts. High, and the underdogs get real chances: fresher ideas, shakier accuracy. Neither is &ldquo;correct&rdquo;; they&rsquo;re settings for different jobs.</p>
-          <p><b>A bigger window still isn&rsquo;t memory.</b> The model doesn&rsquo;t remember your chat. The whole conversation is re-read on every turn, inside a fixed window. When the window fills, the earliest turns fall out the back. That&rsquo;s the drift you feel in marathon chats, and why a fresh start with a clean summary often beats soldiering on.</p>
-          <p><b>&ldquo;Training&rdquo; wasn&rsquo;t reading.</b> It was billions of rounds of guess-the-next-word on public text, nudging internal dials after every miss until the guesses got eerily good. Everything you&rsquo;ve watched it do flows from that one game.</p>
-          <p style="margin-top:16px">Want the full hour? Andrej Karpathy&rsquo;s classic intro is the gold standard:</p>
-          <div class="yt reveal" data-embed="https://www.youtube-nocookie.com/embed/zjkBMFhNj_g" data-title="Karpathy · Intro to Large Language Models">
-        <button type="button" class="yt-btn">
-          <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-          <span class="yt-t">Karpathy · Intro to Large Language Models</span>
-          <span class="yt-sub mono">1 hour, worth it &middot; loads YouTube on click</span>
-        </button>
-      </div>
-      <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">Open on YouTube</a>.</p>
-        </div>
-      </details>
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now that you&rsquo;ve seen how prediction works, let&rsquo;s learn to catch it when it goes <em>wrong</em>.</p></div>
     </div>
 
@@ -1278,12 +1265,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Drill</span>
         <h3>Spot the hallucination</h3>
-        <p>In this activity, you will read four AI-style answers about plausible campus topics. One detail in each is invented. Click the phrase you do not trust, and you will see the warning sign it carries. (Every answer here was written for this drill; treat the facts accordingly.)</p>
+        <p>In this activity, you will read four AI-style answers. One detail in each is invented. Click the phrase you do not trust. (All four answers were written for this drill.)</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>A hallucination is the machine doing what it was built to do: producing the most <em>plausible-sounding</em> next words. When the truth is common in its training data, plausible and true line up. But ask about something specific, rare, or internal (a policy number, a citation, a program name) and the model still completes the pattern, and the result sounds exactly as confident as a real fact.</p>
-        <p><b>In this drill</b> you&rsquo;ll practice spotting the warning signs of a made-up answer: a suspiciously precise number, a citation that looks real but isn&rsquo;t, or a program name that sounds official. (Card players call these &ldquo;tells.&rdquo;)</p>
+        <p>A hallucination is the machine doing its normal job: producing the most <em>plausible-sounding</em> next words. Ask about something specific or internal (a policy number, a citation, a program name) and it completes the pattern anyway, sounding exactly as confident as a real fact.</p>
+        <p><b>The tells to hunt for:</b> a suspiciously precise number, a citation that looks real but isn&rsquo;t, a program name that sounds official.</p>
       </div>
       <div class="hal-grid">
         <div class="hal" data-tell="A polished citation to a source that doesn&rsquo;t exist, the single most common hallucination. A real book title can be searched for and found; an invented one only sounds like it could be.">
@@ -1370,11 +1357,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module D</span>
         <h3>Limits to know</h3>
-        <p>In this module, you will learn the four built-in limits of every language model. Flip each card to see the limit, a campus example, and the counter-move. None of them are dealbreakers once you know what to do.</p>
+        <p>In this module, you will flip four cards: a built-in limit, a campus example, and the counter-move for each.</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>Every limit on these cards is a practical consequence of what you just watched in Module B. Limited memory (the context window), staleness (the training cutoff), randomness (two runs, two answers), and unearned confidence (no self-doubt meter) all follow from one design decision: the model <em>predicts</em> text; it doesn&rsquo;t consult anything.</p>
+        <p>All four limits follow from what you just watched in Module B: the model <em>predicts</em> text; it does not look anything up.</p>
         <p><b>Notice as you flip:</b> each limit comes paired with a counter-move. Once you can name a limit, you can work around it.</p>
       </div>
       <div class="flip-grid">
@@ -1441,8 +1428,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="evidence reveal">
         <span class="e-label">The evidence: the jagged frontier</span>
-        <p>The largest workplace experiment to date put numbers on both sides of these limits. In 2023, Fabrizio Dell&rsquo;Acqua, Ethan Mollick, and colleagues at Harvard Business School and BCG gave <b>758 consultants</b> real consulting tasks. With AI, they completed <b>12.2% more tasks</b>, <b>25.1% faster</b>, at <b>40% higher quality</b>, all on work <em>inside</em> AI&rsquo;s abilities. But on a task deliberately chosen to sit just <em>beyond</em> those abilities, consultants using AI fell from <b>84% correct to 60&ndash;70%</b>. Their answers still sounded polished and confident; they were just wrong more often. The quality of the writing hid the drop in accuracy.</p>
-        <p>The researchers&rsquo; name for this is the <b>jagged frontier</b>: AI&rsquo;s abilities form an edge that is spiky, not smooth. It aces some tasks you&rsquo;d bet against and flubs some you&rsquo;d bet on, so the working skill is knowing which side of the edge you&rsquo;re standing on. And since the edge is invisible from the outside, the only reliable test is the habit you&rsquo;ve now heard three times: <b>verify</b>.</p>
+        <p>In 2023, Harvard Business School and BCG gave <b>758 consultants</b> real tasks. With AI they completed <b>12.2% more tasks</b>, <b>25.1% faster</b>, at <b>40% higher quality</b>, on work <em>inside</em> AI&rsquo;s abilities. On a task chosen to sit just <em>beyond</em> them, accuracy fell from <b>84% to 60&ndash;70%</b>, and the answers still sounded polished.</p>
+        <p>The researchers call this the <b>jagged frontier</b>: AI aces some tasks you&rsquo;d bet against and flubs some you&rsquo;d bet on. The edge is invisible from the outside, so the working habit is one word: <b>verify</b>.</p>
         <span class="e-src">Dell&rsquo;Acqua et&nbsp;al., &ldquo;Navigating the Jagged Technological Frontier,&rdquo; <a href="https://mitsloan.mit.edu/sites/default/files/2023-10/SSRN-id4573321.pdf" target="_blank" rel="noopener">Harvard Business School working paper, 2023 (PDF)</a></span>
       </div>
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now that you know how it works and where it breaks, let&rsquo;s make it work <em>for</em> you: five moves that narrow the pattern.</p></div>
@@ -1453,15 +1440,13 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module E</span>
         <h3>Five techniques that change everything</h3>
-        <p>In this module, you will learn the five prompting techniques that do most of the work.
-        Each comes with a short example you can copy. When you copy one, paste it into ChatGPT,
-        Amplify, or Copilot, swap the example details for your own, and send it. Reading a technique
-        shows you what it is; running it once is what makes it yours. You will practice all five,
-        with guidance, in the Playground below.</p>
+        <p>In this module, you will learn five prompting techniques, each with a short example you can
+        copy. Paste one into your tool, swap in your own details, and send it. Running a technique
+        once is what makes it yours.</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>Why does prompting matter at all? Because the model can&rsquo;t read your mind; it completes <em>your</em> pattern. A vague prompt hands it a vague pattern, and it will happily complete that too, with confident generic filler. Each technique below is a way of narrowing the pattern (with examples, grounding text, or a fresh start) until the likeliest continuation is the one you wanted.</p>
+        <p>The model cannot read your mind; it completes <em>your</em> pattern. A vague prompt gets confident generic filler back. Each technique below narrows the pattern until the likeliest continuation is the one you wanted.</p>
       </div>
       <div class="tech-list">
         <div class="tech reveal">
@@ -1512,11 +1497,122 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="evidence reveal">
         <span class="e-label">The research, made at Vanderbilt</span>
-        <p>The techniques you&rsquo;re about to practice were catalogued on this campus. In 2023, <b>Jules White</b> of Vanderbilt Computer Science and his colleagues published <a href="https://arxiv.org/abs/2302.11382" target="_blank" rel="noopener">&ldquo;A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT&rdquo;</a>, the paper that turned prompting folk wisdom into named, reusable patterns. The Prompt Lab&rsquo;s Role field below is White&rsquo;s <b>Persona pattern</b>, and his free Coursera course, <a href="https://www.coursera.org/learn/prompt-engineering" target="_blank" rel="noopener">Prompt Engineering for ChatGPT</a>, has become one of the most-taken AI courses anywhere.</p>
+        <p>These techniques were catalogued on this campus. In 2023, <b>Jules White</b> of Vanderbilt Computer Science published <a href="https://arxiv.org/abs/2302.11382" target="_blank" rel="noopener">&ldquo;A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT&rdquo;</a>, which turned prompting folk wisdom into named, reusable patterns. The Prompt Lab&rsquo;s Role field is his <b>Persona pattern</b>; his free Coursera course lives under <a href="#resources">Resources</a>.</p>
         <span class="e-src">White et&nbsp;al., arXiv:2302.11382 (2023) &middot; more of the catalog under <a href="#resources">Resources</a></span>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>You have the concepts. Now let&rsquo;s build the skill, hands on <em>keyboard</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You know the vocabulary. Now learn how to <em>talk</em> to it.</p></div>
+  </div>
+</section>
+
+<!-- ═════════════════════════ CRIT FRAMEWORK ═════════════════════════ -->
+<section id="crit" class="th-cream" aria-label="The CRIT prompt framework">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="you-are">You are here: how to talk to it. You know what AI is. This is the way to ask.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">CRIT / 02</span></span>
+      <h2>Make it ask <em class="s">before</em> it answers.</h2>
+      <p>In this section, you will learn CRIT, the four-part way to talk to AI: Context, Role, Interview, Task. Its signature move is the Interview: tell the model to ask you clarifying questions before it answers. <b>By the end, you will have built and copied a CRIT prompt of your own.</b></p>
+      <div class="lframe">
+        <span class="lf-chip"><b>You&rsquo;ll learn</b>The four parts of CRIT, and why the Interview changes the result</span>
+        <span class="lf-chip"><b>You&rsquo;ll do</b>Watch the creator walk it through, then build one in the builder</span>
+        <span class="lf-chip"><b>Time</b>3 min</span>
+        <p class="lf-why"><b>Why it matters to your work:</b> the questions the model asks up front are the gaps you would otherwise discover during checking.</p>
+      </div>
+    </div>
+    <div class="concept reveal">
+      <span class="c-label">The idea</span>
+      <p>Prompting is not magic. A prompt is instructions handed to a word-probability engine, and no four-letter formula is a spell. A framework buys you <b>discipline</b>: you hand over the background, the perspective, and the deliverable on purpose. As Geoff Woods, who created CRIT, puts it: the issue is not AI, it&rsquo;s how you are communicating with it.</p>
+      <p>The differentiator is the <b>Interview</b>. Skip it and the model quietly takes the lead, guessing at everything you did not say. Invite it to ask clarifying questions first, and wait, and the roles flip: the model asks, you decide. You stay the <b>thought leader</b>; it stays the thought partner.</p>
+      <p><b>One honest note:</b> no single formula is magic. Structure and iteration are what matter, and CRIT is the discipline you will practice in the Playground next.</p>
+    </div>
+    <div class="roadmap reveal">
+      <div class="rstep"><span class="rno">C &middot; Context</span><h5>What is going on</h5>
+        <p>The background, the situation, and the constraints, so the model is not guessing in the dark. What is happening, for whom, and what limits apply.</p></div>
+      <div class="rstep"><span class="rno">R &middot; Role</span><h5>Whose perspective</h5>
+        <p>The professional lens you want the answer from. An editor, an analyst, a challenger: the role changes the answer.</p></div>
+      <div class="rstep" style="border:1px solid var(--bdg)"><span class="rno">I &middot; Interview</span><h5>The signature move</h5>
+        <p>Tell it to ask you clarifying questions first, and wait for your replies before producing anything. The model surfaces its own blind spots instead of papering over them.</p></div>
+      <div class="rstep"><span class="rno">T &middot; Task</span><h5>The deliverable</h5>
+        <p>What type of output, what scope, what format. The model can only hit a target you name.</p></div>
+    </div>
+    <div class="evidence reveal">
+      <span class="e-label">The source</span>
+      <p>CRIT comes from <b>Geoff Woods</b>, best-selling author of <em>The AI-Driven Leader</em>. The Interview step is what sets CRIT apart, because a model that asks before it answers stays aligned with the human directing it. It is your verification habit moved upstream: the gaps surface <em>before</em> drafting instead of during checking.</p>
+      <span class="e-src">Geoff Woods, <a href="https://aiforinsightsleaders.substack.com/p/prompting-isnt-magic-and-why-crit" target="_blank" rel="noopener">&ldquo;Prompting Isn&rsquo;t Magic, And Why CRIT Is My Preferred Prompt Framework&rdquo;</a> (AI for Insights Leaders) &middot; Woods, <em>The AI-Driven Leader</em>, companion resources at <a href="https://aileadership.com" target="_blank" rel="noopener">aileadership.com</a></span>
+    </div>
+    <div class="reveal" style="margin-top:20px">
+      <div class="yt" data-embed="https://www.youtube-nocookie.com/embed/nzLCiQgT9PM" data-title="How to Use the CRIT Framework Correctly · Geoff Woods">
+        <button type="button" class="yt-btn">
+          <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+          <span class="yt-t">Watch: How to Use the CRIT Framework Correctly</span>
+          <span class="yt-sub mono">Geoff Woods walks through the framework himself &middot; loads YouTube on click</span>
+        </button>
+      </div>
+      <p class="yt-fallback">Pay attention to how the Interview step changes who is leading the exchange. Prefer a new tab? <a href="https://www.youtube.com/watch?v=nzLCiQgT9PM" target="_blank" rel="noopener">Open on YouTube</a>.</p>
+    </div>
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">Builder</span>
+        <h3>The CRIT builder</h3>
+        <p>In this activity, you will build a CRIT prompt in four fields and watch it assemble live. Tap a chip under any field for a running start. When you paste the result into your tool, the clarifying questions come back first; answer them, and the drafting starts.</p>
+      </div>
+      <div class="micro"><span><i aria-hidden="true">1</i>Fill the four fields (chips help)</span><span><i aria-hidden="true">2</i>Watch the prompt assemble</span><span><i aria-hidden="true">3</i>Copy it out and answer its questions</span></div>
+      <div class="app-grid">
+        <form autocomplete="off" novalidate>
+          <div class="field" style="margin-bottom:10px">
+            <label for="crContext">Context: what should it know going in?</label>
+            <textarea id="crContext" rows="3" placeholder="e.g. Our office is preparing the fall open enrollment announcement for about 300 staff…"></textarea>
+            <span class="hinttxt">Background, audience, constraints. This is the part most prompts skip.</span>
+          </div>
+          <div class="cr-chips"><button type="button" class="sim-chip cr-chip" data-target="crContext" data-fill="Our office is preparing the fall open enrollment announcement for about 300 staff. The deadline is November 15, and last year many people missed it because the message was long and easy to skim past.">Example context</button></div>
+          <div class="field" style="margin-bottom:10px">
+            <label for="crRole">Role: &ldquo;You are a&hellip;&rdquo;</label>
+            <input type="text" id="crRole" placeholder="e.g. an experienced internal communications editor" />
+            <span class="hinttxt">The professional lens you want the answer from. The three chips below are Woods&rsquo; essential AI personas.</span>
+          </div>
+          <div class="cr-chips" aria-label="Persona chips, adapted from Geoff Woods">
+            <button type="button" class="sim-chip cr-chip" data-target="crRole" data-fill="a thought partner playing the Interviewer: you draw out what is in my head by asking one question at a time">Interviewer</button>
+            <button type="button" class="sim-chip cr-chip" data-target="crRole" data-fill="a Communicator: you turn what I give you into clear, audience-ready writing">Communicator</button>
+            <button type="button" class="sim-chip cr-chip" data-target="crRole" data-fill="a Challenger: you play devil&#39;s advocate, stress-test my assumptions, and ask critical questions that could expose flaws">Challenger</button>
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            <label for="crInterview">Interview: the ask-first instruction</label>
+            <textarea id="crInterview" rows="2">Before you answer, ask me up to five clarifying questions, then wait for my replies.</textarea>
+            <span class="hinttxt">Pre-filled with the standard line. The one-question-at-a-time variant is how Woods&rsquo; own prompt library runs its interviews.</span>
+          </div>
+          <div class="cr-chips">
+            <button type="button" class="sim-chip cr-chip" data-target="crInterview" data-fill="Before you answer, ask me up to five clarifying questions, then wait for my replies.">Standard line</button>
+            <button type="button" class="sim-chip cr-chip" data-target="crInterview" data-fill="Interview me, asking one question at a time, to pull the necessary information out of my head. Once you have enough, produce the deliverable.">One at a time (Woods)</button>
+          </div>
+          <div class="field" style="margin-bottom:10px">
+            <label for="crTask">Task: the deliverable</label>
+            <textarea id="crTask" rows="3" placeholder="e.g. Draft the announcement email, under 150 words, with a three-bullet summary at the top."></textarea>
+            <span class="hinttxt">Type, scope, and format. Name the target.</span>
+          </div>
+          <div class="cr-chips last"><button type="button" class="sim-chip cr-chip" data-target="crTask" data-fill="Draft the announcement email, under 150 words, with a three-bullet summary at the top and one clear call to action.">Example task</button></div>
+        </form>
+        <div class="preview-box">
+          <div class="preview-head">
+            <span class="mono">Live CRIT preview</span>
+            <button type="button" class="btn btn-ghost btn-sm" id="crCopy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span id="crCopyLabel">Copy prompt</span></button>
+          </div>
+          <div class="preview" id="crPreview" aria-live="polite"><span class="ph">Your CRIT prompt assembles here as you type…</span></div>
+          <p class="hinttxt" id="crParts" style="margin-top:12px">0 of 4 parts filled. Context and Task carry the weight; the copy button waits for both.</p>
+          <p class="nudge" id="crNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Spot check: give it Context and a Task first. Those two carry the weight, and the chips can fill them for you.</p>
+          <div class="launch-row">
+            <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Open Amplify
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You have the framework. Now drill it in three working tools, hands on <em>keyboard</em>.</p></div>
   </div>
 </section>
 
@@ -1524,10 +1620,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="playground" class="th-dark" aria-label="Practice playground">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: practice. You have the concepts. Now let&rsquo;s build the skill.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Playground / 02</span></span>
+      <span class="you-are">You are here: practice. You know CRIT. Now turn it into a habit.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Playground / 03</span></span>
       <h2>Practice here, <em class="s">shine everywhere.</em></h2>
-      <p>In this section, you will practice in three working tools: the Prompt Lab, the Prompt Grader, and Tool Match. Everything runs on this page, and nothing you type is stored. <b>By the end of this section, you will have built, graded, and routed a real prompt.</b></p>
+      <p>In this section, you will practice the CRIT ideas in three working tools: the Prompt Lab, the Prompt Grader, and Tool Match. Nothing you type is stored. <b>By the end, you will have built, graded, and routed a real prompt.</b></p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         Honesty corner: these are guided practice tools that run entirely in your browser: no AI, and nothing you type leaves this page. The real AI lives in ChatGPT, Amplify, and Copilot; take what you build here into those.</p>
     </div>
@@ -1546,7 +1642,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="ppanel" id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" tabindex="0">
         <div class="concept">
           <span class="c-label">What this trains</span>
-          <p>Here you build a prompt deliberately, piece by piece. <b>What you&rsquo;ll notice:</b> every field you fill narrows down what the AI could come back with, and steering it toward the answer you want is the whole skill.</p>
+          <p>Here you build a prompt piece by piece. The five fields are CRIT&rsquo;s discipline in practice: Context, Role, and Task have their own boxes, and you can add the Interview line to the Task whenever the work is fuzzy. <b>Notice:</b> every field you fill narrows what comes back.</p>
         </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>The five ingredients of a great prompt</span>
@@ -1623,7 +1719,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="ppanel" id="panel-grader" role="tabpanel" aria-labelledby="tab-grader" tabindex="0" hidden>
         <div class="concept">
           <span class="c-label">What this trains</span>
-          <p>This one teaches you to spot what&rsquo;s missing from a prompt. <b>What you&rsquo;ll notice:</b> the lowest score is almost always context or specificity, the details we assume any reader &ldquo;just knows.&rdquo; The AI doesn&rsquo;t know them unless you write them down.</p>
+          <p>This one teaches you to spot what&rsquo;s missing. <b>Notice:</b> the lowest score is almost always context or specificity, the details we assume any reader &ldquo;just knows.&rdquo;</p>
         </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What separates an A prompt from an F</span>
@@ -1699,118 +1795,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>One more prompting move is worth learning before you go live. It changes <em>who asks the questions</em>.</p></div>
-  </div>
-</section>
-
-<!-- ═════════════════════════ CRIT FRAMEWORK ═════════════════════════ -->
-<section id="crit" class="th-cream" aria-label="The CRIT prompt framework">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="you-are">You are here: the framework. You can build a prompt from five ingredients. Now add the move that stops the guessing.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">CRIT / 03</span></span>
-      <h2>Make it ask <em class="s">before</em> it answers.</h2>
-      <p>In this section, you will learn CRIT, a four-part prompt framework: Context, Role, Interview, Task. Its signature move is the Interview: before the model produces anything, you tell it to ask you clarifying questions and wait. <b>By the end of this section, you will have built and copied a CRIT prompt of your own.</b></p>
-      <div class="lframe">
-        <span class="lf-chip"><b>You&rsquo;ll learn</b>The four parts of CRIT, and why the Interview changes the result</span>
-        <span class="lf-chip"><b>You&rsquo;ll do</b>Watch the creator walk it through, then build one in the builder</span>
-        <span class="lf-chip"><b>Time</b>3 min</span>
-        <p class="lf-why"><b>Why it matters to your work:</b> the questions the model asks up front are the gaps you would otherwise discover during checking.</p>
-      </div>
-    </div>
-    <div class="concept reveal">
-      <span class="c-label">The idea</span>
-      <p>Prompting is not magic. A prompt is a set of instructions handed to a word-probability engine, and no four-letter formula is a secret spell. What a framework buys you is <b>discipline</b>: it makes you hand over the background, the perspective, and the deliverable on purpose instead of by accident. As Geoff Woods, who created CRIT, puts it: the issue is not AI, it&rsquo;s how you are communicating with it.</p>
-      <p>The differentiator is the <b>Interview</b>. Woods frames every AI exchange as a choice of roles: one of you plays the <b>thought leader</b> and the other the <b>thought partner</b>. Skip the Interview and the model quietly takes the lead, guessing at everything you did not say. Invite it to ask clarifying questions first, and wait, and the roles flip: the model asks, you decide. That one move reduces misalignment, lowers the risk of confident invention, and cuts rework.</p>
-      <p><b>How this fits the Prompt Lab:</b> the five ingredients and CRIT are two roads to the same discipline, and you can use either. Structure and iteration are what matter; the honest version of every framework is that none of them is magic.</p>
-    </div>
-    <div class="roadmap reveal">
-      <div class="rstep"><span class="rno">C &middot; Context</span><h5>What is going on</h5>
-        <p>The background, the situation, and the constraints, so the model is not guessing in the dark. What is happening, for whom, and what limits apply.</p></div>
-      <div class="rstep"><span class="rno">R &middot; Role</span><h5>Whose perspective</h5>
-        <p>The professional lens you want the answer from. An editor, an analyst, a challenger: the role changes the answer.</p></div>
-      <div class="rstep" style="border:1px solid var(--bdg)"><span class="rno">I &middot; Interview</span><h5>The signature move</h5>
-        <p>Tell it to ask you clarifying questions first, and wait for your replies before producing anything. The model surfaces its own blind spots instead of papering over them.</p></div>
-      <div class="rstep"><span class="rno">T &middot; Task</span><h5>The deliverable</h5>
-        <p>What type of output, what scope, what format. The model can only hit a target you name.</p></div>
-    </div>
-    <div class="evidence reveal">
-      <span class="e-label">The source</span>
-      <p>CRIT comes from <b>Geoff Woods</b>, best-selling author of <em>The AI-Driven Leader</em>. In &ldquo;Prompting Isn&rsquo;t Magic, And Why CRIT Is My Preferred Prompt Framework,&rdquo; he makes the case in plain terms: a prompt is instructions to a word-probability engine, no formula is a spell, and the Interview step is what separates CRIT from other structures, because a model that asks before it answers stays aligned with the human directing it. The tie to the Limits module is direct: on the jagged frontier, a wrong answer sounds exactly like a right one, so a framework that surfaces the gaps <em>before</em> drafting is your verification habit moved upstream.</p>
-      <span class="e-src">Geoff Woods, <a href="https://aiforinsightsleaders.substack.com/p/prompting-isnt-magic-and-why-crit" target="_blank" rel="noopener">&ldquo;Prompting Isn&rsquo;t Magic, And Why CRIT Is My Preferred Prompt Framework&rdquo;</a> (AI for Insights Leaders) &middot; Woods, <em>The AI-Driven Leader</em>, companion resources at <a href="https://aileadership.com" target="_blank" rel="noopener">aileadership.com</a></span>
-    </div>
-    <div class="reveal" style="margin-top:20px">
-      <div class="yt" data-embed="https://www.youtube-nocookie.com/embed/nzLCiQgT9PM" data-title="How to Use the CRIT Framework Correctly · Geoff Woods">
-        <button type="button" class="yt-btn">
-          <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-          <span class="yt-t">Watch: How to Use the CRIT Framework Correctly</span>
-          <span class="yt-sub mono">Geoff Woods walks through the framework himself &middot; loads YouTube on click</span>
-        </button>
-      </div>
-      <p class="yt-fallback">Pay attention to how the Interview step changes who is leading the exchange. Prefer a new tab? <a href="https://www.youtube.com/watch?v=nzLCiQgT9PM" target="_blank" rel="noopener">Open on YouTube</a>.</p>
-    </div>
-    <div class="module reveal">
-      <div class="module-head">
-        <span class="mno">Builder</span>
-        <h3>The CRIT builder</h3>
-        <p>In this activity, you will build a CRIT prompt in four fields and watch it assemble live. Tap a chip under any field for a running start; the persona and Interview chips are adapted from Woods&rsquo; own prompt library. When you paste the result into ChatGPT, Amplify, or Copilot, the clarifying questions come back as the first reply. Answer them, and then the drafting starts.</p>
-      </div>
-      <div class="micro"><span><i aria-hidden="true">1</i>Fill the four fields (chips help)</span><span><i aria-hidden="true">2</i>Watch the prompt assemble</span><span><i aria-hidden="true">3</i>Copy it out and answer its questions</span></div>
-      <div class="app-grid">
-        <form autocomplete="off" novalidate>
-          <div class="field" style="margin-bottom:10px">
-            <label for="crContext">Context: what should it know going in?</label>
-            <textarea id="crContext" rows="3" placeholder="e.g. Our office is preparing the fall open enrollment announcement for about 300 staff…"></textarea>
-            <span class="hinttxt">Background, audience, constraints. This is the part most prompts skip.</span>
-          </div>
-          <div class="cr-chips"><button type="button" class="sim-chip cr-chip" data-target="crContext" data-fill="Our office is preparing the fall open enrollment announcement for about 300 staff. The deadline is November 15, and last year many people missed it because the message was long and easy to skim past.">Example context</button></div>
-          <div class="field" style="margin-bottom:10px">
-            <label for="crRole">Role: &ldquo;You are a&hellip;&rdquo;</label>
-            <input type="text" id="crRole" placeholder="e.g. an experienced internal communications editor" />
-            <span class="hinttxt">The professional lens you want the answer from. The three chips below are Woods&rsquo; essential AI personas.</span>
-          </div>
-          <div class="cr-chips" aria-label="Persona chips, adapted from Geoff Woods">
-            <button type="button" class="sim-chip cr-chip" data-target="crRole" data-fill="a thought partner playing the Interviewer: you draw out what is in my head by asking one question at a time">Interviewer</button>
-            <button type="button" class="sim-chip cr-chip" data-target="crRole" data-fill="a Communicator: you turn what I give you into clear, audience-ready writing">Communicator</button>
-            <button type="button" class="sim-chip cr-chip" data-target="crRole" data-fill="a Challenger: you play devil&#39;s advocate, stress-test my assumptions, and ask critical questions that could expose flaws">Challenger</button>
-          </div>
-          <div class="field" style="margin-bottom:10px">
-            <label for="crInterview">Interview: the ask-first instruction</label>
-            <textarea id="crInterview" rows="2">Before you answer, ask me up to five clarifying questions, then wait for my replies.</textarea>
-            <span class="hinttxt">Pre-filled with the standard line. The one-question-at-a-time variant is how Woods&rsquo; own prompt library runs its interviews.</span>
-          </div>
-          <div class="cr-chips">
-            <button type="button" class="sim-chip cr-chip" data-target="crInterview" data-fill="Before you answer, ask me up to five clarifying questions, then wait for my replies.">Standard line</button>
-            <button type="button" class="sim-chip cr-chip" data-target="crInterview" data-fill="Interview me, asking one question at a time, to pull the necessary information out of my head. Once you have enough, produce the deliverable.">One at a time (Woods)</button>
-          </div>
-          <div class="field" style="margin-bottom:10px">
-            <label for="crTask">Task: the deliverable</label>
-            <textarea id="crTask" rows="3" placeholder="e.g. Draft the announcement email, under 150 words, with a three-bullet summary at the top."></textarea>
-            <span class="hinttxt">Type, scope, and format. Name the target.</span>
-          </div>
-          <div class="cr-chips last"><button type="button" class="sim-chip cr-chip" data-target="crTask" data-fill="Draft the announcement email, under 150 words, with a three-bullet summary at the top and one clear call to action.">Example task</button></div>
-        </form>
-        <div class="preview-box">
-          <div class="preview-head">
-            <span class="mono">Live CRIT preview</span>
-            <button type="button" class="btn btn-ghost btn-sm" id="crCopy">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span id="crCopyLabel">Copy prompt</span></button>
-          </div>
-          <div class="preview" id="crPreview" aria-live="polite"><span class="ph">Your CRIT prompt assembles here as you type…</span></div>
-          <p class="hinttxt" id="crParts" style="margin-top:12px">0 of 4 parts filled. Context and Task carry the weight; the copy button waits for both.</p>
-          <p class="nudge" id="crNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Spot check: give it Context and a Task first. Those two carry the weight, and the chips can fill them for you.</p>
-          <div class="launch-row">
-            <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-            <a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Open Amplify
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-            <a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Framework in hand, it&rsquo;s time for the real thing: one task from your week, run <em>end to end</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Practice done. Time for the real thing: one task from your week, run <em>end to end</em>.</p></div>
   </div>
 </section>
 
@@ -1821,7 +1806,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: transfer. Now that you&rsquo;ve practiced, let&rsquo;s run one real task.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">First rep / 04</span></span>
       <h2>Your first <em class="s">real</em> rep.</h2>
-      <p>In this section, you will run one real task through a real AI tool. You will pick a task from your week, build the prompt in the Prompt Lab, run it in ChatGPT, Amplify, or Copilot, and come back to reflect on what it got right and what you had to fix. Use safe data only, nothing confidential.</p>
+      <p>In this section, you will run one real task from your week through a real AI tool, then come back and note what it got right and what you had to fix. Safe data only, nothing confidential.</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI actually feels like on your own work</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>One real task, start to finish, then two reflections</span>
@@ -1831,7 +1816,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </div>
     <div class="concept reveal">
       <span class="c-label">The idea</span>
-      <p>Ethan Mollick&rsquo;s practical rule, paraphrased: no list of tips can tell you where AI helps <em>your</em> job. <a href="https://www.oneusefulthing.org/" target="_blank" rel="noopener">Bring it to the table for a while</a> and you&rsquo;ll find its jagged edges yourself. That&rsquo;s what this module is: your first deliberate trip to the frontier, with guardrails.</p>
+      <p>Ethan Mollick&rsquo;s rule, paraphrased: no list of tips can tell you where AI helps <em>your</em> job. <a href="https://www.oneusefulthing.org/" target="_blank" rel="noopener">Bring it to your own work</a> and you find its edges yourself.</p>
       <p><b>One rule:</b> safe data only. Nothing confidential, nothing about identifiable people. This rep is about the skill, not the stakes.</p>
     </div>
     <div class="roadmap reveal">
@@ -1849,7 +1834,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Starters</span>
         <h3>No task jumping out? Steal one.</h3>
-        <p>Two ready-to-run starters, adapted from Geoff Woods&rsquo; prompt library (<em>The AI-Driven Leader</em>, companion resources at aileadership.com). Copy one, paste it into your tool, and answer the questions it asks.</p>
+        <p>Two ready-to-run starters, adapted from Geoff Woods&rsquo; prompt library (aileadership.com). Copy one, paste it into your tool, and answer the questions it asks.</p>
       </div>
       <div class="tech-list">
         <div class="tech reveal">
@@ -1908,10 +1893,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="simulator" class="th-cream" aria-label="AI opportunity simulator">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: application. Now that you can write a strong prompt, let&rsquo;s find where AI fits your actual job.</span>
+      <span class="you-are">You are here: application. You&rsquo;ve run one rep. Now map the rest of your week.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Simulator / 05</span></span>
       <h2>The AI Opportunity <em class="s">Simulator.</em></h2>
-      <p>In this section, you will describe one real piece of your work and let the Simulator map it. You will get an opportunity map, three starter prompts written around your own words, any data-sensitivity flags, and a 30-day plan. The best use cases share three features: they <b style="color:var(--champ);font-weight:600">repeat</b> (weekly, monthly, every fall), they are <b style="color:var(--champ);font-weight:600">text-heavy</b> (emails, summaries, reports), and they follow <b style="color:var(--champ);font-weight:600">rules you could explain to a new hire</b>. Nothing you type is stored or sent anywhere.</p>
+      <p>In this section, you will describe one real piece of your work and get back an opportunity map, three starter prompts in your own words, any data flags, and a 30-day plan. The best use cases <b style="color:var(--champ);font-weight:600">repeat</b>, are <b style="color:var(--champ);font-weight:600">text-heavy</b>, and follow <b style="color:var(--champ);font-weight:600">rules you could explain to a new hire</b>. Nothing you type is stored.</p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         A guided framework based on common AI patterns, not a live AI. For the real thing, take these prompts into your tools.</p>
       <div class="lframe">
@@ -1924,7 +1909,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
     <div class="concept reveal">
       <span class="c-label">The idea</span>
-      <p>One thing worth knowing before you press the button: this engine literally pattern-matches your description against fourteen common workplace patterns: drafting, summarizing, reporting, support, and so on. It&rsquo;s a tiny, see-through version of how the real AI thinks. <b>Notice:</b> the more concretely you describe the work, the more patterns it can catch, exactly like a real prompt.</p>
+      <p>This engine matches your description against fourteen common workplace patterns: drafting, summarizing, reporting, support, and so on. <b>Notice:</b> the more concretely you describe the work, the more patterns it catches, exactly like a real prompt.</p>
     </div>
 
     <div class="sim-shell reveal">
@@ -1984,7 +1969,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: orientation. Now that you know what to ask, let&rsquo;s choose where to ask it.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Tools / 06</span></span>
       <h2>Three tools, <em class="s">zero guesswork.</em></h2>
-      <p>In this section, you will compare the three AI tools available to Vanderbilt staff: ChatGPT, Amplify, and Copilot. You will learn what each is best at, what data each is approved for, and the one rule that decides most cases. Two questions pick your tool: <b style="color:var(--champ);font-weight:600">how sensitive is the data</b> (that decides where work is <em>allowed</em> to happen) and <b style="color:var(--champ);font-weight:600">where are you already working</b> (that decides what is convenient).</p>
+      <p>In this section, you will compare your three tools: ChatGPT, Amplify, and Copilot. Two questions pick the right one: <b style="color:var(--champ);font-weight:600">how sensitive is the data</b>, and <b style="color:var(--champ);font-weight:600">where are you already working</b>.</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What each tool is for, and what data it may touch</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Skim three cards, keep one rule of thumb</span>
@@ -2036,7 +2021,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </div>
     <div class="evidence reveal">
       <span class="e-label">The bench behind Amplify</span>
-      <p>Amplify isn&rsquo;t an off-the-shelf product with a Vanderbilt login. It&rsquo;s Vanderbilt&rsquo;s own open-source generative AI platform, built internally and now in its <a href="https://computing.vanderbilt.edu/2026/01/06/amplify-2-0-ushers-in-a-new-era-of-ai-powered-productivity-at-vanderbilt/" target="_blank" rel="noopener">Amplify 2.0 era</a>. The team behind it is led by <b>Allen Karns</b>, Chief AI and Technology Officer of the <a href="https://news.vanderbilt.edu/2026/02/02/vanderbilt-launches-amplify-generative-ai-innovation-center-within-college-of-connected-computing/" target="_blank" rel="noopener">Amplify Generative AI Innovation Center</a>, who co-leads the center with Center Director <b>Jules White</b>, Professor of Computer Science and the same Jules White whose prompt patterns power our Prompt Lab. That&rsquo;s who stands behind the &ldquo;approved for institutional data&rdquo; badge: colleagues, not a vendor. <!-- [EDIT: confirm titles with the Amplify center before launch] --></p>
+      <p>Amplify is Vanderbilt&rsquo;s own open-source generative AI platform, built internally and now in its <a href="https://computing.vanderbilt.edu/2026/01/06/amplify-2-0-ushers-in-a-new-era-of-ai-powered-productivity-at-vanderbilt/" target="_blank" rel="noopener">Amplify 2.0 era</a>. It is led by <b>Allen Karns</b>, Chief AI and Technology Officer, and <b>Jules White</b>, Center Director of the <a href="https://news.vanderbilt.edu/2026/02/02/vanderbilt-launches-amplify-generative-ai-innovation-center-within-college-of-connected-computing/" target="_blank" rel="noopener">Amplify Generative AI Innovation Center</a> and the same Jules White whose prompt patterns power the Prompt Lab. Colleagues stand behind the badge, not a vendor. <!-- [EDIT: confirm titles with the Amplify center before launch] --></p>
     </div>
     <div class="rule-strip reveal" role="note" aria-label="Rule of thumb">
       <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.2-8 10.8-4.6-1.6-8-5.8-8-10.8V5.5L12 2z"/></svg>Sensitive data → <b>Amplify</b></span>
@@ -2102,7 +2087,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>Rules answer the questions someone already thought of; judgment handles the ones nobody has yet. AI is moving faster than any handbook can, so the gray areas land on regular staff first, usually on a busy afternoon. Practicing on low-stakes scenarios now beats improvising on a real one later.</p>
+        <p>AI moves faster than any handbook, so the gray areas land on regular staff first. Practicing on low-stakes scenarios now beats improvising on a real one later.</p>
         <p><b>Notice as you choose:</b> the &ldquo;safe-looking&rdquo; middle option isn&rsquo;t automatically the right one. What decides each scenario is <em>which</em> principle is at stake.</p>
       </div>
       <div class="dilemma-grid">
@@ -2191,7 +2176,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </div>
     <div class="concept reveal">
       <span class="c-label">The idea</span>
-      <p>These six habits follow from two facts you already know. Because the model predicts rather than looks anything up (Module B), you <b>verify</b>, you <b>disclose</b>, and you keep a <b>human on every decision</b>. And because what you paste can leave Vanderbilt&rsquo;s control, the data rules route anything sensitive to Amplify, or nowhere. Hold onto those two facts and every card below becomes obvious.</p>
+      <p>Two facts you already know drive all six habits. The model predicts rather than checks, so you <b>verify</b>, <b>disclose</b>, and keep a <b>human on every decision</b>. And what you paste can leave Vanderbilt&rsquo;s control, so anything sensitive goes to Amplify, or nowhere.</p>
     </div>
     <div class="resp-grid">
       <article class="principle reveal">
@@ -2222,7 +2207,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <article class="principle reveal" style="transition-delay:.18s">
         <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
         <h3>Keep learning</h3>
-        <p>These tools change monthly. Fifteen curious minutes a week keeps your skills compounding while everyone else is still skeptical.</p>
+        <p>These tools change monthly. A little steady curiosity keeps your skills compounding while everyone else is still skeptical.</p>
       </article>
     </div>
     <div class="never reveal">
@@ -2255,7 +2240,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: sustainability. Now that AI is saving you time, let&rsquo;s make sure you keep it.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Wellbeing / 09</span></span>
       <h2>AI saves time, <em class="s">if you let it.</em></h2>
-      <p>In this section, you will learn how AI quietly intensifies work, and how to keep the time it saves you. You will review three patterns from the research, then take a six-question self-check. Your answers stay between you and you. The research here: <a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">&ldquo;AI Doesn&rsquo;t Reduce Work: It Intensifies It&rdquo;</a> by Ranganathan &amp; Ye (Harvard Business Review, February 2026), who followed about 200 employees at a U.S. tech company for eight months.</p>
+      <p>In this section, you will spot three ways AI quietly adds work, then take a six-question self-check. The research: <a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">&ldquo;AI Doesn&rsquo;t Reduce Work: It Intensifies It&rdquo;</a> by Ranganathan &amp; Ye (Harvard Business Review, February 2026), an eight-month study of about 200 employees.</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>How AI quietly intensifies work, per the HBR research</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Spot the three patterns, run a six-question self-check</span>
@@ -2298,7 +2283,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>Intensification sneaks up because no single moment feels like the problem. Each &ldquo;quick&rdquo; AI task really is quick; it&rsquo;s the accumulation (filled breaks, parallel threads, a to-do list that quietly refills itself) that adds up to a heavier week. By the time you <em>feel</em> it, the pattern is months old, which is why a deliberate check beats waiting.</p>
+        <p>Intensification sneaks up because each &ldquo;quick&rdquo; AI task really is quick. It is the accumulation that makes a heavier week, and by the time you feel it, the pattern is months old.</p>
         <p><b>Notice as you answer:</b> go by your actual last two weeks, not your intentions.</p>
       </div>
       <div class="app-grid">
@@ -2374,7 +2359,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Shift 01</span>
         <h3>From answering to acting: AI agents</h3>
-        <p>You met agentic AI on a flip card in Module A; this is the deep dive. A chatbot answers when asked. An agent takes a goal and works toward it in steps (drafting, checking, filing, following up), pausing to ask when it&rsquo;s unsure. Same engine underneath, much bigger job description. The family tree:</p>
+        <p>You met agentic AI in Module A. A chatbot answers when asked; an agent takes a goal and works toward it in steps, pausing to ask when unsure. Same engine, bigger job description. The family tree:</p>
       </div>
       <div class="hw-grid">
         <div class="hw reveal"><span class="hw-no" aria-hidden="true">A</span>
@@ -2396,7 +2381,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Shift 02</span>
         <h3>Tasks change. Jobs get rebuilt.</h3>
-        <p>AI automates <em>tasks</em>, not jobs; no role is a single task. But as tasks get absorbed, roles get rebuilt around the freed time, and that&rsquo;s where the fork in the road is: the people who thrive are the ones who <b style="color:var(--champ);font-weight:600">redeploy the hours on purpose</b>, into judgment, relationships, and the parts of the work only a person can do.</p>
+        <p>AI automates <em>tasks</em>, not jobs. As tasks get absorbed, roles get rebuilt around the freed time, and the people who thrive <b style="color:var(--champ);font-weight:600">redeploy the hours on purpose</b>.</p>
       </div>
       <div class="conseq" role="img" aria-label="The pattern: a task gets absorbed, time gets freed, the role gets rebuilt, and you choose what fills it">
         <span class="c-lead mono" aria-hidden="true">The pattern to expect, and get ahead of</span>
@@ -2424,7 +2409,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="evidence reveal">
         <span class="e-label">The evidence</span>
-        <p>Both styles come from Ethan Mollick&rsquo;s essay on the same HBS/BCG experiment, and both are legitimate. Our suggestion: <b>start centaur</b>, because clean handoffs are easier to check while you&rsquo;re still building instincts, and <b>grow cyborg</b> as you get a feel for the frontier. The guiding stance of this whole platform is borrowed (paraphrased, not quoted) from his book <em>Co-Intelligence</em>: treat AI like a person (a tireless, overconfident colleague), always check its work, and stay the human in the loop.</p>
+        <p>Both styles come from Ethan Mollick&rsquo;s essay on the same experiment. Our suggestion: <b>start centaur</b>, because clean handoffs are easier to check, then <b>grow cyborg</b> as you learn the frontier. This platform&rsquo;s stance is borrowed from his book <em>Co-Intelligence</em>: treat AI like a tireless, overconfident colleague, and always check its work.</p>
         <span class="e-src">Ethan Mollick, <a href="https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged" target="_blank" rel="noopener">&ldquo;Centaurs and Cyborgs on the Jagged Frontier&rdquo;</a> (One Useful Thing, 2023) &middot; <em>Co-Intelligence: Living and Working with AI</em> (2024)</span>
       </div>
     </div>
@@ -2437,7 +2422,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>Why these five? Because they&rsquo;re about to get scarce. As AI absorbs the drafting, summarizing, and assembling, the things machines can&rsquo;t supply (choosing well, checking truth, briefing clearly, earning trust, knowing your unit&rsquo;s exceptions) become the missing ingredient in every workflow. Better AI doesn&rsquo;t threaten these skills; it makes them <em>more valuable</em>. The builder below turns your pick of them into a 90-day plan.</p>
+        <p>As AI absorbs the drafting and assembling, the things machines cannot supply (choosing well, checking truth, briefing clearly, earning trust, knowing your unit&rsquo;s exceptions) become the scarce ingredient. The builder below turns your pick of them into a 90-day plan.</p>
       </div>
       <div class="resp-grid">
       <article class="principle reveal">
@@ -2516,7 +2501,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="readiness" class="th-cream" aria-label="AI and role readiness">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: the map table. You&rsquo;ve transformed how you work. Now see where a real role meets AI, task by task.</span>
+      <span class="you-are">You are here: the map table. You&rsquo;ve built your plan. Now see where a real role meets AI, task by task.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">AI readiness / 11</span></span>
       <h2>Your role, <em class="s">task by task.</em></h2>
       <p>In this section, you will look at a role the way AI actually meets it: task by task.</p>
@@ -2527,16 +2512,18 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <p>AI doesn&rsquo;t show up for a job title. It shows up for a task. Every role, yours
         included, is really just a bundle of tasks, and that bundle is lumpy: some tasks sit
         squarely in AI&rsquo;s wheelhouse, others barely register, and most jobs contain a messy
-        mix of both. That&rsquo;s why the <b>task list</b>, not the job title, is the right unit
-        to analyze, and why the point of doing this isn&rsquo;t to hand down a verdict but to
-        build a <b>development plan</b>.</p>
+        mix of both. That&rsquo;s why the task list, not the job title, is the right unit to
+        analyze, and why the point of doing this isn&rsquo;t to hand down a verdict but to build
+        a development plan.</p>
       <p>One rule sits underneath everything in this section: exposure is a signal for planning
         and development, full stop. It&rsquo;s never, by itself, grounds for eliminating a role,
         and nothing here treats it that way. Understanding your own task exposure is a form of
         agency. It lets you get ahead of the change and shape your own development, rather than
         just waiting to see what happens to you.</p>
-      <p><b>By the end of this section, you&rsquo;ll be able to do this same mapping for any role,
-        starting with your own.</b></p>
+      <p>This section walks through four short ideas, each anchored to a named study, and then
+        puts them to work: turning a real task list into a read on exposure, sorting it into
+        three buckets, and building a development plan from there. By the end, you&rsquo;ll be
+        able to do this same mapping for any role, starting with your own.</p>
     </div>
 
     <!-- Module A: the four ideas -->
@@ -2556,10 +2543,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
       <div class="ra-idea">
         <h4><span class="no" aria-hidden="true">01</span>AI exposes tasks, not jobs</h4>
-        <p>A role is a bundle of tasks, and AI meets the bundle unevenly: the weekly report is
-          highly exposed, the vendor negotiation barely at all, and both belong to the same
-          person. People who ask &ldquo;will AI take my job?&rdquo; get stuck. Ask instead
-          <b>&ldquo;which of my tasks does AI touch?&rdquo;</b> and you get a plan.</p>
+        <p>AI meets a role unevenly: the weekly report is highly exposed, the vendor negotiation
+          barely at all. Ask <b>&ldquo;which of my tasks does AI touch?&rdquo;</b> and you get a
+          plan instead of a worry.</p>
         <div class="evidence">
           <span class="e-label">The evidence</span>
           <p><b>About 80 percent of the US workforce could see at least 10 percent of their tasks
@@ -2572,11 +2558,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
       <div class="ra-idea">
         <h4><span class="no" aria-hidden="true">02</span>Exposure is not elimination</h4>
-        <p>An exposed task is a task AI can help with, not a task that disappears. In real
-          workplaces, usage leans toward augmentation: a person working with AI, checking it,
-          and owning the result. So the practical question for each exposed task is not
-          &ldquo;does this task survive?&rdquo; but <b>&ldquo;which level fits: automate it with
-          oversight, or redesign it as human plus AI?&rdquo;</b></p>
+        <p>An exposed task is a task AI can help with, not a task that disappears. The practical
+          question for each one: <b>automate it with oversight, or redesign it as human plus
+          AI?</b></p>
         <div class="evidence">
           <span class="e-label">The evidence</span>
           <p><b>Real usage splits about 57 percent augmentation to 43 percent automation.</b>
@@ -2589,10 +2573,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
       <div class="ra-idea">
         <h4><span class="no" aria-hidden="true">03</span>The frontier is jagged</h4>
-        <p>AI is strong on some tasks and quietly bad at adjacent ones, and the boundary follows
-          neither job titles nor difficulty. The only way to know where the line runs for your
-          work is to test task by task. That is also why <b>verification skill matters as much as
-          prompting skill</b>: someone has to catch the confident wrong answer.</p>
+        <p>AI is strong on some tasks and quietly bad at adjacent ones. The only way to find the
+          line for your work is to test task by task, which is why <b>verification matters as
+          much as prompting</b>.</p>
         <div class="evidence">
           <span class="e-label">The evidence</span>
           <p><b>Inside the frontier, consultants with AI finished 12.2 percent more tasks, worked
@@ -2606,11 +2589,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 
       <div class="ra-idea">
         <h4><span class="no" aria-hidden="true">04</span>Skills churn is the planning horizon</h4>
-        <p>The stable plan is not a stable skill list. When a large share of core skills changes
-          within a few years, the response runs in a fixed order: <b>upskill first, reskill
-          where tasks shift, redesign roles where the shift is large, and only then hire</b>
-          for what remains. For an individual, the same order reads: build on what you have
-          before you assume you need something new.</p>
+        <p>When core skills change fast, the response runs in a fixed order: <b>upskill first,
+          reskill where tasks shift, redesign roles where the shift is large, and only then
+          hire.</b> For you, that reads: build on what you have first.</p>
         <div class="evidence">
           <span class="e-label">The evidence</span>
           <p><b>Employers expect 39 percent of workers&rsquo; core skills to change by 2030.</b>
@@ -2640,11 +2621,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Module B &middot; Centerpiece</span>
         <h3>The role readiness assessment</h3>
-        <p>In this activity, you will name a role, yours or one you manage, write down the real
-          tasks that fill its week in your own words, and answer three quick questions about
-          each task. The page then sorts every task you named into one of the three buckets,
-          with a reason, and builds the rest of the readout: a directional exposure read, the
-          skills to build, and a 30/60/90 plan you can copy into your notes.</p>
+        <p>In this activity, you will name a role, list the real tasks that fill its week, and
+          answer three quick questions about each. The page sorts every task into a bucket and
+          builds your readout: an exposure read, the skills to build, and a 30/60/90 plan you
+          can copy.</p>
         <div class="lframe">
           <span class="lf-chip"><b>You&rsquo;ll learn</b>Which of the role&rsquo;s tasks are exposed and which are protected</span>
           <span class="lf-chip"><b>You&rsquo;ll do</b>List a week&rsquo;s real tasks, sort them, copy a plan</span>
@@ -2822,15 +2802,6 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <span>A directional conversation starter built from your answers, not a job evaluation, a
           reclassification, or an HR determination. Real workforce decisions run through HR;
           your development is yours to steer. <!-- [EDIT] HR workforce planning contact --></span></p>
-        <details class="deeper">
-          <summary><span class="dx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>How this assessment is built</summary>
-          <div class="d-body">
-            <p><b>Why we ask about tasks, not jobs:</b> the study that mapped AI against U.S. occupations worked at the task level, and found about 80 percent of workers could see at least 10 percent of their tasks affected. Source: Eloundou, Manning, Mishkin, and Rock (2023), &ldquo;GPTs are GPTs,&rdquo; <a href="https://arxiv.org/abs/2303.10130" target="_blank" rel="noopener noreferrer">arxiv.org/abs/2303.10130</a>.</p>
-            <p><b>Why three buckets:</b> real-world usage splits about 57 percent augmentation (working with AI) to 43 percent automation (handing work over), so a task list needs more than one destiny. Source: <a href="https://www.anthropic.com/news/the-anthropic-economic-index" target="_blank" rel="noopener noreferrer">Anthropic Economic Index (2025)</a>.</p>
-            <p><b>Why we ask about checking:</b> in the Harvard/BCG field experiment, people using AI on tasks it was quietly bad at were 19 percentage points more likely to be wrong, and the answers still sounded confident. Checkability decides how safely a task can be delegated. Source: Dell&rsquo;Acqua et&nbsp;al. (2023), HBS working paper 24-013, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4573321" target="_blank" rel="noopener noreferrer">papers.ssrn.com</a>.</p>
-            <p><b>Where the skills list comes from:</b> employers expect 39 percent of core skills to change by 2030, with analytical thinking on top and AI and big data the fastest growing. Source: World Economic Forum, <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener noreferrer"><em>Future of Jobs Report 2025</em></a>.</p>
-          </div>
-        </details>
       </div>
     </div>
 
@@ -2845,7 +2816,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: launchpad. You&rsquo;ve built the foundation. This is where to keep growing.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Resources / 12</span></span>
       <h2>Keep the curiosity <em class="s">compounding.</em></h2>
-      <p>In this section, you will find the podcasts, videos, articles, and reports we trust, including work from the Vanderbilt experts behind Amplify and the prompt patterns you practiced. Pick one and keep going. Fifteen curious minutes a week is the whole assignment.</p>
+      <p>In this section, you will find the podcasts, videos, and reports we trust, including the Vanderbilt experts behind Amplify. Pick one. Fifteen curious minutes a week is the whole assignment.</p>
       <div class="lframe"><span class="lf-chip"><b>Last reviewed</b>July 2026</span><span class="lf-chip"><b>Format</b>All free to start &middot; all external links</span></div>
     </div>
       <div class="res-group reveal">
@@ -2909,7 +2880,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <h3>Reports &amp; guides <span class="mono">/ 6 picks</span></h3>
         <div class="res-grid">
         <a class="res" href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener">
-          <span><b>Stanford HAI · AI Index Report 2026</b><span class="why">The definitive annual state-of-AI data, charts included.</span><span class="rtag">Annual</span></span>
+          <span><b>Stanford HAI · AI Index Report 2026</b><span class="why">The annual state-of-AI data, charts included.</span><span class="rtag">Annual</span></span>
           <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
         <a class="res" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">
           <span><b>McKinsey · The State of AI</b><span class="why">Adoption and value, surveyed across industries.</span><span class="rtag">Survey</span></span>
@@ -2935,7 +2906,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <span><b>Jules White · Prompt Engineering Specialization (Coursera)</b><span class="why">The flagship series from Vanderbilt&rsquo;s own prompt-pattern pioneer; starts free.</span><span class="rtag">Vanderbilt</span></span>
           <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
         <a class="res" href="https://www.coursera.org/learn/prompt-engineering" target="_blank" rel="noopener">
-          <span><b>Jules White · Prompt Engineering for ChatGPT</b><span class="why">The single course that started it, one of Coursera&rsquo;s most-taken AI courses.</span><span class="rtag">Free</span></span>
+          <span><b>Jules White · Prompt Engineering for ChatGPT</b><span class="why">The single course that started it; free to audit.</span><span class="rtag">Free</span></span>
           <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
         <a class="res" href="https://www.coursera.org/learn/advanced-prompt-engineering-for-everyone" target="_blank" rel="noopener">
           <span><b>Jules White · Advanced Prompt Engineering for Everyone</b><span class="why">Ready for more? In-context learning, RAG, and structured outputs.</span><span class="rtag">Next level</span></span>
@@ -2999,7 +2970,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </div>
     <div class="concept reveal">
       <span class="c-label">The idea</span>
-      <p>A good score means the core ideas (prediction, verification, data routing) stuck well enough to use this week. It doesn&rsquo;t mean you&rsquo;re finished: these tools change monthly, and no quiz can measure the habit that matters most, which is reaching for the right tool on a real task. A missed question is just a pointer back to the section worth a second look.</p>
+      <p>A good score means the core ideas (prediction, verification, data routing) stuck. A missed question is just a pointer back to the section worth a second look.</p>
     </div>
     <div class="quiz-shell reveal">
       <form id="quizForm" autocomplete="off" novalidate>
@@ -3123,10 +3094,10 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="summary" class="th-light" aria-label="What you now know">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: consolidation. This recap isn&rsquo;t a formality; a quick revisit strengthens memory more than rereading ever does.</span>
+      <span class="you-are">You are here: consolidation. A quick revisit locks the ideas in.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Summary / 14</span></span>
       <h2>What you now <em class="s">know.</em></h2>
-      <p>In this section, you will revisit the eight ideas you picked up today. A quick review right after learning is what moves ideas into long-term memory.</p>
+      <p>In this section, you will revisit the eight ideas you picked up today.</p>
     </div>
     <div class="recap-grid">
       <article class="recap reveal">
@@ -3260,9 +3231,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="fcol">
         <h4>Practice</h4>
+        <a href="#crit">The CRIT framework</a>
         <a href="#playground">Prompt Lab</a>
         <a href="#playground">Prompt Grader</a>
-        <a href="#crit">The CRIT framework</a>
         <a href="#firstrep">Your first real rep</a>
         <a href="#simulator">Opportunity Simulator</a>
         <a href="#quiz">Knowledge check</a>
@@ -3392,8 +3363,8 @@ function copyText(txt, labelEl, okMsg){
 var PROG_KEY = 'chart-progress-';
 var PROG_SECTIONS = [
   { k:'learn',       no:'01', name:'Learn the fundamentals', how:'Finish the hallucination drill' },
-  { k:'playground',  no:'02', name:'The Playground',         how:'Use any of the three apps' },
-  { k:'crit',        no:'03', name:'The CRIT framework',     how:'Copy a CRIT prompt from the builder' },
+  { k:'crit',        no:'02', name:'The CRIT framework',     how:'Copy a CRIT prompt from the builder' },
+  { k:'playground',  no:'03', name:'The Playground',         how:'Use any of the three apps' },
   { k:'firstrep',    no:'04', name:'Your first real rep',    how:'Log your rep in the debrief' },
   { k:'simulator',   no:'05', name:'Opportunity Simulator',  how:'Analyze a use case' },
   { k:'tools',       no:'06', name:'Three tools',            how:'Mark it done once read' },
@@ -3452,6 +3423,8 @@ function progRender(changedKey, nowDone){
     ? 'Section tracking: all ' + total + ' sections complete.'
     : 'Section tracking: ' + doneN + ' of ' + total + ' complete, ' + left + ' left. Progress saves only in this browser.';
   if(mprogLine) mprogLine.textContent = doneN + ' of ' + total + ' sections complete';
+  var railCount = document.getElementById('railCount');
+  if(railCount) railCount.textContent = doneN + '/' + total;
   PROG_SECTIONS.forEach(function(s){
     var done = progIs(s.k);
     var row = progList ? progList.querySelector('[data-prog-row="' + s.k + '"]') : null;
@@ -3461,6 +3434,12 @@ function progRender(changedKey, nowDone){
       if(st) st.textContent = done ? 'Done' : 'Not yet';
     }
     document.querySelectorAll('.mlink[data-prog="' + s.k + '"]').forEach(function(a){ a.classList.toggle('done', done); });
+    var dot = document.querySelector('.rn-dot[data-rail="' + s.k + '"]');
+    if(dot){
+      dot.classList.toggle('done', done);
+      dot.setAttribute('aria-label', s.name + ', ' + (done ? 'done' : 'not done'));
+      dot.setAttribute('title', s.no + ' · ' + s.name + ' · ' + (done ? 'done' : 'not yet'));
+    }
     document.querySelectorAll('.md-btn[data-prog="' + s.k + '"]').forEach(function(b){
       b.setAttribute('aria-pressed', done ? 'true' : 'false');
       var sp = b.querySelector('span');
@@ -3504,6 +3483,59 @@ if(progReset) progReset.addEventListener('click', function(){
   progRender();
   if(progStatus) progStatus.textContent = 'Progress reset. 0 of ' + PROG_SECTIONS.length + ' sections complete.';
 });
+/* ── right-edge dot rail: one dot per tracked section, always visible on desktop ── */
+function railBuild(){
+  var rail = document.createElement('nav');
+  rail.className = 'rail-nav';
+  rail.id = 'railNav';
+  rail.setAttribute('aria-label', 'Section progress');
+  var html = '<span class="rn-count" id="railCount" aria-hidden="true">0/' + PROG_SECTIONS.length + '</span>';
+  PROG_SECTIONS.forEach(function(sec){
+    html += '<a class="rn-dot" href="#' + sec.k + '" data-rail="' + sec.k + '"' +
+      ' title="' + sec.no + ' · ' + sec.name + ' · not yet"' +
+      ' aria-label="' + sec.name + ', not done"><span class="dot" aria-hidden="true"></span></a>';
+  });
+  rail.innerHTML = html;
+  document.body.appendChild(rail);
+}
+var railCur = '';
+function railSetCurrent(k){
+  if(k === railCur) return;
+  railCur = k;
+  document.querySelectorAll('.rn-dot').forEach(function(a){
+    var on = a.getAttribute('data-rail') === k;
+    a.classList.toggle('cur', on);
+    if(on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+  });
+}
+function railWatch(){
+  var secs = PROG_SECTIONS.map(function(sec){ return document.getElementById(sec.k); }).filter(Boolean);
+  if(!secs.length) return;
+  function byScroll(){
+    var mid = (window.scrollY || document.documentElement.scrollTop) + window.innerHeight * .42;
+    var cur = '';
+    secs.forEach(function(el){
+      var top = el.offsetTop;
+      if(top <= mid && mid < top + el.offsetHeight) cur = el.id;
+    });
+    if(cur) railSetCurrent(cur);
+  }
+  if('IntersectionObserver' in window){
+    var vis = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ vis[e.target.id] = e.isIntersecting; });
+      for(var i = 0; i < secs.length; i++){
+        if(vis[secs[i].id]){ railSetCurrent(secs[i].id); return; }
+      }
+    }, { rootMargin: '-38% 0px -55% 0px' });
+    secs.forEach(function(el){ io.observe(el); });
+  } else {
+    window.addEventListener('scroll', function(){ window.requestAnimationFrame(byScroll); }, {passive:true});
+    byScroll();
+  }
+}
+railBuild();
+railWatch();
 progBuildList();
 progRender();
 
