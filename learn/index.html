@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The CHART Platform · Vanderbilt's AI learning experience for staff</title>
-<meta name="description" content="CHART (Cultivating Human-AI Readiness and Thinking) is Vanderbilt&#39;s AI learning experience for staff: plain-English lessons, working practice tools, and a personal 90-day plan." />
+<meta name="description" content="CHART (Cultivating Human-AI Readiness and Thinking) is Vanderbilt&#39;s AI learning experience for staff: plain-English lessons, working practice tools, and a readiness plan for your own role." />
 <meta name="theme-color" content="#1C1C1C" />
 <meta property="og:title" content="The CHART Platform · Vanderbilt&#39;s AI learning experience for staff" />
 <meta property="og:description" content="Cultivating Human-AI Readiness and Thinking: plain-English lessons, practice tools, and an AI opportunity simulator for Vanderbilt staff." />
@@ -18,7 +18,7 @@
     · Amplify URL + approval language        · Vanderbilt AI policy links
     · Tool cost / license rows (Tools)       · Contact mailto (footer + menu)
     · Hero ambient video URL                 · Disclaimer + ownership line
-    · Department list (Simulator)            · EAP / Work-Life link (Wellbeing)
+    · Department list (Simulator)            · EAP / Work-Life link (Responsible AI)
     · Internal resources (Resources)         · Quiz pass thresholds if desired
     · AI readiness: L&D catalog link, HR workforce planning contact, and the
       development planning resource (Your role, task by task)
@@ -379,8 +379,8 @@ details.deeper .d-body b{ color:var(--tx); font-weight:600; }
 .yt-t{ font-weight:600; font-size:1rem; color:#fff; text-align:center; max-width:460px; }
 .yt-sub{ font-size:.68rem; color:var(--vu-gold); }
 .yt-fallback{ margin:10px 2px 0; font-size:.85rem; color:var(--tx3); }
-.yt-fallback a,.pol a,.wb-practice p a,.honest a,.evidence a,.rstep a,.concept p a{ color:var(--link); border-bottom:1px solid var(--bdg); }
-.yt-fallback a:hover,.evidence a:hover,.rstep a:hover,.concept p a:hover{ color:var(--strong); }
+.yt-fallback a,.pol a,.wb-practice p a,.honest a,.evidence a,.rstep a,.concept p a,details.deeper .d-body a{ color:var(--link); border-bottom:1px solid var(--bdg); }
+.yt-fallback a:hover,.evidence a:hover,.rstep a:hover,.concept p a:hover,details.deeper .d-body a:hover{ color:var(--strong); }
 </style>
 <style>
 /* ═══════════════════ PLAYGROUND — TABS + FORMS ═══════════════════ */
@@ -396,7 +396,13 @@ details.deeper .d-body b{ color:var(--tx); font-weight:600; }
 .btn[hidden]{ display:none; }
 .app-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,44px); align-items:start; }
 .field{ display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
-.field label{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--tx2); }
+.field label,.field .flabel{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--tx2); }
+.crl{ display:inline-grid; place-items:center; width:20px; height:20px; margin-right:8px; border:1px solid var(--bdg); border-radius:2px;
+  color:var(--strong); background:rgba(207,174,112,.1); font-size:.7rem; line-height:1; vertical-align:-4px; }
+.itv-checks{ margin:0; gap:10px 18px; }
+details.pl-opt{ margin:0 0 18px; max-width:none; }
+.pl-opt .d-body .field{ margin-bottom:14px; }
+.pl-opt .d-body .field:last-child{ margin-bottom:0; }
 .field .hinttxt{ font-size:.8rem; color:var(--tx3); margin-top:-2px; }
 .field input[type=text],.field textarea,.field select{ width:100%; min-height:48px; padding:12px 16px; border-radius:var(--r); color:var(--tx);
   background:var(--field); border:1px solid var(--field-bd); transition:border-color .2s ease-out, box-shadow .2s ease-out; }
@@ -939,13 +945,13 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <a href="#crit">CRIT</a>
           <a href="#playground">Practice</a>
           <a href="#simulator">Simulator</a>
-          <a href="#future">Transform</a>
+          <a href="#responsible">Responsible AI</a>
           <a href="#readiness">Readiness</a>
           <a href="#resources">Resources</a>
           <a class="btn btn-gold btn-sm nav-cta" href="#quiz">Knowledge check</a>
         </nav>
         <button class="prog-btn" id="progBtn" aria-expanded="false" aria-controls="progPanel">
-          <span class="pw">Progress</span> <b id="progCount">0/14</b>
+          <span class="pw">Progress</span> <b id="progCount">0/11</b>
         </button>
         <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
           <span class="b b1" aria-hidden="true"></span><span class="b b2" aria-hidden="true"></span><span class="b b3" aria-hidden="true"></span>
@@ -959,7 +965,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <!-- progress panel: every tracked section, its state, and a deep link -->
 <div class="prog-panel" id="progPanel" hidden>
   <h2>Your progress</h2>
-  <p class="prog-sum" id="progSum">0 of 14 sections complete.</p>
+  <p class="prog-sum" id="progSum">0 of 11 sections complete.</p>
   <ol class="prog-list" id="progList"></ol>
   <p class="prog-fine">Progress is saved only in this browser: completion flags, nothing else. Nothing is sent or reported. Reset it anytime in the footer.</p>
 </div>
@@ -973,16 +979,13 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <a class="mlink" href="#firstrep" data-prog="firstrep"><span class="mono">04</span>First rep<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#simulator" data-prog="simulator"><span class="mono">05</span>Simulator<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#tools" data-prog="tools"><span class="mono">06</span>Tools<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#ethics" data-prog="ethics"><span class="mono">07</span>Ethics<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#responsible" data-prog="responsible"><span class="mono">08</span>Responsible AI<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#wellbeing" data-prog="wellbeing"><span class="mono">09</span>Wellbeing<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#future" data-prog="future"><span class="mono">10</span>Transform<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#readiness" data-prog="readiness"><span class="mono">11</span>AI readiness<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#resources" data-prog="resources"><span class="mono">12</span>Resources<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#quiz" data-prog="quiz"><span class="mono">13</span>Knowledge check<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#summary"><span class="mono">14</span>What you know</a>
-  <a class="mlink" href="#nextstep" data-prog="nextstep"><span class="mono">15</span>Your next step<span class="mdone" aria-hidden="true">Done</span></a>
-  <div class="mprog" id="mprogLine">0 of 14 sections complete</div>
+  <a class="mlink" href="#responsible" data-prog="responsible"><span class="mono">07</span>Responsible AI<span class="mdone" aria-hidden="true">Done</span></a>
+  <a class="mlink" href="#readiness" data-prog="readiness"><span class="mono">08</span>AI readiness<span class="mdone" aria-hidden="true">Done</span></a>
+  <a class="mlink" href="#resources" data-prog="resources"><span class="mono">09</span>Resources<span class="mdone" aria-hidden="true">Done</span></a>
+  <a class="mlink" href="#quiz" data-prog="quiz"><span class="mono">10</span>Knowledge check<span class="mdone" aria-hidden="true">Done</span></a>
+  <a class="mlink" href="#summary"><span class="mono">11</span>What you know</a>
+  <a class="mlink" href="#nextstep" data-prog="nextstep"><span class="mono">12</span>Your next step<span class="mdone" aria-hidden="true">Done</span></a>
+  <div class="mprog" id="mprogLine">0 of 11 sections complete</div>
   <div class="mfoot">chart@vanderbilt.edu <!-- [EDIT] program contact email --></div>
 </nav>
 
@@ -1069,7 +1072,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <h3>Learn to talk to it, then practice</h3>
           <p>In this section, you will learn <b>CRIT</b>, the four-part way to brief an AI. Its
             signature move is making the model interview you before it answers. Then you will drill it
-            in three working tools: the <b>Prompt Lab</b>, the <b>Prompt Grader</b>, and <b>Tool Match</b>.
+            in three practice apps: the <b>Prompt Lab</b>, the <b>Prompt Grader</b>, and <b>Tool Match</b>.
             <b>By the end, you will have a real prompt for real work, built by you.</b></p>
         </div>
         <span class="chip">~9 min</span>
@@ -1087,7 +1090,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
     </div>
     <p class="hw-meta reveal">~20 minutes for the core path &middot; every module is skippable and self-paced.</p>
-    <p class="hw-meta reveal" id="progTopLine" style="margin-top:10px">Section tracking: you have 14 sections ahead. Progress saves only in this browser.</p>
+    <p class="hw-meta reveal" id="progTopLine" style="margin-top:10px">Section tracking: you have 11 sections ahead. Progress saves only in this browser.</p>
     <!-- [EDIT] program name — CHART is a working title; the acronym line below updates with any rename -->
     <p class="acr-line reveal" role="img" aria-label="CHART stands for Cultivating Human-AI Readiness and Thinking"><b>C</b>ultivating&ensp;<b>H</b>uman-<b>A</b>I&ensp;<b>R</b>eadiness&ensp;and&ensp;<b>T</b>hinking</p>
     <div class="bridge reveal"><span class="b-label">Next</span><p>First, let&rsquo;s get the words right. Everything that follows builds on <em>one</em> idea.</p></div>
@@ -1555,7 +1558,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="module-head">
         <span class="mno">Builder</span>
         <h3>The CRIT builder</h3>
-        <p>In this activity, you will build a CRIT prompt in four fields and watch it assemble live. Tap a chip under any field for a running start. When you paste the result into your tool, the clarifying questions come back first; answer them, and the drafting starts.</p>
+        <p>In this activity, you will take your first guided walk through the framework: four fields, chips for a running start, one assembled prompt. (The Prompt Lab in the Playground is the freeform bench where you practice this on your own work.) When you paste the result into your tool, the clarifying questions come back first; answer them, and the drafting starts.</p>
       </div>
       <div class="micro"><span><i aria-hidden="true">1</i>Fill the four fields (chips help)</span><span><i aria-hidden="true">2</i>Watch the prompt assemble</span><span><i aria-hidden="true">3</i>Copy it out and answer its questions</span></div>
       <div class="app-grid">
@@ -1612,7 +1615,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </div>
       </div>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>You have the framework. Now drill it in three working tools, hands on <em>keyboard</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You have the framework. Now drill it in three practice apps, hands on <em>keyboard</em>.</p></div>
   </div>
 </section>
 
@@ -1623,9 +1626,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <span class="you-are">You are here: practice. You know CRIT. Now turn it into a habit.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Playground / 03</span></span>
       <h2>Practice here, <em class="s">shine everywhere.</em></h2>
-      <p>In this section, you will practice the CRIT ideas in three working tools: the Prompt Lab, the Prompt Grader, and Tool Match. Nothing you type is stored. <b>By the end, you will have built, graded, and routed a real prompt.</b></p>
+      <p>In this section, you will drill the CRIT moves in three practice apps: the Prompt Lab, the Prompt Grader, and Tool Match. Nothing you type is stored. <b>By the end, you will have built, graded, and routed a real prompt.</b></p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
-        Honesty corner: these are guided practice tools that run entirely in your browser: no AI, and nothing you type leaves this page. The real AI lives in ChatGPT, Amplify, and Copilot; take what you build here into those.</p>
+        Honesty corner: these are guided practice apps that run entirely in your browser: no AI, and nothing you type leaves this page. The real AI lives in ChatGPT, Amplify, and Copilot; take what you build here into those.</p>
     </div>
 
     <div class="reveal">
@@ -1642,51 +1645,68 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="ppanel" id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" tabindex="0">
         <div class="concept">
           <span class="c-label">What this trains</span>
-          <p>Here you build a prompt piece by piece. The five fields are CRIT&rsquo;s discipline in practice: Context, Role, and Task have their own boxes, and you can add the Interview line to the Task whenever the work is fuzzy. <b>Notice:</b> every field you fill narrows what comes back.</p>
+          <p>The CRIT builder was the guided walk; this is the freeform bench. You build the same four moves on your own work, with a quality meter reading over your shoulder and launch buttons for your real tools. <b>Notice:</b> every element you add narrows what comes back.</p>
         </div>
         <div class="lframe">
-        <span class="lf-chip"><b>You&rsquo;ll learn</b>The five ingredients of a great prompt</span>
+        <span class="lf-chip"><b>You&rsquo;ll learn</b>Building CRIT prompts freehand, with a quality meter</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Build one live, watch it assemble, copy it out</span>
         <span class="lf-chip"><b>Time</b>4 min</span>
         <p class="lf-why"><b>Why it matters to your work:</b> better prompts mean fewer rewrites. No other skill in this course saves you more time.</p>
       </div>
-        <div class="micro"><span><i aria-hidden="true">1</i>Fill any three fields (five is better)</span><span><i aria-hidden="true">2</i>Watch the prompt assemble live</span><span><i aria-hidden="true">3</i>Copy it into your tool of choice</span></div>
+        <div class="micro"><span><i aria-hidden="true">1</i>Work the four CRIT fields, top to bottom</span><span><i aria-hidden="true">2</i>Watch the prompt assemble live</span><span><i aria-hidden="true">3</i>Copy it into your tool of choice</span></div>
         <div class="sim-chips" aria-label="Example prompts">
           <span class="mono" style="align-self:center">Need a running start?</span>
           <button type="button" class="sim-chip" id="plExample">Prefill: enrollment reminder email</button>
           <button type="button" class="sim-chip" id="plExample2">Prefill: stakeholder map for a rollout</button>
         </div>
         <p class="hinttxt" style="margin:-8px 0 18px">The stakeholder example is adapted from Geoff Woods&rsquo; prompt library (<em>The AI-Driven Leader</em>, companion resources at aileadership.com).</p>
+        <p class="hinttxt" style="margin:0 0 16px;color:var(--tx2)"><b>Same four moves you just learned. Now build one for real.</b></p>
         <div class="app-grid">
           <form autocomplete="off" novalidate>
             <div class="field">
-              <label for="plRole">Role: &ldquo;You are a…&rdquo;</label>
+              <label for="plContext"><span class="crl" aria-hidden="true">C</span>Context: what should it know?</label>
+              <textarea id="plContext" rows="3" placeholder="e.g. Audience is 300 staff, deadline is Nov 15, tone should feel helpful not naggy"></textarea>
+              <span class="hinttxt">Background, audience, constraints. The part most prompts skip.</span>
+            </div>
+            <div class="field">
+              <label for="plRole"><span class="crl" aria-hidden="true">R</span>Role: &ldquo;You are a…&rdquo;</label>
               <input type="text" id="plRole" placeholder="e.g. an experienced university communications editor" />
               <span class="hinttxt">Giving the AI a job title changes everything about the answer. Vanderbilt&rsquo;s Jules White catalogued it as the &ldquo;Persona pattern.&rdquo;</span>
             </div>
             <div class="field">
-              <label for="plTask">Task: what do you need?</label>
-              <textarea id="plTask" rows="3" placeholder="e.g. Draft a friendly reminder email about open enrollment deadlines"></textarea>
+              <span class="flabel"><span class="crl" aria-hidden="true">I</span>Interview: the ask-first step</span>
+              <div class="checks itv-checks">
+                <label><input type="checkbox" id="plItv" /> Have it interview you first</label>
+                <label><input type="radio" name="plItvVar" value="std" checked /> Up to five questions</label>
+                <label><input type="radio" name="plItvVar" value="woods" /> One at a time (Woods)</label>
+              </div>
+              <span class="hinttxt">The interview catches gaps while they are still cheap, before they become rework.</span>
             </div>
             <div class="field">
-              <label for="plContext">Context: what should it know?</label>
-              <textarea id="plContext" rows="3" placeholder="e.g. Audience is 300 staff, deadline is Nov 15, tone should feel helpful not naggy"></textarea>
+              <label for="plTask"><span class="crl" aria-hidden="true">T</span>Task: what do you need?</label>
+              <textarea id="plTask" rows="3" placeholder="e.g. Draft a friendly reminder email about open enrollment deadlines, under 150 words with a 3-bullet summary at the top"></textarea>
+              <span class="hinttxt">Include how the answer should look: length, bullets, table. The deliverable is part of the task.</span>
             </div>
-            <div class="field">
-              <label for="plFormat">Format: how should the answer look?</label>
-              <input type="text" id="plFormat" placeholder="e.g. under 150 words, with a 3-bullet summary at the top" />
-            </div>
-            <div class="field">
-              <label for="plTone">Tone</label>
-              <select id="plTone">
-                <option value="">Choose a tone (optional)</option>
-                <option>Warm and friendly</option>
-                <option>Professional and concise</option>
-                <option>Encouraging and upbeat</option>
-                <option>Neutral and factual</option>
-                <option>Plain language, 8th-grade reading level</option>
-              </select>
-            </div>
+            <details class="deeper pl-opt">
+              <summary><span class="dx" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>Optional: format and tone</summary>
+              <div class="d-body">
+                <div class="field" style="margin-top:14px">
+                  <label for="plFormat">Format: extra shape, if the task needs it</label>
+                  <input type="text" id="plFormat" placeholder="e.g. a table with three columns" />
+                </div>
+                <div class="field">
+                  <label for="plTone">Tone</label>
+                  <select id="plTone">
+                    <option value="">Choose a tone (optional)</option>
+                    <option>Warm and friendly</option>
+                    <option>Professional and concise</option>
+                    <option>Encouraging and upbeat</option>
+                    <option>Neutral and factual</option>
+                    <option>Plain language, 8th-grade reading level</option>
+                  </select>
+                </div>
+              </div>
+            </details>
             <div class="checks">
               <label><input type="checkbox" id="plReason" /> Ask it to show its reasoning</label>
               <label><input type="checkbox" id="plCite" /> Ask it to cite sources</label>
@@ -1700,7 +1720,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
             </div>
             <div class="preview" id="plPreview" aria-live="polite"><span class="ph">Your prompt assembles here as you type…</span></div>
             <div class="meter">
-              <div class="mrow"><span class="mlabel">Prompt quality</span><span class="mscore" id="plMeterLabel">0 / 5 ingredients</span></div>
+              <div class="mrow"><span class="mlabel">Prompt quality</span><span class="mscore" id="plMeterLabel">0 / 4 CRIT · Context missing</span></div>
               <div class="rail"><div class="fill" id="plMeterFill"></div></div>
             </div>
             <div class="launch-row">
@@ -1741,8 +1761,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <div>
             <div class="field">
               <label for="grText">Paste a prompt you'd actually send</label>
-              <textarea id="grText" rows="9" placeholder="e.g. You are a financial analyst at a university. Summarize the attached budget notes into a one-page memo for leadership, with three bullet takeaways and a table of variances over 5%. Keep it under 300 words."></textarea>
-              <span class="hinttxt">The grader checks for a role, context, format, specificity, and constraints, the same five ingredients from the Prompt Lab.</span>
+              <textarea id="grText" rows="9" placeholder="e.g. You are a financial analyst at a university. Before you answer, ask me three clarifying questions, then wait. Summarize the attached budget notes into a one-page memo for leadership, with three bullet takeaways and a table of variances over 5%. Keep it under 300 words."></textarea>
+              <span class="hinttxt">The grader checks the CRIT elements from the Prompt Lab: context, a role, an interview invitation, and a clear task, plus how concrete your wording is.</span>
             </div>
             <button type="button" class="btn btn-primary" id="grBtn">Grade my prompt
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></button>
@@ -1823,7 +1843,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       <div class="rstep"><span class="rno">Step 1</span><h5>Pick one real task</h5>
         <p>Something from this week: an email, a summary, a first draft. Small and repetitive beats big and impressive. Safe data only.</p></div>
       <div class="rstep"><span class="rno">Step 2</span><h5>Build the prompt properly</h5>
-        <p>Scroll back to the <a href="#playground">Prompt Lab</a> and assemble all five ingredients: role, task, context, format, tone. Copy it out.</p></div>
+        <p>Scroll back to the <a href="#playground">Prompt Lab</a> and run the four CRIT moves: context, role, interview, task. Copy it out.</p></div>
       <div class="rstep"><span class="rno">Step 3</span><h5>Run it, then iterate once</h5>
         <p>Open your tool, paste, read what comes back, and ask for one improvement. The second ask is where drafts get good.</p>
         <p><a href="https://chat.openai.com" target="_blank" rel="noopener">ChatGPT</a> &middot; <a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Amplify</a> &middot; <a href="https://copilot.microsoft.com" target="_blank" rel="noopener">Copilot</a></p></div>
@@ -1851,11 +1871,20 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <div>
             <h4>The audience test</h4>
             <p class="t-why">Stress-tests a draft by making the AI play its reader.</p>
-            <code>Act as the staff member receiving this announcement: busy, skimming, and slightly skeptical. Read the draft below and tell me what you would misunderstand, what you would ignore, and the one question you would still have. Then suggest the smallest edits that fix all three. [paste your draft; safe data only]</code>
+            <code>Context: the draft below is an announcement going to busy staff who skim and are slightly skeptical. Act as the staff member receiving it. Tell me what you would misunderstand, what you would ignore, and the one question you would still have. Then suggest the smallest edits that fix all three. [paste your draft; safe data only]</code>
             <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy starter</span></button>
           </div>
         </div>
       </div>
+      <p class="hinttxt" style="margin-top:14px">Notice the shape: context, role, interview, task. The calendar starter runs the full interview; the audience test skips it because the draft itself is the context.</p>
+      <details class="deeper">
+        <summary><span class="dx" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>Go deeper: two ways people pair with AI</summary>
+        <div class="d-body">
+          <p><b>The centaur</b> divides the work with clean handoffs: you keep the strategy, the judgment calls, and anything with a name on it; AI gets the drafting, summarizing, and reformatting, with a clear line between the two. <b>The cyborg</b> weaves it together: drafts bouncing between you and the machine, every paragraph a little of both. Faster and more fluid, but it demands sharper verification because the seams disappear.</p>
+          <p>Both styles come from Ethan Mollick&rsquo;s essay on the 758-consultant experiment from the Limits module, and both beat working alone. Our suggestion: start centaur, because clean handoffs are easier to check, then grow cyborg as you learn the frontier. This platform&rsquo;s stance is borrowed from his book <em>Co-Intelligence</em>: treat AI like a tireless, overconfident colleague, and always check its work.</p>
+          <p><b>Source:</b> Ethan Mollick, <a href="https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged" target="_blank" rel="noopener">&ldquo;Centaurs and Cyborgs on the Jagged Frontier&rdquo;</a> (One Useful Thing, 2023) &middot; <em>Co-Intelligence: Living and Working with AI</em> (2024).</p>
+        </div>
+      </details>
     </div>
     <div class="module reveal" style="margin-top:36px">
       <div class="module-head">
@@ -2037,47 +2066,70 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   </div>
 </section>
 
-<!-- ═════════════════════════ ETHICS ═════════════════════════ -->
-<section id="ethics" class="th-dark" aria-label="AI ethics">
+<!-- ═════════════════════════ RESPONSIBLE AI (habits + judgment scenarios + keep-the-time) ═════════════════════════ -->
+<section id="responsible" class="th-dark" aria-label="Responsible AI">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="you-are">You are here: judgment. Now that you can use the tools, let&rsquo;s talk about using them well.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Ethics / 07</span></span>
-      <h2>Where policy ends, <em class="s">judgment begins.</em></h2>
-      <p>In this section, you will work through four scenarios where the right answer is not obvious. Go with your honest instinct, then compare notes. The goal is knowing why you would choose, not passing a test.</p>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Responsible AI / 07</span></span>
+      <h2>Use it boldly. <em class="s">Use it well.</em></h2>
+      <p>In this section, you will learn six habits that keep you and Vanderbilt on solid ground, then test your judgment on four scenarios where the right answer is not obvious. <b>By the end, you will know the never-paste list, and why you would choose what you choose.</b></p>
       <div class="lframe">
-        <span class="lf-chip"><b>You&rsquo;ll learn</b>Five lenses for AI judgment calls</span>
-        <span class="lf-chip"><b>You&rsquo;ll do</b>Work through four workplace dilemmas</span>
-        <span class="lf-chip"><b>Time</b>4 min</span>
-        <p class="lf-why"><b>Why it matters to your work:</b> sooner or later one of these lands on your desk, and it&rsquo;s far easier to think it through now than at 4:55 p.m. on a Friday.</p>
+        <span class="lf-chip"><b>You&rsquo;ll learn</b>Six guardrail habits and the never-paste list</span>
+        <span class="lf-chip"><b>You&rsquo;ll do</b>Work through four workplace scenarios</span>
+        <span class="lf-chip"><b>Time</b>5 min</span>
+        <p class="lf-why"><b>Why it matters to your work:</b> these habits take seconds, they protect colleagues and the institution, and sooner or later one of these calls lands on your desk.</p>
       </div>
+    </div>
+    <div class="concept reveal">
+      <span class="c-label">The idea</span>
+      <p>Two facts you already know drive all six habits. The model predicts rather than checks, so you <b>verify</b>, <b>disclose</b>, and keep a <b>human on every decision</b>. And what you paste can leave Vanderbilt&rsquo;s control, so anything sensitive goes to Amplify, or nowhere.</p>
     </div>
     <div class="resp-grid">
       <article class="principle reveal">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M8 21h8"/><path d="M12 6L5.5 7.8 8 13a3.2 3.2 0 0 1-5 0l2.5-5.2M12 6l6.5 1.8L16 13a3.2 3.2 0 0 0 5 0l-2.5-5.2"/></svg></span>
-        <h3>Bias &amp; fairness</h3>
-        <p>Models learn from oceans of human writing and decisions, and they inherit human bias along the way. In hiring or promotion support, &ldquo;the algorithm said so&rdquo; can quietly repeat old unfairness at new speed.</p>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></span>
+        <h3>Verify outputs</h3>
+        <p>AI writes confidently even when it's wrong. Check names, numbers, dates, and citations before anything leaves your desk.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.06s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></span>
-        <h3>Transparency &amp; disclosure</h3>
-        <p>People deserve to know when AI meaningfully shaped something they&rsquo;re reading, judging, or relying on. Disclosure is a form of respect, not a confession.</p>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
+        <h3>Protect data</h3>
+        <p>FERPA and HIPAA don't pause for convenience. Personnel records, health info, and anything confidential go to Amplify only, or nowhere.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.12s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a6 6 0 0 1 6-6h2.5"/><path d="M15 17l2 2 4-4"/></svg></span>
-        <h3>Accountability</h3>
-        <p>You own what you send. &ldquo;The AI did it&rdquo; has never once worked as a defense, and it never will. If your name is on it, your judgment is in it.</p>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1.1L3 20l1.1-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg></span>
+        <h3>Disclose AI use</h3>
+        <p>If AI helped draft something substantive, say so. Simple transparency ("drafted with AI assistance, reviewed by me") builds trust.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.06s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.8 14.2L7 22l5-3 5 3-1.8-7.8"/></svg></span>
-        <h3>Academic &amp; professional integrity</h3>
-        <p>Universities run on attribution, originality, and trust. Passing off AI work as purely your own burns credibility the whole institution depends on.</p>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/></svg></span>
+        <h3>Human makes the call</h3>
+        <p>AI advises; you decide. Hiring, promotion, funding, discipline: decisions about people always need a person accountable for them.</p>
       </article>
       <article class="principle reveal" style="transition-delay:.12s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20v-1.5A5.5 5.5 0 0 1 8.5 13h1a5.5 5.5 0 0 1 5.5 5.5V20"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21 20v-1.2a5.5 5.5 0 0 0-4-5.3"/></svg></span>
-        <h3>Human dignity &amp; labor</h3>
-        <p>These tools were trained on human work, and automation changes colleagues&rsquo; days. Involve people in changes that affect them; don&rsquo;t let efficiency decisions simply happen <em>to</em> them.</p>
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18M12 7v5l3 2"/></svg></span>
+        <h3>Bias awareness</h3>
+        <p>Models learn from human writing, biases included. Watch for skewed assumptions, especially in anything touching hiring, promotion, or evaluation.</p>
       </article>
+      <article class="principle reveal" style="transition-delay:.18s">
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
+        <h3>Keep learning</h3>
+        <p>These tools change monthly. A little steady curiosity keeps your skills compounding while everyone else is still skeptical.</p>
+      </article>
+    </div>
+    <div class="never reveal">
+      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.6L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Never paste these into a public AI tool</h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Social Security numbers</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Student records or grades (FERPA)</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Health information (HIPAA)</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Salaries &amp; personnel files</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Donor records &amp; gift data</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Passwords, keys &amp; credentials</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Unpublished research data</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Contracts &amp; legal matters</li>
+      </ul>
+      <p class="pol">Full guidance: <a href="#responsible">Vanderbilt AI Guidance <!-- [EDIT] link official AI policy --></a> · <a href="#responsible">Data Classification Policy <!-- [EDIT] link data classification policy --></a></p>
     </div>
     <div class="module reveal">
       <div class="module-head">
@@ -2153,347 +2205,19 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         </article>
       </div>
     </div>
-    <p class="honest reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
-      Looking for the practical guardrails, like what never to paste and which tool for which data? That&rsquo;s <a href="#responsible" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">Responsible AI</a>, right below.</p>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Those judgment calls get easier once they&rsquo;re habits. Let&rsquo;s build <em>six</em>.</p></div>
-  </div>
-</section>
-
-<!-- ═════════════════════════ RESPONSIBLE AI ═════════════════════════ -->
-<section id="responsible" class="th-light" aria-label="Responsible AI principles">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="you-are">You are here: guardrails. Judgment calls get easier once they&rsquo;re habits. Let&rsquo;s build six.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Responsible AI / 08</span></span>
-      <h2>Use it boldly. <em class="s">Use it well.</em></h2>
-      <p>In this section, you will learn six habits that keep you and Vanderbilt on solid ground. They take seconds, and they follow from what you already know about how these models work. (For the deeper judgment calls behind these habits, see <a href="#ethics" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">Ethics</a>, just above.)</p>
-      <div class="lframe">
-        <span class="lf-chip"><b>You&rsquo;ll learn</b>Six guardrail habits and the never-paste list</span>
-        <span class="lf-chip"><b>You&rsquo;ll do</b>Read it once, remember it forever</span>
-        <span class="lf-chip"><b>Time</b>2 min</span>
-        <p class="lf-why"><b>Why it matters to your work:</b> these habits take seconds and protect colleagues, the institution, and your own good name.</p>
-      </div>
-    </div>
-    <div class="concept reveal">
-      <span class="c-label">The idea</span>
-      <p>Two facts you already know drive all six habits. The model predicts rather than checks, so you <b>verify</b>, <b>disclose</b>, and keep a <b>human on every decision</b>. And what you paste can leave Vanderbilt&rsquo;s control, so anything sensitive goes to Amplify, or nowhere.</p>
-    </div>
-    <div class="resp-grid">
-      <article class="principle reveal">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></span>
-        <h3>Verify outputs</h3>
-        <p>AI writes confidently even when it's wrong. Check names, numbers, dates, and citations before anything leaves your desk.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.06s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>
-        <h3>Protect data</h3>
-        <p>FERPA and HIPAA don't pause for convenience. Personnel records, health info, and anything confidential go to Amplify only, or nowhere.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.12s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1.1L3 20l1.1-5.3A8.5 8.5 0 1 1 21 11.5z"/></svg></span>
-        <h3>Disclose AI use</h3>
-        <p>If AI helped draft something substantive, say so. Simple transparency ("drafted with AI assistance, reviewed by me") builds trust.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.06s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/></svg></span>
-        <h3>Human makes the call</h3>
-        <p>AI advises; you decide. Hiring, promotion, funding, discipline: decisions about people always need a person accountable for them.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.12s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18M12 7v5l3 2"/></svg></span>
-        <h3>Bias awareness</h3>
-        <p>Models learn from human writing, biases included. Watch for skewed assumptions, especially in anything touching hiring, promotion, or evaluation.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.18s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
-        <h3>Keep learning</h3>
-        <p>These tools change monthly. A little steady curiosity keeps your skills compounding while everyone else is still skeptical.</p>
-      </article>
-    </div>
-    <div class="never reveal">
-      <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.6L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Never paste these into a public AI tool</h3>
-      <ul>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Social Security numbers</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Student records or grades (FERPA)</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Health information (HIPAA)</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Salaries &amp; personnel files</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Donor records &amp; gift data</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Passwords, keys &amp; credentials</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Unpublished research data</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Contracts &amp; legal matters</li>
-      </ul>
-      <p class="pol">Full guidance: <a href="#responsible">Vanderbilt AI Guidance <!-- [EDIT] link official AI policy --></a> · <a href="#responsible">Data Classification Policy <!-- [EDIT] link data classification policy --></a></p>
-    </div>
-    <div class="md-wrap reveal">
-      <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="responsible" aria-pressed="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-        <span>Done with this section</span></button>
-    </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that AI is saving you time, let&rsquo;s make sure you <em>keep</em> it.</p></div>
-  </div>
-</section>
-
-<!-- ═════════════════════════ WELLBEING ═════════════════════════ -->
-<section id="wellbeing" class="th-cream" aria-label="AI and your wellbeing">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="you-are">You are here: sustainability. Now that AI is saving you time, let&rsquo;s make sure you keep it.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Wellbeing / 09</span></span>
-      <h2>AI saves time, <em class="s">if you let it.</em></h2>
-      <p>In this section, you will spot three ways AI quietly adds work, then take a six-question self-check. The research: <a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">&ldquo;AI Doesn&rsquo;t Reduce Work: It Intensifies It&rdquo;</a> by Ranganathan &amp; Ye (Harvard Business Review, February 2026), an eight-month study of about 200 employees.</p>
-      <div class="lframe">
-        <span class="lf-chip"><b>You&rsquo;ll learn</b>How AI quietly intensifies work, per the HBR research</span>
-        <span class="lf-chip"><b>You&rsquo;ll do</b>Spot the three patterns, run a six-question self-check</span>
-        <span class="lf-chip"><b>Time</b>3 min</span>
-        <p class="lf-why"><b>Why it matters to your work:</b> the hour AI saves you only counts if you actually get to keep it.</p>
-      </div>
-    </div>
-    <div class="resp-grid">
-      <article class="principle reveal">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-15M21 3l-7 7M3 21l7-7"/></svg></span>
-        <h3>Task expansion</h3>
-        <p>When AI makes tasks feel lighter, people don&rsquo;t do less; they take on more. In the study, workloads grew because &ldquo;just one more thing&rdquo; started feeling free.</p>
-        <p class="wb-example"><b>On campus:</b> you automate the weekly report Monday&hellip; and volunteer for two new committees by Thursday.</p>
-        <p class="wb-counter"><b>Counter-move:</b> <b>bank the savings.</b> Decide in advance where saved time goes, and don&rsquo;t reinvest all of it in new tasks.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.07s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 13A8.5 8.5 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg></span>
-        <h3>Boundary blur</h3>
-        <p>AI makes micro-work so easy it seeps into moments that used to be recovery: breaks, commutes, evenings. The workday stops having edges.</p>
-        <p class="wb-example"><b>On campus:</b> a &ldquo;quick&rdquo; prompt session at 9:40 p.m., because it &ldquo;only takes a minute.&rdquo;</p>
-        <p class="wb-counter"><b>Counter-move:</b> <b>AI hours &ne; more hours.</b> If it happens in a break, it&rsquo;s work. Protect recovery time like you&rsquo;d protect a meeting.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.14s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg></span>
-        <h3>Multitasking load</h3>
-        <p>Running several AI threads at once feels productive, but the constant cognitive switching adds real fatigue, and the study links it to worse output.</p>
-        <p class="wb-example"><b>On campus:</b> three chat tabs, a draft memo, and a Copilot pane, and somehow nothing finished.</p>
-        <p class="wb-counter"><b>Counter-move:</b> <b>sequence, don&rsquo;t parallelize.</b> One AI-assisted task at a time: finished, then the next.</p>
-      </article>
-    </div>
-    <div class="conseq reveal" role="img" aria-label="The study&rsquo;s arc: workload creep leads to cognitive fatigue, then burnout, then worse decisions, then quality decline">
-      <span class="c-lead mono" aria-hidden="true">The study&rsquo;s arc: where unmanaged intensification leads</span>
-      <span class="step" aria-hidden="true">Workload creep</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">Cognitive fatigue</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">Burnout</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">Worse decisions</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">Quality decline</span>
-    </div>
     <div class="module reveal">
       <div class="module-head">
-        <span class="mno">Self-check</span>
-        <h3>Intensity self-check</h3>
-        <p>Six honest yes/nos. Nothing is stored or sent anywhere.</p>
-      </div>
-      <div class="concept reveal">
-        <span class="c-label">The idea</span>
-        <p>Intensification sneaks up because each &ldquo;quick&rdquo; AI task really is quick. It is the accumulation that makes a heavier week, and by the time you feel it, the pattern is months old.</p>
-        <p><b>Notice as you answer:</b> go by your actual last two weeks, not your intentions.</p>
-      </div>
-      <div class="app-grid">
-        <form id="wbForm" autocomplete="off">
-          <fieldset class="tm-q">
-            <legend><span class="qn">Q1</span>I fill former micro-breaks (coffee, corridors, waiting rooms) with &ldquo;quick&rdquo; AI tasks.</legend>
-            <div class="tm-opts"><label><input type="radio" name="wb1" value="yes" /> Yes</label> <label><input type="radio" name="wb1" value="no" /> No</label></div>
-          </fieldset>
-          <fieldset class="tm-q">
-            <legend><span class="qn">Q2</span>I often run several AI threads or drafts at the same time.</legend>
-            <div class="tm-opts"><label><input type="radio" name="wb2" value="yes" /> Yes</label> <label><input type="radio" name="wb2" value="no" /> No</label></div>
-          </fieldset>
-          <fieldset class="tm-q">
-            <legend><span class="qn">Q3</span>My to-do list has grown since I started using AI.</legend>
-            <div class="tm-opts"><label><input type="radio" name="wb3" value="yes" /> Yes</label> <label><input type="radio" name="wb3" value="no" /> No</label></div>
-          </fieldset>
-          <fieldset class="tm-q">
-            <legend><span class="qn">Q4</span>AI-drafted work follows me into evenings or weekends.</legend>
-            <div class="tm-opts"><label><input type="radio" name="wb4" value="yes" /> Yes</label> <label><input type="radio" name="wb4" value="no" /> No</label></div>
-          </fieldset>
-          <fieldset class="tm-q">
-            <legend><span class="qn">Q5</span>I feel behind if I&rsquo;m not using AI for everything.</legend>
-            <div class="tm-opts"><label><input type="radio" name="wb5" value="yes" /> Yes</label> <label><input type="radio" name="wb5" value="no" /> No</label></div>
-          </fieldset>
-          <fieldset class="tm-q">
-            <legend><span class="qn">Q6</span>Time AI saves gets refilled with more tasks by default.</legend>
-            <div class="tm-opts"><label><input type="radio" name="wb6" value="yes" /> Yes</label> <label><input type="radio" name="wb6" value="no" /> No</label></div>
-          </fieldset>
-          <button type="button" class="btn btn-primary" id="wbBtn">Tally my check
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></button>
-          <p class="nudge" id="wbNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Answer all six and I&rsquo;ll tally you up. Honesty is the only rule.</p>
-        </form>
-        <div id="wbOut" role="status" aria-live="polite"></div>
-      </div>
-    </div>
-    <div class="wb-cards reveal">
-      <div class="wb-practice">
-        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.2-8 10.8-4.6-1.6-8-5.8-8-10.8V5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg>Build your AI practice</h4>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Intentional pauses:</b> decide together, as a team, when <em>not</em> to use AI.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Sequence work:</b> one AI-assisted task at a time, finished before the next begins.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Keep human grounding:</b> real conversations and unhurried judgment time stay on the calendar.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Personal rule:</b> AI saves an hour &rarr; the hour is <em>yours</em>. Spend some of it on nothing at all.</span></li>
-        </ul>
-      </div>
-      <div class="wb-practice">
-        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6.2 5.5 5.5 0 0 1 21.5 12c-2.5 4.4-9.5 9-9.5 9z"/></svg>If work feels heavier, say so</h4>
-        <p>Workload creep is an organizational pattern, not a personal failing. Talk to your manager about what AI is quietly adding to your plate. Renegotiating scope is a professional move, not a complaint.</p>
-        <p>And if you want support beyond your team: <a href="#wellbeing">Vanderbilt Employee Assistance Program &amp; Work-Life resources <!-- [EDIT] link Vanderbilt EAP / Work-Life resources --></a>.</p>
-      </div>
-    </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>Now that your time is protected, let&rsquo;s get you ready for what&rsquo;s next, and what it means for your <em>career</em>.</p></div>
-  </div>
-</section>
-
-<!-- ═════════════════════════ TRANSFORM: THE NEXT FIVE YEARS ═════════════════════════ -->
-<section id="future" class="th-dark" aria-label="Transform: the next five years">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="you-are">You are here: horizon. Now that you can work with today&rsquo;s AI, let&rsquo;s get you ready for what&rsquo;s next.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Transform / 10</span></span>
-      <h2>The next five years belong to the <em class="s">well-paired.</em></h2>
-      <p>In this section, you will look ahead: what AI agents change, which human skills grow more valuable, and how to build them. You will finish by drafting a 90-day development plan for your own role.</p>
-      <div class="lframe">
-        <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI agents are, and which human skills appreciate in value</span>
-        <span class="lf-chip"><b>You&rsquo;ll do</b>Pick your skills, build a personal 90-day plan</span>
-        <span class="lf-chip"><b>Time</b>5 min</span>
-        <p class="lf-why"><b>Why it matters to your work:</b> AI agents are arriving in everyday tools now; learning the basics early gives you a real head start.</p>
-      </div>
-    </div>
-
-    <div class="module reveal">
-      <div class="module-head">
-        <span class="mno">Shift 01</span>
-        <h3>From answering to acting: AI agents</h3>
-        <p>You met agentic AI in Module A. A chatbot answers when asked; an agent takes a goal and works toward it in steps, pausing to ask when unsure. Same engine, bigger job description. The family tree:</p>
-      </div>
-      <div class="hw-grid">
-        <div class="hw reveal"><span class="hw-no" aria-hidden="true">A</span>
-          <h3>Chatbot</h3>
-          <p>Answers questions when you ask. You do all of the doing. Where most of us started, and still excellent for drafting and thinking out loud.</p>
-          <span class="chip">Answers</span></div>
-        <div class="hw reveal" style="transition-delay:.07s"><span class="hw-no" aria-hidden="true">B</span>
-          <h3>Copilot</h3>
-          <p>Works alongside you, inside your apps: suggests the formula, drafts the reply, recaps the meeting. You steer line by line.</p>
-          <span class="chip">Assists</span></div>
-        <div class="hw reveal" style="transition-delay:.14s"><span class="hw-no" aria-hidden="true">C</span>
-          <h3>Agent</h3>
-          <p>Takes a multi-step goal like &ldquo;collect the six team updates, draft the status report, flag what&rsquo;s missing&rdquo; and executes it with your oversight. Arriving in your tools now; the skill it rewards most is clear delegation.</p>
-          <span class="chip">Acts</span></div>
-      </div>
-    </div>
-
-    <div class="module reveal">
-      <div class="module-head">
-        <span class="mno">Shift 02</span>
-        <h3>Tasks change. Jobs get rebuilt.</h3>
-        <p>AI automates <em>tasks</em>, not jobs. As tasks get absorbed, roles get rebuilt around the freed time, and the people who thrive <b style="color:var(--champ);font-weight:600">redeploy the hours on purpose</b>.</p>
-      </div>
-      <div class="conseq" role="img" aria-label="The pattern: a task gets absorbed, time gets freed, the role gets rebuilt, and you choose what fills it">
-        <span class="c-lead mono" aria-hidden="true">The pattern to expect, and get ahead of</span>
-        <span class="step" aria-hidden="true">Task absorbed</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">Time freed</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">Role rebuilt</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span class="step" aria-hidden="true">You choose what fills it</span>
-      </div>
-    </div>
-
-    <div class="module reveal">
-      <div class="module-head">
-        <span class="mno">Working styles</span>
-        <h3>Centaur or cyborg: both are right</h3>
-        <p>In the same 758-consultant study from the Limits module, the top performers worked with AI in two distinct styles, and both beat working alone. Neither is the &ldquo;advanced&rdquo; one; they&rsquo;re temperaments.</p>
-      </div>
-      <div class="wb-cards">
-        <div class="wb-practice">
-          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>The centaur: divide the work</h4>
-          <p>Like the mythical half-and-half: clean handoffs between human tasks and AI tasks. <b>You</b> keep the strategy, judgment calls, and anything with a name on it; <b>AI</b> gets the drafting, summarizing, and reformatting, with a clear line between the two.</p>
-          <p class="wb-example"><b>On campus:</b> you outline the announcement and decide the message; AI writes the first draft; you take back the final edit.</p>
-        </div>
-        <div class="wb-practice">
-          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4"/><circle cx="12" cy="12" r="3"/></svg>The cyborg: weave it together</h4>
-          <p>Constant back-and-forth: half-finished sentences handed over, drafts bouncing between you and the machine, every paragraph a little bit of both. Faster and more fluid, but it demands sharper verification instincts because the seams disappear.</p>
-          <p class="wb-example"><b>On campus:</b> writing a report in a running conversation: &ldquo;tighten this,&rdquo; &ldquo;what am I missing?&rdquo;, &ldquo;three versions of that closing line.&rdquo;</p>
-        </div>
+        <span class="mno">Keep the time</span>
+        <h3>AI saves time, if you let it</h3>
+        <p>One more habit guards the payoff. An eight-month Harvard Business Review study of about 200 employees found that AI often intensifies work instead of lightening it, in three quiet ways: saved time refills with new tasks by default, &ldquo;quick&rdquo; AI work seeps into breaks and evenings, and running several AI threads at once adds real fatigue.</p>
       </div>
       <div class="evidence reveal">
-        <span class="e-label">The evidence</span>
-        <p>Both styles come from Ethan Mollick&rsquo;s essay on the same experiment. Our suggestion: <b>start centaur</b>, because clean handoffs are easier to check, then <b>grow cyborg</b> as you learn the frontier. This platform&rsquo;s stance is borrowed from his book <em>Co-Intelligence</em>: treat AI like a tireless, overconfident colleague, and always check its work.</p>
-        <span class="e-src">Ethan Mollick, <a href="https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged" target="_blank" rel="noopener">&ldquo;Centaurs and Cyborgs on the Jagged Frontier&rdquo;</a> (One Useful Thing, 2023) &middot; <em>Co-Intelligence: Living and Working with AI</em> (2024)</span>
+        <span class="e-label">The evidence, and the counter-move</span>
+        <p><b>Bank the savings.</b> Decide in advance where saved time goes, work one AI-assisted task at a time, and protect recovery time like you would protect a meeting. If the load still grows, say so: workload creep is an organizational pattern, not a personal failing, and renegotiating scope is a professional move. Support beyond your team: <a href="#responsible">Vanderbilt Employee Assistance Program &amp; Work-Life resources <!-- [EDIT] link Vanderbilt EAP / Work-Life resources --></a>.</p>
+        <span class="e-src">Ranganathan &amp; Ye, <a href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank" rel="noopener">&ldquo;AI Doesn&rsquo;t Reduce Work: It Intensifies It&rdquo;</a> (Harvard Business Review, February 2026)</span>
       </div>
     </div>
-
-    <div class="module reveal">
-      <div class="module-head">
-        <span class="mno">Shift 03</span>
-        <h3>The human skill stack</h3>
-        <p>Five human skills that grow more valuable as AI improves. The better AI gets at routine work, the more these skills stand out.</p>
-      </div>
-      <div class="concept reveal">
-        <span class="c-label">The idea</span>
-        <p>As AI absorbs the drafting and assembling, the things machines cannot supply (choosing well, checking truth, briefing clearly, earning trust, knowing your unit&rsquo;s exceptions) become the scarce ingredient. The builder below turns your pick of them into a 90-day plan.</p>
-      </div>
-      <div class="resp-grid">
-      <article class="principle reveal">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>
-        <h3>Judgment</h3>
-        <p>AI produces options; someone still has to choose, and own the choice. The more drafts machines produce, the more valuable the person who can pick one and explain why.</p>
-        <p class="wb-counter"><b>Build it this quarter:</b> before accepting any AI draft, note one thing you&rsquo;d change and why.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.06s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></span>
-        <h3>Verification</h3>
-        <p>As AI makes drafts fast and cheap, checking what&rsquo;s true becomes the valuable part. The person who can quickly tell a right answer from a plausible-sounding one becomes the safety rail for the whole team.</p>
-        <p class="wb-counter"><b>Build it this quarter:</b> verify every checkable fact in one AI draft per week, and time yourself getting faster.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.12s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M8.5 6H13a3 3 0 0 1 3 3v0M8.5 18H13a3 3 0 0 0 3-3v0"/></svg></span>
-        <h3>Delegation to AI</h3>
-        <p>Working with agents is management: clear goals, good context, sensible checkpoints. People who brief AI well will simply get more done than people who don&rsquo;t.</p>
-        <p class="wb-counter"><b>Build it this quarter:</b> hand one recurring task to AI weekly, briefed like you&rsquo;d brief a new colleague.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.06s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-9.5-9A5.5 5.5 0 0 1 12 6.2 5.5 5.5 0 0 1 21.5 12c-2.5 4.4-9.5 9-9.5 9z"/></svg></span>
-        <h3>Relationship &amp; trust work</h3>
-        <p>Colleagues, donors, campus partners: the conversations that move a university can&rsquo;t be automated, and freed hours make you better at them. This is where the saved time compounds.</p>
-        <p class="wb-counter"><b>Build it this quarter:</b> bank one AI-saved hour per week into a real, unhurried human conversation.</p>
-      </article>
-      <article class="principle reveal" style="transition-delay:.12s">
-        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
-        <h3>Domain depth</h3>
-        <p>AI amplifies expertise; it doesn&rsquo;t replace it. Knowing what your unit uniquely knows (the history, the exceptions, the why) is what makes your AI output better than anyone else&rsquo;s.</p>
-        <p class="wb-counter"><b>Build it this quarter:</b> spend 15 min/week using AI as a tutor on your field&rsquo;s hard parts, verifying its answers as you go.</p>
-      </article>
-      </div>
-    </div>
-
-    <div class="module reveal">
-      <div class="module-head">
-        <span class="mno">Builder</span>
-        <h3>My AI development plan</h3>
-        <p>Pick your role family and up to three skills to focus on. You&rsquo;ll get a 90-day plan built from CHART&rsquo;s own tools, concrete enough to start Monday.</p>
-      </div>
-      <div class="app-grid">
-        <form id="fpForm" autocomplete="off">
-          <div class="field">
-            <label for="fpRole">Your role family</label>
-            <select id="fpRole">
-              <option>Admissions</option><option>Human Resources</option><option>Finance</option>
-              <option>Information Technology</option><option>Research Administration</option><option>Advancement</option>
-              <option>Student Affairs</option><option>Facilities</option><option>Communications</option>
-              <option>Library</option><option>Other</option>
-            </select>
-          </div>
-          <div class="field">
-            <label id="fpSkillsLabel" for="fpRole" style="pointer-events:none">Your focus skills (pick up to three)</label>
-            <div class="skill-picks" role="group" aria-labelledby="fpSkillsLabel">
-              <label><input type="checkbox" name="fpSkill" value="judgment" /> Judgment</label>
-              <label><input type="checkbox" name="fpSkill" value="verification" /> Verification</label>
-              <label><input type="checkbox" name="fpSkill" value="delegation" /> Delegation to AI</label>
-              <label><input type="checkbox" name="fpSkill" value="relationship" /> Relationship &amp; trust</label>
-              <label><input type="checkbox" name="fpSkill" value="domain" /> Domain depth</label>
-            </div>
-          </div>
-          <button type="button" class="btn btn-primary" id="fpBtn">Build my 90-day plan
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          <p class="nudge" id="fpMax"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Three max; depth beats breadth. Uncheck one to swap.</p>
-          <p class="nudge" id="fpNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Pick at least one skill and I&rsquo;ll draft your plan.</p>
-        </form>
-        <div id="fpOut" role="status" aria-live="polite"></div>
-      </div>
-    </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>You&rsquo;ve built the plan. Now point the lens at your own week: where <em>your role</em> meets AI, task by task.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Guardrails set. Now point the lens at your own role, task by <em>task</em>.</p></div>
   </div>
 </section>
 
@@ -2501,8 +2225,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section id="readiness" class="th-cream" aria-label="AI and role readiness">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: the map table. You&rsquo;ve built your plan. Now see where a real role meets AI, task by task.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">AI readiness / 11</span></span>
+      <span class="you-are">You are here: the map table. Guardrails set. Now see where a real role meets AI, task by task.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">AI readiness / 08</span></span>
       <h2>Your role, <em class="s">task by task.</em></h2>
       <p>In this section, you will look at a role the way AI actually meets it: task by task.</p>
     </div>
@@ -2814,7 +2538,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="you-are">You are here: launchpad. You&rsquo;ve built the foundation. This is where to keep growing.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Resources / 12</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Resources / 09</span></span>
       <h2>Keep the curiosity <em class="s">compounding.</em></h2>
       <p>In this section, you will find the podcasts, videos, and reports we trust, including the Vanderbilt experts behind Amplify. Pick one. Fifteen curious minutes a week is the whole assignment.</p>
       <div class="lframe"><span class="lf-chip"><b>Last reviewed</b>July 2026</span><span class="lf-chip"><b>Format</b>All free to start &middot; all external links</span></div>
@@ -2869,7 +2593,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <span><b>More Useful Things</b><span class="why">Mollick&rsquo;s free prompt library for educators.</span><span class="rtag">Free</span></span>
           <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
         <a class="res" href="https://hbr.org/2026/02/ai-doesnt-reduce-work-it-intensifies-it" target="_blank" rel="noopener">
-          <span><b>&ldquo;AI Doesn&rsquo;t Reduce Work: It Intensifies It&rdquo; · HBR</b><span class="why">The study behind our Wellbeing section, worth the full read.</span><span class="rtag">Study</span></span>
+          <span><b>&ldquo;AI Doesn&rsquo;t Reduce Work: It Intensifies It&rdquo; · HBR</b><span class="why">The study behind our bank-the-savings habit, worth the full read.</span><span class="rtag">Study</span></span>
           <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
         <a class="res" href="https://www.educause.edu/focus-areas-and-initiatives/digital-transformation/artificial-intelligence" target="_blank" rel="noopener">
           <span><b>EDUCAUSE · AI in Higher Ed</b><span class="why">What universities like ours are doing with AI, curated.</span><span class="rtag">Hub</span></span>
@@ -2958,7 +2682,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="you-are">You are here: checkpoint. You&rsquo;ve built the whole path. Now let&rsquo;s see what stuck.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Knowledge check / 13</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Knowledge check / 10</span></span>
       <h2>Prove it to <em class="s">yourself.</em></h2>
       <p>In this section, you will answer eight questions covering the whole course. Nobody sees your score, and you can retake it anytime. When you finish, tell us how we did: two ratings and an optional note.</p>
       <div class="lframe">
@@ -3005,9 +2729,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <fieldset class="qz" data-answer="d">
           <legend><span class="qn">5/8</span>Which prompt will get the best result?</legend>
           <div class="opts">
-            <label><input type="radio" name="q5" value="a" /> &ldquo;Write something about our event&rdquo;</label> <label><input type="radio" name="q5" value="b" /> &ldquo;Make this good&rdquo;</label> <label><input type="radio" name="q5" value="c" /> &ldquo;Email please&rdquo;</label> <label><input type="radio" name="q5" value="d" /> A role, the task, context, and a format, all spelled out</label>
+            <label><input type="radio" name="q5" value="a" /> &ldquo;Write something about our event&rdquo;</label> <label><input type="radio" name="q5" value="b" /> &ldquo;Make this good&rdquo;</label> <label><input type="radio" name="q5" value="c" /> &ldquo;Email please&rdquo;</label> <label><input type="radio" name="q5" value="d" /> Context, a role, an interview line, then the task</label>
           </div>
-          <p class="expl"><b>Role + task + context + format.</b> The five ingredients from the Prompt Lab. Specific in, useful out.</p>
+          <p class="expl"><b>Context + role + interview + task.</b> The CRIT shape from the builder and the Prompt Lab. Specific in, useful out.</p>
         </fieldset>
         <fieldset class="qz" data-answer="c">
           <legend><span class="qn">6/8</span>You're buried in Excel and need formula help. The natural first stop?</legend>
@@ -3095,9 +2819,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="you-are">You are here: consolidation. A quick revisit locks the ideas in.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Summary / 14</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Summary / 11</span></span>
       <h2>What you now <em class="s">know.</em></h2>
-      <p>In this section, you will revisit the eight ideas you picked up today.</p>
+      <p>In this section, you will revisit the seven ideas you picked up today.</p>
     </div>
     <div class="recap-grid">
       <article class="recap reveal">
@@ -3112,8 +2836,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </article>
       <article class="recap reveal" style="transition-delay:.12s">
         <h3>How to steer it</h3>
-        <p>A prompt narrows the pattern. Jules White&rsquo;s patterns (role, task, context, format, tone) turn a vague request into a specific one.</p>
-        <span class="r-why"><b>At work:</b> specific prompts come back needing far fewer rewrites.</span>
+        <p>CRIT (Context, Role, Interview, Task) turns a vague request into a brief. The signature move: tell the model to ask clarifying questions first, and wait. You stay the thought leader.</p>
+        <span class="r-why"><b>At work:</b> prompts come back needing fewer rewrites, and the questions it asks up front are the gaps you would otherwise find while checking.</span>
       </article>
       <article class="recap reveal">
         <h3>Where the work belongs</h3>
@@ -3131,11 +2855,6 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="r-why"><b>At work:</b> the skill they reward is the one you practiced here, clear and complete delegation.</span>
       </article>
       <article class="recap reveal" style="transition-delay:.06s">
-        <h3>Make it interview you</h3>
-        <p>CRIT (Context, Role, Interview, Task) adds the move the five ingredients leave out: tell the model to ask clarifying questions first, and wait. You stay the thought leader; it stays the thought partner.</p>
-        <span class="r-why"><b>At work:</b> the questions it asks up front are the gaps you would otherwise find while checking.</span>
-      </article>
-      <article class="recap reveal">
         <h3>Tasks, not jobs</h3>
         <p>AI meets a role task by task: delegate the routine with oversight, redesign the middle together, and invest in the human core. Exposure is a development signal, never a verdict on a person.</p>
         <span class="r-why"><b>At work:</b> one task inventory turns AI anxiety into a development plan.</span>
@@ -3150,7 +2869,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:0">
       <span class="you-are">You are here: the handoff. This is where the course ends and the habit takes over.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Next step / 15</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Next step / 12</span></span>
       <h2>Put it to work <em class="s">this week.</em></h2>
       <p>In this section, you will turn the course into a habit. One loop, five steps, starting with a task from this week. The whole loop takes about an hour, spread across a normal week.</p>
     </div>
@@ -3167,7 +2886,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="hw-no" aria-hidden="true">02</span>
         <div>
           <h3>Practice the prompt</h3>
-          <p>Build it in the <a href="#playground">Prompt Lab</a> with all five ingredients, then paste it into the Grader and keep tightening until it earns an A.</p>
+          <p>Build it in the <a href="#playground">Prompt Lab</a> with all four CRIT moves, interview line included, then paste it into the Grader and keep tightening until it earns an A.</p>
         </div>
         <span class="chip">10 min</span>
       </div>
@@ -3191,7 +2910,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="hw-no" aria-hidden="true">05</span>
         <div>
           <h3>Stay ethical</h3>
-          <p>Disclose real AI help, keep regulated data in Amplify, and remember the output is yours to answer for. The <a href="#ethics">Ethics</a> and <a href="#responsible">Responsible AI</a> sections are here whenever a call gets tricky.</p>
+          <p>Disclose real AI help, keep regulated data in Amplify, and remember the output is yours to answer for. The <a href="#responsible">Responsible AI</a> section is here whenever a call gets tricky.</p>
         </div>
         <span class="chip">Always</span>
       </div>
@@ -3226,7 +2945,6 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <h4>Learn</h4>
         <a href="#learn">Foundations</a>
         <a href="#tools">The three tools</a>
-        <a href="#ethics">Ethics</a>
         <a href="#responsible">Responsible AI</a>
       </div>
       <div class="fcol">
@@ -3240,8 +2958,6 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="fcol">
         <h4>Grow</h4>
-        <a href="#wellbeing">Wellbeing</a>
-        <a href="#future">Transform</a>
         <a href="#readiness">AI readiness</a>
         <a href="#resources">Resources</a>
         <a href="#summary">What you now know</a>
@@ -3368,14 +3084,11 @@ var PROG_SECTIONS = [
   { k:'firstrep',    no:'04', name:'Your first real rep',    how:'Log your rep in the debrief' },
   { k:'simulator',   no:'05', name:'Opportunity Simulator',  how:'Analyze a use case' },
   { k:'tools',       no:'06', name:'Three tools',            how:'Mark it done once read' },
-  { k:'ethics',      no:'07', name:'AI ethics',              how:'Answer all four scenarios' },
-  { k:'responsible', no:'08', name:'Responsible AI',         how:'Mark it done once read' },
-  { k:'wellbeing',   no:'09', name:'Wellbeing',              how:'Tally the intensity self-check' },
-  { k:'future',      no:'10', name:'Transform',              how:'Build your 90-day plan' },
-  { k:'readiness',   no:'11', name:'AI readiness',           how:'Build the role readout' },
-  { k:'resources',   no:'12', name:'Resources',              how:'Mark it done once browsed' },
-  { k:'quiz',        no:'13', name:'Knowledge check',        how:'Check your answers' },
-  { k:'nextstep',    no:'15', name:'Your next step',         how:'Mark it done once planned' }
+  { k:'responsible', no:'07', name:'Responsible AI',         how:'Answer all four scenarios' },
+  { k:'readiness',   no:'08', name:'AI readiness',           how:'Build the role readout' },
+  { k:'resources',   no:'09', name:'Resources',              how:'Mark it done once browsed' },
+  { k:'quiz',        no:'10', name:'Knowledge check',        how:'Check your answers' },
+  { k:'nextstep',    no:'12', name:'Your next step',         how:'Mark it done once planned' }
 ];
 var progMem = {};
 var progStore = (function(){
@@ -3631,29 +3344,41 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
   });
 })();
 
-/* ══════════ APP 1: Prompt Lab ══════════ */
+/* ══════════ APP 1: Prompt Lab (CRIT order: Context → Role → Interview → Task) ══════════ */
 (function(){
-  var role = document.getElementById('plRole'), task = document.getElementById('plTask'),
-      ctx = document.getElementById('plContext'), fmt = document.getElementById('plFormat'),
-      tone = document.getElementById('plTone'), reason = document.getElementById('plReason'),
-      cite = document.getElementById('plCite'), preview = document.getElementById('plPreview'),
+  var ctx = document.getElementById('plContext'), role = document.getElementById('plRole'),
+      itv = document.getElementById('plItv'), task = document.getElementById('plTask'),
+      fmt = document.getElementById('plFormat'), tone = document.getElementById('plTone'),
+      reason = document.getElementById('plReason'), cite = document.getElementById('plCite'),
+      preview = document.getElementById('plPreview'),
       meterFill = document.getElementById('plMeterFill'), meterLabel = document.getElementById('plMeterLabel'),
       copyBtn = document.getElementById('plCopy'), copyLabel = document.getElementById('plCopyLabel');
   if(!preview) return;
   var current = '';
+  var ITV_LINES = {
+    std:'Before you answer, ask me up to five clarifying questions, then wait for my replies.',
+    woods:'Interview me, asking one question at a time, to pull the necessary information out of my head. Once you have enough, produce the deliverable.'
+  };
+  function itvLine(){
+    var el = document.querySelector('input[name="plItvVar"]:checked');
+    return ITV_LINES[el ? el.value : 'std'];
+  }
   function sentence(s){
     s = s.trim();
     return /[.!?]$/.test(s) ? s : s + '.';
   }
   function build(){
     var parts = [], filled = 0;
-    var vRole = role && role.value.trim(), vTask = task && task.value.trim(),
-        vCtx = ctx && ctx.value.trim(), vFmt = fmt && fmt.value.trim(), vTone = tone && tone.value;
-    if(vRole){ filled++; parts.push(/^you( a|')re?\b|^you are\b/i.test(vRole) ? sentence(vRole) : 'You are ' + sentence(vRole)); }
-    if(vTask){ filled++; parts.push('Task: ' + sentence(vTask)); }
+    var vCtx = ctx && ctx.value.trim(), vRole = role && role.value.trim(),
+        vItv = !!(itv && itv.checked), vTask = task && task.value.trim(),
+        vFmt = fmt && fmt.value.trim(), vTone = tone && tone.value;
     if(vCtx){ filled++; parts.push('Context: ' + sentence(vCtx)); }
-    if(vFmt){ filled++; parts.push('Format: ' + sentence(vFmt)); }
-    if(vTone){ filled++; parts.push('Tone: ' + vTone + '.'); }
+    if(vRole){ filled++; parts.push(/^you( a|')re?\b|^you are\b/i.test(vRole) ? sentence(vRole) : 'You are ' + sentence(vRole)); }
+    if(vItv){ filled++; parts.push(itvLine()); }
+    if(vTask){ filled++; parts.push('Task: ' + sentence(vTask)); }
+    var bonus = !!vFmt || /\b(bullets?|table|words?|list|pages?|paragraphs?|headings?|outline|memo|summary)\b/i.test(vTask || '');
+    if(vFmt) parts.push('Format: ' + sentence(vFmt));
+    if(vTone) parts.push('Tone: ' + vTone + '.');
     if(reason && reason.checked) parts.push('Briefly explain your reasoning before giving the final answer.');
     if(cite && cite.checked) parts.push('Cite your sources, and clearly flag anything you are not sure about.');
     current = parts.join('\n\n');
@@ -3662,13 +3387,20 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     } else {
       preview.innerHTML = '<span class="ph">Your prompt assembles here as you type…</span>';
     }
-    if(meterFill) meterFill.style.width = (filled/5*100) + '%';
+    if(meterFill) meterFill.style.width = ((filled + (filled === 4 && bonus ? 1 : 0)) / 5 * 100) + '%';
     if(meterLabel){
-      var words = ['Blank page','Bare bones','Getting there','Respectable','Strong','Chef’s kiss'];
-      meterLabel.textContent = filled + ' / 5 ingredients · ' + words[filled];
+      var msg;
+      if(!vCtx) msg = 'Context missing';
+      else if(!vRole) msg = 'No role yet';
+      else if(!vItv) msg = 'No interview step';
+      else if(!vTask) msg = 'Task missing';
+      else msg = bonus ? 'Full CRIT, format detail in' : 'Full CRIT; name a format for the bonus';
+      meterLabel.textContent = filled + ' / 4 CRIT · ' + msg;
     }
   }
-  [role, task, ctx, fmt].forEach(function(el){ if(el) el.addEventListener('input', build); });
+  [ctx, role, task, fmt].forEach(function(el){ if(el) el.addEventListener('input', build); });
+  if(itv) itv.addEventListener('change', build);
+  document.querySelectorAll('input[name="plItvVar"]').forEach(function(r){ r.addEventListener('change', build); });
   if(tone) tone.addEventListener('change', build);
   if(reason) reason.addEventListener('change', build);
   if(cite) cite.addEventListener('change', build);
@@ -3681,31 +3413,43 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     progDone('playground');
     copyText(current, copyLabel, 'Copied ✓');
   });
-  function prefill(vals){
-    if(role) role.value = vals[0];
-    if(task) task.value = vals[1];
-    if(ctx) ctx.value = vals[2];
-    if(fmt) fmt.value = vals[3];
-    if(tone) tone.value = vals[4];
+  function prefill(o){
+    if(ctx) ctx.value = o.ctx || '';
+    if(role) role.value = o.role || '';
+    if(itv) itv.checked = !!o.itv;
+    if(o.variant){
+      var r = document.querySelector('input[name="plItvVar"][value="' + o.variant + '"]');
+      if(r) r.checked = true;
+    }
+    if(task) task.value = o.task || '';
+    if(fmt) fmt.value = o.fmt || '';
+    if(tone) tone.value = o.tone || '';
+    var det = document.querySelector('details.pl-opt');
+    if(det && (o.fmt || o.tone)) det.open = true;
     build();
-    if(role) role.focus();
+    if(ctx) ctx.focus();
   }
   var ex1 = document.getElementById('plExample');
   if(ex1) ex1.addEventListener('click', function(){
-    prefill(['an experienced university communications editor',
-      'Draft a friendly reminder email about the open enrollment deadline',
-      'Audience is 300 staff, the deadline is November 15, and last year many people missed it because the email was too long',
-      'under 150 words, with a 3-bullet summary at the top',
-      'Warm and friendly']);
+    prefill({
+      ctx:'Audience is 300 staff, the deadline is November 15, and last year many people missed it because the email was too long',
+      role:'an experienced university communications editor',
+      itv:true, variant:'std',
+      task:'Draft a friendly reminder email about the open enrollment deadline, under 150 words, with a 3-bullet summary at the top',
+      tone:'Warm and friendly'
+    });
   });
   var ex2 = document.getElementById('plExample2');
   if(ex2) ex2.addEventListener('click', function(){
     /* adapted from Geoff Woods' stakeholder-mapping pattern (The AI-Driven Leader, aileadership.com) */
-    prefill(['a project strategist who has run many campus rollouts',
-      'Map the stakeholders for our upcoming policy rollout: decision-makers, influencers, and likely early adopters, and what each group needs to hear',
-      'We are introducing a new travel reimbursement process to about 40 departments this spring',
-      'a table with columns for group, role in the rollout, and key message',
-      'Professional and concise']);
+    prefill({
+      ctx:'We are introducing a new travel reimbursement process to about 40 departments this spring',
+      role:'a project strategist who has run many campus rollouts',
+      itv:true, variant:'woods',
+      task:'Map the stakeholders for our upcoming policy rollout: decision-makers, influencers, and likely early adopters, and what each group needs to hear',
+      fmt:'a table with columns for group, role in the rollout, and key message',
+      tone:'Professional and concise'
+    });
   });
   build();
 })();
@@ -3773,41 +3517,44 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       out = document.getElementById('grOut'), nudge = document.getElementById('grNudge');
   if(!ta || !btn || !out) return;
   var TIPS = {
-    role:{ label:'Role', tip:'<b>Give it a job.</b> Start with “You are a…”: an editor, an analyst, a coach. A role reshapes the entire answer.' },
     context:{ label:'Context', tip:'<b>Add context.</b> Who is this for, what’s going on, what’s the deadline? The AI only knows what you tell it.' },
-    format:{ label:'Format', tip:'<b>Describe the output.</b> “Three bullets then a short paragraph,” “a table,” “under 200 words.” Shape saves rewrites.' },
-    specificity:{ label:'Specificity', tip:'<b>Swap vague for concrete.</b> Replace “some,” “stuff,” and “good” with how many, which ones, and by when.' },
-    constraints:{ label:'Constraints', tip:'<b>Add guardrails or an example.</b> “Avoid jargon,” “no more than 150 words,” or paste a sample you like.' }
+    role:{ label:'Role', tip:'<b>Give it a job.</b> Start with “You are a…”: an editor, an analyst, a coach. A role reshapes the entire answer.' },
+    interview:{ label:'Interview', tip:'<b>Invite questions first.</b> Add “before you answer, ask me up to five clarifying questions, then wait.” The gaps surface before the draft instead of after.' },
+    task:{ label:'Task', tip:'<b>Name the deliverable.</b> Say what to produce and how it should look: “a 200-word email,” “a table,” “three bullet options.”' },
+    specificity:{ label:'Specificity', tip:'<b>Swap vague for concrete.</b> Replace “some,” “stuff,” and “good” with how many, which ones, and by when.' }
   };
   var EXTRA = [
     '<b>Ask for options.</b> “Give me three versions” costs nothing and triples your odds of a keeper.',
-    '<b>Invite pushback.</b> Add “ask me two clarifying questions first” for complex tasks.',
+    '<b>Add guardrails or an example.</b> “Avoid jargon,” “no more than 150 words,” or paste a sample you like.',
     '<b>Flag uncertainty.</b> Ask it to say clearly when it isn’t sure. It will, if invited.'
   ];
   function grade(t){
     var words = t.split(/\s+/).filter(Boolean), n = words.length, s = {};
-    s.role = /\b(you are|you're|act as|as an? [a-z]+|imagine you|pretend (you|to be)|take the role)\b/i.test(t) ? 100 : 8;
     var ctxBase = n >= 60 ? 90 : n >= 35 ? 75 : n >= 20 ? 55 : n >= 10 ? 35 : 15;
     if(/\b(audience|for (our|my|the) |background|we are|i work|deadline|goal|because|so that)\b/i.test(t)) ctxBase = Math.min(100, ctxBase + 15);
     s.context = ctxBase;
-    s.format = /\b(bullet|list|table|step[- ]?by[- ]?step|steps|outline|heading|numbered|json|paragraph|memo|email|summary|one[- ]pager?|page|section|word(s)? or (less|fewer)|under \d+|\d+ words)\b/i.test(t) ? 100 : 12;
-    var spec = 68;
+    s.role = /\b(you are|you're|act as|as an? [a-z]+|imagine you|pretend (you|to be)|take the role)\b/i.test(t) ? 100 : 8;
+    s.interview = /\b(ask me|clarifying questions?|interview me|question at a time|before (you )?answer(ing)?|wait for my)\b/i.test(t) ? 100 : 12;
+    var taskScore = /\b(write|draft|create|summari[sz]e|list|make|build|explain|rewrite|analy[sz]e|give me|generate|translate|compare|outline|map|review|edit)\b/i.test(t) ? 70 : 15;
+    if(/\b(bullet|list|table|step[- ]?by[- ]?step|steps|outline|heading|numbered|json|paragraph|memo|email|summary|one[- ]pager?|page|section|word(s)? or (less|fewer)|under \d+|\d+ words)\b/i.test(t)) taskScore += 30;
+    s.task = clamp(taskScore, 5, 100);
+    var spec = 60;
     var vague = t.match(/\b(some|stuff|things?|good|nice|better|great|a lot|lots|maybe|whatever|etc\.?)\b/gi);
     if(vague) spec -= vague.length * 12;
     if(/\d/.test(t)) spec += 14;
     if(n >= 25) spec += 10;
+    if(/\b(don'?t|do not|avoid|must|only|no more than|at most|under \d|limit|fewer than|exclude|without|e\.g\.|for example|example:|such as|in the style|tone)\b/i.test(t)) spec += 12;
     var isQuestionOnly = /\?\s*$/.test(t.trim()) && !/\b(write|draft|create|summarize|list|make|build|explain|rewrite|analyze)\b/i.test(t);
     if(isQuestionOnly) spec -= 15; /* pure questions beat directives less often at work */
     s.specificity = clamp(Math.round(spec), 5, 100);
-    s.constraints = /\b(don'?t|do not|avoid|must|only|no more than|at most|under \d|limit|fewer than|exclude|without|e\.g\.|for example|example:|such as|in the style|tone)\b/i.test(t) ? 100 : 15;
-    var overall = s.role*.15 + s.context*.25 + s.format*.2 + s.specificity*.25 + s.constraints*.15;
+    var overall = s.context*.25 + s.role*.15 + s.interview*.15 + s.task*.25 + s.specificity*.2;
     if(n < 6) overall = Math.min(overall, 30); /* tiny prompts can't score well */
     var letter = overall >= 85 ? 'A' : overall >= 70 ? 'B' : overall >= 55 ? 'C' : overall >= 40 ? 'D' : 'F';
     return { scores:s, overall:Math.round(overall), letter:letter };
   }
   var WORDS = { A:'Outstanding prompt.', B:'Strong prompt.', C:'Decent bones.', D:'Needs seasoning.', F:'A whisper, not a prompt.' };
   var SUBS = {
-    A:'This has all five ingredients. Take it straight into your tool of choice.',
+    A:'Context, role, interview, task: all covered. Take it straight into your tool of choice.',
     B:'You’d get a useful answer; one or two tweaks below make it excellent.',
     C:'The AI will guess at too much. The suggestions below are quick wins.',
     D:'Right idea, not enough to work with yet. Two minutes of detail pays off.',
@@ -3824,7 +3571,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     if(nudge) nudge.classList.remove('show');
     progDone('playground');
     var g = grade(t);
-    var keys = ['role','context','format','specificity','constraints'];
+    var keys = ['context','role','interview','task','specificity'];
     var weak = keys.slice().sort(function(a,b){ return g.scores[a]-g.scores[b]; }).filter(function(k){ return g.scores[k] < 70; }).slice(0,3);
     var tips = weak.map(function(k){ return TIPS[k].tip; });
     var e = 0;
@@ -3958,7 +3705,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
   if(!ta || !btn || !out) return;
   var running = false;
 
-  document.querySelectorAll('.sim-chip').forEach(function(chip){
+  document.querySelectorAll('.sim-chip[data-case]').forEach(function(chip){
     chip.addEventListener('click', function(){
       ta.value = chip.getAttribute('data-case') || '';
       var d = chip.getAttribute('data-dept');
@@ -4016,9 +3763,9 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     var verb = GOAL_VERB[goalName] || GOAL_VERB['Save time'];
     var snippet = txt.length > 160 ? txt.slice(0, 157).replace(/\s+\S*$/, '') + '…' : txt;
     var prompts = [
-      'You are an experienced ' + deptName + ' staff member at a university who is great at working with AI. Here is my situation: "' + snippet + '". Break this down into the 5 most time-consuming tasks, then tell me which ones AI could help with first, and why.',
-      'I work in ' + deptName + ' at a university. Here is a real task from my week: "' + snippet + '". Give me a practical, step-by-step way to use an AI assistant to ' + verb + '. Assume I’m new to AI, and keep each step under two sentences.',
-      'Act as a friendly AI coach. My use case: "' + snippet + '". Write one example prompt I could paste into an AI tool tomorrow morning to get a useful first draft, then list what I should double-check before trusting the output.'
+      'Context: I work in ' + deptName + ' at a university, and here is my situation: "' + snippet + '". You are an experienced ' + deptName + ' colleague who is great at working with AI. Before you answer, ask me up to three clarifying questions, then wait for my replies. Task: break this down into the 5 most time-consuming tasks, then tell me which ones AI could help with first, and why.',
+      'Context: I work in ' + deptName + ' at a university, I am new to AI, and here is a real task from my week: "' + snippet + '". You are a patient AI coach. Task: give me a practical, step-by-step way to use an AI assistant to ' + verb + ', keeping each step under two sentences.',
+      'Context: my use case is "' + snippet + '". You are a friendly AI coach. Interview me, asking one question at a time, until you understand the work. Task: write one example prompt I could paste into an AI tool tomorrow morning to get a useful first draft, then list what I should double-check before trusting the output.'
     ];
     var html = '';
     html += '<div class="srev"><div class="sub-h"><h4>Your AI opportunity map</h4><span class="chip">' + matches.length + (defaulted ? ' universal patterns (no direct keyword hits; these fit almost any desk)' : ' pattern' + (matches.length===1?'':'s') + ' matched') + '</span></div>';
@@ -4029,7 +3776,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       html += '<div class="o-meta"><span>Effort saved: <b>' + m.saved + '</b></span><span>Best fit: <b>' + m.tool + '</b></span></div></article>';
     });
     html += '</div></div>';
-    html += '<div class="srev"><div class="sub-h"><h4>Starter prompts, yours to steal</h4><span class="chip">Copy, paste, tweak</span></div><div class="sp-grid">';
+    html += '<div class="srev"><div class="sub-h"><h4>Starter prompts, yours to steal</h4><span class="chip">Copy, paste, tweak</span></div><p class="hinttxt" style="margin:-4px 0 14px">Notice the shape: context, role, interview, task.</p><div class="sp-grid">';
     prompts.forEach(function(p, i){
       html += '<div class="sp"><div class="sp-txt">' + escapeHtml(p) + '</div><button type="button" class="btn btn-ghost btn-sm sp-copy" data-i="' + i + '"><span>Copy prompt</span></button></div>';
     });
@@ -4250,7 +3997,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
   fbUpdate();
 })();
 
-/* ══════════ ETHICS: dilemma widget ══════════ */
+/* ══════════ RESPONSIBLE AI: judgment scenarios ══════════ */
 document.querySelectorAll('.dilemma').forEach(function(card){
   var take = card.querySelector('.d-take'), react = card.querySelector('.d-react');
   var btns = card.querySelectorAll('.d-choices button');
@@ -4263,45 +4010,10 @@ document.querySelectorAll('.dilemma').forEach(function(card){
       document.querySelectorAll('.dilemma').forEach(function(d){
         if(!d.querySelector('.d-choices button[aria-pressed="true"]')) all = false;
       });
-      if(all) progDone('ethics');
+      if(all) progDone('responsible');
     });
   });
 });
-
-/* ══════════ WELLBEING: intensity self-check ══════════ */
-(function(){
-  var form = document.getElementById('wbForm'), btn = document.getElementById('wbBtn'),
-      out = document.getElementById('wbOut'), nudge = document.getElementById('wbNudge');
-  if(!form || !btn || !out) return;
-  var TOTAL = 6;
-  var TIERS = [
-    ['Steady hands', "You're using AI the deliberate way, the study's happy path. Keep deciding where saved time goes, and it stays yours."],
-    ['Creep detected', 'A pattern or two is forming, which is normal and very fixable. Pick one counter-move above and make it a rule this week.'],
-    ['Intensification in progress', "You're living the study's findings. Time to renegotiate: sequence your AI work, protect your breaks, and let at least one saved hour stay yours. If the load feels heavy, the card below is for you."]
-  ];
-  var GLYPH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4 12L16 12h5"/></svg>';
-  btn.addEventListener('click', function(){
-    var yes = 0, firstMissing = null;
-    for(var i = 1; i <= TOTAL; i++){
-      var el = form.querySelector('input[name="wb' + i + '"]:checked');
-      if(!el){ if(!firstMissing) firstMissing = form.querySelector('input[name="wb' + i + '"]'); }
-      else if(el.value === 'yes') yes++;
-    }
-    if(firstMissing){
-      if(nudge) nudge.classList.add('show');
-      out.innerHTML = '';
-      firstMissing.focus();
-      return;
-    }
-    if(nudge) nudge.classList.remove('show');
-    progDone('wellbeing');
-    var t = yes <= 1 ? TIERS[0] : yes <= 3 ? TIERS[1] : TIERS[2];
-    out.innerHTML = '<div class="result-card"><div class="rc-head"><span class="rc-glyph">' + GLYPH + '</span><div><h4>' + t[0] +
-      '</h4><span class="rc-sub">' + yes + ' of ' + TOTAL + ' intensity signals</span></div></div>' +
-      '<p class="rc-note">' + t[1] + '</p>' +
-      '<p class="rc-fine">Reflection only; nothing is stored or shared. Retake it whenever your workload shifts.</p></div>';
-  });
-})();
 
 /* ══════════ YouTube facades: no iframe until click ══════════ */
 document.querySelectorAll('.yt').forEach(function(y){
@@ -4362,97 +4074,6 @@ document.querySelectorAll('.tech-copy').forEach(function(b){
           }
         }
       });
-    });
-  });
-})();
-
-/* ══════════ TRANSFORM: my AI development plan ══════════ */
-(function(){
-  var form = document.getElementById('fpForm'), role = document.getElementById('fpRole'),
-      btn = document.getElementById('fpBtn'), out = document.getElementById('fpOut'),
-      nudge = document.getElementById('fpNudge'), maxNote = document.getElementById('fpMax');
-  if(!form || !btn || !out) return;
-  var CK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
-  var TASKS = {
-    'Admissions':'inquiry email triage', 'Human Resources':'onboarding packets', 'Finance':'the monthly variance memo',
-    'Information Technology':'ticket summaries and status updates', 'Research Administration':'proposal budget justifications',
-    'Advancement':'donor briefings', 'Student Affairs':'event communications', 'Facilities':'work-order updates',
-    'Communications':'newsletter drafts', 'Library':'research guide updates', 'Other':'your most repetitive weekly task'
-  };
-  var SKILLS = {
-    judgment:{ name:'Judgment',
-      p2:'Before accepting any AI draft, write one sentence on what you’d change and why; judgment grows one rep at a time.',
-      p3:'Once a week, catch a case where the AI answer is technically fine but contextually wrong, and note the context it missed.' },
-    verification:{ name:'Verification',
-      p2:'Pick one AI draft a week and verify every checkable fact against the source. Time yourself; you’ll get fast.',
-      p3:'Build a personal verify-first checklist for your three most common outputs, and share it with one colleague.' },
-    delegation:{ name:'Delegation to AI',
-      p2:'Brief AI like a new colleague (goal, context, format, deadline) and hand it one recurring task each week.',
-      p3:'Chain two AI steps on one real deliverable (draft → critique → revise). That’s agent-thinking in miniature.' },
-    relationship:{ name:'Relationship & trust',
-      p2:'Bank one AI-saved hour per week into human work: a check-in, office hours, one unhurried conversation.',
-      p3:'Lead a 20-minute team conversation: which parts of our work should stay human on purpose?' },
-    domain:{ name:'Domain depth',
-      p2:'Use AI as a tutor for 15 minutes a week: have it quiz you on the hard parts of your field, and verify its answers.',
-      p3:'Write one plain-English explainer of something only your unit knows. AI amplifies that knowledge; it can’t replace it.' }
-  };
-  function picks(){ return Array.prototype.slice.call(form.querySelectorAll('input[name="fpSkill"]:checked')); }
-  form.addEventListener('change', function(e){
-    if(e.target && e.target.name === 'fpSkill'){
-      if(picks().length > 3){
-        e.target.checked = false;
-        if(maxNote) maxNote.classList.add('show');
-        return;
-      }
-      if(maxNote) maxNote.classList.remove('show');
-    }
-  });
-  btn.addEventListener('click', function(){
-    var chosen = picks();
-    if(!chosen.length){
-      if(nudge) nudge.classList.add('show');
-      out.innerHTML = '';
-      var f = form.querySelector('input[name="fpSkill"]');
-      if(f) f.focus();
-      return;
-    }
-    if(nudge) nudge.classList.remove('show');
-    if(maxNote) maxNote.classList.remove('show');
-    progDone('future');
-    var roleName = role ? role.value : 'Other';
-    var task = TASKS[roleName] || TASKS.Other;
-    var names = chosen.map(function(c){ return SKILLS[c.value].name; });
-    var p1 = ['Finish CHART’s core path (~20 minutes) and bookmark the Playground.',
-              'Run the Prompt Lab twice a week on real ' + task + ': all five ingredients, every time.',
-              'Feed the Simulator one real case from your desk and save all three starter prompts.'];
-    var p2 = ['Grade one of your own prompts in the Prompt Grader weekly: apply one suggestion, then re-grade.'];
-    var p3 = [];
-    chosen.forEach(function(c){ p2.push(SKILLS[c.value].p2); p3.push(SKILLS[c.value].p3); });
-    p3.push('Share one win (time saved, a better draft) with your team, and teach one colleague one technique.');
-    p3.push('Pick your next skill from the stack and start the loop again.');
-    var phases = [['Days 1–30', 'Foundations', p1], ['Days 31–60', 'Deliberate reps', p2], ['Days 61–90', 'Compound & share', p3]];
-    var html = '<div class="lframe" style="margin:0 0 18px"><span class="lf-chip"><b>Role</b>' + escapeHtml(roleName) +
-      '</span><span class="lf-chip"><b>Focus</b>' + escapeHtml(names.join(' · ')) + '</span></div>';
-    html += '<div class="roadmap three">';
-    phases.forEach(function(ph){
-      html += '<div class="rstep"><span class="rno">' + ph[0] + '</span><h5>' + ph[1] + '</h5><ul>';
-      ph[2].forEach(function(a){ html += '<li>' + CK + '<span>' + escapeHtml(a) + '</span></li>'; });
-      html += '</ul></div>';
-    });
-    html += '</div><div style="margin-top:16px"><button type="button" class="btn btn-ghost btn-sm" id="fpCopy"><span>Copy my plan</span></button></div>';
-    html += '<p class="fp-fine">Yours to edit; a plan you rewrote is a plan you’ll follow.</p>';
-    out.innerHTML = html;
-    var txt = 'MY 90-DAY AI DEVELOPMENT PLAN\nRole family: ' + roleName + '\nFocus skills: ' + names.join(', ') + '\n\n';
-    phases.forEach(function(ph){
-      txt += ph[0] + ': ' + ph[1] + '\n';
-      ph[2].forEach(function(a){ txt += '  - ' + a + '\n'; });
-      txt += '\n';
-    });
-    txt += 'Built with CHART: Cultivating Human-AI Readiness and Thinking (Vanderbilt).';
-    var cb = document.getElementById('fpCopy');
-    if(cb) cb.addEventListener('click', function(){
-      var l = cb.querySelector('span');
-      if(l) copyText(txt, l, 'Copied ✓');
     });
   });
 })();
