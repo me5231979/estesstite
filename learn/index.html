@@ -81,7 +81,7 @@
   --gold:#7A5C1E; --champ:#7A5C1E; }
 
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
-html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; scroll-padding-top:84px; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; scroll-padding-top:118px; } /* 96px bar + breathing room */
 body{ font-family:var(--sans); font-size:1.0625rem; background:var(--vu-black); color:#fff; line-height:1.6;
   overflow-x:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; min-height:100dvh; }
 h1,h2,.module-head h3{ font-family:var(--serif); font-weight:400; line-height:1.1; letter-spacing:-.01em; color:var(--tx,#fff); }
@@ -110,18 +110,20 @@ button{ font:inherit; color:inherit; } input,select,textarea{ font:inherit; }
 }
 
 /* ═══════════════════ NAV ═══════════════════ */
-header.nav{ position:fixed; inset:0 0 auto 0; z-index:200; background:transparent; transition:background-color .3s var(--ease), border-color .3s; border-bottom:1px solid transparent; }
-header.nav.scrolled{ background:var(--vu-black); border-bottom-color:rgba(207,174,112,.2); }
-header.nav .bar{ display:flex; align-items:center; justify-content:space-between; gap:16px; height:76px; }
+/* solid black banner, taller and airier, in the reference-header pattern */
+header.nav{ position:fixed; inset:0 0 auto 0; z-index:200; background:var(--vu-black); border-bottom:1px solid transparent; transition:border-color .3s; }
+header.nav.scrolled{ border-bottom-color:rgba(207,174,112,.2); }
+header.nav .wrap{ max-width:1440px; } /* wider banner than the page columns */
+header.nav .bar{ display:flex; align-items:center; justify-content:space-between; gap:clamp(16px,2vw,36px); height:96px; }
 .logo{ display:flex; align-items:center; flex-shrink:1; min-width:0; }
-.logo img{ height:36px; width:auto; display:block; }
-nav.links{ display:flex; align-items:center; gap:4px; }
-nav.links a{ position:relative; padding:10px 12px; color:#fff; font-size:.9rem; font-weight:500; }
+.logo img{ height:48px; width:auto; display:block; }
+nav.links{ display:flex; align-items:center; flex-wrap:nowrap; gap:clamp(0px,.5vw,10px); }
+nav.links a{ position:relative; padding:10px clamp(9px,.9vw,16px); color:#fff; font-size:.9rem; font-weight:500; letter-spacing:.02em; white-space:nowrap; }
 nav.links a::after{ content:''; position:absolute; left:12px; right:12px; bottom:5px; height:2px; background:var(--vu-gold);
   transform:scaleX(0); transform-origin:left; transition:transform .2s var(--ease); }
 nav.links a:hover::after,nav.links a:focus-visible::after{ transform:scaleX(1); }
-nav.links .nav-cta{ margin-left:10px; } nav.links .nav-cta::after{ display:none; }
-nav.links a.nav-cta{ color:#1C1C1C; } /* black on gold — AA 8:1; must beat the white nav-link rule */
+nav.links .nav-cta{ margin-left:clamp(8px,1vw,20px); } nav.links .nav-cta::after{ display:none; }
+nav.links a.nav-cta{ color:#1C1C1C; min-height:50px; padding:13px clamp(20px,1.8vw,30px); font-size:.9rem; letter-spacing:0; } /* black on gold — AA 8:1; must beat the white nav-link rule */
 .menu-btn{ display:none; background:transparent; border:1px solid rgba(255,255,255,.25); color:#fff;
   width:46px; height:46px; border-radius:var(--r); cursor:pointer; place-items:center; }
 .menu-btn .b{ display:block; width:18px; height:2px; background:currentColor; transition:transform .3s var(--ease),opacity .2s; }
@@ -812,7 +814,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 .prog-btn:hover{ border-color:var(--vu-gold); }
 .prog-track{ position:absolute; left:0; right:0; bottom:0; height:2px; pointer-events:none; }
 .prog-fill{ display:block; height:100%; width:0%; background:var(--vu-gold); transition:width .38s ease-out; }
-.prog-panel{ position:fixed; top:84px; right:clamp(8px,3vw,44px); z-index:220; width:min(380px, calc(100vw - 16px));
+.prog-panel{ position:fixed; top:104px; right:clamp(8px,3vw,44px); z-index:220; width:min(380px, calc(100vw - 16px));
   max-height:min(72vh,600px); overflow:auto; background:var(--vu-black); color:#fff;
   border:1px solid rgba(207,174,112,.4); border-radius:var(--r); padding:20px 20px 16px; }
 .prog-panel[hidden]{ display:none; }
@@ -841,7 +843,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   transition:color .2s ease-out; }
 .preset:hover{ color:#fff; }
 .preset svg{ width:14px; height:14px; }
-@media (max-width:1200px){ .prog-btn .pw{ display:none; } }
+@media (max-width:1280px){ .prog-btn .pw{ display:none; } } /* 1100-1280: pill shows just N/10 */
 @media (max-width:400px){ .prog-btn{ padding:8px 10px; } }
 
 /* ═══════════════════ RIGHT-EDGE PROGRESS RAIL ═══════════════════ */
@@ -901,8 +903,20 @@ body.oracle-open{ overflow:hidden; }
   .roadmap.three{ grid-template-columns:1fr 1fr; }
   .never ul{ grid-template-columns:1fr 1fr; }
 }
-@media (max-width:960px){
+@media (max-width:1280px){
+  .logo img{ height:42px; }
+  nav.links a{ font-size:.86rem; letter-spacing:.01em; }
+  nav.links a.nav-cta{ font-size:.875rem; min-height:46px; padding:11px 20px; }
+}
+@media (max-width:1099px){
+  /* below 1100 the full link row cannot sit on one line; hand off to the menu (the rail hides at the same width) */
   nav.links{ display:none; } .menu-btn{ display:grid; }
+}
+@media (max-width:960px){
+  header.nav .bar{ height:72px; }
+  .logo img{ height:36px; }
+  html{ scroll-padding-top:92px; }
+  .prog-panel{ top:80px; }
   .app-grid{ grid-template-columns:1fr; }
   .preview-box{ position:static; }
   .llm-grid{ grid-template-columns:1fr; }
@@ -975,8 +989,8 @@ body.oracle-open{ overflow:hidden; }
           <a href="#crit">CRIT</a>
           <a href="#playground">Practice</a>
           <a href="#simulator">Simulator</a>
-          <a href="#responsible">Responsible AI</a>
-          <a href="#resources">Keep learning</a>
+          <a href="#responsible">Responsible</a>
+          <a href="#resources">Resources</a>
           <a class="btn btn-gold btn-sm nav-cta" href="#quiz">Knowledge check</a>
         </nav>
         <button class="prog-btn" id="progBtn" aria-expanded="false" aria-controls="progPanel">
