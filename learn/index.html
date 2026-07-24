@@ -1523,6 +1523,11 @@ body.oracle-open{ overflow:hidden; }
         <span class="e-src">White et&nbsp;al., arXiv:2302.11382 (2023) &middot; more of the catalog under <a href="#resources">Keep learning</a></span>
       </div>
     </div>
+    <div class="md-wrap reveal">
+      <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="learn" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Done with this section</span></button>
+    </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>You know what AI is; now see where it meets your own job, task by <em>task</em>.</p></div>
   </div>
 </section>
@@ -1808,6 +1813,11 @@ body.oracle-open{ overflow:hidden; }
       </div>
     </div>
 
+    <div class="md-wrap reveal">
+      <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="readiness" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Done with this section</span></button>
+    </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>You have named your applications; prompting is how you get AI to do them <em>well</em>.</p></div>
   </div>
 </section>
@@ -1915,6 +1925,11 @@ body.oracle-open{ overflow:hidden; }
           </div>
         </div>
       </div>
+    </div>
+    <div class="md-wrap reveal">
+      <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="crit" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Done with this section</span></button>
     </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>Now drill it, hands on <em>keyboard</em>.</p></div>
   </div>
@@ -2144,6 +2159,11 @@ body.oracle-open{ overflow:hidden; }
         <span class="lf-chip"><b>Data rule</b>Safe data only. When in doubt, Amplify or nothing</span>
       </div>
     </div>
+    <div class="md-wrap reveal">
+      <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="playground" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Done with this section</span></button>
+    </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>One rep run in one tool; now meet all three <em>properly</em>.</p></div>
   </div>
 </section>
@@ -2289,6 +2309,11 @@ body.oracle-open{ overflow:hidden; }
       </div>
 
       <div class="sim-out" id="simOut" role="status" aria-live="polite"></div>
+    </div>
+    <div class="md-wrap reveal">
+      <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="simulator" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Done with this section</span></button>
     </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>Before you run the plan, set the <em>guardrails</em>.</p></div>
   </div>
@@ -2475,6 +2500,11 @@ body.oracle-open{ overflow:hidden; }
         <div id="wbOut" role="status" aria-live="polite"></div>
       </div>
     </div>
+    <div class="md-wrap reveal">
+      <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="responsible" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Done with this section</span></button>
+    </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>Guardrails set; now see what <em>stuck</em>.</p></div>
   </div>
 </section>
@@ -2611,6 +2641,11 @@ body.oracle-open{ overflow:hidden; }
           <p class="fb-status" id="fbStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
+    </div>
+    <div class="md-wrap reveal">
+      <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="quiz" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Done with this section</span></button>
     </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>Score in hand, give everything one <em>quick review</em> before you go.</p></div>
   </div>
@@ -3099,14 +3134,14 @@ function copyText(txt, labelEl, okMsg){
    quiz answers, feedback text, and everything typed stay unstored as before. */
 var PROG_KEY = 'chart-progress-';
 var PROG_SECTIONS = [
-  { k:'learn',       no:'01', name:'Learn the fundamentals', how:'Finish the hallucination drill' },
-  { k:'readiness',   no:'02', name:'AI readiness',           how:'Build the role readout' },
-  { k:'crit',        no:'03', name:'The CRIT framework',     how:'Copy a CRIT prompt from the builder' },
-  { k:'playground',  no:'04', name:'The Playground',         how:'Use an app or log your live rep' },
+  { k:'learn',       no:'01', name:'Learn the fundamentals', how:'Finish the drill, or mark it done' },
+  { k:'readiness',   no:'02', name:'AI readiness',           how:'Build the readout, or mark it done' },
+  { k:'crit',        no:'03', name:'The CRIT framework',     how:'Copy a CRIT prompt, or mark it done' },
+  { k:'playground',  no:'04', name:'The Playground',         how:'Use an app, or mark it done' },
   { k:'tools',       no:'05', name:'Three tools',            how:'Mark it done once read' },
-  { k:'simulator',   no:'06', name:'Opportunity Simulator',  how:'Analyze a use case' },
-  { k:'responsible', no:'07', name:'Responsible AI',         how:'Scenarios or the self-check' },
-  { k:'quiz',        no:'08', name:'Knowledge check',        how:'Check your answers' },
+  { k:'simulator',   no:'06', name:'Opportunity Simulator',  how:'Analyze a case, or mark it done' },
+  { k:'responsible', no:'07', name:'Responsible AI',         how:'Do a scenario, or mark it done' },
+  { k:'quiz',        no:'08', name:'Knowledge check',        how:'Check your answers, or mark it done' },
   { k:'nextstep',    no:'09', name:'Your next step',         how:'Mark it done once planned' },
   { k:'resources',   no:'10', name:'Keep learning',          how:'Mark it done once browsed' }
 ];
