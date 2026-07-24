@@ -60,7 +60,7 @@
 /* theme scopes — every component reads these vars, so each section theme recolors everything */
 .th-dark{
   background:var(--vu-black); color:#FFFFFF;
-  --tx:#FFFFFF; --tx2:rgba(255,255,255,.74); --tx3:rgba(255,255,255,.56);
+  --tx:#FFFFFF; --tx2:rgba(255,255,255,.74); --tx3:rgba(255,255,255,.64);
   --bd:rgba(255,255,255,.15); --bdg:rgba(207,174,112,.35);
   --card:#262624; --card2:#212120; --field:#141414; --field-bd:rgba(255,255,255,.2);
   --eyebrow:#CFAE70; --link:#CFAE70; --strong:#ECB748; --focus:#ECB748; --acc:#CFAE70;
@@ -133,6 +133,7 @@ body.menu-open .menu-btn .b3{ transform:translateY(-6px) rotate(-45deg); }
   display:flex; flex-direction:column; justify-content:center; padding:96px clamp(24px,8vw,60px) 56px;
   opacity:0; visibility:hidden; transition:opacity .3s var(--ease), visibility 0s .3s; }
 body.menu-open .mobile-menu{ opacity:1; visibility:visible; transition:opacity .3s var(--ease); }
+body.menu-open{ overflow:hidden; }
 .mobile-menu a.mlink{ font-family:var(--serif); font-size:clamp(1.5rem,7vw,2.4rem); color:#fff;
   padding:12px 0; border-bottom:1px solid rgba(255,255,255,.12); display:flex; align-items:baseline; gap:18px; }
 .mobile-menu a.mlink .mono{ font-size:.75rem; color:var(--vu-gold); }
@@ -165,9 +166,6 @@ body.menu-open .mobile-menu{ opacity:1; visibility:visible; transition:opacity .
 .hero .lead .def{ color:var(--vu-gold); }
 .hero .hello{ font-family:var(--serif); font-size:1.375rem; color:#fff; margin-top:26px; }
 .hero .lead.closer em{ font-family:var(--serif); font-style:italic; color:var(--vu-gold); font-size:1.1em; }
-.hero-outcomes{ list-style:none; margin:20px 0 0; padding:0; display:flex; flex-direction:column; gap:9px; }
-.hero-outcomes li{ position:relative; padding-left:24px; color:rgba(255,255,255,.85); font-size:1.0625rem; max-width:54ch; }
-.hero-outcomes li::before{ content:''; position:absolute; left:0; top:.62em; width:12px; height:2px; background:var(--vu-gold); }
 .hero .meta-line{ font-family:var(--cond); font-weight:700; font-size:.8125rem; letter-spacing:.03em; text-transform:uppercase;
   color:rgba(255,255,255,.55); margin-top:22px; }
 .hero .meta-line b{ color:var(--vu-gold); font-weight:700; }
@@ -457,6 +455,7 @@ details.pl-opt{ margin:0 0 18px; max-width:none; }
 .sugg li b{ color:var(--tx); font-weight:600; }
 
 /* tool match / self-check question blocks */
+.tm-lead{ margin:14px 2px 12px; font-size:.9375rem; color:var(--tx2); max-width:66ch; }
 .tm-q{ border:1px solid var(--bd); border-radius:var(--r); padding:18px 20px; margin-bottom:14px; background:var(--card); }
 .tm-q legend{ float:left; width:100%; font-weight:600; font-size:.98rem; padding:0; margin-bottom:12px; color:var(--tx); }
 .tm-q legend .qn{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; color:var(--eyebrow); margin-right:10px; }
@@ -556,7 +555,7 @@ details.pl-opt{ margin:0 0 18px; max-width:none; }
 .tool dd b{ color:var(--tx); font-weight:600; }
 .tool .t-cta{ margin-top:auto; padding-top:22px; }
 .tool.hero-tool{ background:#1C1C1C; border:1px solid rgba(207,174,112,.55); color:#fff;
-  --tx:#FFFFFF; --tx2:rgba(255,255,255,.75); --tx3:rgba(255,255,255,.56); --bd:rgba(255,255,255,.16); --bdg:rgba(207,174,112,.4);
+  --tx:#FFFFFF; --tx2:rgba(255,255,255,.75); --tx3:rgba(255,255,255,.64); --bd:rgba(255,255,255,.16); --bdg:rgba(207,174,112,.4);
   --eyebrow:#CFAE70; --link:#CFAE70; --strong:#ECB748; --focus:#ECB748;
   --btn-bg:#CFAE70; --btn-tx:#1C1C1C; --btn-hv:#ECB748;
   --gold:#CFAE70; --champ:#ECB748; --muted:rgba(255,255,255,.75); --faint:rgba(255,255,255,.56); }
@@ -715,12 +714,15 @@ a.res:hover .r-arrow{ color:var(--strong); }
 .cta h2{ font-size:clamp(2.1rem,5vw,3.8rem); max-width:18ch; margin-inline:auto; }
 .cta p{ color:rgba(255,255,255,.7); margin:20px auto 0; max-width:46ch; }
 .cta .btn{ margin-top:36px; }
+.cta .cta-alt{ margin-top:22px; font-size:.9375rem; color:rgba(255,255,255,.64); }
+.cta .cta-alt a{ color:var(--vu-gold); border-bottom:1px solid rgba(207,174,112,.4); }
 footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,174,112,.2); padding:clamp(56px,8vw,88px) 0 46px;
-  --tx:#fff; --tx2:rgba(255,255,255,.7); --tx3:rgba(255,255,255,.5); --link:#CFAE70; --strong:#ECB748; --focus:#ECB748; --bdg:rgba(207,174,112,.35); }
+  --tx:#fff; --tx2:rgba(255,255,255,.7); --tx3:rgba(255,255,255,.64); --link:#CFAE70; --strong:#ECB748; --focus:#ECB748; --bdg:rgba(207,174,112,.35); }
 .fcols{ display:grid; grid-template-columns:repeat(4,1fr); gap:32px; padding-bottom:clamp(40px,6vw,64px); border-bottom:1px solid rgba(255,255,255,.12); }
 .fcol h4{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.05em; text-transform:uppercase; color:var(--vu-gold); margin-bottom:14px; }
 .fcol a{ display:block; color:rgba(255,255,255,.7); font-size:.9rem; padding:6px 0; transition:color .2s ease-out; }
 .fcol a:hover{ color:#fff; }
+.fcol .fnote{ display:block; color:rgba(255,255,255,.55); font-size:.9rem; padding:6px 0; }
 .fcenter{ text-align:center; padding-top:clamp(40px,6vw,60px); }
 .fcenter img{ margin:0 auto; }
 .fprogram{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-gold); margin-top:22px; max-width:none; }
@@ -814,7 +816,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   max-height:min(72vh,600px); overflow:auto; background:var(--vu-black); color:#fff;
   border:1px solid rgba(207,174,112,.4); border-radius:var(--r); padding:20px 20px 16px; }
 .prog-panel[hidden]{ display:none; }
-.prog-panel h2{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-gold); }
+.prog-panel .pp-h{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-gold); }
 .prog-sum{ color:rgba(255,255,255,.75); font-size:.9rem; margin-top:8px; max-width:none; }
 .prog-list{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; }
 .prog-list a{ display:grid; grid-template-columns:32px 1fr auto; gap:10px; align-items:center; padding:9px 4px; min-height:44px;
@@ -968,8 +970,8 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 </header>
 
 <!-- progress panel: every tracked section, its state, and a deep link -->
-<div class="prog-panel" id="progPanel" hidden>
-  <h2>Your progress</h2>
+<div class="prog-panel" id="progPanel" role="region" aria-label="Your progress" hidden>
+  <div class="pp-h">Your progress</div>
   <p class="prog-sum" id="progSum">0 of 10 sections complete.</p>
   <ol class="prog-list" id="progList"></ol>
   <p class="prog-fine">Progress is saved only in this browser: completion flags, nothing else. Nothing is sent or reported. Reset it anytime in the footer.</p>
@@ -986,11 +988,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <a class="mlink" href="#simulator" data-prog="simulator"><span class="mono">06</span>Simulator<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#responsible" data-prog="responsible"><span class="mono">07</span>Responsible AI<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#quiz" data-prog="quiz"><span class="mono">08</span>Knowledge check<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#summary"><span class="mono">09</span>What you know</a>
-  <a class="mlink" href="#nextstep" data-prog="nextstep"><span class="mono">10</span>Your next step<span class="mdone" aria-hidden="true">Done</span></a>
-  <a class="mlink" href="#resources" data-prog="resources"><span class="mono">11</span>Keep learning<span class="mdone" aria-hidden="true">Done</span></a>
+  <a class="mlink" href="#summary"><span class="mono" aria-hidden="true">&middot;</span>What you know</a>
+  <a class="mlink" href="#nextstep" data-prog="nextstep"><span class="mono">09</span>Your next step<span class="mdone" aria-hidden="true">Done</span></a>
+  <a class="mlink" href="#resources" data-prog="resources"><span class="mono">10</span>Keep learning<span class="mdone" aria-hidden="true">Done</span></a>
   <div class="mprog" id="mprogLine">0 of 10 sections complete</div>
-  <div class="mfoot">chart@vanderbilt.edu <!-- [EDIT] program contact email --></div>
+  <div class="mfoot">matthew.estes@vanderbilt.edu <!-- [EDIT: swap to program alias when created] --></div>
 </nav>
 
 <main id="main"><span id="top"></span>
@@ -1020,7 +1022,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </ul>
     <p class="lead closer">This is not a course about AI. It is <em>practice</em> for the way you will work next.</p>
     
-    <p class="meta-line" aria-label="50 to 60 minutes, self-paced, nothing tracked"><b>50&ndash;60 minutes</b> &middot; self-paced &middot; nothing tracked</p>
+    <p class="meta-line" aria-label="50 to 60 minutes, self-paced, nothing reported, progress stays in your browser"><b>50&ndash;60 minutes</b> &middot; self-paced &middot; nothing reported &middot; progress stays in your browser</p>
     <div class="cta-row">
       <a class="btn btn-gold" href="#start">Start learning
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -1066,7 +1068,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <h3>Understand it, then find your applications</h3>
           <p>Learn what AI is and watch it work, then map your own role task by task. You practice better when you know what you are practicing for.</p>
         </div>
-        <span class="chip" data-time="stop1">~21 min</span>
+        <span class="chip">~21 min</span>
       </div>
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">02</span>
@@ -1074,7 +1076,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <h3>Learn to direct it, then run one real task</h3>
           <p>CRIT is the four-part way to brief an AI; the Playground is where you drill it and take one task live. Skills stick when they touch real work.</p>
         </div>
-        <span class="chip" data-time="stop2">~16 min</span>
+        <span class="chip">~16 min</span>
       </div>
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">03</span>
@@ -1082,7 +1084,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <h3>Know your tools, then map your week</h3>
           <p>Meet ChatGPT, Amplify, and Copilot and their data rules, then let the Simulator turn your week into a plan. The right tool is a data decision.</p>
         </div>
-        <span class="chip" data-time="stop3">~5 min</span>
+        <span class="chip">~5 min</span>
       </div>
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">04</span>
@@ -1090,7 +1092,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           <h3>Use it safely, then prove it</h3>
           <p>Set the guardrails, check what stuck with eight questions, and leave with a next step. You own every output.</p>
         </div>
-        <span class="chip" data-time="stop4">~18 min</span>
+        <span class="chip">~18 min</span>
       </div>
     </div>
     <p class="hw-meta reveal">About 50&ndash;60 minutes for the core path &middot; every module is skippable and self-paced &middot; embedded videos are optional extras.</p>
@@ -1216,13 +1218,13 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <p>In this activity, you will watch a language model write, one word at a time. (The demo runs on canned data; nothing is generated live.)</p>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Why AI writes so well and lies so confidently</span>
-        <span class="lf-chip"><b>You&rsquo;ll do</b>Play with a live prediction demo and its temperature dial</span>
+        <span class="lf-chip"><b>You&rsquo;ll do</b>Try the interactive demo and its temperature dial</span>
         <span class="lf-chip"><b>Time</b>3 min + optional 8-min video</span>
       </div>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>The model learned one thing from a huge slice of human writing: which word tends to come next. It writes by predicting that word, over and over. It never checks anything; there is no lookup step, only pattern completion.</p>
+        <p>The model learned one thing from a huge slice of human writing: which word tends to come next. It writes by predicting that word, over and over. It never checks anything; there is no lookup step, only pattern completion (unless the tool explicitly searches the web).</p>
       </div>
       <div class="llm">
         <p class="sentence" aria-live="polite">&ldquo;<span id="llmText">The staff meeting has been moved to</span> <span class="blank" id="llmBlank">?</span>&rdquo;</p>
@@ -1772,7 +1774,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
                   <label><input type="radio" name="raSens" value="2" /> Regulated records, like those covered by FERPA or HIPAA</label>
                 </div>
               </fieldset>
-              <p class="nudge" id="raNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the readout builds itself.</p>
+              <p class="nudge" id="raNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><span id="raNudgeTxt">Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the readout builds itself.</span></p>
               <div class="ra-actions"><button type="button" class="btn btn-primary" id="raBuild">Build the readout
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
             </div>
@@ -2058,6 +2060,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <span class="lf-chip"><b>Time</b>1 min</span>
       </div>
         <div class="micro"><span><i aria-hidden="true">1</i>Answer five yes/no questions</span><span><i aria-hidden="true">2</i>Get the verdict</span><span><i aria-hidden="true">3</i>Remember the &ldquo;why&rdquo;; it&rsquo;s the reusable part</span></div>
+        <p class="tm-lead">You will meet all three tools properly in the next section. Here, just use the two rules: how sensitive is the data, and where are you already working.</p>
         <div class="app-grid">
           <form id="tmForm" autocomplete="off">
             <fieldset class="tm-q">
@@ -2172,7 +2175,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <dl>
           <div><dt>Best for</dt><dd>Drafting in Word, formulas in Excel, taming Outlook, meeting recaps in Teams</dd></div>
           <div><dt>Data allowed</dt><dd>Follow guidance for your <b>Vanderbilt Microsoft 365 account</b> <!-- [EDIT] confirm tenant data guidance --></dd></div>
-          <div><dt>Where it lives</dt><dd>copilot.microsoft.com + inside Office apps</dd></div>
+          <div><dt>Where it lives</dt><dd>copilot.microsoft.com; with Vanderbilt&rsquo;s Copilot license, it can work inside your document <!-- [EDIT: confirm license coverage] --></dd></div>
           <div><dt>Cost</dt><dd>Included with eligible M365 licenses <!-- [EDIT] verify license coverage --></dd></div>
         </dl>
         <div class="t-cta"><a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
@@ -2331,7 +2334,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Unpublished research data</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Contracts &amp; legal matters</li>
       </ul>
-      <p class="pol">Full guidance: <a href="#responsible">Vanderbilt AI Guidance <!-- [EDIT] link official AI policy --></a> · <a href="#responsible">Data Classification Policy <!-- [EDIT] link data classification policy --></a></p>
+      <p class="pol">Full guidance: Vanderbilt&rsquo;s AI guidance and data classification policy will be linked here when published; until then, both are available through Human Resources and ITS.<!-- [EDIT: add URL for official AI policy] --><!-- [EDIT: add URL for data classification policy] --></p>
     </div>
     <div class="module reveal">
       <div class="module-head">
@@ -2474,47 +2477,48 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
     </div>
     <div class="quiz-shell reveal">
       <form id="quizForm" autocomplete="off" novalidate>
-        <fieldset class="qz" data-answer="b">
-          <legend><span class="qn">1/8</span>A colleague wants AI help summarizing notes that include employee salary details. Which tool?</legend>
-          <div class="opts">
-            <label><input type="radio" name="q1" value="a" /> ChatGPT, it's the most popular</label> <label><input type="radio" name="q1" value="b" /> Amplify, it's approved for institutional data</label> <label><input type="radio" name="q1" value="c" /> Copilot on a personal account</label> <label><input type="radio" name="q1" value="d" /> Any of them, it's just a summary</label>
-          </div>
-          <p class="expl"><b>Amplify.</b> Salary and personnel records are confidential; they only belong in Vanderbilt's approved platform.</p>
-        </fieldset>
+        <!-- teaching order: how the machine works first, then CRIT, tools, responsible habits; ids and answers unchanged -->
         <fieldset class="qz" data-answer="c">
-          <legend><span class="qn">2/8</span>Under the hood, what is a large language model actually doing?</legend>
+          <legend><span class="qn">1/8</span>Under the hood, what is a large language model actually doing?</legend>
           <div class="opts">
             <label><input type="radio" name="q2" value="a" /> Searching a database of verified facts</label> <label><input type="radio" name="q2" value="b" /> Thinking through the problem like a person</label> <label><input type="radio" name="q2" value="c" /> Predicting the most likely next word, over and over</label> <label><input type="radio" name="q2" value="d" /> Copying answers from the web in real time</label>
           </div>
           <p class="expl"><b>Predicting the next word.</b> That's the whole trick, which is why it's brilliant at drafting and unreliable on facts.</p>
         </fieldset>
-        <fieldset class="qz" data-answer="b">
-          <legend><span class="qn">3/8</span>An AI gives you a beautifully written answer with two citations. What now?</legend>
-          <div class="opts">
-            <label><input type="radio" name="q3" value="a" /> Send it; citations mean it's verified</label> <label><input type="radio" name="q3" value="b" /> Check the facts and citations yourself first</label> <label><input type="radio" name="q3" value="c" /> Ask the AI if it's sure</label> <label><input type="radio" name="q3" value="d" /> Add more citations for safety</label>
-          </div>
-          <p class="expl"><b>Verify it yourself.</b> Models fabricate plausible-looking citations. Asking "are you sure?" just gets you a confident yes.</p>
-        </fieldset>
         <fieldset class="qz" data-answer="a">
-          <legend><span class="qn">4/8</span>What's a &ldquo;hallucination&rdquo; in AI-speak?</legend>
+          <legend><span class="qn">2/8</span>What's a &ldquo;hallucination&rdquo; in AI-speak?</legend>
           <div class="opts">
             <label><input type="radio" name="q4" value="a" /> Confident, fluent information that's simply made up</label> <label><input type="radio" name="q4" value="b" /> When the AI refuses to answer</label> <label><input type="radio" name="q4" value="c" /> A visual glitch in the interface</label> <label><input type="radio" name="q4" value="d" /> When the AI repeats itself</label>
           </div>
           <p class="expl"><b>Made-up but confident.</b> The model predicts what sounds right, not what is right, so wrong answers arrive sounding great.</p>
         </fieldset>
+        <fieldset class="qz" data-answer="a">
+          <legend><span class="qn">3/8</span>You crank the temperature setting way up. The model's output gets…</legend>
+          <div class="opts">
+            <label><input type="radio" name="q8" value="a" /> More random and creative, riskier for facts</label> <label><input type="radio" name="q8" value="b" /> More accurate</label> <label><input type="radio" name="q8" value="c" /> Faster</label> <label><input type="radio" name="q8" value="d" /> Physically warmer</label>
+          </div>
+          <p class="expl"><b>More random.</b> High temperature gives unlikely words a bigger chance: great for brainstorming, bad for budget memos.</p>
+        </fieldset>
         <fieldset class="qz" data-answer="d">
-          <legend><span class="qn">5/8</span>Which prompt will get the best result?</legend>
+          <legend><span class="qn">4/8</span>Which prompt will get the best result?</legend>
           <div class="opts">
             <label><input type="radio" name="q5" value="a" /> &ldquo;Write something about our event&rdquo;</label> <label><input type="radio" name="q5" value="b" /> &ldquo;Make this good&rdquo;</label> <label><input type="radio" name="q5" value="c" /> &ldquo;Email please&rdquo;</label> <label><input type="radio" name="q5" value="d" /> Context, a role, an interview line, then the task</label>
           </div>
           <p class="expl"><b>Context + role + interview + task.</b> The CRIT shape from the builder and the Prompt Lab. Specific in, useful out.</p>
         </fieldset>
         <fieldset class="qz" data-answer="c">
-          <legend><span class="qn">6/8</span>You're buried in Excel and need formula help. The natural first stop?</legend>
+          <legend><span class="qn">5/8</span>You're buried in Excel and need formula help. The natural first stop?</legend>
           <div class="opts">
             <label><input type="radio" name="q6" value="a" /> ChatGPT in another tab</label> <label><input type="radio" name="q6" value="b" /> Amplify</label> <label><input type="radio" name="q6" value="c" /> Copilot, it lives inside Office</label> <label><input type="radio" name="q6" value="d" /> A very patient coworker</label>
           </div>
-          <p class="expl"><b>Copilot.</b> Office apps → Copilot is the rule of thumb. It can see your sheet, so you skip the copy-paste dance.</p>
+          <p class="expl"><b>Copilot.</b> Office apps → Copilot is the rule of thumb. With Vanderbilt&rsquo;s Copilot license, it can work inside your sheet, so you skip the copy-paste dance. <!-- [EDIT: confirm license coverage] --></p>
+        </fieldset>
+        <fieldset class="qz" data-answer="b">
+          <legend><span class="qn">6/8</span>A colleague wants AI help summarizing notes that include employee salary details. Which tool?</legend>
+          <div class="opts">
+            <label><input type="radio" name="q1" value="a" /> ChatGPT, it's the most popular</label> <label><input type="radio" name="q1" value="b" /> Amplify, it's approved for institutional data</label> <label><input type="radio" name="q1" value="c" /> Copilot on a personal account</label> <label><input type="radio" name="q1" value="d" /> Any of them, it's just a summary</label>
+          </div>
+          <p class="expl"><b>Amplify.</b> Salary and personnel records are confidential; they only belong in Vanderbilt's approved platform.</p>
         </fieldset>
         <fieldset class="qz" data-answer="b">
           <legend><span class="qn">7/8</span>Before pasting anything into an AI tool, the one question to ask is:</legend>
@@ -2523,12 +2527,12 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
           </div>
           <p class="expl"><b>Sensitive data check.</b> One second of "should this leave Vanderbilt?" prevents the mistakes that actually matter.</p>
         </fieldset>
-        <fieldset class="qz" data-answer="a">
-          <legend><span class="qn">8/8</span>You crank the temperature setting way up. The model's output gets…</legend>
+        <fieldset class="qz" data-answer="b">
+          <legend><span class="qn">8/8</span>An AI gives you a beautifully written answer with two citations. What now?</legend>
           <div class="opts">
-            <label><input type="radio" name="q8" value="a" /> More random and creative, riskier for facts</label> <label><input type="radio" name="q8" value="b" /> More accurate</label> <label><input type="radio" name="q8" value="c" /> Faster</label> <label><input type="radio" name="q8" value="d" /> Physically warmer</label>
+            <label><input type="radio" name="q3" value="a" /> Send it; citations mean it's verified</label> <label><input type="radio" name="q3" value="b" /> Check the facts and citations yourself first</label> <label><input type="radio" name="q3" value="c" /> Ask the AI if it's sure</label> <label><input type="radio" name="q3" value="d" /> Add more citations for safety</label>
           </div>
-          <p class="expl"><b>More random.</b> High temperature gives unlikely words a bigger chance: great for brainstorming, bad for budget memos.</p>
+          <p class="expl"><b>Verify it yourself.</b> Models fabricate plausible-looking citations. Asking "are you sure?" just gets you a confident yes.</p>
         </fieldset>
         <div class="quiz-foot">
           <button type="button" class="btn btn-primary" id="quizSubmit">Check my answers
@@ -2595,7 +2599,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="you-are">You are here: consolidation, one quick revisit.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Summary / 09</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Summary</span></span>
       <h2>What you now <em class="s">know.</em></h2>
       <p>In this section, you will revisit the seven ideas you picked up today.</p>
     </div>
@@ -2645,7 +2649,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:0">
       <span class="you-are">You are here: the handoff to your real week.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Next step / 10</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Next step / 09</span></span>
       <h2>Put it to work <em class="s">this week.</em></h2>
       <p>In this section, you will turn the course into a habit: one loop, five steps, starting with a task from this week. The whole loop takes about an hour, spread across a normal week.</p>
     </div>
@@ -2692,6 +2696,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
     </div>
     <p class="hw-meta reveal">Revisit the plan you built in <a href="#readiness">Your role, task by task</a>: you have now done part of it. Next month, pick a second task and run the same loop.</p>
+    <p class="hw-meta reveal" style="margin-top:10px">Your 30 / 60 / 90 from the readiness section and your first pick from the Simulator are the first steps of this same loop: one plan, seen three ways.</p>
     <div class="md-wrap reveal">
       <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="nextstep" aria-pressed="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
@@ -2706,7 +2711,7 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="you-are">You are here: the parting shelf.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Resources / 11</span></span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Resources / 10</span></span>
       <h2>Keep <em class="s">learning</em>.</h2>
       <p>The course is done; this is the part that keeps going. Pick one voice below: fifteen curious minutes a week is the whole assignment.</p>
       <div class="lframe"><span class="lf-chip"><b>Last reviewed</b>July 2026</span><span class="lf-chip"><b>Format</b>All free to start &middot; all external links</span></div>
@@ -2857,10 +2862,11 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 <section class="cta th-dark" aria-label="Closing">
   <div class="wrap">
     <img class="cta-lockup" src="assets/v-lockup-white@2x.png" alt="Vanderbilt University" width="250" height="54" loading="lazy" decoding="async" />
-    <h2 class="metal">Finish with the knowledge <em>check</em>.</h2>
-    <p>You&rsquo;ve learned the ideas, practiced the skills, and built a plan. One quick check shows you what stuck.</p>
-    <a class="btn btn-gold" href="#quiz">Take the knowledge check
+    <h2 class="metal">Now run the <em>loop</em>.</h2>
+    <p>You&rsquo;ve learned the ideas, practiced the skills, and built a plan. The next move is one real task this week; revisit any section whenever you need it.</p>
+    <a class="btn btn-gold" href="#nextstep">Start the five-step loop
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="cta-alt">Haven&rsquo;t taken the knowledge check yet? <a href="#quiz">It takes five minutes.</a></p>
   </div>
 </section>
 </main>
@@ -2893,9 +2899,9 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
       </div>
       <div class="fcol">
         <h4>Program</h4>
-        <a href="mailto:chart@vanderbilt.edu">chart@vanderbilt.edu</a><!-- [EDIT] contact mailto -->
-        <a href="#responsible">AI guidance</a><!-- [EDIT] link official Vanderbilt AI policy -->
-        <a href="#responsible">Data classification</a><!-- [EDIT] link data classification policy -->
+        <a href="mailto:matthew.estes@vanderbilt.edu">matthew.estes@vanderbilt.edu</a><!-- [EDIT: swap to program alias when created] -->
+        <span class="fnote">AI guidance: linked here when published</span><!-- [EDIT: add URL for official Vanderbilt AI policy] -->
+        <span class="fnote">Data classification: available through Human Resources</span><!-- [EDIT: add URL for data classification policy] -->
       </div>
     </div>
     <div class="fcenter">
@@ -2924,17 +2930,34 @@ if(heroVids.length){
   if(reduce){
     heroVids.forEach(function(v){ try{ v.pause(); v.removeAttribute('autoplay'); }catch(e){} });
   } else {
+    /* only the visible layer plays; the faded-out one pauses to save battery */
+    var heroOn = true;
+    var playVisible = function(){
+      heroVids.forEach(function(v){
+        if(!v.classList.contains('hv-hidden')){ try{ v.play().catch(function(){}); }catch(e){} }
+      });
+    };
+    var pauseHidden = function(){
+      heroVids.forEach(function(v){
+        if(v.classList.contains('hv-hidden')){ try{ v.pause(); }catch(e){} }
+      });
+    };
     if('IntersectionObserver' in window){
       new IntersectionObserver(function(en){
         en.forEach(function(e){
-          heroVids.forEach(function(v){ try{ e.isIntersecting ? v.play().catch(function(){}) : v.pause(); }catch(err){} });
+          heroOn = e.isIntersecting;
+          if(heroOn){ playVisible(); pauseHidden(); }
+          else heroVids.forEach(function(v){ try{ v.pause(); }catch(err){} });
         });
       }, {threshold:0}).observe(vid);
     }
     if(vidB){
+      window.setTimeout(pauseHidden, 2000);
       window.setInterval(function(){
         vid.classList.toggle('hv-hidden');
         vidB.classList.toggle('hv-hidden');
+        if(heroOn) playVisible();
+        window.setTimeout(pauseHidden, 2000); /* the 1.8s crossfade finishes first */
       }, 10000);
     }
   }
@@ -2944,12 +2967,32 @@ if(heroVids.length){
 var nav = document.getElementById('nav');
 var menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
 function setMenu(open){
+  var wasOpen = document.body.classList.contains('menu-open');
   document.body.classList.toggle('menu-open', open);
   if(menuBtn){ menuBtn.setAttribute('aria-expanded', open?'true':'false'); menuBtn.setAttribute('aria-label', open?'Close menu':'Open menu'); }
+  /* body scroll lock lives in CSS (body.menu-open); focus management here */
+  if(open && mobileMenu){
+    var first = mobileMenu.querySelector('a');
+    if(first) first.focus();
+  } else if(wasOpen && !open && menuBtn){
+    menuBtn.focus();
+  }
 }
 if(menuBtn) menuBtn.addEventListener('click', function(){ setMenu(!document.body.classList.contains('menu-open')); });
 if(mobileMenu) mobileMenu.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
+/* trap Tab inside the open mobile menu: cycle through its links and the close (menu) button */
+document.addEventListener('keydown', function(e){
+  if(e.key !== 'Tab' || !document.body.classList.contains('menu-open') || !mobileMenu) return;
+  var items = Array.prototype.slice.call(mobileMenu.querySelectorAll('a'));
+  if(menuBtn) items.unshift(menuBtn);
+  if(!items.length) return;
+  var first = items[0], last = items[items.length - 1];
+  var active = document.activeElement, idx = items.indexOf(active);
+  if(idx === -1){ e.preventDefault(); first.focus(); }
+  else if(e.shiftKey && active === first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && active === last){ e.preventDefault(); first.focus(); }
+});
 
 var ticking = false;
 function update(){
@@ -3014,8 +3057,8 @@ var PROG_SECTIONS = [
   { k:'simulator',   no:'06', name:'Opportunity Simulator',  how:'Analyze a use case' },
   { k:'responsible', no:'07', name:'Responsible AI',         how:'Scenarios or the self-check' },
   { k:'quiz',        no:'08', name:'Knowledge check',        how:'Check your answers' },
-  { k:'nextstep',    no:'10', name:'Your next step',         how:'Mark it done once planned' },
-  { k:'resources',   no:'11', name:'Keep learning',          how:'Mark it done once browsed' }
+  { k:'nextstep',    no:'09', name:'Your next step',         how:'Mark it done once planned' },
+  { k:'resources',   no:'10', name:'Keep learning',          how:'Mark it done once browsed' }
 ];
 var progMem = {};
 /* keys from retired sections (e.g. chart-progress-firstrep) are ignored and swept below */
@@ -3203,6 +3246,17 @@ document.querySelectorAll('.flip-btn').forEach(function(btn){
     { text:'Our office will be closed for the', words:[['holiday',.38],['semester',.21],['afternoon',.18],['renovation',.14],['eclipse',.09]] }
   ];
   var idx = 0;
+  /* deterministic pseudo-random for the occasional high-temperature sample */
+  var seed = 12;
+  function srand(){ seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+  function pickBlank(dist, T){
+    /* above T≈1 the blank itself sometimes samples from the distribution,
+       instead of always showing the top word — the point of temperature */
+    if(T <= 1.05) return dist[0][0];
+    var r = srand(), acc = 0;
+    for(var i = 0; i < dist.length; i++){ acc += dist[i][1]; if(r <= acc) return dist[i][0]; }
+    return dist[0][0];
+  }
   function withTemperature(words, T){
     var exp = 1 / Math.max(T, .05), sum = 0, out = [];
     words.forEach(function(w){ var q = Math.pow(w[1], exp); sum += q; out.push([w[0], q]); });
@@ -3215,7 +3269,7 @@ document.querySelectorAll('.flip-btn').forEach(function(btn){
     if(tempVal) tempVal.textContent = T.toFixed(1);
     var item = DATA[idx], dist = withTemperature(item.words, T);
     textEl.textContent = item.text;
-    if(blankEl) blankEl.textContent = dist[0][0];
+    if(blankEl) blankEl.textContent = pickBlank(dist, T);
     barsEl.textContent = '';
     var fills = [];
     dist.forEach(function(w, i){
@@ -3823,7 +3877,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     if(score === TOTAL) return ['Gold standard.','Perfect score. You’re officially dangerous, the good kind. Go put it to work.'];
     if(score >= 6) return ['Nearly flawless.','Skim the explanations under the questions you missed and you’re there.'];
     if(score >= 4) return ['Solid start.','You’ve got the big ideas. A second pass through the modules above will lock in the rest.'];
-    return ['A perfect excuse to reread.','Module A is a 15-minute fix, and the myths section is the fun part anyway.'];
+    return ['A perfect excuse to reread.','The Learn section takes about 15 minutes to revisit, and the myths module is the fun part anyway.'];
   }
   submit.addEventListener('click', function(){
     var n = updateProgress();
@@ -3885,7 +3939,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     var lines = [
       'NPS (recommend to a colleague): ' + nps + '/10',
       'CSAT (satisfaction): ' + csat + '/5, ' + (CSAT_LABELS[csat] || ''),
-      'Knowledge-check score: ' + (lastScore === null ? 'not taken' : lastScore + '/8')
+      'Knowledge-check score: ' + (lastScore === null ? 'not taken' : lastScore + '/' + TOTAL)
     ];
     var c = fbComment ? fbComment.value.trim() : '';
     if(c) lines.push('', 'Comment:', c);
@@ -3955,8 +4009,8 @@ document.querySelectorAll('.dilemma').forEach(function(card){
     ['Creep detected', 'A pattern or two is forming, which is normal and fixable. Pick one counter-move and make it a rule this week: bank the savings, run one AI task at a time, or keep breaks AI-free.'],
     ['Intensification in progress', 'You are living the study&rsquo;s findings. Sequence your AI work, protect recovery time like a meeting, and let at least one saved hour stay yours. Workload creep is an organizational pattern, not a personal failing; renegotiating scope is a professional move.']
   ];
-  /* [EDIT] link Vanderbilt EAP / Work-Life resources below */
-  var EAP = '<p class="rc-fine">Support beyond your team: <a href="#responsible" style="color:var(--link);border-bottom:1px solid var(--bdg)">Vanderbilt Employee Assistance Program &amp; Work-Life resources</a>.</p>';
+  /* [EDIT: add URL — link Vanderbilt EAP / Work-Life resources when confirmed] */
+  var EAP = '<p class="rc-fine">Support beyond your team: Vanderbilt&rsquo;s Employee Assistance Program and Work-Life resources, available through Human Resources.</p>';
   var GLYPH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-6 4 12L16 12h5"/></svg>';
   btn.addEventListener('click', function(){
     var yes = 0, firstMissing = null;
@@ -4185,19 +4239,34 @@ rowsWrap.addEventListener('click', function(e){
 });
 /* ── gathering and validation ── */
 function gather(){
-  var tasks = [], badEl = null, emptyEl = null;
-  rows().forEach(function(row){
+  var tasks = [], badEl = null, emptyEl = null, partials = [];
+  rows().forEach(function(row, i){
     var nameEl = row.querySelector('.rt-task');
     var name = nameEl ? nameEl.value.trim() : '';
     var mode = row.querySelector('.rt-mode'), rep = row.querySelector('.rt-rep'), chk = row.querySelector('.rt-check');
     if(!name){ if(!emptyEl && nameEl) emptyEl = nameEl; return; }
     if(!mode || !rep || !chk || !mode.value || !rep.value || !chk.value){
-      if(!badEl) badEl = (mode && !mode.value) ? mode : (rep && !rep.value) ? rep : chk;
+      var el = (mode && !mode.value) ? mode : (rep && !rep.value) ? rep : chk;
+      if(!badEl) badEl = el;
+      partials.push({ n: i + 1, el: el });
       return;
     }
     tasks.push({ name:name, mode:mode.value, rep:rep.value, chk:chk.value });
   });
-  return { tasks:tasks, badEl:badEl, emptyEl:emptyEl };
+  return { tasks:tasks, badEl:badEl, emptyEl:emptyEl, partials:partials };
+}
+var NUDGE_DEFAULT = 'Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the readout builds itself.';
+function nudgeShow(msg){
+  if(!nudge) return;
+  var t = document.getElementById('raNudgeTxt');
+  if(t) t.textContent = msg || NUDGE_DEFAULT;
+  nudge.classList.add('show');
+}
+function nudgeHide(){
+  if(!nudge) return;
+  nudge.classList.remove('show');
+  var t = document.getElementById('raNudgeTxt');
+  if(t) t.textContent = NUDGE_DEFAULT;
 }
 function formComplete(){
   var name = roleInput ? roleInput.value.trim() : '';
@@ -4207,7 +4276,7 @@ function formComplete(){
   return !g.badEl && g.tasks.length >= 2;
 }
 function maybeClearNudge(){
-  if(nudge && nudge.classList.contains('show') && formComplete()) nudge.classList.remove('show');
+  if(nudge && nudge.classList.contains('show') && formComplete()) nudgeHide();
 }
 form.addEventListener('change', maybeClearNudge);
 form.addEventListener('input', maybeClearNudge);
@@ -4330,7 +4399,8 @@ var RPOOL = {
              tag:'LinkedIn Learning', cost:'Subscription',
              why:'For the relational, human-core work AI reaches least.', lil:true }
 };
-var LIL_EDIT = ' [EDIT: confirm access under Vanderbilt’s LinkedIn Learning license]';
+/* [EDIT: confirm access under Vanderbilt’s LinkedIn Learning license, then simplify this note] */
+var LIL_NOTE = ' (check availability through Vanderbilt before purchasing)';
 function resilShelf(){ return [RPOOL.cointel, RPOOL.crit, RPOOL.coach, RPOOL.hardfork]; }
 function overShelf(fluency, vv){
   var prompting = fluency === 0 ? [RPOOL.peOne, RPOOL.genEss]
@@ -4345,7 +4415,7 @@ function resShelfHtml(tr){
   var lis = tr.res.map(function(r){
     return '<li><span class="rr-top"><a href="' + r.u + '" target="_blank" rel="noopener noreferrer">' + r.t + '</a>' +
       '<span class="rr-tag">' + r.tag + '</span>' + (r.cost ? '<span class="rr-cost">' + r.cost + '</span>' : '') + '</span>' +
-      '<span class="rr-why">' + r.why + (r.lil ? LIL_EDIT : '') + '</span></li>';
+      '<span class="rr-why">' + r.why + (r.lil ? LIL_NOTE : '') + '</span></li>';
   });
   if(tr.resNote) lis.push('<li><span class="rr-why">' + tr.resNote + '</span></li>');
   return '<div class="ra-res"><h6>Where to learn it</h6><ul>' + lis.join('') + '</ul></div>';
@@ -4373,7 +4443,7 @@ function brief(name, tier, why, bk, skills, plan){
       L.push('Where to learn it:');
       tr.res.forEach(function(r){
         L.push('- ' + r.t + ' (' + r.tag + (r.cost ? ' · ' + r.cost : '') + '): ' + r.u +
-          (r.lil ? ' [EDIT: confirm access under Vanderbilt’s LinkedIn Learning license]' : ''));
+          (r.lil ? LIL_NOTE : ''));
       });
       if(tr.resNote) L.push('- Data judgment: Amplify (https://www.vanderbilt.ai/) and the Responsible AI section on CHART.');
     };
@@ -4490,13 +4560,15 @@ function render(name, tasks, fluency, sens){
       '<b>This quarter.</b> ' + esc(planQuarter[0]) + ' Then: ' + esc(planQuarter[1])
     ]) + '</div></div>';
   var plan = { lead: planLeadText, primary: planPrimary, secondary: planSecondary, month: planMonth, quarter: planQuarter };
+  /* [EDIT: HR workforce planning contact — swap "ask your HR business partner" for a named route when confirmed] */
   var redesignLine = bk.delegate.length * 2 > total
-    ? 'For ' + roleEsc + ', most of the tasks you named land in the delegate bucket. That is a <b>role redesign conversation with your manager and HR</b>, not a reason to panic: exposure is a development signal, never on its own a case for cutting a role. [EDIT: HR workforce planning contact]'
-    : 'When most of a role&rsquo;s named tasks land in the delegate bucket, that is a <b>role redesign conversation with your manager and HR</b>, not a training assignment and not a reason to panic. [EDIT: HR workforce planning contact]';
+    ? 'For ' + roleEsc + ', most of the tasks you named land in the delegate bucket. That is a <b>role redesign conversation with your manager and HR</b>, not a reason to panic: exposure is a development signal, never on its own a case for cutting a role. When you are ready to start it, ask your HR business partner.'
+    : 'When most of a role&rsquo;s named tasks land in the delegate bucket, that is a <b>role redesign conversation with your manager and HR</b>, not a training assignment and not a reason to panic. When it is time, ask your HR business partner.';
   html += '<div class="ra-block"><h5>Upskill and reskill routes</h5><div class="dd" style="margin-top:14px"><ul>' +
     '<li>' + CHECK + '<span><b><a href="#crit">CRIT</a> and <a href="#playground">the Playground</a>, coming up on this page.</b> Your oversight track starts in the next sections: the prompting and delegation the redesign bucket asks for.</span></li>' +
     '<li>' + CHECK + '<span><b><a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener noreferrer">Amplify</a>, for hands-on practice.</b> Guided practice on Vanderbilt&rsquo;s approved platform beats a workshop that never touches real work.</span></li>' +
-    '<li>' + CHECK + '<span><b>Role-specific reskilling.</b> The Vanderbilt learning and development catalog, and LinkedIn Learning if licensed. [EDIT: link the L&amp;D catalog and confirm LinkedIn Learning licensing]</span></li>' +
+    /* [EDIT: link the L&D catalog and confirm LinkedIn Learning licensing] */
+    '<li>' + CHECK + '<span><b>Role-specific reskilling.</b> Vanderbilt&rsquo;s learning and development offerings (ask HR for the current catalog), and LinkedIn Learning' + LIL_NOTE + '.</span></li>' +
     '<li>' + WARN + '<span>' + redesignLine + '</span></li>' +
     '</ul></div></div>';
   var sixty = bk.delegate.length
@@ -4505,7 +4577,8 @@ function render(name, tasks, fluency, sens){
   html += '<div class="canon"><h5>The 30 / 60 / 90 plan</h5><ol>' +
     '<li><span><b>30 days.</b> Write the full task inventory for ' + roleEsc + ' work, using the three buckets, and pick the two skills above you will build first. If you manage the role, do it as a conversation with the person in it.</span></li>' +
     '<li><span><b>60 days.</b> ' + sixty + '</span></li>' +
-    '<li><span><b>90 days.</b> Bring the inventory and what you learned to a development conversation: with your manager if the role is yours, or with the person in the role if you manage it. [EDIT: link development planning resource]</span></li>' +
+    /* [EDIT: link development planning resource when one exists] */
+    '<li><span><b>90 days.</b> Bring the inventory and what you learned to your next development conversation with your manager, or with the person in the role if you manage it.</span></li>' +
     '</ol><p class="c-fine">If most of the role keeps landing in the delegate bucket, that conversation includes role redesign with HR, not just training.</p></div>';
   html += '<div class="ra-actions"><button type="button" class="btn btn-primary" id="raCopy"><span id="raCopyLabel">Copy the brief</span>' +
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>' +
@@ -4521,7 +4594,7 @@ function render(name, tasks, fluency, sens){
     rows().forEach(function(row){ if(row.querySelector('.rt-remove') && row.parentNode) row.parentNode.removeChild(row); });
     renumber();
     out.innerHTML = '';
-    if(nudge) nudge.classList.remove('show');
+    nudgeHide();
     var shell = document.querySelector('#readiness .ra-shell');
     if(shell) shell.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'start' });
     if(roleInput) roleInput.focus();
@@ -4535,15 +4608,20 @@ build.addEventListener('click', function(){
   var fluency = val('raFluency'), sens = val('raSens');
   var problem = null;
   if(!name) problem = roleInput;
-  else if(g.badEl) problem = g.badEl;
-  else if(g.tasks.length < 2) problem = g.emptyEl || (rows()[0] && rows()[0].querySelector('.rt-task'));
+  else if(g.tasks.length < 2) problem = g.badEl || g.emptyEl || (rows()[0] && rows()[0].querySelector('.rt-task'));
   else if(fluency === null || sens === null) problem = form.querySelector('input[name="' + (fluency === null ? 'raFluency' : 'raSens') + '"]');
   if(problem){
-    if(nudge) nudge.classList.add('show');
+    nudgeShow();
     problem.focus();
     return;
   }
-  if(nudge) nudge.classList.remove('show');
+  if(g.partials.length){
+    /* two or more complete tasks exist: build from those, and flag the started-but-unfinished rows */
+    var ns = g.partials.map(function(p){ return p.n; });
+    nudgeShow(ns.length === 1
+      ? 'Task ' + ns[0] + ' is started but missing its three choices. Finish it or clear it; the readout below skips it for now.'
+      : 'Tasks ' + ns.join(' and ') + ' are started but missing their three choices. Finish them or clear them; the readout below skips them for now.');
+  } else nudgeHide();
   render(name, g.tasks, fluency, sens);
 });
 })();
