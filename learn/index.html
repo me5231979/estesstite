@@ -702,6 +702,12 @@ a.res .rtag{ display:inline-block; font-family:var(--cond); font-weight:700; fon
   text-transform:uppercase; color:var(--vu-oak); border:1px solid var(--vu-gold); border-radius:2px; padding:4px 9px; margin-top:10px; }
 a.res .r-arrow{ width:16px; height:16px; color:var(--tx3); flex-shrink:0; margin-top:4px; transition:color .2s ease-out; }
 a.res:hover .r-arrow{ color:var(--strong); }
+/* plain-words glossary strip */
+.gloss{ display:grid; grid-template-columns:1fr 1fr; gap:10px 28px; margin-top:16px; }
+.gloss > div{ border-top:1px solid var(--bd); padding-top:10px; font-size:.9rem; color:var(--tx2); max-width:none; }
+.gloss dt{ display:inline; font-weight:600; color:var(--tx); }
+.gloss dd{ display:inline; margin:0; }
+@media(max-width:767px){ .gloss{ grid-template-columns:1fr; } }
 
 /* ═══════════════════ SUMMARY RECAP + NEXT STEP ═══════════════════ */
 .recap-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
@@ -1218,7 +1224,7 @@ body.oracle-open{ overflow:hidden; }
         <span class="hw-no" aria-hidden="true">02</span>
         <div>
           <h3>Learn to direct it, then run one real task</h3>
-          <p>CRIT is the four-part way to brief an AI; the Playground is where you drill it and take one task live. Skills stick when they touch real work.</p>
+          <p>CRIT is the four-part way to write a prompt, the message you type to an AI tool; the Playground is where you drill it and take one task live. Skills stick when they touch real work.</p>
         </div>
         <span class="chip">~17 min</span>
       </div>
@@ -1234,7 +1240,7 @@ body.oracle-open{ overflow:hidden; }
         <span class="hw-no" aria-hidden="true">04</span>
         <div>
           <h3>Use it safely, then prove it</h3>
-          <p>Set the guardrails, check what stuck with eight questions, and leave with a next step. You own every output.</p>
+          <p>Set the guardrails, check what stuck with eight questions, and leave with a next step. You own every output: if AI helped write it, you answer for it.</p>
         </div>
         <span class="chip">~18 min</span>
       </div>
@@ -1359,7 +1365,7 @@ body.oracle-open{ overflow:hidden; }
       <div class="module-head">
         <span class="mno">Module B</span>
         <h3>How an LLM actually works</h3>
-        <p>This demo shows how a language model picks its next word. Every AI answer you will ever read is built this way, one guess at a time. Read the sentence and its five candidate words. Press &ldquo;Shuffle sentence&rdquo; for a new example. Slide the temperature and watch the odds change. You leave knowing why AI drafts so well and still needs checking. (The demo runs on canned data; nothing is generated live.)</p>
+        <p>This demo shows how a language model picks its next word. Every AI answer you will ever read is built this way, one guess at a time. Read the sentence and its five candidate words. Press &ldquo;Shuffle sentence&rdquo; for a new example. Slide the temperature, the model&rsquo;s randomness dial, and watch the odds change. You leave knowing why AI drafts so well and still needs checking. (The demo runs on pre-set example data; nothing is generated live.)</p>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Why AI writes so well and lies so confidently</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Try the interactive demo and its temperature dial</span>
@@ -1388,7 +1394,7 @@ body.oracle-open{ overflow:hidden; }
             </div>
             <p class="llm-note"><b>Prediction:</b> it scores every word it knows and usually picks a high scorer: no plan, just statistics.</p>
             <p class="llm-note"><b>Temperature:</b> slide it up and unlikely words get a real chance: great for brainstorming, risky for facts.</p>
-            <p class="llm-note"><b>Hallucinations:</b> it predicts what <em>sounds</em> right rather than checks what <em>is</em> right, so always verify.</p>
+            <p class="llm-note"><b>Hallucinations</b> (made-up details stated as fact): it predicts what <em>sounds</em> right rather than checks what <em>is</em> right, so always verify.</p>
           </div>
         </div>
       </div>
@@ -1453,7 +1459,7 @@ body.oracle-open{ overflow:hidden; }
         </div>
       </div>
       <p class="hal-status" id="halStatus" role="status" aria-live="polite">0 of 4 found. Click the detail you&rsquo;d want to verify first.</p>
-      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Next: six things people say about AI, and a verdict on each.</p></div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Next: six things people say about AI, and the truth about each.</p></div>
     </div>
 
     <!-- Module C: Myths vs Facts -->
@@ -1461,10 +1467,10 @@ body.oracle-open{ overflow:hidden; }
       <div class="module-head">
         <span class="mno">Module C</span>
         <h3>Myths vs. facts</h3>
-        <p>These six cards hold claims about AI that you will hear around campus. Knowing which are true keeps you from over-trusting or under-using the tools. Click or tap a claim. Read the verdict. Repeat for all six. You leave able to answer each claim in one sentence.</p>
+        <p>These six cards hold claims about AI that you will hear around campus. Knowing which are true keeps you from over-trusting or under-using the tools. Click or tap a claim. Read the answer. Repeat for all six. You leave able to answer each claim in one sentence.</p>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Which common AI claims are true</span>
-        <span class="lf-chip"><b>You&rsquo;ll do</b>Tap six claims for verdicts</span>
+        <span class="lf-chip"><b>You&rsquo;ll do</b>Tap six claims for answers</span>
         <span class="lf-chip"><b>Time</b>2 min</span>
       </div>
       </div>
@@ -1491,7 +1497,7 @@ body.oracle-open{ overflow:hidden; }
           <button type="button" aria-expanded="false">&ldquo;Whatever I type into a chatbot stays private.&rdquo;</button>
           <span class="flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
           <div class="verdict"><span class="vtag myth-v">Myth</span>
-            <p>Consumer tools may store or learn from what you paste. Anything sensitive or institutional belongs in an approved tool: Amplify, or Copilot through your Vanderbilt account.</p></div>
+            <p>Consumer tools may store or learn from what you paste. Anything sensitive, and anything that is Vanderbilt&rsquo;s internal business, belongs in an approved tool: Amplify, or Copilot through your Vanderbilt account.</p></div>
         </div>
         <div class="myth" data-verdict="fact">
           <button type="button" aria-expanded="false">&ldquo;AI can save me real hours on first drafts.&rdquo;</button>
@@ -1555,13 +1561,13 @@ body.oracle-open{ overflow:hidden; }
           <button type="button" class="flip-btn" aria-expanded="false">
             <span class="face front">
               <span class="abbr" aria-hidden="true">RNG</span>
-              <h4>Non-determinism</h4>
+              <h4>Built-in randomness</h4>
               <span class="def">Same question, different answers.</span>
               <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the counter-move</span>
             </span>
             <span class="face back">
               <span class="tag">The limit</span>
-              <p>Sampling means variation: ask twice, get two versions. That&rsquo;s a feature for brainstorming and a surprise for anyone expecting a calculator.</p>
+              <p>It picks each word with a touch of chance, so ask twice and you get two versions. That&rsquo;s a feature for brainstorming and a surprise for anyone expecting a calculator.</p>
               <p><b>On campus:</b> three runs of the same announcement, three different drafts. <b>Counter-move:</b> ask for three options on purpose, and pin the exact wording yourself before anything ships.</p>
             </span>
           </button>
@@ -1584,7 +1590,7 @@ body.oracle-open{ overflow:hidden; }
       </div>
       <div class="evidence reveal">
         <span class="e-label">The evidence: the jagged frontier</span>
-        <p><b>758 consultants: with AI, 12.2% more tasks, 25.1% faster, 40% higher quality on work inside AI&rsquo;s abilities; on a task just beyond them, accuracy fell from 84% to 60&ndash;70%, still sounding polished.</b> The frontier is jagged and invisible from the outside, so the working habit is one word: <b>verify</b>.</p>
+        <p><b>758 consultants: with AI, 12.2% more tasks, 25.1% faster, 40% higher quality on work inside AI&rsquo;s abilities; on a task just beyond them, accuracy fell from 84% to 60&ndash;70%, still sounding polished.</b> The frontier, the boundary between what AI does well and what it fumbles, is jagged and invisible from the outside, so the working habit is one word: <b>verify</b>.</p>
         <span class="e-src">Dell&rsquo;Acqua et&nbsp;al., &ldquo;Navigating the Jagged Technological Frontier,&rdquo; <a href="https://mitsloan.mit.edu/sites/default/files/2023-10/SSRN-id4573321.pdf" target="_blank" rel="noopener">Harvard Business School working paper, 2023 (PDF)</a></span>
       </div>
     </div>
@@ -1612,8 +1618,8 @@ body.oracle-open{ overflow:hidden; }
       <span class="c-label">The idea</span>
       <p>AI does not show up for a job title; it shows up for a task. Some of your tasks sit in AI&rsquo;s
         wheelhouse and others barely register, so the task list is the right unit to analyze. One rule
-        underneath everything here: exposure is a planning signal for development, never by itself
-        grounds for eliminating a role.</p>
+        underneath everything here: exposure, how much of a task AI could plausibly help with, is a
+        planning signal for development, never by itself grounds for eliminating a role.</p>
     </div>
 
     <!-- Module A: the four ideas -->
@@ -1648,7 +1654,7 @@ body.oracle-open{ overflow:hidden; }
           AI?</b></p>
         <div class="evidence">
           <span class="e-label">The evidence</span>
-          <p><b>Real usage splits about 57 percent augmentation to 43 percent automation.</b>
+          <p><b>Real usage splits about 57 percent augmentation (AI helping a person with a task) to 43 percent automation (AI doing the task outright).</b>
             Most exposed work is being reshaped with a person in the loop, not removed.</p>
           <span class="e-src">Source: Anthropic Economic Index (2025), <a href="https://www.anthropic.com/news/the-anthropic-economic-index" target="_blank" rel="noopener noreferrer">anthropic.com/news/the-anthropic-economic-index</a>.</span>
         </div>
@@ -1681,9 +1687,9 @@ body.oracle-open{ overflow:hidden; }
 
       <div class="ra-idea">
         <h4><span class="no" aria-hidden="true">04</span>Skills churn is the planning horizon</h4>
-        <p>When the core skills of a job change fast, there is a right order to respond: <b>upskill first,
-          reskill where tasks shift, redesign roles where the shift is large, and only then
-          hire.</b></p>
+        <p>When the core skills of a job change fast, there is a right order to respond: <b>upskill first
+          (deepen people&rsquo;s current skills), reskill where tasks shift (train for the new tasks),
+          redesign roles where the shift is large, and only then hire.</b></p>
         <div class="evidence">
           <span class="e-label">The evidence</span>
           <p><b>Employers expect 39 percent of workers&rsquo; core skills to change by 2030.</b>
@@ -1696,11 +1702,11 @@ body.oracle-open{ overflow:hidden; }
         <h5>The four moves</h5>
         <ol>
           <li><span><b>Inventory the tasks.</b> Write down what your week actually contains; the list, not the job description, is the raw material.</span></li>
-          <li><span><b>Sort into three buckets.</b> Delegate with oversight, redesign together, or human-core. Every task goes in exactly one.</span></li>
+          <li><span><b>Sort into three buckets.</b> Delegate with oversight, redesign together, or human-core, the work only a person should do. Every task goes in exactly one.</span></li>
           <li><span><b>Name the skills.</b> Each bucket demands something: review habits for delegated work, fluency for redesigned work, depth for the human core.</span></li>
           <li><span><b>Turn it into action.</b> A development plan for yourself, or per person if you manage the role; an inventory that never becomes a conversation changes nothing.</span></li>
         </ol>
-        <p class="c-fine">Development plans are yours to run. Role redesign, reclassification, and staffing changes run through HR. <!-- [EDIT] HR workforce planning / talent contact --></p>
+        <p class="c-fine">Development plans are yours to run. Role redesign, reclassification, and staffing changes run through Human Resources. <!-- [EDIT] HR workforce planning / talent contact --></p>
       </div>
 
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now point the lens at <em>one real role</em>, starting with your own.</p></div>
@@ -1711,7 +1717,7 @@ body.oracle-open{ overflow:hidden; }
       <div class="module-head">
         <span class="mno">Module B &middot; Centerpiece</span>
         <h3>The role readiness assessment</h3>
-        <p>This assessment maps one real role against AI, task by task. It turns the ideas above into a plan for a job you actually know. Name the role. List its real weekly tasks and answer three quick questions about each. Press &ldquo;Build the readout.&rdquo; You leave with every task sorted into a bucket, plus a plan you can copy.</p>
+        <p>This assessment maps one real role against AI, task by task. It turns the ideas above into a plan for a job you actually know. Name the role. List its real weekly tasks and answer three quick questions about each. Press &ldquo;Build my report.&rdquo; You leave with every task sorted into a bucket, plus a plan you can copy.</p>
         <div class="lframe">
           <span class="lf-chip"><b>You&rsquo;ll learn</b>Which of the role&rsquo;s tasks are exposed and which are protected</span>
           <span class="lf-chip"><b>You&rsquo;ll do</b>List a week&rsquo;s real tasks, sort them, copy a plan</span>
@@ -1872,18 +1878,18 @@ body.oracle-open{ overflow:hidden; }
                 <div class="opts o3">
                   <label><input type="radio" name="raSens" value="0" /> Public or routine internal information</label>
                   <label><input type="radio" name="raSens" value="1" /> Confidential university business</label>
-                  <label><input type="radio" name="raSens" value="2" /> Regulated records, like those covered by FERPA or HIPAA</label>
+                  <label><input type="radio" name="raSens" value="2" /> Regulated records, like student records covered by FERPA or health information covered by HIPAA</label>
                 </div>
               </fieldset>
-              <p class="nudge" id="raNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><span id="raNudgeTxt">Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the readout builds itself.</span></p>
-              <div class="ra-actions"><button type="button" class="btn btn-primary" id="raBuild">Build the readout
+              <p class="nudge" id="raNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><span id="raNudgeTxt">Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the report builds itself.</span></p>
+              <div class="ra-actions"><button type="button" class="btn btn-primary" id="raBuild">Build my report
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
             </div>
           </div>
         </form>
         <div id="raOut" role="status" aria-live="polite"></div>
         <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
-          <span>A directional conversation starter, not a job evaluation or an HR determination; workforce decisions run through HR. <!-- [EDIT] HR workforce planning contact --></span></p>
+          <span>A conversation starter, not a job evaluation or an HR determination; workforce decisions run through Human Resources. <!-- [EDIT] HR workforce planning contact --></span></p>
       </div>
     </div>
 
@@ -1912,7 +1918,7 @@ body.oracle-open{ overflow:hidden; }
     </div>
     <div class="concept reveal">
       <span class="c-label">The idea</span>
-      <p>Prompting is not magic: a prompt is instructions handed to a word-probability engine, and no four-letter formula is a spell. What a framework buys you is <b>discipline</b>; what sets CRIT apart is the <b>Interview</b>, which flips the roles so the model asks and you stay the <b>thought leader</b>. No single formula is magic; structure and iteration are what matter.</p>
+      <p>Prompting is not magic: a prompt is instructions handed to a word-probability engine, and no four-letter formula is a spell. What a framework buys you is <b>discipline</b>; what sets CRIT apart is the <b>Interview</b>, which flips the roles so the model asks and you stay the <b>thought leader</b>, the one doing the thinking. No single formula is magic; structure and iteration are what matter.</p>
     </div>
     <div class="roadmap reveal">
       <div class="rstep"><span class="rno">C &middot; Context</span><h5>What is going on</h5>
@@ -1936,7 +1942,7 @@ body.oracle-open{ overflow:hidden; }
     </div>
     <div class="evidence reveal">
       <span class="e-label">The research, made at Vanderbilt</span>
-      <p><b>In 2023, Vanderbilt&rsquo;s Jules White published <a href="https://arxiv.org/abs/2302.11382" target="_blank" rel="noopener">&ldquo;A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT&rdquo;</a>, turning prompting folk wisdom into named, reusable patterns.</b> The Prompt Lab&rsquo;s Role field is his Persona pattern; his free course lives under <a href="#resources">Keep learning</a>.</p>
+      <p><b>In 2023, Vanderbilt&rsquo;s Jules White published <a href="https://arxiv.org/abs/2302.11382" target="_blank" rel="noopener">&ldquo;A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT&rdquo;</a>, turning prompting folk wisdom into named, reusable patterns.</b> The Prompt Lab&rsquo;s Role field is his Persona pattern, giving the AI a professional identity to answer from; his free course lives under <a href="#resources">Keep learning</a>.</p>
       <span class="e-src">White et&nbsp;al., arXiv:2302.11382 (2023) &middot; more of the catalog under <a href="#resources">Keep learning</a></span>
     </div>
     <div class="reveal" style="margin-top:20px">
@@ -2289,7 +2295,7 @@ body.oracle-open{ overflow:hidden; }
         <p class="t-tag">Approved for institutional data. <!-- [EDIT] verify approval scope with ITS/policy owners --> When in doubt, start here.</p>
         <dl>
           <div><dt>Best for</dt><dd>Anything touching Vanderbilt data: long documents, internal reports, records-heavy work</dd></div>
-          <div><dt>Data allowed</dt><dd><b>Vanderbilt institutional data up to Level 3</b> under Vanderbilt&rsquo;s data classification <!-- [EDIT: confirm Level 3 approval scope with ITS] --><!-- [EDIT] link data classification guidance --></dd></div>
+          <div><dt>Data allowed</dt><dd><b>Vanderbilt institutional data up to Level 3</b> under Vanderbilt&rsquo;s data classification, the university&rsquo;s scale for how sensitive information is <!-- [EDIT: confirm Level 3 approval scope with ITS] --><!-- [EDIT] link data classification guidance --></dd></div>
           <div><dt>Where it lives</dt><dd>www.vanderbilt.ai, VUNet ID login</dd></div>
           <div><dt>Cost</dt><dd>Provided by Vanderbilt <!-- [EDIT] confirm funding/access model --></dd></div>
         </dl>
@@ -2304,7 +2310,7 @@ body.oracle-open{ overflow:hidden; }
           <div><dt>Best for</dt><dd>Drafting in Word, formulas in Excel, taming Outlook, meeting recaps in Teams</dd></div>
           <div><dt>Data allowed</dt><dd><b>Vanderbilt institutional data up to Level 3</b> under Vanderbilt&rsquo;s data classification, through your <b>Vanderbilt Microsoft 365 account</b> <!-- [EDIT: confirm Level 3 approval scope with ITS] --><!-- [EDIT] confirm tenant data guidance --></dd></div>
           <div><dt>Where it lives</dt><dd>copilot.microsoft.com; with Vanderbilt&rsquo;s Copilot license, it can work inside your document <!-- [EDIT: confirm license coverage] --></dd></div>
-          <div><dt>Cost</dt><dd>Included with eligible M365 licenses <!-- [EDIT] verify license coverage --></dd></div>
+          <div><dt>Cost</dt><dd>Included with eligible Microsoft 365 licenses <!-- [EDIT] verify license coverage --></dd></div>
         </dl>
         <div class="t-cta"><a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
@@ -2525,7 +2531,7 @@ body.oracle-open{ overflow:hidden; }
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Unpublished research data</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Contracts &amp; legal matters</li>
       </ul>
-      <p class="pol">Full guidance: Vanderbilt&rsquo;s AI guidance and data classification policy will be linked here when published; until then, both are available through Human Resources and ITS.<!-- [EDIT: add URL for official AI policy] --><!-- [EDIT: add URL for data classification policy] --></p>
+      <p class="pol">Full guidance: Vanderbilt&rsquo;s AI guidance and data classification policy will be linked here when published; until then, both are available through Human Resources and Vanderbilt IT.<!-- [EDIT: add URL for official AI policy] --><!-- [EDIT: add URL for data classification policy] --></p>
     </div>
     <div class="module reveal" data-pg="Judgment scenarios">
       <div class="module-head">
@@ -2564,7 +2570,7 @@ body.oracle-open{ overflow:hidden; }
           </div>
           <div class="d-take" role="status" aria-live="polite">
             <span class="d-react"></span>
-            <p class="d-our"><b>Our take:</b> this is protected health and personnel territory, HIPAA-adjacent at minimum. If AI touches it at all, only in an approved tool: Amplify, or Copilot on your Vanderbilt account. And for a short, personal, high-stakes message, your own attention might be the whole point.</p>
+            <p class="d-our"><b>Our take:</b> this is protected health and personnel information, exactly the territory laws like HIPAA exist for. If AI touches it at all, only in an approved tool: Amplify, or Copilot on your Vanderbilt account. And for a short, personal, high-stakes message, your own attention might be the whole point.</p>
             <span class="chip">Principle: Human dignity &amp; data protection</span>
           </div>
         </article>
@@ -2573,7 +2579,7 @@ body.oracle-open{ overflow:hidden; }
           <h4>The name test</h4>
           <p class="d-sit">Your unit pilots an AI tool that pre-screens job applications. You run a quiet test: two nearly identical resumes, different names, and they come back with noticeably different scores.</p>
           <div class="d-choices" role="group" aria-label="Your response to scenario 03">
-            <button type="button" aria-pressed="false" data-react="&ldquo;It only looks objective. The training data is human history, bias included.&rdquo;">Trust the tool; it&rsquo;s more objective than tired humans.</button>
+            <button type="button" aria-pressed="false" data-react="&ldquo;It only looks objective. Everything it learned from is human history, bias included.&rdquo;">Trust the tool; it&rsquo;s more objective than tired humans.</button>
             <button type="button" aria-pressed="false" data-react="&ldquo;Yes. Bias you can document is bias the institution can actually fix.&rdquo;">Document what you found and push for a review.</button>
             <button type="button" aria-pressed="false" data-react="&ldquo;Good instinct, wrong fix: silent patches hide the problem and make it yours alone.&rdquo;">Quietly adjust the scores yourself to compensate.</button>
           </div>
@@ -2835,7 +2841,7 @@ body.oracle-open{ overflow:hidden; }
       </article>
       <article class="recap reveal" style="transition-delay:.06s">
         <h3>Tasks, not jobs</h3>
-        <p>AI meets a role task by task: delegate the routine with oversight, redesign the middle together, and invest in the human core. Exposure is a development signal, never a verdict on a person.</p>
+        <p>AI meets a role task by task: delegate the routine with oversight, redesign the middle together, and invest in the human core. Exposure is a development signal, never a judgment of the person.</p>
         <span class="r-why"><b>At work:</b> one task inventory turns AI anxiety into a development plan.</span>
       </article>
       <article class="recap reveal" style="transition-delay:.12s">
@@ -3034,7 +3040,7 @@ body.oracle-open{ overflow:hidden; }
           <span><b>Jules White · Prompt Engineering for ChatGPT</b><span class="why">The single course that started it; free to audit.</span><span class="rtag">Free</span></span>
           <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
         <a class="res" href="https://www.coursera.org/learn/advanced-prompt-engineering-for-everyone" target="_blank" rel="noopener">
-          <span><b>Jules White · Advanced Prompt Engineering for Everyone</b><span class="why">Ready for more? In-context learning, RAG, and structured outputs.</span><span class="rtag">Next level</span></span>
+          <span><b>Jules White · Advanced Prompt Engineering for Everyone</b><span class="why">Ready for more? Advanced techniques, from teaching by example to connecting AI to your own documents.</span><span class="rtag">Next level</span></span>
           <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
         <a class="res" href="https://arxiv.org/abs/2302.11382" target="_blank" rel="noopener">
           <span><b>&ldquo;A Prompt Pattern Catalog&hellip;&rdquo; · White et&nbsp;al.</b><span class="why">The research paper behind the patterns you practiced in the Prompt Lab.</span><span class="rtag">Paper</span></span>
@@ -3075,6 +3081,24 @@ body.oracle-open{ overflow:hidden; }
         </div>
       </details>
       </div>
+    <div class="res-group reveal" id="glossary">
+      <h3>Plain words <span class="mono">/ the course glossary</span></h3>
+      <p class="hinttxt" style="margin-top:8px">Every technical term this course leans on, one line each.</p>
+      <dl class="gloss">
+        <div><dt>Agentic AI.</dt> <dd>AI that works toward a goal in steps on its own, under your oversight.</dd></div>
+        <div><dt>AI (artificial intelligence).</dt> <dd>Software doing things that used to need human judgment.</dd></div>
+        <div><dt>Chatbot.</dt> <dd>An AI tool you use by typing to it: ChatGPT, Amplify, and Copilot are all chatbots.</dd></div>
+        <div><dt>Context window.</dt> <dd>The limited amount of text a model can pay attention to at once.</dd></div>
+        <div><dt>CRIT.</dt> <dd>Context, Role, Interview, Task: the four-part way to write a prompt.</dd></div>
+        <div><dt>Exposure.</dt> <dd>How much of a task AI could plausibly help with; a planning signal, never a judgment of the person.</dd></div>
+        <div><dt>Generative AI.</dt> <dd>AI that creates new text, images, or code instead of just sorting what already exists.</dd></div>
+        <div><dt>Hallucination.</dt> <dd>Made-up information an AI states as confidently as fact.</dd></div>
+        <div><dt>Institutional data.</dt> <dd>Vanderbilt&rsquo;s internal information; it belongs only in Amplify or Copilot on your Vanderbilt account.</dd></div>
+        <div><dt>LLM (large language model).</dt> <dd>The engine inside the chatbots; it writes by predicting the likeliest next word.</dd></div>
+        <div><dt>Prompt.</dt> <dd>The message you type to an AI tool; the better the prompt, the better the answer.</dd></div>
+        <div><dt>Temperature.</dt> <dd>The randomness dial: higher means more creative and less reliable.</dd></div>
+      </dl>
+    </div>
     <p class="honest reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
       Program owners: add Vanderbilt-internal resources here (Amplify guides, ITS training calendar, communities of practice). <!-- [EDIT] add Vanderbilt-internal resources --></p>
     <div class="md-wrap">
@@ -3585,7 +3609,7 @@ function copyText(txt, labelEl, okMsg){
 var PROG_KEY = 'chart-progress-';
 var PROG_SECTIONS = [
   { k:'learn',       no:'01', name:'Learn the fundamentals', how:'Finish the drill, or mark it done' },
-  { k:'readiness',   no:'02', name:'AI readiness',           how:'Build the readout, or mark it done' },
+  { k:'readiness',   no:'02', name:'AI readiness',           how:'Build the report, or mark it done' },
   { k:'crit',        no:'03', name:'The CRIT framework',     how:'Copy a CRIT prompt, or mark it done' },
   { k:'playground',  no:'04', name:'The Playground',         how:'Use the Lab or Grader, or mark it done' },
   { k:'tools',       no:'05', name:'Three tools',            how:'Run Tool Match, or mark it done' },
@@ -4294,6 +4318,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     ];
     var html = '';
     html += '<div class="srev"><div class="sub-h"><h4>Your AI opportunity map</h4><span class="chip">' + matches.length + (defaulted ? ' universal patterns (no direct keyword hits; these fit almost any desk)' : ' pattern' + (matches.length===1?'':'s') + ' matched') + '</span></div>';
+    html += '<p class="hinttxt" style="margin:-4px 0 14px">The label on each card: Automate means AI can do most of it and you review. Assist means you and AI share the task. Advise means AI suggests and you do the work.</p>';
     html += '<div class="opp-grid">';
     matches.forEach(function(m){
       html += '<article class="opp"><div class="o-top"><h5>' + m.name + '</h5><span class="lvl ' + m.level + '">' + LEVEL_LABEL[m.level] + '</span></div>';
@@ -4643,7 +4668,7 @@ document.querySelectorAll('.tech-copy').forEach(function(b){
           sp.classList.add('wrong');
           if(reveal){
             reveal.style.display = 'block';
-            reveal.innerHTML = '<b>Not that one.</b> That detail is plausible; the fabrication is sneakier. Keep looking.';
+            reveal.innerHTML = '<b>Not that one.</b> That detail is plausible; the made-up one is sneakier. Keep looking.';
           }
         }
       });
@@ -4815,7 +4840,7 @@ function gather(){
   });
   return { tasks:tasks, badEl:badEl, emptyEl:emptyEl, partials:partials };
 }
-var NUDGE_DEFAULT = 'Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the readout builds itself.';
+var NUDGE_DEFAULT = 'Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the report builds itself.';
 function nudgeShow(msg){
   if(!nudge) return;
   var t = document.getElementById('raNudgeTxt');
@@ -4983,7 +5008,7 @@ function resShelfHtml(tr){
 function brief(name, tier, why, bk, skills, plan){
   var L = [
     'Role readiness assessment: ' + name,
-    'Exposure read: ' + tier + ' (directional, not a score). ' + why,
+    'Exposure read: ' + tier + ' (a rough read, not a score). ' + why,
     '',
     'Delegate with oversight:'
   ];
@@ -5025,7 +5050,7 @@ function brief(name, tier, why, bk, skills, plan){
       : 'pick one redesign-bucket task and pilot a human plus AI version of it, with explicit verification.'),
     '90 days: bring the inventory to a development conversation: with your manager if the role is yours, or with the person in the role if you manage it.',
     '',
-    'A directional conversation starter from CHART, not an HR determination.');
+    'A conversation starter from CHART, not an HR determination.');
   return L.join('\n');
 }
 function render(name, tasks, fluency, sens){
@@ -5038,7 +5063,7 @@ function render(name, tasks, fluency, sens){
          : tasks.some(function(t){ return t.chk === 'effort'; }) ? 1 : 0;
   var skills = skillList(fluency, sens, vv);
   var html = '<div class="result-card" style="margin-top:26px"><div class="rc-head"><span class="rc-glyph">' + COMPASS + '</span>' +
-    '<div><h4>' + roleEsc + '</h4><span class="rc-sub">' + tier + ' exposure across ' + total + ' named tasks &middot; a directional read, not a score</span></div></div>' +
+    '<div><h4>' + roleEsc + '</h4><span class="rc-sub">' + tier + ' exposure across ' + total + ' named tasks &middot; a rough read, not a score</span></div></div>' +
     '<p class="rc-note">' + esc(why) + '</p>' +
     '<p class="rc-fine">Exposure describes how much of the named work AI can plausibly touch. It is a planning signal for development and role design, never a statement about the value of the person doing the work.</p></div>';
   var dItems = bk.delegate.map(itemHtml);
@@ -5140,7 +5165,7 @@ function render(name, tasks, fluency, sens){
     /* [EDIT: link development planning resource when one exists] */
     '<li><span><b>90 days.</b> Bring the inventory and what you learned to your next development conversation with your manager, or with the person in the role if you manage it.</span></li>' +
     '</ol><p class="c-fine">If most of the role keeps landing in the delegate bucket, that conversation includes role redesign with HR, not just training.</p></div>';
-  html += '<div class="ra-actions"><button type="button" class="btn btn-primary" id="raCopy"><span id="raCopyLabel">Copy the brief</span>' +
+  html += '<div class="ra-actions"><button type="button" class="btn btn-primary" id="raCopy"><span id="raCopyLabel">Copy the report</span>' +
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>' +
     '<button type="button" class="btn btn-ghost" id="raRestart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Start over with a new role</button></div>';
   out.innerHTML = html;
@@ -5179,8 +5204,8 @@ build.addEventListener('click', function(){
     /* two or more complete tasks exist: build from those, and flag the started-but-unfinished rows */
     var ns = g.partials.map(function(p){ return p.n; });
     nudgeShow(ns.length === 1
-      ? 'Task ' + ns[0] + ' is started but missing its three choices. Finish it or clear it; the readout below skips it for now.'
-      : 'Tasks ' + ns.join(' and ') + ' are started but missing their three choices. Finish them or clear them; the readout below skips them for now.');
+      ? 'Task ' + ns[0] + ' is started but missing its three choices. Finish it or clear it; the report below skips it for now.'
+      : 'Tasks ' + ns.join(' and ') + ' are started but missing their three choices. Finish them or clear them; the report below skips them for now.');
   } else nudgeHide();
   render(name, g.tasks, fluency, sens);
 });
