@@ -29,6 +29,11 @@
   the Simulator, self-checks and the quiz are fully working, client-side, no backend.
   Progress tracking stores per-section booleans only (localStorage chart-progress-*);
   the Reset control lives in the footer. Answers and typed text are never stored.
+  BOOK MODE: the course reads page by page like a book. The pager script (before
+  the app script) groups blocks into .page articles at data-pg markers; the bottom
+  bar holds section dots + prev/next; arrows, swipe, and #p/<section>/<n> hashes
+  turn pages; the last-open page is remembered (localStorage chart-page). Without
+  JS the original scroll layout remains as the fallback.
   This is an internal training prototype — NOT an official Vanderbilt site.
   ══════════════════════════════════════════════════════════════════════════
 -->
@@ -39,7 +44,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&family=Inter:wght@400;500;600&family=Antonio:wght@700&display=swap" rel="stylesheet" />
 
-<script>document.documentElement.classList.add('js');</script>
+<script>document.documentElement.classList.add('js','paged'); /* 'paged' arms book mode; the pager script removes it if it cannot build, restoring the scroll fallback */</script>
 
 <style>
 /* ═══════════════════ TOKENS ═══════════════════ */
@@ -214,8 +219,8 @@ section + section{ border-top:1px solid transparent; }
 .sec-head{ max-width:840px; margin-bottom:clamp(36px,6vw,64px); }
 .sec-head h2{ font-size:clamp(2rem,4.5vw,3.5rem); margin-top:18px; }
 .sec-head p{ color:var(--tx2); margin-top:18px; font-size:1.125rem; }
-.js .reveal{ opacity:0; transform:translateY(24px); transition:opacity .38s ease-out, transform .38s ease-out; }
-.js .reveal.in{ opacity:1; transform:none; }
+/* book mode: scroll reveals are retired; pages animate as a whole (.reveal is inert, .srev still staggers app results) */
+.js .reveal{ opacity:1; transform:none; }
 .js .srev{ opacity:0; transform:translateY(16px); transition:opacity .35s ease-out, transform .35s ease-out; }
 .js .srev.in{ opacity:1; transform:none; }
 .chip{ display:inline-flex; align-items:center; gap:8px; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase;
@@ -846,27 +851,114 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 @media (max-width:1280px){ .prog-btn .pw{ display:none; } } /* 1100-1280: pill shows just N/10 */
 @media (max-width:400px){ .prog-btn{ padding:8px 10px; } }
 
-/* ═══════════════════ RIGHT-EDGE PROGRESS RAIL ═══════════════════ */
-.rail-nav{ position:fixed; top:50%; right:8px; transform:translateY(-50%); z-index:190;
-  display:flex; flex-direction:column; align-items:center; gap:4px;
-  padding:10px 5px 8px; background:rgba(28,28,28,.8); border:1px solid rgba(207,174,112,.4);
-  border-radius:var(--r); }
-@supports ((-webkit-backdrop-filter:blur(4px)) or (backdrop-filter:blur(4px))){
-  .rail-nav{ -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); background:rgba(28,28,28,.66); }
-}
-.rail-nav .rn-count{ font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.04em;
-  color:var(--vu-gold); margin-bottom:3px; }
-.rail-nav a.rn-dot{ display:grid; place-items:center; width:22px; height:20px; border-radius:2px; }
-.rail-nav a.rn-dot .dot{ display:block; width:9px; height:9px; border-radius:50%;
-  border:1.5px solid var(--vu-gold); background:transparent;
+/* ═══════════════════ BOOK MODE: STAGE + PAGES ═══════════════════
+   The whole course reads as a book: one .page visible in a fixed stage,
+   pages turning right-to-left. Everything is scoped under html.paged so
+   the original scroll layout remains the no-JS fallback. */
+html.paged{ --nav-h:96px; --bar-h:64px; }
+@media (max-width:960px){ html.paged{ --nav-h:72px; --bar-h:56px; } }
+html.paged, html.paged body{ height:100%; overflow:hidden; overscroll-behavior:none; }
+html.paged main#main{ position:fixed; top:var(--nav-h); bottom:var(--bar-h); left:0; right:0;
+  overflow:hidden; background:var(--vu-black); z-index:1; }
+.page{ position:absolute; inset:0; overflow-y:auto; overflow-x:hidden; visibility:hidden; z-index:1;
+  display:flex; flex-direction:column; -webkit-overflow-scrolling:touch; outline:none; }
+.page.cur{ visibility:visible; z-index:2; }
+.page > section{ flex:1 0 auto; width:100%; }
+.page > .topics, .page > footer{ flex:0 0 auto; width:100%; }
+.page.pg-in-r{ animation:pgInR .35s var(--ease) both; }
+.page.pg-in-l{ animation:pgInL .35s var(--ease) both; }
+.page.pg-out{ visibility:visible; z-index:1; }
+.page.pg-out-l{ animation:pgOutL .35s var(--ease) both; }
+.page.pg-out-r{ animation:pgOutR .35s var(--ease) both; }
+@keyframes pgInR{ from{ transform:translateX(100%); } }
+@keyframes pgInL{ from{ transform:translateX(-100%); } }
+@keyframes pgOutL{ to{ transform:translateX(-100%); } }
+@keyframes pgOutR{ to{ transform:translateX(100%); } }
+/* fit-the-viewport rhythm: tighter vertical spacing inside pages */
+html.paged section{ padding:clamp(24px,4vh,48px) 0; }
+html.paged .hero{ min-height:100%; padding:clamp(18px,3.5vh,44px) 0; }
+html.paged .hero h1{ font-size:clamp(2rem,4vh + 1rem,4rem); margin-top:16px; }
+html.paged .hero .hello{ margin-top:16px; }
+html.paged .hero .lead{ margin-top:12px; }
+html.paged .hero .meta-line{ margin-top:14px; }
+html.paged .hero .cta-row{ margin-top:20px; }
+html.paged .manifesto{ padding:clamp(36px,9vh,90px) 0; }
+html.paged .howworks{ padding:clamp(24px,4vh,44px) 0; }
+html.paged .hw-list{ margin-top:clamp(16px,2.5vh,28px); }
+html.paged .hw-step{ padding:clamp(14px,2.2vh,24px) 0; }
+html.paged .hw-meta{ margin-top:14px; }
+html.paged .acr-line{ margin-top:clamp(16px,2.5vh,28px); padding:14px 0; }
+html.paged .sec-head{ margin-bottom:clamp(16px,2.8vh,32px); }
+html.paged .sec-head h2{ font-size:clamp(1.65rem,2.2vh + 1rem,2.7rem); }
+html.paged .module{ margin-top:clamp(16px,2.6vh,30px); }
+html.paged .module-head{ margin-bottom:18px; }
+html.paged .concept{ margin-bottom:18px; }
+html.paged .bridge{ margin-top:clamp(18px,3vh,32px); padding-top:16px; }
+html.paged .bridge.mid{ margin-top:clamp(18px,3vh,32px); }
+html.paged .md-wrap{ margin-top:18px; }
+html.paged .topics{ padding:20px 0 18px; border-bottom:0; border-top:1px solid var(--vu-gray-l); }
+html.paged .topics .tlabel{ margin-bottom:14px; }
+html.paged .cta{ padding:clamp(36px,6vh,72px) 0; }
+html.paged footer{ padding:clamp(30px,5vh,52px) 0 30px; }
+html.paged .preview-box{ top:8px; }
+/* denser cards and shells so most pages fit a 1366x768 stage */
+html.paged .qz{ padding:16px 18px; margin-bottom:12px; }
+html.paged .qz legend{ margin-bottom:10px; }
+html.paged .tm-q{ padding:13px 16px; margin-bottom:11px; }
+html.paged .tech{ padding:14px 16px; }
+html.paged .tech-list{ gap:10px; }
+html.paged .evidence{ padding:15px 18px; margin-top:16px; }
+html.paged .ra-idea{ margin-top:20px; }
+html.paged .canon{ margin-top:16px; padding:16px 18px; }
+html.paged .llm{ padding:clamp(16px,2.6vh,30px); }
+html.paged .llm-grid{ margin-top:18px; }
+html.paged .fcard button{ padding:18px 16px; }
+html.paged .principle{ padding:20px 18px; }
+html.paged .recap{ padding:20px 18px; }
+html.paged .never{ padding:20px; margin-top:18px; }
+html.paged .rule-strip{ margin-top:18px; padding:16px 20px; }
+html.paged .quiz-shell{ padding:clamp(16px,2.6vh,30px); }
+html.paged .sim-shell{ padding:clamp(16px,2.6vh,30px); }
+html.paged .ra-shell{ padding:clamp(16px,2.6vh,30px); }
+html.paged .ppanel{ padding:clamp(16px,2.6vh,30px); }
+html.paged .hw-step .hw-no{ font-size:clamp(1.8rem,3.4vh,2.6rem); }
+html.paged .res-group{ margin-top:22px; }
+html.paged .dilemma{ padding:20px 18px; }
+html.paged .lframe{ margin-top:12px; }
+html.paged .micro{ margin-bottom:16px; padding:10px 14px; }
+/* "more below" affordance: floats over the stage when the page scrolls internally */
+#pgMore{ position:absolute; z-index:6; right:clamp(10px,2vw,22px); bottom:10px; display:none; align-items:center; gap:7px;
+  pointer-events:none; font-family:var(--cond); font-weight:700; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--vu-gold); background:rgba(28,28,28,.85); border:1px solid rgba(207,174,112,.45); border-radius:var(--r); padding:7px 11px; }
+#pgMore svg{ width:12px; height:12px; }
+html.paged main#main.more #pgMore{ display:inline-flex; }
+
+/* ═══════════════════ BOTTOM BOOK BAR ═══════════════════ */
+.book-bar{ position:fixed; left:0; right:0; bottom:0; height:var(--bar-h,64px); z-index:210; background:var(--vu-black);
+  border-top:1px solid rgba(207,174,112,.25); display:none; align-items:center; gap:clamp(8px,2vw,26px);
+  padding:0 clamp(8px,2.5vw,28px); }
+html.paged .book-bar{ display:flex; }
+.bb-sec{ flex:1 1 0; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-gold); }
+.bb-dots{ display:flex; align-items:center; justify-content:center; gap:2px; flex-shrink:0; }
+a.bb-dot{ display:grid; place-items:center; width:22px; height:44px; border-radius:2px; }
+a.bb-dot .dot{ display:block; width:9px; height:9px; border-radius:50%; border:1.5px solid var(--vu-gold); background:transparent;
   transition:background-color .2s ease-out, transform .2s ease-out, box-shadow .2s ease-out; }
-.rail-nav a.rn-dot.done .dot{ background:var(--vu-gold); }
-.rail-nav a.rn-dot.cur .dot{ transform:scale(1.35); box-shadow:0 0 0 2px rgba(236,183,72,.55); }
-.rail-nav a.rn-dot:hover .dot{ background:rgba(207,174,112,.5); }
-.rail-nav a.rn-dot.done:hover .dot{ background:var(--vu-highlight); }
-.rail-nav a.rn-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1px; }
-@media (max-width:1099px){ .rail-nav{ display:none; } }
-@media (max-height:540px){ .rail-nav{ display:none; } }
+a.bb-dot.done .dot{ background:var(--vu-gold); }
+a.bb-dot.cur .dot{ transform:scale(1.35); box-shadow:0 0 0 2px rgba(236,183,72,.55); }
+a.bb-dot:hover .dot{ background:rgba(207,174,112,.5); }
+a.bb-dot.done:hover .dot{ background:var(--vu-highlight); }
+a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1px; }
+.bb-ctl{ flex:1 1 0; display:flex; align-items:center; justify-content:flex-end; gap:clamp(6px,1vw,12px); }
+.bb-count{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.05em; color:rgba(255,255,255,.72); white-space:nowrap; }
+.bb-btn{ display:grid; place-items:center; width:44px; height:44px; flex-shrink:0; border:1px solid rgba(255,255,255,.25); border-radius:var(--r);
+  background:transparent; color:#fff; cursor:pointer; transition:border-color .2s ease-out,color .2s ease-out; }
+.bb-btn:hover{ border-color:var(--vu-gold); color:var(--vu-gold); }
+.bb-btn[disabled]{ opacity:.35; cursor:default; }
+.bb-btn[disabled]:hover{ border-color:rgba(255,255,255,.25); color:#fff; }
+.bb-btn svg{ width:16px; height:16px; }
+@media (max-width:760px){ .bb-sec{ display:none; } .bb-dots{ flex:1; } .bb-ctl{ flex:0 0 auto; } }
+@media (max-width:420px){ a.bb-dot{ width:18px; } .bb-btn{ width:42px; } .bb-count{ font-size:.72rem; } }
 
 /* ═══════════════════ CRIT ═══════════════════ */
 .cr-chips{ display:flex; flex-wrap:wrap; gap:10px; margin:-6px 0 18px; }
@@ -1247,7 +1339,7 @@ body.oracle-open{ overflow:hidden; }
     </div>
 
     <!-- Module B: How an LLM actually works -->
-    <div class="module reveal">
+    <div class="module reveal" data-pg="How an LLM works">
       <div class="module-head">
         <span class="mno">Module B</span>
         <h3>How an LLM actually works</h3>
@@ -1284,6 +1376,10 @@ body.oracle-open{ overflow:hidden; }
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Module B, continued: the research and the optional video -->
+    <div class="module reveal" data-pg="The research &amp; the video">
       <div class="evidence reveal">
         <span class="e-label">The research</span>
         <p><b>453 professionals, randomized: with ChatGPT they finished 40% faster, with quality rated 18% higher.</b> The machine you just played with is the one behind those numbers.</p>
@@ -1303,7 +1399,7 @@ body.oracle-open{ overflow:hidden; }
     </div>
 
     <!-- Drill: Spot the hallucination -->
-    <div class="module reveal">
+    <div class="module reveal" data-pg="Spot the hallucination">
       <div class="module-head">
         <span class="mno">Drill</span>
         <h3>Spot the hallucination</h3>
@@ -1340,7 +1436,7 @@ body.oracle-open{ overflow:hidden; }
     </div>
 
     <!-- Module C: Myths vs Facts -->
-    <div class="module reveal">
+    <div class="module reveal" data-pg="Myths vs. facts">
       <div class="module-head">
         <span class="mno">Module C</span>
         <h3>Myths vs. facts</h3>
@@ -1393,7 +1489,7 @@ body.oracle-open{ overflow:hidden; }
     </div>
 
     <!-- Module D: Limits to know -->
-    <div class="module reveal">
+    <div class="module reveal" data-pg="Limits to know">
       <div class="module-head">
         <span class="mno">Module D</span>
         <h3>Limits to know</h3>
@@ -1474,7 +1570,7 @@ body.oracle-open{ overflow:hidden; }
     </div>
 
     <!-- Bridge: five techniques -->
-    <div class="module reveal">
+    <div class="module reveal" data-pg="Five techniques">
       <div class="module-head">
         <span class="mno">Module E</span>
         <h3>Five prompting techniques</h3>
@@ -1531,11 +1627,12 @@ body.oracle-open{ overflow:hidden; }
           </div>
         </div>
       </div>
-      <div class="evidence reveal">
+    </div>
+
+    <div class="evidence reveal" data-pg="The research behind it">
         <span class="e-label">The research, made at Vanderbilt</span>
         <p><b>In 2023, Vanderbilt&rsquo;s Jules White published <a href="https://arxiv.org/abs/2302.11382" target="_blank" rel="noopener">&ldquo;A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT&rdquo;</a>, turning prompting folk wisdom into named, reusable patterns.</b> The Prompt Lab&rsquo;s Role field is his Persona pattern; his free course lives under <a href="#resources">Keep learning</a>.</p>
         <span class="e-src">White et&nbsp;al., arXiv:2302.11382 (2023) &middot; more of the catalog under <a href="#resources">Keep learning</a></span>
-      </div>
     </div>
     <div class="md-wrap">
       <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="learn" aria-pressed="false">
@@ -1565,7 +1662,7 @@ body.oracle-open{ overflow:hidden; }
     </div>
 
     <!-- Module A: the four ideas -->
-    <div class="module reveal">
+    <div class="module reveal" data-pg="How AI meets your work">
       <div class="module-head">
         <span class="mno">Module A</span>
         <h3>How AI meets your work</h3>
@@ -1602,7 +1699,11 @@ body.oracle-open{ overflow:hidden; }
         </div>
       </div>
 
-      <div class="ra-idea">
+    </div>
+
+    <!-- Module A, continued: ideas 03 and 04 plus the four moves -->
+    <div class="module reveal" data-pg="The frontier &amp; the horizon">
+      <div class="ra-idea" style="margin-top:0">
         <h4><span class="no" aria-hidden="true">03</span>The frontier is jagged</h4>
         <p>AI is strong on some tasks and quietly bad at adjacent ones. The only way to find the
           line for your work is to test task by task, which is why <b>verification matters as
@@ -1646,7 +1747,7 @@ body.oracle-open{ overflow:hidden; }
     </div>
 
     <!-- Module B: the role readiness assessment -->
-    <div class="module reveal">
+    <div class="module reveal" data-pg="The assessment">
       <div class="module-head">
         <span class="mno">Module B &middot; Centerpiece</span>
         <h3>The role readiness assessment</h3>
@@ -1864,7 +1965,7 @@ body.oracle-open{ overflow:hidden; }
       <div class="rstep"><span class="rno">T &middot; Task</span><h5>The deliverable</h5>
         <p>What type of output, what scope, what format: the model can only hit a target you name.</p></div>
     </div>
-    <div class="evidence reveal">
+    <div class="evidence reveal" data-pg="The source &amp; the video">
       <span class="e-label">The source</span>
       <p><b>CRIT comes from Geoff Woods, best-selling author of <em>The AI-Driven Leader</em>.</b> The Interview is your verification habit moved upstream: gaps surface <em>before</em> drafting instead of during checking.</p>
       <span class="e-src">Geoff Woods, <a href="https://aiforinsightsleaders.substack.com/p/prompting-isnt-magic-and-why-crit" target="_blank" rel="noopener">&ldquo;Prompting Isn&rsquo;t Magic, And Why CRIT Is My Preferred Prompt Framework&rdquo;</a> (AI for Insights Leaders) &middot; Woods, <em>The AI-Driven Leader</em>, companion resources at <a href="https://aileadership.com" target="_blank" rel="noopener">aileadership.com</a></span>
@@ -1879,7 +1980,7 @@ body.oracle-open{ overflow:hidden; }
       </div>
       <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=nzLCiQgT9PM" target="_blank" rel="noopener">Open on YouTube</a>.</p>
     </div>
-    <div class="module reveal">
+    <div class="module reveal" data-pg="The builder">
       <div class="module-head">
         <span class="mno">Builder</span>
         <h3>The CRIT builder</h3>
@@ -1961,18 +2062,12 @@ body.oracle-open{ overflow:hidden; }
         Guided practice apps, no live AI: the real thing lives in ChatGPT, Amplify, and Copilot, and what you build here goes there.</p>
     </div>
 
-    <div class="reveal">
-      <div class="ptabs" role="tablist" aria-label="Playground apps">
-        <button class="ptab" id="tab-lab" role="tab" aria-selected="true" aria-controls="panel-lab">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v6L4 19a2 2 0 0 0 1.8 3h12.4A2 2 0 0 0 20 19L14 8V2"/><path d="M8 2h8"/></svg>Prompt Lab</button>
-        <button class="ptab" id="tab-grader" role="tab" aria-selected="false" aria-controls="panel-grader" tabindex="-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg>Prompt Grader</button>
-        <button class="ptab" id="tab-match" role="tab" aria-selected="false" aria-controls="panel-match" tabindex="-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.5 8.5L15.5 15.5M18 6h-5M6 18v-5"/></svg>Tool Match</button>
-      </div>
-
-      <!-- ── PROMPT LAB ── -->
-      <div class="ppanel" id="panel-lab" role="tabpanel" aria-labelledby="tab-lab" tabindex="0">
+    <!-- ── PROMPT LAB ── (the three former tabs are now three pages of the book) -->
+    <div class="ppanel" id="panel-lab" aria-label="The Prompt Lab">
+        <div class="module-head" style="margin-bottom:18px">
+          <span class="mno">App 01</span>
+          <h3>The Prompt Lab</h3>
+        </div>
         <div class="concept">
           <span class="c-label">What this trains</span>
           <p>The CRIT builder was the guided walk; this is the freeform bench, on your own work. Every element you add narrows what comes back.</p>
@@ -2063,8 +2158,12 @@ body.oracle-open{ overflow:hidden; }
         </div>
       </div>
 
-      <!-- ── PROMPT GRADER ── -->
-      <div class="ppanel" id="panel-grader" role="tabpanel" aria-labelledby="tab-grader" tabindex="0" hidden>
+    <!-- ── PROMPT GRADER ── -->
+    <div class="ppanel" id="panel-grader" data-pg="The Prompt Grader" aria-label="The Prompt Grader">
+        <div class="module-head" style="margin-bottom:18px">
+          <span class="mno">App 02</span>
+          <h3>The Prompt Grader</h3>
+        </div>
         <div class="concept">
           <span class="c-label">What this trains</span>
           <p>This one teaches you to spot what&rsquo;s missing. The lowest score is almost always context or specificity, the details we assume any reader &ldquo;just knows.&rdquo;</p>
@@ -2099,8 +2198,12 @@ body.oracle-open{ overflow:hidden; }
         </div>
       </div>
 
-      <!-- ── TOOL MATCH ── -->
-      <div class="ppanel" id="panel-match" role="tabpanel" aria-labelledby="tab-match" tabindex="0" hidden>
+    <!-- ── TOOL MATCH ── -->
+    <div class="ppanel" id="panel-match" data-pg="Tool Match" aria-label="Tool Match">
+        <div class="module-head" style="margin-bottom:18px">
+          <span class="mno">App 03</span>
+          <h3>Tool Match</h3>
+        </div>
         <div class="concept">
           <span class="c-label">What this trains</span>
           <p>One decision, drilled until it is automatic: pick the tool by how sensitive the data is. Question one overrides everything else; convenience never wins.</p>
@@ -2141,10 +2244,9 @@ body.oracle-open{ overflow:hidden; }
           <div id="tmOut" role="status" aria-live="polite"></div>
         </div>
       </div>
-    </div>
 
     <!-- ── TAKE IT LIVE: the Playground&rsquo;s closing step ── -->
-    <div class="module reveal">
+    <div class="module reveal" id="takelive" data-pg="Take it live">
       <div class="module-head">
         <span class="mno">Closing step</span>
         <h3>Take it <em>live</em>.</h3>
@@ -2238,7 +2340,7 @@ body.oracle-open{ overflow:hidden; }
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
       </article>
     </div>
-    <div class="evidence reveal">
+    <div class="evidence reveal" data-pg="The rule of thumb">
       <span class="e-label">The bench behind Amplify</span>
       <p><b>Amplify is Vanderbilt&rsquo;s own open-source generative AI platform, now in its <a href="https://computing.vanderbilt.edu/2026/01/06/amplify-2-0-ushers-in-a-new-era-of-ai-powered-productivity-at-vanderbilt/" target="_blank" rel="noopener">Amplify 2.0 era</a>,</b> led by <b>Allen Karns</b>, Chief AI and Technology Officer, and <b>Jules White</b> of the <a href="https://news.vanderbilt.edu/2026/02/02/vanderbilt-launches-amplify-generative-ai-innovation-center-within-college-of-connected-computing/" target="_blank" rel="noopener">Amplify Generative AI Innovation Center</a>. Colleagues stand behind the badge, not a vendor. <!-- [EDIT: confirm titles with the Amplify center before launch] --></p>
     </div>
@@ -2278,7 +2380,7 @@ body.oracle-open{ overflow:hidden; }
       <p>The engine matches your description against fourteen common workplace patterns. The best use cases <b style="color:var(--champ);font-weight:600">repeat</b>, are <b style="color:var(--champ);font-weight:600">text-heavy</b>, and follow <b style="color:var(--champ);font-weight:600">rules you could explain to a new hire</b>. The more concretely you describe the work, the more patterns it catches.</p>
     </div>
 
-    <div class="sim-shell reveal">
+    <div class="sim-shell reveal" data-pg="Run the simulator">
       <form class="sim-form" autocomplete="off" novalidate>
         <div class="micro"><span><i aria-hidden="true">1</i>Describe a real task from your week</span><span><i aria-hidden="true">2</i>Pick your department</span><span><i aria-hidden="true">3</i>Get your map, then take one prompt and try it</span></div>
         <div class="field">
@@ -2383,7 +2485,7 @@ body.oracle-open{ overflow:hidden; }
         <p>These tools change monthly. A little steady curiosity keeps your skills compounding while everyone else is still skeptical.</p>
       </article>
     </div>
-    <div class="never reveal">
+    <div class="never reveal" data-pg="The never-paste list">
       <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.6L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>Never paste these into a public AI tool</h3>
       <ul>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Social Security numbers</li>
@@ -2397,7 +2499,7 @@ body.oracle-open{ overflow:hidden; }
       </ul>
       <p class="pol">Full guidance: Vanderbilt&rsquo;s AI guidance and data classification policy will be linked here when published; until then, both are available through Human Resources and ITS.<!-- [EDIT: add URL for official AI policy] --><!-- [EDIT: add URL for data classification policy] --></p>
     </div>
-    <div class="module reveal">
+    <div class="module reveal" data-pg="Judgment scenarios">
       <div class="module-head">
         <span class="mno">Practice</span>
         <h3>Four judgment scenarios</h3>
@@ -2470,7 +2572,7 @@ body.oracle-open{ overflow:hidden; }
         </article>
       </div>
     </div>
-    <div class="module reveal">
+    <div class="module reveal" data-pg="Keep the time">
       <div class="module-head">
         <span class="mno">Keep the time</span>
         <h3>Keep the time you save</h3>
@@ -2541,9 +2643,10 @@ body.oracle-open{ overflow:hidden; }
       <span class="c-label">The idea</span>
       <p>A missed question is just a pointer back to the section worth a second look.</p>
     </div>
-    <div class="quiz-shell reveal">
-      <form id="quizForm" autocomplete="off" novalidate>
-        <!-- teaching order: how the machine works first, then CRIT, tools, responsible habits; ids and answers unchanged -->
+    <div class="quiz-shell reveal" data-pg="Questions 1 to 4">
+      <div id="quizForm" role="group" aria-label="Knowledge check, questions 1 to 4">
+        <!-- teaching order: how the machine works first, then CRIT, tools, responsible habits; ids and answers unchanged.
+             The eight questions read across two book pages (4 + 4); results and feedback land on a third. -->
         <fieldset class="qz" data-answer="c">
           <legend><span class="qn">1/8</span>Under the hood, what is a large language model actually doing?</legend>
           <div class="opts">
@@ -2572,6 +2675,11 @@ body.oracle-open{ overflow:hidden; }
           </div>
           <p class="expl"><b>Context + role + interview + task.</b> The CRIT shape from the builder and the Prompt Lab. Specific in, useful out.</p>
         </fieldset>
+      </div>
+    </div>
+
+    <div class="quiz-shell" data-pg="Questions 5 to 8">
+      <div id="quizForm2" role="group" aria-label="Knowledge check, questions 5 to 8">
         <fieldset class="qz" data-answer="c">
           <legend><span class="qn">5/8</span>You're buried in Excel and need formula help. The natural first stop?</legend>
           <div class="opts">
@@ -2606,7 +2714,10 @@ body.oracle-open{ overflow:hidden; }
           <span class="quiz-prog" id="quizProgress" aria-live="polite">0 of 8 answered</span>
         </div>
         <p class="nudge" id="quizNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>A few questions are still blank. Answer them all and I'll tally you up.</p>
-      </form>
+      </div>
+    </div>
+
+    <div class="quiz-shell" data-pg="Your score &amp; feedback">
       <div class="quiz-result" id="quizResult" role="status" aria-live="polite"></div>
 
       <!-- Course feedback — revealed after the knowledge check is completed -->
@@ -2964,9 +3075,9 @@ body.oracle-open{ overflow:hidden; }
       <div class="fcol">
         <h4>Practice</h4>
         <a href="#crit">The CRIT framework</a>
-        <a href="#playground">Prompt Lab</a>
-        <a href="#playground">Prompt Grader</a>
-        <a href="#playground">Take it live</a>
+        <a href="#panel-lab">Prompt Lab</a>
+        <a href="#panel-grader">Prompt Grader</a>
+        <a href="#takelive">Take it live</a>
         <a href="#simulator">Opportunity Simulator</a>
         <a href="#quiz">Knowledge check</a>
       </div>
@@ -2994,6 +3105,327 @@ body.oracle-open{ overflow:hidden; }
     </div>
   </div>
 </footer>
+
+<!-- ═══════════════════ BOTTOM BOOK BAR ═══════════════════
+     Replaces the right-edge rail: current section, one dot per tracked section
+     (done state + jump), and the page counter with the book controls. -->
+<div class="book-bar" id="bookBar" role="navigation" aria-label="Book controls">
+  <span class="bb-sec" id="bbSec" aria-hidden="true">Welcome</span>
+  <nav class="bb-dots" id="bbDots" aria-label="Course sections"></nav>
+  <div class="bb-ctl">
+    <span class="bb-count" id="bbCount" aria-live="polite">1 / 1</span>
+    <button type="button" class="bb-btn" id="pgPrev" aria-label="Previous page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button type="button" class="bb-btn" id="pgNext" aria-label="Next page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+<script>
+/* ══════════ THE PAGER: the scroll site becomes a book ══════════
+   Runs before the app script. Regroups every top-level block into discrete
+   .page articles inside the fixed stage (#main), one visible at a time.
+   Page boundaries come from data-pg markers in the markup. If anything
+   fails, the paged class is removed and the original scroll layout stands. */
+(function(){
+'use strict';
+try{
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var main = document.getElementById('main');
+  if(!main) throw new Error('no main');
+  /* section plan: key = hash segment, label = bottom-bar name */
+  var PLAN = [
+    { sel:'section.hero',        key:'home',        label:'Welcome',         mode:'whole' },
+    { sel:'#start',              key:'belief',      label:'The belief',      mode:'whole', extras:['.topics'] },
+    { sel:'section.howworks',    key:'how',         label:'How CHART works', mode:'whole' },
+    { sel:'#learn',              key:'learn',       label:'Learn',           mode:'split' },
+    { sel:'#readiness',          key:'readiness',   label:'Readiness',       mode:'split' },
+    { sel:'#crit',               key:'crit',        label:'CRIT',            mode:'split' },
+    { sel:'#playground',         key:'playground',  label:'Practice',        mode:'split' },
+    { sel:'#tools',              key:'tools',       label:'Tools',           mode:'split' },
+    { sel:'#simulator',          key:'simulator',   label:'Simulator',       mode:'split' },
+    { sel:'#responsible',        key:'responsible', label:'Responsible AI',  mode:'split' },
+    { sel:'#quiz',               key:'quiz',        label:'Knowledge check', mode:'split' },
+    { sel:'#summary',            key:'summary',     label:'Summary',         mode:'whole' },
+    { sel:'#nextstep',           key:'nextstep',    label:'Next step',       mode:'whole' },
+    { sel:'#resources',          key:'resources',   label:'Resources',       mode:'whole' },
+    { sel:'section.cta',         key:'end',         label:'Wrap-up',         mode:'whole', extras:['footer'] }
+  ];
+  /* dots: the ten tracked sections, in course order (mirrors PROG_SECTIONS below) */
+  var TRACKED = [
+    ['learn','01','Learn the fundamentals'], ['readiness','02','AI readiness'], ['crit','03','The CRIT framework'],
+    ['playground','04','The Playground'], ['tools','05','Three tools'], ['simulator','06','Opportunity Simulator'],
+    ['responsible','07','Responsible AI'], ['quiz','08','Knowledge check'], ['nextstep','09','Your next step'],
+    ['resources','10','Keep learning']
+  ];
+  var pages = [];       /* { el, key, secLabel, pgLabel, n } */
+  var secFirst = {};    /* key -> first page index */
+  var topSpan = document.getElementById('top');
+  var frag = document.createDocumentFragment();
+
+  function mkPage(key, secLabel, pgLabel){
+    var art = document.createElement('article');
+    art.className = 'page';
+    art.setAttribute('data-sec', key);
+    art.setAttribute('data-label', pgLabel);
+    art.setAttribute('aria-hidden', 'true');
+    art.tabIndex = -1;
+    if(!(key in secFirst)) secFirst[key] = pages.length;
+    var meta = { el:art, key:key, secLabel:secLabel, pgLabel:pgLabel, n:0 };
+    pages.push(meta);
+    frag.appendChild(art);
+    return meta;
+  }
+  PLAN.forEach(function(cfg){
+    var S = main.querySelector(cfg.sel) || document.querySelector(cfg.sel);
+    if(!S) return;
+    if(cfg.mode === 'whole'){
+      var pg = mkPage(cfg.key, cfg.label, cfg.label);
+      pg.el.appendChild(S);
+      (cfg.extras || []).forEach(function(x){
+        var ex = (x === 'footer') ? document.querySelector('body > footer') : main.querySelector(x);
+        if(ex) pg.el.appendChild(ex);
+      });
+    } else {
+      var wrap = S.querySelector('.wrap');
+      if(!wrap) return;
+      var kids = Array.prototype.slice.call(wrap.children);
+      var groups = [], cur = [];
+      kids.forEach(function(k){
+        if(k.hasAttribute && k.hasAttribute('data-pg') && cur.length){ groups.push(cur); cur = []; }
+        cur.push(k);
+      });
+      if(cur.length) groups.push(cur);
+      groups.forEach(function(g, gi){
+        var label = (gi === 0) ? cfg.label : (g[0].getAttribute('data-pg') || cfg.label);
+        var pg = mkPage(cfg.key, cfg.label, label);
+        var shell = document.createElement('section');
+        shell.className = S.className;
+        var al = S.getAttribute('aria-label');
+        if(al) shell.setAttribute('aria-label', al + (groups.length > 1 ? ' (' + (gi+1) + ' of ' + groups.length + ')' : ''));
+        if(gi === 0 && S.id) shell.id = S.id;
+        var w = document.createElement('div');
+        w.className = 'wrap';
+        g.forEach(function(k){ w.appendChild(k); });
+        shell.appendChild(w);
+        pg.el.appendChild(shell);
+      });
+      if(S.parentNode) S.parentNode.removeChild(S);
+    }
+  });
+  if(!pages.length) throw new Error('no pages');
+  /* per-section numbering + labels */
+  var perSec = {};
+  pages.forEach(function(p){
+    perSec[p.key] = (perSec[p.key] || 0) + 1;
+    p.n = perSec[p.key];
+  });
+  pages.forEach(function(p){
+    var t = perSec[p.key];
+    p.el.setAttribute('aria-label', p.secLabel + (t > 1 ? ': ' + p.pgLabel + ' (page ' + p.n + ' of ' + t + ')' : ''));
+  });
+  /* rebuild the stage */
+  while(main.firstChild) main.removeChild(main.firstChild);
+  main.appendChild(frag);
+  if(topSpan && pages[0]) pages[0].el.insertBefore(topSpan, pages[0].el.firstChild);
+  var more = document.createElement('span');
+  more.id = 'pgMore';
+  more.setAttribute('aria-hidden', 'true');
+  more.innerHTML = 'Scroll for more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+  main.appendChild(more);
+
+  /* bottom bar */
+  var bbSec = document.getElementById('bbSec'), bbDots = document.getElementById('bbDots'),
+      bbCount = document.getElementById('bbCount'),
+      prevBtn = document.getElementById('pgPrev'), nextBtn = document.getElementById('pgNext');
+  if(bbDots){
+    bbDots.innerHTML = TRACKED.map(function(s){
+      return '<a class="bb-dot" href="#' + s[0] + '" data-rail="' + s[0] + '"' +
+        ' title="' + s[1] + ' · ' + s[2] + ' · not yet" aria-label="' + s[2] + ', not done">' +
+        '<span class="dot" aria-hidden="true"></span></a>';
+    }).join('');
+  }
+
+  var cur = -1, animT = null;
+  var store = (function(){
+    try{ var t = 'chart-page-test'; window.localStorage.setItem(t,'1'); window.localStorage.removeItem(t); return window.localStorage; }
+    catch(e){ return null; }
+  })();
+  function writeHash(p){
+    try{ window.history.replaceState(null, '', '#p/' + p.key + '/' + p.n); }catch(e){}
+    if(store){ try{ store.setItem('chart-page', p.key + '/' + p.n); }catch(e){} }
+  }
+  function hashIndex(h){
+    if(!h) return null;
+    h = String(h).replace(/^#/, '');
+    if(!h) return null;
+    if(h.indexOf('p/') === 0){
+      var bits = h.split('/');
+      var k = bits[1], n = parseInt(bits[2], 10) || 1;
+      for(var i = 0; i < pages.length; i++){
+        if(pages[i].key === k && pages[i].n === n) return i;
+      }
+      return (k in secFirst) ? secFirst[k] : null;
+    }
+    if(h === 'top' || h === 'main') return 0;
+    var el = document.getElementById(h);
+    if(!el) return null;
+    var pg = el.closest ? el.closest('.page') : null;
+    if(!pg) return null;
+    for(var j = 0; j < pages.length; j++){ if(pages[j].el === pg) return j; }
+    return null;
+  }
+  function checkMore(){
+    if(cur < 0) return;
+    var el = pages[cur].el;
+    var scrollable = el.scrollHeight - el.clientHeight > 24;
+    var nearEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 32;
+    main.classList.toggle('more', scrollable && !nearEnd);
+  }
+  function updateBar(){
+    var p = pages[cur];
+    if(bbSec) bbSec.textContent = p.secLabel;
+    if(bbCount) bbCount.textContent = (cur + 1) + ' / ' + pages.length;
+    if(prevBtn) prevBtn.disabled = cur === 0;
+    if(nextBtn) nextBtn.disabled = cur === pages.length - 1;
+    document.querySelectorAll('.bb-dot').forEach(function(a){
+      var on = a.getAttribute('data-rail') === p.key;
+      a.classList.toggle('cur', on);
+      if(on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  function clearAnim(){
+    pages.forEach(function(p){ p.el.classList.remove('pg-in-r','pg-in-l','pg-out','pg-out-l','pg-out-r'); });
+  }
+  function go(i, opts){
+    opts = opts || {};
+    if(typeof i !== 'number' || i < 0 || i >= pages.length) return;
+    if(i === cur){ if(opts.focus) pages[i].el.focus({ preventScroll:true }); return; }
+    var from = cur >= 0 ? pages[cur] : null;
+    var to = pages[i];
+    var dir = from && i < cur ? -1 : 1;
+    cur = i;
+    if(animT){ window.clearTimeout(animT); animT = null; clearAnim(); }
+    to.el.scrollTop = 0;
+    to.el.classList.add('cur');
+    to.el.removeAttribute('aria-hidden');
+    if(from){
+      from.el.classList.remove('cur');
+      from.el.setAttribute('aria-hidden', 'true');
+      if(!reduce){
+        to.el.classList.add(dir > 0 ? 'pg-in-r' : 'pg-in-l');
+        from.el.classList.add('pg-out', dir > 0 ? 'pg-out-l' : 'pg-out-r');
+        animT = window.setTimeout(function(){ animT = null; clearAnim(); }, 420);
+      }
+      /* focus must never be stranded in a hidden page */
+      var ae = document.activeElement;
+      if(opts.focus || (ae && from.el.contains(ae))) to.el.focus({ preventScroll:true });
+    } else if(opts.focus){
+      to.el.focus({ preventScroll:true });
+    }
+    updateBar();
+    writeHash(to);
+    checkMore();
+    try{
+      document.dispatchEvent(new CustomEvent('chart:page', { detail:{ key:to.key, index:cur, label:to.pgLabel } }));
+    }catch(e){}
+  }
+  function goToEl(el){
+    if(!el || !el.closest) return;
+    var pg = el.closest('.page');
+    if(!pg) return;
+    for(var i = 0; i < pages.length; i++){
+      if(pages[i].el === pg){
+        go(i);
+        if(el !== pg){ try{ el.scrollIntoView({ block:'start' }); }catch(e){} }
+        return;
+      }
+    }
+  }
+  window.chartPager = {
+    go: go,
+    goToEl: goToEl,
+    goToKey: function(k){ if(k in secFirst) go(secFirst[k]); },
+    current: function(){ return cur >= 0 ? { key: pages[cur].key, index: cur } : { key:'', index:0 }; },
+    count: pages.length
+  };
+
+  /* in-page anchors turn pages instead of scrolling */
+  document.addEventListener('click', function(e){
+    if(e.defaultPrevented) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if(!a) return;
+    var href = a.getAttribute('href');
+    if(!href || href === '#') return;
+    var id = href.slice(1);
+    if(id === 'main'){ e.preventDefault(); if(cur >= 0) pages[cur].el.focus({ preventScroll:true }); return; }
+    var idx = hashIndex(href);
+    if(idx === null) return;
+    e.preventDefault();
+    go(idx, { focus:true });
+    var el = document.getElementById(id);
+    if(el && pages[idx].el.contains(el) && el !== pages[idx].el){
+      try{ el.scrollIntoView({ block:'start' }); }catch(err){}
+    }
+  });
+  window.addEventListener('hashchange', function(){
+    var idx = hashIndex(window.location.hash);
+    if(idx !== null && idx !== cur) go(idx);
+  });
+  /* book controls */
+  if(prevBtn) prevBtn.addEventListener('click', function(){ go(cur - 1); });
+  if(nextBtn) nextBtn.addEventListener('click', function(){ go(cur + 1); });
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    if(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    var t = e.target;
+    if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
+    if(document.body.classList.contains('menu-open') || document.body.classList.contains('oracle-open')) return;
+    var pp = document.getElementById('progPanel');
+    if(pp && !pp.hidden) return;
+    e.preventDefault();
+    go(cur + (e.key === 'ArrowRight' ? 1 : -1));
+  });
+  /* touch swipe: horizontal, ~50px threshold, ignores mostly-vertical drags */
+  var sx = 0, sy = 0, swiping = false;
+  main.addEventListener('touchstart', function(e){
+    if(e.touches.length === 1){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiping = true; }
+    else swiping = false;
+  }, { passive:true });
+  main.addEventListener('touchend', function(e){
+    if(!swiping) return;
+    swiping = false;
+    var t = e.changedTouches && e.changedTouches[0];
+    if(!t) return;
+    var dx = t.clientX - sx, dy = t.clientY - sy;
+    if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1));
+  }, { passive:true });
+  /* internal-scroll affordance */
+  window.addEventListener('resize', checkMore, { passive:true });
+  document.addEventListener('scroll', function(e){
+    if(cur >= 0 && e.target === pages[cur].el) checkMore();
+  }, true);
+
+  /* open at: deep link > stored resume > page one */
+  var startIdx = hashIndex(window.location.hash);
+  if(startIdx === null && store){
+    try{
+      var saved = store.getItem('chart-page');
+      if(saved){
+        var sb = saved.split('/');
+        startIdx = hashIndex('p/' + sb[0] + '/' + (sb[1] || 1));
+      }
+    }catch(e){}
+  }
+  go(startIdx === null ? 0 : startIdx);
+}catch(err){
+  /* build failed: fall back to the original scroll layout */
+  document.documentElement.classList.remove('paged');
+  var bar = document.getElementById('bookBar');
+  if(bar) bar.hidden = true;
+}
+})();
+</script>
 
 <!-- ═══════════════════ ORACLE COMPLETION MODAL ═══════════════════
      Appears once per visit when all tracked sections are complete, until the learner
@@ -3041,15 +3473,14 @@ if(heroVids.length){
         if(v.classList.contains('hv-hidden')){ try{ v.pause(); }catch(e){} }
       });
     };
-    if('IntersectionObserver' in window){
-      new IntersectionObserver(function(en){
-        en.forEach(function(e){
-          heroOn = e.isIntersecting;
-          if(heroOn){ playVisible(); pauseHidden(); }
-          else heroVids.forEach(function(v){ try{ v.pause(); }catch(err){} });
-        });
-      }, {threshold:0}).observe(vid);
-    }
+    /* book mode: the videos run only while the welcome page is the open page */
+    var heroSync = function(key){
+      heroOn = key === 'home';
+      if(heroOn){ playVisible(); pauseHidden(); }
+      else heroVids.forEach(function(v){ try{ v.pause(); }catch(err){} });
+    };
+    document.addEventListener('chart:page', function(ev){ heroSync(ev.detail ? ev.detail.key : ''); });
+    if(window.chartPager) heroSync(window.chartPager.current().key);
     if(vidB){
       window.setTimeout(pauseHidden, 2000);
       window.setInterval(function(){
@@ -3093,45 +3524,13 @@ document.addEventListener('keydown', function(e){
   else if(!e.shiftKey && active === last){ e.preventDefault(); first.focus(); }
 });
 
-var ticking = false;
-function update(){
-  ticking = false;
-  var y = window.scrollY || document.documentElement.scrollTop;
-  if(nav) nav.classList.toggle('scrolled', y > 24);
-}
-window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
-window.addEventListener('resize', update, {passive:true});
-update();
+/* book mode: the gold rule under the banner appears past page one */
+function navShade(idx){ if(nav) nav.classList.toggle('scrolled', idx > 0); }
+document.addEventListener('chart:page', function(ev){ navShade(ev.detail ? ev.detail.index : 0); });
+if(window.chartPager) navShade(window.chartPager.current().index);
 
-/* ══════════ reveal on scroll ══════════ */
-var revealEls = document.querySelectorAll('.reveal');
-if('IntersectionObserver' in window && !reduce){
-  var io = new IntersectionObserver(function(en){
-    en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:.1, rootMargin:'0px 0px -8% 0px'});
-  revealEls.forEach(function(el){ io.observe(el); });
-  /* safety sweep: the observer fires once and unobserves, so a missed
-     callback (fast scroll, anchor jump) would leave content invisible */
-  var sweepQueued = false;
-  function revealSweep(){
-    sweepQueued = false;
-    revealEls.forEach(function(el){
-      if(el.classList.contains('in')) return;
-      var r = el.getBoundingClientRect();
-      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); io.unobserve(el); }
-    });
-  }
-  function queueSweep(){
-    if(sweepQueued) return;
-    sweepQueued = true;
-    window.requestAnimationFrame(revealSweep);
-  }
-  window.addEventListener('scroll', queueSweep, {passive:true});
-  window.addEventListener('resize', queueSweep, {passive:true});
-  window.setTimeout(revealSweep, 600);
-} else {
-  revealEls.forEach(function(el){ el.classList.add('in'); });
-}
+/* ══════════ reveals: retired in book mode; everything renders visible ══════════ */
+document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
 
 /* ══════════ helpers shared by the apps ══════════ */
 function escapeHtml(s){
@@ -3226,8 +3625,6 @@ function progRender(changedKey, nowDone){
     ? 'Section tracking: all ' + total + ' sections complete.'
     : 'Section tracking: ' + doneN + ' of ' + total + ' complete, ' + left + ' left. Progress saves only in this browser.';
   if(mprogLine) mprogLine.textContent = doneN + ' of ' + total + ' sections complete';
-  var railCount = document.getElementById('railCount');
-  if(railCount) railCount.textContent = doneN + '/' + total;
   PROG_SECTIONS.forEach(function(s){
     var done = progIs(s.k);
     var row = progList ? progList.querySelector('[data-prog-row="' + s.k + '"]') : null;
@@ -3237,7 +3634,7 @@ function progRender(changedKey, nowDone){
       if(st) st.textContent = done ? 'Done' : 'Not yet';
     }
     document.querySelectorAll('.mlink[data-prog="' + s.k + '"]').forEach(function(a){ a.classList.toggle('done', done); });
-    var dot = document.querySelector('.rn-dot[data-rail="' + s.k + '"]');
+    var dot = document.querySelector('.bb-dot[data-rail="' + s.k + '"]');
     if(dot){
       dot.classList.toggle('done', done);
       dot.setAttribute('aria-label', s.name + ', ' + (done ? 'done' : 'not done'));
@@ -3356,59 +3753,8 @@ document.addEventListener('keydown', function(e){
   else if(e.shiftKey && active === first){ e.preventDefault(); last.focus(); }
   else if(!e.shiftKey && active === last){ e.preventDefault(); first.focus(); }
 });
-/* ── right-edge dot rail: one dot per tracked section, always visible on desktop ── */
-function railBuild(){
-  var rail = document.createElement('nav');
-  rail.className = 'rail-nav';
-  rail.id = 'railNav';
-  rail.setAttribute('aria-label', 'Section progress');
-  var html = '<span class="rn-count" id="railCount" aria-hidden="true">0/' + PROG_SECTIONS.length + '</span>';
-  PROG_SECTIONS.forEach(function(sec){
-    html += '<a class="rn-dot" href="#' + sec.k + '" data-rail="' + sec.k + '"' +
-      ' title="' + sec.no + ' · ' + sec.name + ' · not yet"' +
-      ' aria-label="' + sec.name + ', not done"><span class="dot" aria-hidden="true"></span></a>';
-  });
-  rail.innerHTML = html;
-  document.body.appendChild(rail);
-}
-var railCur = '';
-function railSetCurrent(k){
-  if(k === railCur) return;
-  railCur = k;
-  document.querySelectorAll('.rn-dot').forEach(function(a){
-    var on = a.getAttribute('data-rail') === k;
-    a.classList.toggle('cur', on);
-    if(on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
-  });
-}
-function railWatch(){
-  var secs = PROG_SECTIONS.map(function(sec){ return document.getElementById(sec.k); }).filter(Boolean);
-  if(!secs.length) return;
-  function byScroll(){
-    var mid = (window.scrollY || document.documentElement.scrollTop) + window.innerHeight * .42;
-    var cur = '';
-    secs.forEach(function(el){
-      var top = el.offsetTop;
-      if(top <= mid && mid < top + el.offsetHeight) cur = el.id;
-    });
-    if(cur) railSetCurrent(cur);
-  }
-  if('IntersectionObserver' in window){
-    var vis = {};
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ vis[e.target.id] = e.isIntersecting; });
-      for(var i = 0; i < secs.length; i++){
-        if(vis[secs[i].id]){ railSetCurrent(secs[i].id); return; }
-      }
-    }, { rootMargin: '-38% 0px -55% 0px' });
-    secs.forEach(function(el){ io.observe(el); });
-  } else {
-    window.addEventListener('scroll', function(){ window.requestAnimationFrame(byScroll); }, {passive:true});
-    byScroll();
-  }
-}
-railBuild();
-railWatch();
+/* the right-edge rail is retired: the bottom book bar (built by the pager)
+   carries the section dots; progRender colors them via .bb-dot above */
 progBuildList();
 progRender();
 
@@ -3488,32 +3834,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
   });
 });
 
-/* ══════════ PLAYGROUND: accessible tabs ══════════ */
-(function(){
-  var tabs = Array.prototype.slice.call(document.querySelectorAll('.ptab'));
-  if(!tabs.length) return;
-  function select(i, focus){
-    tabs.forEach(function(t, j){
-      var on = i === j;
-      t.setAttribute('aria-selected', on ? 'true' : 'false');
-      t.tabIndex = on ? 0 : -1;
-      var panel = document.getElementById(t.getAttribute('aria-controls'));
-      if(panel) panel.hidden = !on;
-    });
-    if(focus) tabs[i].focus();
-  }
-  tabs.forEach(function(t, i){
-    t.addEventListener('click', function(){ select(i, false); });
-    t.addEventListener('keydown', function(e){
-      var n = null;
-      if(e.key === 'ArrowRight' || e.key === 'ArrowDown') n = (i + 1) % tabs.length;
-      else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = (i - 1 + tabs.length) % tabs.length;
-      else if(e.key === 'Home') n = 0;
-      else if(e.key === 'End') n = tabs.length - 1;
-      if(n !== null){ e.preventDefault(); select(n, true); }
-    });
-  });
-})();
+/* (the Playground tab set is retired: each app now lives on its own page) */
 
 /* ══════════ APP 1: Prompt Lab (CRIT order: Context → Role → Interview → Task) ══════════ */
 (function(){
@@ -4039,15 +4360,18 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
   });
 })();
 
-/* ══════════ KNOWLEDGE CHECK ══════════ */
+/* ══════════ KNOWLEDGE CHECK ══════════
+   The eight questions read across two book pages, so the engine works on
+   the .qz[data-answer] fieldsets directly rather than one wrapping form. */
 (function(){
-  var form = document.getElementById('quizForm'), submit = document.getElementById('quizSubmit'),
+  var submit = document.getElementById('quizSubmit'),
       result = document.getElementById('quizResult'), prog = document.getElementById('quizProgress'),
       nudge = document.getElementById('quizNudge');
-  if(!form || !submit) return;
+  var sets = Array.prototype.slice.call(document.querySelectorAll('.qz[data-answer]'));
+  if(!sets.length || !submit) return;
   var lastScore = null; /* shared with the feedback panel below */
-  var sets = Array.prototype.slice.call(form.querySelectorAll('.qz'));
   var TOTAL = sets.length;
+  function goPage(el){ if(window.chartPager && el) window.chartPager.goToEl(el); }
   function answered(fs){
     return fs.querySelector('input[type=radio]:checked');
   }
@@ -4057,9 +4381,13 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     if(n === TOTAL && nudge) nudge.classList.remove('show');
     return n;
   }
-  form.addEventListener('change', updateProgress);
+  document.addEventListener('change', function(e){
+    if(e.target && e.target.closest && e.target.closest('.qz[data-answer]')) updateProgress();
+  });
   function setLocked(lock){
-    form.querySelectorAll('input[type=radio]').forEach(function(r){ r.disabled = lock; });
+    sets.forEach(function(fs){
+      fs.querySelectorAll('input[type=radio]').forEach(function(r){ r.disabled = lock; });
+    });
   }
   function tier(score){
     if(score === TOTAL) return ['Gold standard.','Perfect score. You’re officially dangerous, the good kind. Go put it to work.'];
@@ -4073,6 +4401,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       if(nudge) nudge.classList.add('show');
       var firstBlank = sets.filter(function(fs){ return !answered(fs); })[0];
       if(firstBlank){
+        goPage(firstBlank); /* the blank may sit on the other question page */
         var input = firstBlank.querySelector('input[type=radio]');
         if(input) input.focus();
       }
@@ -4098,16 +4427,17 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       result.classList.add('show');
       var retake = document.getElementById('quizRetake');
       if(retake) retake.addEventListener('click', function(){
-        form.reset();
         setLocked(false);
-        sets.forEach(function(fs){ fs.classList.remove('graded','correct','wrong'); });
+        sets.forEach(function(fs){
+          fs.classList.remove('graded','correct','wrong');
+          fs.querySelectorAll('input[type=radio]').forEach(function(r){ r.checked = false; });
+        });
         result.classList.remove('show');
         result.innerHTML = '';
         updateProgress();
-        var anchor = document.getElementById('quiz');
-        if(anchor) anchor.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+        goPage(sets[0]); /* back to the first question page */
       });
-      result.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block:'nearest' });
+      goPage(result); /* the score and feedback live on the next page */
     }
   });
   updateProgress();
@@ -4290,7 +4620,7 @@ document.querySelectorAll('.tech-copy').forEach(function(b){
 (function(){
   var creed = document.getElementById('creed');
   if(!creed) return;
-  if(reduce || !('IntersectionObserver' in window)){ creed.classList.add('in'); return; }
+  if(reduce){ creed.classList.add('in'); return; }
   function wrapWords(node){
     Array.prototype.slice.call(node.childNodes).forEach(function(ch){
       if(ch.nodeType === 3){
@@ -4312,9 +4642,16 @@ document.querySelectorAll('.tech-copy').forEach(function(b){
   creed.querySelectorAll('.w').forEach(function(w, i){
     w.style.transitionDelay = Math.min(i * 45, 1600) + 'ms';
   });
-  new IntersectionObserver(function(en, io){
-    en.forEach(function(e){ if(e.isIntersecting){ creed.classList.add('in'); io.unobserve(creed); } });
-  }, {threshold:.35}).observe(creed);
+  /* the words light when the belief page is opened */
+  var creedPage = creed.closest ? creed.closest('.page') : null;
+  function creedMaybe(){
+    if(!creedPage || creedPage.classList.contains('cur')){
+      creed.classList.add('in');
+      document.removeEventListener('chart:page', creedMaybe);
+    }
+  }
+  document.addEventListener('chart:page', creedMaybe);
+  creedMaybe();
 })();
 })();
 </script>
