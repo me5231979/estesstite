@@ -961,8 +961,19 @@ html.paged main#main.more #pgMore{ display:inline-flex; }
   border-top:1px solid rgba(207,174,112,.25); display:none; align-items:center; gap:clamp(8px,2vw,26px);
   padding:0 clamp(8px,2.5vw,28px); }
 html.paged .book-bar{ display:flex; }
-.bb-sec{ flex:1 1 0; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+.bb-left{ flex:1 1 0; min-width:0; display:flex; align-items:center; gap:clamp(8px,1.4vw,16px); }
+.bb-sec{ flex:0 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-gold); }
+.bb-done{ display:inline-flex; align-items:center; justify-content:center; gap:7px; height:44px; padding:0 13px; flex-shrink:0;
+  border:1px solid rgba(255,255,255,.25); border-radius:var(--r); background:transparent; color:#fff; cursor:pointer;
+  font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap;
+  transition:border-color .2s ease-out, color .2s ease-out, background-color .2s ease-out; }
+.bb-done:hover{ border-color:var(--vu-gold); color:var(--vu-gold); }
+.bb-done[aria-pressed="true"]{ border-color:var(--vu-gold); background:var(--vu-gold); color:var(--vu-black); }
+.bb-done[aria-pressed="true"]:hover{ background:var(--vu-highlight); border-color:var(--vu-highlight); color:var(--vu-black); }
+.bb-done:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1px; }
+.bb-done svg{ width:14px; height:14px; flex-shrink:0; }
+.bb-done[hidden]{ display:none; }
 .bb-dots{ display:flex; align-items:center; justify-content:center; gap:2px; flex-shrink:0; }
 a.bb-dot{ display:grid; place-items:center; width:22px; height:44px; border-radius:2px; }
 a.bb-dot .dot{ display:block; width:9px; height:9px; border-radius:50%; border:1.5px solid var(--vu-gold); background:transparent;
@@ -980,8 +991,9 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
 .bb-btn[disabled]{ opacity:.35; cursor:default; }
 .bb-btn[disabled]:hover{ border-color:rgba(255,255,255,.25); color:#fff; }
 .bb-btn svg{ width:16px; height:16px; }
-@media (max-width:760px){ .bb-sec{ display:none; } .bb-dots{ flex:1; } .bb-ctl{ flex:0 0 auto; } }
-@media (max-width:420px){ a.bb-dot{ width:18px; } .bb-btn{ width:42px; } .bb-count{ font-size:.72rem; } }
+@media (max-width:1000px){ .bb-done .bb-done-t{ display:none; } .bb-done{ width:44px; padding:0; } }
+@media (max-width:760px){ .bb-sec{ display:none; } .bb-left{ flex:0 0 auto; } .bb-dots{ flex:1; } .bb-ctl{ flex:0 0 auto; } }
+@media (max-width:420px){ a.bb-dot{ width:14px; } .bb-btn{ width:40px; } .bb-done{ width:40px; height:44px; } .bb-count{ font-size:.72rem; } .book-bar{ gap:6px; } }
 
 /* ═══════════════════ CRIT ═══════════════════ */
 .cr-chips{ display:flex; flex-wrap:wrap; gap:10px; margin:-6px 0 18px; }
@@ -3152,7 +3164,13 @@ body.oracle-open{ overflow:hidden; }
      Replaces the right-edge rail: current section, one dot per tracked section
      (done state + jump), and the page counter with the book controls. -->
 <div class="book-bar" id="bookBar" role="navigation" aria-label="Book controls">
-  <span class="bb-sec" id="bbSec" aria-hidden="true">Welcome</span>
+  <div class="bb-left">
+    <span class="bb-sec" id="bbSec" aria-hidden="true">Welcome</span>
+    <!-- Marks the CURRENT section done from any of its pages; mirrors the in-page buttons. Hidden on untracked pages. -->
+    <button type="button" class="bb-done" id="bbDone" aria-pressed="false" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+      <span class="bb-done-t">Mark done</span></button>
+  </div>
   <nav class="bb-dots" id="bbDots" aria-label="Course sections"></nav>
   <div class="bb-ctl">
     <span class="bb-count" id="bbCount" aria-live="polite">1 / 1</span>
@@ -3693,8 +3711,32 @@ function progRender(changedKey, nowDone){
     PROG_SECTIONS.forEach(function(s){ if(s.k === changedKey) sec = s; });
     if(sec) progStatus.textContent = (nowDone ? 'Section complete: ' : 'Section reopened: ') + sec.name + '. ' + doneN + ' of ' + total + ' complete.';
   }
+  bbDoneSync();
   oracleCheck(doneN === total);
 }
+/* ── bottom-bar "Mark done": completes the CURRENT section from any of its pages.
+   Shares progToggle with the in-page buttons, so both stay in step and the
+   Oracle 10/10 check fires through the same path. Hidden on untracked pages. */
+var bbDoneBtn = document.getElementById('bbDone');
+function bbDoneSync(){
+  if(!bbDoneBtn) return;
+  var curKey = (window.chartPager && window.chartPager.current) ? window.chartPager.current().key : '';
+  var sec = null;
+  PROG_SECTIONS.forEach(function(s){ if(s.k === curKey) sec = s; });
+  if(!sec){ bbDoneBtn.hidden = true; bbDoneBtn.removeAttribute('data-prog'); return; }
+  var done = progIs(sec.k);
+  bbDoneBtn.hidden = false;
+  bbDoneBtn.setAttribute('data-prog', sec.k);
+  bbDoneBtn.setAttribute('aria-pressed', done ? 'true' : 'false');
+  bbDoneBtn.setAttribute('aria-label', (done ? 'Done: ' : 'Mark done: ') + sec.name);
+  var t = bbDoneBtn.querySelector('.bb-done-t');
+  if(t) t.textContent = done ? 'Done' : 'Mark done';
+}
+if(bbDoneBtn) bbDoneBtn.addEventListener('click', function(){
+  var k = bbDoneBtn.getAttribute('data-prog');
+  if(k) progToggle(k);
+});
+document.addEventListener('chart:page', bbDoneSync);
 function progDone(k){
   if(progIs(k)) return;
   progWrite(k, true);
