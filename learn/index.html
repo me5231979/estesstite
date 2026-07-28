@@ -27,8 +27,11 @@
   Logo files live in ./assets/ (v-lockup + vu-centered, black & white variants).
   The practice apps (Prompt Lab, CRIT builder, Grader, Tool Match), the LLM demo,
   the Simulator, self-checks and the quiz are fully working, client-side, no backend.
-  Progress tracking stores per-section booleans only (localStorage chart-progress-*);
-  the Reset control lives in the footer. Answers and typed text are never stored.
+  Progress tracking stores per-section booleans only (localStorage chart-progress-*),
+  plus one string: the focus task the learner picks in the readiness report
+  (chart-focus-task), which the practice apps offer back. The Reset control in
+  the footer clears all of it. Quiz answers, feedback text, and everything else
+  typed are never stored, and nothing is ever sent anywhere.
   BOOK MODE: the course reads page by page like a book. The pager script (before
   the app script) groups blocks into .page articles at data-pg markers; the bottom
   bar holds section dots + prev/next; arrows, swipe, and #p/<section>/<n> hashes
@@ -493,6 +496,8 @@ details.pl-opt{ margin:0 0 18px; max-width:none; }
 .sim-chip{ border:1px dashed var(--bdg); background:transparent; color:var(--tx2); border-radius:var(--r);
   min-height:44px; padding:9px 18px; font-size:.85rem; cursor:pointer; transition:color .2s ease-out,border-color .2s ease-out,background-color .2s ease-out; }
 .sim-chip:hover{ color:var(--tx); border-color:var(--strong); background:rgba(207,174,112,.1); }
+.sim-chip[hidden]{ display:none; }
+.ra-fchip[aria-pressed="true"]{ border-style:solid; border-color:var(--strong); color:var(--tx); background:rgba(207,174,112,.12); }
 .sim-steps{ display:none; margin-top:30px; flex-direction:column; gap:12px; }
 .sim-steps.show{ display:flex; }
 .sim-step{ display:flex; align-items:center; gap:14px; color:var(--tx3); font-family:var(--cond); font-weight:700; font-size:.8rem;
@@ -1410,6 +1415,7 @@ body.oracle-open{ overflow:hidden; }
           </div>
         </div>
       </div>
+      <p class="hinttxt" style="margin-top:12px">Remember this demo the next time an AI answer sounds certain: it predicted that sentence the same way it predicted these bars.</p>
     </div>
 
     <!-- Module B, continued: the research and the optional video -->
@@ -1471,6 +1477,7 @@ body.oracle-open{ overflow:hidden; }
         </div>
       </div>
       <p class="hal-status" id="halStatus" role="status" aria-live="polite">0 of 4 found. Click the detail you&rsquo;d want to verify first.</p>
+      <p class="hinttxt" style="margin-top:10px">Do this scan on the next AI draft that contains a number, a name, or a citation.</p>
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Next: six things people say about AI, and the truth about each.</p></div>
     </div>
 
@@ -1744,7 +1751,7 @@ body.oracle-open{ overflow:hidden; }
               <div class="field" style="margin-bottom:0; max-width:560px">
                 <label for="raRole">The role you are assessing (yours, or one you manage)</label>
                 <input type="text" id="raRole" maxlength="80" placeholder="Example: financial analyst, events coordinator, grants administrator" />
-                <p class="hinttxt">Stays on this page; nothing is stored or sent.</p>
+                <p class="hinttxt">Nothing here is sent anywhere. Only the focus task you pick at the end of your report is saved, in this browser only.</p>
               </div>
             </div>
           </div>
@@ -1942,6 +1949,7 @@ body.oracle-open{ overflow:hidden; }
       <div class="rstep"><span class="rno">T &middot; Task</span><h5>The deliverable</h5>
         <p>What type of output, what scope, what format: the model can only hit a target you name.</p></div>
     </div>
+    <p class="hinttxt reveal" style="margin-top:12px">The Interview move earns its keep fast: use it the next time your request would take more than three sentences to explain.</p>
     <div class="module-head reveal" data-pg="The source &amp; the video">
       <span class="mno">CRIT &middot; the source</span>
       <h3>The source &amp; the video</h3>
@@ -1980,7 +1988,7 @@ body.oracle-open{ overflow:hidden; }
           <div class="field" style="margin-bottom:10px">
             <label for="crContext">Context: what should it know going in?</label>
             <textarea id="crContext" rows="3" placeholder="e.g. Our office is preparing the fall open enrollment announcement for about 300 staff…"></textarea>
-            <span class="hinttxt">Background, audience, constraints. This is the part most prompts skip.</span>
+            <span class="hinttxt" id="crCtxHint">Background, audience, constraints. This is the part most prompts skip.</span>
           </div>
           <div class="cr-chips"><button type="button" class="sim-chip cr-chip" data-target="crContext" data-fill="Our office is preparing the fall open enrollment announcement for about 300 staff. The deadline is November 15, and last year many people missed it because the message was long and easy to skim past.">Example context</button></div>
           <div class="field" style="margin-bottom:10px">
@@ -2007,7 +2015,10 @@ body.oracle-open{ overflow:hidden; }
             <textarea id="crTask" rows="3" placeholder="e.g. Draft the announcement email, under 150 words, with a three-bullet summary at the top."></textarea>
             <span class="hinttxt">Type, scope, and format. Name the target.</span>
           </div>
-          <div class="cr-chips last"><button type="button" class="sim-chip cr-chip" data-target="crTask" data-fill="Draft the announcement email, under 150 words, with a three-bullet summary at the top and one clear call to action.">Example task</button></div>
+          <div class="cr-chips last">
+            <button type="button" class="sim-chip" id="crFocusChip" hidden>Use my focus task</button>
+            <button type="button" class="sim-chip cr-chip" data-target="crTask" data-fill="Draft the announcement email, under 150 words, with a three-bullet summary at the top and one clear call to action.">Example task</button>
+          </div>
         </form>
         <div class="preview-box">
           <div class="preview-head">
@@ -2045,7 +2056,7 @@ body.oracle-open{ overflow:hidden; }
       <span class="you-are">You are here: practice, where CRIT becomes a habit.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Playground / 04</span></span>
       <h2>Three practice <em class="s">apps</em>.</h2>
-      <p>In this section, you will drill the CRIT moves in the Prompt Lab and the Prompt Grader, pick up three refinements, then take one real task live. Nothing you type is stored.</p>
+      <p>In this section, you will drill the CRIT moves in the Prompt Lab and the Prompt Grader, pick up three refinements, then take one real task live. Nothing you type here is kept or sent; only your progress and your chosen focus task stay in this browser.</p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         Guided practice apps, no live AI: the real thing lives in ChatGPT, Amplify, and Copilot, and what you build here goes there.</p>
     </div>
@@ -2070,6 +2081,7 @@ body.oracle-open{ overflow:hidden; }
         <p class="hinttxt" style="margin:-8px 0 16px">You leave with a copied prompt and a four-part quality score.</p>
         <div class="sim-chips" aria-label="Example prompts">
           <span class="mono" style="align-self:center">Need a running start?</span>
+          <button type="button" class="sim-chip" id="plFocusChip" hidden>Use my focus task</button>
           <button type="button" class="sim-chip" id="plExample">Prefill: enrollment reminder email</button>
           <button type="button" class="sim-chip" id="plExample2">Prefill: stakeholder map for a rollout</button>
           <button type="button" class="sim-chip" id="plExample3">Prefill: answer from a pasted policy</button>
@@ -2080,7 +2092,7 @@ body.oracle-open{ overflow:hidden; }
             <div class="field">
               <label for="plContext"><span class="crl" aria-hidden="true">C</span>Context: what should it know?</label>
               <textarea id="plContext" rows="3" placeholder="e.g. Audience is 300 staff, deadline is Nov 15, tone should feel helpful not naggy"></textarea>
-              <span class="hinttxt">Background, audience, constraints. The part most prompts skip.</span>
+              <span class="hinttxt" id="plCtxHint">Background, audience, constraints. The part most prompts skip.</span>
             </div>
             <div class="field">
               <label for="plRole"><span class="crl" aria-hidden="true">R</span>Role: &ldquo;You are a…&rdquo;</label>
@@ -2169,12 +2181,13 @@ body.oracle-open{ overflow:hidden; }
         <p class="hinttxt" style="margin:-8px 0 16px">You leave with a grade, five dimension bars, and three concrete fixes.</p>
         <div class="sim-chips" aria-label="Sample prompt">
           <span class="mono" style="align-self:center">Nothing handy?</span>
-          <button type="button" class="sim-chip" id="grExample">Load a so-so sample to grade</button>
+          <button type="button" class="sim-chip" id="grExample">Load the bare enrollment ask</button>
         </div>
+        <p class="hinttxt" style="margin:-8px 0 16px">The sample is the same enrollment task the CRIT builder walks. Grade the bare ask, then grade the version you built; the gap between the two grades is what CRIT buys.</p>
         <div class="watchout" style="margin-bottom:22px" role="note" aria-label="Challenge">
           <span class="w-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4c0 2.5 1.3 4 3 4M17 6h3c0 2.5-1.3 4-3 4"/></svg></span>
           <div><h5>Challenge: the performance test</h5>
-          <p>Write a prompt for a real task from <b>your</b> week and earn an <b>A</b>. A quiz measures what you remember; an A here proves you can do it.</p></div>
+          <p id="grChallP">Write a prompt for a real task from <b>your</b> week and earn an <b>A</b>. A quiz measures what you remember; an A here proves you can do it.</p></div>
         </div>
         <div class="app-grid">
           <div>
@@ -2189,6 +2202,7 @@ body.oracle-open{ overflow:hidden; }
           </div>
           <div class="grade-out" id="grOut" role="status" aria-live="polite"></div>
         </div>
+        <p class="hinttxt" style="margin-top:14px">Grade your next real prompt before you send it; thirty seconds here saves a round of rework later.</p>
       </div>
 
     <!-- ── THREE REFINEMENTS: the moves that survive from the old techniques module ── -->
@@ -2231,6 +2245,7 @@ body.oracle-open{ overflow:hidden; }
           </div>
         </div>
       </div>
+      <p class="hinttxt" style="margin-top:14px">Next time a first draft comes back flat, send move three before rewriting it yourself.</p>
     </div>
 
     <!-- ── TAKE IT LIVE: the Playground&rsquo;s closing step ── -->
@@ -2238,7 +2253,7 @@ body.oracle-open{ overflow:hidden; }
       <div class="module-head">
         <span class="mno">Closing step</span>
         <h3>Take it <em>live</em>.</h3>
-        <p>This closing step is your first real rep: one genuine task, run in a real AI tool. One real rep teaches more than any demo, because the details are yours. Pick one task from your buckets in <a href="#readiness">Your role, task by task</a>. Build the prompt in the Prompt Lab and run it in your tool, safe data only. Then jot two notes below while it is fresh. You leave with your first honest before-and-after; nothing you type is stored.</p>
+        <p>This closing step is your first real rep: one genuine task, run in a real AI tool. One real rep teaches more than any demo, because the details are yours. <span id="tlPick">Pick one task from your buckets in <a href="#readiness">Your role, task by task</a>.</span> Build the prompt in the Prompt Lab and run it in your tool, safe data only. Then jot two notes below while it is fresh. You leave with your first honest before-and-after; nothing you type is stored.</p>
       </div>
       <p class="hinttxt">Notice the shape as you build: context, role, interview, task.</p>
       <div class="app-grid">
@@ -2360,7 +2375,7 @@ body.oracle-open{ overflow:hidden; }
         <span class="lf-chip"><b>Time</b>1 min</span>
       </div>
         <div class="micro"><span><i aria-hidden="true">1</i>Answer five yes/no questions</span><span><i aria-hidden="true">2</i>Press &ldquo;Find my tool&rdquo;</span><span><i aria-hidden="true">3</i>Read the &ldquo;why&rdquo;; it&rsquo;s the reusable part</span></div>
-        <p class="tm-lead">You just met the three tools. Now drill the choice: data sensitivity first, then where you already work. You leave with a recommendation and the reasons behind it.</p>
+        <p class="tm-lead" id="tmLead">You just met the three tools. Now drill the choice: data sensitivity first, then where you already work. You leave with a recommendation and the reasons behind it.</p>
         <div class="app-grid">
           <form id="tmForm" autocomplete="off">
             <fieldset class="tm-q">
@@ -2389,6 +2404,7 @@ body.oracle-open{ overflow:hidden; }
           </form>
           <div id="tmOut" role="status" aria-live="polite"></div>
         </div>
+        <p class="hinttxt" style="margin-top:14px">Run this call in your head next time a new kind of document is about to go into any AI tool.</p>
       </div>
 
     <div class="md-wrap">
@@ -2407,7 +2423,7 @@ body.oracle-open{ overflow:hidden; }
       <span class="you-are">You are here: your week, mapped.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Simulator / 06</span></span>
       <h2>The AI Opportunity <em class="s">Simulator.</em></h2>
-      <p>In this section, you will describe one real piece of your work and get back an opportunity map, starter prompts, data flags, and a 30-day plan. It is the fastest way to find your first real use case. Nothing you type is stored.</p>
+      <p>In this section, you will describe one real piece of your work and get back an opportunity map, starter prompts, data flags, and the first 30 days of your plan, unpacked. Nothing you type here is kept or sent; only your progress and your chosen focus task stay in this browser.</p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         A guided framework, not a live AI: take these prompts into your real tools.</p>
       <div class="lframe">
@@ -2422,7 +2438,7 @@ body.oracle-open{ overflow:hidden; }
       <p>The engine matches your description against fourteen common workplace patterns. The best use cases <b style="color:var(--champ);font-weight:600">repeat</b>, are <b style="color:var(--champ);font-weight:600">text-heavy</b>, and follow <b style="color:var(--champ);font-weight:600">rules you could explain to a new hire</b>. The more concretely you describe the work, the more patterns it catches.</p>
     </div>
 
-    <div class="sim-shell reveal" data-pg="Run the simulator">
+    <div class="sim-shell reveal" id="simrun" data-pg="Run the simulator">
       <div class="module-head" style="margin-bottom:18px">
         <span class="mno">Centerpiece</span>
         <h3>Run the simulator</h3>
@@ -2435,6 +2451,7 @@ body.oracle-open{ overflow:hidden; }
         </div>
         <div class="sim-chips" aria-label="Example use cases">
           <span class="mono" style="align-self:center">Try an example:</span>
+          <button type="button" class="sim-chip" id="simFocusChip" hidden>Start from my focus task</button>
           <button type="button" class="sim-chip" data-dept="Communications" data-case="Every week I assemble a staff newsletter from submissions that arrive in wildly different formats, rewrite them into one voice, and chase contributors for missing details. I also draft event announcements and answer the same handful of questions about submission deadlines.">Communications newsletter week</button>
           <button type="button" class="sim-chip" data-dept="Human Resources" data-case="I onboard new hires: schedule orientation, send the same welcome documents, answer the same first-week questions, and track completion of required training in a spreadsheet. Writing the personalized welcome emails takes forever.">HR onboarding grind</button>
           <button type="button" class="sim-chip" data-dept="Finance" data-case="I prepare a monthly budget variance report by pulling numbers from three systems, analyzing which lines are over, writing a summary memo for leadership, and emailing follow-ups to the units that overspent.">Finance monthly close</button>
@@ -2618,7 +2635,7 @@ body.oracle-open{ overflow:hidden; }
         </article>
       </div>
     </div>
-    <div class="module reveal" data-pg="Keep the time">
+    <div class="module reveal" id="keeptime" data-pg="Keep the time">
       <div class="module-head">
         <span class="mno">Keep the time</span>
         <h3>Keep the time you save</h3>
@@ -2877,6 +2894,15 @@ body.oracle-open{ overflow:hidden; }
         <span class="r-why"><b>At work:</b> the skill they reward is the one you practiced here, clear and complete delegation.</span>
       </article>
     </div>
+    <div class="canon reveal" id="takehome" style="margin-top:24px">
+      <h5>What you leave with</h5>
+      <ol>
+        <li><span><b>Your readiness report.</b> The 30/60/90 plan you copied from <a href="#raForm">the assessment</a>; everything after it executes that plan.</span></li>
+        <li><span><b>Your focus-task prompt.</b> The A-grade CRIT prompt from <a href="#panel-lab">the Prompt Lab</a>, proven in <a href="#panel-grader">the Grader</a>.</span></li>
+        <li><span><b>Three starter prompts.</b> Copied from <a href="#simrun">the Simulator</a>, shaped around your own case.</span></li>
+        <li><span><b>One boundary.</b> The counter-move you chose in <a href="#keeptime">Keep the time</a>, so the saved hour stays yours.</span></li>
+      </ol>
+    </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>The other half is a habit, and it starts <em>this week</em>.</p></div>
   </div>
 </section>
@@ -2888,14 +2914,14 @@ body.oracle-open{ overflow:hidden; }
       <span class="you-are">You are here: the handoff to your real week.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Next step / 09</span></span>
       <h2>Put it to work <em class="s">this week.</em></h2>
-      <p>In this section, you will turn the course into a habit: one loop, five steps, starting with a task from this week. The whole loop takes about an hour, spread across a normal week.</p>
+      <p>In this section, you will turn the course into a habit: one loop, five steps. The loop below is how the 30/60/90 plan you built in the readiness assessment actually happens, week by week; the whole thing takes about an hour, spread across a normal week.</p>
     </div>
     <div class="hw-list reveal">
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">01</span>
         <div>
           <h3>Identify one task</h3>
-          <p>Pick one area of your work where AI can help: something repetitive, text-heavy, and rule-based. If nothing jumps out, <a href="#simulator">run the Simulator</a> on your week and let the map choose for you.</p>
+          <p id="ns1p">Pick one area of your work where AI can help: something repetitive, text-heavy, and rule-based. If nothing jumps out, <a href="#simulator">run the Simulator</a> on your week and let the map choose for you.</p>
         </div>
         <span class="chip">Today</span>
       </div>
@@ -2932,8 +2958,7 @@ body.oracle-open{ overflow:hidden; }
         <span class="chip">Always</span>
       </div>
     </div>
-    <p class="hw-meta reveal">Revisit the plan you built in <a href="#readiness">Your role, task by task</a>: you have now done part of it. Next month, pick a second task and run the same loop.</p>
-    <p class="hw-meta reveal" style="margin-top:10px">Your 30 / 60 / 90 from the readiness section and your first pick from the Simulator are the first steps of this same loop: one plan, seen three ways.</p>
+    <p class="hw-meta reveal">Revisit the 30/60/90 you built in <a href="#readiness">Your role, task by task</a>: you have now done part of it. Next month, pick a second task and run the same loop.</p>
     <!-- [EDIT: confirm the Oracle Learning item below stays current] -->
     <div class="oracle-strip reveal">
       <div>
@@ -3129,7 +3154,7 @@ body.oracle-open{ overflow:hidden; }
   <div class="wrap">
     <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Wrap-up</span></span>
     <h2 class="metal">Now run the <em>loop</em>.</h2>
-    <p>You&rsquo;ve learned the ideas, practiced the skills, and built a plan. The next move is one real task this week; revisit any section whenever you need it.</p>
+    <p>You&rsquo;ve learned the ideas, practiced the skills, and built your 30/60/90 plan. The next move is one real task this week; revisit any section whenever you need it.</p>
     <a class="btn btn-gold" href="#nextstep">Start the five-step loop
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <p class="cta-alt">Haven&rsquo;t taken the knowledge check yet? <a href="#quiz">It takes five minutes.</a></p>
@@ -3622,8 +3647,10 @@ function copyText(txt, labelEl, okMsg){
 }
 
 /* ══════════ PROGRESS: per-section completion, saved in this browser only ══════════
-   localStorage keys chart-progress-<section> hold booleans and nothing else;
-   quiz answers, feedback text, and everything typed stay unstored as before. */
+   localStorage keys chart-progress-<section> hold booleans; the only other
+   stored value is chart-focus-task, the one task string the learner picks in
+   the readiness report. Quiz answers, feedback text, and everything else
+   typed stay unstored as before, and nothing is ever sent anywhere. */
 var PROG_KEY = 'chart-progress-';
 var PROG_SECTIONS = [
   { k:'learn',       no:'01', name:'Learn the fundamentals', how:'Finish the drill, or mark it done' },
@@ -3767,8 +3794,9 @@ if(progReset) progReset.addEventListener('click', function(){
   PROG_SECTIONS.forEach(function(s){ progWrite(s.k, false); });
   oracleSetAttested(false); /* the completion reminder resets with progress */
   oracleSeen = false;
+  focusSet(''); /* the focus task clears with progress */
   progRender();
-  if(progStatus) progStatus.textContent = 'Progress reset. 0 of ' + PROG_SECTIONS.length + ' sections complete.';
+  if(progStatus) progStatus.textContent = 'Progress reset. 0 of ' + PROG_SECTIONS.length + ' sections complete, and your focus task is cleared.';
 });
 
 /* ══════════ ORACLE COMPLETION MODAL ══════════
@@ -3841,6 +3869,49 @@ document.addEventListener('keydown', function(e){
    carries the section dots; progRender colors them via .bb-dot above */
 progBuildList();
 progRender();
+
+/* ══════════ FOCUS TASK: the golden thread ══════════
+   One string (chart-focus-task) saved beside the progress flags: the task the
+   learner picks at the end of the readiness report. The practice apps offer
+   it back; every surface below degrades to its generic wording when nothing
+   is stored, and the string is escaped wherever it renders. */
+var FOCUS_KEY = 'chart-focus-task';
+var focusMem = '';
+function focusGet(){
+  if(progStore){ try{ return progStore.getItem(FOCUS_KEY) || ''; }catch(e){} }
+  return focusMem;
+}
+function focusSet(v){
+  v = String(v || '').trim().slice(0, 120);
+  focusMem = v;
+  if(progStore){ try{ v ? progStore.setItem(FOCUS_KEY, v) : progStore.removeItem(FOCUS_KEY); }catch(e){} }
+  focusApply();
+}
+function focusApply(){
+  var ft = focusGet(), has = !!ft, e = has ? escapeHtml(ft) : '';
+  ['plFocusChip','crFocusChip','simFocusChip'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.hidden = !has;
+  });
+  var chall = document.getElementById('grChallP');
+  if(chall) chall.innerHTML = has
+    ? 'Paste the prompt you built for your focus task, &ldquo;<b>' + e + '</b>&rdquo;, and earn an <b>A</b>. A quiz measures what you remember; an A here proves you can do it.'
+    : 'Write a prompt for a real task from <b>your</b> week and earn an <b>A</b>. A quiz measures what you remember; an A here proves you can do it.';
+  var tm = document.getElementById('tmLead');
+  if(tm) tm.innerHTML = has
+    ? 'Answer these five for your focus task, &ldquo;' + e + '&rdquo;: data sensitivity first, then where you already work. You leave with a recommendation and the reasons behind it.'
+    : 'You just met the three tools. Now drill the choice: data sensitivity first, then where you already work. You leave with a recommendation and the reasons behind it.';
+  var tl = document.getElementById('tlPick');
+  if(tl) tl.innerHTML = has
+    ? 'Run your focus task, &ldquo;' + e + '&rdquo;.'
+    : 'Pick one task from your buckets in <a href="#readiness">Your role, task by task</a>.';
+  var ns = document.getElementById('ns1p');
+  if(ns) ns.innerHTML = has
+    ? 'Your focus task is already picked: &ldquo;' + e + '&rdquo;. If you skipped the assessment, pick any repetitive, text-heavy task from your week now.'
+    : 'Pick one area of your work where AI can help: something repetitive, text-heavy, and rule-based. If nothing jumps out, <a href="#simulator">run the Simulator</a> on your week and let the map choose for you.';
+}
+window.chartFocus = { get: focusGet, set: focusSet };
+focusApply();
 
 /* ══════════ LEARN A: flip cards ══════════ */
 document.querySelectorAll('.flip-btn').forEach(function(btn){
@@ -4037,6 +4108,17 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       task:'Answer: can a new hire carry over vacation days? Quote the relevant line'
     });
   });
+  /* the focus task from the readiness report leads the chips when one is stored */
+  var pf = document.getElementById('plFocusChip');
+  if(pf) pf.addEventListener('click', function(){
+    var ft = window.chartFocus ? window.chartFocus.get() : '';
+    if(!ft) return;
+    if(task) task.value = ft;
+    var h = document.getElementById('plCtxHint');
+    if(h) h.textContent = 'Describe the situation around “' + ft + '”: audience, deadline, constraints.';
+    build();
+    if(ctx) ctx.focus();
+  });
   build();
 })();
 
@@ -4093,6 +4175,18 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     if(nudge) nudge.classList.remove('show');
     progDone('crit');
     copyText(current, copyLabel, 'Copied ✓');
+  });
+  /* the focus task from the readiness report seeds the Task field when stored */
+  var cf = document.getElementById('crFocusChip');
+  if(cf) cf.addEventListener('click', function(){
+    var ft = window.chartFocus ? window.chartFocus.get() : '';
+    if(!ft) return;
+    if(task) task.value = ft;
+    var h = document.getElementById('crCtxHint');
+    if(h) h.textContent = 'Describe the situation around “' + ft + '”: audience, deadline, constraints.';
+    build();
+    if(ctx && !ctx.value.trim()) ctx.focus();
+    else if(task) task.focus();
   });
   build();
 })();
@@ -4185,7 +4279,8 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
   });
   var gx = document.getElementById('grExample');
   if(gx) gx.addEventListener('click', function(){
-    ta.value = 'Write something about our upcoming staff appreciation event and make it good. Maybe add some details about the stuff happening.';
+    /* the bare version of the enrollment task the CRIT builder walks */
+    ta.value = 'Write an email reminding staff about open enrollment.';
     if(nudge) nudge.classList.remove('show');
     ta.focus();
   });
@@ -4283,7 +4378,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     out.innerHTML = '<div class="result-card"><div class="rc-head"><span class="rc-glyph">' + GLYPH +
       '</span><div><h4>That’s a real rep.</h4><span class="rc-sub">One down; the habit starts here</span></div></div>' +
       '<p class="rc-note">Look at your second answer: those fixes are mistakes the AI could not catch on its own; <b>you caught them</b>. That reviewing skill is exactly what keeps a person valuable when AI does the drafting. Repeat this exercise once a week. Your prompts will improve, so the “right” list grows, and your “fix” list becomes a personal map of what AI in your job can and can’t be trusted with.</p>' +
-      '<p class="rc-fine">Reflection only; nothing is stored or sent anywhere. It’s gone when you close the tab.</p></div>';
+      '<p class="rc-fine">Before you close the tab, paste these two notes at the bottom of the readiness report you copied: your report now has a results section. The fields themselves store nothing and send nothing.</p></div>';
   });
 })();
 
@@ -4306,6 +4401,15 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       if(nudge) nudge.classList.remove('show');
       ta.focus();
     });
+  });
+  /* the focus task from the readiness report seeds the case when stored */
+  var sf = document.getElementById('simFocusChip');
+  if(sf) sf.addEventListener('click', function(){
+    var ft = window.chartFocus ? window.chartFocus.get() : '';
+    if(!ft) return;
+    ta.value = 'A recurring task from my week: ' + ft + '. It repeats in roughly the same shape each time.';
+    if(nudge) nudge.classList.remove('show');
+    ta.focus();
   });
 
   var PATTERNS = [
@@ -4387,7 +4491,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       html += '<div><h5>No obvious sensitive-data keywords spotted</h5>';
       html += '<p>Still run the one-second check before pasting anything real: <b>“Should this information leave Vanderbilt?”</b> If there’s any doubt, use Amplify.</p></div></div></div>';
     }
-    html += '<div class="srev"><div class="sub-h"><h4>Your first 30 days</h4></div><div class="roadmap">';
+    html += '<div class="srev"><div class="sub-h"><h4>Your first 30 days</h4><span class="chip">From your plan</span></div><p class="hinttxt" style="margin:-4px 0 14px">This is the &ldquo;30 days&rdquo; step of the 30/60/90 you built in the readiness assessment, unpacked week by week.</p><div class="roadmap">';
     var ROAD = [
       ['Week 1','Pick one task','Choose the single most repetitive task from your map above. Just one; momentum beats ambition.'],
       ['Week 2','Build the habit','Use a starter prompt on that task three times this week. Save the version that worked best.'],
@@ -5054,6 +5158,10 @@ function brief(name, tier, why, bk, skills, plan){
     '',
     'Delegate with oversight:'
   ];
+  try{
+    var ft = window.chartFocus && window.chartFocus.get();
+    if(ft) L.splice(2, 0, 'Focus task: ' + ft);
+  }catch(e){}
   if(bk.delegate.length) bk.delegate.forEach(function(t){ L.push('- ' + t.name); });
   else L.push('- nothing yet; start in the redesign bucket');
   L.push('Redesign together:');
@@ -5207,10 +5315,35 @@ function render(name, tasks, fluency, sens){
     /* [EDIT: link development planning resource when one exists] */
     '<li><span><b>90 days.</b> Bring the inventory and what you learned to your next development conversation with your manager, or with the person in the role if you manage it.</span></li>' +
     '</ol><p class="c-fine">If most of the role keeps landing in the delegate bucket, that conversation includes role redesign with HR, not just training.</p></div>';
+  /* ── the final step: pick the focus task that carries the rest of the course ── */
+  var focusApi = window.chartFocus;
+  if(focusApi && tasks.length){
+    var storedFt = focusApi.get();
+    var ftNames = tasks.map(function(t){ return t.name; });
+    var ftDefault = (storedFt && ftNames.indexOf(storedFt) !== -1) ? storedFt
+                  : (bk.delegate.length ? bk.delegate[0].name : tasks[0].name);
+    html += '<div class="ra-block"><h5>Pick your focus task</h5>' +
+      '<p class="rc-note" style="margin-top:10px;max-width:72ch">One task now carries the rest of the course: the CRIT builder, the Prompt Lab, the Grader, and the Simulator will all offer it back to you. ' +
+      (bk.delegate.length ? 'The first delegate-bucket task is the natural pick; tap another to switch.' : 'Any task works; tap to switch.') + '</p>' +
+      '<div class="sim-chips" id="raFocusChips" style="margin:14px 0 8px">' +
+      ftNames.map(function(nm){ return '<button type="button" class="sim-chip ra-fchip" data-name="' + esc(nm) + '" aria-pressed="false">' + esc(nm) + '</button>'; }).join('') +
+      '</div><p class="hinttxt" id="raFocusNote" role="status" aria-live="polite"></p></div>';
+  }
   html += '<div class="ra-actions"><button type="button" class="btn btn-primary" id="raCopy"><span id="raCopyLabel">Copy the report</span>' +
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>' +
     '<button type="button" class="btn btn-ghost" id="raRestart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Start over with a new role</button></div>';
   out.innerHTML = html;
+  if(focusApi && tasks.length){
+    var ftNote = document.getElementById('raFocusNote');
+    var ftChips = Array.prototype.slice.call(out.querySelectorAll('.ra-fchip'));
+    var ftPick = function(nm){
+      focusApi.set(nm);
+      ftChips.forEach(function(c){ c.setAttribute('aria-pressed', c.getAttribute('data-name') === nm ? 'true' : 'false'); });
+      if(ftNote) ftNote.textContent = 'Saved: “' + nm + '” is your focus task. It stays in this browser only, and the practice apps ahead will offer it back to you.';
+    };
+    ftChips.forEach(function(c){ c.addEventListener('click', function(){ ftPick(c.getAttribute('data-name')); }); });
+    ftPick(ftDefault);
+  }
   var copyBtn = document.getElementById('raCopy'), copyLabel = document.getElementById('raCopyLabel');
   if(copyBtn && copyLabel) copyBtn.addEventListener('click', function(){
     copyText(brief(name, tier, why, bk, skills, plan), copyLabel, 'Copied ✓');
