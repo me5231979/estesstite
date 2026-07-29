@@ -290,7 +290,7 @@
     ]
   });
 
-  /* ---------- INTERACTIVE: Johari adjective picker (Section 04) ---------- */
+  /* ---------- INTERACTIVE: Johari window builder (Section 04) ---------- */
   var jhGrid = $('#jhGrid');
   if (jhGrid) {
     // The standard 56 Johari adjectives (Luft & Ingham)
@@ -302,64 +302,86 @@
       'quiet', 'reflective', 'relaxed', 'religious', 'responsive', 'searching', 'self-assertive',
       'self-conscious', 'sensible', 'sentimental', 'shy', 'silly', 'spontaneous', 'sympathetic',
       'tense', 'trustworthy', 'warm', 'wise', 'witty'];
-    var jhPicked = [];
+    var jhOpen = [], jhHidden = [];
     var jhCountEl = $('#jhCount'), jhBuild = $('#jhBuild'), jhStatus = $('#jhStatus'), jhOut = $('#jhOut');
     ADJ.forEach(function (word) {
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'adj';
       b.textContent = word;
-      b.setAttribute('aria-pressed', 'false');
+      b.setAttribute('aria-label', word + ': not selected');
       b.addEventListener('click', function () {
-        var on = jhPicked.indexOf(word) > -1;
-        if (on) {
-          jhPicked.splice(jhPicked.indexOf(word), 1);
-        } else {
-          if (jhPicked.length >= 6) {
-            jhStatus.textContent = 'Six is the max — drop one to add another. The limit is the exercise.';
+        var state = b.getAttribute('data-state');
+        if (!state) {
+          if (jhOpen.length >= 6) {
+            jhStatus.textContent = 'Six claimed is the max \u2014 tap one off to claim another. The limit is the exercise.';
             return;
           }
-          jhPicked.push(word);
+          jhOpen.push(word);
+          b.setAttribute('data-state', 'open');
+          b.setAttribute('aria-label', word + ': claimed for my Open pane');
+        } else if (state === 'open') {
+          jhOpen.splice(jhOpen.indexOf(word), 1);
+          if (jhHidden.length >= 3) {
+            b.removeAttribute('data-state');
+            b.setAttribute('aria-label', word + ': not selected');
+          } else {
+            jhHidden.push(word);
+            b.setAttribute('data-state', 'hidden');
+            b.setAttribute('aria-label', word + ': true of me, held back in my Hidden pane');
+          }
+        } else {
+          jhHidden.splice(jhHidden.indexOf(word), 1);
+          b.removeAttribute('data-state');
+          b.setAttribute('aria-label', word + ': not selected');
         }
-        b.setAttribute('aria-pressed', String(!on));
         jhUpdate();
       });
       jhGrid.appendChild(b);
     });
     function jhUpdate() {
-      jhCountEl.textContent = jhPicked.length + ' of 6 chosen';
-      var ok = jhPicked.length >= 5;
+      jhCountEl.textContent = 'Open: ' + jhOpen.length + ' of 5\u20136 claimed \u00b7 Hidden: ' + jhHidden.length + ' of 3 held back';
+      var ok = jhOpen.length >= 5;
       jhBuild.disabled = !ok;
-      jhStatus.textContent = ok ? 'Ready, build it' : 'Choose at least 5 adjectives';
+      jhStatus.textContent = ok ? 'Ready, build my window' : 'Claim at least 5 words first';
       jhOut.hidden = true;
     }
     jhBuild.addEventListener('click', function () {
-      if (jhPicked.length < 5) return;
-      var words = jhPicked.join(' · ');
-      jhOut.innerHTML = '<span class="tag">My Open quadrant, opening claim</span>' +
-        '<p class="sample">' + words + '</p>' +
-        '<div class="lab__coach">' +
-        '<div><b>This is your disclosure baseline.</b> These are the words you’d claim in front of your team.</div>' +
-        '<div><b>In the room:</b> these go in your OPEN pane; teammates’ stickies decide what lands in BLIND.</div>' +
-        '<div><b>The question worth sitting with:</b> which word do you hope someone else writes — and why haven’t they seen it yet?</div>' +
+      if (jhOpen.length < 5) return;
+      var hiddenHtml = jhHidden.length
+        ? '<p class="jwin__words">' + jhHidden.join(' \u00b7 ') + '</p><p>True of you, withheld for now \u2014 and holding them is legitimate. Moving any one of them to Open is disclosure, always yours to pace.</p>'
+        : '<p>Empty this round, and that is a real answer too. If a true word came to mind that you would not volunteer, that was this pane working.</p>';
+      jhOut.innerHTML = '<span class="tag">My Johari window \u00b7 opening state</span>' +
+        '<div class="jwin jwin--out">' +
+        '<span class="jwin__corner" aria-hidden="true"></span>' +
+        '<span class="jwin__col">Known to self</span>' +
+        '<span class="jwin__col">Not known to self</span>' +
+        '<span class="jwin__row">Known to others</span>' +
+        '<div class="jwin__pane jwin__pane--open"><h4>Open area</h4><p class="jwin__words">' + jhOpen.join(' \u00b7 ') + '</p><p>Your claim, made. In the room, teammate stickies that match these words confirm the pane.</p></div>' +
+        '<div class="jwin__pane"><h4>Blind spot</h4><p>Only feedback fills this pane \u2014 no amount of reflection can. Send your claimed words to two colleagues and ask each for two words back from the same list; whatever returns that you did not claim lands here.</p></div>' +
+        '<span class="jwin__row">Not known to others</span>' +
+        '<div class="jwin__pane"><h4>Hidden area</h4>' + hiddenHtml + '</div>' +
+        '<div class="jwin__pane"><h4>Unknown</h4><p>Leave it open. This pane shrinks through new challenges and shared experience \u2014 the crisis that reveals the calm commander \u2014 not through the exercise.</p></div>' +
         '</div>' +
         '<div class="lab__runrow" style="margin-top:1.25rem">' +
-        '<button class="btn" id="jhCopy">Copy my six words</button>' +
-        '<span class="quiz__progress" id="jhCopied" style="color:rgba(255,255,255,.6)">Bring them to the session, or send them to two colleagues</span></div>';
+        '<button class="btn" id="jhCopy">Copy my window</button>' +
+        '<span class="quiz__progress" id="jhCopied" style="color:rgba(255,255,255,.6)">Bring it to the session, or run the two-colleague version this week</span></div>';
       jhOut.hidden = false;
       $('#jhCopy').addEventListener('click', function () {
-        var text = 'MY JOHARI OPENING CLAIM (Building Brave Teams, Vanderbilt)\n' +
-          'The 5–6 adjectives I’d claim for myself: ' + jhPicked.join(', ') + '\n' +
-          'Ask two colleagues: “From the standard Johari list, which two words describe me? No commentary needed.”\n' +
-          'Sort what returns: matches my list → Open. New to me → Blind spot. Known but unshared → Hidden.';
+        var text = 'MY JOHARI WINDOW \u2014 OPENING STATE (Building Brave Teams, Vanderbilt)\n' +
+          'OPEN (claimed): ' + jhOpen.join(', ') + '\n' +
+          'HIDDEN (held back \u2014 keep private): ' + (jhHidden.length ? jhHidden.join(', ') : 'none this round') + '\n' +
+          'BLIND: ask two colleagues \u2014 \u201cFrom the standard Johari list, which two words describe me? No commentary needed.\u201d Whatever returns that I did not claim goes here.\n' +
+          'UNKNOWN: leave it open; time and challenge shrink it.';
         (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () {
-          $('#jhCopied').textContent = 'Copied. Paste it into notes, or into a message to two colleagues.';
+          $('#jhCopied').textContent = 'Copied. The Hidden line is for your eyes \u2014 share the Open line freely.';
         }, function () {
-          $('#jhCopied').textContent = 'Select the words above and copy them manually.';
+          $('#jhCopied').textContent = 'Select the window text above and copy it manually.';
         });
       });
       jhOut.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
     });
+    jhUpdate();
   }
 
   /* Sort the sticky (Section 04) */

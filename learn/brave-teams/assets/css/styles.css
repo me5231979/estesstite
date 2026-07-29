@@ -805,3 +805,36 @@ em, .italic { font-style: italic; }
   .gcring__text { font-size: .74rem; }
   .gcring__ring[data-gc="why"] .gcring__text { font-size: .78rem; }
 }
+
+/* ---------- 30. Johari window component (Building Brave Teams) ---------- */
+.jwin { display: grid; grid-template-columns: auto 1fr 1fr; grid-template-rows: auto auto auto;
+  gap: .55rem; max-width: 860px; margin-top: 2.25rem; align-items: stretch; }
+.jwin__corner { }
+.jwin__col { text-align: center; font-family: var(--font-condensed); font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em; font-size: .78rem; color: var(--vu-gold-flat);
+  align-self: end; padding-bottom: .15rem; }
+.jwin__row { align-self: center; justify-self: end; max-width: 92px; text-align: right;
+  font-family: var(--font-condensed); font-weight: 700; text-transform: uppercase;
+  letter-spacing: .06em; font-size: .72rem; line-height: 1.35; color: var(--vu-gold-flat); }
+.jwin__pane { border: 1px solid rgba(255,255,255,.16); border-radius: var(--radius);
+  padding: 1.05rem 1.15rem; background: rgba(255,255,255,.04); min-height: 150px; }
+.jwin__pane--open { border-color: var(--vu-gold-flat); background: rgba(207,174,112,.13); }
+.jwin__pane h4 { font-family: var(--font-condensed); font-weight: 700; text-transform: uppercase;
+  letter-spacing: .05em; font-size: .88rem; margin: 0 0 .4rem; color: rgba(255,255,255,.9); }
+.jwin__pane--open h4 { color: var(--vu-gold-flat); }
+.jwin__pane p { margin: 0; font-size: .9rem; line-height: 1.5; color: rgba(255,255,255,.68); }
+.jwin__pane p + p { margin-top: .45rem; }
+.jwin__words { font-family: var(--font-serif); font-style: italic; font-size: 1.02rem;
+  color: #fff !important; }
+.jwin--out { margin-top: 1rem; max-width: none; }
+@media (max-width: 640px) {
+  .jwin { gap: .4rem; }
+  .jwin__row { max-width: 64px; font-size: .6rem; }
+  .jwin__col { font-size: .62rem; }
+  .jwin__pane { padding: .8rem .85rem; min-height: 120px; }
+  .jwin__pane p { font-size: .8rem; }
+}
+.adj[data-state="open"] { background: var(--vu-gold-flat); border-color: var(--vu-gold-flat);
+  color: var(--vu-black); font-weight: 600; }
+.adj[data-state="hidden"] { background: rgba(207,174,112,.08); border: 1.5px dashed var(--vu-gold-flat);
+  color: var(--vu-gold-flat); font-weight: 600; }

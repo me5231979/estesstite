@@ -46,8 +46,9 @@ exercise the interactives, and confirm the build script's rail count.
     answer, why}`), pass threshold, and pass/fail copy.
   - Edmondson 7-item diagnostic: `PS_ITEMS` (with `reverse` flags — items
     1, 3, 5 are reverse-scored as 6 − rating) / `PS_BANDS`.
-  - Johari picker: `ADJ` (the standard 56 adjectives), 5–6 selection cap,
-    copyable card output.
+  - Johari window builder: `ADJ` (the standard 56 adjectives); two-tap chips
+    (claim → Open, second tap → Hidden), output rendered as a `.jwin` 2×2
+    window with axis labels, copyable.
   - Scored recap: `QUESTIONS` (6 items, mapped 1:1 to the hero objectives).
   - Capstone: `ASK` / `NOTE` / `STAGE` lookup maps building the copyable
     Brave Commitment card.

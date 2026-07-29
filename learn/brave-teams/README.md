@@ -57,7 +57,7 @@ talks, podcasts, and source documents to the rungs practiced in-session.
 | The Ladder | **7-item diagnostic** | Rate Edmondson's actual instrument 1–5 and get a banded read + lowest-item nudge |
 | The Ladder | **Quick check** | The comfort-zone trap: safety AND standards |
 | Evidence | **Quick check** | Why better nursing units reported MORE errors |
-| Johari | **Build your Open quadrant** | Pick 5–6 of the standard 56 adjectives; get a copyable opening claim |
+| Johari | **Window builder** | Claim 5–6 of the 56 adjectives (Open), hold back up to 3 (Hidden) — rendered as a true 2×2 Johari window |
 | Johari | **Sort the sticky** | Map returned feedback into Open / Blind / Hidden / Unknown |
 | Behaviors | **Expand or contract?** | Call eight real meeting moves, fast |
 | Candor | **Fix the feedback** | Name the broken SBI + Ask joint in five attempts |
