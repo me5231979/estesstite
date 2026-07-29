@@ -132,7 +132,7 @@
     {
       "id": "s-welcome",
       "title": "Arrival & Inclusion Ritual",
-      "minutes": 7,
+      "minutes": 6,
       "purpose": "Establish Inclusion safety (Clark Stage 1) before any content. If people don't feel they belong in the room, no downstream learning holds.",
       "facilitate": [
         "Greet every person BY NAME at the door. This is non-negotiable — it is the intervention, not hospitality.",
@@ -155,13 +155,70 @@
         ],
         "respond": "Don't correct shallow answers; the depth arrives with the Johari block. The early open answers tell you which tables will carry the dialogue later."
       },
-      "transition": "Here's the contract for the next two hours — six things you'll walk out able to do."
+      "transition": "Before anything else: where this university says it's going, in the Chancellor's own words — because everything we practice today is in service of it."
+    },
+    {
+      "id": "s-mission",
+      "title": "The Chancellor's charge",
+      "minutes": 4,
+      "purpose": "Open with the institutional why: the Chancellor's vision (define the great university of the 21st century — and be it), the three areas of focus, and each learner locating their own team's share of it via the alignment builder.",
+      "facilitate": [
+        "Deliver the vision sentence verbatim and let it sit: 'define the great university of the 21st century — and be it.'",
+        "Walk the three areas-of-focus cards with their team translations: core operations → Learner safety, bold initiatives → Challenger safety, industry leadership → modeling what you practice.",
+        "Touch the reputation flywheel card in one breath: reputation ↔ resources (talent, funding, partnerships, access); candor sits upstream of it.",
+        "Run the alignment builder on devices (2 min): pick the area of focus, pick the rung it needs, write the one concrete line. Say it now: the rung carries forward to the commitment card.",
+        "On the Full path only: the Go-deeper table ask about the four headwinds."
+      ],
+      "validate": "Every learner has a built alignment card: area of focus + rung + one concrete line. The room's dominant rung named aloud.",
+      "watchFor": "Cynicism about vision language ('posters don't change meetings'). Agree with it: 'Right — which is why we start by locating YOUR work in it, not by reciting it.' Also watch for the four headwinds sparking politics talk; steer to the team level fast.",
+      "coreMinutes": 2,
+      "coreNote": "Core: vision sentence + three cards in one pass, alignment builder at full length (it's the point); cut the flywheel breath and the headwinds ask.",
+      "say": "Chancellor Diermeier's institutional vision is one sentence with no hedge in it: Vanderbilt will define the great university of the 21st century — and be it. The how is equally blunt: uncommon speed, agility, and scale, in service of reclaiming the essential role of research universities in driving American prosperity. Three areas of focus carry it — exceptional core operations, bold strategic initiatives, industry leadership — and here's why it's OUR opening slide: none of it runs on silence. Speed without safety is silence at velocity. Bold bets need someone able to question them before they ship. And you model what you practice. Find your team's share of it — three taps and a sentence.",
+      "ask": {
+        "q": "Look at your alignment card: which area of focus did your table mostly pick, and which rung came up most?",
+        "expect": [
+          "Operations-heavy rooms pick core operations + Learner",
+          "Teams near new programs pick bold initiatives + Challenger",
+          "A few 'our work doesn't touch the vision' — the redirect is that core operations IS most staff work"
+        ],
+        "respond": "Tag the room's dominant rung out loud: 'Remember that rung. It reappears on your commitment card at the end, and now it has the university's vision behind it.'"
+      },
+      "transition": "That's the institution's why. Yours is smaller, closer, and more powerful — and you're about to build it.",
+      "debrief": "The vision only exists at the altitude where you work. When your team surfaces a problem early, questions a bet before it ships, or credits the newest contributor, that's not adjacent to the strategy — it's the strategy, running."
+    },
+    {
+      "id": "s-why",
+      "title": "Our why (Golden Circle)",
+      "minutes": 4,
+      "purpose": "Move from the institutional why to each learner's personal why: Sinek's Golden Circle taught inside-out, then every learner constructs their own circle in the builder — the fuel for the commitment card.",
+      "facilitate": [
+        "Walk the three cards inside-out, one breath each: why, how, what.",
+        "Play the first ~4 minutes of Sinek's TED talk on the Full path — stop once the Golden Circle is drawn.",
+        "Run the circle builder on devices (2–3 min, silent, music on): all three rings, then build. Private by design.",
+        "Run the real-person test by show of hands: 'who has a WHY with a real person or moment in it?' Normalize the not-yets.",
+        "Say explicitly: the WHY ring returns at the commitment card; the HOW ring is a head start on it."
+      ],
+      "validate": "Every learner has a built circle with all three rings; spot-checked by the real-person show of hands.",
+      "watchFor": "Borrowed whys ('leadership says', 'it's on my review'). Don't correct publicly; the real-person test does the correcting. Also watch the HOW ring filling with values instead of behaviors — 'be more open' isn't a camera-visible how.",
+      "coreMinutes": 2,
+      "coreNote": "Core: cut the video (assign as the week's watch); cards in one breath; the builder stays at full length — the circle is what the capstone spends.",
+      "say": "The university just gave you its why. Simon Sinek's rule is that people and movements work the same way — inside-out: why, then how, then what. People don't buy what you do; they buy why you do it. Our why, stated flat: every person on your team deserves to matter out loud, and the work gets better the moment they do. Now build yours. Three rings: WHY — I want a braver team because, and make it about a real person. HOW — the behavior you'll practice. WHAT — what your team will visibly see. It has to survive day nine, so write it like it matters.",
+      "ask": {
+        "q": "Without sharing the sentence itself: does your WHY ring have a real person or a real moment in it?",
+        "expect": [
+          "Most hands up after a beat",
+          "A few honest 'not yet' — normalize: borrowed whys are where everyone starts",
+          "Occasionally someone wants to read theirs aloud — allow one, don't harvest more"
+        ],
+        "respond": "One line: 'If there's no person in it yet, leave the ring open in the back of your mind. By the commitment card, there will be.'"
+      },
+      "transition": "Institutional why, personal why. Now the contract: six things you'll be able to do by the end."
     },
     {
       "id": "s-hero",
       "title": "Objectives",
       "minutes": 2,
-      "purpose": "Set the contract: six capabilities across knowing AND feeling, ending in a dated, witnessed commitment.",
+      "purpose": "Set the contract after both whys are established: six capabilities across knowing AND feeling, ending in a dated, witnessed commitment.",
       "facilitate": [
         "Read the six objectives briskly, in plain language.",
         "Land on the sixth: this session ends with a REAL commitment card — start, stop, question, note, stage — with a 14-day window.",
@@ -172,61 +229,7 @@
       "coreMinutes": 1,
       "coreNote": "Core: objectives 1 and 6 out loud; the rest on screen.",
       "say": "Six things by the end: you'll define this construct precisely enough to defend it, locate your team on a four-stage ladder, know why hospitals and cockpits and Google all landed on the same finding, practice the two moves that grow trust — disclosure and feedback — rehearse candor with an actual frame, and leave with one commitment your team will feel within fourteen days. Not agree with. Feel.",
-      "transition": "Six ideas, in order — and the order matters, because each one needs the one before it."
-    },
-    {
-      "id": "s-why",
-      "title": "Our why (Golden Circle)",
-      "minutes": 3,
-      "purpose": "Establish the why before any framework: Sinek's Golden Circle applied to this session, and each learner's personal why written down before the content begins.",
-      "facilitate": [
-        "Walk the three cards inside-out, one breath each: why (people deserve to matter out loud), how (safety behaviors), what (a candid, high-standards team).",
-        "Play the first ~4 minutes of Sinek's TED talk on the Full path — stop after the Golden Circle is drawn.",
-        "Run the 2-minute solo write: \"I want a braver team because…\" — silent, kept private, tested against the is-it-about-a-real-person bar.",
-        "Say explicitly that this sentence returns at the commitment card; it is the card's fuel, not a warm-up."
-      ],
-      "validate": "Every learner has a written why-sentence they can point to at the capstone. Spot-check by show of hands: 'who has a sentence with a real person or moment in it?'",
-      "watchFor": "Borrowed whys ('leadership says', 'it's on my review'). Don't correct publicly; the real-person test in the steps does the correcting.",
-      "coreMinutes": 2,
-      "coreNote": "Core: cut the video (assign as the week's watch), keep the cards to one breath and the solo write at full length — the sentence is what the capstone spends.",
-      "say": "Before any framework touches this room: why are we here? Simon Sinek's rule is that great movements work inside-out — why, then how, then what. Our why, stated flat: every person on your team deserves to matter out loud, and the work gets better the moment they do. The ladder, the window, the words — all of it is just how. Take two minutes and write your own why. It has to survive day nine, so make it about a real person.",
-      "ask": {
-        "q": "Without sharing the sentence itself: does your why have a real person or a real moment in it?",
-        "expect": [
-          "Most hands up after a beat",
-          "A few honest 'not yet' — normalize it: borrowed whys are where everyone starts",
-          "Occasionally someone wants to share theirs aloud — allow one, don't harvest more"
-        ],
-        "respond": "One line: 'If it's not about a person yet, keep the sentence open in the back of your mind. By the commitment card, it will be.'"
-      },
-      "transition": "That's your why. The university has one too — and it's written into the motto on the seal."
-    },
-    {
-      "id": "s-mission",
-      "title": "The Chancellor's charge",
-      "minutes": 2,
-      "purpose": "Anchor the personal why in the institutional one: Vanderbilt's dare-to-grow vision of becoming the great university of the 21st century runs on exactly the team behaviors this session builds.",
-      "facilitate": [
-        "Name the motto and the vision in one breath: Crescere aude — dare to grow — and Chancellor Diermeier's charge to be nothing less than the great university of the 21st century.",
-        "Walk the three cards as translations: radical collaboration needs Challenger safety; growth takes courage needs Learner safety; bringing out one another's best IS Contributor safety.",
-        "Land the through-line card: the commitment card at the end is each team's share of the vision.",
-        "Run the 2-minute table ask only on the Full path."
-      ],
-      "validate": "Learners can say in one sentence how their team's work touches the vision, and name the stage it needs most.",
-      "watchFor": "Cynicism about mission language ('posters don't change meetings'). Agree with it: 'Right — which is why the unit of change today is your room, not a poster. The vision only exists at the altitude where you work.'",
-      "coreMinutes": 0,
-      "coreNote": "Core: skip the slide; carry one line into the Why section's close — 'the university's motto is literally dare to grow; your card is your team's share of it.'",
-      "say": "Vanderbilt's motto is Crescere aude — dare to grow. Chancellor Diermeier has raised the stakes on it: our vision is to be nothing less than the great university of the 21st century — through excellence, free expression across differences, and the university's signature move, radical collaboration. Read that closely and it's a demand on every team in this room: none of it runs on silence. Radical collaboration is Challenger work. Daring to grow is Learner work. Bringing out one another's best is Contributor work. The vision needs your room.",
-      "ask": {
-        "q": "Where does your team's work touch the vision — a collaboration, a growth bet, a hard conversation across a difference — and which stage of safety does it need most?",
-        "expect": [
-          "Cross-department collaborations → usually Challenger or Inclusion",
-          "New systems, new skills, reorganizations → Learner",
-          "'We have talent nobody upstairs knows about' → Contributor"
-        ],
-        "respond": "Tag each answer with its stage out loud; tell the room to hold theirs — it's a strong candidate for the rung on their commitment card."
-      },
-      "transition": "Personal why, institutional why. Now the plan for the next two hours — six ideas, in order."
+      "transition": "Six ideas carry those objectives, in order — and the order matters, because each one needs the one before it."
     },
     {
       "id": "s-agenda",
@@ -321,7 +324,7 @@
     {
       "id": "s-case",
       "title": "03 · The evidence",
-      "minutes": 11,
+      "minutes": 10,
       "purpose": "Deliver the abstract conceptualization through cases, not lecture: hospitals, Tenerife, Project Aristotle, and the working equation.",
       "facilitate": [
         "Case-teach, four minutes, rehearsed: narrate ONE case as story (pick for your audience — healthcare room gets the nursing units, ops/engineering gets Tenerife, tech gets Aristotle). The other two cards stay on screen as evidence breadth.",
@@ -333,7 +336,7 @@
       ],
       "validate": "Quick check correct across the room; tables produced at least one 'what would have to be true' answer that names the leader's behavior, not the speaker's courage.",
       "watchFor": "The seductive wrong reading of the nursing data — 'safe teams make more mistakes.' Kill it immediately with the reporting-vs-erring distinction; the quick check exists to catch it.",
-      "coreMinutes": 7,
+      "coreMinutes": 6,
       "coreNote": "Core: one case narrated in three minutes, equation, quick check; table discussion shrinks to one minute and one shared answer.",
       "say": "This isn't a soft idea with a hard sell — the evidence is brutal. Edmondson went looking for proof that better hospital teams made fewer errors, and found the opposite: the BETTER units reported MORE. It broke her model until she saw it: they weren't erring more, they were hiding less. Tenerife, 1977: a flight engineer saw the problem and said it too gently to a captain too senior to question — 583 people. And Google, with all its data, measured 180 teams expecting talent to win. Talent lost. The #1 predictor was whether the team was safe for risk. Same finding, three worlds.",
       "ask": {
@@ -351,7 +354,7 @@
     {
       "id": "s-johari",
       "title": "04 · The Johari Window",
-      "minutes": 29,
+      "minutes": 28,
       "purpose": "The keystone experiential block: move the room from Learner into Contributor safety by practicing disclosure and feedback inside a bounded, low-stakes structure.",
       "facilitate": [
         "Frame the window in four minutes on the printed 2×2: Open grows two ways — disclosure shrinks Hidden, feedback shrinks Blind. Leave Unknown alone; it shrinks through time.",
@@ -393,7 +396,7 @@
       ],
       "validate": "LO3 evidence: every grid has entries in all eight cells, peer-checked by the gallery walk; trainer scores mostly 6+/8.",
       "watchFor": "Grids filling with abstractions ('be respectful'). Push to camera-visible: 'What would I SEE? Give me the behavior, not the value.' Also watch the contract column for thinly-veiled complaints about specific absent people; redirect to patterns.",
-      "coreMinutes": 13,
+      "coreMinutes": 12,
       "coreNote": "Core: grid in 6 min, gallery walk becomes a 2-min stand-and-scan of the nearest grid, synthesis one pattern; trainer assigned as homework.",
       "say": "Safety isn't declared; it's transacted — one behavior at a time, in front of an audience. The eye-roll costs one asker but taxes everyone watching. The public credit pays one contributor and everyone watching. Your table's job: fill this grid from lived experience — four stages, expand and contract — with things a camera would see. If it's on your grid, someone at your table has a witness memory of it. That's what makes this list better than any I could hand you.",
       "ask": {

@@ -451,6 +451,112 @@
     });
   });
 
+
+  /* ---------- INTERACTIVE: Golden Circle builder (Why section) ---------- */
+  var gcEl = $('#circleBuild');
+  if (gcEl) {
+    var gcWhy = $('#gcWhy'), gcHow = $('#gcHow'), gcWhat = $('#gcWhat'),
+        gcBtn = $('#gcBuild'), gcStatus = $('#gcStatus'), gcOut = $('#gcOut');
+    var gcReady = function () {
+      var ok = gcWhy.value.trim().length >= 8 && gcHow.value.trim().length >= 8 && gcWhat.value.trim().length >= 8;
+      gcBtn.disabled = !ok;
+      gcStatus.textContent = ok ? 'Ready, build it' : 'Fill in all three rings';
+      return ok;
+    };
+    [gcWhy, gcHow, gcWhat].forEach(function (i) { i.addEventListener('input', gcReady); });
+    gcBtn.addEventListener('click', function () {
+      if (!gcReady()) return;
+      var w = gcWhy.value.trim(), h = gcHow.value.trim(), t = gcWhat.value.trim();
+      var esc = function (x) { return x.replace(/</g, '&lt;'); };
+      gcOut.innerHTML = '<span class="tag">My Golden Circle, inside-out</span>' +
+        '<div class="plan__out-grid">' +
+        '<div class="row"><b>Why</b><span>' + esc(w) + '</span></div>' +
+        '<div class="row"><b>How</b><span>' + esc(h) + '</span></div>' +
+        '<div class="row"><b>What</b><span>' + esc(t) + '</span></div>' +
+        '<div class="row"><b>The test</b><span>Read it inside-out, out loud. If the why would survive a hard week, it\u2019s real; if not, sharpen it until there\u2019s a person in it.</span></div>' +
+        '</div>' +
+        '<div class="lab__runrow" style="margin-top:1.25rem">' +
+        '<button class="btn" id="gcCopy">Copy my circle</button>' +
+        '<span class="quiz__progress" id="gcCopied" style="color:rgba(255,255,255,.6)">The WHY ring returns at the commitment card</span></div>';
+      gcOut.hidden = false;
+      $('#gcCopy').addEventListener('click', function () {
+        var text = 'MY GOLDEN CIRCLE (Building Brave Teams, Vanderbilt)\n' +
+          'WHY: ' + w + '\nHOW: ' + h + '\nWHAT: ' + t + '\n' +
+          'Read inside-out. The why fuels the commitment card.';
+        (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () {
+          $('#gcCopied').textContent = 'Copied. Keep it where day nine can find it.';
+        }, function () {
+          $('#gcCopied').textContent = 'Select the card text above and copy it manually.';
+        });
+      });
+      gcOut.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
+    });
+  }
+
+  /* ---------- INTERACTIVE: mission alignment builder (Chancellor section) ---------- */
+  var maEl = $('#missionAlign');
+  if (maEl) {
+    var maPick = { focus: null, stage: null };
+    var maLine = $('#maLine'), maBtn = $('#maBuild'), maStatus = $('#maStatus'), maOut = $('#maOut');
+    var MA_FOCUS = {
+      core: 'Exceptional core operations \u2014 speed, agility, and scale that secure talent, resources, and reputation.',
+      bold: 'Bold strategic initiatives \u2014 bets that extend the reach and impact of education and research.',
+      industry: 'Industry leadership \u2014 modeling the essential research university and stimulating industry change.'
+    };
+    var MA_STAGE = {
+      inclusion: 'Inclusion \u2014 the newest voices join it early, by name.',
+      learner: 'Learner \u2014 fast work that surfaces its mistakes instead of hiding them.',
+      contributor: 'Contributor \u2014 real ownership, publicly credited.',
+      challenger: 'Challenger \u2014 the bet can be questioned before it ships.'
+    };
+    var maReady = function () {
+      var ok = maPick.focus && maPick.stage && maLine.value.trim().length >= 8;
+      maBtn.disabled = !ok;
+      maStatus.textContent = ok ? 'Ready, build it' : 'Fill in all three parts';
+      return ok;
+    };
+    maLine.addEventListener('input', maReady);
+    [['#maFocus', 'focus', 'data-focus'], ['#maStage', 'stage', 'data-stage']].forEach(function (cfg) {
+      var group = $(cfg[0]);
+      $$('.opt', group).forEach(function (b) {
+        b.addEventListener('click', function () {
+          maPick[cfg[1]] = b.getAttribute(cfg[2]);
+          $$('.opt', group).forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+          maOut.hidden = true;
+          maReady();
+        });
+      });
+    });
+    maBtn.addEventListener('click', function () {
+      if (!maReady()) return;
+      var line = maLine.value.trim();
+      maOut.innerHTML = '<span class="tag">My share of the vision</span>' +
+        '<div class="plan__out-grid">' +
+        '<div class="row"><b>Area of focus</b><span>' + MA_FOCUS[maPick.focus] + '</span></div>' +
+        '<div class="row"><b>The rung it needs</b><span>' + MA_STAGE[maPick.stage] + '</span></div>' +
+        '<div class="row"><b>How we advance it</b><span>' + line.replace(/</g, '&lt;') + '</span></div>' +
+        '<div class="row"><b>The through-line</b><span>The commitment card you build at the end is this alignment, converted into behavior \u2014 carry the rung forward.</span></div>' +
+        '</div>' +
+        '<div class="lab__runrow" style="margin-top:1.25rem">' +
+        '<button class="btn" id="maCopy">Copy my alignment card</button>' +
+        '<span class="quiz__progress" id="maCopied" style="color:rgba(255,255,255,.6)">Bring the rung to your commitment card</span></div>';
+      maOut.hidden = false;
+      $('#maCopy').addEventListener('click', function () {
+        var text = 'MY SHARE OF THE VISION (Building Brave Teams, Vanderbilt)\n' +
+          'Area of focus: ' + MA_FOCUS[maPick.focus] + '\n' +
+          'The rung it needs: ' + MA_STAGE[maPick.stage] + '\n' +
+          'How we advance it: ' + line + '\n' +
+          'Through-line: the commitment card converts this alignment into behavior.';
+        (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(function () {
+          $('#maCopied').textContent = 'Copied. It pairs with your commitment card.';
+        }, function () {
+          $('#maCopied').textContent = 'Select the card text above and copy it manually.';
+        });
+      });
+      maOut.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
+    });
+  }
+
   /* ---------- INTERACTIVE: Brave Commitment capstone ---------- */
   var planEl = $('#commitPlan');
   if (planEl) {

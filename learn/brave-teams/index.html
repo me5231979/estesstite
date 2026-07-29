@@ -87,42 +87,87 @@
         <div><b>1</b> Brave commitment you'll build</div>
       </div>
       <div class="hero__cta" data-reveal style="justify-content:center">
-        <a class="btn" href="#s-hero">We're ready, let's begin</a>
+        <a class="btn" href="#s-mission">We're ready, let's begin</a>
       </div>
     </div>
   </section>
 
-  <!-- ============ 1 · HERO ============ -->
-  <section class="slide on-dark hero" id="s-hero" data-title="Objectives">
-    <canvas class="hero__canvas" aria-hidden="true"></canvas>
-    <div class="hero__scrim" aria-hidden="true"></div>
+  <!-- ============ 1b · THE MISSION ============ -->
+  <section class="slide on-dark" id="s-mission" data-title="The Chancellor's charge">
     <div class="wrap">
-      <p class="eyebrow" data-reveal>Building Brave Teams · Vanderbilt</p>
-      <h1 class="h-hero" data-reveal>You can meet.<br><em class="gold-text">Now say the hard thing.</em></h1>
-      <p class="lead" data-reveal style="margin-top:1.5rem">Why does the smartest person in the room stay quiet? Why does a team see the flaw in the plan and let it ship anyway? And why do the best teams report <em>more</em> mistakes, not fewer? Today you get the mechanism, and the moves.</p>
-      <div class="objectives" data-reveal>
-        <p class="objectives__label">By the end of this session, you will be able to</p>
-        <ol class="objectives__list">
-          <li>Define psychological safety, and tell it apart from being nice, lowering the bar, or needing consensus</li>
-          <li>Diagnose your team's current stage using Clark's ladder and Edmondson's 7-item survey</li>
-          <li>Explain why safety predicts performance, using the evidence from hospitals, cockpits, and Google</li>
-          <li>Practice disclosure and feedback with the Johari Window, and expand your Open quadrant</li>
-          <li>Differentiate behaviors that expand safety from the ones that quietly contract it, then deliver candid feedback with SBI + Ask</li>
-          <li>Commit to one start, one stop, and one question your team will hear within 14 days</li>
-        </ol>
+      <p class="eyebrow" data-reveal>The institutional why · Crescere aude</p>
+      <h2 class="h2" data-reveal>Define the great university. <em>Then be it.</em></h2>
+      <p class="lead" data-reveal>Chancellor Diermeier's institutional vision is one sentence with no hedge in it: <b>Vanderbilt will define the great university of the 21st century — and be it.</b> The how is equally blunt: operate at <b>uncommon speed, agility, and scale</b> to address society's challenges through education and research, and help <b>reclaim the essential role of leading research universities in driving American prosperity</b>. Our motto has always been the dare — <em>Crescere aude</em>, dare to grow — and none of it runs on silence.</p>
+
+      <div class="grid grid-3" style="margin-top:2.5rem">
+        <div class="card" data-reveal>
+          <span class="tag">Focus 1 · Exceptional core operations</span>
+          <h3>Speed, agility, scale</h3>
+          <p class="muted">Innovative, impactful capabilities that secure the talent, resources, and reputation the vision needs. The team translation: mistakes hidden at speed compound at speed — Learner safety is an operations capability.</p>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">Focus 2 · Bold strategic initiatives</span>
+          <h3>Core ops as fuel</h3>
+          <p class="muted">Increasingly bold bets that extend the reach and impact of education and research. The team translation: a bold bet needs someone able to question it before it ships — that's Challenger safety, upstream of every initiative.</p>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">Focus 3 · Industry leadership</span>
+          <h3>Model the essential university</h3>
+          <p class="muted">Stimulate industry change by modeling what a research university should be. The team translation: you model what you practice — teams that speak plainly across differences are the institution's living proof.</p>
+        </div>
       </div>
-      <div class="skills" data-reveal aria-label="Skills this course builds">
-        <span class="skills__label">Skills you'll build</span>
-        <span class="skillpill skillpill--core">Psychological Safety</span>
-        <span class="skillpill skillpill--core">Honest Communication</span>
-        <span class="skillpill">Trust Building</span>
-        <span class="skillpill">Feedback (SBI + Ask)</span>
-        <span class="skillpill">Team Development</span>
+
+      <div class="card" data-reveal style="margin-top:2rem;border-color:rgba(207,174,112,.5)">
+        <span class="tag">The reputation flywheel</span>
+        <p style="margin:.5rem 0 0" class="measure">Reputation and resources feed each other in a loop — reputation attracts <b>talent, funding, partnerships, and access</b>, which build the reputation. The university spins that flywheel with <b>execution with ambition, values-driven leadership, and athletics momentum</b>. Here's your place in it: problems surfaced early are how execution keeps its reputation, and values-driven leadership isn't a slide — it's how your meetings treat the person who brings bad news. Your team's candor sits upstream of the flywheel.</p>
       </div>
-      <div class="hero__cta" data-reveal>
-        <a class="btn" href="#s-why">Begin the session</a>
-        <a class="btn btn--ghost" href="#s-recap">Jump to the quiz</a>
+
+      <div class="plan" id="missionAlign" data-reveal style="margin-top:2.5rem">
+        <p class="eyebrow" style="margin-bottom:.5rem">Play · Align your work to the vision</p>
+        <p class="why" style="margin-top:0"><b>Why this matters:</b> a vision you can't locate your own work inside is a poster. Find your team's share of it in three moves; nothing you type leaves your screen.</p>
+        <div class="plan__form" style="margin-top:1.25rem">
+          <div class="plan__field">
+            <span class="plan__label"><b>1 · The area of focus your team's work most serves.</b></span>
+            <div class="plan__chips" id="maFocus" role="group" aria-label="Area of focus">
+              <button class="opt" data-focus="core"><span>Exceptional core operations</span></button>
+              <button class="opt" data-focus="bold"><span>Bold strategic initiatives</span></button>
+              <button class="opt" data-focus="industry"><span>Industry leadership</span></button>
+            </div>
+          </div>
+          <div class="plan__field">
+            <span class="plan__label"><b>2 · The rung of safety that work needs most.</b></span>
+            <div class="plan__chips" id="maStage" role="group" aria-label="Stage of safety">
+              <button class="opt" data-stage="inclusion"><span>Inclusion</span></button>
+              <button class="opt" data-stage="learner"><span>Learner</span></button>
+              <button class="opt" data-stage="contributor"><span>Contributor</span></button>
+              <button class="opt" data-stage="challenger"><span>Challenger</span></button>
+            </div>
+          </div>
+          <div class="plan__field">
+            <label for="maLine"><b>3 · One concrete way your team advances it.</b> What would a colleague see?</label>
+            <input type="text" id="maLine" maxlength="140" placeholder="e.g. our onboarding rebuild gets new analysts contributing in week two instead of month two" autocomplete="off">
+          </div>
+          <div class="lab__runrow">
+            <button class="btn" id="maBuild" disabled>Build my alignment card</button>
+            <span class="quiz__progress" id="maStatus">Fill in all three parts</span>
+          </div>
+        </div>
+        <div class="lab__outcome" id="maOut" hidden aria-live="polite"></div>
       </div>
+
+      <details class="deeper" data-reveal>
+        <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg> Go deeper</summary>
+        <div class="deeper__body">
+          <div><h4>The honest headwinds</h4><p>The vision names four problems it exists to solve: leading research universities lack the core capabilities to deliver innovation at modern speed and scale; they're no longer seen as the primary drivers of solutions to society's problems; elite universities are viewed as politicized bastions of ideology; and a university education is no longer viewed as essential to the American dream. Notice what every one of those has in common: each is answered by institutions — which means by teams — that can move fast without hiding mistakes, collaborate across real differences, and tell themselves the truth. Brave teams aren't adjacent to this strategy. They're its raw material. <a href="https://news.vanderbilt.edu/2022/07/01/daring-to-grow-together-we-are-building-the-great-university-of-the-21st-century/" target="_blank" rel="noopener" style="color:var(--vu-gold-flat);text-decoration:underline">Read the vision: "Daring to Grow"</a></p></div>
+          <div class="deeper__ask"><h4><span class="mode">As a group</span> · 2 min</h4>
+          <p class="why"><b>Why this matters:</b> the vision only becomes real at the altitude where you work — the room you're in.</p>
+          <ol class="steps">
+            <li>At your table: which of the four headwinds does your team's work actually touch? Name one.</li>
+            <li>Ask the uncomfortable version: what does your team currently NOT say out loud that slows that work down?</li>
+            <li>Hold your alignment card — its rung is a strong candidate for your commitment card at the end.</li>
+          </ol></div>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -161,6 +206,31 @@
         <p class="why" style="margin:.35rem 0 0"><b>Why this video:</b> the Golden Circle from its author. Play the first four minutes in class — the circle itself; assign the rest.</p>
       </div>
 
+
+      <div class="plan" id="circleBuild" data-reveal style="margin-top:2.5rem">
+        <p class="eyebrow" style="margin-bottom:.5rem">Play · Construct your Golden Circle</p>
+        <p class="why" style="margin-top:0"><b>Why this matters:</b> a borrowed why evaporates by day nine. Build your own circle, inside-out, and it becomes the fuel for the commitment card at the end. Nothing you type leaves your screen.</p>
+        <div class="plan__form" style="margin-top:1.25rem">
+          <div class="plan__field">
+            <label for="gcWhy"><b>WHY · The center.</b> "I want a braver team because…" — make it about a real person or a real moment.</label>
+            <input type="text" id="gcWhy" maxlength="140" placeholder="e.g. I watched a good analyst go quiet for a year, and I'm not doing that to anyone" autocomplete="off">
+          </div>
+          <div class="plan__field">
+            <label for="gcHow"><b>HOW · The middle ring.</b> The behavior you'll practice to serve that why.</label>
+            <input type="text" id="gcHow" maxlength="140" placeholder="e.g. ask 'what am I missing?' and count to ten before speaking again" autocomplete="off">
+          </div>
+          <div class="plan__field">
+            <label for="gcWhat"><b>WHAT · The outside ring.</b> What your team will visibly see or get.</label>
+            <input type="text" id="gcWhat" maxlength="140" placeholder="e.g. meetings where the newest analyst talks in the first ten minutes" autocomplete="off">
+          </div>
+          <div class="lab__runrow">
+            <button class="btn" id="gcBuild" disabled>Build my circle</button>
+            <span class="quiz__progress" id="gcStatus">Fill in all three rings</span>
+          </div>
+        </div>
+        <div class="lab__outcome" id="gcOut" hidden aria-live="polite"></div>
+      </div>
+
       <details class="deeper" data-reveal>
         <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg> Go deeper</summary>
         <div class="deeper__body">
@@ -168,58 +238,46 @@
           <div class="deeper__ask"><h4><span class="mode">On your own</span> · 2 min</h4>
           <p class="why"><b>Why this matters:</b> a commitment with a why survives; a commitment without one is a workshop souvenir.</p>
           <ol class="steps">
-            <li>Finish this sentence, in writing, for yourself: "I want a braver team because…"</li>
+            <li>Fill the WHY ring of the circle builder above: "I want a braver team because…"</li>
             <li>Test it: is it about a real person or a real moment? Sharpen it until it is.</li>
-            <li>Keep it — it becomes the first line you think of at the commitment card, and the reason you send tomorrow's note.</li>
+            <li>Keep the built circle — the WHY ring returns at the commitment card, and the HOW ring is a head start on it.</li>
           </ol></div>
         </div>
       </details>
     </div>
   </section>
 
-  <!-- ============ 1b · THE MISSION ============ -->
-  <section class="slide on-dark" id="s-mission" data-title="The Chancellor's charge">
+  <!-- ============ 1 · HERO ============ -->
+  <section class="slide on-dark hero" id="s-hero" data-title="Objectives">
+    <canvas class="hero__canvas" aria-hidden="true"></canvas>
+    <div class="hero__scrim" aria-hidden="true"></div>
     <div class="wrap">
-      <p class="eyebrow" data-reveal>The institutional why · Dare to grow</p>
-      <h2 class="h2" data-reveal><em>Crescere aude.</em> Dare to grow.</h2>
-      <p class="lead" data-reveal>Vanderbilt's motto is a dare, and Chancellor Daniel Diermeier has raised the stakes on it: our vision is to be nothing less than <b>the great university of the 21st century</b> — built on excellence, on free expression across differences, and on opportunity and growth for all, through the university's signature move: <b>radical collaboration</b>. Read that vision closely and it makes a demand of every team in this room, because none of it runs on silence.</p>
-
-      <div class="grid grid-3" style="margin-top:2.5rem">
-        <div class="card" data-reveal>
-          <span class="tag">Radical collaboration</span>
-          <h3>Across every difference</h3>
-          <p class="muted">"Radical" as in bold, and as in the root — <em>radix</em> — of who we are: reaching across differences to find the common ground where progress happens. That reach is Challenger-stage work. Collaboration without safety is just proximity.</p>
-        </div>
-        <div class="card" data-reveal>
-          <span class="tag">Growth takes courage</span>
-          <h3>Daring means risking</h3>
-          <p class="muted">The Chancellor's charge unites ambition, purpose, and courage — and growth of any kind takes courage. A team that dares to grow is a team where "I don't know," "I was wrong," and "I disagree" are affordable. That's Learner safety, institutionalized.</p>
-        </div>
-        <div class="card" data-reveal>
-          <span class="tag">One another's best</span>
-          <h3>The standing invitation</h3>
-          <p class="muted">Dare to grow — and bring out one another's best. That's the Contributor stage as a university-wide expectation: real work, credited, and a teammate whose talent you name out loud before someone senior does.</p>
-        </div>
+      <p class="eyebrow" data-reveal>Building Brave Teams · Vanderbilt</p>
+      <h1 class="h-hero" data-reveal>You can meet.<br><em class="gold-text">Now say the hard thing.</em></h1>
+      <p class="lead" data-reveal style="margin-top:1.5rem">Why does the smartest person in the room stay quiet? Why does a team see the flaw in the plan and let it ship anyway? And why do the best teams report <em>more</em> mistakes, not fewer? Today you get the mechanism, and the moves.</p>
+      <div class="objectives" data-reveal>
+        <p class="objectives__label">By the end of this session, you will be able to</p>
+        <ol class="objectives__list">
+          <li>Define psychological safety, and tell it apart from being nice, lowering the bar, or needing consensus</li>
+          <li>Diagnose your team's current stage using Clark's ladder and Edmondson's 7-item survey</li>
+          <li>Explain why safety predicts performance, using the evidence from hospitals, cockpits, and Google</li>
+          <li>Practice disclosure and feedback with the Johari Window, and expand your Open quadrant</li>
+          <li>Differentiate behaviors that expand safety from the ones that quietly contract it, then deliver candid feedback with SBI + Ask</li>
+          <li>Commit to one start, one stop, and one question your team will hear within 14 days</li>
+        </ol>
       </div>
-
-      <div class="card" data-reveal style="margin-top:2rem;border-color:rgba(207,174,112,.5)">
-        <span class="tag">The through-line</span>
-        <p style="margin:.5rem 0 0" class="measure">The great university of the 21st century will be built by teams that can say hard things to each other and stay teams. Your commitment card at the end of this session is not separate from the Chancellor's vision — it is your team's share of it. <a href="https://news.vanderbilt.edu/2022/07/01/daring-to-grow-together-we-are-building-the-great-university-of-the-21st-century/" target="_blank" rel="noopener" style="color:var(--vu-gold-flat);text-decoration:underline">Read the vision: "Daring to Grow"</a></p>
+      <div class="skills" data-reveal aria-label="Skills this course builds">
+        <span class="skills__label">Skills you'll build</span>
+        <span class="skillpill skillpill--core">Psychological Safety</span>
+        <span class="skillpill skillpill--core">Honest Communication</span>
+        <span class="skillpill">Trust Building</span>
+        <span class="skillpill">Feedback (SBI + Ask)</span>
+        <span class="skillpill">Team Development</span>
       </div>
-
-      <details class="deeper" data-reveal>
-        <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg> Go deeper</summary>
-        <div class="deeper__body">
-          <div><h4>In practice</h4><p>The alignment isn't decorative; it's operational. Free expression across differences is the university-scale version of what the four stages build at team scale. Radical collaboration presumes people will voice half-formed ideas to strangers from other disciplines — the exact interpersonal risk Edmondson measures. And a growth culture that punishes visible mistakes isn't a growth culture; it's a performance with growth language. When you champion a rung of the ladder on your team, you are doing the university's strategy at the only altitude where culture actually changes: the room you're in.</p></div>
-          <div class="deeper__ask"><h4><span class="mode">As a group</span> · 2 min</h4>
-          <p class="why"><b>Why this matters:</b> a personal why plus an institutional why is a commitment with two anchors instead of one.</p>
-          <ol class="steps">
-            <li>At your table: name one place your team's work touches the vision — a collaboration, a growth bet, a hard conversation across a difference.</li>
-            <li>Ask: which stage of safety does that work need most — Inclusion, Learner, Contributor, or Challenger?</li>
-            <li>Hold the answer; it's a strong candidate for "the rung" on your commitment card.</li>
-          </ol></div>
-        </div>
-      </details>
+      <div class="hero__cta" data-reveal>
+        <a class="btn" href="#s-agenda">Begin the session</a>
+        <a class="btn btn--ghost" href="#s-recap">Jump to the quiz</a>
+      </div>
     </div>
   </section>
 

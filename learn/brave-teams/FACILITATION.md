@@ -30,17 +30,17 @@ python3 tools/build-facilitator.py
 
 | Slide | Full (120 min) | Core (90 min) |
 |---|---|---|
-| Arrival & Inclusion ritual / QR | 7 | 5 |
+| Arrival & Inclusion ritual / QR | 6 | 5 |
+| The Chancellor's charge (alignment builder) | 4 | 2 |
+| Our why (Golden Circle builder) | 4 | 2 |
 | Objectives | 2 | 1 |
-| Our why (Golden Circle) | 3 | 2 |
-| The Chancellor's charge | 2 | — |
 | Agenda | 1 | — |
 | 01 What safety is (and isn't) | 8 | 6 |
 | Manifesto | 1 | — |
 | 02 Where your team stands | 8 | 6 |
-| 03 The evidence | 11 | 7 |
-| 04 The Johari Window | 29 | 24 |
-| 05 Expand or contract | 17 | 13 |
+| 03 The evidence | 10 | 6 |
+| 04 The Johari Window | 28 | 24 |
+| 05 Expand or contract | 17 | 12 |
 | 06 The candor rehearsal | 17 | 14 |
 | Recap quiz | 4 | 4 |
 | Commitment card (capstone) | 7 | 6 |
