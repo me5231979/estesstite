@@ -22,11 +22,12 @@ python3 -m http.server 8000
 
 ## What it teaches (6 sections, framed by the why)
 
-The deck opens with **the Chancellor's charge** (the institutional vision —
-"define the great university of the 21st century, and be it" — areas of
-focus, the reputation flywheel, and a mission-alignment builder), then
-**Our Why** (Sinek's Golden Circle with a construct-your-own-circle
-builder), then the learning objectives, before the six teaching sections:
+The deck opens with the hook and learning objectives ("You can meet. Now
+say the hard thing."), then **the Chancellor's charge** (the institutional
+vision — "define the great university of the 21st century, and be it" —
+areas of focus, the reputation flywheel, and a mission-alignment builder),
+then **Our Why** (Sinek's Golden Circle with a builder that renders your
+why/how/what as concentric rings), before the six teaching sections:
 
 1. What safety is (and isn't) — Edmondson's construct vs. the three myths
    (niceness, low bar, consensus)
@@ -61,7 +62,7 @@ talks, podcasts, and source documents to the rungs practiced in-session.
 | Behaviors | **Expand or contract?** | Call eight real meeting moves, fast |
 | Candor | **Fix the feedback** | Name the broken SBI + Ask joint in five attempts |
 | Mission | **Alignment builder** | Locate your team's share of the vision: area of focus + rung + one concrete line |
-| Why | **Golden Circle builder** | Construct your own why/how/what, inside-out |
+| Why | **Golden Circle builder** | Construct your own why/how/what — rendered as concentric rings |
 | Recap | **Scored quiz** | 6 questions mapped 1:1 to the objectives |
 | Capstone | **Brave Commitment card** | Build and copy a dated, witnessed commitment |
 

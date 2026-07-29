@@ -469,12 +469,12 @@
       var w = gcWhy.value.trim(), h = gcHow.value.trim(), t = gcWhat.value.trim();
       var esc = function (x) { return x.replace(/</g, '&lt;'); };
       gcOut.innerHTML = '<span class="tag">My Golden Circle, inside-out</span>' +
-        '<div class="plan__out-grid">' +
-        '<div class="row"><b>Why</b><span>' + esc(w) + '</span></div>' +
-        '<div class="row"><b>How</b><span>' + esc(h) + '</span></div>' +
-        '<div class="row"><b>What</b><span>' + esc(t) + '</span></div>' +
-        '<div class="row"><b>The test</b><span>Read it inside-out, out loud. If the why would survive a hard week, it\u2019s real; if not, sharpen it until there\u2019s a person in it.</span></div>' +
+        '<div class="gcring" role="img" aria-label="Your Golden Circle: why at the center, how in the middle ring, what on the outside">' +
+        '<div class="gcring__ring" data-gc="what"><span class="gcring__tag">What</span><span class="gcring__text">' + esc(t) + '</span></div>' +
+        '<div class="gcring__ring" data-gc="how"><span class="gcring__tag">How</span><span class="gcring__text">' + esc(h) + '</span></div>' +
+        '<div class="gcring__ring" data-gc="why"><span class="gcring__tag">Why</span><span class="gcring__text">' + esc(w) + '</span></div>' +
         '</div>' +
+        '<p class="why" style="margin:.75rem 0 0;text-align:center">Read it inside-out, out loud. If the why would survive a hard week, it\u2019s real; if not, sharpen it until there\u2019s a person in it.</p>' +
         '<div class="lab__runrow" style="margin-top:1.25rem">' +
         '<button class="btn" id="gcCopy">Copy my circle</button>' +
         '<span class="quiz__progress" id="gcCopied" style="color:rgba(255,255,255,.6)">The WHY ring returns at the commitment card</span></div>';

@@ -112,11 +112,10 @@ ATD front matter: `materials`, `prep` {weekBefore, dayBefore, thirtyMinBefore},
 
 ## Layout (17 slides)
 
-Welcome/QR (pre-work note) →
+Welcome/QR (pre-work note) → Hero (hook + 6 objectives + skills row) →
 The Chancellor's charge (institutional vision + areas of focus + reputation
 flywheel + mission-alignment builder) →
-Our why (Sinek Golden Circle + TED embed + circle builder) →
-Hero (6 objectives + skills row + particles) → Agenda → 01 What safety is (myth trainer + Edmondson TEDx) → manifesto →
+Our why (Sinek Golden Circle + TED embed + ring builder) → Agenda → 01 What safety is (myth trainer + Edmondson TEDx) → manifesto →
 02 Where your team stands (4 stage cards + 7-item diagnostic) →
 03 The evidence (3 case cards + equation) →
 04 Johari Window (2×2 + adjective picker + sticky sort) →
@@ -125,7 +124,7 @@ Recap quiz → Capstone Brave Commitment → Glossary →
 Resources (Oracle Learning deep links + watch/listen/read shelf, gold links) →
 Closing (one-word ritual).
 
-Slide ids: `s-welcome`, `s-mission`, `s-why`, `s-hero`, `s-agenda`,
+Slide ids: `s-welcome`, `s-hero`, `s-mission`, `s-why`, `s-agenda`,
 `s-safety`, `s-belief`, `s-diagnose`, `s-case`, `s-johari`, `s-expand`,
 `s-candor`, `s-recap`, `s-plan`, `s-glossary`, `s-resources`, `s-close`.
 

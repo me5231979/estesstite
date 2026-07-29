@@ -785,3 +785,23 @@ em, .italic { font-style: italic; }
   to   { background-position: 160px 160px, 160px 160px, 160px 160px, 160px 160px; }
 }
 @media (prefers-reduced-motion: reduce) { .hero::before { animation: none; } }
+
+/* ---------- 29. Golden Circle ring output (Building Brave Teams) ---------- */
+.gcring { position: relative; aspect-ratio: 1; width: min(560px, 100%); margin: 1.25rem auto .5rem; }
+.gcring__ring { position: absolute; border-radius: 50%; border: 1.5px solid rgba(207,174,112,.55);
+  background: rgba(207,174,112,.05); display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-start; text-align: center; }
+.gcring__ring[data-gc="what"] { inset: 0; padding-top: .9rem; }
+.gcring__ring[data-gc="how"]  { inset: 14%; padding-top: .8rem; border-color: rgba(207,174,112,.75); }
+.gcring__ring[data-gc="why"]  { inset: 31%; justify-content: center; padding: .9rem;
+  border-color: var(--vu-gold-flat); background: rgba(207,174,112,.14); }
+.gcring__tag { font-family: var(--font-condensed); font-weight: 700; text-transform: uppercase;
+  letter-spacing: .09em; font-size: .68rem; color: var(--vu-gold-flat); margin-bottom: .25rem; }
+.gcring__text { font-family: var(--font-serif); font-style: italic; font-size: .82rem; line-height: 1.35;
+  color: rgba(255,255,255,.92); max-width: 64%; }
+.gcring__ring[data-gc="how"] .gcring__text { max-width: 63%; font-size: .8rem; }
+.gcring__ring[data-gc="why"] .gcring__text { max-width: 90%; font-size: .88rem; color: #fff; }
+@media (max-width: 560px) {
+  .gcring__text { font-size: .74rem; }
+  .gcring__ring[data-gc="why"] .gcring__text { font-size: .78rem; }
+}

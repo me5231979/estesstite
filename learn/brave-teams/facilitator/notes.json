@@ -155,7 +155,24 @@
         ],
         "respond": "Don't correct shallow answers; the depth arrives with the Johari block. The early open answers tell you which tables will carry the dialogue later."
       },
-      "transition": "Before anything else: where this university says it's going, in the Chancellor's own words — because everything we practice today is in service of it."
+      "transition": "Here's the course in one breath — the hook, and the contract: six things you'll be able to do by the end."
+    },
+    {
+      "id": "s-hero",
+      "title": "Objectives",
+      "minutes": 2,
+      "purpose": "Open the course proper: the hook (why the smartest person stays quiet) and the contract — six capabilities ending in a dated, witnessed commitment.",
+      "facilitate": [
+        "Read the six objectives briskly, in plain language.",
+        "Land on the sixth: this session ends with a REAL commitment card — start, stop, question, note, stage — with a 14-day window.",
+        "Name the lineage once for credibility: Edmondson at Harvard, Clark's four stages, Luft and Ingham's window, Google's Project Aristotle."
+      ],
+      "validate": "Learners can say what the capstone will be (a commitment card their team will feel within 14 days).",
+      "watchFor": "Eye-rolls at 'psychological safety' — the phrase carries baggage. Pre-empt: 'If the phrase is worn out for you, watch the evidence section; the data doesn't care what we call it.'",
+      "coreMinutes": 1,
+      "coreNote": "Core: objectives 1 and 6 out loud; the rest on screen.",
+      "say": "Six things by the end: you'll define this construct precisely enough to defend it, locate your team on a four-stage ladder, know why hospitals and cockpits and Google all landed on the same finding, practice the two moves that grow trust — disclosure and feedback — rehearse candor with an actual frame, and leave with one commitment your team will feel within fourteen days. Not agree with. Feel.",
+      "transition": "That's the what. Before the six ideas: two whys — the university's, then yours."
     },
     {
       "id": "s-mission",
@@ -212,24 +229,7 @@
         ],
         "respond": "One line: 'If there's no person in it yet, leave the ring open in the back of your mind. By the commitment card, there will be.'"
       },
-      "transition": "Institutional why, personal why. Now the contract: six things you'll be able to do by the end."
-    },
-    {
-      "id": "s-hero",
-      "title": "Objectives",
-      "minutes": 2,
-      "purpose": "Set the contract after both whys are established: six capabilities across knowing AND feeling, ending in a dated, witnessed commitment.",
-      "facilitate": [
-        "Read the six objectives briskly, in plain language.",
-        "Land on the sixth: this session ends with a REAL commitment card — start, stop, question, note, stage — with a 14-day window.",
-        "Name the lineage once for credibility: Edmondson at Harvard, Clark's four stages, Luft and Ingham's window, Google's Project Aristotle."
-      ],
-      "validate": "Learners can say what the capstone will be (a commitment card their team will feel within 14 days).",
-      "watchFor": "Eye-rolls at 'psychological safety' — the phrase carries baggage. Pre-empt: 'If the phrase is worn out for you, watch the evidence section; the data doesn't care what we call it.'",
-      "coreMinutes": 1,
-      "coreNote": "Core: objectives 1 and 6 out loud; the rest on screen.",
-      "say": "Six things by the end: you'll define this construct precisely enough to defend it, locate your team on a four-stage ladder, know why hospitals and cockpits and Google all landed on the same finding, practice the two moves that grow trust — disclosure and feedback — rehearse candor with an actual frame, and leave with one commitment your team will feel within fourteen days. Not agree with. Feel.",
-      "transition": "Six ideas carry those objectives, in order — and the order matters, because each one needs the one before it."
+      "transition": "Institutional why, personal why, contract set. Here's the plan — six ideas, in order."
     },
     {
       "id": "s-agenda",
