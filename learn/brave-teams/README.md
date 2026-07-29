@@ -20,7 +20,12 @@ Plain HTML/CSS/JS, no build step:
 python3 -m http.server 8000
 ```
 
-## What it teaches (6 sections)
+## What it teaches (6 sections, framed by the why)
+
+The deck opens Golden-Circle style: a **Why** section (Sinek's "start with
+why" + each learner's written why-sentence) and **the Chancellor's charge**
+(Crescere aude — Vanderbilt as the great university of the 21st century,
+built on radical collaboration) before the six teaching sections:
 
 1. What safety is (and isn't) — Edmondson's construct vs. the three myths
    (niceness, low bar, consensus)
@@ -38,7 +43,9 @@ Ends with a scored recap mapped 1:1 to the objectives, the **Brave
 Commitment capstone** (start, stop, question, note, rung — 14 days, one
 witness), a flip-card glossary, and a one-word closing ritual.
 `worksheet.html` mirrors the commitment card on paper (with the exit ticket
-on the back); `cheatsheet.html` is the take-home reference.
+on the back); `cheatsheet.html` is the take-home reference. A closing
+**Resources** slide maps Vanderbilt Oracle Learning courses (deep-linked),
+talks, podcasts, and source documents to the rungs practiced in-session.
 
 ## The interactive tools
 

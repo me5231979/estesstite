@@ -132,7 +132,7 @@
     {
       "id": "s-welcome",
       "title": "Arrival & Inclusion Ritual",
-      "minutes": 8,
+      "minutes": 7,
       "purpose": "Establish Inclusion safety (Clark Stage 1) before any content. If people don't feel they belong in the room, no downstream learning holds.",
       "facilitate": [
         "Greet every person BY NAME at the door. This is non-negotiable — it is the intervention, not hospitality.",
@@ -173,6 +173,60 @@
       "coreNote": "Core: objectives 1 and 6 out loud; the rest on screen.",
       "say": "Six things by the end: you'll define this construct precisely enough to defend it, locate your team on a four-stage ladder, know why hospitals and cockpits and Google all landed on the same finding, practice the two moves that grow trust — disclosure and feedback — rehearse candor with an actual frame, and leave with one commitment your team will feel within fourteen days. Not agree with. Feel.",
       "transition": "Six ideas, in order — and the order matters, because each one needs the one before it."
+    },
+    {
+      "id": "s-why",
+      "title": "Our why (Golden Circle)",
+      "minutes": 3,
+      "purpose": "Establish the why before any framework: Sinek's Golden Circle applied to this session, and each learner's personal why written down before the content begins.",
+      "facilitate": [
+        "Walk the three cards inside-out, one breath each: why (people deserve to matter out loud), how (safety behaviors), what (a candid, high-standards team).",
+        "Play the first ~4 minutes of Sinek's TED talk on the Full path — stop after the Golden Circle is drawn.",
+        "Run the 2-minute solo write: \"I want a braver team because…\" — silent, kept private, tested against the is-it-about-a-real-person bar.",
+        "Say explicitly that this sentence returns at the commitment card; it is the card's fuel, not a warm-up."
+      ],
+      "validate": "Every learner has a written why-sentence they can point to at the capstone. Spot-check by show of hands: 'who has a sentence with a real person or moment in it?'",
+      "watchFor": "Borrowed whys ('leadership says', 'it's on my review'). Don't correct publicly; the real-person test in the steps does the correcting.",
+      "coreMinutes": 2,
+      "coreNote": "Core: cut the video (assign as the week's watch), keep the cards to one breath and the solo write at full length — the sentence is what the capstone spends.",
+      "say": "Before any framework touches this room: why are we here? Simon Sinek's rule is that great movements work inside-out — why, then how, then what. Our why, stated flat: every person on your team deserves to matter out loud, and the work gets better the moment they do. The ladder, the window, the words — all of it is just how. Take two minutes and write your own why. It has to survive day nine, so make it about a real person.",
+      "ask": {
+        "q": "Without sharing the sentence itself: does your why have a real person or a real moment in it?",
+        "expect": [
+          "Most hands up after a beat",
+          "A few honest 'not yet' — normalize it: borrowed whys are where everyone starts",
+          "Occasionally someone wants to share theirs aloud — allow one, don't harvest more"
+        ],
+        "respond": "One line: 'If it's not about a person yet, keep the sentence open in the back of your mind. By the commitment card, it will be.'"
+      },
+      "transition": "That's your why. The university has one too — and it's written into the motto on the seal."
+    },
+    {
+      "id": "s-mission",
+      "title": "The Chancellor's charge",
+      "minutes": 2,
+      "purpose": "Anchor the personal why in the institutional one: Vanderbilt's dare-to-grow vision of becoming the great university of the 21st century runs on exactly the team behaviors this session builds.",
+      "facilitate": [
+        "Name the motto and the vision in one breath: Crescere aude — dare to grow — and Chancellor Diermeier's charge to be nothing less than the great university of the 21st century.",
+        "Walk the three cards as translations: radical collaboration needs Challenger safety; growth takes courage needs Learner safety; bringing out one another's best IS Contributor safety.",
+        "Land the through-line card: the commitment card at the end is each team's share of the vision.",
+        "Run the 2-minute table ask only on the Full path."
+      ],
+      "validate": "Learners can say in one sentence how their team's work touches the vision, and name the stage it needs most.",
+      "watchFor": "Cynicism about mission language ('posters don't change meetings'). Agree with it: 'Right — which is why the unit of change today is your room, not a poster. The vision only exists at the altitude where you work.'",
+      "coreMinutes": 0,
+      "coreNote": "Core: skip the slide; carry one line into the Why section's close — 'the university's motto is literally dare to grow; your card is your team's share of it.'",
+      "say": "Vanderbilt's motto is Crescere aude — dare to grow. Chancellor Diermeier has raised the stakes on it: our vision is to be nothing less than the great university of the 21st century — through excellence, free expression across differences, and the university's signature move, radical collaboration. Read that closely and it's a demand on every team in this room: none of it runs on silence. Radical collaboration is Challenger work. Daring to grow is Learner work. Bringing out one another's best is Contributor work. The vision needs your room.",
+      "ask": {
+        "q": "Where does your team's work touch the vision — a collaboration, a growth bet, a hard conversation across a difference — and which stage of safety does it need most?",
+        "expect": [
+          "Cross-department collaborations → usually Challenger or Inclusion",
+          "New systems, new skills, reorganizations → Learner",
+          "'We have talent nobody upstairs knows about' → Contributor"
+        ],
+        "respond": "Tag each answer with its stage out loud; tell the room to hold theirs — it's a strong candidate for the rung on their commitment card."
+      },
+      "transition": "Personal why, institutional why. Now the plan for the next two hours — six ideas, in order."
     },
     {
       "id": "s-agenda",
@@ -267,7 +321,7 @@
     {
       "id": "s-case",
       "title": "03 · The evidence",
-      "minutes": 12,
+      "minutes": 11,
       "purpose": "Deliver the abstract conceptualization through cases, not lecture: hospitals, Tenerife, Project Aristotle, and the working equation.",
       "facilitate": [
         "Case-teach, four minutes, rehearsed: narrate ONE case as story (pick for your audience — healthcare room gets the nursing units, ops/engineering gets Tenerife, tech gets Aristotle). The other two cards stay on screen as evidence breadth.",
@@ -279,7 +333,7 @@
       ],
       "validate": "Quick check correct across the room; tables produced at least one 'what would have to be true' answer that names the leader's behavior, not the speaker's courage.",
       "watchFor": "The seductive wrong reading of the nursing data — 'safe teams make more mistakes.' Kill it immediately with the reporting-vs-erring distinction; the quick check exists to catch it.",
-      "coreMinutes": 8,
+      "coreMinutes": 7,
       "coreNote": "Core: one case narrated in three minutes, equation, quick check; table discussion shrinks to one minute and one shared answer.",
       "say": "This isn't a soft idea with a hard sell — the evidence is brutal. Edmondson went looking for proof that better hospital teams made fewer errors, and found the opposite: the BETTER units reported MORE. It broke her model until she saw it: they weren't erring more, they were hiding less. Tenerife, 1977: a flight engineer saw the problem and said it too gently to a captain too senior to question — 583 people. And Google, with all its data, measured 180 teams expecting talent to win. Talent lost. The #1 predictor was whether the team was safe for risk. Same finding, three worlds.",
       "ask": {
@@ -297,7 +351,7 @@
     {
       "id": "s-johari",
       "title": "04 · The Johari Window",
-      "minutes": 30,
+      "minutes": 29,
       "purpose": "The keystone experiential block: move the room from Learner into Contributor safety by practicing disclosure and feedback inside a bounded, low-stakes structure.",
       "facilitate": [
         "Frame the window in four minutes on the printed 2×2: Open grows two ways — disclosure shrinks Hidden, feedback shrinks Blind. Leave Unknown alone; it shrinks through time.",
@@ -327,7 +381,7 @@
     {
       "id": "s-expand",
       "title": "05 · Expand or contract",
-      "minutes": 18,
+      "minutes": 17,
       "purpose": "Convert insight into observable behaviors across all four stages — the section where the workshop earns its behavior-change objective.",
       "facilitate": [
         "Set the lens in one minute: every behavior in a meeting is a transaction; the audience, not the target, is where safety is won or lost.",
@@ -357,7 +411,7 @@
     {
       "id": "s-candor",
       "title": "06 · The candor rehearsal",
-      "minutes": 18,
+      "minutes": 17,
       "purpose": "Rehearse the highest-stakes behavior — Challenger-stage candor — in a controlled triad structure. Skills only transfer if practiced out loud, in-room.",
       "facilitate": [
         "Frame in two minutes: candor is a skill, not a personality trait. Walk SBI + Ask on the four cards with the Priya example.",
@@ -369,8 +423,8 @@
       ],
       "validate": "LO5/LO6 evidence: every person delivered one complete SBI+Ask and received one without defending; observers caught at least one missing element per round. Trainer scores mostly 4+/5.",
       "watchFor": "Receivers defending — re-state the rule table-side, gently: 'clarifying questions only; the defense is the reflex we're retraining.' Speakers going hypothetical to stay safe — allow it; 'realistic' is within bounds. Anyone using the rehearsal to ambush a real colleague in the room — redirect immediately to a different scenario.",
-      "coreMinutes": 15,
-      "coreNote": "Core: trainer compressed to 3 min, triads get 9 (three tight rotations), close to one voice. The rehearsal itself is untouchable.",
+      "coreMinutes": 14,
+      "coreNote": "Core: trainer compressed to 3 min, triads get 8 (three tight rotations), close to one voice. The rehearsal itself is untouchable.",
       "say": "Candor is a skill, not a personality trait — and we're going to rehearse one candor move: feedback that would normally stay in the Hidden quadrant. The frame: Situation — 'in yesterday's staff meeting, when the budget came up.' Behavior — 'you cut off Priya mid-sentence.' What a camera saw, not a verdict. Impact — 'she didn't speak again, and I'm worried we lost her input.' Owned with I. Then the Ask — 'can we talk about how to handle those moments?' The Ask is what turns a verdict into a conversation.",
       "ask": {
         "q": "(Close) What did you notice was hardest — and what would need to be true on your team for this to happen naturally?",
@@ -444,6 +498,23 @@
       "coreMinutes": 0,
       "coreNote": "Core: skip; one sentence during the close — 'the vocabulary lives in the deck.'",
       "say": "Twelve terms, flip to reveal, yours forever — including everything your team will ask when you bring the card back.",
+      "transition": "Now stand up and make a circle. The last two minutes have no slides."
+    },
+    {
+      "id": "s-resources",
+      "title": "Resources",
+      "minutes": 0,
+      "purpose": "Signpost the curated shelf — Vanderbilt Oracle Learning courses, talks, podcasts, and source documents — without spending session time on it.",
+      "facilitate": [
+        "Gesture at it in passing during the close: four shelves — two of Vanderbilt courses in Oracle Learning, one to watch and listen, one to read.",
+        "Say the one rule: pick ONE item matching your commitment card's rung, finish it in the 14-day window, bring one idea to the day-30 retro.",
+        "Mention the ELE live offerings by name — the 4 Stages session and the Thriving Together series are the team-level next steps."
+      ],
+      "validate": "None in-session; the day-14 pulse asks whether the one chosen resource got started.",
+      "watchFor": "Resource enthusiasm replacing commitment — seven tabs open, zero conversations had. The one-item rule is the guardrail; say it.",
+      "coreMinutes": 0,
+      "coreNote": "Core: one sentence during the close — 'the shelf is in the deck; one item, your rung, fourteen days.'",
+      "say": "Everything on this shelf maps to a rung you practiced today, and half of it is already inside Vanderbilt's Oracle Learning with your VUnetID. One rule: pick one item — the one that matches the rung on your card — finish it inside your fourteen days, and bring one idea from it to your team's thirty-day retro. One resource applied beats seven collected.",
       "transition": "Now stand up and make a circle. The last two minutes have no slides."
     },
     {

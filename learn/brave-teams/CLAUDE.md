@@ -25,7 +25,7 @@ me5231979/Course_Library. Same standing principles across the series.
 python3 -m http.server 8000          # preview locally (no build step)
 python3 tools/build-facilitator.py   # regenerate facilitator edition — REQUIRED after
                                      # any change to index.html or facilitator/notes.json;
-                                     # must print "14 notes rails injected"
+                                     # must print "17 notes rails injected"
 git push origin claude/tender-meitner-hrd0rx    # publish: the deploy-pages workflow republishes gh-pages
 ```
 
@@ -36,7 +36,7 @@ exercise the interactives, and confirm the build script's rail count.
 
 **Learner site** — three files carry everything:
 
-- `index.html` — all copy for 14 `<section class="slide" id="s-*" data-title="…">`
+- `index.html` — all copy for 17 `<section class="slide" id="s-*" data-title="…">`
   slides, separated by `<!-- ============ N · NAME ============ -->` banner
   comments. `data-count` marks the six numbered teaching sections.
 - `assets/js/main.js` — one IIFE, organized by banner comments. Key pieces:
@@ -110,19 +110,23 @@ ATD front matter: `materials`, `prep` {weekBefore, dayBefore, thirtyMinBefore},
 7. **No frameworks.** One CSS file, one JS file, vendored QR lib,
    self-hosted fonts.
 
-## Layout (14 slides)
+## Layout (17 slides)
 
 Welcome/QR (pre-work note) → Hero (6 objectives + skills row + particles) →
+Our why (Sinek Golden Circle + TED embed + solo why-write) →
+The Chancellor's charge (Crescere aude / great university of the 21st century) →
 Agenda → 01 What safety is (myth trainer + Edmondson TEDx) → manifesto →
 02 Where your team stands (4 stage cards + 7-item diagnostic) →
 03 The evidence (3 case cards + equation) →
 04 Johari Window (2×2 + adjective picker + sticky sort) →
 05 Expand or contract (trainer) → 06 Candor rehearsal (SBI cards + trainer) →
-Recap quiz → Capstone Brave Commitment → Glossary → Closing (one-word ritual).
+Recap quiz → Capstone Brave Commitment → Glossary →
+Resources (Oracle Learning deep links + watch/listen/read shelf, gold links) →
+Closing (one-word ritual).
 
-Slide ids: `s-welcome`, `s-hero`, `s-agenda`, `s-safety`, `s-belief`,
-`s-diagnose`, `s-case`, `s-johari`, `s-expand`, `s-candor`, `s-recap`,
-`s-plan`, `s-glossary`, `s-close`.
+Slide ids: `s-welcome`, `s-hero`, `s-why`, `s-mission`, `s-agenda`,
+`s-safety`, `s-belief`, `s-diagnose`, `s-case`, `s-johari`, `s-expand`,
+`s-candor`, `s-recap`, `s-plan`, `s-glossary`, `s-resources`, `s-close`.
 
 ## Editing map
 
@@ -131,8 +135,13 @@ Slide ids: `s-welcome`, `s-hero`, `s-agenda`, `s-safety`, `s-belief`,
 - Diagnostic: `PS_ITEMS` / `PS_BANDS` · Johari picker: `ADJ` in main.js
 - Capstone maps: `ASK` / `NOTE` / `STAGE` in main.js
 - Runbook: `facilitator/notes.json` (timing must sum: Full 120 / Core 90)
+- Resources shelf: `s-resources` in `index.html` — Oracle Learning deep links
+  (base: `ecsr.fa.us2.oraclecloud.com/...learningItemId=<id>`); links must stay
+  gold (`.res a`), never browser blue.
 - Citations to keep honest: Edmondson 1999 + 1996 nursing studies + The
   Fearless Organization + TEDx talk, Clark's 4 Stages, Luft & Ingham 1955
   (Johari, standard 56-adjective list), Google Project Aristotle (re:Work),
   CCL SBI (adapted as SBI + Ask), Tenerife 1977 / Crew Resource Management,
-  Kolb, Tuckman, Anderson & Krathwohl, Kirkpatrick.
+  Kolb, Tuckman, Anderson & Krathwohl, Kirkpatrick, Sinek's Golden Circle
+  (TED, u4ZoJKF_VuA), and Chancellor Diermeier's "Daring to Grow" vision
+  (news.vanderbilt.edu, 2022) for the mission section.

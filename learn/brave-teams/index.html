@@ -28,6 +28,12 @@
     padding: .3rem .65rem; border-radius: 999px; border: 1px solid rgba(207,174,112,.55);
     color: rgba(255,255,255,.85); }
   .skillpill--core { background: var(--vu-gold-flat); border-color: var(--vu-gold-flat); color: var(--vu-black); }
+  /* resources slide: every link gold, never browser blue */
+  .res a { color: var(--vu-gold-flat); text-decoration: underline; text-underline-offset: 2px; }
+  .res a:hover { color: var(--vu-highlight); }
+  .res ul { list-style: none; margin: .75rem 0 0; padding: 0; display: grid; gap: .55rem; }
+  .res li { font-size: .95rem; color: rgba(255,255,255,.82); line-height: 1.5; }
+  .res li b { color: rgba(255,255,255,.92); font-weight: 600; }
 </style>
 </head>
 <body>
@@ -58,7 +64,7 @@
 <div class="dots" id="dots" role="navigation" aria-label="Slide navigation"></div>
 <div class="deckbar" role="group" aria-label="Presentation controls">
   <button id="deckPrev" aria-label="Previous slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
-  <span class="deckbar__count" id="deckCount">1 / 14</span>
+  <span class="deckbar__count" id="deckCount">1 / 17</span>
   <button id="deckNext" aria-label="Next slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
 </div>
 
@@ -114,9 +120,106 @@
         <span class="skillpill">Team Development</span>
       </div>
       <div class="hero__cta" data-reveal>
-        <a class="btn" href="#s-safety">Begin the session</a>
+        <a class="btn" href="#s-why">Begin the session</a>
         <a class="btn btn--ghost" href="#s-recap">Jump to the quiz</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ 1a · THE WHY ============ -->
+  <section class="slide on-cream" id="s-why" data-title="Our why">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>Before the what · The why</p>
+      <h2 class="h2" data-reveal>Start with <em>why</em>.</h2>
+      <p class="lead" data-reveal>Simon Sinek's Golden Circle says great leaders and great movements work from the inside out: <b>why</b> before <b>how</b> before <b>what</b>. "People don't buy what you do; they buy why you do it." So before any framework touches this room, the why of this work, stated flat: <b>we build brave teams because every person on them deserves to matter out loud — and because the work gets better the moment they do.</b> The how is safety behaviors. The what is a candid, high-standards team. The why is people.</p>
+
+      <div class="grid grid-3" style="margin-top:2.5rem">
+        <div class="card" data-reveal style="border-color:rgba(207,174,112,.5)">
+          <span class="tag">Why</span>
+          <h3>People deserve to matter out loud</h3>
+          <p class="muted">The belief at the center. If you don't hold it, no technique in this session will survive contact with a hard week.</p>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">How</span>
+          <h3>Safety, built one behavior at a time</h3>
+          <p class="muted">The ladder, the window, the words — the mechanisms this session drills. The how only works in service of the why.</p>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">What</span>
+          <h3>A candid, high-standards team</h3>
+          <p class="muted">The visible result: problems surfaced small, dissent before decisions, feedback that lands. What everyone else sees.</p>
+        </div>
+      </div>
+
+      <div class="yt" data-reveal data-embed="https://www.youtube-nocookie.com/embed/u4ZoJKF_VuA" data-yttitle="How great leaders inspire action (Simon Sinek, TED)">
+        <button class="yt__load" type="button">
+          <span class="yt__play" aria-hidden="true">▶</span>
+          <span class="yt__title">Watch: how great leaders inspire action (18 min)</span>
+          <span class="yt__src">Simon Sinek · TED · Loads YouTube on click</span>
+        </button>
+        <p class="yt__alt">Prefer a new tab? <a href="https://youtu.be/u4ZoJKF_VuA" target="_blank" rel="noopener">Open on YouTube</a>.</p>
+        <p class="why" style="margin:.35rem 0 0"><b>Why this video:</b> the Golden Circle from its author. Play the first four minutes in class — the circle itself; assign the rest.</p>
+      </div>
+
+      <details class="deeper" data-reveal>
+        <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg> Go deeper</summary>
+        <div class="deeper__body">
+          <div><h4>In practice</h4><p>Your why is the thing that keeps a commitment alive on day nine, when the meeting runs long and the brave question feels skippable. It doesn't need to be grand; it needs to be yours. "I watched a good analyst go quiet for a year and I'm not doing that to anyone" is a why. "Leadership says so" is not — borrowed whys don't survive hard weeks. Everything you build today, including the commitment card at the end, hangs on the sentence you write in the next two minutes.</p></div>
+          <div class="deeper__ask"><h4><span class="mode">On your own</span> · 2 min</h4>
+          <p class="why"><b>Why this matters:</b> a commitment with a why survives; a commitment without one is a workshop souvenir.</p>
+          <ol class="steps">
+            <li>Finish this sentence, in writing, for yourself: "I want a braver team because…"</li>
+            <li>Test it: is it about a real person or a real moment? Sharpen it until it is.</li>
+            <li>Keep it — it becomes the first line you think of at the commitment card, and the reason you send tomorrow's note.</li>
+          </ol></div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ 1b · THE MISSION ============ -->
+  <section class="slide on-dark" id="s-mission" data-title="The Chancellor's charge">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>The institutional why · Dare to grow</p>
+      <h2 class="h2" data-reveal><em>Crescere aude.</em> Dare to grow.</h2>
+      <p class="lead" data-reveal>Vanderbilt's motto is a dare, and Chancellor Daniel Diermeier has raised the stakes on it: our vision is to be nothing less than <b>the great university of the 21st century</b> — built on excellence, on free expression across differences, and on opportunity and growth for all, through the university's signature move: <b>radical collaboration</b>. Read that vision closely and it makes a demand of every team in this room, because none of it runs on silence.</p>
+
+      <div class="grid grid-3" style="margin-top:2.5rem">
+        <div class="card" data-reveal>
+          <span class="tag">Radical collaboration</span>
+          <h3>Across every difference</h3>
+          <p class="muted">"Radical" as in bold, and as in the root — <em>radix</em> — of who we are: reaching across differences to find the common ground where progress happens. That reach is Challenger-stage work. Collaboration without safety is just proximity.</p>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">Growth takes courage</span>
+          <h3>Daring means risking</h3>
+          <p class="muted">The Chancellor's charge unites ambition, purpose, and courage — and growth of any kind takes courage. A team that dares to grow is a team where "I don't know," "I was wrong," and "I disagree" are affordable. That's Learner safety, institutionalized.</p>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">One another's best</span>
+          <h3>The standing invitation</h3>
+          <p class="muted">Dare to grow — and bring out one another's best. That's the Contributor stage as a university-wide expectation: real work, credited, and a teammate whose talent you name out loud before someone senior does.</p>
+        </div>
+      </div>
+
+      <div class="card" data-reveal style="margin-top:2rem;border-color:rgba(207,174,112,.5)">
+        <span class="tag">The through-line</span>
+        <p style="margin:.5rem 0 0" class="measure">The great university of the 21st century will be built by teams that can say hard things to each other and stay teams. Your commitment card at the end of this session is not separate from the Chancellor's vision — it is your team's share of it. <a href="https://news.vanderbilt.edu/2022/07/01/daring-to-grow-together-we-are-building-the-great-university-of-the-21st-century/" target="_blank" rel="noopener" style="color:var(--vu-gold-flat);text-decoration:underline">Read the vision: "Daring to Grow"</a></p>
+      </div>
+
+      <details class="deeper" data-reveal>
+        <summary><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg> Go deeper</summary>
+        <div class="deeper__body">
+          <div><h4>In practice</h4><p>The alignment isn't decorative; it's operational. Free expression across differences is the university-scale version of what the four stages build at team scale. Radical collaboration presumes people will voice half-formed ideas to strangers from other disciplines — the exact interpersonal risk Edmondson measures. And a growth culture that punishes visible mistakes isn't a growth culture; it's a performance with growth language. When you champion a rung of the ladder on your team, you are doing the university's strategy at the only altitude where culture actually changes: the room you're in.</p></div>
+          <div class="deeper__ask"><h4><span class="mode">As a group</span> · 2 min</h4>
+          <p class="why"><b>Why this matters:</b> a personal why plus an institutional why is a commitment with two anchors instead of one.</p>
+          <ol class="steps">
+            <li>At your table: name one place your team's work touches the vision — a collaboration, a growth bet, a hard conversation across a difference.</li>
+            <li>Ask: which stage of safety does that work need most — Inclusion, Learner, Contributor, or Challenger?</li>
+            <li>Hold the answer; it's a strong candidate for "the rung" on your commitment card.</li>
+          </ol></div>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -528,7 +631,7 @@
       <p class="eyebrow" data-reveal>Capstone · The commitment card</p>
       <h2 class="h2" data-reveal>Build the <em>brave commitment</em>.</h2>
       <p class="lead" data-reveal>Everything from today converges on one card: one behavior you start, one you stop, one question your team hears at the next meeting, one note you send tomorrow, and the stage you're climbing. Fourteen days. Your team is the witness.</p>
-      <p class="why" data-reveal><b>Why this matters:</b> without reinforcement, most workshop learning is gone in a week. A specific, dated, witnessed commitment is what survives. Nothing you type here is saved or sent anywhere; it lives only on your screen.</p>
+      <p class="why" data-reveal><b>Why this matters:</b> without reinforcement, most workshop learning is gone in a week. A specific, dated, witnessed commitment is what survives. Before you fill anything in, reread the why-sentence you wrote at the start of the session — the card is that sentence, converted into behavior. Nothing you type here is saved or sent anywhere; it lives only on your screen.</p>
 
       <div class="plan" id="commitPlan" data-reveal>
         <div class="plan__form">
@@ -598,6 +701,65 @@
     </div>
   </section>
 
+  <!-- ============ 12b · RESOURCES ============ -->
+  <section class="slide on-dark" id="s-resources" data-title="Resources">
+    <div class="wrap wrap-wide res">
+      <p class="eyebrow" data-reveal>Keep climbing · Curated for this course</p>
+      <h2 class="h2" data-reveal>The <em>resources</em>.</h2>
+      <p class="lead" data-reveal>Everything below maps to a rung you practiced today. The Vanderbilt courses live in Oracle Learning behind your VUnetID; the rest is the open shelf — talks, podcasts, and the source documents this session is built on.</p>
+
+      <div class="grid grid-2" style="margin-top:2.5rem">
+        <div class="card" data-reveal>
+          <span class="tag">Vanderbilt · Oracle Learning · Foundations</span>
+          <ul>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300001964048742" target="_blank" rel="noopener">The 4 Stages of Psychological Safety — Presented by ELE</a></b> — Clark's ladder, taught live by our own Employee Learning &amp; Engagement team. Sections 02 and 05, deepened.</li>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002858838588" target="_blank" rel="noopener">The Fearless Organization — Amy Edmondson</a></b> — the source text of this entire course, as a guided course.</li>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002858835929" target="_blank" rel="noopener">Psychological Safety</a></b> — the one-sitting primer; send it to a teammate who missed today.</li>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002780555334" target="_blank" rel="noopener">Proven Tactics for Improving Teams' Psychological Safety — MIT SMR</a></b> — the evidence of Section 03, turned into management tactics.</li>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002857412358" target="_blank" rel="noopener">Start with Why (Blinkist Summary)</a></b> — Sinek's Golden Circle from our Why section, in 20 minutes.</li>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002798210093" target="_blank" rel="noopener">Thriving Together: A Two-Part Series on Psychological Safety — ELE</a></b> — the live follow-on when your whole team is ready.</li>
+          </ul>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">Vanderbilt · Oracle Learning · Practice &amp; candor</span>
+          <ul>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002889351882" target="_blank" rel="noopener">Powerful Questions to Build Team Trust, Engagement, and Psychological Safety</a></b> — more invitations like the four on your commitment card.</li>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002870872624" target="_blank" rel="noopener">Setting Up Psychological Safety in One-on-One Meetings</a></b> — the smallest room where the ladder gets built.</li>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002857240584" target="_blank" rel="noopener">Giving and Receiving Feedback</a></b> — more reps for the SBI + Ask muscle from Section 06.</li>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002858835653" target="_blank" rel="noopener">Crucial Conversations — Patterson, Grenny, McMillan, Switzler</a></b> — candor when the stakes are highest.</li>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002857412637" target="_blank" rel="noopener">Radical Candor (Blinkist Summary)</a></b> — care personally, challenge directly; the sibling frame to SBI + Ask.</li>
+            <li><b><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002858836297" target="_blank" rel="noopener">Dare to Lead — Brené Brown</a></b> — brave work, tough conversations, whole hearts; the courage side of the same coin.</li>
+          </ul>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">Watch &amp; listen</span>
+          <ul>
+            <li><b><a href="https://youtu.be/u4ZoJKF_VuA" target="_blank" rel="noopener">How great leaders inspire action — Simon Sinek (TED)</a></b> — the Golden Circle; start here if you skipped the Why section.</li>
+            <li><b><a href="https://www.ted.com/talks/simon_sinek_why_good_leaders_make_you_feel_safe" target="_blank" rel="noopener">Why good leaders make you feel safe — Simon Sinek (TED)</a></b> — the Circle of Safety in 12 minutes.</li>
+            <li><b><a href="https://www.ted.com/talks/amy_edmondson_building_a_psychologically_safe_workplace" target="_blank" rel="noopener">Building a psychologically safe workplace — Amy Edmondson (TEDx)</a></b> — the construct from its author.</li>
+            <li><b><a href="https://brenebrown.com/podcast-show/dare-to-lead/" target="_blank" rel="noopener">Dare to Lead with Brené Brown</a></b> — podcast; leaders on courage, feedback, and trust.</li>
+            <li><b><a href="https://www.ted.com/podcasts/worklife" target="_blank" rel="noopener">WorkLife with Adam Grant</a></b> — podcast; organizational psychology of speaking up, one episode at a time.</li>
+            <li><b><a href="https://simonsinek.com/podcast/" target="_blank" rel="noopener">A Bit of Optimism — Simon Sinek</a></b> — podcast; conversations that keep the why in front of the what.</li>
+            <li><b><a href="https://coachingforleaders.com/" target="_blank" rel="noopener">Coaching for Leaders</a></b> — podcast; practical episodes on feedback, trust, and psychological safety.</li>
+          </ul>
+        </div>
+        <div class="card" data-reveal>
+          <span class="tag">Read · The source shelf</span>
+          <ul>
+            <li><b><a href="https://news.vanderbilt.edu/2022/07/01/daring-to-grow-together-we-are-building-the-great-university-of-the-21st-century/" target="_blank" rel="noopener">"Daring to Grow" — Chancellor Diermeier</a></b> — the vision this course's mission section draws from.</li>
+            <li><b><a href="https://fearlessorganization.com/" target="_blank" rel="noopener">The Fearless Organization — Edmondson</a></b> — the book, plus the team scan instrument.</li>
+            <li><b><a href="https://hbr.org/2008/07/the-competitive-imperative-of-learning" target="_blank" rel="noopener">"The Competitive Imperative of Learning" — Edmondson, HBR</a></b> — the pre-work reading, worth a second pass now.</li>
+            <li><b><a href="https://rework.withgoogle.com/en/guides/understanding-team-effectiveness" target="_blank" rel="noopener">Google re:Work — Understand team effectiveness</a></b> — the Project Aristotle guide, with team exercises.</li>
+            <li><b><a href="https://www.leaderfactor.com/psychological-safety" target="_blank" rel="noopener">LeaderFactor — The 4 Stages</a></b> — Timothy Clark's behavioral guides for each stage.</li>
+            <li><b><a href="https://www.ccl.org/articles/leading-effectively-articles/closing-the-gap-between-intent-vs-impact-sbii/" target="_blank" rel="noopener">CCL — the SBI model</a></b> — the research home of Situation-Behavior-Impact.</li>
+            <li><b><a href="https://www.coursera.org/specializations/leading-teams" target="_blank" rel="noopener">Leading People and Teams — University of Michigan (Coursera)</a></b> — the deep-dive specialization when a course-length commitment fits.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="why" data-reveal style="margin-top:1.5rem"><b>How to use this shelf:</b> pick ONE item that matches your commitment card's rung, finish it inside your 14-day window, and bring one idea from it to your team's day-30 retro. One resource applied beats seven collected.</p>
+    </div>
+  </section>
+
   <!-- ============ 13 · CLOSING ============ -->
   <section class="slide on-dark" id="s-close" data-title="Wrap-up">
     <div class="wrap" style="text-align:center">
@@ -613,6 +775,7 @@
       <div class="hero__cta" data-reveal style="justify-content:center;margin-top:1.75rem">
         <a class="btn" href="cheatsheet.html" target="_blank" rel="noopener">Take the cheat sheet</a>
         <a class="btn btn--ghost" href="worksheet.html" target="_blank" rel="noopener">Print the commitment card</a>
+        <a class="btn btn--ghost" href="#s-resources">Pick one resource</a>
         <a class="btn btn--ghost" href="#s-recap">Retake the quiz</a>
       </div>
     </div>
@@ -642,6 +805,7 @@
         <h4>Keep Learning</h4>
         <ul>
           <li><a href="#s-glossary">Glossary</a></li>
+          <li><a href="#s-resources">Resources</a></li>
           <li><a href="#s-recap">Knowledge Check</a></li>
           <li><a href="#s-plan">My Commitment</a></li>
           <li><a href="https://me5231979.github.io/Difficult_Conversations/">Difficult Conversations</a></li>
