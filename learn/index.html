@@ -204,7 +204,12 @@ body.menu-open{ overflow:hidden; }
 
 /* ═══════════════════ NUMBERED PROGRESSION ═══════════════════ */
 .howworks{ padding:clamp(72px,10vw,140px) 0; }
+.hw-how{ margin:clamp(20px,3vh,30px) 0 0; padding-left:24px; max-width:66ch; }
+.hw-how li{ font-size:1.0625rem; line-height:1.6; padding:5px 0; color:var(--tx); }
+.hw-how li::marker{ font-family:var(--cond); font-weight:700; color:var(--vu-gold); }
+.hw-cover{ display:block; margin-top:clamp(28px,4.5vh,44px); }
 .hw-list{ margin-top:clamp(36px,5vw,56px); border-top:1px solid var(--vu-gray-l); }
+.hw-cover + .hw-list{ margin-top:14px; }
 .hw-step{ display:grid; grid-template-columns:150px 1fr auto; gap:16px 32px; align-items:baseline; padding:34px 0; border-bottom:1px solid var(--vu-gray-l); }
 .hw-step .hw-no{ font-family:var(--cond); font-weight:700; font-size:clamp(2.6rem,5vw,3.4rem); line-height:1; color:var(--vu-gold); letter-spacing:.02em; }
 .hw-step h3{ font-family:var(--serif); font-weight:400; font-size:clamp(1.35rem,2.4vw,1.8rem); }
@@ -286,6 +291,7 @@ section + section{ border-top:1px solid transparent; }
 .fcard button.flipped .face.front{ display:none; }
 .fcard button.flipped .face.back{ display:flex; }
 .fcard .abbr{ font-family:var(--cond); font-weight:700; font-size:1.9rem; line-height:1; color:var(--vu-gold); letter-spacing:.02em; }
+.fcard .abbr-ic{ width:30px; height:30px; color:var(--vu-gold); flex-shrink:0; }
 .fcard h4{ font-size:1.08rem; margin-top:12px; }
 .fcard .def{ color:var(--tx2); font-size:.9rem; margin-top:8px; }
 .fcard .hint{ margin-top:auto; padding-top:18px; display:inline-flex; align-items:center; gap:8px;
@@ -497,6 +503,7 @@ details.pl-opt{ margin:0 0 18px; max-width:none; }
   min-height:44px; padding:9px 18px; font-size:.85rem; cursor:pointer; transition:color .2s ease-out,border-color .2s ease-out,background-color .2s ease-out; }
 .sim-chip:hover{ color:var(--tx); border-color:var(--strong); background:rgba(207,174,112,.1); }
 .sim-chip[hidden]{ display:none; }
+#simFocusChip{ border-style:solid; border-color:var(--strong); color:var(--tx); background:rgba(207,174,112,.12); font-weight:600; }
 .ra-fchip[aria-pressed="true"]{ border-style:solid; border-color:var(--strong); color:var(--tx); background:rgba(207,174,112,.12); }
 .sim-steps{ display:none; margin-top:30px; flex-direction:column; gap:12px; }
 .sim-steps.show{ display:flex; }
@@ -881,12 +888,14 @@ html.paged main#main{ position:fixed; top:var(--nav-h); bottom:var(--bar-h); lef
 @keyframes pgOutR{ to{ transform:translateX(100%); } }
 /* fit-the-viewport rhythm: tighter vertical spacing inside pages */
 html.paged section{ padding:clamp(24px,4vh,48px) 0; }
-html.paged .hero{ min-height:100%; padding:clamp(18px,3.5vh,44px) 0; }
-html.paged .hero h1{ font-size:clamp(2rem,4vh + 1rem,4rem); margin-top:16px; }
-html.paged .hero .hello{ margin-top:16px; }
-html.paged .hero .lead{ margin-top:12px; }
-html.paged .hero .meta-line{ margin-top:14px; }
-html.paged .hero .cta-row{ margin-top:20px; }
+html.paged .hero{ min-height:100%; padding:clamp(8px,1.6vh,24px) 0; }
+html.paged .hero h1{ font-size:clamp(2rem,4vh + 1rem,4rem); margin-top:14px; }
+html.paged .hero .hello{ margin-top:14px; }
+html.paged .hero .lead{ margin-top:12px; max-width:78ch; }
+html.paged .hero .outcomes{ margin-top:10px; gap:5px; max-width:none; }
+html.paged .hero .outcomes li{ font-size:.98rem; line-height:1.4; }
+html.paged .hero .meta-line{ margin-top:12px; }
+html.paged .hero .cta-row{ margin-top:14px; }
 html.paged .manifesto{ padding:clamp(36px,9vh,90px) 0; }
 html.paged .howworks{ padding:clamp(24px,4vh,44px) 0; }
 html.paged .hw-list{ margin-top:clamp(16px,2.5vh,28px); }
@@ -1089,6 +1098,46 @@ body.oracle-open{ overflow:hidden; }
 .hero .outcomes{ list-style:none; margin-top:14px; display:flex; flex-direction:column; gap:8px; max-width:62ch; }
 .hero .outcomes li{ position:relative; padding-left:24px; color:var(--tx2); font-size:1.02rem; line-height:1.55; }
 .hero .outcomes li::before{ content:""; position:absolute; left:0; top:.62em; width:12px; height:2px; background:var(--vu-gold); }
+.hero .outcomes b{ color:#fff; font-weight:600; }
+.pg-hint{ display:none; }
+html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:var(--cond); font-weight:700;
+  font-size:.75rem; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.62); }
+
+/* ═══════════════════ PRINT SUMMARY ═══════════════════
+   #printSummary is display:none on screen and populated only when the
+   learner clicks "Download your summary (PDF)"; @media print swaps the
+   whole app out for it. Screen rendering is untouched. */
+#printSummary{ display:none; }
+.print-cta{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:18px; }
+.print-cta .hinttxt{ margin:0; }
+@media print{
+  html, body{ height:auto !important; overflow:visible !important; background:#fff !important; }
+  body > *:not(#printSummary){ display:none !important; }
+  #printSummary{ display:block !important; color:#000; background:#fff;
+    font-family:-apple-system, "Segoe UI", Helvetica, Arial, sans-serif; font-size:11pt; line-height:1.5; }
+  #printSummary .ps-head{ display:flex; align-items:center; gap:16pt; border-bottom:2pt solid #000; padding-bottom:10pt; }
+  #printSummary .ps-head img{ width:52pt; height:auto; }
+  #printSummary .ps-title{ font-family:Georgia, "Times New Roman", serif; font-size:16pt; margin:0; }
+  #printSummary .ps-meta{ margin:2pt 0 0; font-size:9pt; color:#333; }
+  #printSummary h2{ font-family:Georgia, "Times New Roman", serif; font-weight:700; color:#000; font-size:13pt; margin:16pt 0 4pt;
+    border-bottom:.75pt solid #999; padding-bottom:2pt; break-after:avoid; page-break-after:avoid; }
+  #printSummary h3{ font-family:inherit; color:#000; font-size:10.5pt; margin:8pt 0 2pt; break-after:avoid; page-break-after:avoid; }
+  #printSummary .ps-title{ color:#000; }
+  #printSummary p{ margin:3pt 0; }
+  #printSummary ul, #printSummary ol{ margin:3pt 0 3pt 16pt; padding:0; }
+  #printSummary li{ margin:2pt 0; break-inside:avoid; page-break-inside:avoid; }
+  #printSummary .ps-block{ break-inside:avoid; page-break-inside:avoid; margin:6pt 0; }
+  #printSummary .ps-pre{ white-space:pre-wrap; font-family:"Courier New", monospace; font-size:9pt;
+    border:.75pt solid #999; padding:6pt; margin:4pt 0; break-inside:avoid; page-break-inside:avoid; }
+  #printSummary .ps-empty{ color:#555; font-style:italic; }
+  #printSummary .ps-url{ color:#000; word-break:break-all; }
+  #printSummary a{ color:#000; text-decoration:none; }
+  #printSummary .ps-fine{ font-size:8.5pt; color:#444; margin-top:14pt; border-top:.75pt solid #999; padding-top:6pt; }
+  #printSummary dl{ margin:3pt 0; }
+  #printSummary dt{ font-weight:700; display:inline; }
+  #printSummary dd{ display:inline; margin:0; }
+  #printSummary .ps-term{ margin:2pt 0; }
+}
 
 /* ═══════════════════ REDUCED MOTION ═══════════════════ */
 @media (prefers-reduced-motion:reduce){
@@ -1181,18 +1230,21 @@ body.oracle-open{ overflow:hidden; }
     <h1 class="metal">AI is your new <em>colleague</em>.</h1>
     <p class="hello">Welcome to CHART.</p>
     <p class="lead"><b>CHART</b>, <span class="def">Cultivating Human-AI Readiness and Thinking</span>, is Vanderbilt&rsquo;s
-      self-paced AI course for staff. AI is already part of staff work; the skill is using it well. By the end, you will:</p>
-    <ul class="outcomes" aria-label="By the end of this course, you will">
-      <li>Know where AI meets your own role, task by task, with a plan.</li>
-      <li>Write prompts that get useful answers on the first try.</li>
-      <li>Know which tool fits which job and which data, with your week mapped.</li>
+      self-paced AI course for staff. AI is already part of staff work; the skill is using it well. By the end of this course, you will be able to:</p>
+    <ul class="outcomes" aria-label="By the end of this course, you will be able to">
+      <li><b>Explain</b> what AI tools like ChatGPT are and why they sometimes state made-up things as fact</li>
+      <li><b>Identify</b> which of your own job tasks AI can help with, and build a 30/60/90 development plan from them</li>
+      <li><b>Write</b> clear, complete prompts using the CRIT framework: Context, Role, Interview, Task</li>
+      <li><b>Choose</b> the right approved tool for any task based on how sensitive the data is: ChatGPT, Amplify, or Copilot</li>
+      <li><b>Check</b> AI answers for made-up details before using them in your work</li>
     </ul>
     <p class="lead closer">This is not a course about AI. It is <em>practice</em> for the way you will work next.</p>
     
-    <p class="meta-line" aria-label="50 to 60 minutes, self-paced, nothing reported, progress stays in your browser"><b>50&ndash;60 minutes</b> &middot; self-paced &middot; nothing reported &middot; progress stays in your browser</p>
+    <p class="meta-line" aria-label="50 to 60 minutes, in class or self-paced, nothing reported, progress stays in your browser"><b>50&ndash;60 minutes</b> &middot; in class or self-paced &middot; nothing reported &middot; progress stays in your browser</p><!-- [EDIT: hero lead above says "self-paced AI course" and is owner-dictated; decide whether it should also say "in class or self-paced"] -->
     <div class="cta-row">
       <a class="btn btn-gold" href="#start">Start learning
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span class="pg-hint">Turn pages with the arrows below</span>
     </div>
   </div>
 </section>
@@ -1225,44 +1277,50 @@ body.oracle-open{ overflow:hidden; }
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:0">
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">How CHART works</span></span>
-      <h2>The course at a <em>glance</em>.</h2>
-      <p>Applications first, then the how: you see where AI fits your job before you drill the skills.</p>
+      <h2>How this <em>works</em>.</h2>
     </div>
+    <ol class="hw-how reveal">
+      <li>Turn the pages with the arrows below (or your keyboard arrows; swipe on a phone).</li>
+      <li>When a page has an activity, do it. Everything is practice, nothing is graded.</li>
+      <li>Mark each section done as you go; the button is in the bottom bar.</li>
+      <li>Finish with the knowledge check, then mark the course complete in Oracle Learning.</li>
+    </ol>
+    <span class="mono hw-cover reveal">What you will cover</span>
     <div class="hw-list reveal">
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">01</span>
         <div>
-          <h3>Understand it, then find your applications</h3>
-          <p>Learn what AI is and watch it work, then map your own role task by task. You practice better when you know what you are practicing for.</p>
+          <h3>Understand AI, then map your own role</h3>
+          <p>Learn what AI is and watch it work, then map your own role task by task.</p>
         </div>
         <span class="chip">~19 min</span>
       </div>
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">02</span>
         <div>
-          <h3>Learn to direct it, then run one real task</h3>
-          <p>CRIT is the four-part way to write a prompt, the message you type to an AI tool; the Playground is where you drill it and take one task live. Skills stick when they touch real work.</p>
+          <h3>Learn CRIT, then practice on a real task</h3>
+          <p>CRIT is the four-part way to write a prompt, the message you type to an AI tool; the Playground is where you drill it and take one task live.</p>
         </div>
         <span class="chip">~17 min</span>
       </div>
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">03</span>
         <div>
-          <h3>Know your tools, then map your week</h3>
-          <p>Meet ChatGPT, Amplify, and Copilot and their data rules, then let the Simulator turn your week into a plan. The right tool is a data decision.</p>
+          <h3>Meet the three tools, then plan your week</h3>
+          <p>Meet ChatGPT, Amplify, and Copilot and their data rules, then let the Simulator turn your week into a plan: the right tool depends on the data.</p>
         </div>
         <span class="chip">~6 min</span>
       </div>
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">04</span>
         <div>
-          <h3>Use it safely, then prove it</h3>
+          <h3>Use AI safely, then check what you learned</h3>
           <p>Set the guardrails, check what stuck with eight questions, and leave with a next step. You own every output: if AI helped write it, you answer for it.</p>
         </div>
         <span class="chip">~18 min</span>
       </div>
     </div>
-    <p class="hw-meta reveal">About 50&ndash;60 minutes for the core path &middot; every module is skippable and self-paced &middot; embedded videos are optional extras.</p>
+    <p class="hw-meta reveal">About 50&ndash;60 minutes for the core path &middot; every module is skippable, in class or on your own &middot; embedded videos are optional extras.</p>
     <p class="hw-meta reveal" id="progTopLine" style="margin-top:10px">Section tracking: you have 10 sections ahead. Progress saves only in this browser.</p>
     <!-- [EDIT] program name — CHART is a working title; the acronym line below updates with any rename -->
     <p class="acr-line reveal" role="img" aria-label="CHART stands for Cultivating Human-AI Readiness and Thinking"><b>C</b>ultivating&ensp;<b>H</b>uman-<b>A</b>I&ensp;<b>R</b>eadiness&ensp;and&ensp;<b>T</b>hinking</p>
@@ -1368,7 +1426,7 @@ body.oracle-open{ overflow:hidden; }
             </span>
             <span class="face back">
               <span class="tag">Plain English</span>
-              <p>Agentic AI is AI that doesn&rsquo;t just answer one question and stop. Give it a goal, and it works toward it on its own: taking multiple steps, using tools, and checking its own progress without needing instructions for each move.</p>
+              <p>Agentic AI is AI that doesn&rsquo;t just answer one question and stop. Give it a goal, and it works toward it on its own: taking multiple steps, using tools, and checking its own progress without needing instructions for each step.</p>
               <p><b>At Vanderbilt:</b> Instead of drafting one reply, it works an entire inbox. Reading messages, drafting responses, flagging anything sensitive for a person. More independence means more checkpoints, not fewer.</p>
             </span>
           </button>
@@ -1539,77 +1597,77 @@ body.oracle-open{ overflow:hidden; }
       <div class="module-head">
         <span class="mno">Module D</span>
         <h3>Limits to know</h3>
-        <p>In this module, you will flip four cards: a built-in limit, a campus example, and the counter-move for each.</p>
+        <p>In this module, you will flip four cards. Each shows a built-in limit, a campus example, and what to do about it.</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>All four limits follow from Module B: the model <em>predicts</em> text; it does not look anything up. Each card pairs the limit with its counter-move.</p>
+        <p>All four limits come from the same fact you already learned: the model <em>predicts</em> text; it does not look anything up.</p>
       </div>
       <div class="flip-grid">
         <div class="fcard">
           <button type="button" class="flip-btn" aria-expanded="false">
             <span class="face front">
-              <span class="abbr" aria-hidden="true">CTX</span>
+              <svg class="abbr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18"/></svg>
               <h4>Context window</h4>
               <span class="def">The model&rsquo;s working memory.</span>
-              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the counter-move</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for what to do about it</span>
             </span>
             <span class="face back">
               <span class="tag">The limit</span>
               <p>It can only &ldquo;see&rdquo; a limited amount of text at once. In marathon chats, the earliest details fall out the back, which is why long threads drift.</p>
-              <p><b>On campus:</b> it forgets the constraints you set an hour ago. <b>Counter-move:</b> start a fresh chat and re-supply the key facts: paste the relevant policy section, not the whole handbook.</p>
+              <p><b>On campus:</b> it forgets the constraints you set an hour ago. <b>What to do:</b> start a fresh chat and re-supply the key facts: paste the relevant policy section, not the whole handbook.</p>
             </span>
           </button>
         </div>
         <div class="fcard">
           <button type="button" class="flip-btn" aria-expanded="false">
             <span class="face front">
-              <span class="abbr" aria-hidden="true">T−1</span>
+              <svg class="abbr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
               <h4>Knowledge cutoff</h4>
               <span class="def">Trained on the past, not the present.</span>
-              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the counter-move</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for what to do about it</span>
             </span>
             <span class="face back">
               <span class="tag">The limit</span>
               <p>The model learned from a snapshot of the world. Last week&rsquo;s policy update and this morning&rsquo;s org change are not in there unless you paste them in or the tool browses.</p>
-              <p><b>On campus:</b> it may cite an outdated procedure with total confidence. <b>Counter-move:</b> supply the current document yourself, and ask &ldquo;as of when is your information?&rdquo;</p>
+              <p><b>On campus:</b> it may cite an outdated procedure with total confidence. <b>What to do:</b> supply the current document yourself, and ask &ldquo;as of when is your information?&rdquo;</p>
             </span>
           </button>
         </div>
         <div class="fcard">
           <button type="button" class="flip-btn" aria-expanded="false">
             <span class="face front">
-              <span class="abbr" aria-hidden="true">RNG</span>
+              <svg class="abbr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>
               <h4>Built-in randomness</h4>
               <span class="def">Same question, different answers.</span>
-              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the counter-move</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for what to do about it</span>
             </span>
             <span class="face back">
               <span class="tag">The limit</span>
               <p>It picks each word with a touch of chance, so ask twice and you get two versions. That&rsquo;s a feature for brainstorming and a surprise for anyone expecting a calculator.</p>
-              <p><b>On campus:</b> three runs of the same announcement, three different drafts. <b>Counter-move:</b> ask for three options on purpose, and pin the exact wording yourself before anything ships.</p>
+              <p><b>On campus:</b> three runs of the same announcement, three different drafts. <b>What to do:</b> ask for three options on purpose, and pin the exact wording yourself before anything ships.</p>
             </span>
           </button>
         </div>
         <div class="fcard">
           <button type="button" class="flip-btn" aria-expanded="false">
             <span class="face front">
-              <span class="abbr" aria-hidden="true">≠</span>
-              <h4>Confidence &ne; accuracy</h4>
+              <svg class="abbr-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+              <h4>Confidence is not accuracy</h4>
               <span class="def">Smooth writing can still be wrong.</span>
-              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for the counter-move</span>
+              <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg>Flip for what to do about it</span>
             </span>
             <span class="face back">
               <span class="tag">The limit</span>
               <p>The model sounds equally sure when it&rsquo;s right and when it&rsquo;s wrong. A confident tone is just how it writes. It tells you nothing about whether the answer is accurate.</p>
-              <p><b>On campus:</b> an authoritative, specific, and wrong benefits deadline. <b>Counter-move:</b> let importance set your verification bar: the more it matters, the harder you check.</p>
+              <p><b>On campus:</b> an authoritative, specific, and wrong benefits deadline. <b>What to do:</b> let importance set your verification bar: the more it matters, the harder you check.</p>
             </span>
           </button>
         </div>
       </div>
       <div class="evidence reveal">
         <span class="e-label">The evidence: the jagged frontier</span>
-        <p><b>758 consultants: with AI, 12.2% more tasks, 25.1% faster, 40% higher quality on work inside AI&rsquo;s abilities; on a task just beyond them, accuracy fell from 84% to 60&ndash;70%, still sounding polished.</b> The frontier, the boundary between what AI does well and what it fumbles, is jagged and invisible from the outside, so the working habit is one word: <b>verify</b>.</p>
+        <p>In a Harvard study of 758 consultants, people using AI did better work on tasks AI is good at, and noticeably worse on a task just beyond its abilities, while sounding just as confident. <b>The numbers: 12.2% more tasks, 25.1% faster, 40% higher quality inside AI&rsquo;s abilities; on the task beyond them, accuracy fell from 84% to 60&ndash;70%, still sounding polished.</b> That boundary is jagged and invisible from the outside, so the working habit is one word: <b>verify</b>.</p>
         <span class="e-src">Dell&rsquo;Acqua et&nbsp;al., &ldquo;Navigating the Jagged Technological Frontier,&rdquo; <a href="https://mitsloan.mit.edu/sites/default/files/2023-10/SSRN-id4573321.pdf" target="_blank" rel="noopener">Harvard Business School working paper, 2023 (PDF)</a></span>
       </div>
     </div>
@@ -1681,12 +1739,12 @@ body.oracle-open{ overflow:hidden; }
 
     </div>
 
-    <!-- Module A, continued: ideas 03 and 04 plus the four moves -->
+    <!-- Module A, continued: ideas 03 and 04 plus the four steps -->
     <div class="module reveal" data-pg="The frontier &amp; the horizon">
       <div class="module-head">
         <span class="mno">Module A &middot; continued</span>
         <h3>The frontier &amp; the horizon</h3>
-        <p>Ideas 03 and 04, then the four moves that turn all four into a plan.</p>
+        <p>Ideas 03 and 04, then the four steps that turn all four into a plan.</p>
       </div>
       <div class="ra-idea" style="margin-top:0">
         <h4><span class="no" aria-hidden="true">03</span>The frontier is jagged</h4>
@@ -1718,7 +1776,7 @@ body.oracle-open{ overflow:hidden; }
       </div>
 
       <div class="canon" style="margin-top:30px">
-        <h5>The four moves</h5>
+        <h5>The four steps</h5>
         <ol>
           <li><span><b>Inventory the tasks.</b> Write down what your week actually contains; the list, not the job description, is the raw material.</span></li>
           <li><span><b>Sort into three buckets.</b> Delegate with oversight, redesign together, or human-core, the work only a person should do. Every task goes in exactly one.</span></li>
@@ -1750,7 +1808,7 @@ body.oracle-open{ overflow:hidden; }
             <div class="rs-body">
               <div class="field" style="margin-bottom:0; max-width:560px">
                 <label for="raRole">The role you are assessing (yours, or one you manage)</label>
-                <input type="text" id="raRole" maxlength="80" placeholder="Example: financial analyst, events coordinator, grants administrator" />
+                <input type="text" id="raRole" maxlength="80" placeholder="Example: financial analyst, events coordinator, early childhood teacher" />
                 <p class="hinttxt">Nothing here is sent anywhere. Only the focus task you pick at the end of your report is saved, in this browser only.</p>
               </div>
             </div>
@@ -1944,12 +2002,12 @@ body.oracle-open{ overflow:hidden; }
         <p>The background, the situation, and the constraints, so the model is not guessing in the dark.</p></div>
       <div class="rstep"><span class="rno">R &middot; Role</span><h5>Whose perspective</h5>
         <p>The professional lens you want the answer from: an editor, an analyst, a challenger.</p></div>
-      <div class="rstep" style="border:1px solid var(--bdg)"><span class="rno">I &middot; Interview</span><h5>The signature move</h5>
+      <div class="rstep" style="border:1px solid var(--bdg)"><span class="rno">I &middot; Interview</span><h5>What sets CRIT apart</h5>
         <p>Tell it to ask you clarifying questions first and wait, so it shows you its blind spots instead of papering over them.</p></div>
       <div class="rstep"><span class="rno">T &middot; Task</span><h5>The deliverable</h5>
         <p>What type of output, what scope, what format: the model can only hit a target you name.</p></div>
     </div>
-    <p class="hinttxt reveal" style="margin-top:12px">The Interview move earns its keep fast: use it the next time your request would take more than three sentences to explain.</p>
+    <p class="hinttxt reveal" style="margin-top:12px">The Interview step earns its keep fast: use it the next time your request would take more than three sentences to explain.</p>
     <div class="module-head reveal" data-pg="The source &amp; the video">
       <span class="mno">CRIT &middot; the source</span>
       <h3>The source &amp; the video</h3>
@@ -2056,7 +2114,7 @@ body.oracle-open{ overflow:hidden; }
       <span class="you-are">You are here: practice, where CRIT becomes a habit.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Playground / 04</span></span>
       <h2>Three practice <em class="s">apps</em>.</h2>
-      <p>In this section, you will drill the CRIT moves in the Prompt Lab and the Prompt Grader, pick up three refinements, then take one real task live. Nothing you type here is kept or sent; only your progress and your chosen focus task stay in this browser.</p>
+      <p>In this section, you will drill CRIT in the Prompt Lab and the Prompt Grader, pick up three ways to get a better answer, then use AI on one real task from your job. Nothing you type here is kept or sent; only your progress and your chosen focus task stay in this browser.</p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         Guided practice apps, no live AI: the real thing lives in ChatGPT, Amplify, and Copilot, and what you build here goes there.</p>
     </div>
@@ -2205,47 +2263,47 @@ body.oracle-open{ overflow:hidden; }
         <p class="hinttxt" style="margin-top:14px">Grade your next real prompt before you send it; thirty seconds here saves a round of rework later.</p>
       </div>
 
-    <!-- ── THREE REFINEMENTS: the moves that survive from the old techniques module ── -->
-    <div class="module reveal" id="refinements" data-pg="Three refinements">
+    <!-- ── THREE WAYS TO GET A BETTER ANSWER: additions that improve any CRIT prompt ── -->
+    <div class="module reveal" id="refinements" data-pg="Three ways to get a better answer">
       <div class="module-head">
-        <span class="mno">Refinements</span>
-        <h3>Three refinements</h3>
-        <p>In this module, you will pick up three moves that make any CRIT prompt better. Each has an example you can copy: paste it into your tool, swap in your details, and send it.</p>
+        <span class="mno">Better answers</span>
+        <h3>Three ways to get a better answer</h3>
+        <p>In this module, you will pick up three things you can add to any prompt to get a better answer back. AI&rsquo;s first answer is rarely its best; these additions raise it. Copy an example, paste it into your AI tool, and compare what comes back. You leave with three add-ons that work on any prompt.</p>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>CRIT gets the brief right; these moves raise what comes back. The model completes <em>your</em> pattern, so show the pattern you want, make it argue with the draft, and treat every first answer as round one.</p>
+        <p>CRIT gets your request right. These three additions improve what comes back: show the AI an example of what good looks like, ask it to point out weaknesses, and ask for another version.</p>
       </div>
       <div class="tech-list">
         <div class="tech reveal">
           <span class="t-no" aria-hidden="true">1</span>
           <div>
-            <h4>Show examples (few-shot)</h4>
-            <p class="t-why">The fastest way to get your style is to show it, not describe it.</p>
-            <code>Here are two subject lines I like: &ldquo;Quick favor, big impact&rdquo; and &ldquo;Three things before Friday.&rdquo; Write five more in the same voice.</code>
+            <h4>Show it an example</h4>
+            <p class="t-why">AI copies patterns. Give it one or two examples of what good looks like and it will match them.</p>
+            <code>Here are two reminder emails our office liked: &ldquo;Open enrollment closes Friday at 5:00. Ten minutes now saves a phone call later.&rdquo; and &ldquo;Parking permits renew next week. It takes two clicks.&rdquo; Write a reminder in the same style about the staff training deadline on March 14.</code>
             <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy example</span></button>
           </div>
         </div>
         <div class="tech reveal">
           <span class="t-no" aria-hidden="true">2</span>
           <div>
-            <h4>Ask it to critique you, or itself</h4>
+            <h4>Ask it to find the weak spots</h4>
             <p class="t-why">It is a sharp editor, especially of its own work.</p>
-            <code>Before you finalize, list three ways this draft could fail with a busy reader. Then revise it to fix all three.</code>
+            <code>Before you finish this meeting summary, list three places a staff member skimming it could miss something important. Then revise it to fix all three.</code>
             <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy example</span></button>
           </div>
         </div>
         <div class="tech reveal">
           <span class="t-no" aria-hidden="true">3</span>
           <div>
-            <h4>Iterate: the first answer is a first draft</h4>
-            <p class="t-why">Treat it like one. The second ask is usually the one that lands.</p>
-            <code>Good start. Now make it half as long, twice as warm, and end with one clear next step.</code>
+            <h4>Ask for another version</h4>
+            <p class="t-why">Treat the first answer as a draft. Say what to change and ask again.</p>
+            <code id="refEx3">Good start on this announcement. Now make it half as long, warmer, and end with one clear next step.</code>
             <button type="button" class="btn btn-ghost btn-sm tech-copy"><span>Copy example</span></button>
           </div>
         </div>
       </div>
-      <p class="hinttxt" style="margin-top:14px">Next time a first draft comes back flat, send move three before rewriting it yourself.</p>
+      <p class="hinttxt" style="margin-top:14px">Next time a first answer comes back flat, use the third addition: say what to change and ask again.</p>
     </div>
 
     <!-- ── TAKE IT LIVE: the Playground&rsquo;s closing step ── -->
@@ -2253,7 +2311,16 @@ body.oracle-open{ overflow:hidden; }
       <div class="module-head">
         <span class="mno">Closing step</span>
         <h3>Take it <em>live</em>.</h3>
-        <p>This closing step is your first real rep: one genuine task, run in a real AI tool. One real rep teaches more than any demo, because the details are yours. <span id="tlPick">Pick one task from your buckets in <a href="#readiness">Your role, task by task</a>.</span> Build the prompt in the Prompt Lab and run it in your tool, safe data only. Then jot two notes below while it is fresh. You leave with your first honest before-and-after; nothing you type is stored.</p>
+        <p>This closing step is where you use AI on one real task from your job for the first time. One real task teaches more than any demo, because the details are yours. You leave with your first honest before-and-after; nothing you type is stored.</p>
+      </div>
+      <div class="canon" style="margin-top:0;margin-bottom:20px">
+        <h5>Four steps</h5>
+        <ol>
+          <li><span>Go back to <a href="#panel-lab">the Prompt Lab</a> and build a prompt <span id="tlPick">for one real task from your week (pick one in <a href="#readiness">Your role, task by task</a>)</span>.</span></li>
+          <li><span>Copy the prompt and paste it into ChatGPT, Amplify, or Copilot. Safe data only.</span></li>
+          <li><span>Read the answer it gives you.</span></li>
+          <li><span>In the two boxes below, note what it got right and what you had to fix, then select &ldquo;Save my notes&rdquo;.</span></li>
+        </ol>
       </div>
       <p class="hinttxt">Notice the shape as you build: context, role, interview, task.</p>
       <div class="app-grid">
@@ -2266,16 +2333,16 @@ body.oracle-open{ overflow:hidden; }
             <label for="rrFix">What did you have to fix?</label>
             <textarea id="rrFix" rows="3" placeholder="e.g. It invented a deadline and didn&rsquo;t know our office closes early on Fridays."></textarea>
           </div>
-          <button type="button" class="btn btn-primary" id="rrBtn">Log my rep
+          <button type="button" class="btn btn-primary" id="rrBtn">Save my notes
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg></button>
           <p class="nudge" id="rrNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Jot a line in both boxes first. Comparing them is the whole exercise.</p>
         </form>
         <div id="rrOut" role="status" aria-live="polite"></div>
       </div>
       <div class="lframe" style="margin-top:24px">
-        <span class="lf-chip"><b>Pattern</b>Prompt &rarr; run &rarr; iterate once &rarr; reflect</span>
-        <span class="lf-chip"><b>Cadence</b>One real rep a week compounds fast</span>
-        <span class="lf-chip"><b>Data rule</b>Safe data only. When in doubt, Amplify or nothing</span>
+        <span class="lf-chip"><b>The habit</b>Build, run, improve once, note what you learned</span>
+        <span class="lf-chip"><b>How often</b>One real task a week is enough</span>
+        <span class="lf-chip"><b>Data rule</b>Safe data only, and never children&rsquo;s records. When in doubt, Amplify or nothing</span><!-- [EDIT: confirm child-data guidance with the Child and Family Center] -->
       </div>
     </div>
     <div class="md-wrap">
@@ -2283,7 +2350,7 @@ body.oracle-open{ overflow:hidden; }
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
         <span>Done with this section</span></button>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>One rep run in one tool; now meet all three <em>properly</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>One real task run in one tool; now meet all three <em>properly</em>.</p></div>
   </div>
 </section>
 
@@ -2357,6 +2424,7 @@ body.oracle-open{ overflow:hidden; }
       <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/></svg>Office apps → <b>Copilot</b></span>
       <span class="r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>When in doubt → <b>Amplify</b></span>
     </div>
+    <p class="hinttxt reveal" style="margin-top:10px">One hard line inside every rule: children&rsquo;s names, photos, and records never go into any AI tool, approved or not.<!-- [EDIT: confirm child-data guidance with the Child and Family Center] --></p>
 
     <!-- ── TOOL MATCH: the drill, right after the teaching ── -->
     <div class="ppanel" id="panel-match" data-pg="Tool Match" aria-label="Tool Match">
@@ -2420,10 +2488,10 @@ body.oracle-open{ overflow:hidden; }
 <section id="simulator" class="th-cream" aria-label="AI opportunity simulator">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="you-are">You are here: your week, mapped.</span>
+      <span class="you-are">You are here: one task, taken deep.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Simulator / 06</span></span>
       <h2>The AI Opportunity <em class="s">Simulator.</em></h2>
-      <p>In this section, you will describe one real piece of your work and get back an opportunity map, starter prompts, data flags, and the first 30 days of your plan, unpacked. Nothing you type here is kept or sent; only your progress and your chosen focus task stay in this browser.</p>
+      <p>In the readiness assessment you mapped your whole role from above. In this section, you will go deep on one task: describe it, and get back an opportunity map, starter prompts, data flags, and the first 30 days of your plan. You leave with prompts you can run today. Nothing you type here is kept or sent; only your progress and your chosen focus task stay in this browser.</p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
         A guided framework, not a live AI: take these prompts into your real tools.</p>
       <div class="lframe">
@@ -2440,11 +2508,11 @@ body.oracle-open{ overflow:hidden; }
 
     <div class="sim-shell reveal" id="simrun" data-pg="Run the simulator">
       <div class="module-head" style="margin-bottom:18px">
-        <span class="mno">Centerpiece</span>
+        <span class="mno">Centerpiece &middot; Go deep on one task</span>
         <h3>Run the simulator</h3>
       </div>
       <form class="sim-form" autocomplete="off" novalidate>
-        <div class="micro"><span><i aria-hidden="true">1</i>Describe a real task from your week</span><span><i aria-hidden="true">2</i>Pick your department and goal</span><span><i aria-hidden="true">3</i>Press &ldquo;Analyze my use case&rdquo;, then try one starter prompt</span></div>
+        <div class="micro"><span><i aria-hidden="true">1</i><span id="simStep1">Describe a real task from your week</span></span><span><i aria-hidden="true">2</i>Pick your department and goal</span><span><i aria-hidden="true">3</i>Press &ldquo;Analyze my use case&rdquo;, then try one starter prompt</span></div>
         <div class="field">
           <label for="simText">Your use case: a task, process, or headache from your week</label>
           <textarea id="simText" rows="5" placeholder="e.g. Every Monday I compile updates from six teams into one status report, chase people for missing pieces, and rewrite everything into a consistent format for leadership…"></textarea>
@@ -2455,6 +2523,7 @@ body.oracle-open{ overflow:hidden; }
           <button type="button" class="sim-chip" data-dept="Communications" data-case="Every week I assemble a staff newsletter from submissions that arrive in wildly different formats, rewrite them into one voice, and chase contributors for missing details. I also draft event announcements and answer the same handful of questions about submission deadlines.">Communications newsletter week</button>
           <button type="button" class="sim-chip" data-dept="Human Resources" data-case="I onboard new hires: schedule orientation, send the same welcome documents, answer the same first-week questions, and track completion of required training in a spreadsheet. Writing the personalized welcome emails takes forever.">HR onboarding grind</button>
           <button type="button" class="sim-chip" data-dept="Finance" data-case="I prepare a monthly budget variance report by pulling numbers from three systems, analyzing which lines are over, writing a summary memo for leadership, and emailing follow-ups to the units that overspent.">Finance monthly close</button>
+          <button type="button" class="sim-chip" data-dept="Acorn School / Early Childhood" data-case="I teach in a toddler classroom at the Acorn School. Every Friday I write the classroom newsletter for parents about what we explored, plan next week&rsquo;s activities around what the children are curious about, and turn my observation notes into short summaries, without using any child&rsquo;s name.">Acorn parent newsletter week</button>
         </div>
         <div class="sim-row">
           <div class="field">
@@ -2463,7 +2532,7 @@ body.oracle-open{ overflow:hidden; }
               <option>Admissions</option><option>Human Resources</option><option>Finance</option>
               <option>Information Technology</option><option>Research Administration</option><option>Advancement</option>
               <option>Student Affairs</option><option>Facilities</option><option>Communications</option>
-              <option>Library</option><option>Other</option>
+              <option>Library</option><option>Acorn School / Early Childhood</option><option>Other</option>
             </select>
           </div>
           <div class="field">
@@ -2554,6 +2623,7 @@ body.oracle-open{ overflow:hidden; }
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Social Security numbers</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Student records or grades (FERPA)</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Health information (HIPAA)</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Children&rsquo;s names, photos &amp; records (protection of minors)</li><!-- [EDIT: confirm child-data guidance with the Child and Family Center] -->
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Salaries &amp; personnel files</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Donor records &amp; gift data</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Passwords, keys &amp; credentials</li>
@@ -2752,7 +2822,7 @@ body.oracle-open{ overflow:hidden; }
           <div class="opts">
             <label><input type="radio" name="q6" value="a" /> ChatGPT in another tab</label> <label><input type="radio" name="q6" value="b" /> Amplify</label> <label><input type="radio" name="q6" value="c" /> Copilot, it lives inside Office</label> <label><input type="radio" name="q6" value="d" /> A very patient coworker</label>
           </div>
-          <p class="expl"><b>Copilot.</b> Office apps → Copilot is the rule of thumb. With Vanderbilt&rsquo;s Copilot license, it can work inside your sheet, so you skip the copy-paste dance. <!-- [EDIT: confirm license coverage] --></p>
+          <p class="expl"><b>Copilot.</b> The rule of thumb says office apps call for Copilot. With Vanderbilt&rsquo;s Copilot license, it can work inside your sheet, so you skip the copy-paste dance. <!-- [EDIT: confirm license coverage] --></p>
         </fieldset>
         <fieldset class="qz" data-answer="b">
           <legend><span class="qn">6/8</span>A colleague wants AI help summarizing notes that include employee salary details. Which tool?</legend>
@@ -2875,7 +2945,7 @@ body.oracle-open{ overflow:hidden; }
       </article>
       <article class="recap reveal" style="transition-delay:.12s">
         <h3>How to steer it</h3>
-        <p>CRIT (Context, Role, Interview, Task) turns a vague request into a brief. The signature move: tell the model to ask clarifying questions first, and wait. You stay the thought leader.</p>
+        <p>CRIT (Context, Role, Interview, Task) turns a vague request into a brief. What sets it apart: tell the model to ask clarifying questions first, and wait. You stay the thought leader.</p>
         <span class="r-why"><b>At work:</b> prompts come back needing fewer rewrites, and the questions it asks up front are the gaps you would otherwise find while checking.</span>
       </article>
       <article class="recap reveal">
@@ -2900,8 +2970,13 @@ body.oracle-open{ overflow:hidden; }
         <li><span><b>Your readiness report.</b> The 30/60/90 plan you copied from <a href="#raForm">the assessment</a>; everything after it executes that plan.</span></li>
         <li><span><b>Your focus-task prompt.</b> The A-grade CRIT prompt from <a href="#panel-lab">the Prompt Lab</a>, proven in <a href="#panel-grader">the Grader</a>.</span></li>
         <li><span><b>Three starter prompts.</b> Copied from <a href="#simrun">the Simulator</a>, shaped around your own case.</span></li>
-        <li><span><b>One boundary.</b> The counter-move you chose in <a href="#keeptime">Keep the time</a>, so the saved hour stays yours.</span></li>
+        <li><span><b>One boundary.</b> The rule you chose in <a href="#keeptime">Keep the time</a>, so the saved hour stays yours.</span></li>
       </ol>
+      <div class="print-cta">
+        <button type="button" class="btn btn-primary btn-sm print-btn">Download your summary (PDF)
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></button>
+        <p class="hinttxt">One document with everything above, built from what you typed this visit. Your browser&rsquo;s print dialog opens; choose Save as PDF. Nothing is sent anywhere.</p>
+      </div>
     </div>
     <div class="bridge reveal"><span class="b-label">Next</span><p>The other half is a habit, and it starts <em>this week</em>.</p></div>
   </div>
@@ -2929,7 +3004,7 @@ body.oracle-open{ overflow:hidden; }
         <span class="hw-no" aria-hidden="true">02</span>
         <div>
           <h3>Practice the prompt</h3>
-          <p>Build it in the <a href="#playground">Prompt Lab</a> with all four CRIT moves, interview line included, then paste it into the Grader and keep tightening until it earns an A.</p>
+          <p>Build it in the <a href="#playground">Prompt Lab</a> with all four CRIT parts, interview line included, then paste it into the Grader and keep tightening until it earns an A.</p>
         </div>
         <span class="chip">10 min</span>
       </div>
@@ -2985,8 +3060,32 @@ body.oracle-open{ overflow:hidden; }
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Resources / 10</span></span>
       <h2>Keep <em class="s">learning</em>.</h2>
       <p>The course is done; this is the part that keeps going. Pick one voice below: fifteen curious minutes a week is the whole assignment.</p>
-      <div class="lframe"><span class="lf-chip"><b>Last reviewed</b>July 2026</span><span class="lf-chip"><b>Format</b>All free to start &middot; all external links</span></div>
+      <div class="lframe"><span class="lf-chip"><b>Last reviewed</b>July 2026</span><span class="lf-chip"><b>Format</b>All free to start &middot; Oracle picks included for staff</span></div>
     </div>
+      <div class="res-group reveal">
+        <h3>On Oracle Learning <span class="mono">/ 6 picks &middot; included for Vanderbilt staff</span></h3>
+        <p class="hinttxt" style="margin-top:8px">These live in Vanderbilt&rsquo;s own Oracle Learning, the same system where you mark this course complete. For more, browse Vanderbilt&rsquo;s Oracle Learning catalog (search &ldquo;AI&rdquo;).<!-- [EDIT: add a catalog URL when one is provided; only per-course deep links exist today] --></p>
+        <div class="res-grid">
+        <a class="res" href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002857283770" target="_blank" rel="noopener">
+          <span><b>What Is Generative AI?</b><span class="why">GenAI basics in plain language; the natural first follow-on to this course.</span><span class="rtag">Oracle Learning</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002879520079" target="_blank" rel="noopener">
+          <span><b>Introduction to Prompt Engineering for Generative AI</b><span class="why">A structured follow-on to the Prompt Lab.</span><span class="rtag">Oracle Learning</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002961099838" target="_blank" rel="noopener">
+          <span><b>Streamlining Your Work with Microsoft Copilot</b><span class="why">Pairs with the Tools section: Copilot inside the Office apps.</span><span class="rtag">Oracle Learning</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002857290817" target="_blank" rel="noopener">
+          <span><b>Ethics in the Age of Generative AI</b><span class="why">Deepens the Responsible AI section&rsquo;s six habits.</span><span class="rtag">Oracle Learning</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300003121967452" target="_blank" rel="noopener">
+          <span><b>AI Etiquette at Work: 7 Habits to Protect Professional Credibility</b><span class="why">Using AI without spending your professional trust.</span><span class="rtag">Oracle Learning</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="res" href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002865667372" target="_blank" rel="noopener">
+          <span><b>AI for Teachers with ChatGPT</b><span class="why">For Acorn School and other teaching staff; child data stays out, ideas come in.</span><span class="rtag">Oracle Learning</span></span>
+          <svg class="r-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
       <div class="res-group reveal">
         <h3>Podcasts <span class="mono">/ 6 picks</span></h3>
         <div class="res-grid">
@@ -3154,7 +3253,7 @@ body.oracle-open{ overflow:hidden; }
   <div class="wrap">
     <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Wrap-up</span></span>
     <h2 class="metal">Now run the <em>loop</em>.</h2>
-    <p>You&rsquo;ve learned the ideas, practiced the skills, and built your 30/60/90 plan. The next move is one real task this week; revisit any section whenever you need it.</p>
+    <p>You&rsquo;ve learned the ideas, practiced the skills, and built your 30/60/90 plan. The next step is one real task this week; revisit any section whenever you need it.</p>
     <a class="btn btn-gold" href="#nextstep">Start the five-step loop
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <p class="cta-alt">Haven&rsquo;t taken the knowledge check yet? <a href="#quiz">It takes five minutes.</a></p>
@@ -3166,6 +3265,11 @@ body.oracle-open{ overflow:hidden; }
       </div>
       <a class="btn btn-ghost btn-sm" href="https://ecsr.fa.us2.oraclecloud.com:443/fscmUI/redwood/learner/learn/redirect?learningItemId=300003130886194&amp;learningItemType=ORA_CLASS" target="_blank" rel="noopener noreferrer">Open Oracle Learning
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+    </div>
+    <div class="print-cta">
+      <button type="button" class="btn btn-ghost btn-sm print-btn">Download your summary (PDF)
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></button>
+      <p class="hinttxt">Your inputs, plans, prompts, and every resource link in one document. Your browser&rsquo;s print dialog opens; choose Save as PDF.</p>
     </div>
     <p class="send-sign">Intelligence that grows your people.</p>
   </div>
@@ -3184,6 +3288,12 @@ body.oracle-open{ overflow:hidden; }
     </div>
   </div>
 </footer>
+
+<!-- ═══════════════════ PRINT-ONLY COURSE SUMMARY ═══════════════════
+     Hidden on screen; populated at click time from the page's current state,
+     then window.print() opens the browser's Save-as-PDF dialog. Nothing here
+     is stored or sent, and all learner text is inserted with textContent. -->
+<div id="printSummary" aria-hidden="true"></div>
 
 <!-- ═══════════════════ BOTTOM BOOK BAR ═══════════════════
      Replaces the right-edge rail: current section, one dot per tracked section
@@ -3903,8 +4013,16 @@ function focusApply(){
     : 'You just met the three tools. Now drill the choice: data sensitivity first, then where you already work. You leave with a recommendation and the reasons behind it.';
   var tl = document.getElementById('tlPick');
   if(tl) tl.innerHTML = has
-    ? 'Run your focus task, &ldquo;' + e + '&rdquo;.'
-    : 'Pick one task from your buckets in <a href="#readiness">Your role, task by task</a>.';
+    ? 'for your focus task, &ldquo;<b>' + e + '</b>&rdquo;'
+    : 'for one real task from your week (pick one in <a href="#readiness">Your role, task by task</a>)';
+  var s1 = document.getElementById('simStep1');
+  if(s1) s1.textContent = has
+    ? 'Start from your focus task, or describe any real task from your week'
+    : 'Describe a real task from your week';
+  var r3 = document.getElementById('refEx3');
+  if(r3) r3.textContent = has
+    ? 'Here is your draft about ' + ft + '. Good start. Now make it half as long, warmer, and end with one clear next step.'
+    : 'Good start on this announcement. Now make it half as long, warmer, and end with one clear next step.';
   var ns = document.getElementById('ns1p');
   if(ns) ns.innerHTML = has
     ? 'Your focus task is already picked: &ldquo;' + e + '&rdquo;. If you skipped the assessment, pick any repetitive, text-heavy task from your week now.'
@@ -4376,7 +4494,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     if(nudge) nudge.classList.remove('show');
     progDone('playground');
     out.innerHTML = '<div class="result-card"><div class="rc-head"><span class="rc-glyph">' + GLYPH +
-      '</span><div><h4>That’s a real rep.</h4><span class="rc-sub">One down; the habit starts here</span></div></div>' +
+      '</span><div><h4>Notes saved. That was your first real task with AI.</h4><span class="rc-sub">One down; the habit starts here</span></div></div>' +
       '<p class="rc-note">Look at your second answer: those fixes are mistakes the AI could not catch on its own; <b>you caught them</b>. That reviewing skill is exactly what keeps a person valuable when AI does the drafting. Repeat this exercise once a week. Your prompts will improve, so the “right” list grows, and your “fix” list becomes a personal map of what AI in your job can and can’t be trusted with.</p>' +
       '<p class="rc-fine">Before you close the tab, paste these two notes at the bottom of the readiness report you copied: your report now has a results section. The fields themselves store nothing and send nothing.</p></div>';
   });
@@ -4428,13 +4546,26 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     { re:/\b(brainstorm|ideas?|creative|name for|plan(ning)?|strateg)\b/i, name:'Brainstorming & planning', level:'advise', what:'Twenty options in a minute: themes, titles, approaches, risks you haven’t considered.', saved:'Medium', tool:'ChatGPT' },
     { re:/\b(polic(y|ies)|handbook|manual|long documents?|pdf|contract|guidelines)\b/i, name:'Document Q&A', level:'assist', what:'Ask long documents questions like “what does the policy say about X?” and get pointed answers to verify.', saved:'High', tool:'Amplify' }
   ];
+  /* Acorn School / early-childhood pattern set: every card carries the child-data rule.
+     [EDIT: confirm child-data guidance with the Child and Family Center] */
+  var ACORN_PATTERNS = [
+    { re:/\b(parents?|famil(y|ies)|newsletters?|classroom)\b/i, name:'Parent communications & newsletters', level:'assist', what:'Draft warm classroom newsletters and parent reminders from your bullet points. Describe children generically (“a four-year-old in my class”); names never go in.', saved:'High', tool:'Amplify' },
+    { re:/\b(lesson|activit(y|ies)|curriculum|play|explor\w*|project)\b/i, name:'Activity & lesson planning ideas', level:'advise', what:'Brainstorm play-based activity ideas from what the class is curious about this week, in the emergent-curriculum spirit. You pick what fits; no child details needed.', saved:'Medium', tool:'ChatGPT' },
+    { re:/\b(observations?|develop\w*|portfolio|milestones?)\b/i, name:'Observation notes into summaries', level:'assist', what:'Tighten already-generic notes into clear summaries. Names, photos, and identifiable developmental details about a child never go in; keep child records out entirely.', saved:'Medium', tool:'Amplify' },
+    { re:/\b(schedules?|suppl(y|ies)|snacks?|nap|checklists?|rotations?)\b/i, name:'Schedules & supply lists', level:'automate', what:'Turn plans into daily schedules, supply lists, and checklists formatted the way your room runs. No child information belongs in any of them.', saved:'Medium', tool:'Copilot' }
+  ];
   var SENSITIVE = [
     [/\bstudents?\b/i,'student'], [/\bgrades?\b/i,'grade'], [/\bferpa\b/i,'FERPA'],
     [/\bpatients?\b/i,'patient'], [/\bhealth\b/i,'health'], [/\bhipaa\b/i,'HIPAA'],
     [/\bssns?\b|social security/i,'SSN'], [/\bsalar(y|ies)\b/i,'salary'],
     [/\bpersonnel\b/i,'personnel'], [/\bconfidential\b/i,'confidential'], [/\bdonors?\b/i,'donor'],
-    [/\bmedical\b/i,'medical'], [/\bapplicants?\b|\bapplications?\b/i,'applicant']
+    [/\bmedical\b/i,'medical'], [/\bapplicants?\b|\bapplications?\b/i,'applicant'],
+    [/\bchild(ren)?\b|\bkids?\b/i,'child'], [/\btoddlers?\b|\binfants?\b|\bpreschool\w*/i,'toddler/infant'],
+    [/\ballerg\w*/i,'allergy']
   ];
+  /* child-adjacent keywords trigger the child-data caution below
+     [EDIT: confirm child-data guidance with the Child and Family Center] */
+  var CHILD_RE = /\b(child(ren)?|kids?|toddlers?|infants?|preschool\w*|pre-k|daycare|acorn|allerg\w*)\b/i;
   var LEVEL_LABEL = { automate:'Automate', assist:'Assist', advise:'Advise' };
   var GOAL_VERB = {
     'Save time':'get this done in half the time',
@@ -4445,15 +4576,19 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
   };
 
   function renderResults(txt){
-    var matches = PATTERNS.filter(function(p){ return p.re.test(txt); }).slice(0, 6);
+    var deptName = dept ? dept.value : 'Other';
+    var isAcorn = /acorn/i.test(deptName);
+    var pool = isAcorn ? ACORN_PATTERNS.concat(PATTERNS) : PATTERNS;
+    var matches = pool.filter(function(p){ return p.re.test(txt); }).slice(0, 6);
     var defaulted = false;
     if(!matches.length){
       defaulted = true;
-      matches = [PATTERNS[0], PATTERNS[1], PATTERNS[12]];
+      matches = isAcorn ? [ACORN_PATTERNS[0], ACORN_PATTERNS[1], ACORN_PATTERNS[3]]
+                        : [PATTERNS[0], PATTERNS[1], PATTERNS[12]];
     }
     var hits = [];
     SENSITIVE.forEach(function(s){ if(s[0].test(txt) && hits.indexOf(s[1]) === -1) hits.push(s[1]); });
-    var deptName = dept ? dept.value : 'Other';
+    var childHit = isAcorn || CHILD_RE.test(txt);
     var goalName = goal ? goal.value : 'Save time';
     var verb = GOAL_VERB[goalName] || GOAL_VERB['Save time'];
     var snippet = txt.length > 160 ? txt.slice(0, 157).replace(/\s+\S*$/, '') + '…' : txt;
@@ -4477,14 +4612,23 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       html += '<div class="sp"><div class="sp-txt">' + escapeHtml(p) + '</div><button type="button" class="btn btn-ghost btn-sm sp-copy" data-i="' + i + '"><span>Copy prompt</span></button></div>';
     });
     html += '</div></div>';
-    if(hits.length){
+    if(hits.length || childHit){
       html += '<div class="srev"><div class="sub-h"><h4>Watch-outs</h4></div><div class="watchout">';
       html += '<span class="w-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.6L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span>';
-      html += '<div><h5>This use case may involve sensitive data</h5>';
-      html += '<p>Your description mentions terms that often signal confidential or regulated records: personnel, health, financial, or donor information. Route this work through <b>Amplify</b> or <b>Copilot on your Vanderbilt account</b> (both approved for institutional data up to Level 3; when in doubt, Amplify), and check the <a href="#responsible" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">AI guidance</a> before pasting real records anywhere. <!-- [EDIT] link official Vanderbilt AI policy --></p>';
-      html += '<div class="hits">';
-      hits.forEach(function(h){ html += '<span>' + escapeHtml(h) + '</span>'; });
-      html += '</div></div></div></div>';
+      html += '<div><h5>' + (hits.length ? 'This use case may involve sensitive data' : 'This use case involves children') + '</h5>';
+      if(hits.length){
+        html += '<p>Your description mentions terms that often signal confidential or regulated records: personnel, health, financial, or donor information. Route this work through <b>Amplify</b> or <b>Copilot on your Vanderbilt account</b> (both approved for institutional data up to Level 3; when in doubt, Amplify), and check the <a href="#responsible" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">AI guidance</a> before pasting real records anywhere. <!-- [EDIT] link official Vanderbilt AI policy --></p>';
+      }
+      if(childHit){
+        /* [EDIT: confirm child-data guidance with the Child and Family Center] */
+        html += '<p><b>The child-data rule, protection of minors:</b> children&rsquo;s names, photos, health or allergy details, and developmental observations about identifiable children never go into any AI tool, including Amplify and Copilot. Describe situations generically (&ldquo;a four-year-old in my class&rdquo;) and keep child records out entirely.</p>';
+      }
+      if(hits.length){
+        html += '<div class="hits">';
+        hits.forEach(function(h){ html += '<span>' + escapeHtml(h) + '</span>'; });
+        html += '</div>';
+      }
+      html += '</div></div></div>';
     } else {
       html += '<div class="srev"><div class="sub-h"><h4>Watch-outs</h4></div><div class="watchout ok">';
       html += '<span class="w-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.2-8 10.8-4.6-1.6-8-5.8-8-10.8V5.5L12 2z"/><path d="M9 12l2 2 4-4"/></svg></span>';
@@ -4501,7 +4645,11 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     ROAD.forEach(function(r){
       html += '<div class="rstep"><span class="rno">' + r[0] + '</span><h5>' + r[1] + '</h5><p>' + r[2] + '</p></div>';
     });
-    html += '</div></div>';
+    html += '</div>';
+    if(isAcorn){
+      html += '<p class="hinttxt" style="margin-top:14px">Made for your classroom: <a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002865667372" target="_blank" rel="noopener" style="color:var(--gold);border-bottom:1px solid rgba(207,174,112,.4)">AI for Teachers with ChatGPT</a> on Oracle Learning, included for Vanderbilt staff.</p>';
+    }
+    html += '</div>';
     html += '<div class="srev"><p class="honest" style="margin-top:26px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>A guided framework based on common AI patterns, not a live AI. For the real thing, take these prompts into your tools.</p></div>';
     out.innerHTML = html;
     out.querySelectorAll('.sp-copy').forEach(function(b){
@@ -4730,7 +4878,7 @@ document.querySelectorAll('.dilemma').forEach(function(card){
   var TOTAL = 6;
   var TIERS = [
     ['Steady hands', 'You are using AI the deliberate way. Keep deciding where saved time goes, and it stays yours.'],
-    ['Creep detected', 'A pattern or two is forming, which is normal and fixable. Pick one counter-move and make it a rule this week: bank the savings, run one AI task at a time, or keep breaks AI-free.'],
+    ['Creep detected', 'A pattern or two is forming, which is normal and fixable. Pick one fix and make it a rule this week: bank the savings, run one AI task at a time, or keep breaks AI-free.'],
     ['Intensification in progress', 'You are living the study&rsquo;s findings. Sequence your AI work, protect recovery time like a meeting, and let at least one saved hour stay yours. Workload creep is an organizational pattern, not a personal failing; renegotiating scope is a professional move.']
   ];
   /* [EDIT: add URL — link Vanderbilt EAP / Work-Life resources when confirmed] */
@@ -5102,9 +5250,18 @@ var RPOOL = {
   peOne:   { t:'Prompt Engineering for ChatGPT (Coursera)', u:'https://www.coursera.org/learn/prompt-engineering',
              tag:'Certificate course', cost:'Subscription, certificate on completion',
              why:'The single-course starting point, also taught by Vanderbilt’s Jules White.' },
-  genEss:  { t:'Career Essentials in Generative AI by Microsoft and LinkedIn', u:'https://www.linkedin.com/learning/paths/career-essentials-in-generative-ai-by-microsoft-and-linkedin',
-             tag:'LinkedIn Learning', cost:'Free, certificate included',
-             why:'GenAI basics, ethics, and Copilot in one path; free to everyone, license or not.', lil:true },
+  genEss:  { t:'What Is Generative AI? (Oracle Learning)', u:'https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&learningItemId=300002857283770',
+             tag:'Oracle Learning course', cost:'Included for Vanderbilt staff',
+             why:'GenAI basics in plain language, inside Vanderbilt&rsquo;s own learning system.' },
+  promptIntro:{ t:'Introduction to Prompt Engineering for Generative AI (Oracle Learning)', u:'https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&learningItemId=300002879520079',
+             tag:'Oracle Learning course', cost:'Included for Vanderbilt staff',
+             why:'A structured follow-on to the Prompt Lab, one login away.' },
+  copilotOra:{ t:'Streamlining Your Work with Microsoft Copilot (Oracle Learning)', u:'https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&learningItemId=300002961099838',
+             tag:'Oracle Learning course', cost:'Included for Vanderbilt staff',
+             why:'Pairs with the Tools section: Copilot inside the Office apps you already use.' },
+  boostAI: { t:'How to Boost Your Productivity with AI Tools (Oracle Learning)', u:'https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&learningItemId=300003023135131',
+             tag:'Oracle Learning course', cost:'Included for Vanderbilt staff',
+             why:'A general starter on everyday AI productivity.' },
   gglEss:  { t:'Google AI Essentials', u:'https://grow.google/ai-essentials/',
              tag:'Certificate course', cost:'Paid, certificate on completion',
              why:'Practical AI-at-work skills in a structured course.' },
@@ -5123,20 +5280,18 @@ var RPOOL = {
   cointel: { t:'Co-Intelligence · Ethan Mollick', u:'https://www.penguinrandomhouse.com/books/741805/co-intelligence-by-ethan-mollick/',
              tag:'Book', cost:'',
              why:'Working alongside AI without losing your judgment; the book behind this platform’s stance.' },
-  crit:    { t:'Critical Thinking · Mike Figliuolo', u:'https://www.linkedin.com/learning/critical-thinking',
-             tag:'LinkedIn Learning', cost:'Subscription',
-             why:'The durable skill AI raises the premium on.', lil:true },
-  coach:   { t:'Coaching Skills for Leaders and Managers', u:'https://www.linkedin.com/learning/coaching-skills-for-leaders-and-managers',
-             tag:'LinkedIn Learning', cost:'Subscription',
-             why:'For the relational, human-core work AI reaches least.', lil:true }
+  crit:    { t:'Critical Thinking (Oracle Learning)', u:'https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&learningItemId=300002857213040',
+             tag:'Oracle Learning course', cost:'Included for Vanderbilt staff',
+             why:'The durable skill AI raises the premium on.' },
+  coach:   { t:'Coaching Skills for Leaders and Managers (Oracle Learning)', u:'https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&learningItemId=300002857610240',
+             tag:'Oracle Learning course', cost:'Included for Vanderbilt staff',
+             why:'For the relational, human-core work AI reaches least.' }
 };
-/* [EDIT: confirm access under Vanderbilt’s LinkedIn Learning license, then simplify this note] */
-var LIL_NOTE = ' (check availability through Vanderbilt before purchasing)';
 function resilShelf(){ return [RPOOL.cointel, RPOOL.crit, RPOOL.coach, RPOOL.hardfork]; }
 function overShelf(fluency, vv){
-  var prompting = fluency === 0 ? [RPOOL.peOne, RPOOL.genEss]
-                : fluency === 1 ? [RPOOL.peOne, RPOOL.gglEss]
-                : [RPOOL.peSpec];
+  var prompting = fluency === 0 ? [RPOOL.genEss, RPOOL.promptIntro]
+                : fluency === 1 ? [RPOOL.peOne, RPOOL.promptIntro]
+                : [RPOOL.peSpec, RPOOL.copilotOra];
   var verifying = [RPOOL.gpt3b1b, vv === 2 ? RPOOL.karpathy : RPOOL.useful];
   /* when verification is the plan's top skill, it leads the shelf too */
   return (vv === 2 ? verifying.concat(prompting) : prompting.concat(verifying)).slice(0, 4);
@@ -5146,7 +5301,7 @@ function resShelfHtml(tr){
   var lis = tr.res.map(function(r){
     return '<li><span class="rr-top"><a href="' + r.u + '" target="_blank" rel="noopener noreferrer">' + r.t + '</a>' +
       '<span class="rr-tag">' + r.tag + '</span>' + (r.cost ? '<span class="rr-cost">' + r.cost + '</span>' : '') + '</span>' +
-      '<span class="rr-why">' + r.why + (r.lil ? LIL_NOTE : '') + '</span></li>';
+      '<span class="rr-why">' + r.why + '</span></li>';
   });
   if(tr.resNote) lis.push('<li><span class="rr-why">' + tr.resNote + '</span></li>');
   return '<div class="ra-res"><h6>Where to learn it</h6><ul>' + lis.join('') + '</ul></div>';
@@ -5177,8 +5332,7 @@ function brief(name, tier, why, bk, skills, plan){
       if(!tr.res || !tr.res.length) return;
       L.push('Where to learn it:');
       tr.res.forEach(function(r){
-        L.push('- ' + r.t + ' (' + r.tag + (r.cost ? ' · ' + r.cost : '') + '): ' + r.u +
-          (r.lil ? LIL_NOTE : ''));
+        L.push('- ' + r.t + ' (' + r.tag + (r.cost ? ' · ' + r.cost : '') + '): ' + r.u);
       });
       if(tr.resNote) L.push('- Data judgment: approved tools only, Amplify (https://www.vanderbilt.ai/) or Copilot on your Vanderbilt account, plus the Responsible AI section on CHART.');
     };
@@ -5302,8 +5456,8 @@ function render(name, tasks, fluency, sens){
   html += '<div class="ra-block"><h5>Upskill and reskill routes</h5><div class="dd" style="margin-top:14px"><ul>' +
     '<li>' + CHECK + '<span><b><a href="#crit">CRIT</a> and <a href="#playground">the Playground</a>, coming up on this page.</b> Your oversight track starts in the next sections: the prompting and delegation the redesign bucket asks for.</span></li>' +
     '<li>' + CHECK + '<span><b><a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener noreferrer">Amplify</a>, for hands-on practice.</b> Guided practice on Vanderbilt&rsquo;s approved platform beats a workshop that never touches real work.</span></li>' +
-    /* [EDIT: link the L&D catalog and confirm LinkedIn Learning licensing] */
-    '<li>' + CHECK + '<span><b>Role-specific reskilling.</b> Vanderbilt&rsquo;s learning and development offerings (ask HR for the current catalog), and LinkedIn Learning' + LIL_NOTE + '.</span></li>' +
+    /* [EDIT: add a catalog URL when one is provided; only per-course deep links exist today] */
+    '<li>' + CHECK + '<span><b>Role-specific reskilling.</b> Vanderbilt&rsquo;s Oracle Learning catalog (search &ldquo;AI&rdquo;), plus the university&rsquo;s learning and development offerings through HR.</span></li>' +
     '<li>' + WARN + '<span>' + redesignLine + '</span></li>' +
     '</ul></div></div>';
   var sixty = bk.delegate.length
@@ -5323,7 +5477,7 @@ function render(name, tasks, fluency, sens){
     var ftDefault = (storedFt && ftNames.indexOf(storedFt) !== -1) ? storedFt
                   : (bk.delegate.length ? bk.delegate[0].name : tasks[0].name);
     html += '<div class="ra-block"><h5>Pick your focus task</h5>' +
-      '<p class="rc-note" style="margin-top:10px;max-width:72ch">One task now carries the rest of the course: the CRIT builder, the Prompt Lab, the Grader, and the Simulator will all offer it back to you. ' +
+      '<p class="rc-note" style="margin-top:10px;max-width:72ch">One task now carries the rest of the course: the CRIT builder, the Prompt Lab, and the Grader will all offer it back to you, and the Simulator will later turn it into ready-to-run prompts. ' +
       (bk.delegate.length ? 'The first delegate-bucket task is the natural pick; tap another to switch.' : 'Any task works; tap to switch.') + '</p>' +
       '<div class="sim-chips" id="raFocusChips" style="margin:14px 0 8px">' +
       ftNames.map(function(nm){ return '<button type="button" class="sim-chip ra-fchip" data-name="' + esc(nm) + '" aria-pressed="false">' + esc(nm) + '</button>'; }).join('') +
@@ -5383,6 +5537,287 @@ build.addEventListener('click', function(){
       : 'Tasks ' + ns.join(' and ') + ' are started but missing their three choices. Finish them or clear them; the report below skips them for now.');
   } else nudgeHide();
   render(name, g.tasks, fluency, sens);
+});
+})();
+</script>
+<script>
+/* ══════════ PRINT SUMMARY: one document from the current in-page state ══════════
+   Built fresh on every click, entirely client-side: DOM values in, print DOM out.
+   All learner text lands via textContent, so nothing typed can execute.
+   Sections the learner skipped print as "Not completed this visit." */
+(function(){
+'use strict';
+var box = document.getElementById('printSummary');
+if(!box) return;
+var ORACLE_URL = 'https://ecsr.fa.us2.oraclecloud.com:443/fscmUI/redwood/learner/learn/redirect?learningItemId=300003130886194&learningItemType=ORA_CLASS';
+function E(tag, cls, text){
+  var el = document.createElement(tag);
+  if(cls) el.className = cls;
+  if(text != null) el.textContent = text;
+  return el;
+}
+/* flatten an element to plain text, inlining link URLs so they survive on paper */
+function txt(el){
+  var s = '';
+  Array.prototype.slice.call(el.childNodes).forEach(function(n){
+    if(n.nodeType === 3){ s += n.textContent; }
+    else if(n.nodeType === 1){
+      var tag = n.tagName.toLowerCase();
+      if(tag === 'svg' || tag === 'button' || tag === 'style') return;
+      if(tag === 'a'){
+        var h = n.getAttribute('href') || '';
+        s += n.textContent;
+        if(/^https?:/i.test(h)) s += ' (' + h + ')';
+      } else { s += txt(n); }
+    }
+  });
+  return s.replace(/\s+/g, ' ').trim();
+}
+function section(title){
+  var h = E('h2', null, title);
+  box.appendChild(h);
+  return h;
+}
+function para(text, cls){ box.appendChild(E('p', cls || null, text)); }
+function notDone(){ para('Not completed this visit.', 'ps-empty'); }
+function pre(text){ box.appendChild(E('div', 'ps-pre', text)); }
+function inputVal(id){
+  var el = document.getElementById(id);
+  return el && typeof el.value === 'string' ? el.value.trim() : '';
+}
+function checkedLabel(name){
+  var el = document.querySelector('input[name="' + name + '"]:checked');
+  if(!el) return '';
+  var lab = el.closest ? el.closest('label') : null;
+  return lab ? txt(lab) : '';
+}
+function previewText(id){
+  var el = document.getElementById(id);
+  if(!el || el.querySelector('.ph')) return '';
+  return el.textContent.trim();
+}
+/* generic re-renderer for engine result panels (readiness report etc.):
+   headings, paragraphs, and lists survive; buttons, chips, and nudges do not */
+var SKIP_CLASSES = ['ra-actions', 'sim-chips', 'nudge', 'launch-row', 'sp-copy'];
+function skips(el){
+  for(var i = 0; i < SKIP_CLASSES.length; i++){
+    if(el.classList && el.classList.contains(SKIP_CLASSES[i])) return true;
+  }
+  return false;
+}
+function renderRich(src, dest){
+  Array.prototype.slice.call(src.children).forEach(function(ch){
+    var tag = ch.tagName.toLowerCase();
+    if(tag === 'svg' || tag === 'button' || skips(ch)) return;
+    if(ch.id === 'raFocusNote') return;
+    if(tag === 'h4' || tag === 'h5' || tag === 'h6'){
+      var t = txt(ch);
+      if(t) dest.appendChild(E('h3', null, t));
+      return;
+    }
+    if(tag === 'ul' || tag === 'ol'){
+      var list = E(tag);
+      Array.prototype.slice.call(ch.children).forEach(function(li){
+        if(li.tagName.toLowerCase() !== 'li') return;
+        var lt = txt(li);
+        if(lt) list.appendChild(E('li', null, lt));
+      });
+      if(list.children.length) dest.appendChild(list);
+      return;
+    }
+    if(tag === 'p' || (tag === 'span' && ch.classList.contains('rc-sub'))){
+      var pt = txt(ch);
+      if(pt) dest.appendChild(E('p', null, pt));
+      return;
+    }
+    renderRich(ch, dest);
+  });
+}
+function build(){
+  box.textContent = '';
+  /* ── header ── */
+  var head = E('div', 'ps-head');
+  var img = document.createElement('img');
+  img.src = 'assets/vu-centered-black@2x.png';
+  img.alt = 'Vanderbilt University';
+  head.appendChild(img);
+  var hd = E('div');
+  hd.appendChild(E('p', 'ps-title', 'CHART · Cultivating Human-AI Readiness and Thinking'));
+  var role = inputVal('raRole');
+  var date = new Date().toLocaleDateString(undefined, { year:'numeric', month:'long', day:'numeric' });
+  hd.appendChild(E('p', 'ps-meta', 'Course summary · ' + date + (role ? ' · Role: ' + role : '')));
+  head.appendChild(hd);
+  box.appendChild(head);
+
+  /* ── 1. role, task by task ── */
+  section('Your role, task by task');
+  var raOut = document.getElementById('raOut');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('#raRows .ra-trow'));
+  var anyTask = false;
+  if(role) para('Role assessed: ' + role);
+  var taskList = E('ul');
+  rows.forEach(function(row){
+    var nameEl = row.querySelector('.rt-task');
+    var name = nameEl ? nameEl.value.trim() : '';
+    if(!name) return;
+    anyTask = true;
+    var parts = [name];
+    ['rt-mode', 'rt-rep', 'rt-check'].forEach(function(cls){
+      var sel = row.querySelector('.' + cls);
+      if(sel && sel.value && sel.selectedIndex > -1) parts.push(sel.options[sel.selectedIndex].text);
+    });
+    taskList.appendChild(E('li', null, parts.join(' · ')));
+  });
+  if(anyTask) box.appendChild(taskList);
+  var flu = checkedLabel('raFluency'), sen = checkedLabel('raSens');
+  if(flu) para('AI use so far: ' + flu);
+  if(sen) para('Information this work touches: ' + sen);
+  if(raOut && raOut.children.length){
+    renderRich(raOut, box);
+  } else if(!role && !anyTask && !flu && !sen){
+    notDone();
+  } else if(!raOut || !raOut.children.length){
+    para('Report not built this visit; the entries above are what you had typed.', 'ps-empty');
+  }
+
+  /* ── 2. focus task ── */
+  section('Your focus task');
+  var ft = '';
+  try{ ft = window.chartFocus ? window.chartFocus.get() : ''; }catch(e){}
+  if(ft) para(ft); else para('Not picked this visit.', 'ps-empty');
+
+  /* ── 3. CRIT prompt, Prompt Lab, Grader ── */
+  section('Your CRIT prompt');
+  var crit = (inputVal('crContext') || inputVal('crTask')) ? previewText('crPreview') : '';
+  var lab = previewText('plPreview');
+  var grOut = document.getElementById('grOut');
+  var grLetter = grOut ? grOut.querySelector('.grade-letter') : null;
+  if(!crit && !lab && !grLetter) notDone();
+  if(crit){ box.appendChild(E('h3', null, 'From the CRIT builder')); pre(crit); }
+  if(lab){
+    box.appendChild(E('h3', null, 'From the Prompt Lab'));
+    pre(lab);
+    var meter = document.getElementById('plMeterLabel');
+    if(meter) para('Quality meter: ' + meter.textContent.trim());
+  }
+  if(grLetter){
+    box.appendChild(E('h3', null, 'From the Prompt Grader'));
+    var gword = grOut.querySelector('.gword');
+    para('Grade: ' + grLetter.textContent.trim() + (gword ? ' · ' + txt(gword) : ''));
+    var suggs = grOut.querySelectorAll('.sugg li');
+    if(suggs.length){
+      para('Top fixes:');
+      var sl = E('ul');
+      Array.prototype.slice.call(suggs).forEach(function(li){ sl.appendChild(E('li', null, txt(li))); });
+      box.appendChild(sl);
+    }
+  }
+
+  /* ── 4. Tool Match ── */
+  section('Tool Match');
+  var tmCard = document.querySelector('#tmOut .result-card');
+  if(tmCard){
+    var tmName = tmCard.querySelector('h4');
+    if(tmName) para('Recommendation: ' + tmName.textContent.trim());
+    var tl = E('ul');
+    Array.prototype.slice.call(tmCard.querySelectorAll('li')).forEach(function(li){ tl.appendChild(E('li', null, txt(li))); });
+    if(tl.children.length) box.appendChild(tl);
+  } else notDone();
+
+  /* ── 5. Simulator ── */
+  section('The AI Opportunity Simulator');
+  var opps = document.querySelectorAll('#simOut .opp');
+  if(opps.length){
+    box.appendChild(E('h3', null, 'Your opportunity map'));
+    var ol = E('ul');
+    Array.prototype.slice.call(opps).forEach(function(o){
+      var h = o.querySelector('h5'), lvl = o.querySelector('.lvl'), p = o.querySelector('p'), meta = o.querySelector('.o-meta');
+      var line = (h ? h.textContent.trim() : '') + (lvl ? ' (' + lvl.textContent.trim() + ')' : '') +
+        (p ? ': ' + p.textContent.trim() : '') + (meta ? ' ' + txt(meta) : '');
+      ol.appendChild(E('li', null, line));
+    });
+    box.appendChild(ol);
+    var sps = document.querySelectorAll('#simOut .sp-txt');
+    if(sps.length){
+      box.appendChild(E('h3', null, 'Your starter prompts'));
+      Array.prototype.slice.call(sps).forEach(function(sp){ pre(sp.textContent.trim()); });
+    }
+    var wo = document.querySelector('#simOut .watchout');
+    if(wo){
+      box.appendChild(E('h3', null, 'Watch-outs'));
+      var woH = wo.querySelector('h5'), woP = wo.querySelector('p');
+      if(woH) para(woH.textContent.trim());
+      if(woP) para(txt(woP));
+    }
+  } else notDone();
+
+  /* ── 6. Take it live ── */
+  section('Take it live: your first real task with AI');
+  var rrR = inputVal('rrRight'), rrF = inputVal('rrFix');
+  if(rrR || rrF){
+    if(rrR) para('What it got right: ' + rrR);
+    if(rrF) para('What you had to fix: ' + rrF);
+  } else notDone();
+
+  /* ── 7. Keep the time ── */
+  section('Keep the time you save');
+  var wbCard = document.querySelector('#wbOut .result-card');
+  if(wbCard){
+    var wbH = wbCard.querySelector('h4'), wbSub = wbCard.querySelector('.rc-sub'), wbNote = wbCard.querySelector('.rc-note');
+    para((wbH ? wbH.textContent.trim() : '') + (wbSub ? ' · ' + wbSub.textContent.trim() : ''));
+    if(wbNote) para(txt(wbNote));
+  } else notDone();
+
+  /* ── 8. knowledge check ── */
+  section('Knowledge check');
+  var qr = document.getElementById('quizResult');
+  var m = qr ? (qr.textContent || '').match(/(\d+)\s*\/\s*(\d+)/) : null;
+  if(m) para('Score: ' + m[1] + ' / ' + m[2] + '.');
+  else para('Not taken this visit.', 'ps-empty');
+
+  /* ── 9. resources and links ── */
+  section('Resources and links');
+  box.appendChild(E('h3', null, 'Your three tools'));
+  para('Amplify (Vanderbilt’s platform): https://www.vanderbilt.ai/ · ChatGPT: https://chat.openai.com · Microsoft Copilot: https://copilot.microsoft.com');
+  box.appendChild(E('h3', null, 'Training record'));
+  para('Mark the course complete in Oracle Learning:');
+  para(ORACLE_URL, 'ps-url');
+  box.appendChild(E('h3', null, 'Plain words: the course glossary'));
+  Array.prototype.slice.call(document.querySelectorAll('#glossary .gloss > div')).forEach(function(d){
+    var dt = d.querySelector('dt'), dd = d.querySelector('dd');
+    if(dt && dd) para(dt.textContent.trim() + ' ' + dd.textContent.trim(), 'ps-term');
+  });
+  Array.prototype.slice.call(document.querySelectorAll('#resources .res-group')).forEach(function(g){
+    var h = g.querySelector('h3');
+    var links = g.querySelectorAll('a.res');
+    if(!h || !links.length) return;
+    var label = h.childNodes.length ? h.childNodes[0].textContent.trim() : txt(h);
+    box.appendChild(E('h3', null, 'Keep learning: ' + label));
+    var gl = E('ul');
+    Array.prototype.slice.call(links).forEach(function(a){
+      var b = a.querySelector('b');
+      var href = a.getAttribute('href') || '';
+      if(!/^https?:/i.test(href)) return;
+      gl.appendChild(E('li', null, (b ? b.textContent.trim() : a.textContent.trim()) + ' · ' + href));
+    });
+    if(gl.children.length) box.appendChild(gl);
+  });
+
+  /* ── footer ── */
+  /* [EDIT] disclaimer and contact: swap for the program alias and official policy links when published */
+  box.appendChild(E('p', 'ps-fine',
+    'CHART · An internal training prototype, not an official Vanderbilt University site. Product names (ChatGPT, Amplify, Microsoft Copilot) belong to their respective owners. ' +
+    'This summary was generated in your browser from what you typed this visit; nothing was stored or sent. ' +
+    'Questions: matthew.estes@vanderbilt.edu'));
+}
+Array.prototype.slice.call(document.querySelectorAll('.print-btn')).forEach(function(btn){
+  btn.addEventListener('click', function(){
+    try{ build(); }catch(e){
+      box.textContent = '';
+      box.appendChild(E('p', 'ps-empty', 'The summary could not be assembled. Please try again.'));
+    }
+    window.print();
+  });
 });
 })();
 </script>
