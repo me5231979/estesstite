@@ -140,8 +140,11 @@ body.menu-open .menu-btn .b1{ transform:translateY(6px) rotate(45deg); }
 body.menu-open .menu-btn .b2{ opacity:0; }
 body.menu-open .menu-btn .b3{ transform:translateY(-6px) rotate(-45deg); }
 .mobile-menu{ position:fixed; inset:0; z-index:150; background:var(--vu-black); overflow-y:auto;
-  display:flex; flex-direction:column; justify-content:center; padding:96px clamp(24px,8vw,60px) 56px;
+  display:flex; flex-direction:column; justify-content:flex-start; padding:96px clamp(24px,8vw,60px) 56px;
   opacity:0; visibility:hidden; transition:opacity .3s var(--ease), visibility 0s .3s; }
+/* safe centering: centers when the list fits, scrolls from the top when it does not
+   (justify-content:center would clip the first links under the fixed header) */
+.mobile-menu::before,.mobile-menu::after{ content:''; display:block; margin:auto; }
 body.menu-open .mobile-menu{ opacity:1; visibility:visible; transition:opacity .3s var(--ease); }
 body.menu-open{ overflow:hidden; }
 .mobile-menu a.mlink{ font-family:var(--serif); font-size:clamp(1.5rem,7vw,2.4rem); color:#fff;
@@ -204,9 +207,6 @@ body.menu-open{ overflow:hidden; }
 
 /* ═══════════════════ NUMBERED PROGRESSION ═══════════════════ */
 .howworks{ padding:clamp(72px,10vw,140px) 0; }
-.hw-how{ margin:clamp(20px,3vh,30px) 0 0; padding-left:24px; max-width:66ch; }
-.hw-how li{ font-size:1.0625rem; line-height:1.6; padding:5px 0; color:var(--tx); }
-.hw-how li::marker{ font-family:var(--cond); font-weight:700; color:var(--vu-gold); }
 .hw-cover{ display:block; margin-top:clamp(28px,4.5vh,44px); }
 .hw-list{ margin-top:clamp(36px,5vw,56px); border-top:1px solid var(--vu-gray-l); }
 .hw-cover + .hw-list{ margin-top:14px; }
@@ -838,17 +838,23 @@ footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,17
 .prog-panel .pp-h{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-gold); }
 .prog-sum{ color:rgba(255,255,255,.75); font-size:.9rem; margin-top:8px; max-width:none; }
 .prog-list{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; }
-.prog-list a{ display:grid; grid-template-columns:32px 1fr auto; gap:10px; align-items:center; padding:9px 4px; min-height:44px;
-  border-top:1px solid rgba(255,255,255,.1); font-size:.875rem; color:rgba(255,255,255,.82); transition:color .2s ease-out; }
+.prog-list li{ display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center; border-top:1px solid rgba(255,255,255,.1); }
+.prog-list a{ display:grid; grid-template-columns:32px 1fr; gap:10px; align-items:center; padding:9px 4px; min-height:44px;
+  font-size:.875rem; color:rgba(255,255,255,.82); transition:color .2s ease-out; }
 .prog-list a:hover{ color:#fff; }
 .prog-list .p-no{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; color:var(--vu-gold); }
 .prog-list .p-name{ font-weight:500; }
 .prog-list .p-how{ display:block; font-weight:400; font-size:.75rem; color:rgba(255,255,255,.5); margin-top:2px; }
 .prog-list li.done .p-how{ display:none; }
-.prog-list .p-state{ font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.05em; text-transform:uppercase;
-  color:rgba(255,255,255,.45); border:1px solid rgba(255,255,255,.18); border-radius:2px; padding:4px 8px; white-space:nowrap; }
-.prog-list li.done .p-state{ color:#1C1C1C; background:var(--vu-gold); border-color:var(--vu-gold); }
+.prog-list button.p-state{ font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.05em; text-transform:uppercase;
+  color:rgba(255,255,255,.6); background:transparent; border:1px solid rgba(255,255,255,.25); border-radius:2px;
+  min-height:38px; padding:4px 10px; white-space:nowrap; cursor:pointer;
+  transition:border-color .2s ease-out, color .2s ease-out, background-color .2s ease-out; }
+.prog-list button.p-state:hover{ border-color:var(--vu-gold); color:#fff; }
+.prog-list li.done button.p-state{ color:#1C1C1C; background:var(--vu-gold); border-color:var(--vu-gold); }
+.prog-list li.done button.p-state:hover{ background:var(--vu-highlight); border-color:var(--vu-highlight); }
 .prog-fine{ margin-top:12px; font-size:.78rem; color:rgba(255,255,255,.5); max-width:none; }
+.prog-warn{ color:var(--vu-highlight); }
 .md-wrap{ margin-top:28px; }
 .md-btn[aria-pressed="true"]{ border-color:var(--strong); color:var(--strong); }
 .mobile-menu a.mlink .mdone{ display:none; margin-left:auto; font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.05em;
@@ -1099,9 +1105,14 @@ body.oracle-open{ overflow:hidden; }
 .hero .outcomes li{ position:relative; padding-left:24px; color:var(--tx2); font-size:1.02rem; line-height:1.55; }
 .hero .outcomes li::before{ content:""; position:absolute; left:0; top:.62em; width:12px; height:2px; background:var(--vu-gold); }
 .hero .outcomes b{ color:#fff; font-weight:600; }
-.pg-hint{ display:none; }
-html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:var(--cond); font-weight:700;
-  font-size:.75rem; letter-spacing:.06em; text-transform:uppercase; color:rgba(255,255,255,.62); }
+/* compact how-it-works strip on the Welcome page (book mode only; the scroll fallback needs no page instructions) */
+.hw-mini{ display:none; }
+html.paged .hero .hw-mini{ display:flex; flex-wrap:wrap; gap:4px 22px; list-style:none; margin:12px 0 0; padding:9px 0 0;
+  border-top:1px solid rgba(255,255,255,.16); counter-reset:hm; max-width:none; }
+html.paged .hero .hw-mini li{ display:inline-flex; align-items:baseline; gap:8px; counter-increment:hm;
+  color:rgba(255,255,255,.62); font-size:.78rem; line-height:1.45; }
+html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); font-family:var(--cond); font-weight:700;
+  font-size:.68rem; letter-spacing:.05em; color:var(--vu-gold); }
 
 /* ═══════════════════ PRINT SUMMARY ═══════════════════
    #printSummary is display:none on screen and populated only when the
@@ -1191,6 +1202,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
   <p class="prog-sum" id="progSum">0 of 10 sections complete.</p>
   <ol class="prog-list" id="progList"></ol>
   <p class="prog-fine">Progress is saved only in this browser: completion flags, nothing else. Nothing is sent or reported. Reset it anytime in the footer.</p>
+  <p class="prog-fine prog-warn" id="progStorageNote" hidden>Heads up: your browser is blocking saved progress (this happens in private browsing). Marks work during this visit but reset when you close the tab.</p>
 </div>
 <p class="sr" id="progStatus" role="status" aria-live="polite"></p>
 
@@ -1230,28 +1242,33 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
     <h1 class="metal">AI is your new <em>colleague</em>.</h1>
     <p class="hello">Welcome to CHART.</p>
     <p class="lead"><b>CHART</b>, <span class="def">Cultivating Human-AI Readiness and Thinking</span>, is Vanderbilt&rsquo;s
-      self-paced AI course for staff. AI is already part of staff work; the skill is using it well. By the end of this course, you will be able to:</p>
+      self-paced AI course for staff. AI is showing up in more staff work every year; the skill is using it well. By the end of this course, you will be able to:</p>
     <ul class="outcomes" aria-label="By the end of this course, you will be able to">
       <li><b>Explain</b> what AI tools like ChatGPT are and why they sometimes state made-up things as fact</li>
       <li><b>Identify</b> which of your own job tasks AI can help with, and build a 30/60/90 development plan from them</li>
       <li><b>Write</b> clear, complete prompts using the CRIT framework: Context, Role, Interview, Task</li>
-      <li><b>Choose</b> the right approved tool for any task based on how sensitive the data is: ChatGPT, Amplify, or Copilot</li>
+      <li><b>Choose</b> the right approved tool for any task based on how sensitive the data is: ChatGPT EDU, Amplify, or Copilot</li>
       <li><b>Check</b> AI answers for made-up details before using them in your work</li>
     </ul>
     <p class="lead closer">This is not a course about AI. It is <em>practice</em> for the way you will work next.</p>
     
-    <p class="meta-line" aria-label="50 to 60 minutes, in class or self-paced, nothing reported, progress stays in your browser"><b>50&ndash;60 minutes</b> &middot; in class or self-paced &middot; nothing reported &middot; progress stays in your browser</p><!-- [EDIT: hero lead above says "self-paced AI course" and is owner-dictated; decide whether it should also say "in class or self-paced"] -->
+    <p class="meta-line" aria-label="60 to 90 minutes, in class or self-paced, nothing reported, progress stays in your browser"><b>60&ndash;90 minutes</b> &middot; in class or self-paced &middot; nothing reported &middot; progress stays in your browser</p><!-- [EDIT: hero lead above says "self-paced AI course" and is owner-dictated; decide whether it should also say "in class or self-paced"] -->
     <div class="cta-row">
       <a class="btn btn-gold" href="#start">Start learning
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <span class="pg-hint">Turn pages with the arrows below</span>
     </div>
+    <ol class="hw-mini" aria-label="How this course works">
+      <li>Turn pages with the arrows below, your keyboard arrows, or a swipe</li>
+      <li>Do each activity as it comes; nothing is graded</li>
+      <li>Mark sections done in the bottom bar</li>
+      <li>Finish with the knowledge check, then attest in Oracle Learning</li>
+    </ol>
   </div>
 </section>
 
 <!-- ═══════════════════ TOPIC BAR ═══════════════════ -->
-<div class="topics th-light" role="img" aria-label="One system. Three tools. About an hour. Topics: prompt writing, next-word prediction, data safety, tool choice, myth-busting, responsible AI, everyday wins, FERPA-aware habits">
-  <div class="wrap"><p class="tlabel mono">One system. Three tools. About an hour.</p></div>
+<div class="topics th-light" role="img" aria-label="One system. Three tools. 60 to 90 minutes. Topics: prompt writing, next-word prediction, data safety, tool choice, myth-busting, responsible AI, everyday wins, FERPA-aware habits">
+  <div class="wrap"><p class="tlabel mono">One system. Three tools. 60&ndash;90 minutes.</p></div>
   <div class="marquee" aria-hidden="true">
     <div class="track">
       <div class="set">
@@ -1277,15 +1294,9 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
   <div class="wrap">
     <div class="sec-head reveal" style="margin-bottom:0">
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">How CHART works</span></span>
-      <h2>How this <em>works</em>.</h2>
+      <h2>What you will <em>cover</em>.</h2>
     </div>
-    <ol class="hw-how reveal">
-      <li>Turn the pages with the arrows below (or your keyboard arrows; swipe on a phone).</li>
-      <li>When a page has an activity, do it. Everything is practice, nothing is graded.</li>
-      <li>Mark each section done as you go; the button is in the bottom bar.</li>
-      <li>Finish with the knowledge check, then mark the course complete in Oracle Learning.</li>
-    </ol>
-    <span class="mono hw-cover reveal">What you will cover</span>
+    <span class="mono hw-cover reveal">The path, in four stops</span>
     <div class="hw-list reveal">
       <div class="hw-step">
         <span class="hw-no" aria-hidden="true">01</span>
@@ -1307,7 +1318,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
         <span class="hw-no" aria-hidden="true">03</span>
         <div>
           <h3>Meet the three tools, then plan your week</h3>
-          <p>Meet ChatGPT, Amplify, and Copilot and their data rules, then let the Simulator turn your week into a plan: the right tool depends on the data.</p>
+          <p>Meet ChatGPT EDU (Vanderbilt&rsquo;s version of ChatGPT; use it instead of a personal ChatGPT account for anything work-related), plus Amplify and Copilot, then let the Simulator turn your week into a plan: the right tool depends on the data.</p>
         </div>
         <span class="chip">~6 min</span>
       </div>
@@ -1320,7 +1331,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
         <span class="chip">~18 min</span>
       </div>
     </div>
-    <p class="hw-meta reveal">About 50&ndash;60 minutes for the core path &middot; every module is skippable, in class or on your own &middot; embedded videos are optional extras.</p>
+    <p class="hw-meta reveal">About 60&ndash;90 minutes for the core path &middot; every module is skippable, in class or on your own &middot; embedded videos are optional extras.</p>
     <p class="hw-meta reveal" id="progTopLine" style="margin-top:10px">Section tracking: you have 10 sections ahead. Progress saves only in this browser.</p>
     <!-- [EDIT] program name — CHART is a working title; the acronym line below updates with any rename -->
     <p class="acr-line reveal" role="img" aria-label="CHART stands for Cultivating Human-AI Readiness and Thinking"><b>C</b>ultivating&ensp;<b>H</b>uman-<b>A</b>I&ensp;<b>R</b>eadiness&ensp;and&ensp;<b>T</b>hinking</p>
@@ -1345,15 +1356,15 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
         <h3>The five terms</h3>
         <p>In this activity, you will flip five cards: a plain definition and a Vanderbilt example for each term. (Click or press Enter.)</p>
         <div class="lframe">
-        <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI, ML, GenAI, LLMs, and agents really are</span>
+        <span class="lf-chip"><b>You&rsquo;ll learn</b>What AI, ML, GenAI, LLMs (large language models), and agents really are</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Flip five cards</span>
         <span class="lf-chip"><b>Time</b>3 min</span>
       </div>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>These five terms nest inside each other like dolls. <b>AI</b> is the umbrella: any software doing things that used to need human judgment. <b>Machine learning</b> is how modern AI gets built: instead of a programmer writing rules, the system finds patterns in thousands of examples. <b>Generative AI</b> is machine learning that produces new things (text, images, code) instead of just sorting or scoring. And a <b>large language model</b> is the specific generative engine inside ChatGPT, Amplify, and Copilot. The newest doll is <b>agentic AI</b>: an LLM handed tools and a loop so it can carry out multi-step work on its own. It runs on the same engine as the chatbots, so it inherits the same limits.</p>
-        <p><b>Notice as you flip:</b> the common thread is that none of these systems <em>understand</em> anything. They recognize patterns, and we&rsquo;ll keep coming back to that one fact.</p>
+        <p>Five terms; each one is a more specific kind of the one before it. <b>AI</b> is the umbrella: any software doing things that used to need human judgment. <b>Machine learning</b> is how modern AI gets built: instead of a programmer writing rules, the system finds patterns in thousands of examples. <b>Generative AI</b> is machine learning that produces new things (text, images, code) instead of just sorting or scoring. And a <b>large language model</b> is the specific generative engine inside ChatGPT, Amplify, and Copilot. The newest of the five is <b>agentic AI</b>: an LLM handed tools and a loop so it can carry out multi-step work on its own. It runs on the same engine as the chatbots, so it inherits the same limits.</p>
+        <p><b>Notice as you flip:</b> none of these systems understands meaning the way you do; they find patterns. We&rsquo;ll keep coming back to that one fact.</p>
       </div>
       <div class="flip-grid five">
         <div class="fcard">
@@ -1435,21 +1446,46 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now watch how one of these machines <em>thinks</em>.</p></div>
     </div>
 
-    <!-- Module B: How an LLM actually works -->
+    <!-- Module B: How an LLM actually works — the idea and the video first, the demo on the next page -->
     <div class="module reveal" data-pg="How an LLM works">
       <div class="module-head">
         <span class="mno">Module B</span>
         <h3>How an LLM actually works</h3>
-        <p>This demo shows how a language model picks its next word. Every AI answer you will ever read is built this way, one guess at a time. Read the sentence and its five candidate words. Press &ldquo;Shuffle sentence&rdquo; for a new example. Slide the temperature, the model&rsquo;s randomness dial, and watch the odds change. You leave knowing why AI drafts so well and still needs checking. (The demo runs on pre-set example data; nothing is generated live.)</p>
+        <p>Every AI answer you will ever read is built one guess at a time: the model predicts the next word, over and over. In this module, you will watch the best visual explainer there is, then try the prediction engine yourself on the next page. You leave knowing why AI drafts so well and still needs checking.</p>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Why AI writes so well and lies so confidently</span>
-        <span class="lf-chip"><b>You&rsquo;ll do</b>Try the interactive demo and its temperature dial</span>
+        <span class="lf-chip"><b>You&rsquo;ll do</b>Watch the explainer, then try the interactive demo</span>
         <span class="lf-chip"><b>Time</b>3 min + optional 8-min video</span>
       </div>
       </div>
       <div class="concept reveal">
         <span class="c-label">The idea</span>
-        <p>The model learned one thing from a huge slice of human writing: which word tends to come next. It writes by predicting that word, over and over. It never checks anything; there is no lookup step, only pattern completion (unless the tool explicitly searches the web).</p>
+        <p>The model learned one thing from a huge slice of human writing: which word tends to come next. It writes by predicting that word, over and over. It never checks anything; there is no lookup step, only pattern completion (unless the tool explicitly searches the web). That is also why it sometimes states made-up things as fact: a made-up detail can be the most likely-sounding next words, and the model has no way to tell the difference.</p>
+      </div>
+      <div class="evidence reveal">
+        <span class="e-label">The research</span>
+        <p><b>453 professionals, randomized: with ChatGPT they finished 40% faster, with quality rated 18% higher.</b> The machine in the video, and in the demo on the next page, is the one behind those numbers.</p>
+        <span class="e-src">Noy &amp; Zhang, &ldquo;Experimental evidence on the productivity effects of generative artificial intelligence,&rdquo; <a href="https://www.science.org/doi/10.1126/science.adh2586" target="_blank" rel="noopener"><em>Science</em>, 2023</a></span>
+      </div>
+      <div class="reveal" style="margin-top:20px">
+        <div class="yt reveal" data-embed="https://www.youtube-nocookie.com/embed/LPZh9BOjkQs" data-title="Watch: the best 8 minutes on how LLMs work">
+        <button type="button" class="yt-btn">
+          <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
+          <span class="yt-t">Watch: the best 8 minutes on how LLMs work</span>
+          <span class="yt-sub mono">3Blue1Brown &middot; loads YouTube on click</span>
+        </button>
+      </div>
+      <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs" target="_blank" rel="noopener">Open on YouTube</a>. Short on time? The first three minutes are enough context for the demo.</p>
+      </div>
+      <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now try the prediction engine <em>yourself</em>.</p></div>
+    </div>
+
+    <!-- Module B, continued: the working next-word demo -->
+    <div class="module reveal" data-pg="Try the next-word demo">
+      <div class="module-head">
+        <span class="mno">Module B &middot; continued</span>
+        <h3>Try it: the next-word demo</h3>
+        <p>This demo shows how a language model picks its next word. Read the sentence and its five candidate words. Press &ldquo;Shuffle sentence&rdquo; for a new example. Slide the temperature, the model&rsquo;s randomness dial, and watch the odds change. (The demo runs on pre-set example data; nothing is generated live.)</p>
       </div>
       <div class="llm">
         <p class="sentence" aria-live="polite">&ldquo;<span id="llmText">The staff meeting has been moved to</span> <span class="blank" id="llmBlank">?</span>&rdquo;</p>
@@ -1468,36 +1504,12 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
               <span class="tval" id="llmTempVal">1.0</span>
             </div>
             <p class="llm-note"><b>Prediction:</b> it scores every word it knows and usually picks a high scorer: no plan, just statistics.</p>
-            <p class="llm-note"><b>Temperature:</b> slide it up and unlikely words get a real chance: great for brainstorming, risky for facts.</p>
+            <p class="llm-note"><b>Temperature:</b> slide it up and unlikely words get a real chance, so the output gets more random and creative: great for brainstorming, risky for facts.</p>
             <p class="llm-note"><b>Hallucinations</b> (made-up details stated as fact): it predicts what <em>sounds</em> right rather than checks what <em>is</em> right, so always verify.</p>
           </div>
         </div>
       </div>
       <p class="hinttxt" style="margin-top:12px">Remember this demo the next time an AI answer sounds certain: it predicted that sentence the same way it predicted these bars.</p>
-    </div>
-
-    <!-- Module B, continued: the research and the optional video -->
-    <div class="module reveal" data-pg="The research &amp; the video">
-      <div class="module-head">
-        <span class="mno">Module B &middot; continued</span>
-        <h3>The research &amp; the video</h3>
-        <p>The evidence behind the demo you just ran, plus an optional eight minutes with the best visual explainer there is.</p>
-      </div>
-      <div class="evidence reveal">
-        <span class="e-label">The research</span>
-        <p><b>453 professionals, randomized: with ChatGPT they finished 40% faster, with quality rated 18% higher.</b> The machine you just played with is the one behind those numbers.</p>
-        <span class="e-src">Noy &amp; Zhang, &ldquo;Experimental evidence on the productivity effects of generative artificial intelligence,&rdquo; <a href="https://www.science.org/doi/10.1126/science.adh2586" target="_blank" rel="noopener"><em>Science</em>, 2023</a></span>
-      </div>
-      <div class="reveal" style="margin-top:20px">
-        <div class="yt reveal" data-embed="https://www.youtube-nocookie.com/embed/LPZh9BOjkQs" data-title="Watch: the best 8 minutes on how LLMs work">
-        <button type="button" class="yt-btn">
-          <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg></span>
-          <span class="yt-t">Watch: the best 8 minutes on how LLMs work</span>
-          <span class="yt-sub mono">3Blue1Brown &middot; loads YouTube on click</span>
-        </button>
-      </div>
-      <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs" target="_blank" rel="noopener">Open on YouTube</a>.</p>
-      </div>
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now learn to catch prediction when it goes <em>wrong</em>.</p></div>
     </div>
 
@@ -1565,7 +1577,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
             <p>They're called hallucinations: fluent, plausible, and wrong. Fake citations, invented policies, wrong dates. Verify anything that matters.</p></div>
         </div>
         <div class="myth" data-verdict="myth">
-          <button type="button" aria-expanded="false">&ldquo;AI is coming for my job.&rdquo;</button>
+          <button type="button" aria-expanded="false">&ldquo;Will AI take my job?&rdquo;</button>
           <span class="flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
           <div class="verdict"><span class="vtag myth-v">Mostly myth</span>
             <p>AI takes over tasks, not whole jobs. Staff who learn to delegate the repetitive parts get hours back for the work only a person can do.</p></div>
@@ -1586,7 +1598,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
           <button type="button" aria-expanded="false">&ldquo;You need to be technical to use AI well.&rdquo;</button>
           <span class="flag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
           <div class="verdict"><span class="vtag myth-v">Myth</span>
-            <p>If you can write a clear email to a new colleague, you can write a great prompt. You&rsquo;ll see that for yourself in the Playground below.</p></div>
+            <p>If you can write a clear email to a new colleague, you can write a great prompt. You&rsquo;ll see that for yourself in the Playground section, later in the course.</p></div>
         </div>
       </div>
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Next: the four built-in limits those myths grow <em>out of</em>.</p></div>
@@ -1615,7 +1627,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
             <span class="face back">
               <span class="tag">The limit</span>
               <p>It can only &ldquo;see&rdquo; a limited amount of text at once. In marathon chats, the earliest details fall out the back, which is why long threads drift.</p>
-              <p><b>On campus:</b> it forgets the constraints you set an hour ago. <b>What to do:</b> start a fresh chat and re-supply the key facts: paste the relevant policy section, not the whole handbook.</p>
+              <p><b>On campus:</b> it forgets the constraints you set an hour ago. <b>What to do:</b> start a fresh chat and re-supply the key facts: paste the policy section you need, not the entire policy handbook.</p>
             </span>
           </button>
         </div>
@@ -1660,7 +1672,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
             <span class="face back">
               <span class="tag">The limit</span>
               <p>The model sounds equally sure when it&rsquo;s right and when it&rsquo;s wrong. A confident tone is just how it writes. It tells you nothing about whether the answer is accurate.</p>
-              <p><b>On campus:</b> an authoritative, specific, and wrong benefits deadline. <b>What to do:</b> let importance set your verification bar: the more it matters, the harder you check.</p>
+              <p><b>On campus:</b> an authoritative, specific, and wrong benefits deadline. <b>What to do:</b> let importance set your verification bar. The more it matters, the harder you check.</p>
             </span>
           </button>
         </div>
@@ -1696,7 +1708,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
       <p>AI does not show up for a job title; it shows up for a task. Some of your tasks sit in AI&rsquo;s
         wheelhouse and others barely register, so the task list is the right unit to analyze. One rule
         underneath everything here: exposure, how much of a task AI could plausibly help with, is a
-        planning signal for development, never by itself grounds for eliminating a role.</p>
+        signal for your development, not a threat to your role, and nothing here treats it that way.</p>
     </div>
 
     <!-- Module A: the four ideas -->
@@ -1706,7 +1718,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
         <h3>How AI meets your work</h3>
         <p>In this activity, you will read four short ideas. The assessment that follows uses them to look at your own task list.</p>
         <div class="lframe">
-          <span class="lf-chip"><b>You&rsquo;ll learn</b>Exposure, the jagged frontier, and skills churn</span>
+          <span class="lf-chip"><b>You&rsquo;ll learn</b>Exposure, the jagged frontier, and how fast skills change</span>
           <span class="lf-chip"><b>You&rsquo;ll do</b>Read four ideas and the evidence under each</span>
           <span class="lf-chip"><b>Time</b>3 min</span>
         </div>
@@ -1714,7 +1726,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
 
       <div class="ra-idea">
         <h4><span class="no" aria-hidden="true">01</span>AI exposes tasks, not jobs</h4>
-        <p>AI affects some parts of a job far more than others. It might draft most of your weekly report, yet contribute almost nothing to a vendor negotiation. So skip the question &ldquo;will AI change my job?&rdquo; and ask <b>&ldquo;which of my tasks can AI help with?&rdquo;</b> The first question invites worry. The second gives you a list you can act on.</p>
+        <p>AI affects some parts of a job far more than others. It might draft most of your weekly report, yet contribute almost nothing to a vendor negotiation. The worry &ldquo;will AI change my job?&rdquo; is real, and it&rsquo;s worth taking seriously. A more useful version of it is &ldquo;which of my tasks can AI help with?&rdquo; The first invites worry; the second gives you a list you can act on.</p>
         <div class="evidence">
           <span class="e-label">The evidence</span>
           <p><b>About 80 percent of the US workforce could see at least 10 percent of their tasks
@@ -1764,7 +1776,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
 
       <div class="ra-idea">
         <h4><span class="no" aria-hidden="true">04</span>Skills churn is the planning horizon</h4>
-        <p>When the core skills of a job change fast, there is a right order to respond: <b>upskill first
+        <p>Skills churn means how fast the skills a role needs are changing. When they change fast, there is a right order to respond: <b>upskill first
           (deepen people&rsquo;s current skills), reskill where tasks shift (train for the new tasks),
           redesign roles where the shift is large, and only then hire.</b></p>
         <div class="evidence">
@@ -1781,7 +1793,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
           <li><span><b>Inventory the tasks.</b> Write down what your week actually contains; the list, not the job description, is the raw material.</span></li>
           <li><span><b>Sort into three buckets.</b> Delegate with oversight, redesign together, or human-core, the work only a person should do. Every task goes in exactly one.</span></li>
           <li><span><b>Name the skills.</b> Each bucket demands something: review habits for delegated work, fluency for redesigned work, depth for the human core.</span></li>
-          <li><span><b>Turn it into action.</b> A development plan for yourself, or per person if you manage the role; an inventory that never becomes a conversation changes nothing.</span></li>
+          <li><span><b>Turn it into action.</b> A development plan for yourself, or per person if you manage the role. The task list only helps if you talk about it: bring it to your manager or team.</span></li>
         </ol>
         <p class="c-fine">Development plans are yours to run. Role redesign, reclassification, and staffing changes run through Human Resources. <!-- [EDIT] HR workforce planning / talent contact --></p>
       </div>
@@ -1817,7 +1829,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
             <div class="rs-head"><span class="rs-no" aria-hidden="true">02</span><h4>The task inventory</h4></div>
             <div class="rs-body">
               <p class="ra-cluster" style="margin-top:0">The real tasks, in your own words</p>
-              <p class="rt-intro">Write the tasks the way you would say them out loud; two are enough to start, six paint a fuller week.</p>
+              <p class="rt-intro">Write the tasks the way you would say them out loud; one is enough to start, six paint a fuller week.</p>
               <div id="raRows">
                 <div class="ra-trow">
                   <div class="rt-head">
@@ -1958,7 +1970,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
                   <label><input type="radio" name="raSens" value="2" /> Regulated records, like student records covered by FERPA or health information covered by HIPAA</label>
                 </div>
               </fieldset>
-              <p class="nudge" id="raNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><span id="raNudgeTxt">Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the report builds itself.</span></p>
+              <p class="nudge" id="raNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><span id="raNudgeTxt">Name the role, describe at least one task with all three choices answered, and answer both questions above. Then the report builds itself.</span></p>
               <div class="ra-actions"><button type="button" class="btn btn-primary" id="raBuild">Build my report
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
             </div>
@@ -1986,7 +1998,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
       <span class="you-are">You are here: how to talk to it.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">CRIT / 03</span></span>
       <h2>The CRIT prompt <em class="s">framework</em>.</h2>
-      <p>In this section, you will learn CRIT, the four-part way to talk to AI: Context, Role, Interview, Task. <b>By the end, you will have built and copied a CRIT prompt of your own.</b></p>
+      <p>In this section, you will learn CRIT, the four-part way to talk to AI: Context, Role, Interview, Task. CRIT is an outside framework, created by Geoff Woods, author of <em>The AI-Driven Leader</em>, and adopted here; the source page ahead has the full provenance. <b>By the end, you will have built and copied a CRIT prompt of your own.</b></p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>The four parts of CRIT, and why the Interview changes the result</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Watch the creator walk it through, then build one in the builder</span>
@@ -2031,15 +2043,15 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
           <span class="yt-sub mono">Geoff Woods walks through the framework himself &middot; loads YouTube on click</span>
         </button>
       </div>
-      <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=nzLCiQgT9PM" target="_blank" rel="noopener">Open on YouTube</a>.</p>
+      <p class="yt-fallback">Prefer a new tab? <a href="https://www.youtube.com/watch?v=nzLCiQgT9PM" target="_blank" rel="noopener">Open on YouTube</a>. The examples in the video are business scenarios; the method is the same for university work.</p>
     </div>
     <div class="module reveal" data-pg="The builder">
       <div class="module-head">
         <span class="mno">Builder</span>
         <h3>The CRIT builder</h3>
-        <p>This builder walks CRIT once, with training wheels on. One guided pass teaches the shape faster than rereading the theory. Fill the four fields; the chips give you a running start.</p>
+        <p>This builder walks CRIT once, with training wheels on. One guided pass teaches the shape faster than rereading the theory. Fill the four fields; the examples give you a running start.</p>
       </div>
-      <div class="micro"><span><i aria-hidden="true">1</i>Fill the four fields (chips help)</span><span><i aria-hidden="true">2</i>Watch the prompt assemble</span><span><i aria-hidden="true">3</i>Copy it out and answer its questions</span></div>
+      <div class="micro"><span><i aria-hidden="true">1</i>Fill the four fields (the examples give you a running start)</span><span><i aria-hidden="true">2</i>Watch the prompt assemble</span><span><i aria-hidden="true">3</i>Copy it out and answer its questions</span></div>
       <p class="hinttxt" style="margin:-8px 0 16px">You leave with a copied CRIT prompt whose interview line asks the follow-up questions for you.</p>
       <div class="app-grid">
         <form autocomplete="off" novalidate>
@@ -2052,7 +2064,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
           <div class="field" style="margin-bottom:10px">
             <label for="crRole">Role: &ldquo;You are a&hellip;&rdquo;</label>
             <input type="text" id="crRole" placeholder="e.g. an experienced internal communications editor" />
-            <span class="hinttxt">The three chips below are Woods&rsquo; essential AI personas.</span>
+            <span class="hinttxt">The three examples below are Woods&rsquo; essential AI personas.</span>
           </div>
           <div class="cr-chips" aria-label="Persona chips, adapted from Geoff Woods">
             <button type="button" class="sim-chip cr-chip" data-target="crRole" data-fill="a thought partner playing the Interviewer: you draw out what is in my head by asking one question at a time">Interviewer</button>
@@ -2086,9 +2098,9 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
           </div>
           <div class="preview" id="crPreview" aria-live="polite"><span class="ph">Your CRIT prompt assembles here as you type…</span></div>
           <p class="hinttxt" id="crParts" style="margin-top:12px">0 of 4 parts filled. Context and Task carry the weight; the copy button waits for both.</p>
-          <p class="nudge" id="crNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Spot check: give it Context and a Task first. Those two carry the weight, and the chips can fill them for you.</p>
+          <p class="nudge" id="crNudge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Spot check: give it Context and a Task first. Those two carry the weight, and the examples can fill them for you.</p>
           <div class="launch-row">
-            <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT
+            <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT EDU
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
             <a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Open Amplify
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
@@ -2116,7 +2128,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
       <h2>Three practice <em class="s">apps</em>.</h2>
       <p>In this section, you will drill CRIT in the Prompt Lab and the Prompt Grader, pick up three ways to get a better answer, then use AI on one real task from your job. Nothing you type here is kept or sent; only your progress and your chosen focus task stay in this browser.</p>
       <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
-        Guided practice apps, no live AI: the real thing lives in ChatGPT, Amplify, and Copilot, and what you build here goes there.</p>
+        Guided practice apps, no live AI: the real thing lives in ChatGPT EDU, Amplify, and Copilot, and what you build here goes there.</p>
     </div>
 
     <!-- ── PROMPT LAB ── (the former tabs are now pages of the book; Tool Match lives in the Tools section) -->
@@ -2128,7 +2140,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
         </div>
         <div class="concept">
           <span class="c-label">What this trains</span>
-          <p>The CRIT builder was the guided walk; this is the freeform bench, on your own work. Every element you add narrows what comes back.</p>
+          <p>Every element you add narrows what comes back; the meter scores the four CRIT parts.</p>
         </div>
         <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>Building CRIT prompts freehand, with a quality meter</span>
@@ -2136,7 +2148,6 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
         <span class="lf-chip"><b>Time</b>4 min</span>
       </div>
         <div class="micro"><span><i aria-hidden="true">1</i>Work the four CRIT fields, top to bottom</span><span><i aria-hidden="true">2</i>Watch the prompt assemble live</span><span><i aria-hidden="true">3</i>Copy it into your tool of choice</span></div>
-        <p class="hinttxt" style="margin:-8px 0 16px">You leave with a copied prompt and a four-part quality score.</p>
         <div class="sim-chips" aria-label="Example prompts">
           <span class="mono" style="align-self:center">Need a running start?</span>
           <button type="button" class="sim-chip" id="plFocusChip" hidden>Use my focus task</button>
@@ -2144,7 +2155,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
           <button type="button" class="sim-chip" id="plExample2">Prefill: stakeholder map for a rollout</button>
           <button type="button" class="sim-chip" id="plExample3">Prefill: answer from a pasted policy</button>
         </div>
-        <p class="hinttxt" style="margin:-8px 0 18px">The stakeholder example is adapted from Geoff Woods&rsquo; prompt library (<em>The AI-Driven Leader</em>, companion resources at aileadership.com).</p>
+        <p class="hinttxt" style="margin:-8px 0 18px">The stakeholder example is adapted from Geoff Woods&rsquo; prompt library (<em>The AI-Driven Leader</em>, companion resources at aileadership.com). Safe data only while you practice: no names, no student or patient information, no confidential business terms; a generic version of your task is enough.</p>
         <div class="app-grid">
           <form autocomplete="off" novalidate>
             <div class="field">
@@ -2208,7 +2219,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
               <div class="rail"><div class="fill" id="plMeterFill"></div></div>
             </div>
             <div class="launch-row">
-              <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT
+              <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT EDU
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
               <a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Open Amplify
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
@@ -2317,12 +2328,12 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
         <h5>Four steps</h5>
         <ol>
           <li><span>Go back to <a href="#panel-lab">the Prompt Lab</a> and build a prompt <span id="tlPick">for one real task from your week (pick one in <a href="#readiness">Your role, task by task</a>)</span>.</span></li>
-          <li><span>Copy the prompt and paste it into ChatGPT, Amplify, or Copilot. Safe data only.</span></li>
+          <li><span>Copy the prompt and paste it into ChatGPT EDU, Amplify, or Copilot. Safe data only.</span></li>
           <li><span>Read the answer it gives you.</span></li>
           <li><span>In the two boxes below, note what it got right and what you had to fix, then select &ldquo;Save my notes&rdquo;.</span></li>
         </ol>
       </div>
-      <p class="hinttxt">Notice the shape as you build: context, role, interview, task.</p>
+      <p class="hinttxt">Notice the shape as you build: context, role, interview, task. Safe means: no names, no student or patient information, no confidential business terms; a generic version of your task.</p>
       <div class="app-grid">
         <form id="rrForm" autocomplete="off" novalidate>
           <div class="field">
@@ -2342,7 +2353,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
       <div class="lframe" style="margin-top:24px">
         <span class="lf-chip"><b>The habit</b>Build, run, improve once, note what you learned</span>
         <span class="lf-chip"><b>How often</b>One real task a week is enough</span>
-        <span class="lf-chip"><b>Data rule</b>Safe data only, and never children&rsquo;s records. When in doubt, Amplify or nothing</span><!-- [EDIT: confirm child-data guidance with the Child and Family Center] -->
+        <span class="lf-chip"><b>Data rule</b>Safe data only; when in doubt, Amplify or nothing. Working with children&rsquo;s information? See the hard line in Responsible AI</span>
       </div>
     </div>
     <div class="md-wrap">
@@ -2350,7 +2361,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
         <span>Done with this section</span></button>
     </div>
-    <div class="bridge reveal"><span class="b-label">Next</span><p>One real task run in one tool; now meet all three <em>properly</em>.</p></div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>You have run one real task in one tool. Next, meet all three tools and when to use <em>each</em>.</p></div>
   </div>
 </section>
 
@@ -2361,7 +2372,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
       <span class="you-are">You are here: the three tools and their data rules.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Tools / 05</span></span>
       <h2>Your three <em class="s">tools</em>.</h2>
-      <p>In this section, you will compare your three tools: ChatGPT, Amplify, and Copilot, then drill choosing between them in Tool Match. Two questions pick the right one: <b style="color:var(--champ);font-weight:600">how sensitive is the data</b>, and <b style="color:var(--champ);font-weight:600">where are you already working</b>.</p>
+      <p>In this section, you will compare your three tools: ChatGPT EDU, Amplify, and Copilot, then drill choosing between them in Tool Match. Two questions pick the right one: <b style="color:var(--champ);font-weight:600">how sensitive is the data</b>, and <b style="color:var(--champ);font-weight:600">where are you already working</b>.</p>
       <div class="lframe">
         <span class="lf-chip"><b>You&rsquo;ll learn</b>What each tool is for, and what data it may touch</span>
         <span class="lf-chip"><b>You&rsquo;ll do</b>Skim three cards, keep one rule, then drill the choice</span>
@@ -2372,15 +2383,15 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
       <!-- generic glyphs on purpose — not official product logos -->
       <article class="tool reveal">
         <span class="t-glyph" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1.1L3 20l1.1-5.3A8.5 8.5 0 1 1 21 11.5z"/><path d="M8.5 10.5h7M8.5 13.5h4.5"/></svg></span>
-        <h3>ChatGPT</h3>
-        <p class="t-tag">The versatile all-rounder for public, non-sensitive work.</p>
+        <h3>ChatGPT EDU</h3>
+        <p class="t-tag">Vanderbilt&rsquo;s version of ChatGPT; use it instead of a personal ChatGPT account for anything work-related.</p>
         <dl>
           <div><dt>Best for</dt><dd>General drafting, brainstorming, rewriting, learning new topics, web-informed answers</dd></div>
-          <div><dt>Data allowed</dt><dd><b>Public info only.</b> Nothing sensitive, nothing institutional</dd></div>
-          <div><dt>Where it lives</dt><dd>chat.openai.com, in the browser or mobile app</dd></div>
-          <div><dt>Cost</dt><dd>Free tier; paid Plus optional <!-- [EDIT] verify current pricing/licensing --></dd></div>
+          <div><dt>Data allowed</dt><dd><b>Approved up to Level 2</b> under Vanderbilt&rsquo;s data classification <!-- [EDIT: confirm Level 2 scope with ITS] -->; Level 3 work stays in Amplify or Copilot</dd></div>
+          <div><dt>Where it lives</dt><dd>chat.openai.com, signed in with your Vanderbilt ChatGPT EDU account <!-- [EDIT: confirm ChatGPT EDU access path / sign-in URL with ITS] --></dd></div>
+          <div><dt>Cost</dt><dd>Provided by Vanderbilt <!-- [EDIT: confirm ChatGPT EDU licensing / who gets access] --></dd></div>
         </dl>
-        <div class="t-cta"><a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT
+        <div class="t-cta"><a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT EDU
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></div>
       </article>
       <article class="tool hero-tool reveal" style="transition-delay:.08s">
@@ -2413,7 +2424,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
     <div class="module-head reveal" data-pg="The rule of thumb">
       <span class="mno">Tools &middot; the takeaway</span>
       <h3>The rule of thumb</h3>
-      <p>Two questions route every task. First, how sensitive is the data? Sensitive or institutional work stays in the approved pair, Amplify or Copilot; ChatGPT is for public, non-sensitive work only. Second, where are you already working? Living in Word, Excel, or Outlook points to Copilot; everything else points to Amplify, the when-in-doubt default.</p>
+      <p>Two questions route every task. First, how sensitive is the data? All three tools carry an approval level from Vanderbilt&rsquo;s data classification, and a higher level means more sensitive data is allowed: Amplify and Copilot are approved up to Level 3, ChatGPT EDU up to Level 2 <!-- [EDIT: confirm Level 2 scope with ITS] -->, so the most sensitive work stays in the approved pair. Second, where are you already working? Living in Word, Excel, or Outlook points to Copilot; everything else points to Amplify, the when-in-doubt default.</p>
     </div>
     <div class="evidence reveal">
       <span class="e-label">The bench behind Amplify</span>
@@ -2630,7 +2641,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Unpublished research data</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>Contracts &amp; legal matters</li>
       </ul>
-      <p class="pol">Full guidance: Vanderbilt&rsquo;s AI guidance and data classification policy will be linked here when published; until then, both are available through Human Resources and Vanderbilt IT.<!-- [EDIT: add URL for official AI policy] --><!-- [EDIT: add URL for data classification policy] --></p>
+      <p class="pol">Public means tools outside Vanderbilt&rsquo;s agreements: a personal ChatGPT account, a free chatbot, anything you signed up for yourself. Full guidance: Vanderbilt&rsquo;s AI guidance and data classification policy will be linked here when published; until then, both are available through Human Resources and Vanderbilt IT.<!-- [EDIT: add URL for official AI policy] --><!-- [EDIT: add URL for data classification policy] --></p>
     </div>
     <div class="module reveal" data-pg="Judgment scenarios">
       <div class="module-head">
@@ -2655,6 +2666,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
           <div class="d-take" role="status" aria-live="polite">
             <span class="d-react"></span>
             <p class="d-our"><b>Our take:</b> the report can&rsquo;t go out with a fabricated source; that part isn&rsquo;t negotiable. But start with the colleague: this is almost always ignorance, not fraud. Escalate only if it doesn&rsquo;t get fixed.</p>
+            <p class="d-our"><b>The takeaway:</b> fix it privately first; a made-up source never ships under Vanderbilt&rsquo;s name.</p>
             <span class="chip">Principle: Accountability &amp; integrity</span>
           </div>
         </article>
@@ -2670,6 +2682,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
           <div class="d-take" role="status" aria-live="polite">
             <span class="d-react"></span>
             <p class="d-our"><b>Our take:</b> this is protected health and personnel information, exactly the territory laws like HIPAA exist for. If AI touches it at all, only in an approved tool: Amplify, or Copilot on your Vanderbilt account. And for a short, personal, high-stakes message, your own attention might be the whole point.</p>
+            <p class="d-our"><b>The takeaway:</b> health details never go into a public tool; use an approved tool, or your own eyes.</p>
             <span class="chip">Principle: Human dignity &amp; data protection</span>
           </div>
         </article>
@@ -2685,6 +2698,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
           <div class="d-take" role="status" aria-live="polite">
             <span class="d-react"></span>
             <p class="d-our"><b>Our take:</b> models inherit bias from the data they learned on. Document it, report it, and insist a human owns every hiring decision. This is exactly where &ldquo;the AI ranked them&rdquo; fails everyone.</p>
+            <p class="d-our"><b>The takeaway:</b> document the bias and raise it; never trust the tool blindly and never patch it quietly.</p>
             <span class="chip">Principle: Bias &amp; fairness</span>
           </div>
         </article>
@@ -2700,6 +2714,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
           <div class="d-take" role="status" aria-live="polite">
             <span class="d-react"></span>
             <p class="d-our"><b>Our take:</b> where the rules are unsettled, default to the disclosure you&rsquo;d be comfortable defending in two years. University trust is slow to earn and quick to lose, and norms are moving toward disclosure, not away from it.</p>
+            <p class="d-our"><b>The takeaway:</b> when disclosure is unsettled, disclose briefly; one honest sentence is cheap insurance.</p>
             <span class="chip">Principle: Transparency &amp; integrity</span>
           </div>
         </article>
@@ -2820,16 +2835,16 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
         <fieldset class="qz" data-answer="c">
           <legend><span class="qn">5/8</span>You're buried in Excel and need formula help. The natural first stop?</legend>
           <div class="opts">
-            <label><input type="radio" name="q6" value="a" /> ChatGPT in another tab</label> <label><input type="radio" name="q6" value="b" /> Amplify</label> <label><input type="radio" name="q6" value="c" /> Copilot, it lives inside Office</label> <label><input type="radio" name="q6" value="d" /> A very patient coworker</label>
+            <label><input type="radio" name="q6" value="a" /> ChatGPT EDU in another tab</label> <label><input type="radio" name="q6" value="b" /> Amplify</label> <label><input type="radio" name="q6" value="c" /> Copilot, it lives inside Office</label> <label><input type="radio" name="q6" value="d" /> A very patient coworker</label>
           </div>
           <p class="expl"><b>Copilot.</b> The rule of thumb says office apps call for Copilot. With Vanderbilt&rsquo;s Copilot license, it can work inside your sheet, so you skip the copy-paste dance. <!-- [EDIT: confirm license coverage] --></p>
         </fieldset>
         <fieldset class="qz" data-answer="b">
           <legend><span class="qn">6/8</span>A colleague wants AI help summarizing notes that include employee salary details. Which tool?</legend>
           <div class="opts">
-            <label><input type="radio" name="q1" value="a" /> ChatGPT, it's the most popular</label> <label><input type="radio" name="q1" value="b" /> Amplify, it's approved for institutional data</label> <label><input type="radio" name="q1" value="c" /> Copilot on a personal account</label> <label><input type="radio" name="q1" value="d" /> Any of them, it's just a summary</label>
+            <label><input type="radio" name="q1" value="a" /> ChatGPT EDU, it's the most popular</label> <label><input type="radio" name="q1" value="b" /> Amplify, it's approved for institutional data</label> <label><input type="radio" name="q1" value="c" /> Copilot on a personal account</label> <label><input type="radio" name="q1" value="d" /> Any of them, it's just a summary</label>
           </div>
-          <p class="expl"><b>Amplify.</b> Salary and personnel records are confidential, so they stay in the approved pair: Amplify, or Copilot through your Vanderbilt account (both cleared for institutional data up to Level 3). A Copilot <em>personal</em> account has none of those protections, and ChatGPT is for public work only.</p>
+          <p class="expl"><b>Amplify.</b> Salary and personnel records are confidential, so they stay in the approved pair: Amplify, or Copilot through your Vanderbilt account (both cleared for institutional data up to Level 3). A Copilot <em>personal</em> account has none of those protections, and ChatGPT EDU is approved only up to Level 2, which salary records are not.</p>
         </fieldset>
         <fieldset class="qz" data-answer="b">
           <legend><span class="qn">7/8</span>Before pasting anything into an AI tool, the one question to ask is:</legend>
@@ -2950,7 +2965,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
       </article>
       <article class="recap reveal">
         <h3>Where the work belongs</h3>
-        <p>Tool choice is a data decision first: sensitive or institutional data stays in Amplify or Copilot, both approved up to Level 3; Office work points to Copilot; when in doubt, Amplify.</p>
+        <p>Tool choice is a data decision first: Amplify and Copilot are approved up to Level 3, ChatGPT EDU up to Level 2; Office work points to Copilot; when in doubt, Amplify.</p>
         <span class="r-why"><b>At work:</b> one second of routing prevents the mistakes that are hardest to undo.</span>
       </article>
       <article class="recap reveal" style="transition-delay:.06s">
@@ -3034,7 +3049,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
       </div>
     </div>
     <p class="hw-meta reveal">Revisit the 30/60/90 you built in <a href="#readiness">Your role, task by task</a>: you have now done part of it. Next month, pick a second task and run the same loop.</p>
-    <!-- [EDIT: confirm the Oracle Learning item below stays current] -->
+    <!-- [EDIT: confirm the Oracle Learning item below stays current] [EDIT: Oracle course-vs-offering: pilot user enrolled at course level could not mark the offering complete; owner to verify the correct learningItemId with the Oracle admin] -->
     <div class="oracle-strip reveal">
       <div>
         <span class="mono">Training record</span>
@@ -3223,7 +3238,8 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
       <dl class="gloss">
         <div><dt>Agentic AI.</dt> <dd>AI that works toward a goal in steps on its own, under your oversight.</dd></div>
         <div><dt>AI (artificial intelligence).</dt> <dd>Software doing things that used to need human judgment.</dd></div>
-        <div><dt>Chatbot.</dt> <dd>An AI tool you use by typing to it: ChatGPT, Amplify, and Copilot are all chatbots.</dd></div>
+        <div><dt>Chatbot.</dt> <dd>An AI tool you use by typing to it: ChatGPT EDU, Amplify, and Copilot are all chatbots.</dd></div>
+        <div><dt>ChatGPT EDU.</dt> <dd>Vanderbilt&rsquo;s version of ChatGPT; use it instead of a personal ChatGPT account for anything work-related.</dd></div>
         <div><dt>Context window.</dt> <dd>The limited amount of text a model can pay attention to at once.</dd></div>
         <div><dt>CRIT.</dt> <dd>Context, Role, Interview, Task: the four-part way to write a prompt.</dd></div>
         <div><dt>Exposure.</dt> <dd>How much of a task AI could plausibly help with; a planning signal, never a judgment of the person.</dd></div>
@@ -3257,7 +3273,7 @@ html.paged .hero .pg-hint{ display:inline-flex; align-items:center; font-family:
     <a class="btn btn-gold" href="#nextstep">Start the five-step loop
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     <p class="cta-alt">Haven&rsquo;t taken the knowledge check yet? <a href="#quiz">It takes five minutes.</a></p>
-    <!-- [EDIT: confirm the Oracle Learning item below stays current] -->
+    <!-- [EDIT: confirm the Oracle Learning item below stays current] [EDIT: Oracle course-vs-offering: pilot user enrolled at course level could not mark the offering complete; owner to verify the correct learningItemId with the Oracle admin] -->
     <div class="oracle-strip cta-oracle">
       <div>
         <span class="mono">Training record</span>
@@ -3600,6 +3616,18 @@ try{
   document.addEventListener('scroll', function(e){
     if(cur >= 0 && e.target === pages[cur].el) checkMore();
   }, true);
+  /* content height can change after the initial paint (web-font swap, images,
+     result panels rendering); without this, a page could overflow with no
+     "scroll for more" affordance ever appearing */
+  window.addEventListener('load', checkMore);
+  if(window.ResizeObserver){
+    try{
+      var ro = new ResizeObserver(function(){ checkMore(); });
+      pages.forEach(function(p){
+        Array.prototype.slice.call(p.el.children).forEach(function(ch){ ro.observe(ch); });
+      });
+    }catch(e){}
+  }
 
   /* open at: deep link > stored resume > page one */
   var startIdx = hashIndex(window.location.hash);
@@ -3625,7 +3653,7 @@ try{
 <!-- ═══════════════════ ORACLE COMPLETION MODAL ═══════════════════
      Appears once per visit when all tracked sections are complete, until the learner
      opens Oracle Learning or confirms they already attested.
-     [EDIT: confirm the Oracle Learning item ID stays current] -->
+     [EDIT: confirm the Oracle Learning item ID stays current] [EDIT: Oracle course-vs-offering: pilot user enrolled at course level could not mark the offering complete; owner to verify the correct learningItemId with the Oracle admin] -->
 <div class="oracle-overlay" id="oracleModal" role="dialog" aria-modal="true" aria-labelledby="oracleTitle" hidden>
   <div class="oracle-modal">
     <span class="mono">Training record</span>
@@ -3803,8 +3831,8 @@ function progBuildList(){
   progList.innerHTML = PROG_SECTIONS.map(function(s){
     return '<li data-prog-row="' + s.k + '"><a href="#' + s.k + '">' +
       '<span class="p-no" aria-hidden="true">' + s.no + '</span>' +
-      '<span class="p-name">' + s.name + '<span class="p-how">' + s.how + '</span></span>' +
-      '<span class="p-state">Not yet</span></a></li>';
+      '<span class="p-name">' + s.name + '<span class="p-how">' + s.how + '</span></span></a>' +
+      '<button type="button" class="p-state" data-prog="' + s.k + '" aria-pressed="false" aria-label="Mark ' + s.name + ' done">Mark done</button></li>';
   }).join('');
 }
 function progRender(changedKey, nowDone){
@@ -3816,11 +3844,13 @@ function progRender(changedKey, nowDone){
   if(progSum) progSum.textContent = doneN === total
     ? 'All ' + total + ' sections complete. What remains is the habit.'
     : doneN + ' of ' + total + ' sections complete. You have ' + left + ' left; every row below is a shortcut.';
+  var saveNote = progStore ? ' Progress saves only in this browser.'
+    : ' Your browser is blocking saved progress, so marks reset when you close this tab.';
   if(progTop) progTop.textContent = doneN === 0
-    ? 'Section tracking: you have ' + total + ' sections ahead. Progress saves only in this browser.'
+    ? 'Section tracking: you have ' + total + ' sections ahead.' + saveNote
     : doneN === total
     ? 'Section tracking: all ' + total + ' sections complete.'
-    : 'Section tracking: ' + doneN + ' of ' + total + ' complete, ' + left + ' left. Progress saves only in this browser.';
+    : 'Section tracking: ' + doneN + ' of ' + total + ' complete, ' + left + ' left.' + saveNote;
   if(mprogLine) mprogLine.textContent = doneN + ' of ' + total + ' sections complete';
   PROG_SECTIONS.forEach(function(s){
     var done = progIs(s.k);
@@ -3828,7 +3858,13 @@ function progRender(changedKey, nowDone){
     if(row){
       row.classList.toggle('done', done);
       var st = row.querySelector('.p-state');
-      if(st) st.textContent = done ? 'Done' : 'Not yet';
+      if(st){
+        /* done state reads as STATUS, not a command */
+        st.textContent = done ? 'Completed' : 'Mark done';
+        st.setAttribute('aria-pressed', done ? 'true' : 'false');
+        st.setAttribute('aria-label', done ? s.name + ' completed. Select to un-mark.' : 'Mark ' + s.name + ' done');
+        if(done) st.setAttribute('title', 'Select to un-mark'); else st.removeAttribute('title');
+      }
     }
     document.querySelectorAll('.mlink[data-prog="' + s.k + '"]').forEach(function(a){ a.classList.toggle('done', done); });
     var dot = document.querySelector('.bb-dot[data-rail="' + s.k + '"]');
@@ -3840,7 +3876,9 @@ function progRender(changedKey, nowDone){
     document.querySelectorAll('.md-btn[data-prog="' + s.k + '"]').forEach(function(b){
       b.setAttribute('aria-pressed', done ? 'true' : 'false');
       var sp = b.querySelector('span');
-      if(sp) sp.textContent = done ? 'Marked done' : 'Done with this section';
+      if(sp) sp.textContent = done ? 'Completed' : 'Done with this section';
+      b.setAttribute('aria-label', done ? s.name + ' completed. Select to un-mark.' : 'Done with this section: ' + s.name);
+      if(done) b.setAttribute('title', 'Select to un-mark'); else b.removeAttribute('title');
     });
   });
   if(changedKey && progStatus){
@@ -3865,9 +3903,11 @@ function bbDoneSync(){
   bbDoneBtn.hidden = false;
   bbDoneBtn.setAttribute('data-prog', sec.k);
   bbDoneBtn.setAttribute('aria-pressed', done ? 'true' : 'false');
-  bbDoneBtn.setAttribute('aria-label', (done ? 'Done: ' : 'Mark done: ') + sec.name);
+  /* done state reads as STATUS, not a command */
+  bbDoneBtn.setAttribute('aria-label', done ? sec.name + ' completed. Select to un-mark.' : 'Mark done: ' + sec.name);
+  if(done) bbDoneBtn.setAttribute('title', 'Select to un-mark'); else bbDoneBtn.removeAttribute('title');
   var t = bbDoneBtn.querySelector('.bb-done-t');
-  if(t) t.textContent = done ? 'Done' : 'Mark done';
+  if(t) t.textContent = done ? 'Completed' : 'Mark done';
 }
 if(bbDoneBtn) bbDoneBtn.addEventListener('click', function(){
   var k = bbDoneBtn.getAttribute('data-prog');
@@ -3891,7 +3931,13 @@ function progOpen(open){
   progBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 if(progBtn) progBtn.addEventListener('click', function(){ progOpen(progPanel && progPanel.hidden); });
-if(progPanel) progPanel.addEventListener('click', function(e){ if(e.target.closest('a')) progOpen(false); });
+if(progPanel) progPanel.addEventListener('click', function(e){
+  /* per-row toggles mark from the panel through the same progToggle path as
+     every other surface (identical persistence + the Oracle 10/10 check) */
+  var st = e.target.closest ? e.target.closest('button.p-state') : null;
+  if(st){ progToggle(st.getAttribute('data-prog')); return; }
+  if(e.target.closest('a')) progOpen(false);
+});
 document.addEventListener('click', function(e){
   if(progPanel && !progPanel.hidden && !e.target.closest('#progPanel') && !e.target.closest('#progBtn')) progOpen(false);
 });
@@ -3979,6 +4025,12 @@ document.addEventListener('keydown', function(e){
    carries the section dots; progRender colors them via .bb-dot above */
 progBuildList();
 progRender();
+/* storage unavailable (private browsing etc.): say so once instead of losing progress silently */
+if(!progStore){
+  var pwarn = document.getElementById('progStorageNote');
+  if(pwarn) pwarn.hidden = false;
+  if(progStatus) progStatus.textContent = 'Your browser is blocking saved progress; it will reset when you close the tab.';
+}
 
 /* ══════════ FOCUS TASK: the golden thread ══════════
    One string (chart-focus-task) saved beside the progress flags: the task the
@@ -4414,7 +4466,7 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
     amplify:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3.5v5.2c0 5-3.4 9.2-8 10.8-4.6-1.6-8-5.8-8-10.8V5.5L12 2z"/><path d="M9 13.5L12 7l3 6.5M10 12h4"/></svg>',
     copilot:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 15.5c-2.6 0-4.5-1.8-4.5-3.5s1.9-3.5 4.5-3.5c3.5 0 3.9 7 7 7 2.6 0 4.5-1.8 4.5-3.5S18.1 8.5 15.5 8.5c-3.1 0-3.5 7-7 7z"/></svg>'
   };
-  var NAMES = { chatgpt:'ChatGPT', amplify:'Amplify', copilot:'Microsoft Copilot' };
+  var NAMES = { chatgpt:'ChatGPT EDU', amplify:'Amplify', copilot:'Microsoft Copilot' };
   function val(name){
     var el = form.querySelector('input[name="' + name + '"]:checked');
     return el ? el.value : null;
@@ -4449,8 +4501,8 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       if(a[2] === 'yes') why.push('It can also pull in current web results when you need them.');
     } else if(a[2] === 'yes'){
       pick = 'chatgpt';
-      why.push('You need current information from the web, and ChatGPT handles browsing-style questions well.');
-      why.push('Keep it to public, non-sensitive material and you’re in its sweet spot.');
+      why.push('You need current information from the web, and ChatGPT EDU handles browsing-style questions well.');
+      why.push('Keep it to less-sensitive work (ChatGPT EDU is approved up to Level 2) and you’re in its sweet spot.');
       if(a[4] === 'yes') why.push('It’s also a strong everyday drafting partner once the research is done.');
     } else if(a[3] === 'yes'){
       pick = 'amplify';
@@ -4458,11 +4510,11 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
       why.push('And if a “harmless” campus document turns out to be sensitive, you’re already in an approved tool.');
     } else if(a[4] === 'yes'){
       pick = 'chatgpt';
-      why.push('General drafting and brainstorming with no sensitive data: the classic ChatGPT use case.');
+      why.push('General drafting and brainstorming with no sensitive data: the classic ChatGPT EDU use case.');
       why.push('Ask for three versions of anything; it’s free to be picky.');
     } else {
       pick = 'chatgpt';
-      why.push('No strong signals either way, so ChatGPT is the friendliest place to build the habit.');
+      why.push('No strong signals either way, so ChatGPT EDU is the friendliest place to build the habit.');
       why.push('If institutional data ever enters the picture, switch to Amplify or Copilot without a second thought.');
     }
     why.push('Rule of thumb: sensitive data → Amplify or Copilot · Office apps → Copilot · when in doubt → Amplify.');
@@ -4531,26 +4583,26 @@ document.querySelectorAll('.myth > button').forEach(function(btn){
   });
 
   var PATTERNS = [
-    { re:/\b(draft|write|writing|written|compose|announce|memo|letter|newsletter|copy)\b/i, name:'Drafting & writing', level:'assist', what:'First drafts of memos, announcements, and letters in seconds; you supply the facts and the final read.', saved:'High', tool:'ChatGPT' },
+    { re:/\b(draft|write|writing|written|compose|announce|memo|letter|newsletter|copy)\b/i, name:'Drafting & writing', level:'assist', what:'First drafts of memos, announcements, and letters in seconds; you supply the facts and the final read.', saved:'High', tool:'ChatGPT EDU' },
     { re:/\b(summar|condense|digest|recap|distill|key points)\b/i, name:'Summarizing', level:'automate', what:'Turn long notes, threads, and reports into crisp summaries at whatever length you ask for.', saved:'High', tool:'Amplify' },
     { re:/\b(data|spreadsheet|excel|analy[sz]|metrics|numbers|variance|trends?|formulas?)\b/i, name:'Data analysis', level:'assist', what:'Explain formulas, spot trends, and draft the “what this means” paragraph under your tables.', saved:'Medium', tool:'Copilot' },
     { re:/\b(schedul|calendar|coordinat|book(ing)?|logistics|reschedul)\b/i, name:'Scheduling & coordination', level:'assist', what:'Draft scheduling emails, agendas, and “finding a time” messages, and turn plans into checklists.', saved:'Medium', tool:'Copilot' },
-    { re:/\b(research|literature|investigate|sources|look(ing)? up|compare options|benchmark)\b/i, name:'Research & exploration', level:'advise', what:'Map a topic fast, generate the questions you should be asking, and get plain-English explainers.', saved:'Medium', tool:'ChatGPT' },
+    { re:/\b(research|literature|investigate|sources|look(ing)? up|compare options|benchmark)\b/i, name:'Research & exploration', level:'advise', what:'Map a topic fast, generate the questions you should be asking, and get plain-English explainers.', saved:'Medium', tool:'ChatGPT EDU' },
     { re:/\b(email|inbox|repl(y|ies)|respond|correspond|messages?)\b/i, name:'Email & communication', level:'automate', what:'Draft replies, soften tricky messages, and build reusable templates for the questions you answer weekly.', saved:'High', tool:'Copilot' },
     { re:/\b(meeting|minutes|agenda|action items|standup|notes)\b/i, name:'Meeting notes & follow-ups', level:'automate', what:'Convert raw notes into minutes, decisions, and action items, with owners and due dates.', saved:'High', tool:'Copilot' },
     { re:/\b(report|dashboard|status update|monthly|quarterly|weekly update)\b/i, name:'Recurring reporting', level:'assist', what:'Standardize the format once, then let AI assemble each cycle’s draft from your bullet points.', saved:'High', tool:'Amplify' },
     { re:/\b(review|evaluate|assess|score|rubric|feedback on|proofread|edit)\b/i, name:'Document review', level:'advise', what:'A second pair of eyes: apply your checklist, flag inconsistencies, and suggest improvements. You decide.', saved:'Medium', tool:'Amplify' },
-    { re:/\b(onboard|training|orientation|new hires?|upskill|how[- ]to|guide)\b/i, name:'Onboarding & training', level:'assist', what:'Draft welcome packets, FAQs, and step-by-step guides, then keep them fresh with quick rewrites.', saved:'Medium', tool:'ChatGPT' },
+    { re:/\b(onboard|training|orientation|new hires?|upskill|how[- ]to|guide)\b/i, name:'Onboarding & training', level:'assist', what:'Draft welcome packets, FAQs, and step-by-step guides, then keep them fresh with quick rewrites.', saved:'Medium', tool:'ChatGPT EDU' },
     { re:/\b(support|help ?desk|faq|inquir|questions from|tickets?|front desk|answer(ing)?)\b/i, name:'Frontline support & FAQs', level:'assist', what:'Turn your ten most-asked questions into ready, warm responses, personalized in seconds.', saved:'High', tool:'Amplify' },
-    { re:/\b(translat|multilingual|spanish|mandarin|language access)\b/i, name:'Translation & plain language', level:'automate', what:'Translate and simplify, then have a fluent human speaker review anything official.', saved:'Medium', tool:'ChatGPT' },
-    { re:/\b(brainstorm|ideas?|creative|name for|plan(ning)?|strateg)\b/i, name:'Brainstorming & planning', level:'advise', what:'Twenty options in a minute: themes, titles, approaches, risks you haven’t considered.', saved:'Medium', tool:'ChatGPT' },
+    { re:/\b(translat|multilingual|spanish|mandarin|language access)\b/i, name:'Translation & plain language', level:'automate', what:'Translate and simplify, then have a fluent human speaker review anything official.', saved:'Medium', tool:'ChatGPT EDU' },
+    { re:/\b(brainstorm|ideas?|creative|name for|plan(ning)?|strateg)\b/i, name:'Brainstorming & planning', level:'advise', what:'Twenty options in a minute: themes, titles, approaches, risks you haven’t considered.', saved:'Medium', tool:'ChatGPT EDU' },
     { re:/\b(polic(y|ies)|handbook|manual|long documents?|pdf|contract|guidelines)\b/i, name:'Document Q&A', level:'assist', what:'Ask long documents questions like “what does the policy say about X?” and get pointed answers to verify.', saved:'High', tool:'Amplify' }
   ];
   /* Acorn School / early-childhood pattern set: every card carries the child-data rule.
      [EDIT: confirm child-data guidance with the Child and Family Center] */
   var ACORN_PATTERNS = [
     { re:/\b(parents?|famil(y|ies)|newsletters?|classroom)\b/i, name:'Parent communications & newsletters', level:'assist', what:'Draft warm classroom newsletters and parent reminders from your bullet points. Describe children generically (“a four-year-old in my class”); names never go in.', saved:'High', tool:'Amplify' },
-    { re:/\b(lesson|activit(y|ies)|curriculum|play|explor\w*|project)\b/i, name:'Activity & lesson planning ideas', level:'advise', what:'Brainstorm play-based activity ideas from what the class is curious about this week, in the emergent-curriculum spirit. You pick what fits; no child details needed.', saved:'Medium', tool:'ChatGPT' },
+    { re:/\b(lesson|activit(y|ies)|curriculum|play|explor\w*|project)\b/i, name:'Activity & lesson planning ideas', level:'advise', what:'Brainstorm play-based activity ideas from what the class is curious about this week, in the emergent-curriculum spirit. You pick what fits; no child details needed.', saved:'Medium', tool:'ChatGPT EDU' },
     { re:/\b(observations?|develop\w*|portfolio|milestones?)\b/i, name:'Observation notes into summaries', level:'assist', what:'Tighten already-generic notes into clear summaries. Names, photos, and identifiable developmental details about a child never go in; keep child records out entirely.', saved:'Medium', tool:'Amplify' },
     { re:/\b(schedules?|suppl(y|ies)|snacks?|nap|checklists?|rotations?)\b/i, name:'Schedules & supply lists', level:'automate', what:'Turn plans into daily schedules, supply lists, and checklists formatted the way your room runs. No child information belongs in any of them.', saved:'Medium', tool:'Copilot' }
   ];
@@ -4902,7 +4954,8 @@ document.querySelectorAll('.dilemma').forEach(function(card){
     var tr = yes <= 1 ? TIERS[0] : yes <= 3 ? TIERS[1] : TIERS[2];
     out.innerHTML = '<div class="result-card"><div class="rc-head"><span class="rc-glyph">' + GLYPH + '</span><div><h4>' + tr[0] +
       '</h4><span class="rc-sub">' + yes + ' of ' + TOTAL + ' intensity signals</span></div></div>' +
-      '<p class="rc-note">' + tr[1] + '</p>' + EAP +
+      '<p class="rc-note">' + tr[1] + '</p>' +
+      '<p class="rc-fine">How to read your tally: each yes is one signal that saved time is flowing back into work. Pick the one you would most like to turn into a no; that is the boundary to set this week.</p>' + EAP +
       '<p class="rc-fine">Reflection only; nothing is stored or shared. Retake it whenever your workload shifts.</p></div>';
   });
 })();
@@ -5134,7 +5187,7 @@ function gather(){
   });
   return { tasks:tasks, badEl:badEl, emptyEl:emptyEl, partials:partials };
 }
-var NUDGE_DEFAULT = 'Name the role, describe at least two tasks with all three choices answered for each, and answer both questions above. Then the report builds itself.';
+var NUDGE_DEFAULT = 'Name the role, describe at least one task with all three choices answered, and answer both questions above. Then the report builds itself.';
 function nudgeShow(msg){
   if(!nudge) return;
   var t = document.getElementById('raNudgeTxt');
@@ -5152,7 +5205,7 @@ function formComplete(){
   if(!name) return false;
   if(val('raFluency') === null || val('raSens') === null) return false;
   var g = gather();
-  return !g.badEl && g.tasks.length >= 2;
+  return !g.badEl && g.tasks.length >= 1;
 }
 function maybeClearNudge(){
   if(nudge && nudge.classList.contains('show') && formComplete()) nudgeHide();
@@ -5222,7 +5275,7 @@ function skillList(fluency, sens, vv){
         : 'The outputs here are quick to check, which is an advantage: make the check a habit, because whoever delegates a task to AI owns the review of it.' },
     { n:'Prompting and delegation fluency', p: 1 + (2 - fluency),
       d: fluency === 0
-        ? 'AI use has not started yet, so fluency comes early: what to hand to a tool, how to describe it, and how to judge what comes back. CRIT and the Playground, next on this page, are the fastest on-ramp.'
+        ? 'AI use has not started yet, so fluency comes early: what to hand to a tool, how to describe it, and how to judge what comes back. CRIT and the Playground, just ahead in the course, are the fastest on-ramp.'
         : fluency === 1
         ? 'Experimenting already? Turn scattered experiments into steady practice: a weekly routine, saved prompts, and honest notes on what failed.'
         : 'Regular use means the emphasis shifts from prompting to delegation quality: clearer handoffs and better review.' },
@@ -5367,7 +5420,7 @@ function render(name, tasks, fluency, sens){
          : tasks.some(function(t){ return t.chk === 'effort'; }) ? 1 : 0;
   var skills = skillList(fluency, sens, vv);
   var html = '<div class="result-card" style="margin-top:26px"><div class="rc-head"><span class="rc-glyph">' + COMPASS + '</span>' +
-    '<div><h4>' + roleEsc + '</h4><span class="rc-sub">' + tier + ' exposure across ' + total + ' named tasks &middot; a rough read, not a score</span></div></div>' +
+    '<div><h4>' + roleEsc + '</h4><span class="rc-sub">' + tier + ' exposure across ' + total + ' named task' + (total === 1 ? '' : 's') + ' &middot; a rough read, not a score</span></div></div>' +
     '<p class="rc-note">' + esc(why) + '</p>' +
     '<p class="rc-fine">Exposure describes how much of the named work AI can plausibly touch. It is a planning signal for development and role design, never a statement about the value of the person doing the work.</p></div>';
   var dItems = bk.delegate.map(itemHtml);
@@ -5424,7 +5477,7 @@ function render(name, tasks, fluency, sens){
   if(sens > 0) overTrack.items.push(['Data-handling judgment', 'Confidential or regulated details go only into approved tools, and when in doubt, ask before pasting.']);
   resilTrack.res = resilShelf();
   overTrack.res = overShelf(fluency, vv);
-  if(sens > 0) overTrack.resNote = 'Data-handling judgment has no outside course: the working rules live in the <a href="#responsible">Responsible AI</a> section later on this page, and safe practice belongs in approved tools: <a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener noreferrer">Amplify</a>, or Copilot on your Vanderbilt account.';
+  if(sens > 0) overTrack.resNote = 'Data-handling judgment has no outside course: the working rules live in the <a href="#responsible">Responsible AI</a> section later in the course, and safe practice belongs in approved tools: <a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener noreferrer">Amplify</a>, or Copilot on your Vanderbilt account.';
   var planPrimary = delegateHeavy ? overTrack : resilTrack;
   var planSecondary = delegateHeavy ? resilTrack : overTrack;
   var planLeadHtml = delegateHeavy
@@ -5454,7 +5507,7 @@ function render(name, tasks, fluency, sens){
     ? 'For ' + roleEsc + ', most of the tasks you named land in the delegate bucket. That is a <b>role redesign conversation with your manager and HR</b>, not a reason to panic: exposure is a development signal, never on its own a case for cutting a role. When you are ready to start it, ask your HR business partner.'
     : 'When most of a role&rsquo;s named tasks land in the delegate bucket, that is a <b>role redesign conversation with your manager and HR</b>, not a training assignment and not a reason to panic. When it is time, ask your HR business partner.';
   html += '<div class="ra-block"><h5>Upskill and reskill routes</h5><div class="dd" style="margin-top:14px"><ul>' +
-    '<li>' + CHECK + '<span><b><a href="#crit">CRIT</a> and <a href="#playground">the Playground</a>, coming up on this page.</b> Your oversight track starts in the next sections: the prompting and delegation the redesign bucket asks for.</span></li>' +
+    '<li>' + CHECK + '<span><b><a href="#crit">CRIT</a> and <a href="#playground">the Playground</a>, coming up next.</b> Your oversight track starts in the next sections: the prompting and delegation the redesign bucket asks for.</span></li>' +
     '<li>' + CHECK + '<span><b><a href="https://www.vanderbilt.ai/" target="_blank" rel="noopener noreferrer">Amplify</a>, for hands-on practice.</b> Guided practice on Vanderbilt&rsquo;s approved platform beats a workshop that never touches real work.</span></li>' +
     /* [EDIT: add a catalog URL when one is provided; only per-course deep links exist today] */
     '<li>' + CHECK + '<span><b>Role-specific reskilling.</b> Vanderbilt&rsquo;s Oracle Learning catalog (search &ldquo;AI&rdquo;), plus the university&rsquo;s learning and development offerings through HR.</span></li>' +
@@ -5522,7 +5575,7 @@ build.addEventListener('click', function(){
   var fluency = val('raFluency'), sens = val('raSens');
   var problem = null;
   if(!name) problem = roleInput;
-  else if(g.tasks.length < 2) problem = g.badEl || g.emptyEl || (rows()[0] && rows()[0].querySelector('.rt-task'));
+  else if(g.tasks.length < 1) problem = g.badEl || g.emptyEl || (rows()[0] && rows()[0].querySelector('.rt-task'));
   else if(fluency === null || sens === null) problem = form.querySelector('input[name="' + (fluency === null ? 'raFluency' : 'raSens') + '"]');
   if(problem){
     nudgeShow();
@@ -5778,7 +5831,7 @@ function build(){
   /* ── 9. resources and links ── */
   section('Resources and links');
   box.appendChild(E('h3', null, 'Your three tools'));
-  para('Amplify (Vanderbilt’s platform): https://www.vanderbilt.ai/ · ChatGPT: https://chat.openai.com · Microsoft Copilot: https://copilot.microsoft.com');
+  para('Amplify (Vanderbilt’s platform): https://www.vanderbilt.ai/ · ChatGPT EDU (Vanderbilt’s version of ChatGPT): https://chat.openai.com · Microsoft Copilot: https://copilot.microsoft.com');
   box.appendChild(E('h3', null, 'Training record'));
   para('Mark the course complete in Oracle Learning:');
   para(ORACLE_URL, 'ps-url');
