@@ -323,6 +323,13 @@ section + section{ border-top:1px solid transparent; }
 .llm-note{ border-left:2px solid var(--vu-gold); padding:2px 0 2px 14px; color:var(--tx2); font-size:.9375rem; }
 .llm-note b{ color:var(--tx); font-weight:600; }
 .llm-note + .llm-note{ margin-top:12px; }
+.demo-steps{ margin:12px 0 0; padding-left:22px; max-width:66ch; color:var(--tx2); }
+.demo-steps li{ margin-top:6px; }
+.demo-steps li::marker{ font-family:var(--cond); font-weight:700; color:var(--vu-oak); }
+.pb-head{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--tx2); margin-bottom:10px; }
+.pb-cap{ font-size:.8rem; color:var(--tx3); margin-top:10px; }
+.ctl-temp{ flex-direction:column; align-items:stretch; gap:6px; }
+.t-ends{ display:flex; justify-content:space-between; gap:12px; font-family:var(--cond); font-weight:700; font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--tx3); }
 
 /* myths */
 .myth-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
@@ -956,6 +963,10 @@ html.paged .ra-idea{ margin-top:20px; }
 html.paged .canon{ margin-top:16px; padding:16px 18px; }
 html.paged .llm{ padding:clamp(16px,2.6vh,30px); }
 html.paged .llm-grid{ margin-top:18px; }
+html.paged .demo-steps{ margin-top:8px; }
+html.paged .demo-steps li{ margin-top:3px; }
+html.paged .llm-note + .llm-note{ margin-top:8px; }
+html.paged .pbars{ gap:9px; }
 html.paged .fcard button{ padding:18px 16px; }
 html.paged .principle{ padding:20px 18px; }
 html.paged .recap{ padding:20px 18px; }
@@ -1486,27 +1497,36 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
       <div class="module-head">
         <span class="mno">Module B &middot; continued</span>
         <h3>Try it: the next-word demo</h3>
-        <p>This demo shows how a language model picks its next word. Read the sentence and its five candidate words. Press &ldquo;Shuffle sentence&rdquo; for a new example. Slide the temperature, the model&rsquo;s randomness dial, and watch the odds change. (The demo runs on pre-set example data; nothing is generated live.)</p>
+        <p>This demo shows the single most important idea in the course: AI writes by predicting the next word, one word at a time. Watch it predict, and you will understand why AI can sound confident and still be wrong. Here is how to use it:</p>
+        <ol class="demo-steps">
+          <li>Read the sentence. The gold underlined word is the one the AI picked to fill the blank.</li>
+          <li>The bars below show the five words the AI considered, and how likely each one felt to it. Higher bar, more likely pick.</li>
+          <li>Slide the temperature, the AI&rsquo;s randomness dial. Low keeps it picking the safest word; high gives unlikely words a real chance. Watch the percentages change.</li>
+          <li>Select &ldquo;Shuffle sentence&rdquo; to try another example.</li>
+        </ol>
+        <p>The demo runs on pre-set example data; nothing is generated live.</p>
       </div>
       <div class="llm">
         <p class="sentence" aria-live="polite">&ldquo;<span id="llmText">The staff meeting has been moved to</span> <span class="blank" id="llmBlank">?</span>&rdquo;</p>
         <div class="llm-grid">
           <div>
-            <div class="pbars" id="llmBars" role="img" aria-label="Probability bars showing the model's five most likely next words"></div>
+            <p class="pb-head" id="llmBarsHead">The five words it considered</p>
+            <div class="pbars" id="llmBars" role="img" aria-label="Probability bars showing the five words the AI considered and how likely each one felt to it"></div>
+            <p class="pb-cap">Each bar shows how likely that word felt to the AI. The gold word in the sentence is the winner.</p>
           </div>
           <div class="llm-ctrl">
             <div class="ctl-row">
               <button type="button" class="btn btn-ghost btn-sm" id="llmShuffle">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>Shuffle sentence</button>
             </div>
-            <div class="ctl-row">
-              <label for="llmTemp">Temperature</label>
+            <div class="ctl-row ctl-temp">
+              <label for="llmTemp">Temperature: <span class="tval" id="llmTempVal">1.0</span></label>
               <input type="range" id="llmTemp" min="0.2" max="2" step="0.1" value="1" />
-              <span class="tval" id="llmTempVal">1.0</span>
+              <div class="t-ends" aria-hidden="true"><span>safer / predictable</span><span>riskier / more creative</span></div>
             </div>
-            <p class="llm-note"><b>Prediction:</b> it scores every word it knows and usually picks a high scorer: no plan, just statistics.</p>
-            <p class="llm-note"><b>Temperature:</b> slide it up and unlikely words get a real chance, so the output gets more random and creative: great for brainstorming, risky for facts.</p>
-            <p class="llm-note"><b>Hallucinations</b> (made-up details stated as fact): it predicts what <em>sounds</em> right rather than checks what <em>is</em> right, so always verify.</p>
+            <p class="llm-note"><b>Prediction.</b> What you are watching: the AI scores every word it knows and usually picks a high scorer. No plan, no meaning, just statistics.</p>
+            <p class="llm-note"><b>Temperature.</b> The slider you just moved: low keeps the odds stacked on the safe pick; high makes the output more random and creative. Useful for brainstorming, risky for facts.</p>
+            <p class="llm-note"><b>The catch: hallucinations.</b> A made-up detail stated as fact. The same scoring you just watched predicts what <em>sounds</em> right, not what <em>is</em> right, so always verify.</p>
           </div>
         </div>
       </div>
