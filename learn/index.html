@@ -111,10 +111,11 @@ button{ font:inherit; color:inherit; } input,select,textarea{ font:inherit; }
 .eyebrow .tick{ width:26px; height:2px; background:var(--vu-gold); }
 .you-are{ display:block; font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--tx3); margin-bottom:14px; }
 
-/* metallic gradient — used exactly twice (hero H1, closing-CTA H2) */
-.metal{ color:var(--vu-gold); }
+/* metallic headline — white words, gold italic emphasis (hero H1, closing-CTA H2) */
+.metal{ color:var(--vu-white); }
+.metal em{ color:var(--vu-gold); font-style:italic; }
 @supports ((-webkit-background-clip:text) or (background-clip:text)){
-  .metal{ background:var(--metal); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; }
+  .metal em{ background:var(--metal); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; padding-bottom:.14em; margin-bottom:-.14em; }
 }
 
 /* ═══════════════════ NAV ═══════════════════ */
