@@ -64,6 +64,10 @@ If a page can't answer all three, the page isn't done.
   Copilot through a Vanderbilt account; when in doubt, Amplify.
 - CRIT (Context, Role, Interview, Task) is credited to Geoff Woods,
   *The AI-Driven Leader*, with a link to the main CHART course.
-- Every course: QR welcome (classroom mode only), classroom/web mode picker,
-  one adult-learning moment per major page in each mode, printable one-page
-  takeaway for both modes, full Sources page.
+- Every course ships as two separate editions at two separate links: a
+  classroom edition (QR welcome, group activities, discussion-notes
+  takeaway) and a self-paced edition (reflection prompts, commitment
+  takeaway). No mode picker; each edition carries only its own
+  experience, cross-linked in the footer. One adult-learning moment per
+  major page, a printable one-page takeaway, and a full Sources/Appendix
+  page in both.
