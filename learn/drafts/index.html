@@ -278,8 +278,18 @@ body[data-mode="class"] .mode-web{ display:none !important; }
 body[data-mode="web"] .mode-class{ display:none !important; }
 /* QR is a classroom-only device: solo learners get a full-width welcome */
 body[data-mode="web"] .hero-grid{ grid-template-columns:1fr; }
-.mode-lead{ font-family:var(--serif); font-size:clamp(1.05rem,1.9vw,1.3rem); font-style:italic; color:var(--vu-oak); margin-top:10px; max-width:56ch; }
+.mode-lead{ font-family:var(--serif); font-size:clamp(1.45rem,3.2vw,2.1rem); line-height:1.3; color:var(--tx);
+  margin-top:12px; max-width:40ch; padding-bottom:10px; border-bottom:2px solid var(--vu-gold); }
 .mode-q{ font-family:var(--serif); font-weight:400; font-size:clamp(1.4rem,2.8vw,1.9rem); margin:18px 0 6px; }
+/* the opening page fits with as little scrolling as possible in book mode */
+html.paged #mode .sec-head h2{ font-size:clamp(1.7rem,3vh + .8rem,2.7rem); }
+html.paged #mode .mode-lead{ margin-top:8px; padding-bottom:8px; font-size:clamp(1.3rem,2.9vh,1.8rem); }
+html.paged #mode .sec-head p{ margin-top:10px; }
+html.paged #mode .mode-q{ margin:12px 0 4px; font-size:clamp(1.2rem,2.4vh,1.6rem); }
+html.paged .mode-card{ padding:14px 16px; gap:5px; }
+html.paged .mode-card .mc-ic{ width:34px; height:34px; margin-bottom:2px; }
+html.paged #mode .moment{ margin-top:12px; padding:11px 14px; }
+html.paged #mode .bridge{ margin-top:12px; }
 .mode-q b{ font-weight:400; font-style:italic; color:var(--vu-oak); }
 .mode-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:900px; }
 .mode-card{ border:1px solid var(--bd); border-radius:var(--r); background:var(--card); cursor:pointer; text-align:left;
@@ -628,13 +638,11 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Vanderbilt University &middot; The CHART Program</span></span>
       <h2>First drafts, <em class="s">faster</em>.</h2>
       <p class="mode-lead">Save time and be more efficient in writing and editing communications.</p>
-      <p>In about fifteen minutes, this course teaches one method, <b>brief, draft, edit</b>, and applies it to the writing your
-        job already asks of you: emails, announcements, and summaries. In controlled research, people working this way finished
-        everyday writing about <b>40% faster and produced better work</b><sup class="cite"><a href="#src1" aria-label="Source 1">1</a></sup>.
-        If writing fills three hours of your week, that is more than an hour back, every week, and the final word on every
-        draft stays yours.</p>
+      <p>In about fifteen minutes, this course teaches one method, <b>brief, draft, edit</b>, for the writing your job already
+        asks of you: emails, announcements, and summaries. Research puts the gain at about <b>40% faster with better
+        results</b><sup class="cite"><a href="#src1" aria-label="Source 1">1</a></sup>; if writing fills three hours of your week,
+        that is an hour back, and the final word stays yours.</p>
       <h3 class="mode-q">How are you <b>taking</b> this course?</h3>
-      <p>Pick one. The activities change to fit your answer: group discussion in a classroom, quiet reflection on your own. Everything else stays the same, and you can change your answer any time with the <b>Mode</b> switch in the bottom bar.</p>
     </div>
     <div class="mode-grid">
       <button type="button" class="mode-card" data-mode-pick="class" aria-pressed="false">
@@ -650,16 +658,16 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
         <p>You&rsquo;re working through this on your own. You&rsquo;ll see short reflection prompts instead of group activities.</p>
       </button>
     </div>
-    <p class="hinttxt" style="margin-top:16px">If you don&rsquo;t choose, the course assumes you&rsquo;re on your own. Your choice is saved only in this browser; the Reset control in the footer clears it.</p>
+    <p class="hinttxt" style="margin-top:12px">The activities change to fit your answer; everything else stays the same. Change it any time with the <b>Mode</b> switch in the bottom bar. If you don&rsquo;t choose, the course assumes you&rsquo;re on your own.</p>
     <div class="moment mode-class">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
       <div><span class="m-label">How your session works</span>
-      <p>Your instructor drives the screen up front while you follow on your phone. Whenever a gold <b>Together</b> card appears, that&rsquo;s the room&rsquo;s cue to talk: you&rsquo;ll compare experiences, explain the method to a partner, and watch one example run live. Near the end you&rsquo;ll brief a real email in pairs, and you&rsquo;ll leave with a one-page takeaway.</p></div>
+      <p>Your instructor drives the screen; you follow on your phone. Gold <b>Together</b> cards are the room&rsquo;s cue to discuss, pair up, and share, and you&rsquo;ll leave with a printed one-page takeaway.</p></div>
     </div>
     <div class="moment mode-web">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
       <div><span class="m-label">How self-paced works</span>
-      <p>You set the pace. Whenever a green <b>Pause + reflect</b> card appears, stop for a few seconds and actually answer the question; those pauses are what make the method stick. Keep your AI tool open in another tab so you can try the examples as you go, and print your takeaway at the end.</p></div>
+      <p>You set the pace. When a green <b>Pause + reflect</b> card appears, stop and answer it; keep your AI tool open in another tab, and print your takeaway at the end.</p></div>
     </div>
     <div class="bridge"><span class="b-label">Next</span><p>What this course is and what <em>you&rsquo;ll leave with</em>.</p></div>
   </div>
