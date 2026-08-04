@@ -574,6 +574,44 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
 
 <main id="main"><span id="top"></span>
 
+<!-- ═══════════ PAGE 2 · MODE PICKER ═══════════ -->
+<section id="mode" class="th-cream" aria-label="How are you taking this course?">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Welcome to First drafts, faster &middot; Course 02 of the CHART program.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Before you start</span></span>
+      <h2>How are you <em class="s">taking</em> this course?</h2>
+      <p>Pick one. The activities change to fit your answer: group discussion in a classroom, quiet reflection on your own. Everything else stays the same, and you can change your answer any time with the <b>Mode</b> switch in the bottom bar.</p>
+    </div>
+    <div class="mode-grid">
+      <button type="button" class="mode-card" data-mode-pick="class" aria-pressed="false">
+        <span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <span class="mc-tag">In a classroom</span>
+        <h3>With an instructor and a group</h3>
+        <p>You&rsquo;re in a live session. You&rsquo;ll see discussion prompts and partner activities as you go.</p>
+      </button>
+      <button type="button" class="mode-card" data-mode-pick="web" aria-pressed="false">
+        <span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+        <span class="mc-tag">On my own, online</span>
+        <h3>Self-paced, about 15 minutes</h3>
+        <p>You&rsquo;re working through this on your own. You&rsquo;ll see short reflection prompts instead of group activities.</p>
+      </button>
+    </div>
+    <p class="hinttxt" style="margin-top:16px">If you don&rsquo;t choose, the course assumes you&rsquo;re on your own. Your choice is saved only in this browser; the Reset control in the footer clears it.</p>
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">How your session works</span>
+      <p>Your instructor drives the screen up front while you follow on your phone. Whenever a gold <b>Together</b> card appears, that&rsquo;s the room&rsquo;s cue to talk: you&rsquo;ll compare experiences, explain the method to a partner, and watch one example run live. Near the end you&rsquo;ll brief a real email in pairs, and you&rsquo;ll leave with a one-page takeaway.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">How self-paced works</span>
+      <p>You set the pace. Whenever a green <b>Pause + reflect</b> card appears, stop for a few seconds and actually answer the question; those pauses are what make the method stick. Keep your AI tool open in another tab so you can try the examples as you go, and print your takeaway at the end.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Next</span><p>What this course is and what <em>you&rsquo;ll leave with</em>.</p></div>
+  </div>
+</section>
+
 <!-- ═══════════ PAGE 1 · WELCOME / QR ═══════════ -->
 <section class="hero th-dark" aria-label="Welcome">
   <div class="wrap">
@@ -610,44 +648,6 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
         <p class="qr-sub">The course runs in your browser. Nothing you type or do here is tracked or sent anywhere.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ═══════════ PAGE 2 · MODE PICKER ═══════════ -->
-<section id="mode" class="th-cream" aria-label="How are you taking this course?">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="you-are">One quick question before you start.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Your mode</span></span>
-      <h2>How are you <em class="s">taking</em> this course?</h2>
-      <p>Pick one. The activities change to fit your answer: group discussion in a classroom, quiet reflection on your own. Everything else stays the same, and you can change your answer any time with the <b>Mode</b> switch in the bottom bar.</p>
-    </div>
-    <div class="mode-grid">
-      <button type="button" class="mode-card" data-mode-pick="class" aria-pressed="false">
-        <span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-        <span class="mc-tag">In a classroom</span>
-        <h3>With an instructor and a group</h3>
-        <p>You&rsquo;re in a live session. You&rsquo;ll see discussion prompts and partner activities as you go.</p>
-      </button>
-      <button type="button" class="mode-card" data-mode-pick="web" aria-pressed="false">
-        <span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
-        <span class="mc-tag">On my own, online</span>
-        <h3>Self-paced, about 15 minutes</h3>
-        <p>You&rsquo;re working through this on your own. You&rsquo;ll see short reflection prompts instead of group activities.</p>
-      </button>
-    </div>
-    <p class="hinttxt" style="margin-top:16px">If you don&rsquo;t choose, the course assumes you&rsquo;re on your own. Your choice is saved only in this browser; the Reset control in the footer clears it.</p>
-    <div class="moment mode-class">
-      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-      <div><span class="m-label">How your session works</span>
-      <p>Your instructor drives the screen up front while you follow on your phone. Whenever a gold <b>Together</b> card appears, that&rsquo;s the room&rsquo;s cue to talk: you&rsquo;ll compare experiences, explain the method to a partner, and watch one example run live. Near the end you&rsquo;ll brief a real email in pairs, and you&rsquo;ll leave with a one-page takeaway.</p></div>
-    </div>
-    <div class="moment mode-web">
-      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
-      <div><span class="m-label">How self-paced works</span>
-      <p>You set the pace. Whenever a green <b>Pause + reflect</b> card appears, stop for a few seconds and actually answer the question; those pauses are what make the method stick. Keep your AI tool open in another tab so you can try the examples as you go, and print your takeaway at the end.</p></div>
-    </div>
-    <div class="bridge"><span class="b-label">Next</span><p>Why this is worth fifteen minutes <em>of your day</em>.</p></div>
   </div>
 </section>
 
@@ -1123,8 +1123,8 @@ try{
   if(!main) throw new Error('no main');
   /* section plan: key = hash segment, label = bottom-bar name */
   var PLAN = [
-    { sel:'section.hero', key:'home',       label:'Welcome' },
     { sel:'#mode',        key:'mode',       label:'Your mode' },
+    { sel:'section.hero', key:'home',       label:'Welcome' },
     { sel:'#evidence',    key:'evidence',   label:'The evidence' },
     { sel:'#method',      key:'method',     label:'The method' },
     { sel:'#ex-email',    key:'ex-email',   label:'Example: email' },
@@ -1136,7 +1136,7 @@ try{
   ];
   /* dots: the nine pages, in course order (mirrors PROG_SECTIONS below) */
   var TRACKED = [
-    ['home','01','Welcome'], ['mode','02','Your mode'], ['evidence','03','The evidence'],
+    ['mode','01','Your mode'], ['home','02','Welcome'], ['evidence','03','The evidence'],
     ['method','04','The method'], ['ex-email','05','Example: the email'],
     ['ex-announce','06','Example: the announcement'], ['ex-summary','07','Example: the summary'],
     ['guardrails','08','Guardrails'], ['practice','09','Practice now'], ['sources','10','Sources']
