@@ -1824,6 +1824,48 @@ if(bbDoneBtn) bbDoneBtn.addEventListener('click', function(){
 });
 document.addEventListener('drafts:page', progRender);
 
+/* ══════════ auto-complete: finishing a page's activity marks it done.
+   The Mark done button still works both ways for manual control.
+   Activity pages have their own triggers (below); content pages
+   complete themselves when the learner turns past them. ══════════ */
+function progAuto(k){ if(!progIs(k)){ progWrite(k, true); progRender(); } }
+var AUTO_ON_LEAVE = { home:1, evidence:1, method:1, 'ex-email':1, 'ex-announce':1, 'ex-summary':1, guardrails:1, recap:1, sources:1 };
+var lastPageKey = null;
+document.addEventListener('drafts:page', function(){
+  var cur = (window.draftsPager && window.draftsPager.current) ? window.draftsPager.current().key : null;
+  if(lastPageKey && lastPageKey !== cur && AUTO_ON_LEAVE[lastPageKey]) progAuto(lastPageKey);
+  lastPageKey = cur;
+});
+/* mode page: choosing a mode is the activity */
+document.querySelectorAll('.mode-card').forEach(function(c){
+  c.addEventListener('click', function(){ progAuto('mode'); });
+});
+/* knowledge check: all three questions answered */
+document.querySelectorAll('[data-q] .qopt').forEach(function(o){
+  o.addEventListener('click', function(){
+    var q = o.closest('[data-q]'); if(q) q.setAttribute('data-answered', '1');
+    var qs = document.querySelectorAll('[data-q]');
+    var all = Array.prototype.every.call(qs, function(x){ return x.getAttribute('data-answered') === '1'; });
+    if(all) progAuto('check');
+  });
+});
+/* practice: a filled brief, or copying it, is the activity */
+function cfFilled(){ return CF.context && CF.role && CF.task &&
+  CF.context.value.trim() && CF.role.value.trim() && CF.task.value.trim(); }
+Object.keys(CF).forEach(function(k){
+  if(CF[k]) CF[k].addEventListener('input', function(){ if(cfFilled()) progAuto('practice'); });
+});
+document.querySelectorAll('.copy-btn[data-copy="tplcode"]').forEach(function(b){
+  b.addEventListener('click', function(){
+    if((CF.context && CF.context.value.trim()) || (CF.role && CF.role.value.trim()) || (CF.task && CF.task.value.trim())) progAuto('practice');
+  });
+});
+/* recap: printing the plan or booking the check-in is the activity */
+if(icsBtn) icsBtn.addEventListener('click', function(){ progAuto('recap'); });
+document.querySelectorAll('#recap .print-btn').forEach(function(b){
+  b.addEventListener('click', function(){ progAuto('recap'); });
+});
+
 /* footer reset: clears every drafts-* key (progress, last-open page, mode) */
 var progReset = document.getElementById('progReset');
 if(progReset) progReset.addEventListener('click', function(){
