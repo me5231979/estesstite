@@ -268,6 +268,11 @@ section + section{ border-top:1px solid transparent; }
 .rstep .cr-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
 .rstep .cr-chips span{ font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.05em; text-transform:uppercase;
   color:var(--vu-oak); border:1px solid var(--vu-gold); border-radius:2px; padding:4px 9px; }
+/* the cited proof point inside a method step: fills the column, reinforces the move */
+.rstep .rs-ev{ margin-top:16px; border-top:1px solid var(--bd); padding-top:12px; }
+.rstep .rs-num{ display:block; font-family:var(--cond); font-weight:700; font-size:2rem; line-height:1; color:var(--vu-gold); }
+.rstep .rs-ev p{ margin-top:8px; font-size:.875rem; color:var(--tx2); }
+.rstep .rs-ev .e-src{ display:block; margin-top:8px; font-size:.78rem; color:var(--tx3); }
 .th-dark .rstep .cr-chips span{ color:var(--vu-gold); }
 
 /* ═══════════════════ MODES: class vs web ═══════════════════
@@ -337,6 +342,24 @@ html.paged .moment{ margin-top:18px; padding:13px 16px; }
 .crit-form textarea:focus, .crit-form input:focus, #cfNote:focus{ outline:2px solid var(--vu-gold); outline-offset:1px; }
 .cf-fixed{ display:flex; flex-direction:column; gap:5px; font-size:.9rem; color:var(--tx2); }
 .cf-note{ color:var(--tx3, var(--tx2)); font-size:.8rem; }
+/* try-it-in: the three approved tools under each example. One is recommended
+   with the reason stated; a tool that shouldn't carry the example is shown
+   greyed out with the reason, not hidden. */
+.ttry{ margin-top:14px; }
+.ttry-row{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:8px; }
+@media (max-width:720px){ .ttry-row{ grid-template-columns:1fr; } }
+.ttry-card{ display:flex; flex-direction:column; gap:4px; border:1px solid var(--bd); border-radius:var(--r);
+  background:var(--card); padding:10px 12px; color:inherit; text-decoration:none; transition:border-color .15s ease-out; }
+a.ttry-card:hover{ border-color:var(--bdg); }
+.ttry-card .tt-name{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; color:var(--tx);
+  display:inline-flex; align-items:center; gap:6px; }
+.ttry-card .tt-name svg{ width:11px; height:11px; color:var(--vu-oak); }
+.ttry-card .tt-tag{ font-family:var(--cond); font-weight:700; font-size:.62rem; letter-spacing:.07em; text-transform:uppercase; color:var(--vu-oak); }
+.ttry-card .tt-why{ font-size:.8rem; color:var(--tx2); line-height:1.45; }
+.ttry-card.rec{ border-color:var(--vu-gold); background:rgba(207,174,112,.10); }
+.ttry-card.off{ opacity:.6; border-style:dashed; cursor:not-allowed; }
+.ttry-card.off .tt-tag{ color:var(--vu-err); }
+.ttry-note{ margin-top:8px; font-size:.8rem; color:var(--tx3); }
 /* the fictional practice report folds away so the page stays short */
 .prep summary{ cursor:pointer; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em;
   text-transform:uppercase; color:var(--vu-oak); padding:4px 0; }
@@ -799,12 +822,24 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
         <p>Send the brief, answer the questions it asks, and let it write the complete draft.
           Don&rsquo;t worry that the result sounds generic or gets details wrong. Its job is to give you
           <b>something to react to</b>, which is much easier than starting from nothing.</p>
+        <div class="rs-ev">
+          <span class="rs-num">40%</span>
+          <p>That is where the 40% time saving comes from: in the <em>Science</em> experiment, handing off the
+            rough draft cut writing time and moved people&rsquo;s remaining effort into polishing<sup class="cite"><a href="#src1" aria-label="Source 1">1</a></sup>.</p>
+          <span class="e-src">Noy &amp; Zhang, <em>Science</em> (2023)</span>
+        </div>
       </div>
       <div class="rstep">
         <span class="rno">03 &middot; Edit</span>
         <h3>You do the editing</h3>
         <p>Make it <b>sound like you</b>, <b>check every name, date, and number</b>, and <b>cut what isn&rsquo;t needed</b>.
           This step is where the quality gain in those studies comes from, and it&rsquo;s the part only you can do.</p>
+        <div class="rs-ev">
+          <span class="rs-num">40%</span>
+          <p>In the Harvard/BCG field experiment, consultants whose finished work was rated 40% higher in quality
+            used AI exactly this way: as a first pass they then reworked, not an answer they accepted<sup class="cite"><a href="#src2" aria-label="Source 2">2</a></sup>.</p>
+          <span class="e-src">Dell&rsquo;Acqua et al., Harvard Business School / BCG (2023)</span>
+        </div>
       </div>
     </div>
     <div class="rule-strip" role="note">
@@ -857,7 +892,27 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
 Role: You are an experienced professional who writes warm, direct business email.
 Interview: Ask me up to three questions before you draft.
 Task: Draft a short email declining the meeting, under 100 words, that keeps the relationship warm and offers one specific alternative.</pre>
-        <p class="hinttxt">This prompt works in any chat AI. At Vanderbilt, ChatGPT EDU is fine for everyday writing like this; anything sensitive or internal belongs in Amplify or Copilot.</p>
+        <div class="ttry">
+          <span class="c-label">Try it in</span>
+          <div class="ttry-row">
+            <a class="ttry-card rec" href="https://chat.openai.com" target="_blank" rel="noopener">
+              <span class="tt-name">ChatGPT EDU <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Recommended</span>
+              <span class="tt-why">Everyday, non-sensitive writing is exactly what it&rsquo;s for, and it&rsquo;s the fastest way in.</span>
+            </a>
+            <a class="ttry-card" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">
+              <span class="tt-name">Amplify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Also fine</span>
+              <span class="tt-why">Vanderbilt&rsquo;s own platform, and the right home the moment anything sensitive enters the thread.</span>
+            </a>
+            <a class="ttry-card" href="https://copilot.microsoft.com" target="_blank" rel="noopener">
+              <span class="tt-name">Copilot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Also fine</span>
+              <span class="tt-why">Handy if you already live in Outlook, where this email will be sent from anyway.</span>
+            </a>
+          </div>
+          <p class="ttry-note">Each example recommends a different tool, so by the end you&rsquo;ll have tried all three.</p>
+        </div>
       </div>
       <div>
         <div class="ret">
@@ -900,7 +955,26 @@ Task: Draft a short email declining the meeting, under 100 words, that keeps the
 Role: You are a workplace communications writer who values clarity over cheer.
 Interview: Ask me up to three questions before you draft.
 Task: Draft an all-staff announcement, 120 words, subject line included, no exclamation points.</pre>
-        <p class="hinttxt">This prompt works in any chat AI. At Vanderbilt, ChatGPT EDU is fine for everyday writing like this; anything sensitive or internal belongs in Amplify or Copilot.</p>
+        <div class="ttry">
+          <span class="c-label">Try it in</span>
+          <div class="ttry-row">
+            <a class="ttry-card rec" href="https://copilot.microsoft.com" target="_blank" rel="noopener">
+              <span class="tt-name">Copilot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Recommended</span>
+              <span class="tt-why">An all-staff notice gets written and sent in Outlook or Word, and Copilot is already there on your Vanderbilt account.</span>
+            </a>
+            <a class="ttry-card" href="https://chat.openai.com" target="_blank" rel="noopener">
+              <span class="tt-name">ChatGPT EDU <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Also fine</span>
+              <span class="tt-why">A notice like this carries no sensitive details, so everyday drafting is fair game.</span>
+            </a>
+            <a class="ttry-card" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">
+              <span class="tt-name">Amplify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Also fine</span>
+              <span class="tt-why">The when-in-doubt choice; it handles anything you&rsquo;d rather keep in-house.</span>
+            </a>
+          </div>
+        </div>
       </div>
       <div>
         <div class="ret">
@@ -947,7 +1021,27 @@ Interview: Ask me up to three questions before you draft.
 Task: Write a half-page brief. Put the decisions needed first, then five bullets on the findings, in plain English throughout.
 
 [paste the report text here]</pre>
-        <p class="hinttxt">This prompt works in any chat AI, but it carries pasted content. At Vanderbilt, use Amplify or Copilot through your Vanderbilt account unless the report is clearly public. No report of your own? Use the practice report below; it&rsquo;s fictional, so it&rsquo;s safe to paste anywhere.</p>
+        <div class="ttry">
+          <span class="c-label">Try it in</span>
+          <div class="ttry-row">
+            <a class="ttry-card rec" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">
+              <span class="tt-name">Amplify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Recommended</span>
+              <span class="tt-why">This prompt carries a pasted report. Amplify is built for Vanderbilt data, so it&rsquo;s the safe home for it, and the when-in-doubt choice.</span>
+            </a>
+            <a class="ttry-card" href="https://copilot.microsoft.com" target="_blank" rel="noopener">
+              <span class="tt-name">Copilot <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+              <span class="tt-tag">Also fine</span>
+              <span class="tt-why">Also approved for internal content through your Vanderbilt account.</span>
+            </a>
+            <span class="ttry-card off" role="note" aria-label="ChatGPT EDU sits this one out">
+              <span class="tt-name">ChatGPT EDU</span>
+              <span class="tt-tag">Sits this one out</span>
+              <span class="tt-why">The prompt carries a pasted report, and internal content stays in Amplify or Copilot. Fine here only if the report is clearly public, like our fictional one.</span>
+            </span>
+          </div>
+          <p class="ttry-note">No report of your own? Use the practice report below; it&rsquo;s fictional, so it&rsquo;s safe to paste anywhere.</p>
+        </div>
       </div>
       <div>
         <div class="ret">
