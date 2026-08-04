@@ -268,11 +268,16 @@ section + section{ border-top:1px solid transparent; }
 .rstep .cr-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
 .rstep .cr-chips span{ font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.05em; text-transform:uppercase;
   color:var(--vu-oak); border:1px solid var(--vu-gold); border-radius:2px; padding:4px 9px; }
-/* the cited proof point inside a method step: fills the column, reinforces the move */
-.rstep .rs-ev{ margin-top:16px; border-top:1px solid var(--bd); padding-top:12px; }
-.rstep .rs-num{ display:block; font-family:var(--cond); font-weight:700; font-size:2rem; line-height:1; color:var(--vu-gold); }
-.rstep .rs-ev p{ margin-top:8px; font-size:.875rem; color:var(--tx2); }
-.rstep .rs-ev .e-src{ display:block; margin-top:8px; font-size:.78rem; color:var(--tx3); }
+/* the cited proof point inside a method step: pinned to the card bottom so
+   the three columns align; a compact labeled stat, not a second headline */
+.roadmap .rstep{ display:flex; flex-direction:column; }
+.rstep .rs-ev{ margin-top:auto; padding-top:12px; border-top:1px solid var(--bd); }
+.rstep .rs-ev > *:first-child{ margin-top:14px; }
+.rstep .rs-stat{ display:flex; align-items:baseline; gap:8px; margin-top:14px; }
+.rstep .rs-num{ font-family:var(--cond); font-weight:700; font-size:1.55rem; line-height:1; color:var(--vu-gold); }
+.rstep .rs-lab{ font-family:var(--cond); font-weight:700; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-oak); }
+.rstep .rs-ev p{ margin-top:7px; font-size:.85rem; color:var(--tx2); }
+.rstep .rs-ev .e-src{ display:block; margin-top:7px; font-size:.75rem; color:var(--tx3); }
 .th-dark .rstep .cr-chips span{ color:var(--vu-gold); }
 
 /* ═══════════════════ MODES: class vs web ═══════════════════
@@ -823,9 +828,8 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
           Don&rsquo;t worry that the result sounds generic or gets details wrong. Its job is to give you
           <b>something to react to</b>, which is much easier than starting from nothing.</p>
         <div class="rs-ev">
-          <span class="rs-num">40%</span>
-          <p>That is where the 40% time saving comes from: in the <em>Science</em> experiment, handing off the
-            rough draft cut writing time and moved people&rsquo;s remaining effort into polishing<sup class="cite"><a href="#src1" aria-label="Source 1">1</a></sup>.</p>
+          <span class="rs-stat"><span class="rs-num">40%</span><span class="rs-lab">less writing time</span></span>
+          <p>The saving in the <em>Science</em> experiment came from exactly this handoff: the AI drafts, you polish<sup class="cite"><a href="#src1" aria-label="Source 1">1</a></sup>.</p>
           <span class="e-src">Noy &amp; Zhang, <em>Science</em> (2023)</span>
         </div>
       </div>
@@ -835,10 +839,9 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
         <p>Make it <b>sound like you</b>, <b>check every name, date, and number</b>, and <b>cut what isn&rsquo;t needed</b>.
           This step is where the quality gain in those studies comes from, and it&rsquo;s the part only you can do.</p>
         <div class="rs-ev">
-          <span class="rs-num">40%</span>
-          <p>In the Harvard/BCG field experiment, consultants whose finished work was rated 40% higher in quality
-            used AI exactly this way: as a first pass they then reworked, not an answer they accepted<sup class="cite"><a href="#src2" aria-label="Source 2">2</a></sup>.</p>
-          <span class="e-src">Dell&rsquo;Acqua et al., Harvard Business School / BCG (2023)</span>
+          <span class="rs-stat"><span class="rs-num">+40%</span><span class="rs-lab">higher quality</span></span>
+          <p>The consultants with the best-rated work treated AI output as a first pass to rework, not an answer to accept<sup class="cite"><a href="#src2" aria-label="Source 2">2</a></sup>.</p>
+          <span class="e-src">Dell&rsquo;Acqua et al., Harvard / BCG (2023)</span>
         </div>
       </div>
     </div>
