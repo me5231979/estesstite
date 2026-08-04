@@ -1344,17 +1344,9 @@ try{
     }catch(e){}
   }
 
-  /* open at: deep link > stored resume > page one */
+  /* open at: deep link > page one. The course always starts on the
+     mode question; only an explicit #p/... hash overrides that. */
   var startIdx = hashIndex(window.location.hash);
-  if(startIdx === null && store){
-    try{
-      var saved = store.getItem('drafts-page');
-      if(saved){
-        var sb = saved.split('/');
-        startIdx = hashIndex('p/' + sb[0] + '/' + (sb[1] || 1));
-      }
-    }catch(e){}
-  }
   go(startIdx === null ? 0 : startIdx);
 }catch(err){
   /* build failed: fall back to the original scroll layout */
@@ -1469,7 +1461,14 @@ function modeRender(){
   }
 }
 document.querySelectorAll('.mode-card').forEach(function(c){
-  c.addEventListener('click', function(){ modeSet(c.getAttribute('data-mode-pick')); });
+  c.addEventListener('click', function(){
+    modeSet(c.getAttribute('data-mode-pick'));
+    /* answering the question turns the page: the chosen state shows for a
+       beat, then the course continues into the welcome for that mode */
+    if(document.documentElement.classList.contains('paged')){
+      setTimeout(function(){ var n = document.getElementById('pgNext'); if(n) n.click(); }, 600);
+    }
+  });
 });
 if(bbModeBtn) bbModeBtn.addEventListener('click', function(){ modeSet(modeGet() === 'class' ? 'web' : 'class'); });
 
