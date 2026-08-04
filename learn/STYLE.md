@@ -34,6 +34,13 @@ If a page can't answer all three, the page isn't done.
 
 ## Required habits
 
+- **Unnamed people in scenarios are they/them.** A director, a vendor, a
+  colleague in an example gets no assumed gender. Rewrite to avoid the
+  pronoun entirely when it reads better.
+- **No dead-end placeholders.** If an exercise says "paste the report" or
+  "fill in the blanks," the course must supply a way to actually do it:
+  a practice document, a typable field, or a named public source.
+
 - **Specifics beat abstractions.** A real building, a real Tuesday, a real
   email someone dreaded. When drafting a scenario, ask the program owner for
   the real version before inventing one.

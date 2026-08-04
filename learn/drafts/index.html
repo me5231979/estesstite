@@ -306,6 +306,24 @@ html.paged .moment{ margin-top:18px; padding:13px 16px; }
 .th-dark .moment.mode-web .m-ic{ color:var(--vu-sage); }
 .th-dark .moment.mode-web .m-label{ color:var(--vu-sage); }
 
+/* the typed CRIT brief: three fields feed the live preview and the printout */
+.crit-form{ display:flex; flex-direction:column; gap:10px; margin:14px 0 16px; }
+.crit-form label{ display:flex; flex-direction:column; gap:5px; }
+.cf-l{ font-family:var(--cond); font-weight:700; font-size:.7rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); }
+.crit-form textarea, .crit-form input, #cfNote{ font:inherit; font-size:.9rem; color:var(--tx);
+  background:var(--card); border:1px solid var(--bd); border-radius:var(--r); padding:9px 12px; width:100%; resize:vertical; }
+.crit-form textarea:focus, .crit-form input:focus, #cfNote:focus{ outline:2px solid var(--vu-gold); outline-offset:1px; }
+.cf-fixed{ display:flex; flex-direction:column; gap:5px; font-size:.9rem; color:var(--tx2); }
+.cf-note{ color:var(--tx3, var(--tx2)); font-size:.8rem; }
+#cfNote{ margin-top:10px; }
+/* keep learning: the Oracle Learning shelf */
+.keepl{ margin-top:26px; max-width:720px; border:1px solid var(--bd); border-radius:var(--r); background:var(--card); padding:18px 22px; }
+.keepl p{ color:var(--tx2); font-size:.9375rem; margin-top:8px; }
+.keepl ul{ list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:7px; }
+.keepl li{ font-size:.9375rem; }
+.keepl li a{ color:var(--tx); text-decoration-color:var(--vu-gold); text-underline-offset:3px; }
+.keepl li .mono{ font-size:.7rem; color:var(--tx2); margin-left:8px; letter-spacing:.04em; }
+
 /* the one rule */
 .rule-strip{ margin-top:28px; border-radius:var(--r); border:2px solid var(--vu-gold); padding:20px 26px; display:flex; flex-wrap:wrap; gap:14px 34px;
   align-items:center; justify-content:center; background:var(--card2); text-align:center; }
@@ -944,21 +962,30 @@ Task: Write a half-page brief. Put the decisions needed first, then five bullets
       <span class="you-are">Your turn: one real task.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Practice / 05</span></span>
       <h2>Try it on tomorrow&rsquo;s <em class="s">first email</em>.</h2>
-      <p>Think of the first email you&rsquo;ll need to write tomorrow morning. Instead of writing it, fill in the three blanks below,
-        copy the brief into your AI tool, answer the questions it asks, and edit what it gives you.
+      <p>Think of the first email you&rsquo;ll need to write tomorrow morning. Instead of writing it, type its brief into the three
+        fields below, copy the finished brief into your AI tool, answer the questions it asks, and edit what it gives you.
         That is the whole habit this course is trying to build.</p>
     </div>
     <div class="pcard" style="max-width:820px">
       <div class="pc-head">
-        <span class="mono">Your CRIT brief &middot; fill in the blanks</span>
+        <span class="mono">Your CRIT brief &middot; type it here</span>
         <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="tplcode">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy template</span></button>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy your brief</span></button>
+      </div>
+      <div class="crit-form">
+        <label><span class="cf-l">Context</span>
+          <textarea id="cfContext" rows="2" placeholder="The situation: who the email is to, what is going on, anything the AI needs to know."></textarea></label>
+        <label><span class="cf-l">Role</span>
+          <input id="cfRole" type="text" placeholder="Who it should write as, e.g. an experienced colleague who writes warm, direct email." /></label>
+        <p class="cf-fixed"><span class="cf-l">Interview</span>Ask me up to three questions before you draft. <span class="cf-note">(built in)</span></p>
+        <label><span class="cf-l">Task</span>
+          <textarea id="cfTask" rows="2" placeholder="Exactly what you want: an email, how long, what tone, what it must include."></textarea></label>
       </div>
       <pre class="pcode" id="tplcode">Context: ___
 Role: ___
 Interview: Ask me up to three questions before you draft.
 Task: ___</pre>
-      <p class="hinttxt">Safe data only: leave out anything you wouldn&rsquo;t put on a hallway poster, and keep sensitive content in Amplify or Copilot.</p>
+      <p class="hinttxt">Safe data only: leave out anything you wouldn&rsquo;t put on a hallway poster, and keep sensitive content in Amplify or Copilot. What you type stays in this browser, appears on your printed takeaway, and is never sent anywhere; Reset in the footer clears it.</p>
       <div class="launch-row">
         <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT EDU
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
@@ -979,7 +1006,18 @@ Task: ___</pre>
     <div class="moment mode-web">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
       <div><span class="m-label">Pause + reflect</span>
-      <p>Make it real: write the brief for tomorrow&rsquo;s first email now, while the method is fresh. Tomorrow morning, send the brief to the AI instead of writing the email yourself.</p></div>
+      <p>Make it real: write the brief for tomorrow&rsquo;s first email now, while the method is fresh. Then put your commitment in your own words below; it prints on your takeaway.</p>
+      <textarea id="cfNote" rows="2" placeholder="My commitment: tomorrow's first email gets a brief, not a blank page. I'll start with&hellip;"></textarea></div>
+    </div>
+    <div class="keepl">
+      <span class="c-label">Keep learning</span>
+      <p>Ten more minutes some week? These four live in Oracle Learning, Vanderbilt&rsquo;s training home; each link opens the course directly.</p>
+      <ul>
+        <li><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002857375362" target="_blank" rel="noopener">Amplify Your Business Writing with AI</a> <span class="mono">OLC3688913</span></li>
+        <li><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002856941434" target="_blank" rel="noopener">Writing Emails People Want to Read</a> <span class="mono">OLC3622097</span></li>
+        <li><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300002856469233" target="_blank" rel="noopener">Business Writing Principles</a> <span class="mono">OLC3557254</span></li>
+        <li><a href="https://ecsr.fa.us2.oraclecloud.com/fscmUI/redwood/learner/learn/redirect?learningItemType=ORA_COURSE&amp;learningItemId=300001660905853" target="_blank" rel="noopener">Clarity and Conciseness in Business Writing</a> <span class="mono">OLC1131312</span></li>
+      </ul>
     </div>
     <div class="bridge"><span class="b-label">That&rsquo;s the whole course</span><p>The method is brief, draft, edit. When you&rsquo;re ready for more, <em><a href="../">the CHART program continues here &rarr;</a></em></p></div>
   </div>
@@ -1046,8 +1084,8 @@ Task: ___</pre>
   <p><b>Draft:</b> let it write the complete first draft, so you never start from a blank page yourself.</p>
   <p><b>Edit:</b> make it sound like you, check every name, date, and number, and cut what isn&rsquo;t needed.</p>
   <p class="ps-rule">The AI writes the first draft, and you write the version that gets sent.</p>
-  <h2>The CRIT brief (fill in the blanks)</h2>
-  <div class="ps-pre">Context: ______________________________________________________________
+  <h2>Your CRIT brief</h2>
+  <div class="ps-pre" id="psCrit">Context: ______________________________________________________________
 Role: _________________________________________________________________
 Interview: Ask me up to three questions before you draft.
 Task: _________________________________________________________________</div>
@@ -1082,8 +1120,11 @@ Task: Write a half-page brief. Put the decisions needed first, then five bullets
   </div>
   <div class="ps-block mode-web">
     <h2>My reflection / my commitment</h2>
+    <p id="psNote" hidden></p>
     <div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div>
   </div>
+  <h2>Keep learning</h2>
+  <p class="ps-kl">In Oracle Learning (search the name or OLC number): Amplify Your Business Writing with AI (OLC3688913) &middot; Writing Emails People Want to Read (OLC3622097) &middot; Business Writing Principles (OLC3557254) &middot; Clarity and Conciseness in Business Writing (OLC1131312). Online: this course &middot; me5231979.github.io/estesstite/learn/drafts &nbsp;&bull;&nbsp; the CHART program &middot; me5231979.github.io/estesstite/learn</p>
   <p class="ps-fine">Sources: 1&nbsp;Noy &amp; Zhang, Science 381, 187&ndash;192 (2023) &middot; 2&nbsp;Dell&rsquo;Acqua et al., HBS Working Paper 24-013 (2023) &middot; 3&nbsp;Brynjolfsson, Li &amp; Raymond, QJE 140(2) (2025) &middot; 4&nbsp;Nielsen Norman Group, &ldquo;AI Improves Employee Productivity by 66%&rdquo; (2023). CRIT: Geoff Woods, The AI-Driven Leader (aileadership.com). Internal training prototype; not an official Vanderbilt University site.</p>
 </div>
 
@@ -1472,9 +1513,53 @@ document.querySelectorAll('.mode-card').forEach(function(c){
 });
 if(bbModeBtn) bbModeBtn.addEventListener('click', function(){ modeSet(modeGet() === 'class' ? 'web' : 'class'); });
 
-/* ══════════ print takeaway ══════════ */
+/* ══════════ your CRIT brief: typed fields feed the preview and the printout ══════════ */
+var critStore = modeStore;
+var CF = { context:document.getElementById('cfContext'), role:document.getElementById('cfRole'), task:document.getElementById('cfTask') };
+var cfNote = document.getElementById('cfNote');
+var tplPre = document.getElementById('tplcode');
+function cfVal(el){ return el && el.value.trim() ? el.value.trim() : '___'; }
+function critText(){
+  return 'Context: ' + cfVal(CF.context) + '\nRole: ' + cfVal(CF.role) +
+         '\nInterview: Ask me up to three questions before you draft.\nTask: ' + cfVal(CF.task);
+}
+function critRender(){ if(tplPre) tplPre.textContent = critText(); }
+Object.keys(CF).forEach(function(k){
+  if(!CF[k]) return;
+  CF[k].addEventListener('input', function(){
+    critRender();
+    if(critStore){ try{ CF[k].value.trim() ? critStore.setItem('drafts-crit-' + k, CF[k].value) : critStore.removeItem('drafts-crit-' + k); }catch(e){} }
+  });
+});
+if(cfNote) cfNote.addEventListener('input', function(){
+  if(critStore){ try{ cfNote.value.trim() ? critStore.setItem('drafts-note', cfNote.value) : critStore.removeItem('drafts-note'); }catch(e){} }
+});
+if(critStore){
+  try{
+    Object.keys(CF).forEach(function(k){ var v = critStore.getItem('drafts-crit-' + k); if(v && CF[k]) CF[k].value = v; });
+    var n = critStore.getItem('drafts-note'); if(n && cfNote) cfNote.value = n;
+  }catch(e){}
+}
+critRender();
+
+/* ══════════ print takeaway: carries what the learner typed ══════════ */
+function fillPrint(){
+  var pc = document.getElementById('psCrit');
+  if(pc){
+    var typed = (CF.context && CF.context.value.trim()) || (CF.role && CF.role.value.trim()) || (CF.task && CF.task.value.trim());
+    pc.textContent = typed ? critText() :
+      'Context: ______________________________________________________________\nRole: _________________________________________________________________\nInterview: Ask me up to three questions before you draft.\nTask: _________________________________________________________________';
+  }
+  var pn = document.getElementById('psNote');
+  if(pn){
+    var note = cfNote && cfNote.value.trim();
+    if(note){ pn.textContent = '“' + note + '”'; pn.removeAttribute('hidden'); }
+    else { pn.textContent = ''; pn.setAttribute('hidden',''); }
+  }
+}
+window.addEventListener('beforeprint', fillPrint);
 document.querySelectorAll('.print-btn').forEach(function(b){
-  b.addEventListener('click', function(){ window.print(); });
+  b.addEventListener('click', function(){ fillPrint(); window.print(); });
 });
 
 /* ══════════ copy buttons (clipboard, with fallback) ══════════ */
@@ -1596,6 +1681,10 @@ if(progReset) progReset.addEventListener('click', function(){
   }
   progRender();
   modeRender();
+  try{
+    ['cfContext','cfRole','cfTask','cfNote'].forEach(function(id){ var el = document.getElementById(id); if(el) el.value = ''; });
+    if(typeof critRender === 'function') critRender();
+  }catch(e){}
 });
 progRender();
 modeRender();
