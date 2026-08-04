@@ -297,6 +297,14 @@ body[data-mode="web"] .hero-grid{ grid-template-columns:1fr; }
 .moment p{ color:var(--tx2); font-size:.9375rem; margin-top:6px; max-width:60ch; }
 .moment p b{ color:var(--tx); font-weight:600; }
 html.paged .moment{ margin-top:18px; padding:13px 16px; }
+/* the two modes look different on purpose: classroom beats are gold and lively,
+   self-paced beats are sage and quiet, so each experience has its own signature */
+.moment.mode-class{ background:rgba(207,174,112,.10); }
+.moment.mode-web{ border-left-color:var(--vu-sage); background:rgba(139,161,142,.09); }
+.moment.mode-web .m-ic{ background:rgba(139,161,142,.16); border-color:rgba(139,161,142,.5); color:#5F7A63; }
+.moment.mode-web .m-label{ color:#5F7A63; }
+.th-dark .moment.mode-web .m-ic{ color:var(--vu-sage); }
+.th-dark .moment.mode-web .m-label{ color:var(--vu-sage); }
 
 /* the one rule */
 .rule-strip{ margin-top:28px; border-radius:var(--r); border:2px solid var(--vu-gold); padding:20px 26px; display:flex; flex-wrap:wrap; gap:14px 34px;
@@ -582,10 +590,15 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
           <span class="lf-chip"><b>Time</b>About 15 minutes on your own &middot; longer as a live session</span>
           <span class="lf-chip"><b>You&rsquo;ll leave with</b>A three-step method and three prompts ready to use at work</span>
         </div>
-        <ol class="hw-mini" aria-label="How this course works">
+        <ol class="hw-mini mode-web" aria-label="How this course works, self-paced">
           <li>Turn pages with the arrows below, your keyboard arrows, or a swipe</li>
-          <li>Copy any prompt straight into your own tool</li>
+          <li>Keep your AI tool open in another tab; the prompts here copy straight into it</li>
           <li>Mark pages done in the bottom bar; progress stays in this browser</li>
+        </ol>
+        <ol class="hw-mini mode-class" aria-label="How this course works, in a classroom">
+          <li>Your instructor leads the pages up front; scan the QR to follow along on your phone</li>
+          <li>The gold Together cards are for the room: discuss, pair up, share</li>
+          <li>You&rsquo;ll leave with a one-page takeaway; print it or save it at the end</li>
         </ol>
       </div>
       <div class="qr-side mode-class">
@@ -624,6 +637,16 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
       </button>
     </div>
     <p class="hinttxt" style="margin-top:16px">If you don&rsquo;t choose, the course assumes you&rsquo;re on your own. Your choice is saved only in this browser; the Reset control in the footer clears it.</p>
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">How your session works</span>
+      <p>Your instructor drives the screen up front while you follow on your phone. Whenever a gold <b>Together</b> card appears, that&rsquo;s the room&rsquo;s cue to talk: you&rsquo;ll compare experiences, explain the method to a partner, and watch one example run live. Near the end you&rsquo;ll brief a real email in pairs, and you&rsquo;ll leave with a one-page takeaway.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">How self-paced works</span>
+      <p>You set the pace. Whenever a green <b>Pause + reflect</b> card appears, stop for a few seconds and actually answer the question; those pauses are what make the method stick. Keep your AI tool open in another tab so you can try the examples as you go, and print your takeaway at the end.</p></div>
+    </div>
     <div class="bridge"><span class="b-label">Next</span><p>Why this is worth fifteen minutes <em>of your day</em>.</p></div>
   </div>
 </section>
