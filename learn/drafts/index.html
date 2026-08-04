@@ -31,6 +31,11 @@
   BOOK MODE: the pager script groups sections into .page articles; the bottom
   bar holds section dots + prev/next; arrows, swipe, and #p/<section>/<n>
   hashes turn pages. Without JS the scroll layout remains as the fallback.
+  SCORM PACKAGING: search "[EDIT · SCORM]" — four spots hold the GitHub URL
+  (QR data-url, printed takeaway header, printed takeaway links, and the
+  calendar-invite refresher). Swap each for the course's LMS link once it
+  lives in Oracle Learning. The LMS provides the Level 1 evaluation and
+  completion tracking; nothing is built into this file for either.
   This is an internal training prototype — NOT an official Vanderbilt site.
   ══════════════════════════════════════════════════════════════════════════
 -->
@@ -679,6 +684,7 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
       </div>
       <div class="qr-side mode-class">
         <span class="mono qr-label">Scan to open this course on your phone</span>
+        <!-- [EDIT · SCORM] repoint data-url to the course's LMS / Oracle Learning link before packaging; the QR renders from it -->
         <div class="qr-card" id="qrCard" data-url="https://me5231979.github.io/estesstite/learn/drafts/">
           <div class="qr-card__code" id="qrBox" role="img" aria-label="QR code linking to this course"></div>
           <p class="qr-card__url" id="qrUrl"></p>
@@ -1173,7 +1179,7 @@ Task: ___</pre>
 <div id="printSummary" aria-hidden="true">
   <div class="ps-head">
     <p class="ps-title">First drafts, faster</p>
-    <p class="ps-meta">Vanderbilt University &middot; The CHART Program &middot; Course 02 &middot; me5231979.github.io/estesstite/learn/drafts</p>
+    <p class="ps-meta">Vanderbilt University &middot; The CHART Program &middot; Course 02 &middot; me5231979.github.io/estesstite/learn/drafts<!-- [EDIT · SCORM] swap for the LMS course link --></p>
   </div>
   <h2>The method: Brief &rarr; Draft &rarr; Edit</h2>
   <p><b>Brief:</b> tell the AI what you need, with CRIT: Context, Role, Interview (&ldquo;ask me up to three questions before you draft&rdquo;), Task.</p>
@@ -1220,7 +1226,7 @@ Task: Write a half-page brief. Put the decisions needed first, then five bullets
     <div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div>
   </div>
   <h2>Keep learning</h2>
-  <p class="ps-kl">In Oracle Learning (search the name or OLC number): Amplify Your Business Writing with AI (OLC3688913) &middot; Writing Emails People Want to Read (OLC3622097) &middot; Business Writing Principles (OLC3557254) &middot; Clarity and Conciseness in Business Writing (OLC1131312). Online: this course &middot; me5231979.github.io/estesstite/learn/drafts &nbsp;&bull;&nbsp; the CHART program &middot; me5231979.github.io/estesstite/learn</p>
+  <p class="ps-kl">In Oracle Learning (search the name or OLC number): Amplify Your Business Writing with AI (OLC3688913) &middot; Writing Emails People Want to Read (OLC3622097) &middot; Business Writing Principles (OLC3557254) &middot; Clarity and Conciseness in Business Writing (OLC1131312). Online: this course &middot; me5231979.github.io/estesstite/learn/drafts &nbsp;&bull;&nbsp; the CHART program &middot; me5231979.github.io/estesstite/learn<!-- [EDIT · SCORM] swap both printed URLs for the LMS links --></p>
   <p class="ps-fine">Sources: 1&nbsp;Noy &amp; Zhang, Science 381, 187&ndash;192 (2023) &middot; 2&nbsp;Dell&rsquo;Acqua et al., HBS Working Paper 24-013 (2023) &middot; 3&nbsp;Brynjolfsson, Li &amp; Raymond, QJE 140(2) (2025) &middot; 4&nbsp;Nielsen Norman Group, &ldquo;AI Improves Employee Productivity by 66%&rdquo; (2023). CRIT: Geoff Woods, The AI-Driven Leader (aileadership.com). Internal training prototype; not an official Vanderbilt University site.</p>
 </div>
 
@@ -1691,6 +1697,7 @@ if(icsBtn) icsBtn.addEventListener('click', function(){
   var ics = 'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//CHART//Course02//EN\r\nBEGIN:VEVENT\r\nUID:chart-drafts-' + d.getTime() + '@vanderbilt\r\n' +
     'DTSTAMP:' + f(new Date()) + '\r\nDTSTART:' + f(d) + '\r\nDTEND:' + f(e) + '\r\n' +
     'SUMMARY:First drafts check-in: is the first draft still yours?\r\n' +
+    /* [EDIT · SCORM] swap the refresher URL below for the LMS course link */
     'DESCRIPTION:Two weeks since the CHART course. Quick check: are you briefing your everyday writing instead of writing it from zero? Refresher: me5231979.github.io/estesstite/learn/drafts\r\n' +
     'END:VEVENT\r\nEND:VCALENDAR\r\n';
   var blob = new Blob([ics], { type:'text/calendar' });
