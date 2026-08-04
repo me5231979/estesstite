@@ -333,6 +333,12 @@ html.paged .moment{ margin-top:18px; padding:13px 16px; }
 .crit-form textarea:focus, .crit-form input:focus, #cfNote:focus{ outline:2px solid var(--vu-gold); outline-offset:1px; }
 .cf-fixed{ display:flex; flex-direction:column; gap:5px; font-size:.9rem; color:var(--tx2); }
 .cf-note{ color:var(--tx3, var(--tx2)); font-size:.8rem; }
+/* the fictional practice report folds away so the page stays short */
+.prep summary{ cursor:pointer; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--vu-oak); padding:4px 0; }
+.prep summary:hover{ color:var(--tx); }
+.prep[open] summary{ margin-bottom:8px; }
+.prep .pcode{ max-height:320px; overflow-y:auto; }
 #cfNote{ margin-top:10px; }
 /* keep learning: the Oracle Learning shelf */
 .keepl{ margin-top:26px; max-width:720px; border:1px solid var(--bd); border-radius:var(--r); background:var(--card); padding:18px 22px; }
@@ -936,7 +942,7 @@ Interview: Ask me up to three questions before you draft.
 Task: Write a half-page brief. Put the decisions needed first, then five bullets on the findings, in plain English throughout.
 
 [paste the report text here]</pre>
-        <p class="hinttxt">This prompt works in any chat AI, but it carries pasted content. At Vanderbilt, use Amplify or Copilot through your Vanderbilt account unless the report is clearly public. No report on hand? Practice with any long public document, like a page from <a href="https://news.vanderbilt.edu/" target="_blank" rel="noopener">Vanderbilt news</a> or a published annual report.</p>
+        <p class="hinttxt">This prompt works in any chat AI, but it carries pasted content. At Vanderbilt, use Amplify or Copilot through your Vanderbilt account unless the report is clearly public. No report of your own? Use the practice report below; it&rsquo;s fictional, so it&rsquo;s safe to paste anywhere.</p>
       </div>
       <div>
         <div class="ret">
@@ -953,6 +959,57 @@ Task: Write a half-page brief. Put the decisions needed first, then five bullets
         </div>
       </div>
     </div>
+      <div class="pcard" style="margin-top:14px">
+        <div class="pc-head">
+          <span class="mono">The practice report &middot; fictional</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="fakeReport">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy report</span></button>
+        </div>
+        <details class="prep">
+          <summary>Read the practice report (every name and number is invented; abridged from the &ldquo;12 pages&rdquo;)</summary>
+          <pre class="pcode" id="fakeReport">CAMPUS SHUTTLE PROGRAM: YEAR-END REVIEW
+Practice report. Fictional; prepared for the CHART course.
+
+Summary of operations. The shuttle program ran three routes this
+year: the Blue Loop (academic core), the Gold Line (residence halls
+to the medical area), and the Crosstown Connector. Combined ridership
+reached 412,000 boardings, up 18% from last year. The gain was
+uneven: Blue Loop grew 31%, Gold Line grew 9%, and the Crosstown
+Connector declined 22% for the second straight year.
+
+Costs. Total operating cost was $2.41 million, or $5.85 per boarding.
+Cost per boarding ranged from $3.10 on the Blue Loop to $14.75 on the
+Crosstown Connector. Fuel and maintenance costs rose 7%; driver wages
+rose 4% under the new contract.
+
+Service quality. On-time performance averaged 87% against a target of
+90%. The largest source of delay was the Fifth Street construction
+detour, which added six minutes to the Gold Line in the fall term.
+Rider satisfaction in the spring survey was 4.1 out of 5, up from
+3.8. The most requested improvement was evening service, cited by 61%
+of respondents.
+
+Evening pilot. A limited evening pilot on the Blue Loop (service
+until 10 p.m., October through March) averaged 240 boardings per
+night at $4.20 per boarding. Student government has petitioned to
+make the pilot permanent and extend it to midnight.
+
+Fleet. Two of the eleven shuttles have passed 250,000 miles and are
+beyond their recommended service life; both had unscheduled
+breakdowns this year. Replacement cost is approximately $180,000
+each. One replacement is budgeted for next year; the second is not.
+
+Decisions requested. The program office asks the director to
+(1) approve permanent evening service on the Blue Loop and decide
+whether the midnight extension is included, (2) approve the
+unbudgeted second shuttle replacement or direct staff to defer it a
+year, and (3) decide whether the Crosstown Connector is consolidated
+with the Gold Line at the end of the spring term, which would save an
+estimated $310,000 annually but add eight minutes to the average
+Crosstown trip.</pre>
+        </details>
+        <p class="hinttxt">Copy the prompt, copy this report in its place, and run it. Notice the report buries its three decisions at the end; your task asks for them first, and your edit pass checks whether the numbers survived the trip.</p>
+      </div>
   </div>
 </section>
 
