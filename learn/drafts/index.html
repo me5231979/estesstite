@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>First drafts, faster · The CHART Program</title>
+<meta name="description" content="Course 02 in Vanderbilt's CHART Program: a 15-minute drafting method for everyday writing. AI writes the first draft; you write the final one." />
+<meta name="theme-color" content="#1C1C1C" />
+<meta property="og:title" content="First drafts, faster · The CHART Program" />
+<meta property="og:description" content="A 15-minute course on everyday writing with AI: brief, draft, edit. Part of CHART, Vanderbilt's AI learning experience for staff." />
+<meta property="og:type" content="website" />
+
+<!--
+  ══════════════════════════════════════════════════════════════════════════
+  FIRST DRAFTS, FASTER — CHART Course 02
+  A sibling of the main CHART course (../index.html): same design system,
+  same book-mode pager, same guardrails. Ten pages, ~15 minutes self-paced.
+  MODES: the course runs in two modes — 'class' (instructor + group) and
+  'web' (self-paced). The picker on page two stores drafts-mode; body gets
+  data-mode, and CSS shows .mode-class or .mode-web blocks accordingly.
+  Web is the default until chosen; the bottom bar holds the switch. With
+  no JS both variants render, each under its own label.
+  Storage: drafts-page (last open page), drafts-mode ('class'|'web'), and
+  drafts-progress-<section> booleans. The Reset control in the footer
+  clears every drafts-* key. Nothing typed is ever stored or sent.
+  PRINT: "Print your takeaway" swaps the app for #printSummary via
+  @media print — one clean page with the method, template, prompts,
+  guardrails, tools, and a mode-aware notes block.
+  The QR on page one encodes the hosted URL and is drawn client-side by
+  ../assets/js/qrcode.js (vendored, no network).
+  BOOK MODE: the pager script groups sections into .page articles; the bottom
+  bar holds section dots + prev/next; arrows, swipe, and #p/<section>/<n>
+  hashes turn pages. Without JS the scroll layout remains as the fallback.
+  This is an internal training prototype — NOT an official Vanderbilt site.
+  ══════════════════════════════════════════════════════════════════════════
+-->
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231C1C1C'/%3E%3Cpath d='M14 16h11l7 20 7-20h11L36 50h-8z' fill='%23CFAE70'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&family=Inter:wght@400;500;600&family=Antonio:wght@700&display=swap" rel="stylesheet" />
+
+<script>document.documentElement.classList.add('js','paged'); /* 'paged' arms book mode; the pager script removes it if it cannot build, restoring the scroll fallback */</script>
+
+<style>
+/* ═══════════════════ TOKENS (shared with the CHART course) ═══════════════════ */
+:root{
+  --vu-black:#1C1C1C; --vu-white:#FFFFFF;
+  --vu-gold:#CFAE70; --vu-highlight:#ECB748; --vu-oak:#946E24;
+  --vu-cream:#F5F3EF; --vu-sand:#E0D5C0;
+  --vu-gray-l:#E4E4E4; --vu-gray-d:#777;
+  --vu-sky:#B3C9CD; --vu-sage:#8BA18E; --vu-err:#A94438;
+  --metal:linear-gradient(135deg,#FEEEB6 0%,#CFAE70 45%,#B49248 100%);
+  --maxw:1200px; --r:4px;
+  --ease:cubic-bezier(.33,1,.68,1);
+  --serif:'Libre Caslon Display','Libre Caslon Text','Times New Roman',serif;
+  --serif-i:'Libre Caslon Text','Times New Roman',serif;
+  --sans:'Inter',Arial,system-ui,sans-serif;
+  --cond:'Antonio','Arial Narrow',Impact,sans-serif;
+}
+/* theme scopes — every component reads these vars, so each section theme recolors everything */
+.th-dark{
+  background:var(--vu-black); color:#FFFFFF;
+  --tx:#FFFFFF; --tx2:rgba(255,255,255,.74); --tx3:rgba(255,255,255,.64);
+  --bd:rgba(255,255,255,.15); --bdg:rgba(207,174,112,.35);
+  --card:#262624; --card2:#212120; --field:#141414; --field-bd:rgba(255,255,255,.2);
+  --eyebrow:#CFAE70; --link:#CFAE70; --strong:#ECB748; --focus:#ECB748; --acc:#CFAE70;
+  --btn-bg:#CFAE70; --btn-tx:#1C1C1C; --btn-hv:#ECB748;
+  --gold:#CFAE70; --champ:#ECB748; --muted:rgba(255,255,255,.74); --faint:rgba(255,255,255,.56); --ink:#1C1C1C;
+}
+.th-light, .th-cream{
+  background:var(--vu-white); color:var(--vu-black);
+  --tx:#1C1C1C; --tx2:#555555; --tx3:#6E6E6E;
+  --bd:#E4E4E4; --bdg:rgba(148,110,36,.4);
+  --card:#FFFFFF; --card2:#F5F3EF; --field:#FFFFFF; --field-bd:#D6D0C4;
+  --eyebrow:#946E24; --link:#946E24; --strong:#946E24; --focus:#946E24; --acc:#946E24;
+  --btn-bg:#1C1C1C; --btn-tx:#FFFFFF; --btn-hv:#946E24;
+  --gold:#946E24; --champ:#946E24; --muted:#555555; --faint:#6E6E6E; --ink:#1C1C1C;
+}
+.th-cream{ background:var(--vu-cream); --card2:#FFFFFF; --bd:#E0D8C8;
+  --eyebrow:#7A5C1E; --link:#7A5C1E; --strong:#7A5C1E; --focus:#7A5C1E; --acc:#7A5C1E;
+  --gold:#7A5C1E; --champ:#7A5C1E; }
+
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; scroll-padding-top:118px; }
+body{ font-family:var(--sans); font-size:1.0625rem; background:var(--vu-black); color:#fff; line-height:1.6;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; min-height:100dvh; }
+h1,h2{ font-family:var(--serif); font-weight:400; line-height:1.1; letter-spacing:-.01em; color:var(--tx,#fff); }
+h3,h4,h5{ font-family:var(--sans); font-weight:600; line-height:1.3; letter-spacing:-.01em; color:var(--tx,#fff); }
+h1 em,h2 em,em.s{ font-family:var(--serif-i); font-style:italic; font-weight:400; letter-spacing:0; }
+h2 em.s{ color:var(--strong); }
+p{ max-width:65ch; }
+a{ color:inherit; text-decoration:none; } img{ max-width:100%; display:block; height:auto; }
+button{ font:inherit; color:inherit; } input,select,textarea{ font:inherit; }
+::selection{ background:rgba(207,174,112,.55); color:#1C1C1C; }
+:focus-visible{ outline:2px solid var(--focus,#ECB748); outline-offset:3px; border-radius:2px; }
+.wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:clamp(20px,5vw,48px); }
+.skip{ position:absolute; left:-999px; top:10px; z-index:400; background:var(--vu-gold); color:#1C1C1C; padding:12px 20px; border-radius:var(--r); font-weight:500; }
+.skip:focus{ left:16px; }
+.sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+/* Antonio microlabel */
+.mono{ font-family:var(--cond); font-weight:700; font-size:.8125rem; letter-spacing:.04em; text-transform:uppercase; color:var(--eyebrow,#CFAE70); }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; }
+.eyebrow .tick{ width:26px; height:2px; background:var(--vu-gold); }
+.you-are{ display:block; font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.05em; text-transform:uppercase; color:var(--tx3); margin-bottom:14px; }
+
+/* metallic headline — white words, gold italic emphasis */
+.metal{ color:var(--vu-white); }
+.metal em{ color:var(--vu-gold); font-style:italic; }
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .metal em{ background:var(--metal); -webkit-background-clip:text; background-clip:text; color:transparent; -webkit-text-fill-color:transparent; padding-bottom:.14em; margin-bottom:-.14em; }
+}
+
+/* superscript citations */
+sup.cite{ font-size:.66em; line-height:0; vertical-align:super; }
+sup.cite a{ color:var(--link); font-weight:600; padding:2px; }
+sup.cite a:hover{ color:var(--strong); }
+
+/* ═══════════════════ NAV ═══════════════════ */
+header.nav{ position:fixed; inset:0 0 auto 0; z-index:200; background:var(--vu-black); border-bottom:1px solid transparent; transition:border-color .3s; }
+header.nav.scrolled{ border-bottom-color:rgba(207,174,112,.2); }
+header.nav .wrap{ max-width:1440px; }
+header.nav .bar{ display:flex; align-items:center; justify-content:space-between; gap:clamp(16px,2vw,36px); height:96px; }
+.logo{ display:flex; align-items:center; flex-shrink:1; min-width:0; }
+.logo img{ height:48px; width:auto; display:block; }
+.bar-r{ display:flex; align-items:center; gap:10px; min-width:0; }
+nav.links{ display:flex; align-items:center; flex-wrap:nowrap; gap:clamp(0px,.5vw,10px); }
+nav.links a{ position:relative; padding:10px clamp(9px,.9vw,16px); color:#fff; font-size:.9rem; font-weight:500; letter-spacing:.02em; white-space:nowrap; }
+nav.links a::after{ content:''; position:absolute; left:12px; right:12px; bottom:5px; height:2px; background:var(--vu-gold);
+  transform:scaleX(0); transform-origin:left; transition:transform .2s var(--ease); }
+nav.links a:hover::after,nav.links a:focus-visible::after{ transform:scaleX(1); }
+nav.links .nav-cta{ margin-left:clamp(8px,1vw,20px); } nav.links .nav-cta::after{ display:none; }
+nav.links a.nav-cta{ color:#1C1C1C; min-height:50px; padding:13px clamp(20px,1.8vw,30px); font-size:.9rem; letter-spacing:0; }
+.menu-btn{ display:none; background:transparent; border:1px solid rgba(255,255,255,.25); color:#fff;
+  width:46px; height:46px; border-radius:var(--r); cursor:pointer; place-items:center; }
+.menu-btn .b{ display:block; width:18px; height:2px; background:currentColor; transition:transform .3s var(--ease),opacity .2s; }
+.menu-btn .b + .b{ margin-top:4px; }
+body.menu-open .menu-btn .b1{ transform:translateY(6px) rotate(45deg); }
+body.menu-open .menu-btn .b2{ opacity:0; }
+body.menu-open .menu-btn .b3{ transform:translateY(-6px) rotate(-45deg); }
+.mobile-menu{ position:fixed; inset:0; z-index:150; background:var(--vu-black); overflow-y:auto;
+  display:flex; flex-direction:column; justify-content:flex-start; padding:96px clamp(24px,8vw,60px) 56px;
+  opacity:0; visibility:hidden; transition:opacity .3s var(--ease), visibility 0s .3s; }
+.mobile-menu::before,.mobile-menu::after{ content:''; display:block; margin:auto; }
+body.menu-open .mobile-menu{ opacity:1; visibility:visible; transition:opacity .3s var(--ease); }
+body.menu-open{ overflow:hidden; }
+.mobile-menu a.mlink{ font-family:var(--serif); font-size:clamp(1.5rem,7vw,2.4rem); color:#fff;
+  padding:12px 0; border-bottom:1px solid rgba(255,255,255,.12); display:flex; align-items:baseline; gap:18px; }
+.mobile-menu a.mlink .mono{ font-size:.75rem; color:var(--vu-gold); }
+.mobile-menu .mfoot{ margin-top:30px; color:rgba(255,255,255,.55); font-size:.85rem; }
+
+/* ═══════════════════ BUTTONS ═══════════════════ */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; font-family:var(--sans); font-size:.95rem; font-weight:500;
+  min-height:48px; padding:12px 26px; border-radius:var(--r); cursor:pointer; border:1px solid transparent; text-align:center;
+  transition:background-color .2s ease-out, border-color .2s ease-out, color .2s ease-out; }
+.btn svg{ width:17px; height:17px; flex-shrink:0; }
+.btn-primary{ background:var(--btn-bg,#CFAE70); color:var(--btn-tx,#1C1C1C); }
+.btn-primary:hover{ background:var(--btn-hv,#ECB748); color:var(--btn-tx,#1C1C1C); }
+.btn-gold{ background:var(--vu-gold); color:#1C1C1C; }
+.btn-gold:hover{ background:var(--vu-highlight); }
+.btn-ghost{ background:transparent; color:var(--tx,#fff); border-color:var(--bd,rgba(255,255,255,.25)); }
+.btn-ghost:hover{ border-color:var(--strong,#CFAE70); color:var(--strong,#CFAE70); }
+.btn-sm{ min-height:44px; padding:9px 18px; font-size:.875rem; }
+.btn[disabled]{ opacity:.45; cursor:not-allowed; }
+.copied{ color:var(--strong) !important; }
+
+/* ═══════════════════ HERO / QR WELCOME ═══════════════════ */
+.hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:center; padding:140px 0 96px; overflow:hidden; }
+.hero .wrap{ position:relative; z-index:2; }
+.hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(28px,5vw,72px); align-items:center; }
+.hero h1{ font-size:clamp(2.75rem,7vw,5.25rem); line-height:1.05; letter-spacing:-.01em; margin-top:28px; max-width:1000px; }
+.hero .lead{ font-size:1.125rem; color:rgba(255,255,255,.78); max-width:54ch; margin-top:22px; }
+.hero .lead b{ color:#fff; font-weight:600; }
+.hero .meta-line{ font-family:var(--cond); font-weight:700; font-size:.8125rem; letter-spacing:.03em; text-transform:uppercase;
+  color:rgba(255,255,255,.55); margin-top:22px; }
+.hero .meta-line b{ color:var(--vu-gold); font-weight:700; }
+.hero .lframe{ margin-top:20px; }
+.hw-mini{ display:none; }
+html.paged .hero .hw-mini{ display:flex; flex-wrap:wrap; gap:4px 22px; list-style:none; margin:14px 0 0; padding:9px 0 0;
+  border-top:1px solid rgba(255,255,255,.16); counter-reset:hm; max-width:none; }
+html.paged .hero .hw-mini li{ display:inline-flex; align-items:baseline; gap:8px; counter-increment:hm;
+  color:rgba(255,255,255,.62); font-size:.78rem; line-height:1.45; }
+html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); font-family:var(--cond); font-weight:700;
+  font-size:.68rem; letter-spacing:.05em; color:var(--vu-gold); }
+/* QR card — the pattern from the Brave Teams facilitator deck, on CHART tokens */
+.qr-side{ text-align:center; justify-self:center; }
+.qr-side .qr-label{ display:block; margin-bottom:14px; color:var(--vu-gold); }
+.qr-card{ display:inline-block; background:var(--vu-white); border-radius:var(--r);
+  border:1px solid rgba(207,174,112,.55); padding:1.1rem 1.1rem .8rem;
+  box-shadow:0 0 0 6px rgba(207,174,112,.08), 0 20px 60px rgba(0,0,0,.45); }
+.qr-card__code{ width:clamp(180px,22vh,250px); height:auto; margin-inline:auto; }
+.qr-card__code svg{ display:block; width:100%; height:auto; }
+.qr-card__url{ margin:.6rem 0 0; font-family:var(--cond); font-weight:700; text-transform:uppercase;
+  letter-spacing:.05em; font-size:.8rem; color:var(--vu-oak); word-break:break-all; max-width:none; }
+.qr-side .qr-sub{ margin:14px auto 0; font-size:.85rem; color:rgba(255,255,255,.62); max-width:30ch; }
+
+/* ═══════════════════ SECTIONS / SHARED ═══════════════════ */
+section{ position:relative; padding:clamp(64px,10vw,150px) 0; }
+section + section{ border-top:1px solid transparent; }
+.th-light + .th-light,.th-light + .th-cream,.th-cream + .th-light{ border-top-color:var(--vu-gray-l); }
+.sec-head{ max-width:840px; margin-bottom:clamp(36px,6vw,64px); }
+.sec-head h2{ font-size:clamp(2rem,4.5vw,3.5rem); margin-top:18px; }
+.sec-head p{ color:var(--tx2); margin-top:18px; font-size:1.125rem; }
+.chip{ display:inline-flex; align-items:center; gap:8px; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--tx2); border:1px solid var(--bd); border-radius:var(--r); padding:6px 12px; }
+.honest{ display:inline-flex; align-items:flex-start; gap:10px; margin-top:18px; padding:14px 16px; border-radius:var(--r);
+  border:1px dashed var(--bdg); color:var(--tx2); font-size:.9rem; max-width:660px; }
+.honest svg{ width:16px; height:16px; flex-shrink:0; color:var(--eyebrow); margin-top:3px; }
+.honest b{ color:var(--tx); font-weight:600; }
+.lframe{ display:block; margin-top:18px; }
+.lf-chip{ display:inline-flex; align-items:baseline; gap:9px; margin:0 6px 8px 0; border:1px solid var(--bd); border-radius:var(--r); vertical-align:top;
+  padding:8px 12px; font-size:.85rem; color:var(--tx2); background:var(--card2); }
+.lf-chip b{ font-family:var(--cond); font-weight:700; font-size:.68rem; letter-spacing:.05em; text-transform:uppercase; color:var(--eyebrow); white-space:nowrap; }
+.hero .lf-chip{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.18); color:rgba(255,255,255,.78); }
+.hero .lf-chip b{ color:var(--vu-gold); }
+.hinttxt{ font-size:.8rem; color:var(--tx3); max-width:none; }
+
+/* concept block — the mental model before every activity */
+.concept{ margin:0 0 26px; padding:2px 0 2px 20px; border-left:3px solid var(--vu-gold); max-width:780px; }
+.concept .c-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); margin-bottom:8px; }
+.concept p{ color:var(--tx2); font-size:.9575rem; line-height:1.75; max-width:68ch; }
+.concept p + p{ margin-top:10px; }
+.concept p b{ color:var(--tx); font-weight:600; }
+.concept p em{ font-family:var(--serif-i); font-style:italic; }
+
+/* bridge — one connective sentence handing a section to the next */
+.bridge{ display:flex; align-items:baseline; flex-wrap:wrap; gap:10px 18px; margin-top:clamp(44px,6vw,64px); padding-top:24px; border-top:1px solid var(--bd); }
+.bridge .b-label{ display:inline-flex; align-items:center; gap:10px; font-family:var(--cond); font-weight:700; font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--eyebrow); }
+.bridge .b-label::before{ content:''; width:26px; height:2px; background:var(--vu-gold); }
+.bridge p{ font-family:var(--serif); font-size:clamp(1.05rem,2.2vw,1.3rem); line-height:1.45; color:var(--tx); max-width:none; }
+.bridge p em{ font-family:var(--serif-i); font-style:italic; color:var(--strong); }
+
+/* evidence — a real citation, named and linked, grounding the module */
+.evidence{ margin-top:24px; border:1px solid var(--bd); border-left:3px solid var(--vu-gold); border-radius:var(--r); background:var(--card); padding:20px 22px; max-width:820px; }
+.evidence .e-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); margin-bottom:10px; }
+.evidence p{ color:var(--tx2); font-size:.9375rem; line-height:1.75; max-width:none; }
+.evidence p + p{ margin-top:10px; }
+.evidence p b{ color:var(--tx); font-weight:600; }
+.evidence p em{ font-family:var(--serif-i); font-style:italic; }
+.evidence .e-num{ font-family:var(--cond); font-weight:700; font-size:1.6rem; line-height:1; color:var(--vu-gold); display:block; margin-bottom:10px; }
+.evidence .e-src{ display:block; margin-top:12px; padding-top:10px; border-top:1px solid var(--bd); font-size:.83rem; color:var(--tx3); }
+.ev-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px; }
+.ev-grid .evidence{ margin-top:0; max-width:none; display:flex; flex-direction:column; }
+.ev-grid .evidence p{ flex:1; }
+.honest a,.evidence a,.rstep a,.concept p a,.src a,.prov a{ color:var(--link); border-bottom:1px solid var(--bdg); }
+.honest a:hover,.evidence a:hover,.rstep a:hover,.concept p a:hover,.src a:hover,.prov a:hover{ color:var(--strong); }
+
+/* method / guardrail cards */
+.roadmap{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.roadmap.three{ grid-template-columns:repeat(3,1fr); }
+.rstep{ border:1px solid var(--bd); border-radius:var(--r); padding:22px 20px; background:var(--card2); }
+.rstep .rno{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--eyebrow); }
+.rstep h5{ font-size:1rem; margin-top:8px; }
+.rstep h3{ font-family:var(--serif); font-weight:400; font-size:1.35rem; margin-top:8px; }
+.rstep p{ color:var(--tx2); font-size:.875rem; margin-top:8px; }
+.rstep p b{ color:var(--tx); font-weight:600; }
+.rstep p em{ font-family:var(--serif-i); font-style:italic; }
+.rstep ul{ list-style:none; margin-top:10px; display:flex; flex-direction:column; gap:9px; }
+.rstep li{ display:flex; gap:9px; align-items:flex-start; color:var(--tx2); font-size:.85rem; }
+.rstep li svg{ width:14px; height:14px; flex-shrink:0; color:var(--eyebrow); margin-top:4px; }
+.rstep .cr-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+.rstep .cr-chips span{ font-family:var(--cond); font-weight:700; font-size:.66rem; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--vu-oak); border:1px solid var(--vu-gold); border-radius:2px; padding:4px 9px; }
+.th-dark .rstep .cr-chips span{ color:var(--vu-gold); }
+
+/* ═══════════════════ MODES: class vs web ═══════════════════
+   body[data-mode] is set by JS (web is the default until chosen).
+   Without JS there is no data-mode, so BOTH variants render, each
+   under its own label — the no-JS fallback. */
+body[data-mode="class"] .mode-web{ display:none !important; }
+body[data-mode="web"] .mode-class{ display:none !important; }
+.mode-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:900px; }
+.mode-card{ border:1px solid var(--bd); border-radius:var(--r); background:var(--card); cursor:pointer; text-align:left;
+  padding:26px 24px; display:flex; flex-direction:column; gap:8px; transition:border-color .2s ease-out, background-color .2s ease-out; }
+.mode-card:hover{ border-color:var(--bdg); }
+.mode-card .mc-tag{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--eyebrow); }
+.mode-card h3{ font-family:var(--serif); font-weight:400; font-size:clamp(1.25rem,2.4vw,1.6rem); }
+.mode-card p{ color:var(--tx2); font-size:.9rem; max-width:none; }
+.mode-card .mc-ic{ width:44px; height:44px; border-radius:var(--r); display:grid; place-items:center; margin-bottom:6px;
+  background:rgba(207,174,112,.14); border:1px solid var(--bdg); color:var(--eyebrow); }
+.mode-card .mc-ic svg{ width:22px; height:22px; }
+.mode-card[aria-pressed="true"]{ border-color:var(--strong); background:rgba(207,174,112,.12); }
+.mode-card[aria-pressed="true"] .mc-tag::after{ content:' · chosen'; color:var(--strong); }
+@media (max-width:760px){ .mode-grid{ grid-template-columns:1fr; } }
+
+/* moment — the adult-learning beat, one per major page, bifurcated by mode */
+.moment{ display:flex; gap:14px; align-items:flex-start; margin-top:26px; max-width:720px;
+  border:1px solid var(--bdg); border-left:3px solid var(--vu-gold); border-radius:var(--r); background:var(--card2); padding:16px 20px; }
+.moment .m-ic{ width:38px; height:38px; border-radius:var(--r); display:grid; place-items:center; flex-shrink:0;
+  background:rgba(207,174,112,.14); border:1px solid var(--bdg); color:var(--eyebrow); }
+.moment .m-ic svg{ width:18px; height:18px; }
+.moment .m-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); }
+.moment p{ color:var(--tx2); font-size:.9375rem; margin-top:6px; max-width:60ch; }
+.moment p b{ color:var(--tx); font-weight:600; }
+html.paged .moment{ margin-top:18px; padding:13px 16px; }
+
+/* the one rule */
+.rule-strip{ margin-top:28px; border-radius:var(--r); border:2px solid var(--vu-gold); padding:20px 26px; display:flex; flex-wrap:wrap; gap:14px 34px;
+  align-items:center; justify-content:center; background:var(--card2); text-align:center; }
+.rule-strip .r{ font-family:var(--serif); font-size:clamp(1.1rem,2.4vw,1.5rem); color:var(--tx); max-width:none; }
+.rule-strip .r b{ font-weight:400; color:var(--strong); font-family:var(--serif-i); font-style:italic; }
+
+/* ═══════════════════ WORKED EXAMPLES ═══════════════════ */
+.ex-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(22px,4vw,44px); align-items:start; }
+.pcard{ border:1px solid var(--bdg); border-radius:var(--r); background:var(--card2); padding:clamp(18px,3vw,26px); }
+.pc-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; flex-wrap:wrap; }
+.pcode{ display:block; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.84rem; line-height:1.75; color:var(--tx);
+  background:var(--field); border:1px solid var(--field-bd); border-radius:var(--r); padding:14px 18px; white-space:pre-wrap; word-break:break-word; overflow-x:auto; }
+.pcard .hinttxt{ margin-top:12px; }
+.ret{ padding:2px 0 2px 20px; border-left:3px solid var(--vu-gold); }
+.ret .c-label,.edit .c-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); margin-bottom:8px; }
+.ret p{ color:var(--tx2); font-size:.9575rem; line-height:1.75; max-width:68ch; }
+.ret p b{ color:var(--tx); font-weight:600; }
+.edit{ margin-top:24px; border:1px solid var(--bd); border-radius:var(--r); background:var(--card); padding:20px 22px; }
+.edit ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+.edit li{ display:flex; gap:10px; align-items:flex-start; color:var(--tx2); font-size:.9375rem; }
+.edit li svg{ width:15px; height:15px; flex-shrink:0; color:var(--eyebrow); margin-top:4px; }
+.edit li b{ color:var(--tx); font-weight:600; }
+.launch-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+
+/* ═══════════════════ SOURCES ═══════════════════ */
+.src-list{ list-style:none; display:flex; flex-direction:column; gap:12px; max-width:900px; counter-reset:src; }
+.src{ counter-increment:src; display:grid; grid-template-columns:40px 1fr; gap:16px; align-items:start; border:1px solid var(--bd);
+  border-radius:var(--r); padding:18px 20px; background:var(--card); }
+.src::before{ content:counter(src); font-family:var(--cond); font-weight:700; font-size:.85rem; color:#1C1C1C; background:var(--vu-gold);
+  width:30px; height:30px; border-radius:2px; display:grid; place-items:center; margin-top:2px; }
+.src p{ color:var(--tx2); font-size:.9375rem; line-height:1.7; max-width:none; }
+.src p em{ font-family:var(--serif-i); font-style:italic; }
+.src .e-src{ display:block; margin-top:8px; font-size:.83rem; color:var(--tx3); }
+.prov{ margin-top:22px; padding-top:16px; border-top:1px solid var(--bd); font-size:.9rem; color:var(--tx2); max-width:900px; }
+.prov em{ font-family:var(--serif-i); font-style:italic; }
+
+/* ═══════════════════ FOOTER ═══════════════════ */
+footer{ background:var(--vu-black); color:#fff; border-top:1px solid rgba(207,174,112,.2); padding:clamp(36px,5vw,52px) 0 36px;
+  --tx:#fff; --tx2:rgba(255,255,255,.7); --tx3:rgba(255,255,255,.64); --link:#CFAE70; --strong:#ECB748; --focus:#ECB748; --bdg:rgba(207,174,112,.35); }
+.fcenter{ text-align:center; }
+.fcenter img{ margin:0 auto; }
+.fprogram{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-gold); margin-top:18px; max-width:none; }
+.flegal{ color:rgba(255,255,255,.55); font-size:.83rem; margin:18px auto 0; max-width:640px; }
+.flegal a{ color:var(--vu-gold); border-bottom:1px solid rgba(207,174,112,.4); }
+.flegal b{ color:rgba(255,255,255,.8); }
+.preset{ display:inline-flex; align-items:center; gap:8px; margin:18px 0 0; min-height:44px; background:none; border:0; cursor:pointer;
+  color:rgba(255,255,255,.55); font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+  transition:color .2s ease-out; }
+.preset:hover{ color:#fff; }
+.preset svg{ width:14px; height:14px; }
+.fcenter > span{ display:inline-flex; flex-wrap:wrap; justify-content:center; gap:0 22px; }
+
+/* ═══════════════════ BOOK MODE: STAGE + PAGES ═══════════════════
+   One .page visible in a fixed stage, pages turning right-to-left.
+   Scoped under html.paged so the scroll layout remains the no-JS fallback. */
+html.paged{ --nav-h:96px; --bar-h:64px; }
+@media (max-width:960px){ html.paged{ --nav-h:72px; --bar-h:56px; } }
+html.paged, html.paged body{ height:100%; overflow:hidden; overscroll-behavior:none; }
+html.paged main#main{ position:fixed; top:var(--nav-h); bottom:var(--bar-h); left:0; right:0;
+  overflow:hidden; background:var(--vu-black); z-index:1; }
+.page{ position:absolute; inset:0; overflow-y:auto; overflow-x:hidden; visibility:hidden; z-index:1;
+  display:flex; flex-direction:column; -webkit-overflow-scrolling:touch; outline:none; }
+.page.cur{ visibility:visible; z-index:2; }
+.page > section{ flex:1 0 auto; width:100%; }
+.page > footer{ flex:0 0 auto; width:100%; }
+.page.pg-in-r{ animation:pgInR .35s var(--ease) both; }
+.page.pg-in-l{ animation:pgInL .35s var(--ease) both; }
+.page.pg-out{ visibility:visible; z-index:1; }
+.page.pg-out-l{ animation:pgOutL .35s var(--ease) both; }
+.page.pg-out-r{ animation:pgOutR .35s var(--ease) both; }
+@keyframes pgInR{ from{ transform:translateX(100%); } }
+@keyframes pgInL{ from{ transform:translateX(-100%); } }
+@keyframes pgOutL{ to{ transform:translateX(-100%); } }
+@keyframes pgOutR{ to{ transform:translateX(100%); } }
+/* fit-the-viewport rhythm: tighter vertical spacing inside pages */
+html.paged section{ padding:clamp(24px,4vh,48px) 0; }
+html.paged .hero{ min-height:100%; padding:clamp(8px,1.6vh,24px) 0; }
+html.paged .hero h1{ font-size:clamp(1.9rem,3.6vh + 1rem,3.6rem); margin-top:14px; }
+html.paged .hero .lead{ margin-top:12px; }
+html.paged .hero .meta-line{ margin-top:12px; }
+html.paged .hero .lframe{ margin-top:12px; }
+html.paged .qr-card__code{ width:clamp(150px,20vh,230px); }
+html.paged .sec-head{ margin-bottom:clamp(16px,2.8vh,32px); }
+html.paged .sec-head h2{ font-size:clamp(1.65rem,2.2vh + 1rem,2.7rem); }
+html.paged .concept{ margin-bottom:18px; }
+html.paged .bridge{ margin-top:clamp(18px,3vh,32px); padding-top:16px; }
+html.paged .evidence{ padding:15px 18px; }
+html.paged .ev-grid{ margin-top:18px; }
+html.paged .rstep{ padding:18px 16px; }
+html.paged .rule-strip{ margin-top:18px; padding:16px 20px; }
+html.paged .pcard{ padding:16px 18px; }
+html.paged .edit{ margin-top:16px; padding:16px 18px; }
+html.paged .src{ padding:13px 16px; }
+html.paged .lframe{ margin-top:12px; }
+html.paged footer{ padding:clamp(10px,1.8vh,18px) 0; }
+html.paged .flegal{ font-size:.8rem; }
+/* the condensed strip runs horizontal inside the last page so the send-off fits the stage */
+html.paged .fcenter{ display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:2px 20px; text-align:left; }
+html.paged .fcenter img{ width:56px; height:59px; margin:0; grid-row:1 / span 2; }
+html.paged .fprogram{ grid-column:2; margin:0; }
+html.paged .flegal{ grid-column:2; margin:4px 0 0; max-width:none; }
+html.paged .fcenter > span{ grid-column:3; grid-row:1 / span 2; display:flex; flex-direction:column; align-items:flex-end; gap:0; }
+html.paged .preset{ margin:0; min-height:36px; }
+@media (max-width:760px){
+  html.paged .fcenter{ display:block; text-align:center; }
+  html.paged .fcenter img{ margin:0 auto; }
+  html.paged .fprogram{ margin-top:10px; }
+  html.paged .flegal{ margin-top:8px; }
+  html.paged .fcenter > span{ display:inline-flex; flex-direction:row; gap:0 22px; margin-top:6px; }
+  html.paged .preset{ margin-top:0; }
+}
+/* "more below" affordance: floats over the stage when the page scrolls internally */
+#pgMore{ position:absolute; z-index:6; right:clamp(10px,2vw,22px); bottom:10px; display:none; align-items:center; gap:7px;
+  pointer-events:none; font-family:var(--cond); font-weight:700; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--vu-gold); background:rgba(28,28,28,.85); border:1px solid rgba(207,174,112,.45); border-radius:var(--r); padding:7px 11px; }
+#pgMore svg{ width:12px; height:12px; }
+html.paged main#main.more #pgMore{ display:inline-flex; }
+
+/* ═══════════════════ BOTTOM BOOK BAR ═══════════════════ */
+.book-bar{ position:fixed; left:0; right:0; bottom:0; height:var(--bar-h,64px); z-index:210; background:var(--vu-black);
+  border-top:1px solid rgba(207,174,112,.25); display:none; align-items:center; gap:clamp(8px,2vw,26px);
+  padding:0 clamp(8px,2.5vw,28px); }
+html.paged .book-bar{ display:flex; }
+.bb-left{ flex:1 1 0; min-width:0; display:flex; align-items:center; gap:clamp(8px,1.4vw,16px); }
+.bb-sec{ flex:0 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--vu-gold); }
+.bb-done{ display:inline-flex; align-items:center; justify-content:center; gap:7px; height:44px; padding:0 13px; flex-shrink:0;
+  border:1px solid rgba(255,255,255,.25); border-radius:var(--r); background:transparent; color:#fff; cursor:pointer;
+  font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap;
+  transition:border-color .2s ease-out, color .2s ease-out, background-color .2s ease-out; }
+.bb-done:hover{ border-color:var(--vu-gold); color:var(--vu-gold); }
+.bb-done[aria-pressed="true"]{ border-color:var(--vu-gold); background:var(--vu-gold); color:var(--vu-black); }
+.bb-done[aria-pressed="true"]:hover{ background:var(--vu-highlight); border-color:var(--vu-highlight); color:var(--vu-black); }
+.bb-done:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1px; }
+.bb-done svg{ width:14px; height:14px; flex-shrink:0; }
+.bb-done svg[hidden]{ display:none; } /* [hidden] has no UA default on inline SVG; the mode switch swaps its two icons with it */
+.bb-done[hidden]{ display:none; }
+.bb-dots{ display:flex; align-items:center; justify-content:center; gap:2px; flex-shrink:0; }
+a.bb-dot{ display:grid; place-items:center; width:22px; height:44px; border-radius:2px; }
+a.bb-dot .dot{ display:block; width:9px; height:9px; border-radius:50%; border:1.5px solid var(--vu-gold); background:transparent;
+  transition:background-color .2s ease-out, transform .2s ease-out, box-shadow .2s ease-out; }
+a.bb-dot.done .dot{ background:var(--vu-gold); }
+a.bb-dot.cur .dot{ transform:scale(1.35); box-shadow:0 0 0 2px rgba(236,183,72,.55); }
+a.bb-dot:hover .dot{ background:rgba(207,174,112,.5); }
+a.bb-dot.done:hover .dot{ background:var(--vu-highlight); }
+a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1px; }
+.bb-ctl{ flex:1 1 0; display:flex; align-items:center; justify-content:flex-end; gap:clamp(6px,1vw,12px); }
+.bb-count{ font-family:var(--cond); font-weight:700; font-size:.78rem; letter-spacing:.05em; color:rgba(255,255,255,.72); white-space:nowrap; }
+.bb-btn{ display:grid; place-items:center; width:44px; height:44px; flex-shrink:0; border:1px solid rgba(255,255,255,.25); border-radius:var(--r);
+  background:transparent; color:#fff; cursor:pointer; transition:border-color .2s ease-out,color .2s ease-out; }
+.bb-btn:hover{ border-color:var(--vu-gold); color:var(--vu-gold); }
+.bb-btn[disabled]{ opacity:.35; cursor:default; }
+.bb-btn[disabled]:hover{ border-color:rgba(255,255,255,.25); color:#fff; }
+.bb-btn svg{ width:16px; height:16px; }
+@media (max-width:1000px){ .bb-done .bb-done-t{ display:none; } .bb-done{ width:44px; padding:0; } }
+@media (max-width:760px){ .bb-sec{ display:none; } .bb-left{ flex:0 0 auto; } .bb-dots{ flex:1; } .bb-ctl{ flex:0 0 auto; } }
+@media (max-width:420px){ a.bb-dot{ width:14px; } .bb-btn{ width:40px; } .bb-done{ width:40px; height:44px; } .bb-count{ font-size:.72rem; } .book-bar{ gap:6px; } }
+
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
+@media (max-width:1280px){
+  .logo img{ height:42px; }
+  nav.links a{ font-size:.86rem; letter-spacing:.01em; }
+  nav.links a.nav-cta{ font-size:.875rem; min-height:46px; padding:11px 20px; }
+}
+@media (max-width:1099px){
+  nav.links{ display:none; } .menu-btn{ display:grid; }
+}
+@media (max-width:1024px){
+  .ev-grid{ grid-template-columns:1fr; }
+  .roadmap.three{ grid-template-columns:1fr; }
+}
+@media (max-width:960px){
+  header.nav .bar{ height:72px; }
+  .logo img{ height:36px; }
+  html{ scroll-padding-top:92px; }
+  .hero-grid{ grid-template-columns:1fr; }
+  .qr-side{ justify-self:start; text-align:left; }
+  .qr-side .qr-sub{ margin-inline:0; }
+  .ex-grid{ grid-template-columns:1fr; }
+}
+@media (max-width:640px){
+  .src{ grid-template-columns:1fr; } .src::before{ margin-top:0; }
+  .logo img{ height:30px; }
+}
+@media (max-width:480px){
+  .launch-row .btn{ flex:1; }
+}
+
+/* ═══════════════════ PRINT TAKEAWAY ═══════════════════
+   #printSummary is display:none on screen; @media print swaps the whole
+   app out for it: one clean black-on-white page. The mode rules above
+   still apply in print, so the notes block matches the chosen mode. */
+#printSummary{ display:none; }
+@media print{
+  html, body{ height:auto !important; overflow:visible !important; background:#fff !important; }
+  body > *:not(#printSummary){ display:none !important; }
+  #printSummary{ display:block !important; color:#000; background:#fff;
+    font-family:-apple-system, "Segoe UI", Helvetica, Arial, sans-serif; font-size:9.5pt; line-height:1.45; }
+  #printSummary .ps-head{ border-bottom:2pt solid #000; padding-bottom:6pt; }
+  #printSummary .ps-title{ font-family:Georgia, "Times New Roman", serif; font-size:15pt; margin:0; color:#000; }
+  #printSummary .ps-meta{ margin:2pt 0 0; font-size:8pt; color:#333; max-width:none; }
+  #printSummary h2{ font-family:Georgia, "Times New Roman", serif; font-weight:700; color:#000; font-size:10.5pt; margin:9pt 0 3pt;
+    border-bottom:.75pt solid #999; padding-bottom:1pt; break-after:avoid; page-break-after:avoid; }
+  #printSummary p{ margin:2pt 0; max-width:none; }
+  #printSummary ol{ margin:2pt 0 2pt 14pt; padding:0; }
+  #printSummary li{ margin:1pt 0; break-inside:avoid; page-break-inside:avoid; }
+  #printSummary .ps-rule{ font-family:Georgia, "Times New Roman", serif; font-style:italic; font-size:10pt; margin:4pt 0; }
+  #printSummary .ps-pre{ white-space:pre-wrap; font-family:"Courier New", monospace; font-size:7.5pt; line-height:1.4;
+    border:.75pt solid #999; padding:4pt 6pt; margin:3pt 0; break-inside:avoid; page-break-inside:avoid; }
+  #printSummary .ps-plabel{ font-size:8pt; font-weight:700; margin:5pt 0 1pt; }
+  #printSummary .ps-block{ break-inside:avoid; page-break-inside:avoid; }
+  #printSummary .ps-line{ height:16pt; border-bottom:.75pt solid #999; }
+  #printSummary .ps-fine{ font-size:7.5pt; color:#444; margin-top:8pt; border-top:.75pt solid #999; padding-top:4pt; max-width:none; }
+}
+
+/* ═══════════════════ REDUCED MOTION ═══════════════════ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation:none !important; transition:none !important; }
+  html{ scroll-behavior:auto !important; }
+}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="bar">
+      <a class="logo" href="#top" aria-label="Vanderbilt University, First drafts faster home">
+        <img src="../assets/v-lockup-white@2x.png" alt="Vanderbilt University" width="166" height="36" decoding="async" />
+      </a>
+      <div class="bar-r">
+        <nav class="links" aria-label="Primary">
+          <a href="#evidence">Evidence</a>
+          <a href="#method">Method</a>
+          <a href="#ex-email">Examples</a>
+          <a href="#guardrails">Guardrails</a>
+          <a href="#practice">Practice</a>
+          <a href="#sources">Sources</a>
+          <a class="btn btn-gold btn-sm nav-cta" href="../">The CHART course</a>
+        </nav>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span class="b b1" aria-hidden="true"></span><span class="b b2" aria-hidden="true"></span><span class="b b3" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- mobile overlay menu -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+  <a class="mlink" href="#top"><span class="mono">01</span>Welcome</a>
+  <a class="mlink" href="#mode"><span class="mono">02</span>Your mode</a>
+  <a class="mlink" href="#evidence"><span class="mono">03</span>The evidence</a>
+  <a class="mlink" href="#method"><span class="mono">04</span>The method</a>
+  <a class="mlink" href="#ex-email"><span class="mono">05</span>Example: the email</a>
+  <a class="mlink" href="#ex-announce"><span class="mono">06</span>Example: the announcement</a>
+  <a class="mlink" href="#ex-summary"><span class="mono">07</span>Example: the summary</a>
+  <a class="mlink" href="#guardrails"><span class="mono">08</span>Guardrails</a>
+  <a class="mlink" href="#practice"><span class="mono">09</span>Practice now</a>
+  <a class="mlink" href="#sources"><span class="mono">10</span>Sources</a>
+  <a class="mlink" href="../"><span class="mono" aria-hidden="true">&rarr;</span>The CHART course</a>
+  <div class="mfoot">matthew.estes@vanderbilt.edu</div>
+</nav>
+
+<main id="main"><span id="top"></span>
+
+<!-- ═══════════ PAGE 1 · WELCOME / QR ═══════════ -->
+<section class="hero th-dark" aria-label="Welcome">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="mono">Vanderbilt University &middot; The CHART Program &middot; Course 02</span>
+        <h1 class="metal">First drafts, <em>faster</em>.</h1>
+        <p class="lead">Emails, announcements, summaries: the everyday writing that eats your week.
+          In the next fifteen minutes you&rsquo;ll learn one method for it &mdash; <b>AI does the first pass, you do the judging</b> &mdash;
+          and leave with three prompts you can use tomorrow.</p>
+        <p class="meta-line">Part of CHART: Cultivating Human-AI Readiness and Thinking &middot; Course 02</p>
+        <div class="lframe">
+          <span class="lf-chip"><b>Time</b>~15 minutes self-paced &middot; longer as a class</span>
+          <span class="lf-chip"><b>You&rsquo;ll leave with</b>A drafting method + three prompts you can use tomorrow</span>
+        </div>
+        <ol class="hw-mini" aria-label="How this course works">
+          <li>Turn pages with the arrows below, your keyboard arrows, or a swipe</li>
+          <li>Copy any prompt straight into your own tool</li>
+          <li>Mark pages done in the bottom bar; progress stays in this browser</li>
+        </ol>
+      </div>
+      <div class="qr-side">
+        <span class="mono qr-label">Scan to open this course on your phone</span>
+        <div class="qr-card" id="qrCard" data-url="https://me5231979.github.io/estesstite/learn/drafts/">
+          <div class="qr-card__code" id="qrBox" role="img" aria-label="QR code linking to this course"></div>
+          <p class="qr-card__url" id="qrUrl"></p>
+        </div>
+        <p class="qr-sub">Same course, same progress rules: nothing you do here is reported anywhere.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 2 · MODE PICKER ═══════════ -->
+<section id="mode" class="th-cream" aria-label="How are you taking this course?">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">You are here: one question before the course begins.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Your mode</span></span>
+      <h2>How are you <em class="s">taking</em> this course?</h2>
+      <p>A few moments along the way adapt to your answer &mdash; everything else is identical. Change it any time with the <b>Mode</b> switch in the bottom bar.</p>
+    </div>
+    <div class="mode-grid">
+      <button type="button" class="mode-card" data-mode-pick="class" aria-pressed="false">
+        <span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <span class="mc-tag">In a classroom</span>
+        <h3>With an instructor and a group</h3>
+        <p>A live session. Discussion prompts and partner work appear along the way.</p>
+      </button>
+      <button type="button" class="mode-card" data-mode-pick="web" aria-pressed="false">
+        <span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+        <span class="mc-tag">On my own, online</span>
+        <h3>Self-paced, about 15 minutes</h3>
+        <p>Short reflection prompts replace the group work. Same method, same prompts.</p>
+      </button>
+    </div>
+    <p class="hinttxt" style="margin-top:16px">Until you choose, the course assumes self-paced. Your choice is saved only in this browser; the Reset control in the footer clears it.</p>
+    <div class="bridge"><span class="b-label">Next</span><p>Why bother? Three studies, <em>one answer</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 3 · WHY BOTHER ═══════════ -->
+<section id="evidence" class="th-light" aria-label="Why bother: the evidence">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">You are here: the case, in three studies.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">The evidence / 01</span></span>
+      <h2>The blank page is a <em class="s">chore</em>. Move it.</h2>
+      <p>The first draft is the expensive part of writing &mdash; the staring, the false starts, the &ldquo;how do I even open this.&rdquo;
+        The evidence says AI moves the blank page: in three case studies of routine business documents, users wrote
+        59% more documents per hour<sup class="cite"><a href="#src4" aria-label="Source 4">4</a></sup>.
+        And the quality gain shows up when a person edits what comes back. That&rsquo;s the whole course.</p>
+    </div>
+    <div class="ev-grid">
+      <div class="evidence">
+        <span class="e-label">Controlled experiment &middot; Science</span>
+        <span class="e-num" aria-hidden="true">40%</span>
+        <p>Professionals given ChatGPT finished mid-level writing tasks <b>40% faster</b> &mdash; and the quality of what they produced rose <b>18%</b>.</p>
+        <span class="e-src">Noy &amp; Zhang, <em>Science</em> (2023)<sup class="cite"><a href="#src1" aria-label="Source 1">1</a></sup></span>
+      </div>
+      <div class="evidence">
+        <span class="e-label">Field experiment &middot; Harvard / BCG</span>
+        <span class="e-num" aria-hidden="true">25%</span>
+        <p>Consultants working with AI finished <b>12.2% more tasks</b>, <b>25.1% faster</b>, at <b>40% higher quality</b> &mdash; on tasks within AI&rsquo;s capability.</p>
+        <span class="e-src">Dell&rsquo;Acqua et al., HBS Working Paper (2023)<sup class="cite"><a href="#src2" aria-label="Source 2">2</a></sup></span>
+      </div>
+      <div class="evidence">
+        <span class="e-label">Real workplaces &middot; QJE</span>
+        <span class="e-num" aria-hidden="true">~15%</span>
+        <p>Access to an AI assistant raised worker productivity about <b>15% on average</b> &mdash; and the biggest gains went to the <b>least experienced</b>. If writing isn&rsquo;t your favorite part of the job, this is for you.</p>
+        <span class="e-src">Brynjolfsson, Li &amp; Raymond, <em>QJE</em> (2025)<sup class="cite"><a href="#src3" aria-label="Source 3">3</a></sup></span>
+      </div>
+    </div>
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>Share with the room: what&rsquo;s the last thing you wrote from a blank page, and how long did the blank page win?</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Pause + reflect</span>
+      <p>Take a moment: what&rsquo;s the last thing you wrote from a blank page? Hold it in mind &mdash; you&rsquo;ll use it at the end.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Next</span><p>The method behind those numbers fits on <em>one page</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 3 · THE METHOD ═══════════ -->
+<section id="method" class="th-cream" aria-label="The method: brief, draft, edit">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">You are here: the one method this course teaches.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">The method / 02</span></span>
+      <h2>Brief. Draft. <em class="s">Edit</em>.</h2>
+      <p>Three moves, in order, every time. The next three pages show it working on real tasks.</p>
+    </div>
+    <div class="roadmap three">
+      <div class="rstep">
+        <span class="rno">01 &middot; Brief</span>
+        <h3>Brief the AI like a colleague</h3>
+        <p>Use <b>CRIT</b> &mdash; the two-minute version: <b>Context</b> (what it needs to know), <b>Role</b> (who it should write as),
+          <b>Interview</b> (have it ask before it writes), <b>Task</b> (the deliverable, with format and length).</p>
+        <div class="cr-chips" aria-hidden="true"><span>Context</span><span>Role</span><span>Interview</span><span>Task</span></div>
+        <p>The Interview line &mdash; <em>&ldquo;ask me up to three questions before you draft&rdquo;</em> &mdash; is what separates a usable draft from a generic one.</p>
+        <p class="hinttxt" style="margin-top:10px">CRIT is Geoff Woods&rsquo; framework (<em>The AI-Driven Leader</em>), taught in full in <a href="../">the main CHART course</a>.</p>
+      </div>
+      <div class="rstep">
+        <span class="rno">02 &middot; Draft</span>
+        <h3>Let the tool write the whole first pass</h3>
+        <p><b>Never start from the blank page yourself.</b> Send the brief, answer its questions, and let it produce a complete draft &mdash; wrong voice, rough edges, and all. Its job is to be edited, not to be right.</p>
+      </div>
+      <div class="rstep">
+        <span class="rno">03 &middot; Edit</span>
+        <h3>You are the editor</h3>
+        <p>Three passes, fast: <b>fix the voice</b> until it sounds like you, <b>check every fact</b> &mdash; names, dates, numbers &mdash; and <b>cut a third</b>. The quality gain in the evidence lives in this step.</p>
+      </div>
+    </div>
+    <div class="rule-strip" role="note">
+      <p class="r">AI writes the first draft. <b>You write the final one.</b></p>
+    </div>
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>Turn to a partner and explain Brief &rarr; Draft &rarr; Edit back to each other in under a minute. Teaching it once beats rereading it twice.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Pause + reflect</span>
+      <p>Before turning the page: cover the screen and name the three steps out loud. Recall beats rereading.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">Next</span><p>Watch it work, three times: an email, an announcement, <em>a summary</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 4 · EXAMPLE 1: THE EMAIL ═══════════ -->
+<section id="ex-email" class="th-light" aria-label="Worked example one: the email">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Worked example 1 of 3 &middot; the everyday email.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Example / 03 &middot; Email</span></span>
+      <h2>Decline the meeting, keep it <em class="s">warm</em>.</h2>
+    </div>
+    <div class="concept">
+      <span class="c-label">The situation</span>
+      <p>A vendor you genuinely like wants a meeting in a week you can&rsquo;t afford one. You need a no that doesn&rsquo;t cool the relationship &mdash; the kind of email that takes twenty minutes to write and reads like it took two.</p>
+    </div>
+    <div class="moment mode-class" style="margin-top:0;margin-bottom:26px">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>Do this one together: the instructor takes edits from the room and runs the prompt live.</p></div>
+    </div>
+    <div class="moment mode-web" style="margin-top:0;margin-bottom:26px">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Pause + reflect</span>
+      <p>Try it now: copy this prompt into your tool and compare what comes back with the edit pass below.</p></div>
+    </div>
+    <div class="ex-grid">
+      <div class="pcard">
+        <div class="pc-head">
+          <span class="mono">The prompt &middot; CRIT shape</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="p1code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+        </div>
+        <pre class="pcode" id="p1code">Context: A vendor we have a good relationship with has asked for a meeting next week. My calendar is full and the timing is wrong, but I want to keep the door open for next quarter.
+Role: You are an experienced professional who writes warm, direct business email.
+Interview: Ask me up to three questions before you draft.
+Task: Draft a short email declining the meeting — under 100 words — that keeps the relationship warm and offers one specific alternative.</pre>
+        <p class="hinttxt">Works in any chat AI. At Vanderbilt: ChatGPT EDU for everyday work like this; anything sensitive or internal goes in Amplify or Copilot.</p>
+      </div>
+      <div>
+        <div class="ret">
+          <span class="c-label">What comes back</span>
+          <p>A polite, well-structured decline that sounds like nobody in particular. It will offer a plausible alternative it invented and a warmth it can&rsquo;t actually feel. <b>That&rsquo;s fine &mdash; it&rsquo;s a draft.</b></p>
+        </div>
+        <div class="edit">
+          <span class="c-label">Your edit pass</span>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Swap in the real names and dates</b> &mdash; and the alternative you would genuinely offer, not the one it guessed.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Rewrite the opening line in your own voice.</b> It&rsquo;s the sentence they&rsquo;ll judge.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Add the one relationship detail only you know</b> &mdash; the last project, the next quarter&rsquo;s plan. That&rsquo;s what makes it warm.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 5 · EXAMPLE 2: THE ANNOUNCEMENT ═══════════ -->
+<section id="ex-announce" class="th-cream" aria-label="Worked example two: the announcement">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Worked example 2 of 3 &middot; the all-staff notice.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Example / 03 &middot; Announcement</span></span>
+      <h2>Say it once, <em class="s">clearly</em>.</h2>
+    </div>
+    <div class="concept">
+      <span class="c-label">The situation</span>
+      <p>The lobby closes for maintenance next week, and three hundred people walk through it every morning. Everyone needs the dates and the alternate entrance &mdash; once, clearly, without ceremony.</p>
+    </div>
+    <div class="ex-grid">
+      <div class="pcard">
+        <div class="pc-head">
+          <span class="mono">The prompt &middot; CRIT shape</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="p2code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+        </div>
+        <pre class="pcode" id="p2code">Context: Our building's main lobby will be closed for maintenance next week. Staff should use the alternate entrance instead. Everyone needs the dates and the new route — once, clearly.
+Role: You are a workplace communications writer who values clarity over cheer.
+Interview: Ask me up to three questions before you draft.
+Task: Draft an all-staff announcement, 120 words, subject line included, no exclamation points.</pre>
+        <p class="hinttxt">Works in any chat AI. At Vanderbilt: ChatGPT EDU for everyday work like this; anything sensitive or internal goes in Amplify or Copilot.</p>
+      </div>
+      <div>
+        <div class="ret">
+          <span class="c-label">What comes back</span>
+          <p>A clean, correctly-shaped notice built on plausible stand-ins: dates it picked, an entrance it named. <b>It will read smoothly and be wrong about everything it had to guess</b> &mdash; which is exactly what the Interview step is for.</p>
+        </div>
+        <div class="edit">
+          <span class="c-label">Your edit pass</span>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Replace every date and location with the real ones.</b> The model invented plausible placeholders; only you have the facts.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Check the route yourself:</b> does the alternate entrance actually work for deliveries, accessibility, badge access?</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Cut anything that reads like an apology.</b> People need the facts, not the mood.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 6 · EXAMPLE 3: THE SUMMARY ═══════════ -->
+<section id="ex-summary" class="th-light" aria-label="Worked example three: the summary">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">Worked example 3 of 3 &middot; the executive brief.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Example / 03 &middot; Summary</span></span>
+      <h2>Twelve pages in, half a page <em class="s">out</em>.</h2>
+    </div>
+    <div class="concept">
+      <span class="c-label">The situation</span>
+      <p>A 12-page report lands the afternoon before your director&rsquo;s 8 a.m. meeting. She has ten minutes and needs half a page: the decisions it asks of her first, then what it found.</p>
+    </div>
+    <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+      <span><b>Before you paste:</b> safe data only. Sensitive or internal content goes in Amplify or Copilot through your Vanderbilt account &mdash; never a personal one. When in doubt, Amplify.</span></p>
+    <div class="ex-grid" style="margin-top:26px">
+      <div class="pcard">
+        <div class="pc-head">
+          <span class="mono">The prompt &middot; CRIT shape</span>
+          <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="p3code">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
+        </div>
+        <pre class="pcode" id="p3code">Context: Pasted below is a 12-page report. My director has ten minutes before a meeting and needs to know what decisions it asks of her.
+Role: You are a chief of staff who writes briefs executives actually read.
+Interview: Ask me up to three questions before you draft.
+Task: Write a half-page brief — decisions needed first, then five bullets on the findings, plain English throughout.
+
+[paste the report here]</pre>
+        <p class="hinttxt">Works in any chat AI. At Vanderbilt: this one carries pasted content, so use Amplify or Copilot through your Vanderbilt account unless the report is clearly public.</p>
+      </div>
+      <div>
+        <div class="ret">
+          <span class="c-label">What comes back</span>
+          <p>A confident, tidy brief in exactly the shape you asked for &mdash; including numbers it may have misread. <b>Summaries are where models sound most sure and slip most quietly.</b></p>
+        </div>
+        <div class="edit">
+          <span class="c-label">Your edit pass</span>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Check every number against the original</b> &mdash; a model can summarize confidently and still misread a table.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Reorder the decisions</b> by what your director actually controls; the model doesn&rsquo;t know her remit.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Add the recommendation.</b> The report won&rsquo;t make it, and she&rsquo;ll ask.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 7 · GUARDRAILS ═══════════ -->
+<section id="guardrails" class="th-dark" aria-label="Guardrails">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">You are here: the rules that keep the method safe.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Guardrails / 04</span></span>
+      <h2>Four rules. No <em class="s">lecture</em>.</h2>
+    </div>
+    <div class="roadmap">
+      <div class="rstep">
+        <span class="rno">Rule 01</span>
+        <h5>Safe data only</h5>
+        <p>Sensitive or internal Vanderbilt business belongs in <b>Amplify or Copilot</b> through your Vanderbilt account &mdash; never a personal account. <b>When in doubt, Amplify.</b></p>
+      </div>
+      <div class="rstep">
+        <span class="rno">Rule 02</span>
+        <h5>Verify everything</h5>
+        <p>Every fact, name, number, and date. <b>The editor&rsquo;s job never left</b> &mdash; it just moved to after the draft.</p>
+      </div>
+      <div class="rstep">
+        <span class="rno">Rule 03</span>
+        <h5>You own every word you send</h5>
+        <p>The tool drafted it; <b>you sent it</b>. If you wouldn&rsquo;t sign it, don&rsquo;t send it.</p>
+      </div>
+      <div class="rstep">
+        <span class="rno">Rule 04</span>
+        <h5>Your voice wins</h5>
+        <p>Edit until it sounds like you &mdash; <b>or people will stop reading you</b>.</p>
+      </div>
+    </div>
+    <div class="launch-row">
+      <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT EDU
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      <a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Open Amplify
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+      <a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+    </div>
+    <div class="bridge"><span class="b-label">Next</span><p>One real task, <em>right now</em>.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 8 · PRACTICE NOW ═══════════ -->
+<section id="practice" class="th-cream" aria-label="Practice now">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">You are here: the fifteen minutes become a habit.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Practice / 05</span></span>
+      <h2>Tomorrow&rsquo;s first email &mdash; <em class="s">brief it</em>, don&rsquo;t write it.</h2>
+      <p>Pick the first email you&rsquo;d normally write tomorrow morning. Don&rsquo;t write it. Fill in the three blanks below, copy the brief into your tool, answer its questions &mdash; then edit what comes back.</p>
+    </div>
+    <div class="pcard" style="max-width:820px">
+      <div class="pc-head">
+        <span class="mono">Your CRIT brief &middot; fill in the blanks</span>
+        <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="tplcode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy template</span></button>
+      </div>
+      <pre class="pcode" id="tplcode">Context: ___
+Role: ___
+Interview: Ask me up to three questions before you draft.
+Task: ___</pre>
+      <p class="hinttxt">Safe data only: no names you wouldn&rsquo;t put on a hallway poster, nothing sensitive outside Amplify or Copilot.</p>
+      <div class="launch-row">
+        <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT EDU
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="btn btn-ghost btn-sm" href="https://www.vanderbilt.ai/" target="_blank" rel="noopener">Open Amplify
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <button type="button" class="btn btn-ghost btn-sm print-btn">Print your takeaway
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></button>
+      </div>
+      <p class="hinttxt" style="margin-top:10px">The takeaway is one page: the method, the template, all three prompts, the guardrails, and the tools. Your browser&rsquo;s print dialog opens; choose Save as PDF to keep it.</p>
+    </div>
+    <div class="moment mode-class">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <div><span class="m-label">Together</span>
+      <p>In pairs: each of you briefs the other&rsquo;s real email using the template, then share one brief with the room.</p></div>
+    </div>
+    <div class="moment mode-web">
+      <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+      <div><span class="m-label">Pause + reflect</span>
+      <p>Your commitment: tomorrow&rsquo;s first email gets briefed, not written. Write the CRIT brief now while the method is fresh.</p></div>
+    </div>
+    <div class="bridge"><span class="b-label">That&rsquo;s the whole course</span><p>The method is CRIT + edit; the habit is never starting from zero. <em><a href="../">More in the CHART program &rarr;</a></em></p></div>
+  </div>
+</section>
+
+<!-- ═══════════ PAGE 9 · SOURCES ═══════════ -->
+<section id="sources" class="th-light" aria-label="Sources">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="you-are">You are here: every number on these pages, cited in full.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Sources</span></span>
+      <h2>Where the numbers <em class="s">come from</em>.</h2>
+    </div>
+    <ol class="src-list">
+      <li class="src" id="src1">
+        <p>Shakked Noy &amp; Whitney Zhang, &ldquo;Experimental evidence on the productivity effects of generative artificial intelligence,&rdquo; <em>Science</em> 381, 187&ndash;192 (2023).
+          <span class="e-src">Cited for: mid-level professional writing tasks completed 40% faster with ChatGPT; output quality rose 18%. <a href="https://www.science.org/doi/10.1126/science.adh2586" target="_blank" rel="noopener">science.org/doi/10.1126/science.adh2586</a></span></p>
+      </li>
+      <li class="src" id="src2">
+        <p>Fabrizio Dell&rsquo;Acqua et al., &ldquo;Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of AI on Knowledge Worker Productivity and Quality,&rdquo; Harvard Business School Working Paper 24-013 (2023). Field experiment with Boston Consulting Group.
+          <span class="e-src">Cited for: consultants using AI finished 12.2% more tasks, 25.1% faster, at 40% higher quality on tasks within AI&rsquo;s capability. <a href="https://www.hbs.edu/faculty/Pages/item.aspx?num=64700" target="_blank" rel="noopener">hbs.edu/faculty/Pages/item.aspx?num=64700</a></span></p>
+      </li>
+      <li class="src" id="src3">
+        <p>Erik Brynjolfsson, Danielle Li &amp; Lindsey R. Raymond, &ldquo;Generative AI at Work,&rdquo; <em>Quarterly Journal of Economics</em> 140(2) (2025).
+          <span class="e-src">Cited for: access to an AI assistant raised worker productivity ~15% on average, with the largest gains for the least-experienced workers. <a href="https://academic.oup.com/qje/article/140/2/889/7990658" target="_blank" rel="noopener">academic.oup.com/qje/article/140/2/889/7990658</a></span></p>
+      </li>
+      <li class="src" id="src4">
+        <p>Nielsen Norman Group, &ldquo;AI Improves Employee Productivity by 66%&rdquo; (2023).
+          <span class="e-src">Cited for: across three case studies, business users drafting routine documents wrote 59% more documents per hour. <a href="https://www.nngroup.com/articles/ai-tools-productivity-gains/" target="_blank" rel="noopener">nngroup.com/articles/ai-tools-productivity-gains</a></span></p>
+      </li>
+    </ol>
+    <p class="prov"><b>CRIT</b> &mdash; Context, Role, Interview, Task &mdash; comes from Geoff Woods, best-selling author of <em>The AI-Driven Leader</em>; companion resources at <a href="https://aileadership.com" target="_blank" rel="noopener">aileadership.com</a>. The framework is taught in full, with the builder and grader, in <a href="../">the main CHART course</a>.</p>
+  </div>
+</section>
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="fcenter">
+      <img src="../assets/vu-centered-white@2x.png" alt="Vanderbilt University" width="100" height="105" loading="lazy" decoding="async" />
+      <p class="fprogram">Vanderbilt University &middot; The CHART Program &middot; Course 02</p>
+      <p class="flegal">&copy; <span id="yr">2026</span> The CHART Program &middot; Vanderbilt. An internal training prototype, <b>not an official Vanderbilt University site</b>. Product names (ChatGPT, Amplify, Microsoft Copilot) belong to their respective owners. Questions: <a href="mailto:matthew.estes@vanderbilt.edu">matthew.estes@vanderbilt.edu</a></p>
+      <span>
+        <button type="button" class="preset print-btn">Print your takeaway<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></button>
+        <button type="button" class="preset" id="progReset">Reset progress<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg></button>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ PRINT-ONLY TAKEAWAY ═══════════════════
+     Hidden on screen; @media print swaps the app for this one page.
+     The mode classes below obey body[data-mode], so a classroom
+     printout carries Discussion notes and a self-paced one carries
+     the reflection/commitment block. Nothing here is stored or sent. -->
+<div id="printSummary" aria-hidden="true">
+  <div class="ps-head">
+    <p class="ps-title">First drafts, faster</p>
+    <p class="ps-meta">Vanderbilt University &middot; The CHART Program &middot; Course 02 &middot; me5231979.github.io/estesstite/learn/drafts</p>
+  </div>
+  <h2>The method: Brief &rarr; Draft &rarr; Edit</h2>
+  <p><b>Brief</b> &mdash; brief the AI like a colleague, with CRIT: Context, Role, Interview (&ldquo;ask me up to three questions before you draft&rdquo;), Task.</p>
+  <p><b>Draft</b> &mdash; let the tool write the whole first pass. Never start from the blank page yourself.</p>
+  <p><b>Edit</b> &mdash; you are the editor: fix the voice, check every fact, cut a third.</p>
+  <p class="ps-rule">AI writes the first draft. You write the final one.</p>
+  <h2>The CRIT brief (fill in the blanks)</h2>
+  <div class="ps-pre">Context: ______________________________________________________________
+Role: _________________________________________________________________
+Interview: Ask me up to three questions before you draft.
+Task: _________________________________________________________________</div>
+  <h2>Three prompts you can use tomorrow</h2>
+  <p class="ps-plabel">1 &middot; The email (decline a meeting, keep it warm)</p>
+  <div class="ps-pre">Context: A vendor we have a good relationship with has asked for a meeting next week. My calendar is full and the timing is wrong, but I want to keep the door open for next quarter.
+Role: You are an experienced professional who writes warm, direct business email.
+Interview: Ask me up to three questions before you draft.
+Task: Draft a short email declining the meeting — under 100 words — that keeps the relationship warm and offers one specific alternative.</div>
+  <p class="ps-plabel">2 &middot; The announcement (say it once, clearly)</p>
+  <div class="ps-pre">Context: Our building's main lobby will be closed for maintenance next week. Staff should use the alternate entrance instead. Everyone needs the dates and the new route — once, clearly.
+Role: You are a workplace communications writer who values clarity over cheer.
+Interview: Ask me up to three questions before you draft.
+Task: Draft an all-staff announcement, 120 words, subject line included, no exclamation points.</div>
+  <p class="ps-plabel">3 &middot; The summary (twelve pages in, half a page out) &mdash; safe data only; sensitive content in Amplify or Copilot</p>
+  <div class="ps-pre">Context: Pasted below is a 12-page report. My director has ten minutes before a meeting and needs to know what decisions it asks of her.
+Role: You are a chief of staff who writes briefs executives actually read.
+Interview: Ask me up to three questions before you draft.
+Task: Write a half-page brief — decisions needed first, then five bullets on the findings, plain English throughout.</div>
+  <h2>The guardrails</h2>
+  <ol>
+    <li><b>Safe data only.</b> Sensitive or internal Vanderbilt business belongs in Amplify or Copilot through your Vanderbilt account, never a personal one. When in doubt, Amplify.</li>
+    <li><b>Verify everything.</b> Every fact, name, number, and date &mdash; the editor&rsquo;s job never left.</li>
+    <li><b>You own every word you send.</b> If you wouldn&rsquo;t sign it, don&rsquo;t send it.</li>
+    <li><b>Your voice wins.</b> Edit until it sounds like you, or people will stop reading you.</li>
+  </ol>
+  <h2>The tools</h2>
+  <p>ChatGPT EDU &middot; chat.openai.com (everyday, non-sensitive work) &nbsp;&bull;&nbsp; Amplify &middot; www.vanderbilt.ai (sensitive or internal; the when-in-doubt choice) &nbsp;&bull;&nbsp; Microsoft Copilot &middot; copilot.microsoft.com (sensitive or internal, via your Vanderbilt account)</p>
+  <div class="ps-block mode-class">
+    <h2>Discussion notes</h2>
+    <div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div>
+  </div>
+  <div class="ps-block mode-web">
+    <h2>My reflection / my commitment</h2>
+    <div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div>
+  </div>
+  <p class="ps-fine">Sources: 1&nbsp;Noy &amp; Zhang, Science 381, 187&ndash;192 (2023) &middot; 2&nbsp;Dell&rsquo;Acqua et al., HBS Working Paper 24-013 (2023) &middot; 3&nbsp;Brynjolfsson, Li &amp; Raymond, QJE 140(2) (2025) &middot; 4&nbsp;Nielsen Norman Group, &ldquo;AI Improves Employee Productivity by 66%&rdquo; (2023). CRIT: Geoff Woods, The AI-Driven Leader (aileadership.com). Internal training prototype &mdash; not an official Vanderbilt University site.</p>
+</div>
+
+<!-- ═══════════════════ BOTTOM BOOK BAR ═══════════════════ -->
+<div class="book-bar" id="bookBar" role="navigation" aria-label="Book controls">
+  <div class="bb-left">
+    <span class="bb-sec" id="bbSec" aria-hidden="true">Welcome</span>
+    <button type="button" class="bb-done" id="bbDone" aria-pressed="false" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+      <span class="bb-done-t">Mark done</span></button>
+    <!-- mode switch: always available; toggles class/web and mirrors the picker page -->
+    <button type="button" class="bb-done" id="bbMode">
+      <svg id="bbModeIcClass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <svg id="bbModeIcWeb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span class="bb-done-t" id="bbModeT">Mode: solo</span></button>
+  </div>
+  <nav class="bb-dots" id="bbDots" aria-label="Course sections"></nav>
+  <div class="bb-ctl">
+    <span class="bb-count" id="bbCount" aria-live="polite">1 / 1</span>
+    <button type="button" class="bb-btn" id="pgPrev" aria-label="Previous page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button type="button" class="bb-btn" id="pgNext" aria-label="Next page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+<script>
+/* ══════════ THE PAGER: the scroll site becomes a book ══════════
+   Adapted from the main CHART course. One section = one page here, so
+   every PLAN entry is whole-mode. If anything fails, the paged class is
+   removed and the original scroll layout stands. Storage: drafts-page. */
+(function(){
+'use strict';
+try{
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var main = document.getElementById('main');
+  if(!main) throw new Error('no main');
+  /* section plan: key = hash segment, label = bottom-bar name */
+  var PLAN = [
+    { sel:'section.hero', key:'home',       label:'Welcome' },
+    { sel:'#mode',        key:'mode',       label:'Your mode' },
+    { sel:'#evidence',    key:'evidence',   label:'The evidence' },
+    { sel:'#method',      key:'method',     label:'The method' },
+    { sel:'#ex-email',    key:'ex-email',   label:'Example: email' },
+    { sel:'#ex-announce', key:'ex-announce',label:'Example: announcement' },
+    { sel:'#ex-summary',  key:'ex-summary', label:'Example: summary' },
+    { sel:'#guardrails',  key:'guardrails', label:'Guardrails' },
+    { sel:'#practice',    key:'practice',   label:'Practice now' },
+    { sel:'#sources',     key:'sources',    label:'Sources', extras:['footer'] }
+  ];
+  /* dots: the nine pages, in course order (mirrors PROG_SECTIONS below) */
+  var TRACKED = [
+    ['home','01','Welcome'], ['mode','02','Your mode'], ['evidence','03','The evidence'],
+    ['method','04','The method'], ['ex-email','05','Example: the email'],
+    ['ex-announce','06','Example: the announcement'], ['ex-summary','07','Example: the summary'],
+    ['guardrails','08','Guardrails'], ['practice','09','Practice now'], ['sources','10','Sources']
+  ];
+  var pages = [];       /* { el, key, secLabel, pgLabel, n } */
+  var secFirst = {};    /* key -> first page index */
+  var topSpan = document.getElementById('top');
+  var frag = document.createDocumentFragment();
+
+  function mkPage(key, secLabel, pgLabel){
+    var art = document.createElement('article');
+    art.className = 'page';
+    art.setAttribute('data-sec', key);
+    art.setAttribute('data-label', pgLabel);
+    art.setAttribute('aria-hidden', 'true');
+    art.tabIndex = -1;
+    if(!(key in secFirst)) secFirst[key] = pages.length;
+    var meta = { el:art, key:key, secLabel:secLabel, pgLabel:pgLabel, n:1 };
+    pages.push(meta);
+    frag.appendChild(art);
+    return meta;
+  }
+  PLAN.forEach(function(cfg){
+    var S = main.querySelector(cfg.sel) || document.querySelector(cfg.sel);
+    if(!S) return;
+    var pg = mkPage(cfg.key, cfg.label, cfg.label);
+    pg.el.appendChild(S);
+    (cfg.extras || []).forEach(function(x){
+      var ex = (x === 'footer') ? document.querySelector('body > footer') : main.querySelector(x);
+      if(ex) pg.el.appendChild(ex);
+    });
+  });
+  if(!pages.length) throw new Error('no pages');
+  pages.forEach(function(p){ p.el.setAttribute('aria-label', p.secLabel); });
+  /* rebuild the stage */
+  while(main.firstChild) main.removeChild(main.firstChild);
+  main.appendChild(frag);
+  if(topSpan && pages[0]) pages[0].el.insertBefore(topSpan, pages[0].el.firstChild);
+  var more = document.createElement('span');
+  more.id = 'pgMore';
+  more.setAttribute('aria-hidden', 'true');
+  more.innerHTML = 'Scroll for more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+  main.appendChild(more);
+
+  /* bottom bar */
+  var bbSec = document.getElementById('bbSec'), bbDots = document.getElementById('bbDots'),
+      bbCount = document.getElementById('bbCount'),
+      prevBtn = document.getElementById('pgPrev'), nextBtn = document.getElementById('pgNext');
+  if(bbDots){
+    bbDots.innerHTML = TRACKED.map(function(s){
+      return '<a class="bb-dot" href="#p/' + s[0] + '/1" data-rail="' + s[0] + '"' +
+        ' title="' + s[1] + ' · ' + s[2] + ' · not yet" aria-label="' + s[2] + ', not done">' +
+        '<span class="dot" aria-hidden="true"></span></a>';
+    }).join('');
+  }
+
+  var cur = -1, animT = null;
+  var store = (function(){
+    try{ var t = 'drafts-page-test'; window.localStorage.setItem(t,'1'); window.localStorage.removeItem(t); return window.localStorage; }
+    catch(e){ return null; }
+  })();
+  function writeHash(p){
+    try{ window.history.replaceState(null, '', '#p/' + p.key + '/' + p.n); }catch(e){}
+    if(store){ try{ store.setItem('drafts-page', p.key + '/' + p.n); }catch(e){} }
+  }
+  function hashIndex(h){
+    if(!h) return null;
+    h = String(h).replace(/^#/, '');
+    if(!h) return null;
+    if(h.indexOf('p/') === 0){
+      var bits = h.split('/');
+      var k = bits[1];
+      return (k in secFirst) ? secFirst[k] : null;
+    }
+    if(h === 'top' || h === 'main') return 0;
+    var el = document.getElementById(h);
+    if(!el) return null;
+    var pg = el.closest ? el.closest('.page') : null;
+    if(!pg) return null;
+    for(var j = 0; j < pages.length; j++){ if(pages[j].el === pg) return j; }
+    return null;
+  }
+  function checkMore(){
+    if(cur < 0) return;
+    var el = pages[cur].el;
+    var scrollable = el.scrollHeight - el.clientHeight > 24;
+    var nearEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 32;
+    main.classList.toggle('more', scrollable && !nearEnd);
+  }
+  function updateBar(){
+    var p = pages[cur];
+    if(bbSec) bbSec.textContent = p.secLabel;
+    if(bbCount) bbCount.textContent = (cur + 1) + ' / ' + pages.length;
+    if(prevBtn) prevBtn.disabled = cur === 0;
+    if(nextBtn) nextBtn.disabled = cur === pages.length - 1;
+    document.querySelectorAll('.bb-dot').forEach(function(a){
+      var on = a.getAttribute('data-rail') === p.key;
+      a.classList.toggle('cur', on);
+      if(on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  function clearAnim(){
+    pages.forEach(function(p){ p.el.classList.remove('pg-in-r','pg-in-l','pg-out','pg-out-l','pg-out-r'); });
+  }
+  function go(i, opts){
+    opts = opts || {};
+    if(typeof i !== 'number' || i < 0 || i >= pages.length) return;
+    if(i === cur){ if(opts.focus) pages[i].el.focus({ preventScroll:true }); return; }
+    var from = cur >= 0 ? pages[cur] : null;
+    var to = pages[i];
+    var dir = from && i < cur ? -1 : 1;
+    cur = i;
+    if(animT){ window.clearTimeout(animT); animT = null; clearAnim(); }
+    to.el.scrollTop = 0;
+    to.el.classList.add('cur');
+    to.el.removeAttribute('aria-hidden');
+    if(from){
+      from.el.classList.remove('cur');
+      from.el.setAttribute('aria-hidden', 'true');
+      if(!reduce){
+        to.el.classList.add(dir > 0 ? 'pg-in-r' : 'pg-in-l');
+        from.el.classList.add('pg-out', dir > 0 ? 'pg-out-l' : 'pg-out-r');
+        animT = window.setTimeout(function(){ animT = null; clearAnim(); }, 420);
+      }
+      /* focus must never be stranded in a hidden page */
+      var ae = document.activeElement;
+      if(opts.focus || (ae && from.el.contains(ae))) to.el.focus({ preventScroll:true });
+    } else if(opts.focus){
+      to.el.focus({ preventScroll:true });
+    }
+    updateBar();
+    writeHash(to);
+    checkMore();
+    try{
+      document.dispatchEvent(new CustomEvent('drafts:page', { detail:{ key:to.key, index:cur, label:to.pgLabel } }));
+    }catch(e){}
+  }
+  window.draftsPager = {
+    go: go,
+    goToKey: function(k){ if(k in secFirst) go(secFirst[k]); },
+    current: function(){ return cur >= 0 ? { key: pages[cur].key, index: cur } : { key:'', index:0 }; },
+    count: pages.length
+  };
+
+  /* in-page anchors turn pages instead of scrolling */
+  document.addEventListener('click', function(e){
+    if(e.defaultPrevented) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if(!a) return;
+    var href = a.getAttribute('href');
+    if(!href || href === '#') return;
+    var id = href.slice(1);
+    if(id === 'main'){ e.preventDefault(); if(cur >= 0) pages[cur].el.focus({ preventScroll:true }); return; }
+    var idx = hashIndex(href);
+    if(idx === null) return;
+    e.preventDefault();
+    go(idx, { focus:true });
+    var el = document.getElementById(id);
+    if(el && pages[idx].el.contains(el) && el !== pages[idx].el){
+      try{ el.scrollIntoView({ block:'start' }); }catch(err){}
+    }
+  });
+  window.addEventListener('hashchange', function(){
+    var idx = hashIndex(window.location.hash);
+    if(idx !== null && idx !== cur) go(idx);
+  });
+  /* book controls */
+  if(prevBtn) prevBtn.addEventListener('click', function(){ go(cur - 1); });
+  if(nextBtn) nextBtn.addEventListener('click', function(){ go(cur + 1); });
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    if(e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    var t = e.target;
+    if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
+    if(document.body.classList.contains('menu-open')) return;
+    e.preventDefault();
+    go(cur + (e.key === 'ArrowRight' ? 1 : -1));
+  });
+  /* touch swipe: horizontal, ~50px threshold, ignores mostly-vertical drags */
+  var sx = 0, sy = 0, swiping = false;
+  main.addEventListener('touchstart', function(e){
+    if(e.touches.length === 1){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; swiping = true; }
+    else swiping = false;
+  }, { passive:true });
+  main.addEventListener('touchend', function(e){
+    if(!swiping) return;
+    swiping = false;
+    var t = e.changedTouches && e.changedTouches[0];
+    if(!t) return;
+    var dx = t.clientX - sx, dy = t.clientY - sy;
+    if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1));
+  }, { passive:true });
+  /* internal-scroll affordance */
+  window.addEventListener('resize', checkMore, { passive:true });
+  document.addEventListener('scroll', function(e){
+    if(cur >= 0 && e.target === pages[cur].el) checkMore();
+  }, true);
+  window.addEventListener('load', checkMore);
+  if(window.ResizeObserver){
+    try{
+      var ro = new ResizeObserver(function(){ checkMore(); });
+      pages.forEach(function(p){
+        Array.prototype.slice.call(p.el.children).forEach(function(ch){ ro.observe(ch); });
+      });
+    }catch(e){}
+  }
+
+  /* open at: deep link > stored resume > page one */
+  var startIdx = hashIndex(window.location.hash);
+  if(startIdx === null && store){
+    try{
+      var saved = store.getItem('drafts-page');
+      if(saved){
+        var sb = saved.split('/');
+        startIdx = hashIndex('p/' + sb[0] + '/' + (sb[1] || 1));
+      }
+    }catch(e){}
+  }
+  go(startIdx === null ? 0 : startIdx);
+}catch(err){
+  /* build failed: fall back to the original scroll layout */
+  document.documentElement.classList.remove('paged');
+  var bar = document.getElementById('bookBar');
+  if(bar) bar.hidden = true;
+}
+})();
+</script>
+
+<script src="../assets/js/qrcode.js"></script>
+<script>
+(function(){
+'use strict';
+var yr = document.getElementById('yr'); if(yr) yr.textContent = new Date().getFullYear();
+
+/* ══════════ QR: encodes the hosted URL, drawn client-side (no network) ══════════ */
+var qrBox = document.getElementById('qrBox');
+if(qrBox && typeof qrcode === 'function'){
+  var qrCard = document.getElementById('qrCard');
+  var qrTarget = (qrCard && qrCard.getAttribute('data-url')) ||
+    (location.protocol === 'file:' ? '' : location.origin + location.pathname);
+  var qrUrlEl = document.getElementById('qrUrl');
+  if(qrTarget){
+    try{
+      var qr = qrcode(0, 'M');
+      qr.addData(qrTarget);
+      qr.make();
+      qrBox.innerHTML = qr.createSvgTag({ scalable:true, margin:2 });
+      if(qrUrlEl) qrUrlEl.textContent = qrTarget.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    }catch(err){
+      if(qrBox.parentElement) qrBox.parentElement.style.display = 'none';
+    }
+  } else {
+    if(qrUrlEl) qrUrlEl.textContent = 'QR appears when the site is hosted';
+    qrBox.innerHTML = '<div style="width:100%;aspect-ratio:1;display:grid;place-items:center;border:1px dashed #E4E4E4;color:#777;font-family:Inter,Arial,sans-serif;font-size:.8rem;padding:1rem;text-align:center">Deploy to generate the QR code</div>';
+  }
+}
+
+/* ══════════ nav shade + mobile menu ══════════ */
+var nav = document.getElementById('nav');
+function navShade(idx){ if(nav) nav.classList.toggle('scrolled', idx > 0); }
+document.addEventListener('drafts:page', function(ev){ navShade(ev.detail ? ev.detail.index : 0); });
+if(window.draftsPager) navShade(window.draftsPager.current().index);
+
+var menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+function setMenu(open){
+  var wasOpen = document.body.classList.contains('menu-open');
+  document.body.classList.toggle('menu-open', open);
+  if(menuBtn){ menuBtn.setAttribute('aria-expanded', open?'true':'false'); menuBtn.setAttribute('aria-label', open?'Close menu':'Open menu'); }
+  if(open && mobileMenu){
+    var first = mobileMenu.querySelector('a');
+    if(first) first.focus();
+  } else if(wasOpen && !open && menuBtn){
+    menuBtn.focus();
+  }
+}
+if(menuBtn) menuBtn.addEventListener('click', function(){ setMenu(!document.body.classList.contains('menu-open')); });
+if(mobileMenu) mobileMenu.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') setMenu(false); });
+/* trap Tab inside the open mobile menu */
+document.addEventListener('keydown', function(e){
+  if(e.key !== 'Tab' || !document.body.classList.contains('menu-open') || !mobileMenu) return;
+  var items = Array.prototype.slice.call(mobileMenu.querySelectorAll('a'));
+  if(menuBtn) items.unshift(menuBtn);
+  if(!items.length) return;
+  var first = items[0], last = items[items.length - 1];
+  var active = document.activeElement, idx = items.indexOf(active);
+  if(idx === -1){ e.preventDefault(); first.focus(); }
+  else if(e.shiftKey && active === first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && active === last){ e.preventDefault(); first.focus(); }
+});
+
+/* ══════════ MODE: class vs web ══════════
+   drafts-mode holds 'class' or 'web'; web is the default until chosen.
+   body[data-mode] drives which .mode-* blocks show (on screen AND in the
+   print takeaway). The picker cards and the bottom-bar switch stay in step. */
+var MODE_KEY = 'drafts-mode';
+var modeMem = 'web';
+var modeStore = (function(){
+  try{ var t = MODE_KEY + '-test'; window.localStorage.setItem(t,'1'); window.localStorage.removeItem(t); return window.localStorage; }
+  catch(e){ return null; }
+})();
+function modeGet(){
+  if(modeStore){
+    try{ var v = modeStore.getItem(MODE_KEY); if(v === 'class' || v === 'web') return v; }catch(e){}
+  }
+  return modeMem;
+}
+function modeSet(v){
+  modeMem = (v === 'class') ? 'class' : 'web';
+  if(modeStore){ try{ modeStore.setItem(MODE_KEY, modeMem); }catch(e){} }
+  modeRender();
+}
+var bbModeBtn = document.getElementById('bbMode'), bbModeT = document.getElementById('bbModeT'),
+    bbModeIcC = document.getElementById('bbModeIcClass'), bbModeIcW = document.getElementById('bbModeIcWeb');
+function modeRender(){
+  var m = modeGet();
+  document.body.setAttribute('data-mode', m);
+  document.querySelectorAll('.mode-card').forEach(function(c){
+    c.setAttribute('aria-pressed', c.getAttribute('data-mode-pick') === m ? 'true' : 'false');
+  });
+  if(bbModeT) bbModeT.textContent = m === 'class' ? 'Mode: class' : 'Mode: solo';
+  /* attribute, not property: SVGElement has no .hidden IDL, so the property would be an inert expando */
+  if(bbModeIcC){ if(m === 'class') bbModeIcC.removeAttribute('hidden'); else bbModeIcC.setAttribute('hidden',''); }
+  if(bbModeIcW){ if(m === 'web') bbModeIcW.removeAttribute('hidden'); else bbModeIcW.setAttribute('hidden',''); }
+  if(bbModeBtn){
+    bbModeBtn.setAttribute('aria-label', m === 'class'
+      ? 'Mode: in a classroom. Select to switch to self-paced.'
+      : 'Mode: self-paced. Select to switch to classroom.');
+    bbModeBtn.setAttribute('title', m === 'class' ? 'Switch to self-paced' : 'Switch to classroom');
+  }
+}
+document.querySelectorAll('.mode-card').forEach(function(c){
+  c.addEventListener('click', function(){ modeSet(c.getAttribute('data-mode-pick')); });
+});
+if(bbModeBtn) bbModeBtn.addEventListener('click', function(){ modeSet(modeGet() === 'class' ? 'web' : 'class'); });
+
+/* ══════════ print takeaway ══════════ */
+document.querySelectorAll('.print-btn').forEach(function(b){
+  b.addEventListener('click', function(){ window.print(); });
+});
+
+/* ══════════ copy buttons (clipboard, with fallback) ══════════ */
+function copyText(txt, labelEl, okMsg){
+  var orig = labelEl.textContent;
+  function done(msg){
+    labelEl.textContent = msg;
+    labelEl.classList.add('copied');
+    window.setTimeout(function(){ labelEl.textContent = orig; labelEl.classList.remove('copied'); }, 1800);
+  }
+  function fallback(){
+    try{
+      var ta = document.createElement('textarea');
+      ta.value = txt; ta.setAttribute('readonly','');
+      ta.style.position = 'fixed'; ta.style.left = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      done(ok ? okMsg : 'Select & copy manually');
+    }catch(e){ done('Select & copy manually'); }
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ done(okMsg); }, fallback);
+  } else { fallback(); }
+}
+document.querySelectorAll('.copy-btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    var src = document.getElementById(b.getAttribute('data-copy'));
+    var label = b.querySelector('span');
+    if(src && label) copyText(src.textContent, label, 'Copied');
+  });
+});
+
+/* ══════════ PROGRESS: per-page completion, saved in this browser only ══════════
+   localStorage keys drafts-progress-<page> hold booleans; drafts-page holds
+   the last open page. Nothing typed is ever stored, nothing is ever sent. */
+var PROG_KEY = 'drafts-progress-';
+var PROG_SECTIONS = [
+  { k:'home',        no:'01', name:'Welcome' },
+  { k:'mode',        no:'02', name:'Your mode' },
+  { k:'evidence',    no:'03', name:'The evidence' },
+  { k:'method',      no:'04', name:'The method' },
+  { k:'ex-email',    no:'05', name:'Example: the email' },
+  { k:'ex-announce', no:'06', name:'Example: the announcement' },
+  { k:'ex-summary',  no:'07', name:'Example: the summary' },
+  { k:'guardrails',  no:'08', name:'Guardrails' },
+  { k:'practice',    no:'09', name:'Practice now' },
+  { k:'sources',     no:'10', name:'Sources' }
+];
+var progMem = {};
+var progStore = (function(){
+  try{
+    var t = PROG_KEY + 'test';
+    window.localStorage.setItem(t, '1');
+    window.localStorage.removeItem(t);
+    return window.localStorage;
+  }catch(e){ return null; }
+})();
+function progIs(k){
+  if(progStore){ try{ return progStore.getItem(PROG_KEY + k) === '1'; }catch(e){} }
+  return progMem[k] === true;
+}
+function progWrite(k, v){
+  progMem[k] = !!v;
+  if(progStore){ try{ v ? progStore.setItem(PROG_KEY + k, '1') : progStore.removeItem(PROG_KEY + k); }catch(e){} }
+}
+function progRender(){
+  PROG_SECTIONS.forEach(function(s){
+    var done = progIs(s.k);
+    var dot = document.querySelector('.bb-dot[data-rail="' + s.k + '"]');
+    if(dot){
+      dot.classList.toggle('done', done);
+      dot.setAttribute('aria-label', s.name + ', ' + (done ? 'done' : 'not done'));
+      dot.setAttribute('title', s.no + ' · ' + s.name + ' · ' + (done ? 'done' : 'not yet'));
+    }
+  });
+  bbDoneSync();
+}
+/* bottom-bar "Mark done": completes the current page */
+var bbDoneBtn = document.getElementById('bbDone');
+function bbDoneSync(){
+  if(!bbDoneBtn) return;
+  var curKey = (window.draftsPager && window.draftsPager.current) ? window.draftsPager.current().key : '';
+  var sec = null;
+  PROG_SECTIONS.forEach(function(s){ if(s.k === curKey) sec = s; });
+  if(!sec){ bbDoneBtn.hidden = true; bbDoneBtn.removeAttribute('data-prog'); return; }
+  var done = progIs(sec.k);
+  bbDoneBtn.hidden = false;
+  bbDoneBtn.setAttribute('data-prog', sec.k);
+  bbDoneBtn.setAttribute('aria-pressed', done ? 'true' : 'false');
+  bbDoneBtn.setAttribute('aria-label', done ? sec.name + ' completed. Select to un-mark.' : 'Mark done: ' + sec.name);
+  if(done) bbDoneBtn.setAttribute('title', 'Select to un-mark'); else bbDoneBtn.removeAttribute('title');
+  var t = bbDoneBtn.querySelector('.bb-done-t');
+  if(t) t.textContent = done ? 'Completed' : 'Mark done';
+}
+if(bbDoneBtn) bbDoneBtn.addEventListener('click', function(){
+  var k = bbDoneBtn.getAttribute('data-prog');
+  if(!k) return;
+  progWrite(k, !progIs(k));
+  progRender();
+});
+document.addEventListener('drafts:page', progRender);
+
+/* footer reset: clears every drafts-* key (progress, last-open page, mode) */
+var progReset = document.getElementById('progReset');
+if(progReset) progReset.addEventListener('click', function(){
+  progMem = {};
+  modeMem = 'web';
+  var st = progStore || modeStore;
+  if(st){
+    try{
+      var kill = [];
+      for(var i = 0; i < st.length; i++){
+        var key = st.key(i);
+        if(key && key.indexOf('drafts-') === 0) kill.push(key);
+      }
+      kill.forEach(function(key){ st.removeItem(key); });
+    }catch(e){}
+  }
+  progRender();
+  modeRender();
+});
+progRender();
+modeRender();
+})();
+</script>
+</body>
+</html>
