@@ -273,6 +273,8 @@ body[data-mode="class"] .mode-web{ display:none !important; }
 body[data-mode="web"] .mode-class{ display:none !important; }
 /* QR is a classroom-only device: solo learners get a full-width welcome */
 body[data-mode="web"] .hero-grid{ grid-template-columns:1fr; }
+.mode-q{ font-family:var(--serif); font-weight:400; font-size:clamp(1.4rem,2.8vw,1.9rem); margin:18px 0 6px; }
+.mode-q b{ font-weight:400; font-style:italic; color:var(--vu-oak); }
 .mode-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:900px; }
 .mode-card{ border:1px solid var(--bd); border-radius:var(--r); background:var(--card); cursor:pointer; text-align:left;
   padding:26px 24px; display:flex; flex-direction:column; gap:8px; transition:border-color .2s ease-out, background-color .2s ease-out; }
@@ -596,9 +598,10 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
 <section id="mode" class="th-cream" aria-label="How are you taking this course?">
   <div class="wrap">
     <div class="sec-head">
-      <span class="you-are">Welcome to First drafts, faster &middot; Course 02 of the CHART program.</span>
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Before you start</span></span>
-      <h2>How are you <em class="s">taking</em> this course?</h2>
+      <span class="you-are">Welcome &middot; one question before you start.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Vanderbilt University &middot; The CHART Program &middot; Course 02</span></span>
+      <h2>First drafts, <em class="s">faster</em>.</h2>
+      <h3 class="mode-q">How are you <b>taking</b> this course?</h3>
       <p>Pick one. The activities change to fit your answer: group discussion in a classroom, quiet reflection on your own. Everything else stays the same, and you can change your answer any time with the <b>Mode</b> switch in the bottom bar.</p>
     </div>
     <div class="mode-grid">
