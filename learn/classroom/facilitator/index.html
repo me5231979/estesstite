@@ -3,16 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Working Smarter · Learn the new tools by using them</title>
-<meta name="description" content="Working Smarter is Vanderbilt&#39;s self-paced AI course for staff: plain-English lessons, working practice tools, and a readiness plan for your own role." />
+<title>Working Smarter (facilitator) · Learn the new tools by using them</title>
+<meta name="description" content="The facilitator edition of Working Smarter, Vanderbilt&#39;s AI course for staff: the classroom course plus a delivery script for the person leading the room." />
 <meta name="theme-color" content="#1C1C1C" />
-<meta property="og:title" content="Working Smarter · Learn the new tools by using them" />
-<meta property="og:description" content="Vanderbilt&#39;s self-paced AI course for staff: plain-English lessons, practice tools, and an AI opportunity simulator." />
+<meta property="og:title" content="Working Smarter (facilitator) · Learn the new tools by using them" />
+<meta property="og:description" content="The facilitator edition of Vanderbilt&#39;s Working Smarter course: every classroom page plus timing, talking points, and cues in a side rail." />
 <meta property="og:type" content="website" />
 
 <!--
   ══════════════════════════════════════════════════════════════════════════
-  WORKING SMARTER — CUSTOMIZE ME
+  WORKING SMARTER — FACILITATOR EDITION — CUSTOMIZE ME
+  The projection copy of ../ (the learner classroom edition). Identical pages
+  plus a fixed script rail (timing, talking points, cues, transitions) rendered
+  per page from the NOTES object at the bottom of this file; the QR still sends
+  learners to the classroom edition, not here. Storage is namespaced chartf-*
+  so the three editions never share state.
   Everything marked [EDIT] below is placeholder content. Search "[EDIT]" and swap in:
     · Program name / eyebrow (Working Smarter can be renamed, e.g. Futures Learning Hub)
     · Amplify URL + approval language        · Vanderbilt AI policy links
@@ -27,15 +32,15 @@
   Logo files live in ./assets/ (v-lockup + vu-centered, black & white variants).
   The practice apps (Prompt Lab, CRIT builder, Grader, Tool Match), the LLM demo,
   the Simulator, self-checks and the quiz are fully working, client-side, no backend.
-  Progress tracking stores per-section booleans only (localStorage chart-progress-*),
+  Progress tracking stores per-section booleans only (localStorage chartf-progress-*),
   plus one string: the focus task the learner picks in the readiness report
-  (chart-focus-task), which the practice apps offer back. The Reset control in
+  (chartf-focus-task), which the practice apps offer back. The Reset control in
   the footer clears all of it. Quiz answers, feedback text, and everything else
   typed are never stored, and nothing is ever sent anywhere.
   BOOK MODE: the course reads page by page like a book. The pager script (before
   the app script) groups blocks into .page articles at data-pg markers; the bottom
   bar holds section dots + prev/next; arrows, swipe, and #p/<section>/<n> hashes
-  turn pages; the last-open page is remembered (localStorage chart-page). Without
+  turn pages; the last-open page is remembered (localStorage chartf-page). Without
   JS the original scroll layout remains as the fallback.
   This is an internal training prototype — NOT an official Vanderbilt site.
   ══════════════════════════════════════════════════════════════════════════
@@ -403,6 +408,7 @@ details.deeper .d-body b{ color:var(--tx); font-weight:600; }
 .yt-fallback{ margin:10px 2px 0; font-size:.85rem; color:var(--tx3); }
 .yt-fallback a,.pol a,.wb-practice p a,.honest a,.evidence a,.rstep a,.concept p a,details.deeper .d-body a{ color:var(--link); border-bottom:1px solid var(--bdg); }
 .yt-fallback a:hover,.evidence a:hover,.rstep a:hover,.concept p a:hover,details.deeper .d-body a:hover{ color:var(--strong); }
+
 </style>
 <style>
 /* ═══════════════════ PLAYGROUND — TABS + FORMS ═══════════════════ */
@@ -1173,6 +1179,82 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
   .marquee .set:nth-child(2){ display:none; }
   .pbar .fill,.meter .fill,.dim .fill{ transition:none !important; }
 }
+
+/* ═══════════════════ CLASSROOM ADDITIONS: QR welcome + Together cards ═══════════════════ */
+.hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(28px,5vw,72px); align-items:center; }
+.qr-side{ text-align:center; justify-self:center; }
+.qr-side .qr-label{ display:block; margin-bottom:14px; color:var(--vu-gold); }
+.qr-card{ display:inline-block; background:var(--vu-white); border-radius:var(--r);
+  border:1px solid rgba(207,174,112,.55); padding:1.1rem 1.1rem .8rem;
+  box-shadow:0 0 0 6px rgba(207,174,112,.08), 0 20px 60px rgba(0,0,0,.45); }
+.qr-card__code{ width:clamp(160px,20vh,240px); height:auto; margin-inline:auto; }
+.qr-card__code svg{ display:block; width:100%; height:auto; }
+.qr-card__url{ margin:.6rem 0 0; font-family:var(--cond); font-weight:700; text-transform:uppercase;
+  letter-spacing:.05em; font-size:.8rem; color:var(--vu-oak); word-break:break-all; max-width:none; }
+.qr-side .qr-sub{ margin:14px auto 0; font-size:.85rem; color:rgba(255,255,255,.62); max-width:30ch; }
+html.paged .qr-card__code{ width:clamp(130px,18vh,210px); }
+@media (max-width:960px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .qr-side{ justify-self:start; text-align:left; }
+  .qr-side .qr-sub{ margin-inline:0; }
+}
+/* the gold Together card: the room's cue to discuss, pair up, or vote */
+.moment{ display:flex; gap:14px; align-items:flex-start; margin-top:26px; max-width:720px;
+  border:1px solid var(--bdg); border-left:3px solid var(--vu-gold); border-radius:var(--r);
+  background:rgba(207,174,112,.10); padding:16px 20px; }
+.moment .m-ic{ width:38px; height:38px; border-radius:var(--r); display:grid; place-items:center; flex-shrink:0;
+  background:rgba(207,174,112,.14); border:1px solid var(--bdg); color:var(--eyebrow); }
+.moment .m-ic svg{ width:18px; height:18px; }
+.moment .m-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.07em; text-transform:uppercase; color:var(--eyebrow); }
+.moment p{ color:var(--tx2); font-size:.9375rem; margin-top:6px; max-width:60ch; }
+.moment p b{ color:var(--tx); font-weight:600; }
+html.paged .moment{ margin-top:18px; padding:13px 16px; }
+
+/* ═══════════════════ FACILITATOR RAIL ═══════════════════
+   A fixed side panel with the delivery script for the CURRENT page,
+   rendered from the NOTES object on every chart:page event. Collapsible;
+   a drawer behind a toggle on narrow screens; hidden in print. */
+.fac-rail{ position:fixed; top:calc(var(--nav-h,96px) + 14px); right:14px; bottom:calc(var(--bar-h,64px) + 14px);
+  width:min(330px, 86vw); z-index:190; display:flex; flex-direction:column; overflow:hidden;
+  background:#141414; color:#fff; border:1px solid rgba(207,174,112,.4); border-radius:var(--r);
+  box-shadow:0 18px 50px rgba(0,0,0,.5); }
+body:not(.rail-open) .fac-rail{ display:none; }
+html.paged body.rail-open main#main{ right:min(358px, 86vw); }
+body.rail-open header.nav .wrap{ padding-right:min(358px, 30vw); }
+.fr-head{ display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:12px 14px; border-bottom:1px solid rgba(207,174,112,.3); flex-shrink:0; }
+.fr-head .mono{ color:var(--vu-gold); }
+.fr-hide{ background:transparent; border:1px solid rgba(255,255,255,.25); border-radius:var(--r); color:#fff;
+  min-height:36px; padding:4px 12px; cursor:pointer; font-size:.8rem; }
+.fr-hide:hover{ border-color:var(--vu-gold); color:var(--vu-gold); }
+.fr-body{ overflow-y:auto; padding:14px 16px 20px; font-size:.875rem; line-height:1.55; }
+.fr-sec{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:10px; }
+.fr-sec b{ font-family:var(--serif); font-weight:400; font-size:1.05rem; }
+.fr-time{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase;
+  color:#1C1C1C; background:var(--vu-gold); border-radius:2px; padding:3px 8px; white-space:nowrap; }
+.fr-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.7rem; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--vu-gold); margin:14px 0 6px; }
+.fr-body ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.fr-body li{ position:relative; padding-left:14px; color:rgba(255,255,255,.82); }
+.fr-body li::before{ content:''; position:absolute; left:0; top:.55em; width:6px; height:6px; border-radius:50%;
+  background:var(--vu-gold); }
+.fr-say li{ font-family:var(--serif-i); font-style:italic; color:rgba(255,255,255,.88); }
+.fr-next{ margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.75); font-size:.85rem; max-width:none; }
+.fr-next b{ color:var(--vu-gold); font-weight:600; }
+.fr-fab{ position:fixed; right:14px; bottom:calc(var(--bar-h,64px) + 14px); z-index:191;
+  display:inline-flex; align-items:center; gap:8px; min-height:46px; padding:10px 16px; cursor:pointer;
+  background:var(--vu-gold); color:#1C1C1C; border:0; border-radius:var(--r);
+  font-family:var(--cond); font-weight:700; font-size:.8rem; letter-spacing:.05em; text-transform:uppercase;
+  box-shadow:0 10px 30px rgba(0,0,0,.4); }
+.fr-fab:hover{ background:var(--vu-highlight); }
+body.rail-open .fr-fab{ display:none; }
+@media (max-width:1100px){
+  html.paged body.rail-open main#main{ right:0; } /* drawer overlays instead of squeezing the stage */
+  body.rail-open header.nav .wrap{ padding-right:0; }
+  .fac-rail{ z-index:230; top:auto; height:min(70vh, 560px); }
+}
+@media print{ .fac-rail, .fr-fab{ display:none !important; } }
 </style>
 </head>
 <body>
@@ -1183,7 +1265,7 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
   <div class="wrap">
     <div class="bar">
       <a class="logo" href="#top" aria-label="Vanderbilt University, Working Smarter home">
-        <img src="assets/v-lockup-white@2x.png" alt="Vanderbilt University" width="166" height="36" decoding="async" />
+        <img src="../../assets/v-lockup-white@2x.png" alt="Vanderbilt University" width="166" height="36" decoding="async" />
       </a>
       <div class="bar-r">
         <nav class="links" aria-label="Primary">
@@ -1250,11 +1332,13 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
     <div class="hero-scrim"></div>
   </div>
   <div class="wrap">
-    <span class="mono">Vanderbilt University &middot; The Working Smarter Program <!-- [EDIT] program eyebrow — Working Smarter can be renamed (e.g. Futures Learning Hub) --></span>
+    <div class="hero-grid">
+    <div>
+    <span class="mono">Vanderbilt University &middot; The Working Smarter Program &middot; Facilitator edition <!-- [EDIT] program eyebrow — Working Smarter can be renamed (e.g. Futures Learning Hub) --></span>
     <h1 class="metal">Learn AI by <em>using</em> it.</h1>
     <p class="hello">Welcome to Working Smarter.</p>
     <p class="lead"><b>Working Smarter</b> is Vanderbilt&rsquo;s
-      self-paced AI course for staff. AI is showing up in more staff work every year; the skill is using it well. By the end of this course, you will be able to:</p>
+      AI course for staff, taught here as a live session. AI is showing up in more staff work every year; the skill is using it well. By the end of this course, you will be able to:</p>
     <ul class="outcomes" aria-label="By the end of this course, you will be able to">
       <li><b>Explain</b> what AI tools like ChatGPT are and why they sometimes state made-up things as fact</li>
       <li><b>Identify</b> which of your own job tasks AI can help with, and build a 30/60/90 development plan from them</li>
@@ -1264,23 +1348,33 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
     </ul>
     <p class="lead closer">This is not a course about AI. It is <em>practice</em> for the way you will work next.</p>
     
-    <p class="meta-line" aria-label="60 to 90 minutes, in class or self-paced, nothing reported, progress stays in your browser"><b>60&ndash;90 minutes</b> &middot; in class or self-paced &middot; nothing reported &middot; progress stays in your browser</p><!-- [EDIT: hero lead above says "self-paced AI course" and is owner-dictated; decide whether it should also say "in class or self-paced"] -->
+    <p class="meta-line" aria-label="One session, guided by your instructor, nothing reported, progress stays in your browser"><b>One session</b> &middot; guided by your instructor &middot; nothing reported &middot; progress stays in your browser</p><!-- [EDIT: hero lead above is owner-dictated; this classroom edition says "taught here as a live session"] -->
     <div class="cta-row">
       <a class="btn btn-gold" href="#start">Start learning
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
-    <ol class="hw-mini" aria-label="How this course works">
-      <li>Turn pages with the arrows below, your keyboard arrows, or a swipe</li>
-      <li>Do each activity as it comes; nothing is graded</li>
-      <li>Mark sections done in the bottom bar</li>
+    <ol class="hw-mini" aria-label="How this session works">
+      <li>Your instructor drives the screen up front; scan the QR to work along on your own device</li>
+      <li>Work every exercise on your own device as it comes; nothing is graded</li>
+      <li>The gold Together cards are the room&rsquo;s cue to discuss, pair up, or vote</li>
       <li>Finish with the knowledge check, then attest in Oracle Learning</li>
     </ol>
+    </div>
+    <div class="qr-side">
+      <span class="mono qr-label">Learners scan to open the course on their phones</span>
+      <div class="qr-card" id="qrCard" data-url="https://me5231979.github.io/estesstite/learn/classroom/">
+        <div class="qr-card__code" id="qrBox" role="img" aria-label="QR code linking to this course"></div>
+        <p class="qr-card__url" id="qrUrl"></p>
+      </div>
+      <p class="qr-sub">This code opens the learner classroom edition, not this page. Project this edition; the script rail is yours alone.</p>
+    </div>
+    </div>
   </div>
 </section>
 
 <!-- ═══════════════════ TOPIC BAR ═══════════════════ -->
-<div class="topics th-light" role="img" aria-label="One system. Three tools. 60 to 90 minutes. Topics: prompt writing, next-word prediction, data safety, tool choice, myth-busting, responsible AI, everyday wins, FERPA-aware habits">
-  <div class="wrap"><p class="tlabel mono">One system. Three tools. 60&ndash;90 minutes.</p></div>
+<div class="topics th-light" role="img" aria-label="One system. Three tools. One live session. Topics: prompt writing, next-word prediction, data safety, tool choice, myth-busting, responsible AI, everyday wins, FERPA-aware habits">
+  <div class="wrap"><p class="tlabel mono">One system. Three tools. One live session.</p></div>
   <div class="marquee" aria-hidden="true">
     <div class="track">
       <div class="set">
@@ -1343,7 +1437,7 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
         <span class="chip">~18 min</span>
       </div>
     </div>
-    <p class="hw-meta reveal">About 60&ndash;90 minutes for the core path &middot; every module is skippable, in class or on your own &middot; embedded videos are optional extras.</p>
+    <p class="hw-meta reveal">One session, guided by your instructor &middot; modules can be trimmed to fit the time &middot; embedded videos are optional extras.</p>
     <p class="hw-meta reveal" id="progTopLine" style="margin-top:10px">Section tracking: you have 10 sections ahead. Progress saves only in this browser.</p>
     <!-- [EDIT] program name — Working Smarter is a working title; the tagline below updates with any rename -->
     <p class="acr-line reveal">Learn the new tools <b>by using them.</b></p>
@@ -1531,6 +1625,11 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
         </div>
       </div>
       <p class="hinttxt" style="margin-top:12px">Remember this demo the next time an AI answer sounds certain: it predicted that sentence the same way it predicted these bars.</p>
+      <div class="moment reveal">
+        <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><span class="m-label">Together</span>
+        <p>Watch the demo on the projector first, then try it on your own device: shuffle to a new sentence and push the temperature both ways. Compare with a neighbor: which word won at low temperature, and did a long shot ever win at high?</p></div>
+      </div>
       <div class="bridge mid reveal"><span class="b-label">Next</span><p>Now learn to catch prediction when it goes <em>wrong</em>.</p></div>
     </div>
 
@@ -1998,6 +2097,11 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
           </div>
         </form>
         <div id="raOut" role="status" aria-live="polite"></div>
+      <div class="moment reveal">
+        <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><span class="m-label">Together</span>
+        <p>When your report is built, share your chosen focus task with a partner and say which bucket it landed in. Saying it out loud is the first step of the development conversation the four steps ask for.</p></div>
+      </div>
         <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
           <span>A conversation starter, not a job evaluation or an HR determination; workforce decisions run through Human Resources. <!-- [EDIT] HR workforce planning contact --></span></p>
       </div>
@@ -2041,6 +2145,11 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
         <p>What type of output, what scope, what format: the model can only hit a target you name.</p></div>
     </div>
     <p class="hinttxt reveal" style="margin-top:12px">The Interview step earns its keep fast: use it the next time your request would take more than three sentences to explain.</p>
+      <div class="moment reveal">
+        <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><span class="m-label">Together</span>
+        <p>Turn to a partner and explain the four CRIT parts back to each other in under a minute, without looking at the screen. If either of you stalls on Interview, that is the part to reread, because it is the part that sets CRIT apart.</p></div>
+      </div>
     <div class="module-head reveal" data-pg="The source &amp; the video">
       <span class="mno">CRIT &middot; the source</span>
       <h3>The source &amp; the video</h3>
@@ -2249,6 +2358,12 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
             </div>
           </div>
         </div>
+
+      <div class="moment reveal">
+        <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><span class="m-label">Together</span>
+        <p>In pairs, build one prompt in the Lab for a real task one of you actually has this week. Share it with the room, and your instructor will run the strongest one live in a real tool.</p></div>
+      </div>
       </div>
 
     <!-- ── PROMPT GRADER ── -->
@@ -2504,6 +2619,12 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
           </form>
           <div id="tmOut" role="status" aria-live="polite"></div>
         </div>
+        
+      <div class="moment reveal">
+        <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><span class="m-label">Together</span>
+        <p>Before anyone presses the button: your instructor reads a scenario, and each row votes on which tool fits. Then run Tool Match on your own device and see whether the room beat the drill.</p></div>
+      </div>
         <p class="hinttxt" style="margin-top:14px">Run this call in your head next time a new kind of document is about to go into any AI tool.</p>
       </div>
 
@@ -2588,6 +2709,12 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
         <div class="sim-step" data-step="4"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Building your plan…</div>
       </div>
 
+      
+      <div class="moment reveal">
+        <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><span class="m-label">Together</span>
+        <p>Run the Simulator on one of your own tasks, then compare maps with a neighbor: which patterns did your two weeks share? The overlap is usually where a team&rsquo;s first pilot belongs.</p></div>
+      </div>
       <div class="sim-out" id="simOut" role="status" aria-live="polite"></div>
     </div>
     <div class="md-wrap">
@@ -2741,6 +2868,12 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
         </article>
       </div>
     </div>
+
+      <div class="moment reveal">
+        <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><span class="m-label">Together</span>
+        <p>As a table, pick one of the four scenarios and talk through what each of you would really do before tapping an answer. The gray areas reach regular staff before any policy does, so the argument is the practice.</p></div>
+      </div>
     <div class="module reveal" id="keeptime" data-pg="Keep the time">
       <div class="module-head">
         <span class="mno">Keep the time</span>
@@ -2812,6 +2945,11 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
       <span class="c-label">The idea</span>
       <p>A missed question is just a pointer back to the section worth a second look.</p>
     </div>
+      <div class="moment reveal">
+        <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><span class="m-label">Together</span>
+        <p>Answer all eight on your own device, no conferring; nobody sees your score. Afterward, your instructor will ask which question the room found hardest and revisit that section together.</p></div>
+      </div>
     <div class="quiz-shell reveal">
       <div id="quizForm" role="group" aria-label="Knowledge check, questions 1 to 4">
         <!-- teaching order: how the machine works first, then CRIT, tools, responsible habits; ids and answers unchanged.
@@ -3069,6 +3207,12 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
         <span class="chip">Always</span>
       </div>
     </div>
+    
+      <div class="moment reveal">
+        <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <div><span class="m-label">Together</span>
+        <p>Tell a partner which task you will take live this week, and name the day you will run it. A named task with a named day survives the walk back to your desk.</p></div>
+      </div>
     <p class="hw-meta reveal">Revisit the 30/60/90 you built in <a href="#readiness">Your role, task by task</a>: you have now done part of it. Next month, pick a second task and run the same loop.</p>
     <!-- [EDIT: confirm the Oracle Learning item below stays current] [EDIT: Oracle course-vs-offering: pilot user enrolled at course level could not mark the offering complete; owner to verify the correct learningItemId with the Oracle admin] -->
     <div class="oracle-strip reveal">
@@ -3317,9 +3461,9 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
 <footer>
   <div class="wrap">
     <div class="fcenter">
-      <img src="assets/vu-centered-white@2x.png" alt="Vanderbilt University" width="100" height="105" loading="lazy" decoding="async" />
+      <img src="../../assets/vu-centered-white@2x.png" alt="Vanderbilt University" width="100" height="105" loading="lazy" decoding="async" />
       <p class="fprogram">Working Smarter &middot; Learn the new tools by using them</p><!-- [EDIT] program name — can be renamed, e.g. Futures Learning Hub -->
-      <p class="flegal">© <span id="yr">2026</span> The Working Smarter Program &middot; Vanderbilt. An internal training prototype, <b>not an official Vanderbilt University site</b>. Product names (ChatGPT, Amplify, Microsoft Copilot) belong to their respective owners. Vanderbilt&rsquo;s AI guidance and data classification policy will be linked here when published. Teaching this live? <a href="classroom/">Use the classroom edition</a>. Questions: <a href="mailto:matthew.estes@vanderbilt.edu">matthew.estes@vanderbilt.edu</a></p>
+      <p class="flegal">© <span id="yr">2026</span> The Working Smarter Program &middot; Vanderbilt. An internal training prototype, <b>not an official Vanderbilt University site</b>. Product names (ChatGPT, Amplify, Microsoft Copilot) belong to their respective owners. Vanderbilt&rsquo;s AI guidance and data classification policy will be linked here when published. Learners join at <a href="../">the classroom edition</a>. Taking it on your own? <a href="../../">Use the self-paced edition</a>. Questions: <a href="mailto:matthew.estes@vanderbilt.edu">matthew.estes@vanderbilt.edu</a></p>
       <!-- [EDIT] disclaimer / ownership line --><!-- [EDIT: add URL for official Vanderbilt AI policy] --><!-- [EDIT: add URL for data classification policy] --><!-- [EDIT: swap contact to program alias when created] -->
       <button type="button" class="preset" id="progReset">Reset progress<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></svg></button>
     </div>
@@ -3480,12 +3624,12 @@ try{
 
   var cur = -1, animT = null;
   var store = (function(){
-    try{ var t = 'chart-page-test'; window.localStorage.setItem(t,'1'); window.localStorage.removeItem(t); return window.localStorage; }
+    try{ var t = 'chartf-page-test'; window.localStorage.setItem(t,'1'); window.localStorage.removeItem(t); return window.localStorage; }
     catch(e){ return null; }
   })();
   function writeHash(p){
     try{ window.history.replaceState(null, '', '#p/' + p.key + '/' + p.n); }catch(e){}
-    if(store){ try{ store.setItem('chart-page', p.key + '/' + p.n); }catch(e){} }
+    if(store){ try{ store.setItem('chartf-page', p.key + '/' + p.n); }catch(e){} }
   }
   function hashIndex(h){
     if(!h) return null;
@@ -3654,7 +3798,7 @@ try{
   var startIdx = hashIndex(window.location.hash);
   if(startIdx === null && store){
     try{
-      var saved = store.getItem('chart-page');
+      var saved = store.getItem('chartf-page');
       if(saved){
         var sb = saved.split('/');
         startIdx = hashIndex('p/' + sb[0] + '/' + (sb[1] || 1));
@@ -3806,11 +3950,11 @@ function copyText(txt, labelEl, okMsg){
 }
 
 /* ══════════ PROGRESS: per-section completion, saved in this browser only ══════════
-   localStorage keys chart-progress-<section> hold booleans; the only other
-   stored value is chart-focus-task, the one task string the learner picks in
+   localStorage keys chartf-progress-<section> hold booleans; the only other
+   stored value is chartf-focus-task, the one task string the learner picks in
    the readiness report. Quiz answers, feedback text, and everything else
    typed stay unstored as before, and nothing is ever sent anywhere. */
-var PROG_KEY = 'chart-progress-';
+var PROG_KEY = 'chartf-progress-';
 var PROG_SECTIONS = [
   { k:'learn',       no:'01', name:'Learn the fundamentals', how:'Finish the drill, or mark it done' },
   { k:'readiness',   no:'02', name:'AI readiness',           how:'Build the report, or mark it done' },
@@ -3824,7 +3968,7 @@ var PROG_SECTIONS = [
   { k:'resources',   no:'10', name:'Keep learning',          how:'Mark it done once browsed' }
 ];
 var progMem = {};
-/* keys from retired sections (e.g. chart-progress-firstrep) are ignored and swept below */
+/* keys from retired sections (e.g. chartf-progress-firstrep) are ignored and swept below */
 var progStore = (function(){
   try{
     var t = PROG_KEY + 'test';
@@ -3979,7 +4123,7 @@ if(progReset) progReset.addEventListener('click', function(){
 /* ══════════ ORACLE COMPLETION MODAL ══════════
    Fires once, the moment the last tracked section completes; if the page loads
    already complete and the learner has not attested, it shows once per visit.
-   Storage: one boolean (chart-progress-oracle-attested) beside the progress
+   Storage: one boolean (chartf-progress-oracle-attested) beside the progress
    flags. Once-per-visit lives in memory only. Nothing else is stored. */
 var ORACLE_FLAG = PROG_KEY + 'oracle-attested';
 var oracleSeen = false;     /* once-per-visit guard, memory only */
@@ -4054,11 +4198,11 @@ if(!progStore){
 }
 
 /* ══════════ FOCUS TASK: the golden thread ══════════
-   One string (chart-focus-task) saved beside the progress flags: the task the
+   One string (chartf-focus-task) saved beside the progress flags: the task the
    learner picks at the end of the readiness report. The practice apps offer
    it back; every surface below degrades to its generic wording when nothing
    is stored, and the string is escaped wherever it renders. */
-var FOCUS_KEY = 'chart-focus-task';
+var FOCUS_KEY = 'chartf-focus-task';
 var focusMem = '';
 function focusGet(){
   if(progStore){ try{ return progStore.getItem(FOCUS_KEY) || ''; }catch(e){} }
@@ -5712,7 +5856,7 @@ function build(){
   /* ── header ── */
   var head = E('div', 'ps-head');
   var img = document.createElement('img');
-  img.src = 'assets/vu-centered-black@2x.png';
+  img.src = '../../assets/vu-centered-black@2x.png';
   img.alt = 'Vanderbilt University';
   head.appendChild(img);
   var hd = E('div');
@@ -5893,6 +6037,212 @@ Array.prototype.slice.call(document.querySelectorAll('.print-btn')).forEach(func
     window.print();
   });
 });
+})();
+</script>
+
+<script src="../../assets/js/qrcode.js"></script>
+<script>
+/* ══════════ QR: encodes the hosted learner URL, drawn client-side (no network) ══════════ */
+(function(){
+'use strict';
+var qrBox = document.getElementById('qrBox');
+if(!qrBox || typeof qrcode !== 'function') return;
+var qrCard = document.getElementById('qrCard');
+var qrTarget = (qrCard && qrCard.getAttribute('data-url')) ||
+  (location.protocol === 'file:' ? '' : location.origin + location.pathname);
+var qrUrlEl = document.getElementById('qrUrl');
+if(qrTarget){
+  try{
+    var qr = qrcode(0, 'M');
+    qr.addData(qrTarget);
+    qr.make();
+    qrBox.innerHTML = qr.createSvgTag({ scalable:true, margin:2 });
+    if(qrUrlEl) qrUrlEl.textContent = qrTarget.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  }catch(err){
+    if(qrBox.parentElement) qrBox.parentElement.style.display = 'none';
+  }
+} else {
+  if(qrUrlEl) qrUrlEl.textContent = 'QR appears when the site is hosted';
+  qrBox.innerHTML = '<div style="width:100%;aspect-ratio:1;display:grid;place-items:center;border:1px dashed #E4E4E4;color:#777;font-family:Inter,Arial,sans-serif;font-size:.8rem;padding:1rem;text-align:center">Deploy to generate the QR code</div>';
+}
+})();
+</script>
+
+<!-- ═══════════════════ FACILITATOR SCRIPT RAIL ═══════════════════ -->
+<aside class="fac-rail" id="facRail" aria-label="Facilitator script for the current page">
+  <div class="fr-head">
+    <span class="mono">Facilitator script</span>
+    <button type="button" class="fr-hide" id="frHide" aria-controls="facRail">Hide</button>
+  </div>
+  <div class="fr-body" id="frBody" aria-live="polite"></div>
+</aside>
+<button type="button" class="fr-fab" id="frFab" aria-controls="facRail" hidden>
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+  Script</button>
+
+<script>
+/* ══════════ FACILITATOR RAIL: the delivery script, keyed by section ══════════
+   NOTES holds one entry per pager section key. The rail re-renders on every
+   chart:page event; Hide collapses it to the Script button; on narrow screens
+   it starts collapsed and opens as a drawer. Nothing here is stored. */
+(function(){
+'use strict';
+var NOTES = {
+  home: { t:'5 min',
+    say:[ 'Welcome. This course is called Working Smarter, and the whole idea fits in one line: you learn the new tools by using them.',
+      'Everything today runs in your browser. Nothing you type is stored or sent anywhere, and nobody sees a score.' ],
+    cues:[ 'Leave the QR on screen until phones are out; ask for a nod when people have page one open.',
+      'Walk the five outcomes, then ask for a show of hands: who already uses AI most weeks?' ],
+    next:'When most screens are up, turn the page and read the belief out loud.' },
+  belief: { t:'2 min',
+    say:[ 'One sentence drives the whole program: technology should amplify humans, never replace them.',
+      'Today is practice at staying in charge of these tools, not a tour of them.' ],
+    cues:[ 'Read the creed aloud, slowly, and let it sit for a beat before moving on.' ],
+    next:'Turn the page to show the road map for the session.' },
+  how: { t:'3 min',
+    say:[ 'Four stops today: understand the tools, map your own role, learn to prompt, and set the guardrails.',
+      'Every stop is hands-on. If we run short on time, I will trim modules, not skip stops.' ],
+    cues:[ 'Point at the four stops and their time chips so the room can pace itself.' ],
+    next:'First stop: what these tools actually are, in five terms.' },
+  learn: { t:'15 min',
+    say:[ 'Five terms, and each one is a more specific kind of the one before it. Flip the cards on your own device as I walk through them.',
+      'Keep one fact from this whole section: the model predicts patterns. It does not understand meaning, and that is why it needs checking.' ],
+    cues:[ 'Skip the 3Blue1Brown video in a live session; name it as homework and move on.',
+      'Project the next-word demo and run one shuffle yourself, then send the room to their phones for the Together card: shuffle, push the temperature both ways, compare with a neighbor.',
+      'Debrief with one question: did anyone see a long-shot word win at high temperature?',
+      'Give the hallucination drill three quiet minutes, then ask who caught all four.' ],
+    next:'You know what the machine is. Next we point it at your actual job.' },
+  readiness: { t:'12 min',
+    say:[ 'AI shows up for tasks, not job titles. So we work from your real week, not your job description.',
+      'Exposure is a development signal, not a threat. Nothing on this page is an HR judgment, and no plan leaves your browser.' ],
+    cues:[ 'Walk the four ideas quickly; the evidence cards carry the numbers if anyone asks.',
+      'Give six quiet minutes for the assessment; the report builds itself when the fields are in.',
+      'Run the Together card: partners swap their chosen focus task and the bucket it landed in.' ],
+    next:'You have named the tasks. CRIT is how you get AI to do them well.' },
+  crit: { t:'10 min',
+    say:[ 'CRIT is Context, Role, Interview, Task, and it comes from Geoff Woods.',
+      'The Interview line is the part nobody guesses: you make the model ask you questions before it writes, so the gaps surface early and you stay the one doing the thinking.' ],
+    cues:[ 'Run the Together explain-back before the builder; if the room stalls on Interview, reread that card together.',
+      'The Woods video is optional; two minutes of it can reset a flagging room.',
+      'In the builder, have everyone tap the example chips first so the shape is visible before they type.' ],
+    next:'Theory done. Hands on keyboards in the Playground.' },
+  playground: { t:'15 min',
+    say:[ 'These are practice apps, not live AI. What you build here gets pasted into the real tools, so it is worth building well.',
+      'The meter and the grader give instant feedback. Chase the A; it proves you can do this, not just remember it.' ],
+    cues:[ 'Run the Together card: pairs build one prompt in the Lab for a real task one of them has this week.',
+      'Collect two or three prompts and run the strongest one live in ChatGPT EDU on the projector; react to the answer with the room.',
+      'Protect ten minutes for Take it live; it is the heart of the session.' ],
+    next:'One tool used. Next: all three, and how to choose between them.' },
+  tools: { t:'8 min',
+    say:[ 'Two questions route every task: how sensitive is the data, and where are you already working.',
+      'When in doubt, Amplify. That one habit prevents the mistakes that are hardest to undo.' ],
+    cues:[ 'Skim the three cards; do not read them out. The rule strip is the part to say twice.',
+      'Run the Together vote: read a scenario, rows vote by hand for a tool, then everyone runs Tool Match on their own device to see if the room beat the drill.' ],
+    next:'Tools chosen. The Simulator turns one of your tasks into a plan.' },
+  simulator: { t:'8 min',
+    say:[ 'Describe one real task in plain words, like you would to a new colleague. The more concrete you are, the more patterns it catches.',
+      'You leave this page with starter prompts and the first thirty days of a plan.' ],
+    cues:[ 'Point at the example chips for anyone stuck; the Acorn example shows the safe-data habit in action.',
+      'Quiet run first, then the Together card: neighbors compare maps and name one overlap out loud.' ],
+    next:'Before anyone runs a plan, we set the guardrails.' },
+  responsible: { t:'10 min',
+    say:[ 'The model predicts; it does not check. So you verify, you disclose, and a human makes every decision about people.',
+      'The never-paste list is the hard edge. Everything around it is judgment, and that is what the scenarios train.' ],
+    cues:[ 'Read the never-paste list aloud; it is the one slide worth being solemn about.',
+      'Run the Together card: each table takes one scenario and argues it before tapping an answer, then one table reports the case that split them.',
+      'Running long? Keep the time works as homework; say so and move on.' ],
+    next:'Guardrails set. Eight questions to see what stuck.' },
+  quiz: { t:'8 min',
+    say:[ 'Own device, no conferring, and nobody sees your score. A missed question is a pointer, not a grade.',
+      'When you finish, the feedback form appears; two taps and a send, and it genuinely shapes the next version.' ],
+    cues:[ 'When most of the room is done, ask which question felt hardest and revisit that section for two minutes.',
+      'Watch for question 6, the salary summary; it is the one that catches rooms out.' ],
+    next:'Scores in hand, one quick review before the handoff.' },
+  summary: { t:'3 min',
+    say:[ 'Seven ideas, one screen. If one of them looks fuzzy, that is your section to revisit this week.',
+      'The download button builds a PDF from what you typed today: your plan, your prompts, your boundary.' ],
+    cues:[ 'Give the room a quiet minute to save or print their summary before you turn the page.' ],
+    next:'The last real page: what happens this week.' },
+  nextstep: { t:'5 min',
+    say:[ 'The course ends here, and the habit starts this week: one task, one prompt, one real run.',
+      'Attesting in Oracle Learning is what puts today on your training record; this page cannot do it for you.' ],
+    cues:[ 'Run the Together card: partners name their task and the day they will run it.',
+      'Show where the Oracle Learning button is; ask people to attest before they leave the room if they can.' ],
+    next:'Last stop: the shelf that keeps you going.' },
+  resources: { t:'2 min',
+    say:[ 'Nobody needs all of this. Pick one voice and give it fifteen curious minutes a week; that is the whole assignment.' ],
+    cues:[ 'Scroll the shelf slowly; call out One Useful Thing and the Oracle Learning picks as the easy starts.' ],
+    next:'That is the whole course. Wrap-up next.' },
+  end: { t:'2 min',
+    say:[ 'Run the loop once this week and the session pays for itself. Thank you for the energy you brought to the room today.' ],
+    cues:[ 'Leave the Oracle Learning link on screen while people pack up.',
+      'After the group leaves, use Reset progress in the footer so the next session starts clean.' ],
+    next:'End of session.' }
+};
+var body = document.getElementById('frBody'),
+    rail = document.getElementById('facRail'),
+    hide = document.getElementById('frHide'),
+    fab  = document.getElementById('frFab');
+if(!body || !rail) return;
+function E(tag, cls, txt){
+  var el = document.createElement(tag);
+  if(cls) el.className = cls;
+  if(txt) el.textContent = txt;
+  return el;
+}
+function list(cls, items){
+  var ul = E('ul', cls);
+  items.forEach(function(t){ ul.appendChild(E('li', null, t)); });
+  return ul;
+}
+function render(key, label){
+  var n = NOTES[key];
+  body.textContent = '';
+  var head = E('div', 'fr-sec');
+  head.appendChild(E('b', null, label || key));
+  if(n && n.t) head.appendChild(E('span', 'fr-time', n.t));
+  body.appendChild(head);
+  if(!n){
+    body.appendChild(E('p', null, 'No script for this page; drive from the screen.'));
+    return;
+  }
+  if(n.say && n.say.length){
+    body.appendChild(E('span', 'fr-label', 'Say something like'));
+    body.appendChild(list('fr-say', n.say));
+  }
+  if(n.cues && n.cues.length){
+    body.appendChild(E('span', 'fr-label', 'Cues'));
+    body.appendChild(list(null, n.cues));
+  }
+  if(n.next){
+    var p = E('p', 'fr-next');
+    p.appendChild(E('b', null, 'Transition: '));
+    p.appendChild(document.createTextNode(n.next));
+    body.appendChild(p);
+  }
+}
+function setOpen(open){
+  document.body.classList.toggle('rail-open', open);
+  if(fab) fab.hidden = open;
+  rail.setAttribute('aria-hidden', open ? 'false' : 'true');
+}
+if(hide) hide.addEventListener('click', function(){ setOpen(false); if(fab) fab.focus(); });
+if(fab) fab.addEventListener('click', function(){ setOpen(true); if(hide) hide.focus(); });
+/* open on wide screens, a closed drawer on narrow ones */
+setOpen(window.matchMedia('(min-width: 1101px)').matches);
+document.addEventListener('chart:page', function(ev){
+  if(ev.detail) render(ev.detail.key, (window.chartPager && window.chartPager.current && sectionLabel(ev.detail.key)) || ev.detail.label);
+});
+/* the rail titles by SECTION, not sub-page, so multi-page sections keep one script */
+var SECTION_LABELS = {
+  home:'Welcome', belief:'The belief', how:'How Working Smarter works', learn:'Learn',
+  readiness:'Readiness', crit:'CRIT', playground:'Practice', tools:'Tools',
+  simulator:'Simulator', responsible:'Responsible AI', quiz:'Knowledge check',
+  summary:'Summary', nextstep:'Next step', resources:'Resources', end:'Wrap-up'
+};
+function sectionLabel(k){ return SECTION_LABELS[k]; }
+var cur = (window.chartPager && window.chartPager.current) ? window.chartPager.current() : null;
+render(cur ? cur.key : 'home', cur ? sectionLabel(cur.key) : 'Welcome');
 })();
 </script>
 </body>
