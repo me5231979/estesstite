@@ -271,6 +271,8 @@ section + section{ border-top:1px solid transparent; }
    under its own label — the no-JS fallback. */
 body[data-mode="class"] .mode-web{ display:none !important; }
 body[data-mode="web"] .mode-class{ display:none !important; }
+/* QR is a classroom-only device: solo learners get a full-width welcome */
+body[data-mode="web"] .hero-grid{ grid-template-columns:1fr; }
 .mode-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; max-width:900px; }
 .mode-card{ border:1px solid var(--bd); border-radius:var(--r); background:var(--card); cursor:pointer; text-align:left;
   padding:26px 24px; display:flex; flex-direction:column; gap:8px; transition:border-color .2s ease-out, background-color .2s ease-out; }
@@ -571,13 +573,14 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
       <div>
         <span class="mono">Vanderbilt University &middot; The CHART Program &middot; Course 02</span>
         <h1 class="metal">First drafts, <em>faster</em>.</h1>
-        <p class="lead">Emails, announcements, summaries: the everyday writing that eats your week.
-          In the next fifteen minutes you&rsquo;ll learn one method for it &mdash; <b>AI does the first pass, you do the judging</b> &mdash;
-          and leave with three prompts you can use tomorrow.</p>
-        <p class="meta-line">Part of CHART: Cultivating Human-AI Readiness and Thinking &middot; Course 02</p>
+        <p class="lead">If your job includes writing emails, announcements, or summaries, this course is for you.
+          You&rsquo;ll learn a simple way to have <b>AI write your first draft</b>, so your time goes into
+          improving a draft instead of staring at a blank page. It takes about fifteen minutes,
+          and you&rsquo;ll finish by trying the method on a real email of your own.</p>
+        <p class="meta-line">Part of CHART: Cultivating Human-AI Readiness and Thinking</p>
         <div class="lframe">
-          <span class="lf-chip"><b>Time</b>~15 minutes self-paced &middot; longer as a class</span>
-          <span class="lf-chip"><b>You&rsquo;ll leave with</b>A drafting method + three prompts you can use tomorrow</span>
+          <span class="lf-chip"><b>Time</b>About 15 minutes on your own &middot; longer as a live session</span>
+          <span class="lf-chip"><b>You&rsquo;ll leave with</b>A three-step method and three prompts ready to use at work</span>
         </div>
         <ol class="hw-mini" aria-label="How this course works">
           <li>Turn pages with the arrows below, your keyboard arrows, or a swipe</li>
@@ -585,13 +588,13 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
           <li>Mark pages done in the bottom bar; progress stays in this browser</li>
         </ol>
       </div>
-      <div class="qr-side">
+      <div class="qr-side mode-class">
         <span class="mono qr-label">Scan to open this course on your phone</span>
         <div class="qr-card" id="qrCard" data-url="https://me5231979.github.io/estesstite/learn/drafts/">
           <div class="qr-card__code" id="qrBox" role="img" aria-label="QR code linking to this course"></div>
           <p class="qr-card__url" id="qrUrl"></p>
         </div>
-        <p class="qr-sub">Same course, same progress rules: nothing you do here is reported anywhere.</p>
+        <p class="qr-sub">The course runs in your browser. Nothing you type or do here is tracked or sent anywhere.</p>
       </div>
     </div>
   </div>
@@ -601,27 +604,27 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
 <section id="mode" class="th-cream" aria-label="How are you taking this course?">
   <div class="wrap">
     <div class="sec-head">
-      <span class="you-are">You are here: one question before the course begins.</span>
+      <span class="you-are">One quick question before you start.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Your mode</span></span>
       <h2>How are you <em class="s">taking</em> this course?</h2>
-      <p>A few moments along the way adapt to your answer &mdash; everything else is identical. Change it any time with the <b>Mode</b> switch in the bottom bar.</p>
+      <p>Pick one. The activities change to fit your answer: group discussion in a classroom, quiet reflection on your own. Everything else stays the same, and you can change your answer any time with the <b>Mode</b> switch in the bottom bar.</p>
     </div>
     <div class="mode-grid">
       <button type="button" class="mode-card" data-mode-pick="class" aria-pressed="false">
         <span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
         <span class="mc-tag">In a classroom</span>
         <h3>With an instructor and a group</h3>
-        <p>A live session. Discussion prompts and partner work appear along the way.</p>
+        <p>You&rsquo;re in a live session. You&rsquo;ll see discussion prompts and partner activities as you go.</p>
       </button>
       <button type="button" class="mode-card" data-mode-pick="web" aria-pressed="false">
         <span class="mc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
         <span class="mc-tag">On my own, online</span>
         <h3>Self-paced, about 15 minutes</h3>
-        <p>Short reflection prompts replace the group work. Same method, same prompts.</p>
+        <p>You&rsquo;re working through this on your own. You&rsquo;ll see short reflection prompts instead of group activities.</p>
       </button>
     </div>
-    <p class="hinttxt" style="margin-top:16px">Until you choose, the course assumes self-paced. Your choice is saved only in this browser; the Reset control in the footer clears it.</p>
-    <div class="bridge"><span class="b-label">Next</span><p>Why bother? Three studies, <em>one answer</em>.</p></div>
+    <p class="hinttxt" style="margin-top:16px">If you don&rsquo;t choose, the course assumes you&rsquo;re on your own. Your choice is saved only in this browser; the Reset control in the footer clears it.</p>
+    <div class="bridge"><span class="b-label">Next</span><p>Why this is worth fifteen minutes <em>of your day</em>.</p></div>
   </div>
 </section>
 
@@ -629,45 +632,46 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
 <section id="evidence" class="th-light" aria-label="Why bother: the evidence">
   <div class="wrap">
     <div class="sec-head">
-      <span class="you-are">You are here: the case, in three studies.</span>
+      <span class="you-are">The case for learning this, in three studies.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">The evidence / 01</span></span>
-      <h2>The blank page is a <em class="s">chore</em>. Move it.</h2>
-      <p>The first draft is the expensive part of writing &mdash; the staring, the false starts, the &ldquo;how do I even open this.&rdquo;
-        The evidence says AI moves the blank page: in three case studies of routine business documents, users wrote
-        59% more documents per hour<sup class="cite"><a href="#src4" aria-label="Source 4">4</a></sup>.
-        And the quality gain shows up when a person edits what comes back. That&rsquo;s the whole course.</p>
+      <h2>Why this is worth <em class="s">your time</em>.</h2>
+      <p>Think about the last email that took you half an hour. Most of that time went to getting started:
+        staring at the page, typing an opening line, deleting it. Researchers have measured what happens when
+        people hand that first draft to AI and keep the editing for themselves. In one set of case studies,
+        business users produced 59% more routine documents per hour<sup class="cite"><a href="#src4" aria-label="Source 4">4</a></sup>.
+        The three studies below found the same pattern: the work gets faster, and it gets better when a person edits the result.</p>
     </div>
     <div class="ev-grid">
       <div class="evidence">
         <span class="e-label">Controlled experiment &middot; Science</span>
         <span class="e-num" aria-hidden="true">40%</span>
-        <p>Professionals given ChatGPT finished mid-level writing tasks <b>40% faster</b> &mdash; and the quality of what they produced rose <b>18%</b>.</p>
+        <p>Professionals who used ChatGPT finished mid-level writing tasks <b>40% faster</b>, and the quality of their work rose <b>18%</b>.</p>
         <span class="e-src">Noy &amp; Zhang, <em>Science</em> (2023)<sup class="cite"><a href="#src1" aria-label="Source 1">1</a></sup></span>
       </div>
       <div class="evidence">
         <span class="e-label">Field experiment &middot; Harvard / BCG</span>
         <span class="e-num" aria-hidden="true">25%</span>
-        <p>Consultants working with AI finished <b>12.2% more tasks</b>, <b>25.1% faster</b>, at <b>40% higher quality</b> &mdash; on tasks within AI&rsquo;s capability.</p>
+        <p>Consultants working with AI finished <b>12.2% more tasks</b>, <b>25.1% faster</b>, and at <b>40% higher quality</b> on the tasks AI handles well.</p>
         <span class="e-src">Dell&rsquo;Acqua et al., HBS Working Paper (2023)<sup class="cite"><a href="#src2" aria-label="Source 2">2</a></sup></span>
       </div>
       <div class="evidence">
         <span class="e-label">Real workplaces &middot; QJE</span>
         <span class="e-num" aria-hidden="true">~15%</span>
-        <p>Access to an AI assistant raised worker productivity about <b>15% on average</b> &mdash; and the biggest gains went to the <b>least experienced</b>. If writing isn&rsquo;t your favorite part of the job, this is for you.</p>
+        <p>In a real workplace, an AI assistant raised productivity about <b>15% on average</b>. The biggest gains went to the <b>least experienced</b> workers, so if writing isn&rsquo;t your favorite part of the job, this method helps you the most.</p>
         <span class="e-src">Brynjolfsson, Li &amp; Raymond, <em>QJE</em> (2025)<sup class="cite"><a href="#src3" aria-label="Source 3">3</a></sup></span>
       </div>
     </div>
     <div class="moment mode-class">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
       <div><span class="m-label">Together</span>
-      <p>Share with the room: what&rsquo;s the last thing you wrote from a blank page, and how long did the blank page win?</p></div>
+      <p>Share with the room: what&rsquo;s the last thing you wrote from a blank page, and how long did it take you to get started?</p></div>
     </div>
     <div class="moment mode-web">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
       <div><span class="m-label">Pause + reflect</span>
-      <p>Take a moment: what&rsquo;s the last thing you wrote from a blank page? Hold it in mind &mdash; you&rsquo;ll use it at the end.</p></div>
+      <p>Take a moment: what&rsquo;s the last thing you wrote from a blank page? Keep it in mind. You&rsquo;ll use it at the end of this course.</p></div>
     </div>
-    <div class="bridge"><span class="b-label">Next</span><p>The method behind those numbers fits on <em>one page</em>.</p></div>
+    <div class="bridge"><span class="b-label">Next</span><p>The method those studies point to. It fits on <em>one page</em>.</p></div>
   </div>
 </section>
 
@@ -675,30 +679,36 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
 <section id="method" class="th-cream" aria-label="The method: brief, draft, edit">
   <div class="wrap">
     <div class="sec-head">
-      <span class="you-are">You are here: the one method this course teaches.</span>
+      <span class="you-are">The one method this course teaches.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">The method / 02</span></span>
       <h2>Brief. Draft. <em class="s">Edit</em>.</h2>
-      <p>Three moves, in order, every time. The next three pages show it working on real tasks.</p>
+      <p>Here is the whole method. When you have something to write, you do three things in order:
+        tell the AI what you need (the brief), let it write the complete first draft, then edit that draft
+        into something you&rsquo;d actually send. The next three pages show it working on real tasks.</p>
     </div>
     <div class="roadmap three">
       <div class="rstep">
         <span class="rno">01 &middot; Brief</span>
-        <h3>Brief the AI like a colleague</h3>
-        <p>Use <b>CRIT</b> &mdash; the two-minute version: <b>Context</b> (what it needs to know), <b>Role</b> (who it should write as),
-          <b>Interview</b> (have it ask before it writes), <b>Task</b> (the deliverable, with format and length).</p>
+        <h3>Tell it what you need</h3>
+        <p>Brief the AI the way you&rsquo;d brief a colleague. <b>CRIT</b> gives you the four things to include:
+          <b>Context</b> (the situation), <b>Role</b> (who it should write as),
+          <b>Interview</b> (tell it to ask you questions before it writes), and <b>Task</b> (exactly what you want, including format and length).</p>
         <div class="cr-chips" aria-hidden="true"><span>Context</span><span>Role</span><span>Interview</span><span>Task</span></div>
-        <p>The Interview line &mdash; <em>&ldquo;ask me up to three questions before you draft&rdquo;</em> &mdash; is what separates a usable draft from a generic one.</p>
-        <p class="hinttxt" style="margin-top:10px">CRIT is Geoff Woods&rsquo; framework (<em>The AI-Driven Leader</em>), taught in full in <a href="../">the main CHART course</a>.</p>
+        <p>The Interview line matters most. Writing <em>&ldquo;ask me up to three questions before you draft&rdquo;</em> means the AI fills its gaps by asking you instead of guessing.</p>
+        <p class="hinttxt" style="margin-top:10px">CRIT comes from Geoff Woods&rsquo; book <em>The AI-Driven Leader</em>. <a href="../">The main CHART course</a> teaches it in full.</p>
       </div>
       <div class="rstep">
         <span class="rno">02 &middot; Draft</span>
-        <h3>Let the tool write the whole first pass</h3>
-        <p><b>Never start from the blank page yourself.</b> Send the brief, answer its questions, and let it produce a complete draft &mdash; wrong voice, rough edges, and all. Its job is to be edited, not to be right.</p>
+        <h3>Let it write the first draft</h3>
+        <p>Send the brief, answer the questions it asks, and let it write the complete draft.
+          Don&rsquo;t worry that the result sounds generic or gets details wrong. Its job is to give you
+          <b>something to react to</b>, which is much easier than starting from nothing.</p>
       </div>
       <div class="rstep">
         <span class="rno">03 &middot; Edit</span>
-        <h3>You are the editor</h3>
-        <p>Three passes, fast: <b>fix the voice</b> until it sounds like you, <b>check every fact</b> &mdash; names, dates, numbers &mdash; and <b>cut a third</b>. The quality gain in the evidence lives in this step.</p>
+        <h3>You do the editing</h3>
+        <p>Make it <b>sound like you</b>, <b>check every name, date, and number</b>, and <b>cut what isn&rsquo;t needed</b>.
+          This step is where the quality gain in those studies comes from, and it&rsquo;s the part only you can do.</p>
       </div>
     </div>
     <div class="rule-strip" role="note">
@@ -707,14 +717,14 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
     <div class="moment mode-class">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
       <div><span class="m-label">Together</span>
-      <p>Turn to a partner and explain Brief &rarr; Draft &rarr; Edit back to each other in under a minute. Teaching it once beats rereading it twice.</p></div>
+      <p>Turn to a partner and explain Brief &rarr; Draft &rarr; Edit back to each other in under a minute. Explaining it out loud is the fastest way to make it stick.</p></div>
     </div>
     <div class="moment mode-web">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
       <div><span class="m-label">Pause + reflect</span>
-      <p>Before turning the page: cover the screen and name the three steps out loud. Recall beats rereading.</p></div>
+      <p>Before you turn the page, look away from the screen and name the three steps out loud. If you can recall them now, you&rsquo;ll remember them tomorrow.</p></div>
     </div>
-    <div class="bridge"><span class="b-label">Next</span><p>Watch it work, three times: an email, an announcement, <em>a summary</em>.</p></div>
+    <div class="bridge"><span class="b-label">Next</span><p>The method applied to an email, an announcement, and <em>a summary</em>.</p></div>
   </div>
 </section>
 
@@ -722,13 +732,13 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
 <section id="ex-email" class="th-light" aria-label="Worked example one: the email">
   <div class="wrap">
     <div class="sec-head">
-      <span class="you-are">Worked example 1 of 3 &middot; the everyday email.</span>
+      <span class="you-are">Worked example 1 of 3: the everyday email.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Example / 03 &middot; Email</span></span>
       <h2>Decline the meeting, keep it <em class="s">warm</em>.</h2>
     </div>
     <div class="concept">
       <span class="c-label">The situation</span>
-      <p>A vendor you genuinely like wants a meeting in a week you can&rsquo;t afford one. You need a no that doesn&rsquo;t cool the relationship &mdash; the kind of email that takes twenty minutes to write and reads like it took two.</p>
+      <p>A vendor you like has asked for a meeting during a week when you have no time. You need to say no without souring the relationship. This is the kind of email that takes twenty minutes, because every sentence has to be careful.</p>
     </div>
     <div class="moment mode-class" style="margin-top:0;margin-bottom:26px">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
@@ -738,7 +748,7 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
     <div class="moment mode-web" style="margin-top:0;margin-bottom:26px">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
       <div><span class="m-label">Pause + reflect</span>
-      <p>Try it now: copy this prompt into your tool and compare what comes back with the edit pass below.</p></div>
+      <p>Try it now: copy this prompt into your AI tool and run it. Then compare what you get with the edit list below.</p></div>
     </div>
     <div class="ex-grid">
       <div class="pcard">
@@ -750,20 +760,20 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
         <pre class="pcode" id="p1code">Context: A vendor we have a good relationship with has asked for a meeting next week. My calendar is full and the timing is wrong, but I want to keep the door open for next quarter.
 Role: You are an experienced professional who writes warm, direct business email.
 Interview: Ask me up to three questions before you draft.
-Task: Draft a short email declining the meeting — under 100 words — that keeps the relationship warm and offers one specific alternative.</pre>
-        <p class="hinttxt">Works in any chat AI. At Vanderbilt: ChatGPT EDU for everyday work like this; anything sensitive or internal goes in Amplify or Copilot.</p>
+Task: Draft a short email declining the meeting, under 100 words, that keeps the relationship warm and offers one specific alternative.</pre>
+        <p class="hinttxt">This prompt works in any chat AI. At Vanderbilt, ChatGPT EDU is fine for everyday writing like this; anything sensitive or internal belongs in Amplify or Copilot.</p>
       </div>
       <div>
         <div class="ret">
           <span class="c-label">What comes back</span>
-          <p>A polite, well-structured decline that sounds like nobody in particular. It will offer a plausible alternative it invented and a warmth it can&rsquo;t actually feel. <b>That&rsquo;s fine &mdash; it&rsquo;s a draft.</b></p>
+          <p>A polite, well-organized decline that sounds like no one in particular. It may invent an alternative meeting time and a warmth it can&rsquo;t actually feel. That&rsquo;s fine. <b>It&rsquo;s a draft, and you&rsquo;re about to edit it.</b></p>
         </div>
         <div class="edit">
           <span class="c-label">Your edit pass</span>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Swap in the real names and dates</b> &mdash; and the alternative you would genuinely offer, not the one it guessed.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Swap in the real names and dates</b>, and replace its suggested alternative with the one you would genuinely offer.</span></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Rewrite the opening line in your own voice.</b> It&rsquo;s the sentence they&rsquo;ll judge.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Add the one relationship detail only you know</b> &mdash; the last project, the next quarter&rsquo;s plan. That&rsquo;s what makes it warm.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Add one detail only you know</b>, like the last project you worked on together. That detail is what makes the email warm.</span></li>
           </ul>
         </div>
       </div>
@@ -775,13 +785,13 @@ Task: Draft a short email declining the meeting — under 100 words — that kee
 <section id="ex-announce" class="th-cream" aria-label="Worked example two: the announcement">
   <div class="wrap">
     <div class="sec-head">
-      <span class="you-are">Worked example 2 of 3 &middot; the all-staff notice.</span>
+      <span class="you-are">Worked example 2 of 3: the all-staff notice.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Example / 03 &middot; Announcement</span></span>
       <h2>Say it once, <em class="s">clearly</em>.</h2>
     </div>
     <div class="concept">
       <span class="c-label">The situation</span>
-      <p>The lobby closes for maintenance next week, and three hundred people walk through it every morning. Everyone needs the dates and the alternate entrance &mdash; once, clearly, without ceremony.</p>
+      <p>The lobby is closing for maintenance next week, and three hundred people walk through it every morning. Everyone needs to know the dates and which entrance to use instead. That is the whole job of this announcement.</p>
     </div>
     <div class="ex-grid">
       <div class="pcard">
@@ -790,23 +800,23 @@ Task: Draft a short email declining the meeting — under 100 words — that kee
           <button type="button" class="btn btn-ghost btn-sm copy-btn" data-copy="p2code">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><span>Copy prompt</span></button>
         </div>
-        <pre class="pcode" id="p2code">Context: Our building's main lobby will be closed for maintenance next week. Staff should use the alternate entrance instead. Everyone needs the dates and the new route — once, clearly.
+        <pre class="pcode" id="p2code">Context: Our building's main lobby will be closed for maintenance next week. Staff should use the alternate entrance instead. Everyone needs to know the dates and the new route.
 Role: You are a workplace communications writer who values clarity over cheer.
 Interview: Ask me up to three questions before you draft.
 Task: Draft an all-staff announcement, 120 words, subject line included, no exclamation points.</pre>
-        <p class="hinttxt">Works in any chat AI. At Vanderbilt: ChatGPT EDU for everyday work like this; anything sensitive or internal goes in Amplify or Copilot.</p>
+        <p class="hinttxt">This prompt works in any chat AI. At Vanderbilt, ChatGPT EDU is fine for everyday writing like this; anything sensitive or internal belongs in Amplify or Copilot.</p>
       </div>
       <div>
         <div class="ret">
           <span class="c-label">What comes back</span>
-          <p>A clean, correctly-shaped notice built on plausible stand-ins: dates it picked, an entrance it named. <b>It will read smoothly and be wrong about everything it had to guess</b> &mdash; which is exactly what the Interview step is for.</p>
+          <p>A clean, correctly organized notice built on guesses: dates it made up, an entrance it named on its own. <b>It reads smoothly and is wrong about every detail it didn&rsquo;t know.</b> This is exactly why the brief tells it to interview you first.</p>
         </div>
         <div class="edit">
           <span class="c-label">Your edit pass</span>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Replace every date and location with the real ones.</b> The model invented plausible placeholders; only you have the facts.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Check the route yourself:</b> does the alternate entrance actually work for deliveries, accessibility, badge access?</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Cut anything that reads like an apology.</b> People need the facts, not the mood.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Replace every date and location with the real ones.</b> The model wrote plausible placeholders; only you have the facts.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Walk the route in your head.</b> Does the alternate entrance actually work for deliveries, wheelchairs, and badge access?</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Cut anything that sounds like an apology.</b> People need the facts, not the mood.</span></li>
           </ul>
         </div>
       </div>
@@ -818,16 +828,16 @@ Task: Draft an all-staff announcement, 120 words, subject line included, no excl
 <section id="ex-summary" class="th-light" aria-label="Worked example three: the summary">
   <div class="wrap">
     <div class="sec-head">
-      <span class="you-are">Worked example 3 of 3 &middot; the executive brief.</span>
+      <span class="you-are">Worked example 3 of 3: the executive brief.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Example / 03 &middot; Summary</span></span>
       <h2>Twelve pages in, half a page <em class="s">out</em>.</h2>
     </div>
     <div class="concept">
       <span class="c-label">The situation</span>
-      <p>A 12-page report lands the afternoon before your director&rsquo;s 8 a.m. meeting. She has ten minutes and needs half a page: the decisions it asks of her first, then what it found.</p>
+      <p>A 12-page report lands the afternoon before your director&rsquo;s 8 a.m. meeting. She has ten minutes to prepare and needs half a page: first the decisions the report asks of her, then what it found.</p>
     </div>
     <p class="honest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
-      <span><b>Before you paste:</b> safe data only. Sensitive or internal content goes in Amplify or Copilot through your Vanderbilt account &mdash; never a personal one. When in doubt, Amplify.</span></p>
+      <span><b>Before you paste anything:</b> safe data only. If the report is sensitive or internal, use Amplify or Copilot through your Vanderbilt account, never a personal one. When in doubt, use Amplify.</span></p>
     <div class="ex-grid" style="margin-top:26px">
       <div class="pcard">
         <div class="pc-head">
@@ -838,22 +848,22 @@ Task: Draft an all-staff announcement, 120 words, subject line included, no excl
         <pre class="pcode" id="p3code">Context: Pasted below is a 12-page report. My director has ten minutes before a meeting and needs to know what decisions it asks of her.
 Role: You are a chief of staff who writes briefs executives actually read.
 Interview: Ask me up to three questions before you draft.
-Task: Write a half-page brief — decisions needed first, then five bullets on the findings, plain English throughout.
+Task: Write a half-page brief. Put the decisions needed first, then five bullets on the findings, in plain English throughout.
 
 [paste the report here]</pre>
-        <p class="hinttxt">Works in any chat AI. At Vanderbilt: this one carries pasted content, so use Amplify or Copilot through your Vanderbilt account unless the report is clearly public.</p>
+        <p class="hinttxt">This prompt works in any chat AI, but it carries pasted content. At Vanderbilt, use Amplify or Copilot through your Vanderbilt account unless the report is clearly public.</p>
       </div>
       <div>
         <div class="ret">
           <span class="c-label">What comes back</span>
-          <p>A confident, tidy brief in exactly the shape you asked for &mdash; including numbers it may have misread. <b>Summaries are where models sound most sure and slip most quietly.</b></p>
+          <p>A confident, tidy brief in exactly the shape you asked for, possibly including numbers it misread along the way. <b>Summaries are where AI sounds most sure of itself</b>, so this is where your checking matters most.</p>
         </div>
         <div class="edit">
           <span class="c-label">Your edit pass</span>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Check every number against the original</b> &mdash; a model can summarize confidently and still misread a table.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Reorder the decisions</b> by what your director actually controls; the model doesn&rsquo;t know her remit.</span></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Add the recommendation.</b> The report won&rsquo;t make it, and she&rsquo;ll ask.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Check every number against the original.</b> A model can summarize confidently and still misread a table.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Reorder the decisions</b> to match what your director actually controls. The model doesn&rsquo;t know her job.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><b>Add your recommendation.</b> The report won&rsquo;t make one, and she will ask for it.</span></li>
           </ul>
         </div>
       </div>
@@ -865,30 +875,31 @@ Task: Write a half-page brief — decisions needed first, then five bullets on t
 <section id="guardrails" class="th-dark" aria-label="Guardrails">
   <div class="wrap">
     <div class="sec-head">
-      <span class="you-are">You are here: the rules that keep the method safe.</span>
+      <span class="you-are">The rules that keep the method safe.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Guardrails / 04</span></span>
-      <h2>Four rules. No <em class="s">lecture</em>.</h2>
+      <h2>The four <em class="s">rules</em>.</h2>
+      <p>The method only works if you follow these. They take thirty seconds to learn.</p>
     </div>
     <div class="roadmap">
       <div class="rstep">
         <span class="rno">Rule 01</span>
         <h5>Safe data only</h5>
-        <p>Sensitive or internal Vanderbilt business belongs in <b>Amplify or Copilot</b> through your Vanderbilt account &mdash; never a personal account. <b>When in doubt, Amplify.</b></p>
+        <p>Sensitive or internal Vanderbilt business belongs in <b>Amplify or Copilot</b> through your Vanderbilt account, never a personal account. <b>When in doubt, use Amplify.</b></p>
       </div>
       <div class="rstep">
         <span class="rno">Rule 02</span>
         <h5>Verify everything</h5>
-        <p>Every fact, name, number, and date. <b>The editor&rsquo;s job never left</b> &mdash; it just moved to after the draft.</p>
+        <p>Every fact, name, number, and date. Checking was always part of writing; <b>it now happens after the draft</b> instead of during it.</p>
       </div>
       <div class="rstep">
         <span class="rno">Rule 03</span>
         <h5>You own every word you send</h5>
-        <p>The tool drafted it; <b>you sent it</b>. If you wouldn&rsquo;t sign it, don&rsquo;t send it.</p>
+        <p>The tool drafted it, but <b>you sent it</b>. If you wouldn&rsquo;t sign it, don&rsquo;t send it.</p>
       </div>
       <div class="rstep">
         <span class="rno">Rule 04</span>
         <h5>Your voice wins</h5>
-        <p>Edit until it sounds like you &mdash; <b>or people will stop reading you</b>.</p>
+        <p>Edit until it sounds like you. If everything you send starts sounding the same, <b>people stop reading it</b>.</p>
       </div>
     </div>
     <div class="launch-row">
@@ -899,7 +910,7 @@ Task: Write a half-page brief — decisions needed first, then five bullets on t
       <a class="btn btn-ghost btn-sm" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Open Copilot
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
     </div>
-    <div class="bridge"><span class="b-label">Next</span><p>One real task, <em>right now</em>.</p></div>
+    <div class="bridge"><span class="b-label">Last step</span><p>Use the method on one real email, <em>right now</em>.</p></div>
   </div>
 </section>
 
@@ -907,10 +918,12 @@ Task: Write a half-page brief — decisions needed first, then five bullets on t
 <section id="practice" class="th-cream" aria-label="Practice now">
   <div class="wrap">
     <div class="sec-head">
-      <span class="you-are">You are here: the fifteen minutes become a habit.</span>
+      <span class="you-are">Your turn: one real task.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Practice / 05</span></span>
-      <h2>Tomorrow&rsquo;s first email &mdash; <em class="s">brief it</em>, don&rsquo;t write it.</h2>
-      <p>Pick the first email you&rsquo;d normally write tomorrow morning. Don&rsquo;t write it. Fill in the three blanks below, copy the brief into your tool, answer its questions &mdash; then edit what comes back.</p>
+      <h2>Tomorrow&rsquo;s first email: <em class="s">brief it</em>, don&rsquo;t write it.</h2>
+      <p>Think of the first email you&rsquo;ll need to write tomorrow morning. Instead of writing it, fill in the three blanks below,
+        copy the brief into your AI tool, answer the questions it asks, and edit what it gives you.
+        That is the whole habit this course is trying to build.</p>
     </div>
     <div class="pcard" style="max-width:820px">
       <div class="pc-head">
@@ -922,7 +935,7 @@ Task: Write a half-page brief — decisions needed first, then five bullets on t
 Role: ___
 Interview: Ask me up to three questions before you draft.
 Task: ___</pre>
-      <p class="hinttxt">Safe data only: no names you wouldn&rsquo;t put on a hallway poster, nothing sensitive outside Amplify or Copilot.</p>
+      <p class="hinttxt">Safe data only: leave out anything you wouldn&rsquo;t put on a hallway poster, and keep sensitive content in Amplify or Copilot.</p>
       <div class="launch-row">
         <a class="btn btn-ghost btn-sm" href="https://chat.openai.com" target="_blank" rel="noopener">Open ChatGPT EDU
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
@@ -933,7 +946,7 @@ Task: ___</pre>
         <button type="button" class="btn btn-ghost btn-sm print-btn">Print your takeaway
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 19h16"/></svg></button>
       </div>
-      <p class="hinttxt" style="margin-top:10px">The takeaway is one page: the method, the template, all three prompts, the guardrails, and the tools. Your browser&rsquo;s print dialog opens; choose Save as PDF to keep it.</p>
+      <p class="hinttxt" style="margin-top:10px">The takeaway is one page: the method, the template, all three prompts, the guardrails, and the tools. Your browser&rsquo;s print dialog will open; choose Save as PDF if you&rsquo;d rather keep it digital.</p>
     </div>
     <div class="moment mode-class">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
@@ -943,9 +956,9 @@ Task: ___</pre>
     <div class="moment mode-web">
       <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
       <div><span class="m-label">Pause + reflect</span>
-      <p>Your commitment: tomorrow&rsquo;s first email gets briefed, not written. Write the CRIT brief now while the method is fresh.</p></div>
+      <p>Make it real: write the brief for tomorrow&rsquo;s first email now, while the method is fresh. Tomorrow morning, send the brief to the AI instead of writing the email yourself.</p></div>
     </div>
-    <div class="bridge"><span class="b-label">That&rsquo;s the whole course</span><p>The method is CRIT + edit; the habit is never starting from zero. <em><a href="../">More in the CHART program &rarr;</a></em></p></div>
+    <div class="bridge"><span class="b-label">That&rsquo;s the whole course</span><p>Brief, draft, edit. When you&rsquo;re ready for more, <em><a href="../">the CHART program continues here &rarr;</a></em></p></div>
   </div>
 </section>
 
@@ -953,7 +966,7 @@ Task: ___</pre>
 <section id="sources" class="th-light" aria-label="Sources">
   <div class="wrap">
     <div class="sec-head">
-      <span class="you-are">You are here: every number on these pages, cited in full.</span>
+      <span class="you-are">Every number in this course, cited in full.</span>
       <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Sources</span></span>
       <h2>Where the numbers <em class="s">come from</em>.</h2>
     </div>
@@ -975,7 +988,7 @@ Task: ___</pre>
           <span class="e-src">Cited for: across three case studies, business users drafting routine documents wrote 59% more documents per hour. <a href="https://www.nngroup.com/articles/ai-tools-productivity-gains/" target="_blank" rel="noopener">nngroup.com/articles/ai-tools-productivity-gains</a></span></p>
       </li>
     </ol>
-    <p class="prov"><b>CRIT</b> &mdash; Context, Role, Interview, Task &mdash; comes from Geoff Woods, best-selling author of <em>The AI-Driven Leader</em>; companion resources at <a href="https://aileadership.com" target="_blank" rel="noopener">aileadership.com</a>. The framework is taught in full, with the builder and grader, in <a href="../">the main CHART course</a>.</p>
+    <p class="prov"><b>CRIT</b> (Context, Role, Interview, Task) comes from Geoff Woods, best-selling author of <em>The AI-Driven Leader</em>; companion resources at <a href="https://aileadership.com" target="_blank" rel="noopener">aileadership.com</a>. The framework is taught in full, with the builder and grader, in <a href="../">the main CHART course</a>.</p>
   </div>
 </section>
 </main>
@@ -1006,9 +1019,9 @@ Task: ___</pre>
     <p class="ps-meta">Vanderbilt University &middot; The CHART Program &middot; Course 02 &middot; me5231979.github.io/estesstite/learn/drafts</p>
   </div>
   <h2>The method: Brief &rarr; Draft &rarr; Edit</h2>
-  <p><b>Brief</b> &mdash; brief the AI like a colleague, with CRIT: Context, Role, Interview (&ldquo;ask me up to three questions before you draft&rdquo;), Task.</p>
-  <p><b>Draft</b> &mdash; let the tool write the whole first pass. Never start from the blank page yourself.</p>
-  <p><b>Edit</b> &mdash; you are the editor: fix the voice, check every fact, cut a third.</p>
+  <p><b>Brief:</b> tell the AI what you need, with CRIT: Context, Role, Interview (&ldquo;ask me up to three questions before you draft&rdquo;), Task.</p>
+  <p><b>Draft:</b> let it write the complete first draft. Never start from the blank page yourself.</p>
+  <p><b>Edit:</b> make it sound like you, check every name, date, and number, and cut what isn&rsquo;t needed.</p>
   <p class="ps-rule">AI writes the first draft. You write the final one.</p>
   <h2>The CRIT brief (fill in the blanks)</h2>
   <div class="ps-pre">Context: ______________________________________________________________
@@ -1020,21 +1033,21 @@ Task: _________________________________________________________________</div>
   <div class="ps-pre">Context: A vendor we have a good relationship with has asked for a meeting next week. My calendar is full and the timing is wrong, but I want to keep the door open for next quarter.
 Role: You are an experienced professional who writes warm, direct business email.
 Interview: Ask me up to three questions before you draft.
-Task: Draft a short email declining the meeting — under 100 words — that keeps the relationship warm and offers one specific alternative.</div>
+Task: Draft a short email declining the meeting, under 100 words, that keeps the relationship warm and offers one specific alternative.</div>
   <p class="ps-plabel">2 &middot; The announcement (say it once, clearly)</p>
-  <div class="ps-pre">Context: Our building's main lobby will be closed for maintenance next week. Staff should use the alternate entrance instead. Everyone needs the dates and the new route — once, clearly.
+  <div class="ps-pre">Context: Our building's main lobby will be closed for maintenance next week. Staff should use the alternate entrance instead. Everyone needs to know the dates and the new route.
 Role: You are a workplace communications writer who values clarity over cheer.
 Interview: Ask me up to three questions before you draft.
 Task: Draft an all-staff announcement, 120 words, subject line included, no exclamation points.</div>
-  <p class="ps-plabel">3 &middot; The summary (twelve pages in, half a page out) &mdash; safe data only; sensitive content in Amplify or Copilot</p>
+  <p class="ps-plabel">3 &middot; The summary (twelve pages in, half a page out). Safe data only; sensitive content stays in Amplify or Copilot</p>
   <div class="ps-pre">Context: Pasted below is a 12-page report. My director has ten minutes before a meeting and needs to know what decisions it asks of her.
 Role: You are a chief of staff who writes briefs executives actually read.
 Interview: Ask me up to three questions before you draft.
-Task: Write a half-page brief — decisions needed first, then five bullets on the findings, plain English throughout.</div>
+Task: Write a half-page brief. Put the decisions needed first, then five bullets on the findings, in plain English throughout.</div>
   <h2>The guardrails</h2>
   <ol>
     <li><b>Safe data only.</b> Sensitive or internal Vanderbilt business belongs in Amplify or Copilot through your Vanderbilt account, never a personal one. When in doubt, Amplify.</li>
-    <li><b>Verify everything.</b> Every fact, name, number, and date &mdash; the editor&rsquo;s job never left.</li>
+    <li><b>Verify everything.</b> Every fact, name, number, and date, checked against what you know is true.</li>
     <li><b>You own every word you send.</b> If you wouldn&rsquo;t sign it, don&rsquo;t send it.</li>
     <li><b>Your voice wins.</b> Edit until it sounds like you, or people will stop reading you.</li>
   </ol>
@@ -1048,7 +1061,7 @@ Task: Write a half-page brief — decisions needed first, then five bullets on t
     <h2>My reflection / my commitment</h2>
     <div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div><div class="ps-line"></div>
   </div>
-  <p class="ps-fine">Sources: 1&nbsp;Noy &amp; Zhang, Science 381, 187&ndash;192 (2023) &middot; 2&nbsp;Dell&rsquo;Acqua et al., HBS Working Paper 24-013 (2023) &middot; 3&nbsp;Brynjolfsson, Li &amp; Raymond, QJE 140(2) (2025) &middot; 4&nbsp;Nielsen Norman Group, &ldquo;AI Improves Employee Productivity by 66%&rdquo; (2023). CRIT: Geoff Woods, The AI-Driven Leader (aileadership.com). Internal training prototype &mdash; not an official Vanderbilt University site.</p>
+  <p class="ps-fine">Sources: 1&nbsp;Noy &amp; Zhang, Science 381, 187&ndash;192 (2023) &middot; 2&nbsp;Dell&rsquo;Acqua et al., HBS Working Paper 24-013 (2023) &middot; 3&nbsp;Brynjolfsson, Li &amp; Raymond, QJE 140(2) (2025) &middot; 4&nbsp;Nielsen Norman Group, &ldquo;AI Improves Employee Productivity by 66%&rdquo; (2023). CRIT: Geoff Woods, The AI-Driven Leader (aileadership.com). Internal training prototype; not an official Vanderbilt University site.</p>
 </div>
 
 <!-- ═══════════════════ BOTTOM BOOK BAR ═══════════════════ -->
