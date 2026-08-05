@@ -13,9 +13,11 @@
 <!--
   ══════════════════════════════════════════════════════════════════════════
   WORKING SMARTER — FACILITATOR EDITION — CUSTOMIZE ME
-  The projection copy of ../ (the learner classroom edition). Identical pages
-  plus a fixed script rail (timing, talking points, cues, transitions) rendered
-  per page from the NOTES object at the bottom of this file; the QR still sends
+  The projection copy of ../ (the learner classroom edition). Page 1 is a
+  facilitator-only "Run this course" prep page; every page after it is identical
+  to the learner edition plus a fixed script rail (Say / Do / Validate / Watch
+  for / Transition, with Full 90-min and Core 60-min timings) rendered per page
+  from the NOTES object at the bottom of this file; the QR still sends
   learners to the classroom edition, not here. Storage is namespaced chartf-*
   so the three editions never share state.
   Everything marked [EDIT] below is placeholder content. Search "[EDIT]" and swap in:
@@ -563,6 +565,7 @@ details.pl-opt{ margin:0 0 18px; max-width:none; }
 .watchout.ok{ border:1px solid var(--bd); }
 .roadmap{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
 .roadmap.three{ grid-template-columns:repeat(3,1fr); }
+.roadmap.two{ grid-template-columns:1fr 1fr; }
 .rstep{ border:1px solid var(--bd); border-radius:var(--r); padding:22px 20px; background:var(--card2); }
 .rstep .rno{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; color:var(--eyebrow); }
 .rstep h5{ font-size:1rem; margin-top:8px; }
@@ -1095,7 +1098,7 @@ body.oracle-open{ overflow:hidden; }
 @media (max-width:640px){
   .flip-grid,.flip-grid.five{ grid-template-columns:1fr; }
   .flip-grid.five .fcard:last-child{ grid-column:auto; }
-  .opp-grid,.sp-grid,.roadmap,.roadmap.three,.resp-grid{ grid-template-columns:1fr; }
+  .opp-grid,.sp-grid,.roadmap,.roadmap.three,.roadmap.two,.resp-grid{ grid-template-columns:1fr; }
   .never ul{ grid-template-columns:1fr; }
   .qz .opts{ grid-template-columns:1fr; }
   .pbar{ grid-template-columns:84px 1fr 44px; }
@@ -1234,14 +1237,30 @@ body.rail-open header.nav .wrap{ padding-right:min(358px, 30vw); }
   color:#1C1C1C; background:var(--vu-gold); border-radius:2px; padding:3px 8px; white-space:nowrap; }
 .fr-label{ display:block; font-family:var(--cond); font-weight:700; font-size:.7rem; letter-spacing:.07em;
   text-transform:uppercase; color:var(--vu-gold); margin:14px 0 6px; }
-.fr-body ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
-.fr-body li{ position:relative; padding-left:14px; color:rgba(255,255,255,.82); }
-.fr-body li::before{ content:''; position:absolute; left:0; top:.55em; width:6px; height:6px; border-radius:50%;
-  background:var(--vu-gold); }
-.fr-say li{ font-family:var(--serif-i); font-style:italic; color:rgba(255,255,255,.88); }
-.fr-next{ margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,.15);
-  color:rgba(255,255,255,.75); font-size:.85rem; max-width:none; }
-.fr-next b{ color:var(--vu-gold); font-weight:600; }
+/* script-card layout: FACILITATOR row + timing chip, purpose, SAY/DO/TRANSITION chips,
+   Validate / Watch for lines, and the muted Core cut at the bottom */
+.fr-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px; }
+.fr-fac{ font-family:var(--cond); font-weight:700; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--vu-gold); }
+.fr-title{ display:block; font-family:var(--serif); font-weight:400; font-size:1.05rem; margin-bottom:8px; }
+.fr-purpose{ color:rgba(255,255,255,.72); font-size:.85rem; max-width:none; }
+.fr-chip{ display:inline-block; font-family:var(--cond); font-weight:700; font-size:.68rem; letter-spacing:.08em;
+  text-transform:uppercase; color:#1C1C1C; background:var(--vu-gold); border-radius:2px; padding:2px 9px; margin:14px 0 7px; }
+.fr-quote{ font-family:var(--serif-i); font-style:italic; font-size:.95rem; line-height:1.55; color:rgba(255,255,255,.9); max-width:none; }
+.fr-do{ list-style:none; margin:0; padding:0; counter-reset:frdo; display:flex; flex-direction:column; gap:8px; }
+.fr-do li{ position:relative; padding-left:26px; counter-increment:frdo; color:rgba(255,255,255,.82); }
+.fr-do li::before{ content:counter(frdo); position:absolute; left:0; top:.12em; width:17px; height:17px; border-radius:50%;
+  background:rgba(207,174,112,.16); border:1px solid rgba(207,174,112,.5); color:var(--vu-gold);
+  font-family:var(--cond); font-weight:700; font-size:.68rem; display:grid; place-items:center; }
+.fr-check{ margin-top:10px; font-size:.85rem; color:rgba(255,255,255,.78); max-width:none; }
+.fr-check b{ color:var(--vu-gold); font-weight:600; }
+.fr-core{ margin-top:14px; padding-top:10px; border-top:1px solid rgba(255,255,255,.15);
+  font-size:.8rem; color:rgba(255,255,255,.58); max-width:none; }
+.fr-pre{ white-space:pre-wrap; font-family:var(--sans); font-size:.8rem; line-height:1.55; color:rgba(255,255,255,.85);
+  background:#1C1C1C; border:1px solid rgba(255,255,255,.18); border-radius:var(--r); padding:12px 14px; margin-top:8px; }
+.fr-copy{ margin-top:10px; background:var(--vu-gold); color:#1C1C1C; border:0; border-radius:var(--r);
+  min-height:38px; padding:8px 14px; cursor:pointer; font-family:var(--cond); font-weight:700; font-size:.75rem;
+  letter-spacing:.05em; text-transform:uppercase; }
+.fr-copy:hover{ background:var(--vu-highlight); }
 .fr-fab{ position:fixed; right:14px; bottom:calc(var(--bar-h,64px) + 14px); z-index:191;
   display:inline-flex; align-items:center; gap:8px; min-height:46px; padding:10px 16px; cursor:pointer;
   background:var(--vu-gold); color:#1C1C1C; border:0; border-radius:var(--r);
@@ -1279,7 +1298,7 @@ body.rail-open .fr-fab{ display:none; }
           <a class="btn btn-gold btn-sm nav-cta" href="#quiz">Knowledge check</a>
         </nav>
         <button class="prog-btn" id="progBtn" aria-expanded="false" aria-controls="progPanel">
-          <span class="pw">Progress</span> <b id="progCount">0/10</b>
+          <span class="pw">Progress</span> <b id="progCount">0/11</b>
         </button>
         <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
           <span class="b b1" aria-hidden="true"></span><span class="b b2" aria-hidden="true"></span><span class="b b3" aria-hidden="true"></span>
@@ -1293,7 +1312,7 @@ body.rail-open .fr-fab{ display:none; }
 <!-- progress panel: every tracked section, its state, and a deep link -->
 <div class="prog-panel" id="progPanel" role="region" aria-label="Your progress" hidden>
   <div class="pp-h">Your progress</div>
-  <p class="prog-sum" id="progSum">0 of 10 sections complete.</p>
+  <p class="prog-sum" id="progSum">0 of 11 sections complete.</p>
   <ol class="prog-list" id="progList"></ol>
   <p class="prog-fine">Progress is saved only in this browser: completion flags, nothing else. Nothing is sent or reported. Reset it anytime in the footer.</p>
   <p class="prog-fine prog-warn" id="progStorageNote" hidden>Heads up: your browser is blocking saved progress (this happens in private browsing). Marks work during this visit but reset when you close the tab.</p>
@@ -1302,6 +1321,7 @@ body.rail-open .fr-fab{ display:none; }
 
 <!-- mobile overlay menu -->
 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+  <a class="mlink" href="#run" data-prog="run"><span class="mono">00</span>Run this course<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#learn" data-prog="learn"><span class="mono">01</span>Learn<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#readiness" data-prog="readiness"><span class="mono">02</span>AI readiness<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#crit" data-prog="crit"><span class="mono">03</span>CRIT framework<span class="mdone" aria-hidden="true">Done</span></a>
@@ -1313,11 +1333,91 @@ body.rail-open .fr-fab{ display:none; }
   <a class="mlink" href="#summary"><span class="mono" aria-hidden="true">&middot;</span>What you know</a>
   <a class="mlink" href="#nextstep" data-prog="nextstep"><span class="mono">09</span>Your next step<span class="mdone" aria-hidden="true">Done</span></a>
   <a class="mlink" href="#resources" data-prog="resources"><span class="mono">10</span>Keep learning<span class="mdone" aria-hidden="true">Done</span></a>
-  <div class="mprog" id="mprogLine">0 of 10 sections complete</div>
+  <div class="mprog" id="mprogLine">0 of 11 sections complete</div>
   <div class="mfoot">matthew.estes@vanderbilt.edu <!-- [EDIT: swap to program alias when created] --></div>
 </nav>
 
 <main id="main"><span id="top"></span>
+
+<!-- ═══════════════════ RUN THIS COURSE ═══════════════════
+     Facilitator prep page: page 1 of this edition only, never seen by learners.
+     Everything before and around the room; the rail on this page holds the
+     pre-work invite text with a copy button. -->
+<section id="run" class="runprep th-dark" aria-label="Run this course">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="you-are">You are here: the facilitator prep page. Learners start on the next page.</span>
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span><span class="mono">Run this course / 00 &middot; Facilitator only</span></span>
+      <h2>Before the room <em class="s">fills</em>.</h2>
+      <p>Two paths: Full (90 min) or Core (60 min). Every page ahead carries your script in the right rail: Say, Do, Ask with expected answers, Debrief, and a Transition into the next page, with the Core cut named at the bottom of each card. The section timings on those cards sum to 90 minutes on the Full path and 60 on Core. This page is everything that happens before and around the room. Learners never see this edition; the welcome QR on the next page sends them to their own.</p>
+    </div>
+    <div class="roadmap two reveal">
+      <div class="rstep">
+        <span class="rno">01 &middot; A week before</span>
+        <h5>Learn the course by taking it</h5>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Read this guide end to end, then run <b>both editions</b> and do every exercise yourself: the learner classroom edition (where the QR sends the room) and this one.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Build your own readiness plan in the course with a real task from your week. You will reference having done it when the room builds theirs.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Book a room where people can use their own devices, and confirm the guest wifi actually works.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Decide now: Full (90) or Core (60), and mark which group debriefs you keep. Every rail card names its Core cut.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Rehearse the next-word demo and one CRIT build out loud, start to finish.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Send the pre-work invite with the calendar invite; the rail on this page has the text, ready to copy.</span></li>
+        </ul>
+      </div>
+      <div class="rstep">
+        <span class="rno">02 &middot; The day before</span>
+        <h5>Test everything a learner touches</h5>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Test the projector with this facilitator link and confirm the script rail is readable from where you will stand.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Scan the welcome QR from the back of the room with your own phone. It must land on the learner classroom edition, not this page.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Print a few one-page takeaways for anyone who arrives without a device: the Download your summary button prints a clean sheet, and empty fields become write-in lines.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Re-read the tough-questions bank below and say each answer out loud once.</span></li>
+        </ul>
+      </div>
+      <div class="rstep">
+        <span class="rno">03 &middot; 30 minutes before</span>
+        <h5>Set the stage, then yourself</h5>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Welcome page up on the projector as people arrive, QR showing.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Close every other tab and silence the machine; a notification reads clearly from the back row.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Test the arrow keys, and run one prompt in the next-word demo so the first interaction is proven.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Write PARKING LOT on the whiteboard.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Set the tone for yourself: you are not here as the AI expert, you are the person who runs the reps.</span></li>
+        </ul>
+      </div>
+      <div class="rstep">
+        <span class="rno">04 &middot; Materials</span>
+        <h5>What the session needs</h5>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Projector with this facilitator link open; this edition is the projection copy, and the rail is yours alone.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Facilitator laptop with a clicker, notifications off.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Learner devices, joining through the welcome QR on the next page.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>A few printed one-page takeaways for anyone without a device.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span>Whiteboard or flip chart, for the parking lot and the Tools section hand votes.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="module reveal">
+      <div class="module-head">
+        <span class="mno">The tough-questions bank</span>
+        <h3>Say these answers out loud once</h3>
+        <p>Four questions come up in almost every room. The course answers each of them in depth; these are the thirty-second versions for when a hand goes up early.</p>
+      </div>
+      <dl class="gloss">
+        <div><dt>&ldquo;Will this take my job?&rdquo;</dt> <dd>AI meets a role task by task, not job by job. The readiness section turns that exact worry into a task list and a 30/60/90 development plan you own, and the program&rsquo;s whole stance is on the second page: amplify humans, never replace them.</dd></div>
+        <div><dt>&ldquo;Can I trust what it says?&rdquo;</dt> <dd>Not unverified. The model predicts the likeliest next word; it does not check facts. That is why the course drills verification: names, numbers, dates, and citations get checked before anything ships, and you own every output.</dd></div>
+        <div><dt>&ldquo;Is my data safe?&rdquo;</dt> <dd>In this course, yes: nothing anyone types is stored or sent anywhere. In the real tools it is a routing question: ChatGPT EDU for everyday non-sensitive work, Amplify or Copilot for anything internal, and the never-paste list is the hard edge. When in doubt, Amplify.</dd></div>
+        <div><dt>&ldquo;Why can&rsquo;t I just use my personal ChatGPT?&rdquo;</dt> <dd>Because no Vanderbilt agreement covers that account, so anything pasted there is unprotected. ChatGPT EDU is the same product under Vanderbilt&rsquo;s agreement; use it for anything work-related instead.</dd></div>
+      </dl>
+    </div>
+    <div class="md-wrap">
+      <button type="button" class="btn btn-ghost btn-sm md-btn" data-prog="run" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <span>Done with this section</span></button>
+    </div>
+    <div class="bridge reveal"><span class="b-label">Next</span><p>Turn the page to the welcome screen; that is where the <em>room</em> comes in.</p></div>
+  </div>
+</section>
 
 <!-- ═══════════════════ HERO ═══════════════════ -->
 <section class="hero th-dark" aria-label="Welcome">
@@ -1438,7 +1538,7 @@ body.rail-open .fr-fab{ display:none; }
       </div>
     </div>
     <p class="hw-meta reveal">One session, guided by your instructor &middot; modules can be trimmed to fit the time &middot; embedded videos are optional extras.</p>
-    <p class="hw-meta reveal" id="progTopLine" style="margin-top:10px">Section tracking: you have 10 sections ahead. Progress saves only in this browser.</p>
+    <p class="hw-meta reveal" id="progTopLine" style="margin-top:10px">Section tracking: you have 11 sections ahead. Progress saves only in this browser.</p>
     <!-- [EDIT] program name — Working Smarter is a working title; the tagline below updates with any rename -->
     <p class="acr-line reveal">Learn the new tools <b>by using them.</b></p>
     <div class="bridge reveal"><span class="b-label">Next</span><p>First, the words: everything that follows builds on <em>one</em> idea.</p></div>
@@ -3511,6 +3611,7 @@ try{
   if(!main) throw new Error('no main');
   /* section plan: key = hash segment, label = bottom-bar name */
   var PLAN = [
+    { sel:'#run',                key:'run',         label:'Run this course', mode:'whole' },
     { sel:'section.hero',        key:'home',        label:'Welcome',         mode:'whole' },
     { sel:'#start',              key:'belief',      label:'The belief',      mode:'whole', extras:['.topics'] },
     { sel:'section.howworks',    key:'how',         label:'How Working Smarter works', mode:'whole' },
@@ -3527,8 +3628,11 @@ try{
     { sel:'#resources',          key:'resources',   label:'Resources',       mode:'whole' },
     { sel:'section.cta',         key:'end',         label:'Wrap-up',         mode:'whole', extras:['footer'] }
   ];
-  /* dots: the ten tracked sections, in course order (mirrors PROG_SECTIONS below) */
+  /* dots: the eleven tracked sections, in course order (mirrors PROG_SECTIONS below).
+     'run' is the facilitator prep page, numbered 00 so the in-page section numbers
+     (Learn / 01 …) stay aligned with the learner classroom edition. */
   var TRACKED = [
+    ['run','00','Run this course'],
     ['learn','01','Learn the fundamentals'], ['readiness','02','AI readiness'], ['crit','03','The CRIT framework'],
     ['playground','04','The Playground'], ['tools','05','Three tools'], ['simulator','06','Opportunity Simulator'],
     ['responsible','07','Responsible AI'], ['quiz','08','Knowledge check'], ['nextstep','09','Your next step'],
@@ -3823,7 +3927,7 @@ try{
   <div class="oracle-modal">
     <span class="mono">Training record</span>
     <h2 id="oracleTitle">You have completed the course.</h2>
-    <p>All 10 sections are done. Mark the course complete in Oracle Learning so your training record shows it.</p>
+    <p>All 11 sections are done. Mark the course complete in Oracle Learning so your training record shows it.</p>
     <div class="oracle-actions">
       <a class="btn btn-gold" id="oracleGo" href="https://ecsr.fa.us2.oraclecloud.com:443/fscmUI/redwood/learner/learn/redirect?learningItemId=300003130886194&amp;learningItemType=ORA_CLASS" target="_blank" rel="noopener noreferrer">Open the course in Oracle Learning
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
@@ -3956,6 +4060,7 @@ function copyText(txt, labelEl, okMsg){
    typed stay unstored as before, and nothing is ever sent anywhere. */
 var PROG_KEY = 'chartf-progress-';
 var PROG_SECTIONS = [
+  { k:'run',         no:'00', name:'Run this course',        how:'Facilitator prep; mark it done when the room is set' },
   { k:'learn',       no:'01', name:'Learn the fundamentals', how:'Finish the drill, or mark it done' },
   { k:'readiness',   no:'02', name:'AI readiness',           how:'Build the report, or mark it done' },
   { k:'crit',        no:'03', name:'The CRIT framework',     how:'Copy a CRIT prompt, or mark it done' },
@@ -6082,103 +6187,176 @@ if(qrTarget){
 
 <script>
 /* ══════════ FACILITATOR RAIL: the delivery script, keyed by section ══════════
-   NOTES holds one entry per pager section key. The rail re-renders on every
+   NOTES holds one script card per pager section key: full/core minutes (full
+   sums to 90 across the session, core to 60; core 0 renders as CORE: SKIP),
+   a purpose line, SAY (spoken, quoted), DO (numbered actions), Validate,
+   Watch for, TRANSITION (spoken), and the Core cut. The 'run' prep page gets
+   the pre-work invite with a copy button instead. The rail re-renders on every
    chart:page event; Hide collapses it to the Script button; on narrow screens
    it starts collapsed and opens as a drawer. Nothing here is stored. */
 (function(){
 'use strict';
 var NOTES = {
-  home: { t:'5 min',
-    say:[ 'Welcome. This course is called Working Smarter, and the whole idea fits in one line: you learn the new tools by using them.',
-      'Everything today runs in your browser. Nothing you type is stored or sent anywhere, and nobody sees a score.' ],
-    cues:[ 'Leave the QR on screen until phones are out; ask for a nod when people have page one open.',
-      'Walk the five outcomes, then ask for a show of hands: who already uses AI most weeks?' ],
-    next:'When most screens are up, turn the page and read the belief out loud.' },
-  belief: { t:'2 min',
-    say:[ 'One sentence drives the whole program: technology should amplify humans, never replace them.',
-      'Today is practice at staying in charge of these tools, not a tour of them.' ],
-    cues:[ 'Read the creed aloud, slowly, and let it sit for a beat before moving on.' ],
-    next:'Turn the page to show the road map for the session.' },
-  how: { t:'3 min',
-    say:[ 'Four stops today: understand the tools, map your own role, learn to prompt, and set the guardrails.',
-      'Every stop is hands-on. If we run short on time, I will trim modules, not skip stops.' ],
-    cues:[ 'Point at the four stops and their time chips so the room can pace itself.' ],
-    next:'First stop: what these tools actually are, in five terms.' },
-  learn: { t:'15 min',
-    say:[ 'Five terms, and each one is a more specific kind of the one before it. Flip the cards on your own device as I walk through them.',
-      'Keep one fact from this whole section: the model predicts patterns. It does not understand meaning, and that is why it needs checking.' ],
-    cues:[ 'Skip the 3Blue1Brown video in a live session; name it as homework and move on.',
-      'Project the next-word demo and run one shuffle yourself, then send the room to their phones for the Together card: shuffle, push the temperature both ways, compare with a neighbor.',
-      'Debrief with one question: did anyone see a long-shot word win at high temperature?',
-      'Give the hallucination drill three quiet minutes, then ask who caught all four.' ],
-    next:'You know what the machine is. Next we point it at your actual job.' },
-  readiness: { t:'12 min',
-    say:[ 'AI shows up for tasks, not job titles. So we work from your real week, not your job description.',
-      'Exposure is a development signal, not a threat. Nothing on this page is an HR judgment, and no plan leaves your browser.' ],
-    cues:[ 'Walk the four ideas quickly; the evidence cards carry the numbers if anyone asks.',
-      'Give six quiet minutes for the assessment; the report builds itself when the fields are in.',
+  home: { full:5, core:4,
+    purpose:'Gets every phone onto the course and sets the tone: hands-on, nothing graded, nothing reported.',
+    say:'Welcome. This is Working Smarter, and the whole idea fits in one line: you learn the new tools by using them. Grab your phone and scan the code on screen; the same course opens in your hand. Nothing you type today is stored or sent anywhere, and nobody sees a score.',
+    doList:[ 'Project this page with the QR up until phones are out; ask for a thumbs-up when people see the welcome page on their own device.',
+      'Walk the five outcomes, then ask for a show of hands: who already uses AI most weeks? Expect a third of the room; name that spread as normal.',
+      'Hand a printed takeaway to anyone without a device and read the short URL under the QR aloud for anyone the camera fails.' ],
+    validate:'80%+ of phones show the learner welcome page before you turn the page.',
+    watch:'Guest wifi chokes on a room of phones. Read the URL aloud, pair the stranded with a neighbor, and keep moving.',
+    transition:'Before we touch a single tool, here is the one sentence this whole program stands on.',
+    coreNote:'Skip the show of hands; send the QR and read the outcomes in one pass.' },
+  belief: { full:2, core:1,
+    purpose:'Plants the program stance so every tool that follows lands as an amplifier, not a threat.',
+    say:'One sentence drives everything today: technology should amplify humans, never replace them. Every exercise you are about to do is practice at staying in charge.',
+    doList:[ 'Read the creed from the screen, slowly, and let it sit for a beat.',
+      'Invite one reaction, then move on; this page is a breath, not a discussion.' ],
+    validate:'The room is quiet and looking at the screen, not at their phones.',
+    watch:'Someone challenges the line. Do not argue it here; say the readiness section takes on that exact fear, and keep the promise when you get there.',
+    transition:'So how do we spend our time together? Four stops. Here is the map.',
+    coreNote:'Read the creed and turn the page; hold reactions for Readiness.' },
+  how: { full:3, core:2,
+    purpose:'Shows the map and the pace so the room trusts you with the clock.',
+    say:'Four stops today: understand the tools, map your own role, learn to write a good prompt, and set the guardrails. Every stop is hands-on. If we run short on time, I trim modules, not stops.',
+    doList:[ 'Point at each stop and its time chip so people can pace themselves.',
+      'Name your path out loud, the full session or the shorter core, so the room knows what is kept.',
+      'Point at PARKING LOT on the whiteboard: off-topic questions go there and get answered at the wrap-up.' ],
+    validate:'No logistics questions come up when you turn the page.',
+    watch:'Early tool-specific questions. Park them by name on the whiteboard so people see the parking lot works.',
+    transition:'First stop: what these tools actually are, in five plain words.',
+    coreNote:'One pass of the four stops; skip the pacing talk.' },
+  learn: { full:13, core:10,
+    purpose:'Installs the one mental model everything else uses: the machine predicts, it does not know.',
+    say:'Five terms, and each one is a more specific kind of the one before it. Flip the cards on your own device as I go. If you keep one fact from this whole session, keep this: the model predicts the likeliest next word. It does not understand meaning, and that is why it needs checking.',
+    doList:[ 'Project the five cards and walk them while the room flips along on their phones.',
+      'Run the next-word demo on the projector yourself: one shuffle, then push temperature both ways, the run you rehearsed.',
+      'Send the room to their devices for the Together card, then debrief with one question: did anyone see a long-shot word win at high temperature? Expect at least one yes; that yes is the whole lesson.',
+      'Give the hallucination drill three quiet minutes, then ask who caught all four planted errors.' ],
+    validate:'In the debrief, at least one learner says "it predicts the next word" unprompted.',
+    watch:'The demo eats time as people play. Give a hard two-minute call and name the 3Blue1Brown video and the myths page as reading for the week.',
+    transition:'Now you know what the machine is. Next we point it at your actual job.',
+    coreNote:'Keep the demo and the hallucination drill; drop the myths debrief and all video mentions.' },
+  readiness: { full:10, core:6,
+    purpose:'Turns "will AI take my job" into a task list and a 30/60/90 plan each person owns.',
+    say:'AI meets a role task by task, not job title by job title, so we work from your real week. Exposure is a development signal, not a threat. Nothing you type here leaves your browser, and this is not an HR exercise.',
+    doList:[ 'Walk the four ideas quickly; the evidence cards hold the numbers if anyone asks.',
+      'Give six quiet minutes for the assessment; the report builds itself once the fields are in.',
+      'Mention the plan you built with your own real task when you prepped, and name the focus task you picked.',
       'Run the Together card: partners swap their chosen focus task and the bucket it landed in.' ],
-    next:'You have named the tasks. CRIT is how you get AI to do them well.' },
-  crit: { t:'10 min',
-    say:[ 'CRIT is Context, Role, Interview, Task, and it comes from Geoff Woods.',
-      'The Interview line is the part nobody guesses: you make the model ask you questions before it writes, so the gaps surface early and you stay the one doing the thinking.' ],
-    cues:[ 'Run the Together explain-back before the builder; if the room stalls on Interview, reread that card together.',
-      'The Woods video is optional; two minutes of it can reset a flagging room.',
-      'In the builder, have everyone tap the example chips first so the shape is visible before they type.' ],
-    next:'Theory done. Hands on keyboards in the Playground.' },
-  playground: { t:'15 min',
-    say:[ 'These are practice apps, not live AI. What you build here gets pasted into the real tools, so it is worth building well.',
-      'The meter and the grader give instant feedback. Chase the A; it proves you can do this, not just remember it.' ],
-    cues:[ 'Run the Together card: pairs build one prompt in the Lab for a real task one of them has this week.',
-      'Collect two or three prompts and run the strongest one live in ChatGPT EDU on the projector; react to the answer with the room.',
+    validate:'When you ask who has a focus task picked, most hands go up.',
+    watch:'People stall trying to list their whole job. Point at your own example and say version one only has to be honest, not complete.',
+    transition:'You have named the tasks. CRIT is how you get the machine to actually do them well.',
+    coreNote:'Cut the partner swap, give four quiet minutes instead of six, and finish the report as homework.' },
+  crit: { full:9, core:8,
+    purpose:'Installs the CRIT habit, with the Interview step as the part nobody arrives knowing.',
+    say:'CRIT stands for Context, Role, Interview, Task, and it comes from Geoff Woods. The Interview line is the part nobody guesses: you make the model ask you questions before it writes. The gaps surface early, and you stay the one doing the thinking.',
+    doList:[ 'Walk the four cards; linger on Interview, the one with the gold border.',
+      'Run the Together explain-back before the builder; if pairs stall on Interview, reread that card with the whole room.',
+      'In the builder, have everyone tap an example chip first so the shape is visible, then build the CRIT prompt you rehearsed out loud.' ],
+    validate:'Explain-back partners can name all four letters without looking at the screen.',
+    watch:'The Woods video tempts you as a time-filler. Skip it on the clock; two minutes of it only earns its place if the room is flagging.',
+    transition:'Enough theory. Hands on keyboards; the next few pages are a gym.',
+    coreNote:'Skip the video and run the explain-back as one whole-room call-out instead of pairs.' },
+  playground: { full:13, core:10,
+    purpose:'Moves CRIT from idea to muscle and takes one real prompt into a live tool.',
+    say:'These are practice apps, not live AI: what you build here gets pasted into the real tools, so build it like you mean it. The meter and the grader give instant feedback. Chase the A; it proves you can do this, not just remember it.',
+    doList:[ 'Run the Together card: pairs build one Lab prompt for a real task one of them has this week.',
+      'Collect two or three prompts and run the strongest live in ChatGPT EDU on the projector; react honestly to what comes back.',
+      'Point early finishers at the Grader: paste, grade, tighten, repeat.',
       'Protect ten minutes for Take it live; it is the heart of the session.' ],
-    next:'One tool used. Next: all three, and how to choose between them.' },
-  tools: { t:'8 min',
-    say:[ 'Two questions route every task: how sensitive is the data, and where are you already working.',
-      'When in doubt, Amplify. That one habit prevents the mistakes that are hardest to undo.' ],
-    cues:[ 'Skim the three cards; do not read them out. The rule strip is the part to say twice.',
-      'Run the Together vote: read a scenario, rows vote by hand for a tool, then everyone runs Tool Match on their own device to see if the room beat the drill.' ],
-    next:'Tools chosen. The Simulator turns one of your tasks into a plan.' },
-  simulator: { t:'8 min',
-    say:[ 'Describe one real task in plain words, like you would to a new colleague. The more concrete you are, the more patterns it catches.',
-      'You leave this page with starter prompts and the first thirty days of a plan.' ],
-    cues:[ 'Point at the example chips for anyone stuck; the Acorn example shows the safe-data habit in action.',
-      'Quiet run first, then the Together card: neighbors compare maps and name one overlap out loud.' ],
-    next:'Before anyone runs a plan, we set the guardrails.' },
-  responsible: { t:'10 min',
-    say:[ 'The model predicts; it does not check. So you verify, you disclose, and a human makes every decision about people.',
-      'The never-paste list is the hard edge. Everything around it is judgment, and that is what the scenarios train.' ],
-    cues:[ 'Read the never-paste list aloud; it is the one slide worth being solemn about.',
-      'Run the Together card: each table takes one scenario and argues it before tapping an answer, then one table reports the case that split them.',
-      'Running long? Keep the time works as homework; say so and move on.' ],
-    next:'Guardrails set. Eight questions to see what stuck.' },
-  quiz: { t:'8 min',
-    say:[ 'Own device, no conferring, and nobody sees your score. A missed question is a pointer, not a grade.',
-      'When you finish, the feedback form appears; two taps and a send, and it genuinely shapes the next version.' ],
-    cues:[ 'When most of the room is done, ask which question felt hardest and revisit that section for two minutes.',
-      'Watch for question 6, the salary summary; it is the one that catches rooms out.' ],
-    next:'Scores in hand, one quick review before the handoff.' },
-  summary: { t:'3 min',
-    say:[ 'Seven ideas, one screen. If one of them looks fuzzy, that is your section to revisit this week.',
-      'The download button builds a PDF from what you typed today: your plan, your prompts, your boundary.' ],
-    cues:[ 'Give the room a quiet minute to save or print their summary before you turn the page.' ],
-    next:'The last real page: what happens this week.' },
-  nextstep: { t:'5 min',
-    say:[ 'The course ends here, and the habit starts this week: one task, one prompt, one real run.',
-      'Attesting in Oracle Learning is what puts today on your training record; this page cannot do it for you.' ],
-    cues:[ 'Run the Together card: partners name their task and the day they will run it.',
-      'Show where the Oracle Learning button is; ask people to attest before they leave the room if they can.' ],
-    next:'Last stop: the shelf that keeps you going.' },
-  resources: { t:'2 min',
-    say:[ 'Nobody needs all of this. Pick one voice and give it fifteen curious minutes a week; that is the whole assignment.' ],
-    cues:[ 'Scroll the shelf slowly; call out One Useful Thing and the Oracle Learning picks as the easy starts.' ],
-    next:'That is the whole course. Wrap-up next.' },
-  end: { t:'2 min',
-    say:[ 'Run the loop once this week and the session pays for itself. Thank you for the energy you brought to the room today.' ],
-    cues:[ 'Leave the Oracle Learning link on screen while people pack up.',
-      'After the group leaves, use Reset progress in the footer so the next session starts clean.' ],
-    next:'End of session.' }
+    validate:'At least one pair reaches 4 of 4 CRIT on the Lab meter.',
+    watch:'The live run comes back mediocre. Improve the prompt with the room in real time; a visible rescue teaches more than a lucky first answer.',
+    transition:'That was one tool. There are three, and choosing between them is a data question.',
+    coreNote:'One volunteer prompt instead of pair work, one live run, and the Grader becomes homework.' },
+  tools: { full:6, core:4,
+    purpose:'Makes tool choice automatic: route by data sensitivity, default to Amplify when unsure.',
+    say:'Two questions route every task: how sensitive is the data, and where are you already working. ChatGPT EDU for everyday non-sensitive work; Amplify or Copilot when it is internal. And when in doubt, Amplify. That one habit prevents the mistakes that are hardest to undo.',
+    doList:[ 'Skim the three tool cards; do not read them out.',
+      'Say the rule strip twice; it is the takeaway.',
+      'Run the Together vote: read a scenario, rows vote by hand, then everyone runs Tool Match on their own device to see if the room beat the drill.' ],
+    validate:'On the hand vote, most of the room routes the sensitive scenario away from ChatGPT EDU.',
+    watch:'The personal-ChatGPT question. Answer it straight: no Vanderbilt agreement covers that account, so work data is unprotected there.',
+    transition:'Tools chosen. Now aim them: the Simulator turns one of your tasks into a plan.',
+    coreNote:'Cut the hand vote; run Tool Match individually and still say the rule twice.' },
+  simulator: { full:7, core:0,
+    purpose:'Shows each person a concrete first month with AI, built from their own task.',
+    say:'Describe one real task in plain words, like you would to a new colleague. The more concrete you are, the more patterns it catches. You leave this page holding starter prompts and the first thirty days of a plan.',
+    doList:[ 'Point at the example chips for anyone stuck; the Acorn example shows the safe-data habit in action.',
+      'Give a quiet run first, then the Together card: neighbors compare maps and name one overlap out loud.',
+      'Remind people to copy their starter prompts out; they land in the summary PDF later.' ],
+    validate:'Most screens show a generated opportunity map before the debrief.',
+    watch:'Vague inputs make thin maps. Read the room’s most concrete example aloud so people hear the difference.',
+    transition:'Everyone is holding a plan. Before anyone runs one, we set the guardrails.',
+    coreNote:'Skip the whole section; name it as this week’s homework, run at your desk with your focus task.' },
+  responsible: { full:8, core:6,
+    purpose:'Sets the hard edges with the never-paste list, then trains the judgment calls around them.',
+    say:'The model predicts; it does not check. So you verify, you disclose, and a human makes every decision about people. The never-paste list is the hard edge. Everything around it is judgment, and that is exactly what these scenarios train.',
+    doList:[ 'Read the never-paste list aloud; it is the one slide worth being solemn about.',
+      'Run the Together card: each table takes one scenario and argues it before tapping an answer.',
+      'Have one table report the case that split them; resolve it with the takeaway line on the card.' ],
+    validate:'Tables argue before they tap; answers appearing in seconds mean nobody debated.',
+    watch:'Running long. Keep the time works as homework; say so and move on rather than rushing the scenarios.',
+    transition:'Guardrails set. Eight questions to see what stuck, and nobody sees your score.',
+    coreNote:'Two scenarios instead of four, argued as one room instead of tables.' },
+  quiz: { full:6, core:4,
+    purpose:'Lets each person find their own gaps while you find the room’s.',
+    say:'Eight questions, your own device, no conferring, and nobody sees your score. A missed question is a pointer, not a grade. When you finish, the feedback form appears; two taps and a send, and it genuinely shapes the next version.',
+    doList:[ 'Give quiet time and watch for heads to come up.',
+      'Ask which question felt hardest; expect the salary-summary one, and revisit that section for two minutes.',
+      'Nudge the feedback form while devices are still out.' ],
+    validate:'Most of the room reports a score, and you can name the hardest question.',
+    watch:'The salary-summary question catches rooms out. Be ready to restate the rule: internal data goes to Amplify or Copilot, never ChatGPT EDU.',
+    transition:'Scores in hand. One page pulls the whole day together before the handoff.',
+    coreNote:'Skip the group revisit; name the hardest section and point at it for the week.' },
+  summary: { full:2, core:1,
+    purpose:'Compresses the day to seven ideas and gets them saved before the room stands up.',
+    say:'Seven ideas, one screen. If one looks fuzzy, that is your section to revisit this week. The download button builds a PDF from what you typed today: your plan, your prompts, your boundary.',
+    doList:[ 'Walk the seven cards in under a minute; they are recall, not new content.',
+      'Give a quiet minute for everyone to download or print their summary before you turn the page.' ],
+    validate:'You see save dialogs and downloads happening around the room.',
+    watch:'People skip the download and lose their typed work when the browser resets. Say plainly: this page is the only copy.',
+    transition:'That is what you know. The last real page is what you do with it this week.',
+    coreNote:'Skip the walkthrough; download only.' },
+  nextstep: { full:4, core:3,
+    purpose:'Converts the session into one named task on one named day, plus an attested training record.',
+    say:'The course ends here, and the habit starts this week: one task, one prompt, one real run. And attesting in Oracle Learning is what puts today on your training record; this page cannot do it for you.',
+    doList:[ 'Walk the five-step loop quickly; steps two and three are literally what the room just practiced.',
+      'Run the Together card: partners name their task and the day they will run it. Listen for named days, not intentions.',
+      'Show where the Oracle Learning button is, and give thirty silent seconds to attest right there.' ],
+    validate:'You hear actual days ("Thursday") during the pair share.',
+    watch:'People plan to attest later and forget. The thirty silent seconds while devices are out is the recovery.',
+    transition:'Last stop, and it is a shelf, not a lecture: where to keep learning.',
+    coreNote:'Keep the pair share, it is the point of the session; trim the loop walk to one sentence per step.' },
+  resources: { full:1, core:0,
+    purpose:'Leaves a shelf without homework guilt: one pick, fifteen minutes a week.',
+    say:'Nobody needs all of this. Pick one voice and give it fifteen curious minutes a week; that is the whole assignment.',
+    doList:[ 'Scroll the shelf slowly, once.',
+      'Call out One Useful Thing and the Oracle Learning picks as the easy starts.' ],
+    validate:'Heads follow the scroll instead of packing bags.',
+    watch:'Reading the list item by item kills the closing energy. One scroll, two callouts, done.',
+    transition:'That is the whole course. One last page.',
+    coreNote:'Skip the section; point at it in one sentence from the wrap-up page.' },
+  end: { full:1, core:1,
+    purpose:'Sends the room out on the action and resets the stage for the next session.',
+    say:'Run the loop once this week and today pays for itself. Thank you for the energy you brought to this room.',
+    doList:[ 'Leave the Oracle Learning link on screen while people pack up.',
+      'Stay near the front; the best questions arrive after the formal close.',
+      'After the room clears, use Reset progress in the footer so the next session starts clean.' ],
+    validate:'The parking lot is empty, or every item on it has an owner and an answer route.',
+    watch:'Forgetting the footer reset; the next room would open on your marks and your focus task.',
+    transition:'End of session.',
+    coreNote:'Same close on both paths.' }
 };
+/* the pre-work invite: the rail card for the Run this course prep page */
+var INVITE = 'Subject: Working Smarter on [day]: bring one real task\n\n' +
+  'Hi everyone,\n\n' +
+  'Looking forward to our Working Smarter session on [day, time, room]. It is hands-on from the first minute, so three small things before you arrive:\n\n' +
+  '1. Bring a device you can work on comfortably (laptop or phone, charged). You will join the course by scanning a QR code in the room; guest wifi is available.\n' +
+  '2. Come holding one real task from your week that is repetitive or text-heavy: a recurring email, a summary, a report. Every exercise uses it.\n' +
+  '3. If you have never signed in to ChatGPT EDU with your Vanderbilt account, try it once before we meet.\n\n' +
+  'Nothing to read in advance. Nothing you do in the session is graded or reported, and nothing you type leaves your browser.\n\n' +
+  'See you there,\n[your name]';
 var body = document.getElementById('frBody'),
     rail = document.getElementById('facRail'),
     hide = document.getElementById('frHide'),
@@ -6190,36 +6368,81 @@ function E(tag, cls, txt){
   if(txt) el.textContent = txt;
   return el;
 }
-function list(cls, items){
-  var ul = E('ul', cls);
-  items.forEach(function(t){ ul.appendChild(E('li', null, t)); });
-  return ul;
+function quoted(t){ return '“' + t + '”'; }
+/* the full path sums to 90 minutes and core to 60; computed here so the run card can show it */
+var sumFull = 0, sumCore = 0;
+Object.keys(NOTES).forEach(function(k){ sumFull += NOTES[k].full; sumCore += NOTES[k].core; });
+function headerRow(timing){
+  var row = E('div', 'fr-row');
+  row.appendChild(E('span', 'fr-fac', 'Facilitator'));
+  row.appendChild(E('span', 'fr-time', timing));
+  return row;
 }
 function render(key, label){
   var n = NOTES[key];
   body.textContent = '';
-  var head = E('div', 'fr-sec');
-  head.appendChild(E('b', null, label || key));
-  if(n && n.t) head.appendChild(E('span', 'fr-time', n.t));
-  body.appendChild(head);
-  if(!n){
-    body.appendChild(E('p', null, 'No script for this page; drive from the screen.'));
+  if(key === 'run'){
+    body.appendChild(headerRow('Full ' + sumFull + ' min · Core ' + sumCore));
+    body.appendChild(E('b', 'fr-title', label || 'Run this course'));
+    body.appendChild(E('p', 'fr-purpose', 'The pre-work invite. Send it with the calendar invite a week out; swap the [brackets] and it is ready.'));
+    body.appendChild(E('span', 'fr-chip', 'Invite'));
+    var pre = E('pre', 'fr-pre', INVITE);
+    body.appendChild(pre);
+    var copy = E('button', 'fr-copy', 'Copy invite text');
+    copy.type = 'button';
+    copy.addEventListener('click', function(){
+      function ok(){ copy.textContent = 'Copied'; setTimeout(function(){ copy.textContent = 'Copy invite text'; }, 1600); }
+      function fallback(){
+        var ta = document.createElement('textarea');
+        ta.value = INVITE; ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed'; ta.style.left = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        try{ document.execCommand('copy'); ok(); }catch(e){}
+        document.body.removeChild(ta);
+      }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(INVITE).then(ok, fallback);
+      } else { fallback(); }
+    });
+    body.appendChild(copy);
     return;
   }
-  if(n.say && n.say.length){
-    body.appendChild(E('span', 'fr-label', 'Say something like'));
-    body.appendChild(list('fr-say', n.say));
+  if(!n){
+    body.appendChild(headerRow('No clock'));
+    body.appendChild(E('b', 'fr-title', label || key));
+    body.appendChild(E('p', 'fr-purpose', 'No script for this page; drive from the screen.'));
+    return;
   }
-  if(n.cues && n.cues.length){
-    body.appendChild(E('span', 'fr-label', 'Cues'));
-    body.appendChild(list(null, n.cues));
+  body.appendChild(headerRow('Full ' + n.full + ' min · ' + (n.core === 0 ? 'Core: skip' : 'Core ' + n.core)));
+  body.appendChild(E('b', 'fr-title', label || key));
+  if(n.purpose) body.appendChild(E('p', 'fr-purpose', n.purpose));
+  if(n.say){
+    body.appendChild(E('span', 'fr-chip', 'Say'));
+    body.appendChild(E('p', 'fr-quote', quoted(n.say)));
   }
-  if(n.next){
-    var p = E('p', 'fr-next');
-    p.appendChild(E('b', null, 'Transition: '));
-    p.appendChild(document.createTextNode(n.next));
-    body.appendChild(p);
+  if(n.doList && n.doList.length){
+    body.appendChild(E('span', 'fr-chip', 'Do'));
+    var ol = E('ol', 'fr-do');
+    n.doList.forEach(function(t){ ol.appendChild(E('li', null, t)); });
+    body.appendChild(ol);
   }
+  if(n.validate){
+    var v = E('p', 'fr-check');
+    v.appendChild(E('b', null, 'Validate: '));
+    v.appendChild(document.createTextNode(n.validate));
+    body.appendChild(v);
+  }
+  if(n.watch){
+    var w = E('p', 'fr-check');
+    w.appendChild(E('b', null, 'Watch for: '));
+    w.appendChild(document.createTextNode(n.watch));
+    body.appendChild(w);
+  }
+  if(n.transition){
+    body.appendChild(E('span', 'fr-chip', 'Transition'));
+    body.appendChild(E('p', 'fr-quote', quoted(n.transition)));
+  }
+  if(n.coreNote) body.appendChild(E('p', 'fr-core', '60-min core: ' + n.coreNote));
 }
 function setOpen(open){
   document.body.classList.toggle('rail-open', open);
@@ -6235,6 +6458,7 @@ document.addEventListener('chart:page', function(ev){
 });
 /* the rail titles by SECTION, not sub-page, so multi-page sections keep one script */
 var SECTION_LABELS = {
+  run:'Run this course',
   home:'Welcome', belief:'The belief', how:'How Working Smarter works', learn:'Learn',
   readiness:'Readiness', crit:'CRIT', playground:'Practice', tools:'Tools',
   simulator:'Simulator', responsible:'Responsible AI', quiz:'Knowledge check',
@@ -6242,7 +6466,7 @@ var SECTION_LABELS = {
 };
 function sectionLabel(k){ return SECTION_LABELS[k]; }
 var cur = (window.chartPager && window.chartPager.current) ? window.chartPager.current() : null;
-render(cur ? cur.key : 'home', cur ? sectionLabel(cur.key) : 'Welcome');
+render(cur ? cur.key : 'run', cur ? sectionLabel(cur.key) : 'Run this course');
 })();
 </script>
 </body>

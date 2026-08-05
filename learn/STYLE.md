@@ -1,6 +1,6 @@
-# Working Smarter house style
+# CHART Program house style
 
-Every course in the Working Smarter program follows these rules. The goal: copy that
+Every course in the CHART Program follows these rules. The goal: copy that
 sounds like a person at Vanderbilt wrote it, because one did (or approved it).
 Run this checklist on every page before a course ships.
 
@@ -58,14 +58,15 @@ If a page can't answer all three, the page isn't done.
 ## Program conventions
 
 - Courses are numbered ("Course 02") and carry the line
-  "Part of Working Smarter: learn the new tools by using them." The program
-  tagline is "Learn the new tools by using them." The program name never
-  contains the word "AI"; course content may say AI freely.
+  "Part of CHART: Cultivating Human-AI Readiness and Thinking." CHART is the
+  program (the ecosystem every AI course and activity belongs to); course
+  NAMES stay soft and never contain the word "AI" (Working Smarter, First
+  Drafts Faster); course content may say AI freely.
 - Tool guidance is consistent everywhere: ChatGPT EDU for everyday
   non-sensitive work; anything sensitive or internal goes in Amplify or
   Copilot through a Vanderbilt account; when in doubt, Amplify.
 - CRIT (Context, Role, Interview, Task) is credited to Geoff Woods,
-  *The AI-Driven Leader*, with a link to the main Working Smarter course.
+  *The AI-Driven Leader*, with a link to the Working Smarter course.
 - Every course ships as two separate editions at two separate links: a
   classroom edition (QR welcome, group activities, discussion-notes
   takeaway) and a self-paced edition (reflection prompts, commitment
