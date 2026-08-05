@@ -622,6 +622,39 @@ a.bb-dot:focus-visible{ outline:2px solid var(--vu-highlight); outline-offset:1p
   #printSummary .ps-fine{ font-size:7.5pt; color:#444; margin-top:8pt; border-top:.75pt solid #999; padding-top:4pt; max-width:none; }
 }
 
+/* ═══════════════════ PRINT: FACILITATOR GUIDE ═══════════════════
+   #printGuide is filled from the NOTES object only when the facilitator
+   clicks "Print the facilitator guide", which also sets body.print-guide
+   for the duration of the print. With that class, print shows only the
+   guide; without it (Ctrl+P, the learner takeaway button), printing
+   behaves exactly as before. */
+#printGuide{ display:none; }
+@media print{
+  body.print-guide > *:not(#printGuide){ display:none !important; }
+  body.print-guide #printSummary{ display:none !important; }
+  body.print-guide #printGuide{ display:block !important; color:#000; background:#fff;
+    font-family:-apple-system, "Segoe UI", Helvetica, Arial, sans-serif; font-size:9.5pt; line-height:1.45; }
+  #printGuide .pg-head{ border-bottom:2pt solid #000; padding-bottom:6pt; }
+  #printGuide .pg-title{ font-family:Georgia, "Times New Roman", serif; font-size:16pt; margin:0; color:#000; }
+  #printGuide .pg-meta{ margin:2pt 0 0; font-size:9pt; color:#333; max-width:none; }
+  #printGuide h2{ font-family:Georgia, "Times New Roman", serif; font-weight:700; color:#000; font-size:12pt;
+    margin:12pt 0 4pt; border-bottom:.75pt solid #999; padding-bottom:2pt; break-after:avoid; page-break-after:avoid; }
+  #printGuide h3{ font-family:inherit; color:#000; font-size:10pt; margin:0 0 2pt; break-after:avoid; page-break-after:avoid; }
+  #printGuide p{ margin:2pt 0; max-width:none; }
+  #printGuide ul, #printGuide ol{ margin:2pt 0 2pt 14pt; padding:0; }
+  #printGuide li{ margin:1pt 0; }
+  #printGuide .pg-card{ break-inside:avoid; page-break-inside:avoid; border:.75pt solid #999; padding:6pt 8pt; margin:6pt 0; }
+  #printGuide .pg-sechead{ display:flex; justify-content:space-between; align-items:baseline; gap:8pt;
+    border-bottom:.75pt solid #CCC; padding-bottom:2pt; margin-bottom:3pt; }
+  #printGuide .pg-secname{ font-family:Georgia, "Times New Roman", serif; font-weight:700; font-size:11pt; margin:0; }
+  #printGuide .pg-time{ font-size:8pt; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#333; white-space:nowrap; }
+  #printGuide .pg-purpose{ font-style:italic; color:#222; }
+  #printGuide .pg-label{ font-size:7.5pt; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:#333; margin:4pt 0 1pt; }
+  #printGuide .pg-say{ font-style:italic; margin:1pt 0 2pt; }
+  #printGuide .pg-core{ font-size:8.5pt; color:#333; border-top:.5pt dotted #999; margin-top:4pt; padding-top:2pt; }
+  #printGuide .pg-fine{ font-size:8pt; color:#444; margin-top:10pt; border-top:.75pt solid #999; padding-top:4pt; max-width:none; }
+}
+
 /* ═══════════════════ FACILITATOR SCRIPT RAIL ═══════════════════
    Desktop: a fixed right column beside the stage; the gold Script button
    collapses it. Narrow screens: a bottom drawer above the book bar.
@@ -751,7 +784,11 @@ html.paged #pgMore{ right:calc(clamp(10px,2vw,22px) + 122px); }
         script in the right rail: Say, Do, Validate, Watch for, Transition, with timings for both paths.
         Learners never see any of it; they scan the welcome QR into their own classroom edition.
         The four cards below are your prep, grounded in what the course actually asks of you.</p>
-    </div>
+      <div class="launch-row">
+        <button type="button" class="btn btn-primary" id="printGuideBtn">Print the facilitator guide
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="15" width="12" height="6"/></svg></button>
+      </div>
+      <p class="hinttxt" style="margin-top:8px">One paper packet: these prep cards plus every page&rsquo;s script from the rail. Your browser&rsquo;s print dialog opens; print it or choose Save as PDF.</p>
     <div class="roadmap">
       <div class="rstep">
         <span class="rno">A week before</span>
@@ -1500,6 +1537,12 @@ Task: Write a half-page brief. Put the decisions needed first, then five bullets
   <p class="ps-kl">In Oracle Learning (search the name or OLC number): Amplify Your Business Writing with AI (OLC3688913) &middot; Writing Emails People Want to Read (OLC3622097) &middot; Business Writing Principles (OLC3557254) &middot; Clarity and Conciseness in Business Writing (OLC1131312). Online: this course &middot; me5231979.github.io/estesstite/learn/drafts-class &nbsp;&bull;&nbsp; the Working Smarter program &middot; me5231979.github.io/estesstite/learn<!-- [EDIT · SCORM] swap both printed URLs for the LMS links --></p>
   <p class="ps-fine">Sources: 1&nbsp;Noy &amp; Zhang, Science 381, 187&ndash;192 (2023) &middot; 2&nbsp;Dell&rsquo;Acqua et al., HBS Working Paper 24-013 (2023) &middot; 3&nbsp;Brynjolfsson, Li &amp; Raymond, QJE 140(2) (2025) &middot; 4&nbsp;Nielsen Norman Group, &ldquo;AI Improves Employee Productivity by 66%&rdquo; (2023). CRIT: Geoff Woods, The AI-Driven Leader (aileadership.com). Internal training prototype; not an official Vanderbilt University site.</p>
 </div>
+
+<!-- ═══════════════════ PRINT-ONLY FACILITATOR GUIDE ═══════════════════
+     Hidden on screen; filled at click time from the NOTES object and the
+     prep page, then printed while body carries the print-guide class.
+     Nothing here is stored or sent. -->
+<div id="printGuide" aria-hidden="true"></div>
 
 <!-- ═══════════════════ BOTTOM BOOK BAR ═══════════════════ -->
 <div class="book-bar" id="bookBar" role="navigation" aria-label="Book controls">
@@ -2436,6 +2479,121 @@ document.addEventListener('drafts:page', function(ev){
   if(ev.detail && ev.detail.key) render(ev.detail.key);
 });
 render(window.draftsPager && window.draftsPager.current ? window.draftsPager.current().key : 'prep');
+
+/* ══════════ PRINT THE FACILITATOR GUIDE ══════════
+   Builds the whole run of show on paper from this same NOTES object
+   (plus the prep cards on the prep page), sets body.print-guide so
+   @media print shows only #printGuide, prints, then removes the class.
+   Without the button, printing is unchanged: Ctrl+P and the learner
+   takeaway button still produce the one-page takeaway. */
+var guideBtn = document.getElementById('printGuideBtn'),
+    guideBox = document.getElementById('printGuide');
+if(guideBtn && guideBox){
+  var GUIDE_LABELS = {
+    home:'Welcome', evidence:'The evidence', method:'The method',
+    'ex-email':'Example: the email', 'ex-announce':'Example: the announcement',
+    'ex-summary':'Example: the summary', guardrails:'Guardrails',
+    practice:'Practice now', check:'Knowledge check', recap:'Recap', sources:'Appendix'
+  };
+  var gEl = function(tag, cls, txt){
+    var el = document.createElement(tag);
+    if(cls) el.className = cls;
+    if(txt) el.textContent = txt;
+    return el;
+  };
+  var buildGuide = function(){
+    /* total both paths from the time strings so the title block stays true to NOTES */
+    var gFull = 0, gCore = 0;
+    Object.keys(NOTES).forEach(function(k){
+      var t = NOTES[k].time || '', mf = t.match(/Full (\d+)/), mc = t.match(/Core (\d+)/);
+      if(mf) gFull += +mf[1];
+      if(mc) gCore += +mc[1];
+    });
+    guideBox.textContent = '';
+    var head = gEl('div', 'pg-head');
+    head.appendChild(gEl('p', 'pg-title', 'First Drafts, Faster'));
+    head.appendChild(gEl('p', 'pg-meta', 'Facilitator guide · The CHART Program · Vanderbilt University'));
+    head.appendChild(gEl('p', 'pg-meta', 'Full path ' + gFull + ' minutes · Core path ' + gCore + ' minutes'));
+    guideBox.appendChild(head);
+    /* the prep cards, read from the prep page itself */
+    guideBox.appendChild(gEl('h2', null, 'Before the room fills'));
+    Array.prototype.slice.call(document.querySelectorAll('#prep .rstep')).forEach(function(step){
+      var card = gEl('div', 'pg-card');
+      var no = step.querySelector('.rno'), h = step.querySelector('h5');
+      if(no) card.appendChild(gEl('p', 'pg-label', no.textContent));
+      if(h) card.appendChild(gEl('h3', null, h.textContent));
+      var ul = gEl('ul', null);
+      Array.prototype.slice.call(step.querySelectorAll('li')).forEach(function(li){
+        ul.appendChild(gEl('li', null, li.textContent.replace(/\s+/g, ' ').trim()));
+      });
+      card.appendChild(ul);
+      guideBox.appendChild(card);
+    });
+    /* every page script, in course order, straight from NOTES */
+    guideBox.appendChild(gEl('h2', null, 'The page scripts'));
+    Object.keys(NOTES).forEach(function(k){
+      var n = NOTES[k];
+      if(n.invite) return; /* the prep entry is the invite card, printed above via the prep page */
+      var card = gEl('div', 'pg-card');
+      var hd = gEl('div', 'pg-sechead');
+      hd.appendChild(gEl('p', 'pg-secname', GUIDE_LABELS[k] || k));
+      hd.appendChild(gEl('span', 'pg-time', n.time));
+      card.appendChild(hd);
+      if(n.purpose) card.appendChild(gEl('p', 'pg-purpose', n.purpose));
+      if(n.say){
+        card.appendChild(gEl('p', 'pg-label', 'Say'));
+        card.appendChild(gEl('p', 'pg-say', '“' + n.say + '”'));
+      }
+      if(n.doList && n.doList.length){
+        card.appendChild(gEl('p', 'pg-label', 'Do'));
+        var ol = gEl('ol', null);
+        n.doList.forEach(function(d){ ol.appendChild(gEl('li', null, d)); });
+        card.appendChild(ol);
+      }
+      if(n.validate){
+        var v = gEl('p', null);
+        v.appendChild(gEl('b', null, 'Validate: '));
+        v.appendChild(document.createTextNode(n.validate));
+        card.appendChild(v);
+      }
+      if(n.watch){
+        var w = gEl('p', null);
+        w.appendChild(gEl('b', null, 'Watch for: '));
+        w.appendChild(document.createTextNode(n.watch));
+        card.appendChild(w);
+      }
+      if(n.transition){
+        card.appendChild(gEl('p', 'pg-label', 'Transition'));
+        card.appendChild(gEl('p', 'pg-say', '“' + n.transition + '”'));
+      }
+      if(n.core) card.appendChild(gEl('p', 'pg-core', '25-min core: ' + String(n.core).replace(/^25-min core:\s*/i, '')));
+      guideBox.appendChild(card);
+    });
+    /* the pre-work invite, verbatim, so the packet covers the prep rail too */
+    guideBox.appendChild(gEl('h2', null, 'The pre-work invite'));
+    var inv = gEl('div', 'pg-card');
+    var pre = gEl('pre', null, INVITE);
+    pre.style.whiteSpace = 'pre-wrap';
+    pre.style.fontFamily = 'inherit';
+    pre.style.margin = '0';
+    inv.appendChild(pre);
+    guideBox.appendChild(inv);
+    guideBox.appendChild(gEl('p', 'pg-fine',
+      'First Drafts, Faster facilitator guide · An internal training prototype, not an official Vanderbilt University site. ' +
+      'Generated in your browser from this edition; nothing was stored or sent. Questions: matthew.estes@vanderbilt.edu'));
+  };
+  var unGuide = function(){ document.body.classList.remove('print-guide'); };
+  window.addEventListener('afterprint', unGuide);
+  guideBtn.addEventListener('click', function(){
+    try{ buildGuide(); }catch(e){
+      guideBox.textContent = '';
+      guideBox.appendChild(gEl('p', null, 'The guide could not be assembled. Please try again.'));
+    }
+    document.body.classList.add('print-guide');
+    window.print();
+    window.setTimeout(unGuide, 4000); /* fallback if afterprint never fires */
+  });
+}
 })();
 </script>
 </body>
