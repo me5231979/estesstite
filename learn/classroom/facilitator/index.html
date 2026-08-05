@@ -3917,6 +3917,45 @@ try{
     e.preventDefault();
     go(cur + (e.key === 'ArrowRight' ? 1 : -1));
   });
+  /* vertical keys scroll the open page. Book mode locks the document scroll,
+     so without this Space, PageDown and friends would go nowhere unless focus
+     happened to sit inside the page. The page-step keys (the ones presenter
+     clickers send) also turn the page once its end is reached. */
+  function pgScroll(el, top){
+    try{ el.scrollTo({ top: top, behavior: reduce ? 'auto' : 'smooth' }); }
+    catch(err){ el.scrollTop = top; }
+  }
+  document.addEventListener('keydown', function(e){
+    var k = e.key;
+    if(k !== 'ArrowDown' && k !== 'ArrowUp' && k !== 'PageDown' && k !== 'PageUp' &&
+       k !== 'Home' && k !== 'End' && k !== ' ') return;
+    if(e.altKey || e.ctrlKey || e.metaKey) return;
+    if(cur < 0) return;
+    var t = e.target;
+    if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
+    /* Space on a control activates it; that default must stand */
+    if(k === ' ' && t && (t.tagName === 'BUTTON' || t.tagName === 'A' ||
+       (t.getAttribute && t.getAttribute('role') === 'button'))) return;
+    if(document.body.classList.contains('menu-open') || document.body.classList.contains('oracle-open')) return;
+    var panel = document.getElementById('progPanel');
+    if(panel && !panel.hidden) return;
+    var el = pages[cur].el;
+    var can = el.scrollHeight - el.clientHeight > 1;
+    var atEnd = !can || el.scrollTop + el.clientHeight >= el.scrollHeight - 2;
+    var atTop = el.scrollTop <= 1;
+    var line = 64, step = Math.max(line, el.clientHeight - 72);
+    var pageStep = (k === 'PageDown' || k === 'PageUp' || k === ' ');
+    e.preventDefault();
+    if(k === 'Home'){ pgScroll(el, 0); return; }
+    if(k === 'End'){ pgScroll(el, el.scrollHeight); return; }
+    if(k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)){
+      if(can && !atEnd) pgScroll(el, el.scrollTop + (pageStep ? step : line));
+      else if(pageStep) go(cur + 1);
+    } else {
+      if(can && !atTop) pgScroll(el, el.scrollTop - (pageStep ? step : line));
+      else if(pageStep) go(cur - 1);
+    }
+  });
   /* touch swipe: horizontal, ~50px threshold, ignores mostly-vertical drags */
   var sx = 0, sy = 0, swiping = false;
   main.addEventListener('touchstart', function(e){
@@ -3930,6 +3969,39 @@ try{
     if(!t) return;
     var dx = t.clientX - sx, dy = t.clientY - sy;
     if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1));
+  }, { passive:true });
+  /* wheel at the page's edge turns it: on a page that fits the stage the
+     wheel otherwise does nothing at all, which reads as a frozen page.
+     Content scrolling stays native; only the spent gesture turns, behind a
+     threshold and a cooldown so trackpad inertia cannot skip pages. */
+  var wAcc = 0, wLast = 0, wCool = 0;
+  main.addEventListener('wheel', function(e){
+    if(e.ctrlKey) return; /* pinch-zoom */
+    var el = cur >= 0 ? pages[cur].el : null;
+    if(!el) return;
+    var now = Date.now();
+    if(now - wLast > 400) wAcc = 0;
+    wLast = now;
+    if(now < wCool) return;
+    var down = e.deltaY > 0;
+    if(!down && e.deltaY === 0) return;
+    var can = el.scrollHeight - el.clientHeight > 1;
+    var atEdge = down ? (!can || el.scrollTop + el.clientHeight >= el.scrollHeight - 2)
+                      : (!can || el.scrollTop <= 1);
+    if(!atEdge){ wAcc = 0; return; }
+    /* an inner scrollable (code block, long list) still owns its wheel */
+    for(var n = e.target; n && n !== el && n.nodeType === 1; n = n.parentNode){
+      if(n.scrollHeight - n.clientHeight > 1){
+        var oy = window.getComputedStyle(n).overflowY;
+        if((oy === 'auto' || oy === 'scroll') &&
+           (down ? n.scrollTop + n.clientHeight < n.scrollHeight - 2 : n.scrollTop > 1)) return;
+      }
+    }
+    wAcc += e.deltaY;
+    if(down ? wAcc > 220 : wAcc < -220){
+      wAcc = 0; wCool = now + 900;
+      go(cur + (down ? 1 : -1));
+    }
   }, { passive:true });
   /* internal-scroll affordance */
   window.addEventListener('resize', checkMore, { passive:true });
