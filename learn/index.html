@@ -1174,6 +1174,16 @@ html.paged .hero .hw-mini li::before{ content:counter(hm,decimal-leading-zero); 
   .pbar .fill,.meter .fill,.dim .fill{ transition:none !important; }
 }
 </style>
+<!-- Vercel Web Analytics (vercel-analytics): served only by Vercel, so it is skipped on GitHub Pages -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  if (!/(^|\.)github\.io$/.test(location.hostname)) {
+    var vaScript = document.createElement('script');
+    vaScript.defer = true;
+    vaScript.src = '/_vercel/insights/script.js';
+    document.head.appendChild(vaScript);
+  }
+</script>
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>

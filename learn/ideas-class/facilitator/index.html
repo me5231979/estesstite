@@ -722,6 +722,16 @@ html.paged #pgMore{ right:calc(clamp(10px,2vw,22px) + 122px); }
   html{ scroll-behavior:auto !important; }
 }
 </style>
+<!-- Vercel Web Analytics (vercel-analytics): served only by Vercel, so it is skipped on GitHub Pages -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  if (!/(^|\.)github\.io$/.test(location.hostname)) {
+    var vaScript = document.createElement('script');
+    vaScript.defer = true;
+    vaScript.src = '/_vercel/insights/script.js';
+    document.head.appendChild(vaScript);
+  }
+</script>
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
