@@ -56,6 +56,21 @@
   footer a { color: var(--vu-oak); }
 
   @media print { .frame iframe { height: 480px; } }
+
+  /* intro video popup: inert until survey/intro.mp4 exists on the server */
+  .vmodal { position: fixed; inset: 0; background: rgba(20,20,20,.78); display: none;
+    align-items: center; justify-content: center; padding: 1.25rem; z-index: 90; }
+  .vmodal.open { display: flex; }
+  .vmodal__card { background: var(--vu-black); border-top: 3px solid var(--vu-gold);
+    border-radius: 8px; max-width: 860px; width: 100%; padding: 1rem; position: relative; }
+  .vmodal__card video { display: block; width: 100%; border-radius: 4px; background: #000; }
+  .vmodal__close { position: absolute; top: -.9rem; right: -.9rem; width: 2.2rem; height: 2.2rem;
+    border-radius: 50%; border: none; background: var(--vu-gold); color: var(--vu-black);
+    font-size: 1.1rem; font-weight: 700; cursor: pointer; line-height: 1; }
+  .vmodal__label { color: rgba(255,255,255,.75); font-family: var(--condensed); font-weight: 700;
+    text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; margin: .7rem .2rem 0; }
+  .vlink { display: none; margin: -1.5rem 0 2.25rem; font-size: .92rem; }
+  .vlink a { color: var(--vu-oak); font-weight: 600; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -84,7 +99,44 @@
   <p class="alt" style="margin-top:.35rem">Survey adapted from the
     <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11544068/" target="_blank" rel="noopener">Meta
     AI Literacy Scale (MAILS)</a>, a peer-reviewed measure of AI literacy and readiness.</p>
+  <p class="vlink" id="vlink"><a id="vlinkA">&#9658;&nbsp; Watch the one-minute intro</a></p>
 </main>
+
+<div class="vmodal" id="vmodal" role="dialog" aria-modal="true" aria-label="Introduction video">
+  <div class="vmodal__card">
+    <button class="vmodal__close" id="vclose" aria-label="Close the video">&times;</button>
+    <video id="vplayer" controls preload="metadata" src="intro.mp4"></video>
+    <p class="vmodal__label">AI at work &middot; a one-minute welcome</p>
+  </div>
+</div>
+
+<script>
+  /* The popup only arms itself if intro.mp4 is actually published next to this
+     page, so the page works unchanged until the video ships. */
+  (function () {
+    var modal = document.getElementById('vmodal');
+    var player = document.getElementById('vplayer');
+    var KEY = 'aiready-intro-seen';
+    function open() { modal.classList.add('open'); }
+    function close() {
+      modal.classList.remove('open');
+      player.pause();
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    }
+    document.getElementById('vclose').addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    fetch('intro.mp4', { method: 'HEAD' }).then(function (r) {
+      if (!r.ok) return;
+      var link = document.getElementById('vlink');
+      link.style.display = 'block';
+      document.getElementById('vlinkA').addEventListener('click', open);
+      var seen = false;
+      try { seen = localStorage.getItem(KEY) === '1'; } catch (e) {}
+      if (!seen) open();
+    }).catch(function () {});
+  })();
+</script>
 
 <footer>
   <span>The AI-enabled Education Series &middot; A Vanderbilt learning experience</span>
