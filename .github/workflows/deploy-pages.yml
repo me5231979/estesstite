@@ -27,6 +27,7 @@ jobs:
           cp index.html /tmp/dist/
           [ -d assets ] && cp -r assets /tmp/dist/ || true
           [ -d learn ] && cp -r learn /tmp/dist/ || true
+          [ -d survey ] && cp -r survey /tmp/dist/ || true
           touch /tmp/dist/.nojekyll
       - name: Push to gh-pages
         run: |
