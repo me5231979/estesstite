@@ -6,7 +6,7 @@ name: Deploy site to GitHub Pages
 on:
   push:
     branches: [claude/tender-meitner-hrd0rx, main, master]
-    paths: [index.html, assets/**, learn/**]
+    paths: [index.html, assets/**, learn/**, survey/**]
   workflow_dispatch:
 
 permissions:
