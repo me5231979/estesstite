@@ -1579,3 +1579,12 @@ html:not(.review) .roots__text { grid-column: 3 / span 8; }
   /* Sit the statement on the number's baseline. */
   .shift__body { padding-top: calc((var(--fs-stat) - var(--fs-h2)) * 0.74); }
 }
+
+/* ---------- Brandmark ---------- */
+.nav__brand { display: inline-flex; align-items: center; gap: 12px; }
+.brand-mark { display: block; width: auto; height: 32px; }
+.footer__mark { display: block; width: auto; height: 48px; margin-bottom: var(--s-2); }
+.brand-mark--ink { display: none; }
+html[data-theme="light"] .brand-mark--light { display: none; }
+html[data-theme="light"] .brand-mark--ink { display: block; }
+@media (max-width: 420px) { .nav__brand span { font-size: 20px; } }
