@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System | Matt Estes, Capability Architect</title>
+<meta name="description" content="The working design system for mattestes.com: color, type, layout, components, and motion, built from style guide v1.0.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#14110F">
+<link rel="preload" href="../assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+  /* Specimen-only helpers. Not part of the system. */
+  .sg-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--gutter); }
+  .sg-swatch { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+  .sg-swatch__chip { height: 96px; border-bottom: 1px solid var(--line); }
+  .sg-swatch__meta { padding: 12px 14px; display: grid; gap: 2px; }
+  .sg-swatch__meta span:last-child { color: var(--ash); font-size: 14px; }
+  .sg-type-row { display: grid; grid-template-columns: 180px 1fr; gap: var(--gutter); align-items: baseline; padding-block: var(--s-4); border-top: 1px solid var(--line); }
+  .sg-type-row:first-child { border-top: 0; }
+  @media (max-width: 767px) { .sg-type-row { grid-template-columns: 1fr; gap: var(--s-1); } }
+  .sg-row { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
+  .sg-grid-demo .grid > div { height: 64px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .sg-space { display: flex; align-items: end; gap: var(--s-3); flex-wrap: wrap; }
+  .sg-space div { background: var(--ember); opacity: .85; }
+  .sg-light { padding: var(--s-6) var(--s-5); border-radius: var(--radius); background: var(--bg); color: var(--text); }
+  @media (max-width: 767px) { .sg-light { padding: var(--s-4) var(--s-3); } }
+  .sg-note { color: var(--ash); font-size: 15px; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="#top">Matt Estes</a>
+    <nav aria-label="Primary">
+      <ul class="nav__links">
+        <li><a href="#color">Color</a></li>
+        <li><a href="#type">Type</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#motion">Motion</a></li>
+        <li><a class="btn btn--primary btn--sm" href="#close">Let's talk</a></li>
+      </ul>
+    </nav>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+</header>
+<div class="menu" id="menu" aria-label="Menu">
+  <ul>
+    <li><a href="#color">Color</a></li>
+    <li><a href="#type">Type</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#motion">Motion</a></li>
+  </ul>
+  <a class="btn btn--primary" href="#close">Let's talk</a>
+</div>
+
+<main id="main">
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="container">
+      <p class="t-label t-muted">Design system v1.0</p>
+      <h1 class="t-hero" id="hero-title" style="margin-top:24px">L&amp;D as we know it is <em>over</em>.</h1>
+      <p class="hero__lede t-body-l">This page is the system every page on the site is built from. Scroll it to see each token and component working.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#components">See the components</a>
+        <a class="btn btn--secondary" href="#color">Start with color</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Color -->
+  <section class="section" id="color" aria-labelledby="color-title">
+    <div class="container">
+      <div class="grid">
+        <div class="col-head"><p class="t-label t-muted">01 / Color</p><h2 id="color-title" style="margin-top:16px">Dark by default. Ember is a <em>signal</em>.</h2></div>
+        <div class="col-side"><p class="t-muted">Ember covers 5% of a screen at most. One ember element per viewport is the target, two is the ceiling.</p></div>
+      </div>
+      <div class="sg-swatches" style="margin-top:64px" data-stagger>
+        <div class="sg-swatch reveal"><div class="sg-swatch__chip" style="background:#14110F"></div><div class="sg-swatch__meta"><span class="t-label">--ink</span><span>#14110F · Page</span></div></div>
+        <div class="sg-swatch reveal"><div class="sg-swatch__chip" style="background:#1E1A17"></div><div class="sg-swatch__meta"><span class="t-label">--surface</span><span>#1E1A17 · Cards</span></div></div>
+        <div class="sg-swatch reveal"><div class="sg-swatch__chip" style="background:#2A2420"></div><div class="sg-swatch__meta"><span class="t-label">--raised</span><span>#2A2420 · Hover</span></div></div>
+        <div class="sg-swatch reveal"><div class="sg-swatch__chip" style="background:#3A322C"></div><div class="sg-swatch__meta"><span class="t-label">--line</span><span>#3A322C · Borders</span></div></div>
+        <div class="sg-swatch reveal"><div class="sg-swatch__chip" style="background:#F2EDE4"></div><div class="sg-swatch__meta"><span class="t-label">--bone</span><span>#F2EDE4 · Text</span></div></div>
+        <div class="sg-swatch reveal"><div class="sg-swatch__chip" style="background:#A89F94"></div><div class="sg-swatch__meta"><span class="t-label">--ash</span><span>#A89F94 · Captions</span></div></div>
+        <div class="sg-swatch reveal"><div class="sg-swatch__chip" style="background:#E8652B"></div><div class="sg-swatch__meta"><span class="t-label">--ember</span><span>#E8652B · Accent</span></div></div>
+        <div class="sg-swatch reveal"><div class="sg-swatch__chip" style="background:#F2A541"></div><div class="sg-swatch__meta"><span class="t-label">--amber</span><span>#F2A541 · Highlight</span></div></div>
+      </div>
+      <p class="sg-note" style="margin-top:32px">Measured contrast: bone on ink 16.1:1. Ash on ink 7.2:1. Ember on ink 5.7:1. Ember on raised 4.6:1. Ink on ember 5.7:1.</p>
+    </div>
+  </section>
+
+  <!-- Type -->
+  <section class="section" id="type" aria-labelledby="type-title">
+    <div class="container">
+      <div class="grid">
+        <div class="col-head"><p class="t-label t-muted">02 / Type</p><h2 id="type-title" style="margin-top:16px">Fraunces speaks. Geist <em>works</em>.</h2></div>
+        <div class="col-side"><p class="t-muted">JetBrains Mono carries labels, dates, and data. Every size below scales fluidly from mobile to desktop.</p></div>
+      </div>
+      <div style="margin-top:64px">
+        <div class="sg-type-row"><span class="t-label t-muted">Hero 120/56</span><span class="t-hero">Nobody needs another course.</span></div>
+        <div class="sg-type-row"><span class="t-label t-muted">H1 72/40</span><span class="t-h1">Completions are <em>vanity</em>.</span></div>
+        <div class="sg-type-row"><span class="t-label t-muted">H2 48/32</span><span class="t-h2">Changed habits are value.</span></div>
+        <div class="sg-type-row"><span class="t-label t-muted">H3 24/20</span><span class="t-h3">What I built</span></div>
+        <div class="sg-type-row"><span class="t-label t-muted">Stat 96/64</span><span class="t-stat t-accent">12,000+</span></div>
+        <div class="sg-type-row"><span class="t-label t-muted">Body L 20/18</span><p class="t-body-l" style="margin:0">I build learning systems that change what people do on Monday. Then I measure whether they did.</p></div>
+        <div class="sg-type-row"><span class="t-label t-muted">Body 17/16</span><p style="margin:0">Paragraphs run one to three sentences. Lines stop at 68 characters, so the eye never has to hunt for the next one.</p></div>
+        <div class="sg-type-row"><span class="t-label t-muted">Label 13/12</span><span class="t-label">Lab · Oct 2026 · AI coaching</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Layout -->
+  <section class="section" id="layout" aria-labelledby="layout-title">
+    <div class="container">
+      <div class="grid">
+        <div class="col-head"><p class="t-label t-muted">03 / Layout</p><h2 id="layout-title" style="margin-top:16px">Space is the <em>luxury</em>.</h2></div>
+        <div class="col-side"><p class="t-muted">12 columns on desktop, 4 on mobile. Headlines sit on 1 to 8, support on 9 to 12. Sections breathe at 160px.</p></div>
+      </div>
+      <div class="sg-grid-demo" style="margin-top:64px" aria-hidden="true">
+        <div class="grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      </div>
+      <div class="sg-space" style="margin-top:48px" aria-hidden="true">
+        <div style="width:8px;height:8px"></div><div style="width:16px;height:16px"></div><div style="width:24px;height:24px"></div><div style="width:32px;height:32px"></div><div style="width:48px;height:48px"></div><div style="width:64px;height:64px"></div><div style="width:96px;height:96px"></div><div style="width:160px;height:160px"></div>
+      </div>
+      <p class="t-label t-muted" style="margin-top:16px">8 · 16 · 24 · 32 · 48 · 64 · 96 · 160</p>
+    </div>
+  </section>
+
+  <!-- Components -->
+  <section class="section" id="components" aria-labelledby="components-title">
+    <div class="container stack-lg">
+      <div class="grid">
+        <div class="col-head"><p class="t-label t-muted">04 / Components</p><h2 id="components-title" style="margin-top:16px">Built once. Used <em>everywhere</em>.</h2></div>
+        <div class="col-side"><p class="t-muted">4px corners, 1px lines, no shadows. Button labels are verbs.</p></div>
+      </div>
+
+      <div>
+        <p class="t-label t-muted">Buttons and links</p>
+        <div class="sg-row" style="margin-top:24px">
+          <a class="btn btn--primary" href="#close">Start a conversation</a>
+          <a class="btn btn--secondary" href="#work">Read the case</a>
+          <a class="link" href="#close">Download CV</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="t-label t-muted">Stat tiles</p>
+        <div class="stats" style="margin-top:24px" data-stagger>
+          <div class="stat reveal"><span class="stat__num t-stat" data-count="12000" data-suffix="+">12,000+</span><span class="stat__label t-label">Learners</span><p class="stat__context">Enabled across AI-powered programs.</p></div>
+          <div class="stat reveal"><span class="stat__num t-stat" data-count="600" data-suffix="+">600+</span><span class="stat__label t-label">Leaders coached</span><p class="stat__context">From first-time managers to executives.</p></div>
+          <div class="stat reveal"><span class="stat__num t-stat" data-count="38" data-suffix="%">38%</span><span class="stat__label t-label">Time to productivity</span><p class="stat__context">Faster ramp for new hires.</p></div>
+        </div>
+        <p class="sg-note" style="margin-top:24px">Note: three ember numbers in one row breaks the two-per-viewport rule. On real pages, only the lead stat gets ember and the rest go bone. Your call.</p>
+      </div>
+
+      <div id="work">
+        <p class="t-label t-muted">Case study cards</p>
+        <div class="cards" style="margin-top:24px">
+          <article class="case">
+            <div class="case__media"><div style="background:linear-gradient(var(--raised),var(--raised))" role="img" aria-label="Placeholder for a 16:10 screen recording"></div></div>
+            <div class="case__body">
+              <span class="case__label t-label">Course production</span>
+              <h3 class="case__title"><a href="#close">80 courses in 12 months</a></h3>
+              <p class="case__outcome">Build time dropped from weeks to hours each.</p>
+            </div>
+          </article>
+          <article class="case">
+            <div class="case__media"><div style="background:linear-gradient(var(--raised),var(--raised))" role="img" aria-label="Placeholder for a 16:10 screen recording"></div></div>
+            <div class="case__body">
+              <span class="case__label t-label">Internal mobility</span>
+              <h3 class="case__title"><a href="#close">40% of roles filled from inside</a></h3>
+              <p class="case__outcome">A skills map that managers actually used.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div>
+        <p class="t-label t-muted">Manifesto cards</p>
+        <div class="manifesto" style="margin-top:24px" data-stagger>
+          <article class="belief reveal"><span class="belief__num t-label">01</span><div class="belief__text"><h3 class="t-h2">Nobody needs another course.</h3><p class="belief__proof">They need the next decision to be easier.</p></div></article>
+          <article class="belief reveal"><span class="belief__num t-label">02</span><div class="belief__text"><h3 class="t-h2">Completions are vanity.</h3><p class="belief__proof">Changed habits are the only number I report.</p></div></article>
+          <article class="belief reveal"><span class="belief__num t-label">03</span><div class="belief__text"><h3 class="t-h2">Ship, then prove it.</h3><p class="belief__proof">A working thing beats a deck every time.</p></div></article>
+        </div>
+      </div>
+
+      <div>
+        <p class="t-label t-muted">Quote</p>
+        <figure class="quote" style="margin-top:24px">
+          <blockquote><p>Placeholder testimonial set in Fraunces italic at H2 size, with no quotation mark graphics.</p></blockquote>
+          <figcaption class="t-label">Name · Title, Company</figcaption>
+        </figure>
+      </div>
+
+      <div>
+        <p class="t-label t-muted">Form</p>
+        <form class="form" style="margin-top:24px" onsubmit="return false">
+          <div class="field"><label class="t-label" for="f-name">Name</label><input id="f-name" name="name" autocomplete="name"></div>
+          <div class="field"><label class="t-label" for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+          <div class="field"><label class="t-label" for="f-org">Organization</label><input id="f-org" name="org" autocomplete="organization"></div>
+          <div class="field"><label class="t-label" for="f-msg">What are you trying to fix?</label><textarea id="f-msg" name="message"></textarea></div>
+          <div><button class="btn btn--primary" type="submit">Start a conversation</button></div>
+        </form>
+        <p class="sg-note" style="margin-top:24px">Field underlines use ash, not line. Line is 1.5:1 against ink and WCAG needs 3:1 for field boundaries.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Motion: signature resolve -->
+  <section class="section" id="motion" aria-labelledby="motion-title">
+    <div class="container">
+      <div class="grid">
+        <div class="col-head"><p class="t-label t-muted">05 / Motion</p><h2 id="motion-title" style="margin-top:16px">Sketch to <em>shipped</em>.</h2></div>
+        <div class="col-side"><p class="t-muted">The signature interaction. Scroll, and the wireframe resolves into the finished screen. Real recordings replace these placeholders.</p></div>
+      </div>
+      <div class="resolve-track" style="margin-top:64px">
+        <div class="resolve-sticky">
+          <div class="resolve" role="img" aria-label="A wireframe of a course builder screen that resolves into the finished interface as the page scrolls.">
+            <div class="resolve__layer">
+              <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#A89F94" stroke-width="2" stroke-dasharray="8 8">
+                <rect x="40" y="40" width="1520" height="72" rx="4"/>
+                <rect x="40" y="144" width="360" height="816" rx="4"/>
+                <line x1="80" y1="200" x2="340" y2="200"/><line x1="80" y1="260" x2="300" y2="260"/><line x1="80" y1="320" x2="320" y2="320"/><line x1="80" y1="380" x2="280" y2="380"/>
+                <rect x="432" y="144" width="1128" height="420" rx="4"/>
+                <line x1="432" y1="144" x2="1560" y2="564"/><line x1="1560" y1="144" x2="432" y2="564"/>
+                <rect x="432" y="596" width="544" height="364" rx="4"/>
+                <rect x="1016" y="596" width="544" height="364" rx="4"/>
+                <line x1="472" y1="660" x2="900" y2="660"/><line x1="472" y1="720" x2="820" y2="720"/>
+                <line x1="1056" y1="660" x2="1480" y2="660"/><line x1="1056" y1="720" x2="1380" y2="720"/>
+              </svg>
+            </div>
+            <div class="resolve__layer resolve__final">
+              <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+                <rect width="1600" height="1000" fill="#1E1A17"/>
+                <rect x="40" y="40" width="1520" height="72" rx="4" fill="#2A2420"/>
+                <circle cx="88" cy="76" r="14" fill="#E8652B"/>
+                <rect x="120" y="68" width="220" height="16" rx="2" fill="#F2EDE4"/>
+                <rect x="40" y="144" width="360" height="816" rx="4" fill="#14110F" stroke="#3A322C"/>
+                <rect x="72" y="184" width="296" height="44" rx="4" fill="#2A2420"/>
+                <rect x="92" y="200" width="180" height="12" rx="2" fill="#F2EDE4"/>
+                <rect x="92" y="260" width="200" height="12" rx="2" fill="#A89F94"/><rect x="92" y="320" width="160" height="12" rx="2" fill="#A89F94"/><rect x="92" y="380" width="190" height="12" rx="2" fill="#A89F94"/>
+                <rect x="432" y="144" width="1128" height="420" rx="4" fill="#2A2420"/>
+                <rect x="480" y="200" width="520" height="40" rx="2" fill="#F2EDE4"/>
+                <rect x="480" y="264" width="680" height="14" rx="2" fill="#A89F94"/><rect x="480" y="296" width="600" height="14" rx="2" fill="#A89F94"/>
+                <rect x="480" y="480" width="180" height="48" rx="4" fill="#E8652B"/>
+                <rect x="432" y="596" width="544" height="364" rx="4" fill="#14110F" stroke="#3A322C"/>
+                <rect x="1016" y="596" width="544" height="364" rx="4" fill="#14110F" stroke="#3A322C"/>
+                <rect x="472" y="648" width="140" height="56" rx="2" fill="#F2A541"/>
+                <rect x="472" y="740" width="420" height="12" rx="2" fill="#A89F94"/>
+                <rect x="1056" y="648" width="380" height="16" rx="2" fill="#F2EDE4"/><rect x="1056" y="690" width="300" height="12" rx="2" fill="#A89F94"/>
+                <rect x="1056" y="760" width="440" height="8" rx="4" fill="#3A322C"/><rect x="1056" y="760" width="300" height="8" rx="4" fill="#F2A541"/>
+              </svg>
+            </div>
+            <div class="resolve__seam" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Light theme -->
+  <section class="section" id="light" aria-labelledby="light-title">
+    <div class="container">
+      <div class="grid">
+        <div class="col-head"><p class="t-label t-muted">06 / Light</p><h2 id="light-title" style="margin-top:16px">Paper for the CV and <em>print</em>.</h2></div>
+      </div>
+      <div class="sg-light" data-theme="light" style="margin-top:64px">
+        <p class="t-label t-muted">Curriculum vitae</p>
+        <h3 class="t-h1" style="margin-top:16px">Matt Estes</h3>
+        <p class="t-body-l" style="margin-top:16px">Capability architect. I build learning systems and prove they changed the work.</p>
+        <div class="sg-row" style="margin-top:32px">
+          <a class="btn btn--primary" href="#close">Download CV</a>
+          <a class="link" href="#close">View on LinkedIn</a>
+        </div>
+      </div>
+      <p class="sg-note" style="margin-top:24px">Ember-deep on paper measures 4.8:1, not 7:1 as the guide states. It passes AA for body text. The guide is silent on light-mode buttons, so I used paper text on ember-deep (4.8:1).</p>
+    </div>
+  </section>
+
+  <section class="section close" id="close" aria-labelledby="close-title">
+    <div class="container">
+      <h2 id="close-title">One page. One <em>next step</em>.</h2>
+      <p class="t-body-l">Every page ends here, with a single action.</p>
+      <a class="btn btn--primary" href="#top">Start a conversation</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <span class="t-label">Matt Estes · Capability Architect</span>
+    <span class="t-label">Design system v1.0</span>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
