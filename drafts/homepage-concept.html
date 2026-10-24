@@ -1,0 +1,402 @@
+<title>Matt Estes Homepage Concept</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Geist:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 12-column editorial grid, content pushed off-center; headline breaks the grid, a ledger replaces cards, proof gets full-bleed weight. */
+:root {
+  --bg: #14110F;
+  --bg-2: #1C1815;
+  --text: #EDE6DA;
+  --muted: #A2978A;
+  --line: rgba(237, 230, 218, .14);
+  --accent: #E8652B;
+  --accent-text: #F07A45;
+  --on-accent: #14110F;
+  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --body: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --max: 1320px;
+  --gut: max(16px, 3vw);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #F7F3EC; --bg-2: #EEE7DB; --text: #1A1613; --muted: #6A5F55;
+    --line: rgba(26, 22, 19, .16); --accent: #E8652B; --accent-text: #B8461A; --on-accent: #14110F;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #F7F3EC; --bg-2: #EEE7DB; --text: #1A1613; --muted: #6A5F55;
+  --line: rgba(26, 22, 19, .16); --accent: #E8652B; --accent-text: #B8461A; --on-accent: #14110F;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font: 400 17px/1.6 var(--body); margin: 0; overflow-x: hidden; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: var(--max); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px), var(--gut)); padding-right: max(16px, env(safe-area-inset-right, 0px), var(--gut)); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; }
+.mono { font: 500 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.muted { color: var(--muted); }
+.accent { color: var(--accent-text); }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; font: 500 15px/1 var(--body); text-decoration: none; border: 1px solid var(--text); transition: background .2s, color .2s; }
+.btn--fill { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+/* Concept banner */
+.note { border-bottom: 1px solid var(--line); }
+.note .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; padding-block: 10px; }
+
+/* Bar */
+.bar .wrap { display: flex; align-items: center; gap: 24px; padding-block: 22px; }
+.bar__brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+.bar__brand b { font: 500 15px/1 var(--body); }
+.bar nav { margin-left: auto; display: flex; gap: 28px; flex-wrap: wrap; }
+.bar nav a { text-decoration: none; font-size: 15px; }
+.bar nav a:hover { color: var(--accent-text); }
+@media (max-width: 760px) { .bar nav a:not(.btn) { display: none; } }
+
+/* Flat monogram: serif M E, one ember cut */
+.mono-mark { display: block; overflow: visible; }
+.mono-mark text { font-family: var(--display); font-weight: 300; fill: var(--text); }
+.mono-mark .cut { stroke: var(--accent); stroke-width: 7; stroke-linecap: butt; }
+.mono-mark .bar-e { fill: var(--accent); }
+
+/* Hero */
+.hero { position: relative; padding-block: clamp(40px, 7vw, 96px) clamp(48px, 7vw, 88px); overflow: hidden; }
+.hero__meta { grid-column: 1 / span 12; display: flex; gap: 32px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: clamp(28px, 5vw, 64px); }
+.hero h1 { grid-column: 1 / span 12; margin: 0; font: 300 clamp(56px, 12.2vw, 188px)/.86 var(--display); letter-spacing: -.035em; font-variation-settings: "opsz" 144; }
+.hero h1 .ln { display: block; overflow: hidden; padding-bottom: .06em; }
+.hero h1 .ln > span { display: inline-block; animation: rise .9s cubic-bezier(.2,.7,.1,1) both; }
+.hero h1 .ln:nth-child(2) > span { animation-delay: .08s; }
+.hero h1 .ln:nth-child(3) > span { animation-delay: .16s; }
+.hero h1 .ln--shift { padding-left: 33%; }
+.hero h1 em { font-style: italic; color: var(--accent-text); }
+.hero__aside { grid-column: 8 / span 5; margin-top: clamp(28px, 4vw, 56px); display: grid; gap: 22px; }
+.hero__aside .claim { font: 400 italic clamp(26px, 2.6vw, 36px)/1.15 var(--display); margin: 0; text-wrap: balance; }
+.hero__aside p { margin: 0; max-width: 46ch; color: var(--muted); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero__rule { grid-column: 1 / span 6; align-self: end; height: 1px; background: var(--accent); transform-origin: left; animation: draw 1.2s .4s cubic-bezier(.2,.7,.1,1) both; margin-bottom: 12px; }
+.hero__ghost { position: absolute; right: -6vw; top: 18%; width: min(62vw, 860px); opacity: .07; pointer-events: none; }
+.hero__ghost .cut, .hero__ghost .bar-e { opacity: 0; }
+@keyframes rise { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes draw { from { transform: scaleX(0); } to { transform: none; } }
+@media (max-width: 860px) {
+  .hero h1 .ln--shift { padding-left: 12%; }
+  .hero__aside { grid-column: 1 / span 12; }
+  .hero__rule { display: none; }
+}
+
+/* Ticker */
+.ticker { border-block: 1px solid var(--line); }
+.ticker .wrap { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ticker__item { padding: 22px 24px 22px 0; display: grid; gap: 6px; }
+.ticker__item + .ticker__item { border-left: 1px solid var(--line); padding-left: 24px; }
+.ticker__num { font: 300 clamp(36px, 4vw, 56px)/1 var(--display); font-variant-numeric: tabular-nums; }
+.ticker__src { grid-column: 1 / -1; padding-block: 10px 14px; border-top: 1px solid var(--line); }
+@media (max-width: 700px) {
+  .ticker .wrap { grid-template-columns: 1fr; }
+  .ticker__item + .ticker__item { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+}
+
+/* Sections */
+section.block { padding-block: clamp(72px, 10vw, 140px); }
+.kicker { grid-column: 1 / span 3; padding-top: 10px; }
+.head { grid-column: 4 / span 9; margin: 0 0 clamp(36px, 5vw, 64px); font: 300 clamp(40px, 5.6vw, 84px)/.98 var(--display); letter-spacing: -.025em; text-wrap: balance; }
+.head em { font-style: italic; color: var(--accent-text); }
+@media (max-width: 860px) { .kicker, .head { grid-column: 1 / span 12; } .kicker { margin-bottom: 18px; } }
+
+/* Ledger: publisher vs engine */
+.ledger { grid-column: 4 / span 9; border-top: 1px solid var(--text); }
+.ledger__row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr) minmax(0, 1.6fr); gap: 24px; padding-block: 18px; border-bottom: 1px solid var(--line); align-items: baseline; }
+.ledger__row--head { padding-block: 14px; }
+.ledger__row .pub { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--accent); text-decoration-thickness: 1px; }
+.ledger__row .eng { font: 400 clamp(18px, 1.6vw, 22px)/1.3 var(--display); }
+.ledger__row--head .pub { text-decoration: none; }
+.ledger__cta { grid-column: 4 / span 9; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 36px; }
+.ledger__cta p { margin: 0; font: italic 300 clamp(22px, 2.2vw, 30px)/1.2 var(--display); }
+@media (max-width: 860px) { .ledger, .ledger__cta { grid-column: 1 / span 12; } }
+@media (max-width: 560px) {
+  .ledger__row { grid-template-columns: 1fr 1fr; }
+  .ledger__row > :first-child { grid-column: 1 / -1; }
+}
+
+/* Proof: featured cases */
+.case { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; row-gap: 28px; padding-block: clamp(40px, 6vw, 80px); border-top: 1px solid var(--line); align-items: start; }
+.case__num { grid-column: 1 / span 7; font: 300 clamp(96px, 17vw, 260px)/.8 var(--display); letter-spacing: -.05em; color: var(--accent-text); font-variant-numeric: tabular-nums; margin: 0; }
+.case__num small { display: block; font: 500 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 18px; }
+.case__body { grid-column: 9 / span 4; display: grid; gap: 18px; }
+.case__body h3 { margin: 0; font: 400 clamp(26px, 2.4vw, 34px)/1.1 var(--display); }
+.case__body dl { margin: 0; display: grid; gap: 14px; }
+.case__body dt { margin-bottom: 2px; }
+.case__body dd { margin: 0; color: var(--muted); }
+.case__body a { font: 500 15px/1 var(--body); text-underline-offset: 4px; text-decoration-color: var(--accent); }
+.case__screen { grid-column: 1 / span 8; }
+.case--flip .case__num { grid-column: 6 / span 7; text-align: right; order: 2; }
+.case--flip .case__body { grid-column: 1 / span 4; grid-row: 1; order: 1; }
+.case--flip .case__screen { grid-column: 5 / span 8; order: 3; }
+@media (max-width: 860px) {
+  .case__num, .case__body, .case__screen, .case--flip .case__num, .case--flip .case__body, .case--flip .case__screen { grid-column: 1 / span 12; grid-row: auto; text-align: left; order: 0; }
+}
+
+/* Interface plates: placeholders for real screen captures */
+.plate { aspect-ratio: 16 / 9; max-width: 100%; border: 1px solid var(--line); background: var(--bg-2); display: grid; grid-template-rows: 30px 1fr; }
+.plate__chrome { display: flex; align-items: center; gap: 6px; padding-inline: 12px; border-bottom: 1px solid var(--line); }
+.plate__chrome i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.plate__chrome span { margin-left: auto; }
+.plate__body { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; padding: 18px; min-height: 0; }
+.plate__col { display: grid; align-content: start; gap: 9px; }
+.plate__col b { display: block; height: 8px; background: var(--line); }
+.plate__col b.on { background: var(--accent); width: 60%; }
+.plate__col b.w7 { width: 70%; } .plate__col b.w5 { width: 50%; } .plate__col b.w9 { width: 90%; }
+.plate__canvas { border: 1px dashed var(--line); display: grid; place-items: center; text-align: center; padding: 12px; }
+.plate__canvas .mono { max-width: 28ch; }
+
+/* Lab */
+.lab { grid-column: 4 / span 9; border-top: 1px solid var(--text); }
+.lab__row { display: grid; grid-template-columns: 40px minmax(0, 1.2fr) minmax(0, 1.6fr) minmax(0, 1fr); gap: 20px; padding-block: 22px; border-bottom: 1px solid var(--line); align-items: baseline; transition: padding .25s; }
+.lab__row h3 { margin: 0; font: 400 clamp(22px, 2vw, 28px)/1.15 var(--display); }
+.lab__row p { margin: 0; color: var(--muted); }
+.lab__row:hover { padding-left: 12px; }
+.lab__row:hover h3 { color: var(--accent-text); }
+@media (max-width: 860px) { .lab { grid-column: 1 / span 12; } }
+@media (max-width: 640px) { .lab__row { grid-template-columns: 32px minmax(0, 1fr); } .lab__row > p, .lab__row > .mono:last-child { grid-column: 2; } }
+
+/* Doors */
+.doors { grid-column: 1 / span 12; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; border-top: 1px solid var(--text); }
+.door { padding: 28px 24px 32px 0; display: grid; gap: 14px; align-content: start; text-decoration: none; min-width: 0; }
+.door + .door { padding-left: 24px; border-left: 1px solid var(--line); }
+.door h3 { margin: 0; font: 300 clamp(26px, 2.6vw, 38px)/1.05 var(--display); text-wrap: balance; }
+.door p { margin: 0; color: var(--muted); }
+.door .go { margin-top: 8px; font: 500 15px/1 var(--body); }
+.door .go::after { content: " \2192"; color: var(--accent-text); display: inline-block; transition: transform .2s; }
+.door:hover h3 { color: var(--accent-text); }
+.door:hover .go::after { transform: translateX(6px); }
+.door--lead { background: var(--accent); color: var(--on-accent); padding-left: 24px; }
+.door--lead p { color: var(--on-accent); opacity: .8; }
+.door--lead .go::after { color: var(--on-accent); }
+.door--lead:hover h3 { color: var(--on-accent); }
+@media (max-width: 960px) { .doors { grid-template-columns: 1fr 1fr; } .door:nth-child(3) { border-left: 0; padding-left: 0; } .door--lead + .door { border-left: 0; } }
+@media (max-width: 560px) { .doors { grid-template-columns: 1fr; } .door, .door + .door { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); } .door--lead { padding-left: 20px; } }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; padding-block: 28px; }
+footer .wrap > :last-child { margin-left: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="me" viewBox="0 0 320 200">
+    <text x="0" y="168" font-size="196" letter-spacing="-14">ME</text>
+    <rect class="bar-e" x="214" y="92" width="62" height="13"/>
+    <line class="cut" x1="88" y1="196" x2="172" y2="8"/>
+  </symbol>
+</svg>
+
+<div class="note"><div class="wrap mono muted"><span>Concept · not live</span><span>Bolder direction for the homepage</span><span>Plates mark where real screen captures go</span></div></div>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="bar__brand" href="#top" aria-label="Matt Estes, home">
+      <svg class="mono-mark" width="52" height="33" aria-hidden="true"><use href="#me"/></svg>
+      <b>Matt Estes</b>
+    </a>
+    <nav aria-label="Primary">
+      <a href="#pov">Point of View</a>
+      <a href="#work">Work</a>
+      <a href="#lab">Lab</a>
+      <a class="btn btn--fill" href="#doors">Let's talk</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="h">
+    <svg class="mono-mark hero__ghost" viewBox="0 0 320 200" aria-hidden="true"><use href="#me"/></svg>
+    <div class="wrap grid">
+      <div class="hero__meta mono muted">
+        <span>Capability Architect</span>
+        <span>Point of view · 001</span>
+        <span>20+ years</span>
+      </div>
+      <h1 id="h">
+        <span class="ln"><span>L&amp;D as we</span></span>
+        <span class="ln"><span>know it</span></span>
+        <span class="ln ln--shift"><span>is <em>over.</em></span></span>
+      </h1>
+      <div class="hero__rule" aria-hidden="true"></div>
+      <div class="hero__aside">
+        <p class="claim">I build what replaces it.</p>
+        <p>Matt Estes. 20+ years building leaders, talent systems, and learning that changes how work gets done.</p>
+        <div class="hero__actions">
+          <a class="btn btn--fill" href="#doors">Let's talk</a>
+          <a class="btn" href="#pov">Read my point of view</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-label="Why it matters">
+    <div class="wrap">
+      <div class="ticker__item"><span class="ticker__num">22%</span><span class="mono muted">of jobs disrupted by 2030</span></div>
+      <div class="ticker__item"><span class="ticker__num">39%</span><span class="mono muted">of core skills changing</span></div>
+      <div class="ticker__item"><span class="ticker__num">4%</span><span class="mono muted">of HR teams plan past 2 years</span></div>
+      <span class="ticker__src mono muted">Sources: World Economic Forum, Future of Jobs Report 2025. SHRM.</span>
+    </div>
+  </div>
+
+  <section class="block" id="pov" aria-labelledby="pov-h">
+    <div class="wrap grid">
+      <span class="kicker mono muted">The diagnosis</span>
+      <h2 class="head" id="pov-h">Most learning functions are <em>publishers</em>. The ones that last will be engines.</h2>
+      <div class="ledger" role="table" aria-label="Publisher compared with capability engine">
+        <div class="ledger__row ledger__row--head mono muted" role="row"><span role="columnheader"></span><span class="pub" role="columnheader">Publisher</span><span role="columnheader" class="accent">Capability engine</span></div>
+        <div class="ledger__row" role="row"><span class="mono muted" role="rowheader">Starts with</span><span class="pub" role="cell">A course request</span><span class="eng" role="cell">The one task that's going wrong</span></div>
+        <div class="ledger__row" role="row"><span class="mono muted" role="rowheader">Ships</span><span class="pub" role="cell">Courses and catalogs</span><span class="eng" role="cell">Tools, diagnostics, practice</span></div>
+        <div class="ledger__row" role="row"><span class="mono muted" role="rowheader">Build time</span><span class="pub" role="cell">Months</span><span class="eng" role="cell">2 to 3 hours for a course</span></div>
+        <div class="ledger__row" role="row"><span class="mono muted" role="rowheader">Measures</span><span class="pub" role="cell">Completions</span><span class="eng" role="cell">Behavior, against a comparison group</span></div>
+        <div class="ledger__row" role="row"><span class="mono muted" role="rowheader">Talent</span><span class="pub" role="cell">Leaves to grow</span><span class="eng" role="cell">Moves inside</span></div>
+      </div>
+      <div class="ledger__cta">
+        <p>Which one is yours?</p>
+        <a class="btn" href="#doors">Take the 6-question diagnostic</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work" aria-labelledby="work-h" style="padding-bottom:0">
+    <div class="wrap grid">
+      <span class="kicker mono muted">The proof</span>
+      <h2 class="head" id="work-h">3 problems. What I built. What <em>changed</em>.</h2>
+    </div>
+    <div class="wrap">
+      <article class="case" aria-labelledby="c1">
+        <p class="case__num">~80<small>Interactive courses in 12 months</small></p>
+        <div class="case__body">
+          <span class="mono muted">01 · Learning design · AI</span>
+          <h3 id="c1">AI-Experiential Learning</h3>
+          <dl>
+            <div><dt class="mono">Problem</dt><dd>Custom learning took months. By launch, the need had moved.</dd></div>
+            <div><dt class="mono">Built</dt><dd>A production model that turns a 10 to 45 minute course into 2 to 3 hours of working time.</dd></div>
+          </dl>
+          <a href="#work">Read the case</a>
+        </div>
+        <div class="case__screen">
+          <div class="plate" aria-hidden="true">
+            <div class="plate__chrome"><i></i><i></i><i></i><span class="mono muted">axl / course 47</span></div>
+            <div class="plate__body">
+              <div class="plate__col"><b class="on"></b><b class="w9"></b><b class="w7"></b><b class="w5"></b><b class="w9"></b><b class="w7"></b></div>
+              <div class="plate__canvas"><span class="mono muted">Screen capture: course site, sketch to shipped</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case case--flip" aria-labelledby="c2">
+        <p class="case__num">116<small>Senior leaders, capstones in operations</small></p>
+        <div class="case__body">
+          <span class="mono muted">02 · Leadership development</span>
+          <h3 id="c2">Leadership Redefined</h3>
+          <dl>
+            <div><dt class="mono">Problem</dt><dd>Senior programs produce certificates. Organizations need decisions.</dd></div>
+            <div><dt class="mono">Changed</dt><dd>3 cohorts. 94% satisfied. 98 still at the university. Capstones running today.</dd></div>
+          </dl>
+          <a href="#work">Read the case</a>
+        </div>
+        <div class="case__screen">
+          <div class="plate" aria-hidden="true">
+            <div class="plate__chrome"><i></i><i></i><i></i><span class="mono muted">capstone / pitch day</span></div>
+            <div class="plate__body">
+              <div class="plate__col"><b class="w7"></b><b class="on"></b><b class="w5"></b><b class="w9"></b></div>
+              <div class="plate__canvas"><span class="mono muted">Photo or capture: capstone pitch to leadership</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" aria-labelledby="c3">
+        <p class="case__num">1,031<small>Internal moves in 12 months</small></p>
+        <div class="case__body">
+          <span class="mono muted">03 · Talent systems</span>
+          <h3 id="c3">Talent Marketplace</h3>
+          <dl>
+            <div><dt class="mono">Problem</dt><dd>Staff couldn't see where they could grow, so the best ones grew somewhere else.</dd></div>
+            <div><dt class="mono">Changed</dt><dd>90% of staff engaged with skills profiles, growth plans, and open roles they could find.</dd></div>
+          </dl>
+          <a href="#work">Read the case</a>
+        </div>
+        <div class="case__screen">
+          <div class="plate" aria-hidden="true">
+            <div class="plate__chrome"><i></i><i></i><i></i><span class="mono muted">marketplace / my skills</span></div>
+            <div class="plate__body">
+              <div class="plate__col"><b class="w9"></b><b class="w5"></b><b class="on"></b><b class="w7"></b><b class="w9"></b></div>
+              <div class="plate__canvas"><span class="mono muted">Screen capture: skills profile to open role</span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="lab" aria-labelledby="lab-h">
+    <div class="wrap grid">
+      <span class="kicker mono muted">The lab</span>
+      <h2 class="head" id="lab-h">Built, not <em>commissioned</em>.</h2>
+      <div class="lab">
+        <div class="lab__row"><span class="mono muted">A</span><h3>AXL Course Sites</h3><p>Interactive learning sites built in hours.</p><span class="mono muted">AI coding tools</span></div>
+        <div class="lab__row"><span class="mono muted">B</span><h3>AI Literacy Assessment</h3><p>Scores you instantly. Sends your learning path.</p><span class="mono muted">Forms · Power Automate</span></div>
+        <div class="lab__row"><span class="mono muted">C</span><h3>Employee Relations Simulator</h3><p>Practice discipline conversations with real legal stakes.</p><span class="mono muted">React</span></div>
+        <div class="lab__row"><span class="mono muted">D</span><h3>Talent Review Tool</h3><p>9-box calibration tied to critical roles and skills.</p><span class="mono muted">Excel</span></div>
+        <div class="lab__row"><span class="mono muted">E</span><h3>Course Intake Pipeline</h3><p>A request goes in. A built course comes out.</p><span class="mono muted">Monday.com · AI</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="doors" aria-labelledby="doors-h" style="padding-top:0">
+    <div class="wrap grid">
+      <span class="kicker mono muted">The invitation</span>
+      <h2 class="head" id="doors-h">Pick your <em>door</em>.</h2>
+      <div class="doors">
+        <a class="door door--lead" href="#doors">
+          <span class="mono">Hiring</span>
+          <h3>You need a leader for the function.</h3>
+          <p>I'm open to the right full-time role.</p>
+          <span class="go">See the CV</span>
+        </a>
+        <a class="door" href="#doors">
+          <span class="mono muted">Advisory · Fractional</span>
+          <h3>Your function has to change.</h3>
+          <p>A diagnosis and a roadmap, or I run the change for a set term.</p>
+          <span class="go">Start here</span>
+        </a>
+        <a class="door" href="#doors">
+          <span class="mono muted">Build sprint</span>
+          <h3>You need something built.</h3>
+          <p>A simulator, assessment, or course in weeks.</p>
+          <span class="go">Start here</span>
+        </a>
+        <a class="door" href="#doors">
+          <span class="mono muted">Keynotes</span>
+          <h3>You need a room to move.</h3>
+          <p>The end of L&amp;D as we know it. AI and the manager.</p>
+          <span class="go">Start here</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap mono muted">
+    <svg class="mono-mark" width="52" height="33" aria-hidden="true"><use href="#me"/></svg>
+    <span>Matt Estes · Capability Architect</span>
+    <span>hello@mattestes.com</span>
+  </div>
+</footer>
