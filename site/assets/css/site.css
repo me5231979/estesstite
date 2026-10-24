@@ -1556,3 +1556,26 @@ html:not(.review) .roots__text { grid-column: 3 / span 8; }
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
 }
+
+/* ---------- Shift bylines: the fact, then my answer ---------- */
+.shift__body { min-width: 0; }
+.shift__by {
+  margin: var(--s-2) 0 0;
+  padding-left: var(--s-2);
+  border-left: 1px solid var(--line);
+  max-width: 52ch;
+  color: var(--text-2);
+  font-size: var(--fs-body-l);
+  line-height: 1.5;
+}
+.shift__by .t-label { display: block; margin-bottom: 4px; color: var(--text); }
+.shift__by .link { white-space: nowrap; }
+.js .shift__row .shift__by { opacity: 0; transform: translateY(8px); transition: opacity 600ms var(--ease) 500ms, transform 600ms var(--ease) 500ms, border-color 600ms var(--ease); }
+.js .shift__row.is-in .shift__by { opacity: 1; transform: none; }
+.shift__row:hover .shift__by { border-left-color: var(--ember); }
+@media (prefers-reduced-motion: reduce) { .js .shift__row .shift__by { transform: none; } }
+@media (min-width: 768px) {
+  .shift__row { align-items: start; }
+  /* Sit the statement on the number's baseline. */
+  .shift__body { padding-top: calc((var(--fs-stat) - var(--fs-h2)) * 0.74); }
+}
