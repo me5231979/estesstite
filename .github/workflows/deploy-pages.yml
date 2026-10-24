@@ -6,7 +6,7 @@ name: Deploy site to GitHub Pages
 on:
   push:
     branches: [claude/tender-meitner-hrd0rx, main, master]
-    paths: [site/**, learn/**, survey/**, .github/workflows/deploy-pages.yml]
+    paths: [site/**, learn/**, survey/**, scripts/build.py, .github/workflows/deploy-pages.yml]
   workflow_dispatch:
 
 permissions:
@@ -23,12 +23,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Stage site files
         run: |
-          mkdir /tmp/dist
-          # The new site lives in site/ and publishes at the root.
-          cp -r site/. /tmp/dist/
-          rm -rf /tmp/dist/styleguide
-          [ -d learn ] && cp -r learn /tmp/dist/ || true
-          [ -d survey ] && cp -r survey /tmp/dist/ || true
+          # Copies site/ (plus learn/ and survey/) and strips review-only notes.
+          python3 scripts/build.py /tmp/dist
           touch /tmp/dist/.nojekyll
       - name: Push to gh-pages
         run: |
