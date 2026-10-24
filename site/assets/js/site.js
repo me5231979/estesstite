@@ -44,6 +44,23 @@
     });
   }
 
+  // Flip cards: a button on each face turns the card. The hidden face is inert,
+  // and focus moves to the button on the face that turns toward the reader.
+  document.querySelectorAll('.flip').forEach(function (card) {
+    var front = card.querySelector('.flip__front');
+    var back = card.querySelector('.flip__back');
+    card.querySelectorAll('.flip__btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var flipped = !card.classList.contains('is-flipped');
+        card.classList.toggle('is-flipped', flipped);
+        front.inert = flipped;
+        back.inert = !flipped;
+        card.querySelectorAll('.flip__btn').forEach(function (b) { b.setAttribute('aria-expanded', String(flipped)); });
+        (flipped ? back : front).querySelector('.flip__btn').focus({ preventScroll: true });
+      });
+    });
+  });
+
   // Reveals: fade up 24px, 80ms stagger between siblings in a [data-stagger] group.
   document.querySelectorAll('[data-stagger]').forEach(function (group) {
     Array.prototype.forEach.call(group.querySelectorAll('.reveal'), function (el, i) {

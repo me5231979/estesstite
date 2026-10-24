@@ -1409,3 +1409,77 @@ html:not(.review) .roots__text { grid-column: 3 / span 8; }
   .belief, .belief h3, .belief__proof { transition: none; transform: none !important; }
   .sound-toggle[aria-pressed="true"] .sound-toggle__bars i { animation: none; height: 8px; }
 }
+
+/* ---------- Flip cards: the belief on the front, the fix on the back ---------- */
+.belief.flip {
+  display: grid;
+  padding: 0;
+  min-height: 0;
+  background: transparent;
+  border: 0;
+  perspective: 1400px;
+}
+.belief.flip:hover { background: transparent; }
+.flip__face {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 440px;
+  padding: var(--s-4);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 800ms var(--ease), background-color 300ms var(--ease), border-color 300ms var(--ease);
+}
+.flip__front { transform: rotateY(0deg); }
+.flip__back {
+  transform: rotateY(180deg);
+  /* The fix is written on paper: the back inverts to the light palette. */
+  --text: var(--ink-text);
+  --text-2: #5C534B;
+  --accent: var(--ember-deep);
+  --accent-text: var(--ember-deep);
+  --line: #D9D0C3;
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--text);
+}
+.flip.is-flipped .flip__front { transform: rotateY(-180deg); }
+.flip.is-flipped .flip__back { transform: rotateY(0deg); }
+.belief.flip:hover .flip__front { background: var(--bg-hover); border-color: var(--text-2); }
+.flip__answer {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 400;
+  line-height: 1.35;
+}
+.flip__back .belief__text { display: grid; gap: var(--s-3); justify-items: start; }
+.flip__back .belief__num { color: var(--text-2); }
+.flip__btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: var(--s-3);
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: color var(--t-micro) var(--ease);
+}
+.flip__btn span { display: inline-block; transition: transform 400ms var(--ease); }
+.flip__btn:hover { color: var(--text); }
+.flip__front .flip__btn:hover span { transform: translateX(4px); }
+.flip__back .flip__btn:hover span { transform: translateX(-4px); }
+.flip__front .flip__btn:hover { color: var(--ember); }
+@media (prefers-reduced-motion: reduce) {
+  .flip__face { transition: opacity 300ms linear; transform: none !important; }
+  .flip__back { opacity: 0; }
+  .flip.is-flipped .flip__front { opacity: 0; }
+  .flip.is-flipped .flip__back { opacity: 1; }
+}
