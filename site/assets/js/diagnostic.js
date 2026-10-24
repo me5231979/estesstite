@@ -1,97 +1,74 @@
 // Capability Gap Diagnostic: six questions, one readout.
-// Each answer scores 0-2. Total 0-12 maps to Publisher, Program Shop, or
+// Each answer scores 1-3. Total 6-18 maps to Publisher, Program Shop, or
 // Capability Engine. The three lowest-scoring dimensions pick the moves.
 (function () {
   var QUESTIONS = [
     {
-      id: 'ai',
-      label: 'AI readiness',
-      q: 'How is your organization handling the work AI changes?',
-      options: [
-        'Mostly tool training, if anything.',
-        'Pilots and guidance, team by team.',
-        'Redesigning roles and workflows around it, with a plan.'
-      ],
-      move: ['Treat AI as job redesign.', 'Pick 1 role. Map which tasks AI changes, then train people on the new workflow, not the tool.'],
-      sharpen: ['Redesign the manager job next.', 'Managers decide whether new workflows stick. Give them a standard for leading AI-assisted teams.']
-    },
-    {
-      id: 'managers',
-      label: 'Manager quality',
-      q: 'How do you know your managers are good at managing?',
-      options: [
-        'We don\'t, beyond engagement scores and anecdotes.',
-        'We run manager training and track who attended.',
-        'A written standard, with behavior measured against it.'
-      ],
-      move: ['Write the manager standard.', 'Define 5 to 8 observable behaviors. Pulse employees on them twice a year.'],
-      sharpen: ['Run a comparison group.', 'Trial your next manager program against a group that didn\'t get it. Report the difference.']
-    },
-    {
-      id: 'mobility',
-      label: 'Internal mobility',
-      q: 'When a role opens, where does the hire usually come from?',
-      options: [
-        'Outside, almost always.',
-        'Inside sometimes, mostly through who knows whom.',
-        'Inside by design, through visible skills and open roles.'
-      ],
-      move: ['Make internal moves visible.', 'Publish skills profiles and post roles inside first. Count moves every month.'],
-      sharpen: ['Tie mobility to critical roles.', 'Name the roles you can\'t afford to lose. Build a ready-now bench for each one.']
-    },
-    {
-      id: 'measure',
-      label: 'Measurement',
-      q: 'What does your learning team report to leadership?',
-      options: [
-        'Completions, hours, and satisfaction.',
-        'Business metrics for a few flagship programs.',
-        'Behavior change and business results, as standard.'
-      ],
-      move: ['Report behavior, not attendance.', 'For your next program, name the behavior that should change. Measure it at 90 days.'],
-      sharpen: ['Retire what doesn\'t move.', 'Cut the bottom 20% of programs by measured impact. Reinvest the hours.']
+      id: 'decide',
+      label: 'What gets built',
+      q: 'How does your team decide what to build?',
+      options: ['Someone requests it.', 'We review annual needs.', 'We track where work is changing.'],
+      move: ['Track where the work is changing.', 'Pick 3 roles. Ask their leaders what changed this quarter. Build from that list, not the request queue.'],
+      sharpen: ['Retire what the work no longer needs.', 'Each quarter, cut the content tied to work that has moved on. Reinvest the hours.']
     },
     {
       id: 'speed',
       label: 'Speed to build',
-      q: 'How long does it take to build a new 30 minute learning experience?',
-      options: [
-        '3 months or more.',
-        'About a month.',
-        'A week or less.'
-      ],
-      move: ['Set a speed standard.', 'Cap build time for a 30 minute experience at 2 weeks. Use AI build tools to hit it.'],
-      sharpen: ['Build in the flow of work.', 'Ship smaller pieces where the work happens, then update them every quarter.']
+      q: 'How long does a new course take to build?',
+      options: ['3+ months.', '1 to 3 months.', 'Under 2 weeks.'],
+      move: ['Set a speed standard.', 'Cap a 30 minute build at 2 weeks. Use AI build tools to hit it.'],
+      sharpen: ['Build in the flow of work.', 'Ship smaller pieces where the work happens. Update them every quarter.']
     },
     {
-      id: 'horizon',
-      label: 'Planning horizon',
-      q: 'How far ahead does your learning strategy plan?',
-      options: [
-        'This year\'s requests.',
-        '1 to 2 years.',
-        '3 years or more, tied to workforce plans.'
-      ],
-      move: ['Plan against the skill shift.', 'Tie a 3 year capability plan to workforce data. Revisit it every quarter.'],
-      sharpen: ['Fund capability like a product.', 'Give each critical capability an owner, a roadmap, and a budget line.']
+      id: 'report',
+      label: 'Measurement',
+      q: 'How do you report success?',
+      options: ['Completions.', 'Satisfaction scores.', 'Behavior or business change.'],
+      move: ['Report one behavior.', 'For your next program, name the behavior that should change. Measure it at 90 days.'],
+      sharpen: ['Run a comparison group.', 'Trial your next program against a group that didn\'t get it. Report the difference.']
+    },
+    {
+      id: 'managers',
+      label: 'Managers',
+      q: 'How do managers fit in?',
+      options: ['They approve time off for training.', 'They\'re invited to programs.', 'They\'re held to a defined standard.'],
+      move: ['Write the manager standard.', 'Define 5 to 8 observable behaviors. Pulse employees on them twice a year.'],
+      sharpen: ['Connect the standard to retention.', 'Put pulse results next to turnover by team. Show leaders where it pays.']
+    },
+    {
+      id: 'mobility',
+      label: 'Internal mobility',
+      q: 'How do people find their next role internally?',
+      options: ['They don\'t.', 'Job postings.', 'Skills-based matching and gigs.'],
+      move: ['Make internal moves visible.', 'Publish skills profiles and post roles inside first. Count moves every month.'],
+      sharpen: ['Tie mobility to critical roles.', 'Name the roles you can\'t afford to lose. Build a ready-now bench for each one.']
+    },
+    {
+      id: 'ai',
+      label: 'AI plan',
+      q: 'What\'s your AI plan?',
+      options: ['Tool training.', 'A literacy program.', 'Role-by-role work redesign.'],
+      move: ['Treat AI as job redesign.', 'Pick 1 role. Map which tasks AI changes. Train people on the new workflow, not the tool.'],
+      sharpen: ['Redesign the manager job next.', 'Managers decide whether new workflows stick. Give them a standard for leading AI-assisted teams.']
     }
   ];
 
+  // Scores: 1, 2, or 3 points per answer. 6 to 18 total.
   var TYPES = [
     {
       name: 'Publisher',
-      max: 4,
-      text: 'You produce courses and report activity. Leadership sees effort, not effect. Most learning functions sit here.'
+      max: 10,
+      text: 'You produce content and report activity. That\'s how most functions work, and it\'s why most get cut first. Start by measuring one behavior that matters to the business.'
     },
     {
       name: 'Program Shop',
-      max: 8,
-      text: 'You run good programs and can prove some of them. The gaps sit between programs, where the work is actually changing.'
+      max: 14,
+      text: 'You build good programs. They\'re still programs. The next step is shifting from what people attend to what people can do.'
     },
     {
       name: 'Capability Engine',
-      max: 12,
-      text: 'You diagnose, build, and measure like an operating function. The job now is holding that pace as the work keeps moving.'
+      max: 18,
+      text: 'You\'re ahead of most of the field. The challenge now is speed and scale without losing quality.'
     }
   ];
 
@@ -173,7 +150,7 @@
     }
 
     function renderResult() {
-      var total = answers.reduce(function (a, b) { return a + b; }, 0);
+      var total = answers.reduce(function (a, b) { return a + b + 1; }, 0);
       var typeIndex = TYPES.findIndex(function (t) { return total <= t.max; });
       var type = TYPES[typeIndex];
 
@@ -183,7 +160,7 @@
         .slice(0, 3);
 
       body.innerHTML = '';
-      var heading = el('h3', { tabindex: '-1', html: 'Your function is a <em>' + type.name + '</em>.' });
+      var heading = el('h3', { tabindex: '-1', html: 'The <em>' + type.name + '</em>.' });
       var meter = el('div', { class: 'diag__meter', 'aria-hidden': 'true' },
         TYPES.map(function (t, i) {
           return el('span', { class: i < typeIndex ? 'is-on' : (i === typeIndex ? 'is-here' : '') });
@@ -192,7 +169,7 @@
         TYPES.map(function (t) { return el('span', { text: t.name }); }));
 
       var moves = el('ol', { class: 'diag__moves' }, ranked.map(function (r) {
-        var m = r.s === 2 ? r.q.sharpen : r.q.move;
+        var m = r.s === 2 ? r.q.sharpen : r.q.move; // r.s is the 0-based option
         return el('li', {}, [el('div', {}, [
           el('strong', { text: m[0] }),
           el('p', { text: m[1] })
@@ -209,7 +186,7 @@
       body.appendChild(el('div', { class: 'diag__result' }, [
         el('div', { class: 'diag__progress' }, [
           el('span', { class: 't-label', text: 'Your readout' }),
-          el('span', { class: 't-label', text: 'Score ' + total + ' of 12' })
+          el('span', { class: 't-label', text: 'Score ' + total + ' of 18' })
         ]),
         heading,
         meter,
@@ -218,12 +195,12 @@
         el('p', { class: 't-label t-muted', style: 'margin-top:48px', text: 'Your 3 moves' }),
         moves,
         el('div', { class: 'diag__cta' }, [
-          el('p', { text: 'Want the full read?' }),
+          el('p', { text: 'Want the full read on your function?' }),
           el('a', { class: 'btn btn--primary', href: contactHref, text: 'Let\'s talk' }),
           again
         ])
       ]));
-      live.textContent = 'Readout ready. Your function is a ' + type.name + '.';
+      live.textContent = 'Readout ready. The ' + type.name + '.';
       heading.focus();
     }
 

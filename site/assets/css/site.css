@@ -544,6 +544,7 @@ body.menu-open { overflow: hidden; }
 
 /* ---------- Quote ---------- */
 .quote { margin: 0; }
+.stack-lg > .quote + .quote, .stack-lg > * + * { margin-top: var(--s-5); }
 .quote blockquote {
   margin: 0;
   font-family: var(--font-display);
@@ -912,8 +913,13 @@ html:not(.js) .flow li::after { transform: scaleX(1); }
 .diag__option input:checked + label { border-color: var(--bone); background: var(--bg-hover); }
 .diag__key { font-family: var(--font-mono); font-size: 13px; color: var(--text-2); flex: none; }
 .diag__nav { display: flex; justify-content: space-between; gap: var(--s-2); margin-top: var(--s-5); }
-.diag__nav .btn[disabled] { opacity: 0.4; cursor: not-allowed; }
-.diag__result h3 { font-family: var(--font-display); font-size: var(--fs-h1); font-weight: 400; line-height: 1.0; margin-top: var(--s-2); }
+.btn[disabled], .btn[disabled]:hover {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--text-2);
+  cursor: not-allowed;
+}
+.diag__result h3 { font-family: var(--font-display); font-size: var(--fs-h1); font-weight: 400; line-height: 1.0; margin-top: var(--s-4); }
 .diag__result h3 em { font-style: italic; }
 .diag__meter { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: var(--s-4); }
 .diag__meter span { height: 4px; background: var(--line); border-radius: 2px; }
