@@ -97,6 +97,8 @@
   --t-reveal: 400ms;
   --t-count: 1200ms;
   --stagger: 80ms;
+
+  color-scheme: dark;
 }
 
 @media (max-width: 767px) {
@@ -107,6 +109,7 @@
 }
 
 [data-theme="light"] {
+  color-scheme: light;
   --bg: var(--paper);
   --bg-card: #EFE9DF;
   --bg-hover: #E7E0D4;
