@@ -6,26 +6,24 @@
     {
       id: 'decide',
       scenario: {
-        title: 'From request queue to work map',
+        title: 'Map the work before you build',
         setup: 'Right now your team builds what people ask for. The work that is actually changing never makes it into the queue.',
         steps: [
           ['Week 1', 'Interview 5 leaders about what changed in their teams\' work this quarter.'],
           ['Week 2', 'Rank the 3 gaps that cost the most, in time, errors, or turnover.'],
           ['Week 4', 'Ship the first fix inside the workflow, not in a catalog.']
         ],
-        proof: 'Every AXL build starts the same way: SME intake on the task that is breaking.'
+        proof: 'Every AXL build starts with an SME intake on the task that is going wrong.'
       },
       label: 'What gets built',
       q: 'How does your team decide what to build?',
       options: ['Someone requests it.', 'We review annual needs.', 'We track where work is changing.'],
-      move: ['Track where the work is changing.', 'Pick 3 roles. Ask their leaders what changed this quarter. Build from that list, not the request queue.'],
-      sharpen: ['Retire what the work no longer needs.', 'Each quarter, cut the content tied to work that has moved on. Reinvest the hours.']
     },
     {
       id: 'speed',
       scenario: {
         title: 'From 3 months to 3 hours',
-        setup: 'By the time a course launches, the need has moved. Speed is your quality problem.',
+        setup: 'By the time a course launches, the need has moved on.',
         steps: [
           ['Week 1', 'Stand up an AI build pipeline with your brand and design standards baked in.'],
           ['Week 2', 'Rebuild one stalled course live, with your SMEs in the room.'],
@@ -36,13 +34,11 @@
       label: 'Speed to build',
       q: 'How long does a new course take to build?',
       options: ['3+ months.', '1 to 3 months.', 'Under 2 weeks.'],
-      move: ['Set a speed standard.', 'Cap a 30 minute build at 2 weeks. Use AI build tools to hit it.'],
-      sharpen: ['Build in the flow of work.', 'Ship smaller pieces where the work happens. Update them every quarter.']
     },
     {
       id: 'report',
       scenario: {
-        title: 'From completions to changed behavior',
+        title: 'Measure one behavior that matters',
         setup: 'Leadership sees activity. Nobody can say whether anyone works differently.',
         steps: [
           ['Week 1', 'Pick one program. Name the one behavior it should change.'],
@@ -54,49 +50,43 @@
       label: 'Measurement',
       q: 'How do you report success?',
       options: ['Completions.', 'Satisfaction scores.', 'Behavior or business change.'],
-      move: ['Report one behavior.', 'For your next program, name the behavior that should change. Measure it at 90 days.'],
-      sharpen: ['Run a comparison group.', 'Trial your next program against a group that didn\'t get it. Report the difference.']
     },
     {
       id: 'managers',
       scenario: {
-        title: 'From manager training to a manager standard',
+        title: 'Write down what a good manager does',
         setup: 'Managers decide whether learning sticks, and nobody has defined what good looks like.',
         steps: [
           ['Week 1', 'Draft 5 to 8 observable behaviors with your senior leaders.'],
           ['Week 4', 'Pulse employees on them. Auto-assign learning on role change.'],
           ['Quarter 1', 'Run a cohort against a comparison group. Show who got better.']
         ],
-        proof: 'I built this as the Manager Standard: one standard across 677 managers and 36 business units.'
+        proof: 'I built this as the Manager Standard. It covers 677 managers across 36 business units.'
       },
       label: 'Managers',
       q: 'How do managers fit in?',
       options: ['They approve time off for training.', 'They\'re invited to programs.', 'They\'re held to a defined standard.'],
-      move: ['Write the manager standard.', 'Define 5 to 8 observable behaviors. Pulse employees on them twice a year.'],
-      sharpen: ['Connect the standard to retention.', 'Put pulse results next to turnover by team. Show leaders where it pays.']
     },
     {
       id: 'mobility',
       scenario: {
-        title: 'From job postings to a talent marketplace',
+        title: 'Make the next role visible',
         setup: 'Your best people can\'t see where they could grow, so they grow somewhere else.',
         steps: [
           ['Month 1', 'Build skills profiles for one job family.'],
           ['Month 2', 'Post roles and short gigs inside first.'],
           ['Month 3', 'Count internal moves every month and report them as retention.']
         ],
-        proof: 'On the talent platform I championed, staff made 1,031 internal moves in 12 months.'
+        proof: 'I led the staff strategy and communications for a talent marketplace built on this idea.'
       },
       label: 'Internal mobility',
       q: 'How do people find their next role internally?',
       options: ['They don\'t.', 'Job postings.', 'Skills-based matching and gigs.'],
-      move: ['Make internal moves visible.', 'Publish skills profiles and post roles inside first. Count moves every month.'],
-      sharpen: ['Tie mobility to critical roles.', 'Name the roles you can\'t afford to lose. Build a ready-now bench for each one.']
     },
     {
       id: 'ai',
       scenario: {
-        title: 'From tool training to job redesign',
+        title: 'Redesign one role, then train',
         setup: 'People learned the tools. The work around them didn\'t change.',
         steps: [
           ['Week 1', 'Run an AI literacy self-assessment that routes each person to the right learning.'],
@@ -108,8 +98,6 @@
       label: 'AI plan',
       q: 'What\'s your AI plan?',
       options: ['Tool training.', 'A literacy program.', 'Role-by-role work redesign.'],
-      move: ['Treat AI as job redesign.', 'Pick 1 role. Map which tasks AI changes. Train people on the new workflow, not the tool.'],
-      sharpen: ['Redesign the manager job next.', 'Managers decide whether new workflows stick. Give them a standard for leading AI-assisted teams.']
     }
   ];
 
@@ -147,7 +135,7 @@
       text: 'You\'re ahead of most of the field. The challenge now is speed and scale without losing quality.',
       fit: {
         name: 'Fractional Capability Leader',
-        why: 'You don\'t need convincing. You need more hands that already think this way. I can run the next transformation with you for a defined term, or take the thinking to your leaders.'
+        why: 'You already work this way. What you need is more people who do. I can run the next transformation with you for a defined term, or take the thinking to your leaders.'
       },
       cta: 'Let\'s compare notes'
     }
@@ -162,7 +150,7 @@
       ['Week 3', 'Codify your standards into the build process itself.'],
       ['Quarter 1', 'Open the model to subject matter experts, with guardrails, not a queue.']
     ],
-    proof: 'That is exactly where I\'m taking AXL next: quality that doesn\'t depend on who\'s at the keyboard.'
+    proof: 'It is where AXL goes next. The goal is quality that doesn\'t depend on who\'s at the keyboard.'
   };
 
   function el(tag, attrs, children) {
