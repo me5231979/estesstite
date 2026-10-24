@@ -80,9 +80,9 @@
       'When I need to move: ' + timeline.value,
       name.value.trim() + ', ' + org.value.trim()
     ].join('\n');
-    window.location.href = 'mailto:hello@mattestes.com?subject=' +
+    window.location.href = 'mailto:mattestes523@gmail.com?subject=' +
       encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     // No form backend yet: the note goes out from the visitor's own email app.
-    status.textContent = 'Got it. Your email app has the note ready. Hit send, and I\'ll reply within 2 business days. If nothing opened, write to hello@mattestes.com.';
+    status.textContent = 'Got it. Your email app has the note ready. Hit send, and I\'ll reply within 2 business days. If nothing opened, write to mattestes523@gmail.com.';
   });
 })();
