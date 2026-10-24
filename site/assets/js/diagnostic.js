@@ -194,6 +194,7 @@
         el('p', { class: 't-body-l', style: 'margin-top:24px', text: type.text }),
         el('p', { class: 't-label t-muted', style: 'margin-top:48px', text: 'Your 3 moves' }),
         moves,
+        el('p', { class: 'diag__note', text: 'A quick self-assessment for general information. It is not professional advice.' }),
         el('div', { class: 'diag__cta' }, [
           el('p', { text: 'Want the full read on your function?' }),
           el('a', { class: 'btn btn--primary', href: contactHref, text: 'Let\'s talk' }),
