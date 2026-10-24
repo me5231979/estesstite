@@ -1124,3 +1124,287 @@ html[data-theme="light"] .menu { background: var(--paper); }
 .footer__nav { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-3); list-style: none; margin: 0; padding: 0; }
 .footer__nav a { display: inline-flex; min-height: 44px; align-items: center; text-decoration: none; }
 .footer__nav a:hover { color: var(--text); }
+
+/* =====================================================================
+   Motion layer (motion.js). Every effect shows how something is built.
+   ===================================================================== */
+
+/* ---------- Live vs review: content gaps show only in review mode ---------- */
+html:not(.review) .todo,
+html:not(.review) [data-pending] { display: none !important; }
+
+/* ---------- Film grain over everything: the workshop, not the showroom ---------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .88 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 900ms steps(6) infinite;
+}
+html[data-theme="light"] body::after { opacity: 0.05; mix-blend-mode: multiply; }
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-3%, 2%); }
+  40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); }
+  80% { transform: translate(3%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ---------- Hero film ---------- */
+.hero__film {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1600ms var(--ease);
+}
+.hero__film.is-playing, .hero__film[poster] { opacity: 0.85; }
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(120% 90% at 50% 45%, rgba(20, 17, 15, 0.35), rgba(20, 17, 15, 0.82) 70%, var(--ink) 100%),
+    linear-gradient(to bottom, rgba(20, 17, 15, 0.55), transparent 30%, transparent 70%, var(--ink));
+  pointer-events: none;
+}
+
+/* ---------- Hero letters: build in, then answer the pointer ---------- */
+.t-hero.is-split .lw { display: inline-block; white-space: nowrap; }
+.t-hero.is-split .l {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.35em);
+  filter: blur(6px);
+  transition:
+    opacity 700ms var(--ease) calc(var(--li) * 28ms + 150ms),
+    transform 900ms var(--ease) calc(var(--li) * 28ms + 150ms),
+    filter 900ms var(--ease) calc(var(--li) * 28ms + 150ms),
+    font-weight 260ms var(--ease);
+}
+.t-hero.is-split.is-in .l { opacity: 1; transform: none; filter: none; }
+
+/* ---------- Kinetic headlines: words rise out of a line mask ---------- */
+.kinetic .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.kinetic .w > span {
+  display: inline-block;
+  transform: translateY(108%);
+  transition: transform 900ms var(--ease) calc(var(--wi) * 45ms);
+}
+.kinetic.is-set .w > span { transform: none; }
+
+/* ---------- Buttons: heat sweeps across, ink stays readable ---------- */
+.btn { position: relative; overflow: hidden; isolation: isolate; }
+.btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--amber);
+  transform: translateX(-101%);
+  transition: transform 420ms var(--ease);
+}
+.btn--primary:hover { background: var(--ember); }
+.btn--primary:hover::before { transform: none; }
+.btn--secondary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg-hover);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 320ms var(--ease);
+}
+.btn--secondary:hover { background: transparent; }
+.btn--secondary:hover::before { transform: none; }
+.btn[disabled]::before { display: none; }
+[data-theme="light"] .btn--primary::before { background: var(--ink-text); }
+[data-theme="light"] .btn--primary:hover { background: var(--ember-deep); }
+
+/* ---------- Nav: a weight wave runs through the word ---------- */
+.wave .lw { display: inline-block; }
+.wave .l { display: inline-block; transition: font-weight 200ms var(--ease) calc(var(--li) * 22ms); }
+.wave:hover .l, .wave[aria-current="page"] .l { font-weight: 600; }
+
+/* ---------- Sound toggle ---------- */
+.sound-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 4px;
+  background: none;
+  border: 0;
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.sound-toggle:hover { color: var(--text); }
+.sound-toggle__bars { display: inline-flex; align-items: end; gap: 2px; height: 12px; }
+.sound-toggle__bars i { display: block; width: 2px; height: 4px; background: currentColor; }
+.sound-toggle[aria-pressed="true"] { color: var(--text); }
+.sound-toggle[aria-pressed="true"] .sound-toggle__bars i { background: var(--ember); animation: eq 900ms var(--ease) infinite alternate; }
+.sound-toggle[aria-pressed="true"] .sound-toggle__bars i:nth-child(2) { animation-delay: -300ms; }
+.sound-toggle[aria-pressed="true"] .sound-toggle__bars i:nth-child(3) { animation-delay: -600ms; }
+@keyframes eq { from { height: 3px; } to { height: 12px; } }
+.sound-toggle--menu { margin-top: var(--s-3); align-self: flex-start; }
+
+/* ---------- Proof tiles: a blueprint draws itself ---------- */
+.tile { overflow: hidden; }
+.tile > *:not(.blueprint):not(.spec) { position: relative; z-index: 1; }
+.blueprint { position: absolute; inset: 0; pointer-events: none; }
+.blueprint > span { position: absolute; display: block; transition: transform 600ms var(--ease) calc(var(--pi) * 60ms), opacity 400ms var(--ease) calc(var(--pi) * 60ms); }
+.bp-c { width: 14px; height: 14px; border: 0 solid var(--ash); opacity: 0; transform: scale(0.4); }
+.bp-tl { left: 8px; top: 8px; border-top-width: 1px; border-left-width: 1px; transform-origin: 0 0; }
+.bp-tr { right: 8px; top: 8px; border-top-width: 1px; border-right-width: 1px; transform-origin: 100% 0; }
+.bp-br { right: 8px; bottom: 8px; border-bottom-width: 1px; border-right-width: 1px; transform-origin: 100% 100%; }
+.bp-bl { left: 8px; bottom: 8px; border-bottom-width: 1px; border-left-width: 1px; transform-origin: 0 100%; }
+.bp-dim { left: 32px; right: 32px; bottom: 14px; height: 9px; border-left: 1px solid var(--ash); border-right: 1px solid var(--ash); opacity: 0; }
+.bp-dim::before { content: ""; position: absolute; left: 0; right: 0; top: 4px; height: 1px; background: var(--ash); transform: scaleX(0); transform-origin: left; transition: transform 700ms var(--ease) 250ms; }
+.bp-h { left: 0; right: 0; top: 46%; border-top: 1px dashed var(--line); transform: scaleX(0); transform-origin: left; }
+.bp-v { top: 0; bottom: 0; left: 30%; border-left: 1px dashed var(--line); transform: scaleY(0); transform-origin: top; }
+.tile:hover .bp-c, .tile:focus-within .bp-c { opacity: 1; transform: none; }
+.tile:hover .bp-dim, .tile:focus-within .bp-dim { opacity: 1; }
+.tile:hover .bp-dim::before, .tile:focus-within .bp-dim::before { transform: none; }
+.tile:hover .bp-h, .tile:focus-within .bp-h, .tile:hover .bp-v, .tile:focus-within .bp-v { transform: none; }
+.tile .t-stat { transition: font-weight 400ms var(--ease), letter-spacing 400ms var(--ease); }
+.tile:hover .t-stat { font-weight: 500; letter-spacing: -0.035em; }
+.tile a { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; }
+.tile a::before { content: "→"; order: 2; font-family: var(--font-mono); transform: translateX(-6px); opacity: 0; transition: transform 300ms var(--ease), opacity 300ms var(--ease); }
+.tile:hover a::before { transform: none; opacity: 1; color: var(--ember); }
+.spec {
+  position: absolute !important;
+  right: var(--s-3);
+  top: var(--s-3);
+  color: var(--text-2);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 300ms var(--ease) 200ms, transform 300ms var(--ease) 200ms;
+}
+.tile:hover .spec { opacity: 1; transform: none; }
+
+/* ---------- Belief cards: the statement gains weight, a rule draws ---------- */
+.belief { position: relative; transition: border-color 300ms var(--ease), opacity 300ms var(--ease), background-color 300ms var(--ease); }
+.belief::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  height: 2px;
+  width: calc(100% + 2px);
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 600ms var(--ease);
+}
+.belief h3 { transition: font-weight 500ms var(--ease); }
+.belief__proof { transition: color 300ms var(--ease), transform 500ms var(--ease); }
+.belief:hover { background: var(--bg-hover); border-color: var(--text-2); }
+.belief:hover::before { transform: none; }
+.belief:hover h3 { font-weight: 600; }
+.belief:hover .belief__proof { color: var(--text); transform: translateY(-4px); }
+@media (hover: hover) {
+  .strip:hover .belief:not(:hover), .manifesto:hover .belief:not(:hover) { opacity: 0.45; }
+}
+
+/* ---------- Work index rows ---------- */
+.index-list a { position: relative; }
+.index-list__title { transition: font-variation-settings 300ms var(--ease); }
+.index-list a::after {
+  content: "→";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  translate: 0 -50%;
+  font-family: var(--font-mono);
+  color: var(--ember);
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 300ms var(--ease), transform 300ms var(--ease);
+}
+.index-list a:hover .index-list__title { font-style: italic; }
+.index-list a:hover .index-list__num { opacity: 0; }
+.index-list__num { transition: opacity 200ms var(--ease); }
+.index-list a:hover::after { opacity: 1; transform: none; }
+
+/* ---------- Flow: the verb you point at becomes the active step ---------- */
+.flow li { cursor: default; }
+.flow__verb { transition: font-weight 400ms var(--ease); }
+.flow li:hover .flow__verb { font-style: italic; font-weight: 600; }
+.flow li:hover::after { background: var(--ember); }
+
+/* ---------- Mock screens: wireframe draws, then the build wipes across ---------- */
+.case__media, .frame { position: relative; }
+.mock { position: absolute; inset: 0; overflow: hidden; background: var(--ink); }
+.mock svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mock__wire rect { stroke-dashoffset: 1000; transition: stroke-dashoffset 1400ms var(--ease); }
+.mock.is-drawn .mock__wire rect { stroke-dashoffset: 0; }
+.mock__built { clip-path: inset(0 100% 0 0); transition: clip-path 900ms var(--ease); }
+.mock.is-built .mock__built { clip-path: inset(0 0 0 0); }
+.mock__seam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--ember);
+  box-shadow: 0 0 12px 1px rgba(232, 101, 43, 0.6);
+  opacity: 0;
+  transition: left 900ms var(--ease), opacity 300ms var(--ease);
+}
+.mock.is-built .mock__seam { left: 100%; opacity: 1; transition: left 900ms var(--ease), opacity 300ms var(--ease) 700ms; }
+.mock.is-built .mock__seam { opacity: 0; }
+.mock.is-built:not(.is-auto) .mock__seam { animation: seam 900ms var(--ease); }
+@keyframes seam { 0% { opacity: 1; } 80% { opacity: 1; } 100% { opacity: 0; } }
+html.review .case__media .placeholder, html.review .frame > .placeholder { position: absolute; inset: auto 8px 8px auto; z-index: 2; width: auto; height: auto; padding: 6px 10px; background: rgba(20, 17, 15, 0.8); border-radius: var(--radius); }
+html:not(.review) .case__media .placeholder, html:not(.review) .frame > .placeholder { display: none; }
+html:not(.review) .roots__text { grid-column: 3 / span 8; }
+@media (max-width: 767px) { html:not(.review) .roots__text { grid-column: 1 / -1; } }
+
+/* ---------- Diagnostic options get a construction tick ---------- */
+.diag__option label { position: relative; overflow: hidden; }
+.diag__option label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--ember);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 400ms var(--ease);
+}
+.diag__option input:checked + label::after { transform: none; }
+
+/* ---------- Reduced motion: everything settles to simple fades ---------- */
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; }
+  .kinetic .w > span, .t-hero.is-split .l { transform: none !important; filter: none !important; transition: opacity 400ms linear; }
+  .mock__wire rect { stroke-dashoffset: 0; transition: none; }
+  .mock__built { clip-path: none; opacity: 0; transition: opacity 400ms linear; }
+  .mock.is-built .mock__built { opacity: 1; }
+  .mock__seam, .spec { display: none; }
+  .blueprint > span, .bp-dim::before { transition: none; }
+  .btn--primary::before, .btn--secondary::before { transition: none; }
+  .belief, .belief h3, .belief__proof { transition: none; transform: none !important; }
+  .sound-toggle[aria-pressed="true"] .sound-toggle__bars i { animation: none; height: 8px; }
+}

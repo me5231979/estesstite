@@ -6,7 +6,7 @@ name: Deploy site to GitHub Pages
 on:
   push:
     branches: [claude/tender-meitner-hrd0rx, main, master]
-    paths: [index.html, assets/**, learn/**, survey/**]
+    paths: [site/**, learn/**, survey/**, .github/workflows/deploy-pages.yml]
   workflow_dispatch:
 
 permissions:
@@ -24,8 +24,9 @@ jobs:
       - name: Stage site files
         run: |
           mkdir /tmp/dist
-          cp index.html /tmp/dist/
-          [ -d assets ] && cp -r assets /tmp/dist/ || true
+          # The new site lives in site/ and publishes at the root.
+          cp -r site/. /tmp/dist/
+          rm -rf /tmp/dist/styleguide
           [ -d learn ] && cp -r learn /tmp/dist/ || true
           [ -d survey ] && cp -r survey /tmp/dist/ || true
           touch /tmp/dist/.nojekyll

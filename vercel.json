@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "rm -rf dist && mkdir dist && cp -r site/. dist/ && rm -rf dist/styleguide && cp -r learn survey dist/",
+  "outputDirectory": "dist",
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    }
+  ]
+}
