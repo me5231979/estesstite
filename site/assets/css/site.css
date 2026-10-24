@@ -1486,3 +1486,73 @@ html:not(.review) .roots__text { grid-column: 3 / span 8; }
 
 .diag__note { margin: var(--s-4) 0 0; color: var(--text-2); font-size: 14px; }
 .footer p a { color: inherit; }
+
+/* ---------- Diagnostic readout: verdict, profile, scenario, fit ---------- */
+.diag__result .diag__verdict { font-size: var(--fs-h1); max-width: 18ch; }
+.diag__lede { margin-top: var(--s-3); max-width: 52ch; }
+.diag__block { margin-top: var(--s-6); padding-top: var(--s-4); border-top: 1px solid var(--line); }
+.diag__block h4 { margin: var(--s-2) 0 0; font-family: var(--font-display); font-weight: 400; font-size: var(--fs-h2); line-height: 1.1; }
+.diag__block > p:not(.t-label) { max-width: 60ch; }
+
+/* Meter fills left to right, one segment at a time */
+.diag__meter span { position: relative; overflow: hidden; background: var(--line); }
+.diag__meter span::after { content: ""; position: absolute; inset: 0; background: var(--bone); transform: scaleX(0); transform-origin: left; transition: transform 600ms var(--ease) calc(var(--mi) * 380ms + 200ms); }
+.diag__meter span.is-here::after { background: var(--ember); }
+.diag__meter span.is-on, .diag__meter span.is-here { background: var(--line); }
+.diag__meter span:not(.is-on):not(.is-here)::after { display: none; }
+.diag__result.is-in .diag__meter span::after { transform: none; }
+.diag__scale .is-here { color: var(--text); }
+
+/* Profile: one bar per area, the weakest one in ember */
+.diag__profile { list-style: none; margin: var(--s-3) 0 0; padding: 0; display: grid; gap: var(--s-2); }
+.diag__profile li { display: grid; grid-template-columns: minmax(120px, 200px) 1fr 72px; gap: var(--s-2); align-items: center; }
+.diag__profile .t-label { color: var(--text-2); }
+.diag__bar2 { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.diag__bar2 span { display: block; height: 100%; width: 100%; background: var(--bone); transform: scaleX(0); transform-origin: left; transition: transform 900ms var(--ease) calc(var(--bi) * 90ms + 700ms); }
+.diag__profile li.is-gap .diag__bar2 span { background: var(--ember); }
+.diag__profile li.is-gap .t-label { color: var(--text); }
+.diag__result.is-in .diag__bar2 span { transform: scaleX(var(--v)); }
+.diag__val { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 599px) {
+  .diag__profile li { grid-template-columns: 1fr auto; }
+  .diag__profile .diag__bar2 { grid-column: 1 / -1; grid-row: 2; }
+}
+
+/* Scenario: a three-step timeline that draws itself */
+.diag__setup { margin-top: var(--s-2); color: var(--text-2); font-size: var(--fs-body-l); }
+.diag__steps { list-style: none; margin: var(--s-4) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); position: relative; }
+.diag__steps::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--ember); transform: scaleX(0); transform-origin: left; transition: transform 1200ms var(--ease) 1200ms; }
+.diag__steps li { padding-top: var(--s-3); opacity: 0; transform: translateY(12px); transition: opacity 500ms var(--ease), transform 500ms var(--ease); transition-delay: calc(var(--si) * 300ms + 1400ms); }
+.diag__steps li .t-label { color: var(--ember); }
+.diag__steps li p { margin: var(--s-1) 0 0; }
+.diag__result.is-in .diag__steps::before { transform: none; }
+.diag__result.is-in .diag__steps li { opacity: 1; transform: none; }
+@media (max-width: 767px) {
+  .diag__steps { grid-template-columns: 1fr; gap: var(--s-2); }
+  .diag__steps::before { left: 0; right: auto; width: 1px; bottom: 0; transform: scaleY(0); transform-origin: top; }
+  .diag__result.is-in .diag__steps::before { transform: none; }
+  .diag__steps li { padding: 0 0 0 var(--s-3); }
+}
+.diag__proof { margin-top: var(--s-4); padding-left: var(--s-2); border-left: 2px solid var(--line); color: var(--text-2); font-family: var(--font-display); font-style: italic; font-size: var(--fs-h3); line-height: 1.4; }
+.diag__fit h4 .link { font-family: inherit; }
+.diag__fit p:last-child { margin-top: var(--s-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .diag__meter span::after, .diag__bar2 span, .diag__steps::before, .diag__steps li { transition: opacity 300ms linear !important; transition-delay: 0ms !important; }
+  .diag__steps li { transform: none; }
+}
+
+/* ---------- Page to page: the brand stays put, the page dissolves under it ---------- */
+@view-transition { navigation: auto; }
+.nav__brand { view-transition-name: brand; }
+.page-head h1, .hero .t-hero { view-transition-name: page-title; }
+::view-transition-old(root) { animation: vt-out 280ms var(--ease) both; }
+::view-transition-new(root) { animation: vt-in 520ms var(--ease) both; }
+::view-transition-old(page-title) { animation: vt-out 200ms var(--ease) both; }
+::view-transition-new(page-title) { animation: vt-title 700ms var(--ease) both; }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(16px); } }
+@keyframes vt-title { from { opacity: 0; transform: translateY(32px); filter: blur(8px); } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}

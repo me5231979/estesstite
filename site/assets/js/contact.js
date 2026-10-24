@@ -18,10 +18,23 @@
   var timeline = form.elements.timeline;
   var status = document.getElementById('form-status');
 
-  // Prefill from ?topic= (Work With Me cards, essay links).
-  var topic = new URLSearchParams(window.location.search).get('topic');
+  // Diagnostic readouts pass their result and weakest area. Only known values
+  // are used, so nothing from the URL is ever written into the page as-is.
+  var RESULTS = { publisher: 'Publisher', 'program-shop': 'Program Shop', 'capability-engine': 'Capability Engine' };
+  var GAPS = {
+    decide: 'what gets built', speed: 'speed to build', report: 'measurement',
+    managers: 'managers', mobility: 'internal mobility', ai: 'our AI plan', scale: 'scaling what works'
+  };
+
+  // Prefill from ?topic= (Work With Me cards, essay links, diagnostic).
+  var params = new URLSearchParams(window.location.search);
+  var topic = params.get('topic');
   if (topic && TOPICS[topic] && !message.value) {
-    message.value = 'Interested in: ' + TOPICS[topic] + '\n\n';
+    var result = RESULTS[params.get('result')];
+    var gap = GAPS[params.get('gap')];
+    message.value = result
+      ? 'My diagnostic readout: The ' + result + '.' + (gap ? ' Where I\'d like help first: ' + gap + '.' : '') + '\n\n'
+      : 'Interested in: ' + TOPICS[topic] + '\n\n';
   }
 
   // "Start here" links on the same page prefill the topic before jumping to the form.
