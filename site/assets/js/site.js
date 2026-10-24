@@ -21,6 +21,7 @@
     toggle.textContent = open ? 'Close' : 'Menu';
     menu.classList.toggle('is-open', open);
     menu.inert = !open;
+    document.querySelectorAll('main, footer, .skip-link').forEach(function (n) { n.inert = open; });
     document.body.classList.toggle('menu-open', open);
     if (open) {
       var first = menu.querySelector('a');
@@ -50,7 +51,16 @@
     });
   });
 
-  // Stat counters: count up once on first view over 1.2s.
+  // Stat counters: count up once on first view over 1.2s. Screen readers get
+  // the final value from a hidden copy, never the numbers in between.
+  document.querySelectorAll('[data-count]').forEach(function (el) {
+    var sr = document.createElement('span');
+    sr.className = 'visually-hidden';
+    sr.textContent = el.textContent;
+    el.setAttribute('aria-hidden', 'true');
+    el.parentNode.insertBefore(sr, el.nextSibling);
+  });
+
   function runCounter(el) {
     var target = parseFloat(el.getAttribute('data-count'));
     var decimals = (el.getAttribute('data-count').split('.')[1] || '').length;

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Work With Me · Advisory, Fractional, Build | Matt Estes</title>
 <meta name="description" content="4 ways to work with Matt Estes: strategy and advisory, fractional capability leadership, build sprints, and keynotes and workshops.">
@@ -10,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Work With Me · Advisory, Fractional, Build, Matt Estes">
 <meta property="og:description" content="4 ways to work with Matt Estes: strategy and advisory, fractional capability leadership, build sprints, and keynotes and workshops.">
-<meta property="og:image" content="../assets/img/og.png">
+<meta property="og:image" content="https://me5231979.github.io/estesstite/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="../assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
@@ -128,12 +129,12 @@
         <form class="form" id="contact-form" novalidate>
           <div class="field">
             <label class="t-label" for="w-name">Name</label>
-            <input id="w-name" name="name" autocomplete="name" required aria-describedby="w-name-err">
+            <input type="text" id="w-name" name="name" autocomplete="name" required aria-describedby="w-name-err">
             <span class="field__hint" id="w-name-err" aria-live="polite"></span>
           </div>
           <div class="field">
             <label class="t-label" for="w-org">Organization</label>
-            <input id="w-org" name="org" autocomplete="organization" required aria-describedby="w-org-err">
+            <input type="text" id="w-org" name="org" autocomplete="organization" required aria-describedby="w-org-err">
             <span class="field__hint" id="w-org-err" aria-live="polite"></span>
           </div>
           <div class="field">

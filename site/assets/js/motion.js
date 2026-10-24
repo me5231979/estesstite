@@ -48,7 +48,7 @@
     b.className = 'sound-toggle ' + (cls || '');
     b.setAttribute('data-sound-toggle', '');
     b.innerHTML = '<span class="sound-toggle__bars" aria-hidden="true"><i></i><i></i><i></i></span>' +
-      '<span>Sound <span data-sound-state>Off</span></span>';
+      '<span>Sound <span data-sound-state aria-hidden="true">Off</span></span>';
     b.addEventListener('click', function () {
       soundOn = !soundOn;
       try { localStorage.setItem(SOUND_KEY, soundOn ? 'on' : 'off'); } catch (e) {}
@@ -77,6 +77,23 @@
   });
 
   /* ---------------- Text splitting ---------------- */
+  // Split text is hidden from assistive tech; a plain copy carries the name,
+  // so screen readers never read a headline letter by letter.
+  function accessibleSplit(el, fn, arg) {
+    var label = el.textContent.replace(/\s+/g, ' ').trim();
+    var wrap = document.createElement('span');
+    wrap.className = 'split';
+    wrap.setAttribute('aria-hidden', 'true');
+    while (el.firstChild) wrap.appendChild(el.firstChild);
+    el.appendChild(wrap);
+    var out = fn(wrap, arg);
+    var sr = document.createElement('span');
+    sr.className = 'visually-hidden';
+    sr.textContent = label;
+    el.appendChild(sr);
+    return out;
+  }
+
   function splitWords(el) {
     if (el.dataset.split) return;
     el.dataset.split = 'words';
@@ -149,7 +166,7 @@
     }, { threshold: 0.2 });
     heads.forEach(function (h) {
       if (h.classList.contains('visually-hidden')) return;
-      splitWords(h);
+      accessibleSplit(h, splitWords);
       h.classList.add('kinetic');
       hio.observe(h);
     });
@@ -159,7 +176,7 @@
   var hero = document.querySelector('.hero');
   var heroTitle = hero && hero.querySelector('.t-hero');
   if (heroTitle && !reduced) {
-    var letters = splitLetters(heroTitle);
+    var letters = accessibleSplit(heroTitle, splitLetters);
     heroTitle.classList.add('is-split');
     requestAnimationFrame(function () { heroTitle.classList.add('is-in'); });
 
@@ -218,7 +235,7 @@
   /* ---------------- Nav: letter weight wave ---------------- */
   if (canHover && !reduced) {
     document.querySelectorAll('.nav__links a:not(.btn)').forEach(function (a) {
-      splitLetters(a, true);
+      accessibleSplit(a, splitLetters, true);
       a.classList.add('wave');
     });
   }
