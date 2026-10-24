@@ -84,7 +84,7 @@ def main():
     shutil.copytree(ROOT / 'site', DIST, ignore=lambda d, names: [n for n in names if Path(d) == ROOT / 'site' and n in SKIP])
     for extra in ('learn', 'survey'):
         if (ROOT / extra).exists():
-            shutil.copytree(ROOT / extra, DIST / extra)
+            shutil.copytree(ROOT / extra, DIST / extra, ignore=shutil.ignore_patterns('vercel.json'))
     left = 0
     for page in (DIST).rglob('*.html'):
         if page.relative_to(DIST).parts[0] in ('learn', 'survey'):
