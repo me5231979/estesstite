@@ -28,7 +28,7 @@
       ]
     },
     {
-      "source": "/((?!learn|survey).*)",
+      "source": "/((?!learn|survey|apogee).*)",
       "headers": [
         {
           "key": "Content-Security-Policy",
