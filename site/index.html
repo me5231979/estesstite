@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self' https://d8j0ntlcm91z4.cloudfront.net; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Home · Matt Estes, Capability Architect</title>
 <meta name="description" content="Matt Estes is a Capability Architect. He turns learning functions into capability engines and builds the tools to prove it.">
-<meta name="theme-color" content="#14110F">
+<meta name="theme-color" content="#000000">
 <link rel="icon" href="assets/img/brand/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 <meta property="og:type" content="website">
@@ -14,8 +14,8 @@
 <meta property="og:description" content="L&amp;D as we know it is over. I build what replaces it.">
 <meta property="og:image" content="https://me5231979.github.io/estesstite/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <script type="application/ld+json">
 {
@@ -63,18 +63,58 @@
 <main id="main">
 
   <!-- 1. Hero -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="container hero__inner">
-      <h1 class="t-hero" id="hero-title"><span class="redline">L&amp;D as we know&nbsp;it</span><br> is over.</h1>
-      <p class="hero__answer">I build what replaces it.</p>
-      <div class="hero__foot">
-        <p class="hero__lede">Matt Estes, capability architect. 20+ years building leaders, talent systems, and learning that changes how work gets done.</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="contact/">Let's talk</a>
-          <a class="btn btn--secondary" href="point-of-view/">Read my point of view</a>
-        </div>
+  <section class="hero hero--wave" aria-labelledby="hero-title">
+    <video class="hero__film" autoplay muted loop playsinline preload="auto" aria-hidden="true" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260818_072341_50851634-bbc3-4c33-9acc-7647d4db44aa.mp4"></video>
+    <div class="container hero__copy">
+      <span class="badge appear appear--pop" style="--d: 0.22s">
+        <svg class="badge__star" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12 2.6C12.55 2.6 12.88 3.15 13.08 4.7c.62 4.7 1.52 5.6 6.22 6.22 1.55.2 2.1.53 2.1 1.08s-.55.88-2.1 1.08c-4.7.62-5.6 1.52-6.22 6.22-.2 1.55-.53 2.1-1.08 2.1s-.88-.55-1.08-2.1c-.62-4.7-1.52-5.6-6.22-6.22C3.15 12.88 2.6 12.55 2.6 12s.55-.88 2.1-1.08c4.7-.62 5.6-1.52 6.22-6.22C11.12 3.15 11.45 2.6 12 2.6Z"/></svg>
+        Capability Architect
+      </span>
+      <h1 class="t-hero" id="hero-title">
+        <span class="hero__line"><span class="appear appear--mask" style="--d: 0.42s">L&amp;D as we know <em>it is over.</em></span></span>
+        <span class="hero__line"><span class="appear appear--mask" style="--d: 0.62s">I build what replaces it.</span></span>
+      </h1>
+      <p class="hero__lede appear" style="--d: 0.82s">Matt Estes, capability architect. 20+ years building leaders, talent systems, and learning that changes how work gets done.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary appear appear--btn" href="contact/" style="--d: 0.96s">Let's talk</a>
+        <a class="btn btn--secondary appear appear--side" href="point-of-view/" style="--d: 1.10s">Read my point of view</a>
       </div>
     </div>
+    <ul class="container hero__stats">
+      <li class="hero__stat appear appear--stat" style="--d: 1.12s">
+        <svg class="hero__stat-wide" viewBox="0 0 40 22" aria-hidden="true">
+          <circle cx="10.2" cy="11" r="9.2" fill="#2b2b2b"/>
+          <circle cx="10.2" cy="8.6" r="3" fill="#f4f4f4"/>
+          <path d="M4.6 17.4c1.2-2.6 3.2-3.9 5.6-3.9s4.4 1.3 5.6 3.9" fill="#f4f4f4"/>
+          <circle cx="20.2" cy="11" r="9.2" fill="#ffffff"/>
+          <circle cx="20.2" cy="8.6" r="3" fill="#111"/>
+          <path d="M14.6 17.4c1.2-2.6 3.2-3.9 5.6-3.9s4.4 1.3 5.6 3.9" fill="#111"/>
+          <circle cx="30.2" cy="11" r="9.2" fill="#c9d6f0"/>
+          <circle cx="30.2" cy="8.6" r="3" fill="#1a2233"/>
+          <path d="M24.6 17.4c1.2-2.6 3.2-3.9 5.6-3.9s4.4 1.3 5.6 3.9" fill="#1a2233"/>
+        </svg>
+        <span><strong>677</strong> managers on one behavior standard</span>
+      </li>
+      <li class="hero__stat appear appear--stat" style="--d: 1.28s">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <defs>
+            <linearGradient id="pill-a" x1="3" y1="2" x2="14" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fff" stop-opacity="0.38"/><stop offset="1" stop-color="#3a3a3a" stop-opacity="0.62"/></linearGradient>
+            <linearGradient id="pill-b" x1="13" y1="2" x2="24" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3a3a3a" stop-opacity="0.38"/><stop offset="1" stop-color="#fff" stop-opacity="0.62"/></linearGradient>
+          </defs>
+          <rect x="3.4" y="2.6" width="7.2" height="18.8" rx="3.6" fill="url(#pill-a)"/>
+          <rect x="13.4" y="2.6" width="7.2" height="18.8" rx="3.6" fill="url(#pill-b)"/>
+          <rect x="9.2" y="10.9" width="5.6" height="2.2" rx="1.1" fill="#4a4a4a"/>
+        </svg>
+        <span><strong>~80</strong> courses shipped in 12 months</span>
+      </li>
+      <li class="hero__stat appear appear--stat" style="--d: 1.44s">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="2.4" y="2.4" width="19.2" height="19.2" rx="6.2" fill="#ffffff"/>
+          <g fill="none" stroke="#111" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16.9V9.5"/><path d="M8.15 11.65L12 7.8l3.85 3.85"/></g>
+        </svg>
+        <span><strong>20+</strong> years building leaders and talent systems</span>
+      </li>
+    </ul>
   </section>
 
   <!-- 2. The Shift -->
