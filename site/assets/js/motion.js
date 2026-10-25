@@ -194,28 +194,28 @@
     s.setAttribute('aria-hidden', 'true');
     return s;
   }
-  var FILL = { bar: '#2A2420', block: '#14110F', img: '#2A2420', line: '#A89F94', title: '#F2EDE4', accent: '#E8652B', amber: '#F2A541', dot: '#A89F94' };
+  var FILL = { bar: '#161A30', block: '#080A19', img: '#161A30', line: '#8A8DA0', title: '#FFFFFF', accent: '#FF503C', amber: '#F77F71', dot: '#8A8DA0' };
 
   function buildMock(host, kind) {
     var layout = L[kind] || L.course;
     var wire = svgLayer('mock__wire');
     var built = svgLayer('mock__built');
-    built.appendChild(rect(0, 0, 1600, 1000, { fill: '#1E1A17' }));
+    built.appendChild(rect(0, 0, 1600, 1000, { fill: '#0E1124' }));
     layout.forEach(function (r) {
       var k = r[4];
       var isLine = k === 'line' || k === 'title';
       wire.appendChild(rect(r[0], r[1], r[2], r[3], {
-        fill: 'none', stroke: '#A89F94', 'stroke-width': isLine ? 1.5 : 2,
+        fill: 'none', stroke: '#8A8DA0', 'stroke-width': isLine ? 1.5 : 2,
         'stroke-dasharray': '8 8', pathLength: '1000'
       }));
       if (k === 'img') {
         var x1 = document.createElementNS(SVGNS, 'path');
         x1.setAttribute('d', 'M' + r[0] + ' ' + r[1] + ' L' + (r[0] + r[2]) + ' ' + (r[1] + r[3]) + ' M' + (r[0] + r[2]) + ' ' + r[1] + ' L' + r[0] + ' ' + (r[1] + r[3]));
-        x1.setAttribute('stroke', '#3A322C'); x1.setAttribute('stroke-width', '2'); x1.setAttribute('fill', 'none');
+        x1.setAttribute('stroke', '#262A40'); x1.setAttribute('stroke-width', '2'); x1.setAttribute('fill', 'none');
         wire.appendChild(x1);
       }
       built.appendChild(rect(r[0], r[1], r[2], r[3], {
-        fill: FILL[k], stroke: k === 'block' ? '#3A322C' : 'none', 'stroke-width': 2
+        fill: FILL[k], stroke: k === 'block' ? '#262A40' : 'none', 'stroke-width': 2
       }));
     });
     var mock = document.createElement('div');

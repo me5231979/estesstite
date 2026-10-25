@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://api.fontshare.com; img-src 'self' data: https://d8j0ntlcm91z4.cloudfront.net; font-src 'self' https://cdn.fontshare.com; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home · Matt Estes, Capability Architect</title>
+<title>Matt Estes, Capability Architect</title>
 <meta name="description" content="Matt Estes is a Capability Architect. He turns learning functions into capability engines and builds the tools to prove it.">
-<meta name="theme-color" content="#14110F">
+<meta name="theme-color" content="#080A19">
 <link rel="icon" href="assets/img/brand/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png">
 <meta property="og:type" content="website">
@@ -14,9 +14,13 @@
 <meta property="og:description" content="L&amp;D as we know it is over. I build what replaces it.">
 <meta property="og:image" content="https://me5231979.github.io/estesstite/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/v3/flag.js"></script>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preload" href="assets/fonts/stix-two-text.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_001417_948d6b75-1610-4ebb-b816-95ded6e27ce1.png" fetchpriority="high">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@1&amp;f[]=general-sans@400&amp;display=swap">
+<link rel="stylesheet" href="assets/v3/home.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -33,374 +37,760 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="nav">
-  <div class="container nav__inner">
-    <a class="nav__brand" href="./"><img class="brand-mark brand-mark--light" src="assets/img/brand/mark-64.png" srcset="assets/img/brand/mark-64.png 1x, assets/img/brand/mark-128.png 2x" width="51" height="32" alt=""><img class="brand-mark brand-mark--ink" src="assets/img/brand/mark-ink-64.png" srcset="assets/img/brand/mark-ink-64.png 1x, assets/img/brand/mark-ink-128.png 2x" width="51" height="32" alt=""><span>Matt Estes</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav__links">
-        <li><a href="point-of-view/">Point of View</a></li>
-        <li><a href="work/">Work</a></li>
-        <li><a href="lab/">Lab</a></li>
-        <li><a href="work-with-me/">Work With Me</a></li>
-        <li><a class="btn btn--primary btn--sm" href="contact/">Let's talk</a></li>
-      </ul>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="./" aria-label="Matt Estes, home">
+      <img class="brand__mark" src="assets/img/brand/mark-128.png" alt="" aria-hidden="true" width="61" height="38">
+      <span class="brand__name">Matt Estes</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link nav__link--has-menu" href="point-of-view/">
+        Point of View
+        <svg class="nav__chevron" width="7" height="4" viewBox="-0.5 -0.5 7 4" fill="none" aria-hidden="true">
+          <path d="M0 0L3 3L6 0" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </a>
+      <a class="nav__link" href="work/">Work</a>
+      <a class="nav__link" href="lab/">Lab</a>
+      <a class="nav__link" href="work-with-me/">Work With Me</a>
     </nav>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+
+    <div class="header-actions">
+      <a class="button button--ghost" href="cv/">CV</a>
+      <a class="button button--solid" href="contact/">Let's talk</a>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+      <span class="menu-toggle__bar"></span>
+      <span class="menu-toggle__bar"></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <a class="mobile-menu__link" href="point-of-view/">Point of View</a>
+    <a class="mobile-menu__link" href="work/">Work</a>
+    <a class="mobile-menu__link" href="lab/">Lab</a>
+    <a class="mobile-menu__link" href="work-with-me/">Work With Me</a>
+    <div class="mobile-menu__actions">
+      <a class="button button--ghost" href="cv/">CV</a>
+      <a class="button button--solid" href="contact/">Let's talk</a>
+    </div>
   </div>
 </header>
-<div class="menu" id="menu">
-  <nav aria-label="Mobile">
-    <ul>
-      <li><a href="point-of-view/">Point of View</a></li>
-      <li><a href="work/">Work</a></li>
-      <li><a href="lab/">Lab</a></li>
-      <li><a href="work-with-me/">Work With Me</a></li>
-    </ul>
-  </nav>
-  <a class="btn btn--primary" href="contact/">Let's talk</a>
-</div>
 
 <main id="main">
 
-  <!-- 1. Hero -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="container hero__inner">
-      <h1 class="t-hero" id="hero-title"><span class="redline">L&amp;D as we know&nbsp;it</span><br> is over.</h1>
-      <p class="hero__answer">I build what replaces it.</p>
-      <div class="hero__foot">
-        <p class="hero__lede">Matt Estes, capability architect. 20+ years building leaders, talent systems, and learning that changes how work gets done.</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="contact/">Let's talk</a>
-          <a class="btn btn--secondary" href="point-of-view/">Read my point of view</a>
+  <!-- Both designs are two framings of the same photograph, so they share one
+       camera: the section is pinned and scroll drives the move between them. -->
+  <section class="scene" id="scene">
+    <div class="scene__viewport">
+
+      <div class="scene__backdrop" aria-hidden="true">
+        <div class="scene__camera">
+          <img class="scene__photo" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260827_001417_948d6b75-1610-4ebb-b816-95ded6e27ce1.png" alt="" fetchpriority="high">
         </div>
+        <div class="scene__glow"></div>
+      </div>
+
+      <div class="hero__content">
+      <div class="hero__badge">
+        <div class="hero__badge-row">
+          <span class="hero__badge-label">Capability Architect</span><span class="hero__badge-sep" aria-hidden="true"></span><span class="hero__badge-label hero__badge-label--muted">20+ years</span>
+        </div>
+      </div>
+
+      <h1 class="hero__title">
+        <span class="line"><span class="line__in">L&amp;D as we know it&nbsp;</span></span>
+        <span class="line"><span class="line__in"><em>is over.</em> I build&nbsp;</span></span>
+        <span class="line"><span class="line__in">what replaces it.</span></span>
+      </h1>
+
+      <p class="hero__subtitle">Matt Estes, capability architect. 20+ years building leaders, talent systems, and learning that changes how work gets done.</p>
+      </div>
+
+      <div class="platform__content">
+      <p class="pill">
+        <span class="pill__dot" aria-hidden="true"></span>
+        The capability engine, live
+      </p>
+
+      <h2 class="platform__title">Not a course catalog. A system that keeps people ready.</h2>
+
+      <!-- Product view, presented in a browser window as in the design -->
+      <div class="shot">
+        <div class="shot__window">
+          <div class="shot__toolbar">
+            <div class="shot__lights" aria-hidden="true">
+              <span class="shot__light shot__light--close"></span>
+              <span class="shot__light shot__light--minimize"></span>
+              <span class="shot__light shot__light--fullscreen"></span>
+            </div>
+            <svg class="shot__icon shot__icon--sidebar" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="13.7508" height="10.7359" viewBox="0 0 13.7508 10.7359" fill="none">
+<path d="M1.831 10.736L11.92 10.736C13.144 10.736 13.751 10.129 13.751 8.928L13.751 1.808C13.751 0.606 13.144 0 11.92 0L1.831 0C0.612 0 0 0.601 0 1.808L0 8.928C0 10.135 0.612 10.736 1.831 10.736ZM1.843 9.797C1.26 9.797 0.939 9.488 0.939 8.881L0.939 1.854C0.939 1.248 1.26 0.939 1.843 0.939L4.444 0.939L4.444 9.797L1.843 9.797ZM11.908 0.939C12.485 0.939 12.812 1.248 12.812 1.854L12.812 8.881C12.812 9.488 12.485 9.797 11.908 9.797L5.359 9.797L5.359 0.939L11.908 0.939ZM3.318 3.102C3.499 3.102 3.651 2.945 3.651 2.776C3.651 2.601 3.499 2.449 3.318 2.449L2.07 2.449C1.895 2.449 1.738 2.601 1.738 2.776C1.738 2.945 1.895 3.102 2.07 3.102L3.318 3.102ZM3.318 4.613C3.499 4.613 3.651 4.455 3.651 4.28C3.651 4.105 3.499 3.96 3.318 3.96L2.07 3.96C1.895 3.96 1.738 4.105 1.738 4.28C1.738 4.455 1.895 4.613 2.07 4.613L3.318 4.613ZM3.318 6.117C3.499 6.117 3.651 5.972 3.651 5.797C3.651 5.622 3.499 5.47 3.318 5.47L2.07 5.47C1.895 5.47 1.738 5.622 1.738 5.797C1.738 5.972 1.895 6.117 2.07 6.117L3.318 6.117Z" fill="#999C9F"/>
+</svg>
+            <div class="shot__group shot__group--history" aria-hidden="true">
+              <svg class="shot__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="5.7033" height="10.1294" viewBox="0 0 5.7033 10.1294" fill="none">
+<path d="M4.794 9.972L0.169 5.458C0.058 5.348 0 5.213 0 5.068C0 4.916 0.064 4.77 0.175 4.677L4.794 0.157C4.893 0.058 5.021 0 5.173 0C5.476 0 5.703 0.233 5.703 0.537C5.703 0.676 5.645 0.816 5.552 0.916L1.306 5.068L5.552 9.22C5.645 9.319 5.703 9.453 5.703 9.599C5.703 9.902 5.476 10.129 5.173 10.129C5.021 10.129 4.893 10.071 4.794 9.972Z" fill="#999C9F"/>
+</svg>
+              <svg class="shot__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="5.7033" height="10.1352" viewBox="0 0 5.7033 10.1352" fill="none">
+<path d="M0.531 10.135C0.682 10.135 0.811 10.077 0.91 9.978L5.534 5.458C5.645 5.348 5.703 5.213 5.703 5.068C5.703 4.916 5.645 4.776 5.534 4.677L0.916 0.163C0.811 0.058 0.682 0 0.531 0C0.227 0 0 0.233 0 0.537C0 0.676 0.058 0.816 0.152 0.916L4.397 5.068L0.152 9.22C0.058 9.319 0 9.453 0 9.599C0 9.902 0.227 10.135 0.531 10.135Z" fill="#3D4043"/>
+</svg>
+            </div>
+            <div class="shot__address">
+              <svg class="shot__icon shot__icon--shield" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="9.692" height="11.7797" viewBox="0 0 9.692 11.7797" fill="none">
+<path d="M4.846 11.78C4.939 11.78 5.091 11.745 5.237 11.663C8.555 9.803 9.692 9.016 9.692 6.887L9.692 2.426C9.692 1.814 9.43 1.621 8.934 1.411C8.246 1.125 6.024 0.327 5.336 0.087C5.178 0.035 5.009 0 4.846 0C4.683 0 4.514 0.047 4.362 0.087C3.674 0.286 1.446 1.131 0.758 1.411C0.268 1.615 0 1.814 0 2.426L0 6.887C0 9.016 1.143 9.797 4.455 11.663C4.607 11.745 4.753 11.78 4.846 11.78ZM5.079 0.991C5.96 1.341 7.668 1.959 8.572 2.268C8.73 2.327 8.765 2.408 8.765 2.607L8.765 6.671C8.765 8.473 7.902 8.946 5.208 10.584C5.038 10.689 4.945 10.718 4.852 10.724L4.852 0.939C4.91 0.939 4.986 0.956 5.079 0.991Z" fill="#999C9F"/>
+</svg>
+              <div class="shot__url">
+                <span class="shot__url-inner">
+                  <svg class="shot__lock" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="5.4995" height="8.0311" viewBox="0 0 5.4995 8.0311" fill="none">
+<path d="M0.79 8.031L4.709 8.031C5.24 8.031 5.499 7.768 5.499 7.191L5.499 4.17C5.499 3.651 5.285 3.384 4.845 3.338L4.845 2.301C4.845 0.749 3.828 0 2.75 0C1.671 0 0.655 0.749 0.655 2.301L0.655 3.359C0.251 3.421 0 3.684 0 4.17L0 7.191C0 7.768 0.259 8.031 0.79 8.031ZM1.317 2.215C1.317 1.181 1.98 0.634 2.75 0.634C3.52 0.634 4.182 1.181 4.182 2.215L4.182 3.334L1.317 3.338L1.317 2.215Z" fill="#DBDBDC"/>
+</svg>
+                  <span class="shot__host">capability engine</span>
+                </span>
+                <svg class="shot__reload" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="7.2737" height="8.8626" viewBox="0 0 7.2737 8.8626" fill="none">
+<path d="M3.487 4.112C3.589 4.112 3.668 4.079 3.725 4.018L5.421 2.313C5.495 2.243 5.524 2.161 5.524 2.066C5.524 1.976 5.487 1.885 5.421 1.819L3.725 0.099C3.668 0.033 3.585 0 3.487 0C3.301 0 3.161 0.148 3.161 0.338C3.161 0.424 3.194 0.506 3.252 0.572L4.351 1.651C4.116 1.61 3.878 1.585 3.639 1.585C1.622 1.585 0 3.203 0 5.22C0 7.241 1.622 8.863 3.639 8.863C5.656 8.863 7.274 7.241 7.274 5.22C7.274 5.022 7.134 4.878 6.932 4.878C6.739 4.878 6.611 5.022 6.611 5.22C6.611 6.874 5.29 8.2 3.639 8.2C1.988 8.2 0.663 6.874 0.663 5.22C0.663 3.569 1.988 2.248 3.639 2.248C3.952 2.248 4.24 2.272 4.487 2.326L3.256 3.548C3.194 3.614 3.161 3.697 3.161 3.783C3.161 3.972 3.301 4.112 3.487 4.112Z" fill="#DBDBDC"/>
+</svg>
+              </div>
+            </div>
+            <div class="shot__group shot__group--tools" aria-hidden="true">
+              <svg class="shot__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="11.8964" height="11.8964" viewBox="0 0 11.8964 11.8964" fill="none">
+<path d="M5.948 11.896C9.202 11.896 11.896 9.196 11.896 5.948C11.896 2.694 9.196 0 5.942 0C2.694 0 0 2.694 0 5.948C0 9.196 2.7 11.896 5.948 11.896ZM5.948 10.905C3.196 10.905 0.997 8.701 0.997 5.948C0.997 3.196 3.19 0.991 5.942 0.991C8.695 0.991 10.899 3.196 10.905 5.948C10.911 8.701 8.701 10.905 5.948 10.905ZM5.948 2.98C5.697 2.98 5.511 3.161 5.511 3.417L5.511 6.333L5.557 7.564L4.974 6.864L4.28 6.164C4.199 6.088 4.094 6.036 3.971 6.036C3.732 6.036 3.551 6.222 3.551 6.456C3.551 6.578 3.586 6.683 3.662 6.759L5.61 8.701C5.727 8.817 5.826 8.864 5.948 8.864C6.076 8.864 6.181 8.811 6.292 8.701L8.234 6.759C8.31 6.683 8.357 6.578 8.357 6.456C8.357 6.222 8.17 6.036 7.931 6.036C7.803 6.036 7.698 6.082 7.622 6.164L6.934 6.864L6.339 7.569L6.386 6.333L6.386 3.417C6.386 3.161 6.205 2.98 5.948 2.98Z" fill="#999C9F"/>
+</svg>
+              <svg class="shot__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="10.351" height="13.1618" viewBox="0 0 10.351 13.1618" fill="none">
+<path d="M5.178 8.596C5.429 8.596 5.639 8.386 5.639 8.141L5.639 2.152L5.604 1.277L6.001 1.691L6.881 2.636C6.963 2.729 7.085 2.776 7.196 2.776C7.441 2.776 7.622 2.601 7.622 2.362C7.622 2.239 7.575 2.146 7.488 2.059L5.517 0.157C5.4 0.041 5.295 0 5.178 0C5.062 0 4.957 0.041 4.84 0.157L2.869 2.059C2.782 2.146 2.729 2.239 2.729 2.362C2.729 2.601 2.91 2.776 3.149 2.776C3.266 2.776 3.388 2.729 3.47 2.636L4.356 1.691L4.753 1.277L4.712 2.152L4.712 8.141C4.712 8.386 4.928 8.596 5.178 8.596ZM1.831 13.162L8.52 13.162C9.739 13.162 10.351 12.555 10.351 11.354L10.351 5.534C10.351 4.333 9.739 3.726 8.52 3.726L6.893 3.726L6.893 4.665L8.502 4.665C9.08 4.665 9.412 4.98 9.412 5.587L9.412 11.302C9.412 11.908 9.08 12.223 8.502 12.223L1.843 12.223C1.26 12.223 0.939 11.908 0.939 11.302L0.939 5.587C0.939 4.98 1.26 4.665 1.843 4.665L3.458 4.665L3.458 3.726L1.831 3.726C0.612 3.726 0 4.333 0 5.534L0 11.354C0 12.555 0.612 13.162 1.831 13.162Z" fill="#999C9F"/>
+</svg>
+              <svg class="shot__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="9.6221" height="9.8203" viewBox="0 0 9.6221 9.8203" fill="none">
+<path d="M4.811 9.82C5.097 9.82 5.336 9.593 5.336 9.313L5.336 5.435L9.103 5.435C9.383 5.435 9.622 5.196 9.622 4.91C9.622 4.624 9.383 4.391 9.103 4.391L5.336 4.391L5.336 0.507C5.336 0.227 5.097 0 4.811 0C4.525 0 4.292 0.227 4.292 0.507L4.292 4.391L0.519 4.391C0.239 4.391 0 4.624 0 4.91C0 5.196 0.239 5.435 0.519 5.435L4.292 5.435L4.292 9.313C4.292 9.593 4.525 9.82 4.811 9.82Z" fill="#999C9F"/>
+</svg>
+              <svg class="shot__icon" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="12.3396" height="12.2171" viewBox="0 0 12.3396 12.2171" fill="none">
+<path d="M1.831 9.517L2.828 9.517L2.828 10.409C2.828 11.611 3.435 12.217 4.659 12.217L10.514 12.217C11.727 12.217 12.34 11.611 12.34 10.409L12.34 4.508C12.34 3.306 11.727 2.7 10.514 2.7L9.511 2.7L9.511 1.808C9.511 0.606 8.899 0 7.686 0L1.831 0C0.606 0 0 0.606 0 1.808L0 7.709C0 8.911 0.606 9.517 1.831 9.517ZM1.843 8.578C1.26 8.578 0.939 8.263 0.939 7.657L0.939 1.86C0.939 1.254 1.26 0.939 1.843 0.939L7.668 0.939C8.246 0.939 8.572 1.254 8.572 1.86L8.572 2.7L4.659 2.7C3.435 2.7 2.828 3.301 2.828 4.508L2.828 8.578L1.843 8.578ZM4.671 11.278C4.094 11.278 3.767 10.963 3.767 10.357L3.767 4.56C3.767 3.954 4.094 3.639 4.671 3.639L10.497 3.639C11.074 3.639 11.401 3.954 11.401 4.56L11.401 10.357C11.401 10.963 11.074 11.278 10.497 11.278L4.671 11.278Z" fill="#999C9F"/>
+</svg>
+            </div>
+          </div>
+
+          <nav class="dash-nav" aria-label="Product">
+            <ul class="dash-nav__list">
+              <li><a class="dash-nav__item is-active" href="#sense"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+<path d="M0.807 0.892C1.34 0.32 2.1 0 2.997 0L7.565 0C8.464 0 9.224 0.32 9.757 0.892C10.287 1.462 10.562 2.247 10.562 3.129L10.562 7.434C10.562 8.315 10.287 9.101 9.757 9.67C9.224 10.242 8.464 10.562 7.565 10.562L2.997 10.562C2.098 10.562 1.338 10.242 0.805 9.67C0.275 9.101 0 8.315 0 7.434L0 3.129C0 2.247 0.277 1.461 0.807 0.892ZM1.402 1.446C1.035 1.84 0.812 2.416 0.812 3.129L0.812 7.434C0.812 8.147 1.034 8.723 1.4 9.116C1.763 9.506 2.299 9.75 2.997 9.75L7.565 9.75C8.263 9.75 8.799 9.506 9.162 9.116C9.529 8.723 9.75 8.147 9.75 7.434L9.75 3.129C9.75 2.415 9.529 1.839 9.162 1.446C8.799 1.056 8.263 0.812 7.565 0.812L2.997 0.812C2.301 0.812 1.765 1.056 1.402 1.446Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 1.2188 1.2188)"/>
+<path d="M0 0.406C0 0.182 0.182 0 0.406 0L4.322 0C4.546 0 4.728 0.182 4.728 0.406C4.728 0.631 4.546 0.812 4.322 0.812L0.406 0.812C0.182 0.812 0 0.631 0 0.406ZM0 3.228C0 3.003 0.182 2.821 0.406 2.821L4.322 2.821C4.546 2.821 4.728 3.003 4.728 3.228C4.728 3.452 4.546 3.634 4.322 3.634L0.406 3.634C0.182 3.634 0 3.452 0 3.228Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 4.1366 4.6825)"/>
+</svg>Sense</a></li>
+              <li><a class="dash-nav__item" href="#map"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+<path d="M3.823 0.182C4.336 -0.061 4.936 -0.061 5.449 0.182L8.63 1.685C9.467 2.08 9.491 3.242 8.667 3.668L5.51 5.301C4.963 5.584 4.308 5.584 3.762 5.301L0.605 3.668C-0.219 3.242 -0.196 2.08 0.642 1.685L3.823 0.182ZM5.102 0.917C4.808 0.778 4.464 0.778 4.17 0.917L0.989 2.42C0.758 2.529 0.754 2.83 0.978 2.946L4.135 4.58C4.448 4.741 4.824 4.741 5.137 4.58L8.294 2.946C8.518 2.83 8.514 2.529 8.283 2.42L5.102 0.917Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 1.8641 1.2188)"/>
+<path d="M2.453 0.233C2.548 0.436 2.462 0.678 2.259 0.774L0.989 1.374C0.758 1.483 0.754 1.785 0.978 1.901L4.135 3.534C4.448 3.696 4.824 3.696 5.137 3.534L8.294 1.901C8.518 1.785 8.514 1.483 8.283 1.374L7.013 0.774C6.81 0.678 6.723 0.436 6.819 0.233C6.915 0.03 7.157 -0.057 7.36 0.039L8.63 0.639C9.467 1.035 9.491 2.196 8.667 2.622L5.51 4.256C4.963 4.538 4.308 4.538 3.762 4.256L0.605 2.622C-0.219 2.196 -0.196 1.035 0.642 0.639L1.912 0.039C2.115 -0.057 2.357 0.03 2.453 0.233Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 1.8641 4.7893)"/>
+<path d="M2.453 0.233C2.548 0.436 2.462 0.678 2.259 0.774L0.989 1.374C0.758 1.483 0.754 1.785 0.978 1.901L4.135 3.534C4.448 3.696 4.824 3.696 5.137 3.534L8.294 1.901C8.518 1.785 8.514 1.483 8.283 1.374L7.013 0.774C6.81 0.678 6.723 0.436 6.819 0.233C6.915 0.03 7.157 -0.057 7.36 0.039L8.63 0.639C9.467 1.035 9.491 2.196 8.667 2.622L5.51 4.256C4.963 4.538 4.308 4.538 3.762 4.256L0.605 2.622C-0.219 2.196 -0.196 1.035 0.642 0.639L1.912 0.039C2.115 -0.057 2.357 0.03 2.453 0.233Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 1.8641 7.3136)"/>
+</svg>Map</a></li>
+              <li><a class="dash-nav__item" href="#grow"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+<path d="M2.112 0.812C1.394 0.812 0.812 1.394 0.812 2.112L0.812 2.803C0.812 3.027 0.631 3.209 0.406 3.209C0.182 3.209 0 3.027 0 2.803L0 2.112C0 0.945 0.946 0 2.112 0L2.677 0C2.901 0 3.083 0.182 3.083 0.406C3.083 0.631 2.901 0.812 2.677 0.812L2.112 0.812Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 2.1499 2.1497)"/>
+<path d="M2.677 0C2.901 0 3.083 0.182 3.083 0.406L3.083 1.097C3.083 2.264 2.138 3.209 0.971 3.209L0.406 3.209C0.182 3.209 0 3.027 0 2.803C0 2.578 0.182 2.397 0.406 2.397L0.971 2.397C1.689 2.397 2.271 1.815 2.271 1.097L2.271 0.406C2.271 0.182 2.453 0 2.677 0Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 7.767 7.6405)"/>
+<path d="M1.337 0.812C1.048 0.812 0.812 1.048 0.812 1.337C0.812 1.627 1.048 1.862 1.337 1.862C1.627 1.862 1.862 1.627 1.862 1.337C1.862 1.048 1.627 0.812 1.337 0.812ZM0 1.337C0 0.599 0.599 0 1.337 0C2.076 0 2.675 0.599 2.675 1.337C2.675 2.076 2.076 2.675 1.337 2.675C0.599 2.675 0 2.076 0 1.337Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 4.4206 1.2188)"/>
+<path d="M1.337 0.812C1.048 0.812 0.812 1.048 0.812 1.337C0.812 1.627 1.048 1.862 1.337 1.862C1.627 1.862 1.862 1.627 1.862 1.337C1.862 1.048 1.627 0.812 1.337 0.812ZM0 1.337C0 0.599 0.599 0 1.337 0C2.076 0 2.675 0.599 2.675 1.337C2.675 2.076 2.076 2.675 1.337 2.675C0.599 2.675 0 2.076 0 1.337Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 5.9047 9.1068)"/>
+<path d="M2.397 2.112C2.397 1.394 1.815 0.812 1.097 0.812L0.406 0.812C0.182 0.812 0 0.631 0 0.406C0 0.182 0.182 0 0.406 0L1.097 0C2.264 0 3.209 0.946 3.209 2.112L3.209 2.677C3.209 2.901 3.027 3.083 2.803 3.083C2.578 3.083 2.397 2.901 2.397 2.677L2.397 2.112Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 7.6411 2.1497)"/>
+<path d="M3.209 2.677C3.209 2.901 3.027 3.083 2.803 3.083L2.112 3.083C0.945 3.083 0 2.138 0 0.971L0 0.406C0 0.182 0.182 0 0.406 0C0.631 0 0.813 0.182 0.813 0.406L0.813 0.971C0.813 1.689 1.394 2.271 2.112 2.271L2.803 2.271C3.027 2.271 3.209 2.453 3.209 2.677Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 2.1498 7.7674)"/>
+<path d="M1.862 1.337C1.862 1.047 1.627 0.812 1.337 0.812C1.048 0.812 0.812 1.047 0.812 1.337C0.812 1.627 1.048 1.862 1.337 1.862C1.627 1.862 1.862 1.627 1.862 1.337ZM1.337 0C2.076 0 2.675 0.599 2.675 1.337C2.675 2.076 2.076 2.675 1.337 2.675C0.599 2.675 0 2.076 0 1.337C0 0.599 0.599 0 1.337 0Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 9.1064 4.4201)"/>
+<path d="M1.862 1.337C1.862 1.048 1.627 0.812 1.337 0.812C1.048 0.812 0.812 1.048 0.812 1.337C0.812 1.627 1.048 1.862 1.337 1.862C1.627 1.862 1.862 1.627 1.862 1.337ZM1.337 0C2.076 0 2.675 0.599 2.675 1.337C2.675 2.076 2.076 2.675 1.337 2.675C0.599 2.675 0 2.076 0 1.337C0 0.599 0.599 0 1.337 0Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 1.2188 5.9044)"/>
+</svg>Grow</a></li>
+              <li><a class="dash-nav__item" href="#prove"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+<path d="M0 0.406C0 0.182 0.182 0 0.406 0L3.065 0C3.289 0 3.471 0.182 3.471 0.406L3.471 3.065C3.471 3.289 3.289 3.471 3.065 3.471C2.841 3.471 2.659 3.289 2.659 3.065L2.659 0.812L0.406 0.812C0.182 0.812 0 0.631 0 0.406Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 8.3099 3.4346)"/>
+<path d="M10.443 0.119C10.602 0.278 10.602 0.535 10.443 0.694L6.233 4.904C6.157 4.98 6.054 5.023 5.946 5.023C5.838 5.023 5.735 4.98 5.659 4.904L3.73 2.975L0.694 6.012C0.535 6.17 0.278 6.17 0.119 6.012C-0.04 5.853 -0.04 5.596 0.119 5.437L3.443 2.113C3.519 2.037 3.622 1.994 3.73 1.994C3.838 1.994 3.941 2.037 4.017 2.113L5.946 4.042L9.869 0.119C10.028 -0.04 10.285 -0.04 10.443 0.119Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 1.2188 3.4341)"/>
+</svg>Prove</a></li>
+              <li><a class="dash-nav__item" href="#lab"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+<path d="M0 1.76C0 2.731 0.758 3.521 1.69 3.521C2.622 3.521 3.38 2.731 3.38 1.76C3.38 0.79 2.622 0 1.69 0C0.758 0 0 0.79 0 1.76ZM0.78 1.76C0.78 1.238 1.188 0.813 1.69 0.813C2.192 0.813 2.6 1.238 2.6 1.76C2.6 2.283 2.192 2.708 1.69 2.708C1.188 2.708 0.78 2.283 0.78 1.76Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 4.5501 4.7395)"/>
+<path d="M3.132 9.348C3.132 10.317 3.885 11.104 4.809 11.104C5.734 11.104 6.486 10.317 6.486 9.348C6.486 9.119 6.632 9.007 6.695 8.969C6.757 8.933 6.918 8.86 7.103 8.971C7.491 9.206 7.942 9.267 8.375 9.147C8.809 9.026 9.171 8.734 9.395 8.327C9.856 7.49 9.581 6.414 8.782 5.93C8.595 5.816 8.575 5.628 8.575 5.552C8.575 5.476 8.595 5.288 8.782 5.175C9.581 4.691 9.856 3.616 9.395 2.777C9.171 2.369 8.808 2.078 8.374 1.957C7.942 1.838 7.491 1.9 7.104 2.134C6.919 2.245 6.756 2.172 6.695 2.135C6.632 2.097 6.486 1.985 6.486 1.756C6.486 0.788 5.734 0 4.809 0C3.885 0 3.132 0.788 3.132 1.756C3.132 1.985 2.987 2.097 2.924 2.135C2.862 2.173 2.7 2.246 2.516 2.134C2.128 1.9 1.677 1.838 1.244 1.957C0.81 2.078 0.448 2.369 0.223 2.777C-0.237 3.616 0.038 4.691 0.836 5.175C1.024 5.288 1.043 5.476 1.043 5.552C1.043 5.627 1.024 5.816 0.836 5.93C0.038 6.414 -0.237 7.49 0.223 8.327C0.447 8.734 0.81 9.025 1.244 9.147C1.676 9.267 2.128 9.205 2.516 8.97C2.7 8.859 2.862 8.933 2.924 8.969C2.986 9.007 3.132 9.119 3.132 9.348ZM3.312 8.265C3.127 8.154 2.924 8.098 2.72 8.098C2.515 8.098 2.31 8.155 2.123 8.268C1.916 8.393 1.676 8.426 1.446 8.362C1.214 8.297 1.02 8.141 0.9 7.923C0.651 7.472 0.799 6.892 1.229 6.632C1.601 6.406 1.823 6.002 1.823 5.552C1.823 5.102 1.601 4.698 1.229 4.472C0.8 4.211 0.652 3.633 0.9 3.181C1.02 2.963 1.214 2.806 1.446 2.742C1.677 2.679 1.917 2.712 2.124 2.837C2.496 3.062 2.94 3.063 3.313 2.839C3.688 2.614 3.912 2.209 3.912 1.756C3.912 1.236 4.315 0.812 4.809 0.812C5.304 0.812 5.706 1.236 5.706 1.756C5.706 2.209 5.93 2.614 6.305 2.839C6.678 3.063 7.123 3.061 7.496 2.837C7.702 2.712 7.942 2.678 8.173 2.742C8.404 2.806 8.599 2.963 8.719 3.181C8.967 3.633 8.82 4.212 8.389 4.472C8.017 4.698 7.795 5.102 7.795 5.552C7.795 6.002 8.017 6.406 8.389 6.632C8.82 6.892 8.967 7.472 8.719 7.923C8.599 8.141 8.404 8.297 8.173 8.362C7.942 8.426 7.702 8.393 7.496 8.268C7.124 8.043 6.679 8.042 6.306 8.265C5.93 8.49 5.706 8.895 5.706 9.348C5.706 9.869 5.304 10.292 4.809 10.292C4.315 10.292 3.912 9.869 3.912 9.348C3.912 8.895 3.688 8.49 3.312 8.265Z" fill="#FFFFFF" fill-rule="evenodd" transform="matrix(1 0 0 1 1.4306 0.9479)"/>
+</svg>Lab</a></li>
+            </ul>
+            <p class="dash-nav__user">
+              <span class="dash-nav__avatar">
+                <img src="assets/img/brand/mark-64.png" alt="">
+                <span class="dash-nav__status" aria-hidden="true"></span>
+              </span>
+              Matt E.
+            </p>
+          </nav>
+
+          <div class="dash">
+            <p class="dash__tabs">
+              <span class="dash__tab is-active">People</span>
+              <span class="dash__tab">Roles</span>
+              <span class="dash__tab">Skills</span>
+            </p>
+
+            <article class="card card--revenue">
+              <h3 class="card__title">Courses shipped (AXL)</h3>
+              <p class="card__figure">~80<span class="card__figure-minor"> in 12 months</span></p>
+              <p class="card__delta">
+                <span class="tag">2&ndash;3 hrs</span>
+                <span class="card__delta-note">working time per 10&ndash;45 min course</span>
+              </p>
+              <svg class="card__chart card__chart--revenue" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="245.5" height="69.5" viewBox="-0.5 0 245.5 69.5" fill="none">
+<g fill="#FFFFFF" fill-opacity="0.1">
+<rect x="11.5" y="0" width="1" height="69"/>
+<rect x="66.5" y="0" width="1" height="69"/>
+<rect x="121.5" y="0" width="1" height="69"/>
+<rect x="176.5" y="0" width="1" height="69"/>
+<rect x="231.5" y="0" width="1" height="69"/>
+<rect x="127.5" y="64" width="1" height="5"/>
+<rect x="131.5" y="64" width="1" height="5"/>
+<rect x="135.5" y="64" width="1" height="5"/>
+<rect x="139.5" y="64" width="1" height="5"/>
+<rect x="143.5" y="64" width="1" height="5"/>
+<rect x="147.5" y="64" width="1" height="5"/>
+<rect x="151.5" y="64" width="1" height="5"/>
+<rect x="155.5" y="64" width="1" height="5"/>
+<rect x="159.5" y="64" width="1" height="5"/>
+<rect x="163.5" y="64" width="1" height="5"/>
+<rect x="167.5" y="64" width="1" height="5"/>
+<rect x="171.5" y="64" width="1" height="5"/>
+<rect x="175.5" y="64" width="1" height="5"/>
+<rect x="179.5" y="64" width="1" height="5"/>
+<rect x="183.5" y="64" width="1" height="5"/>
+<rect x="187.5" y="64" width="1" height="5"/>
+<rect x="191.5" y="64" width="1" height="5"/>
+<rect x="195.5" y="64" width="1" height="5"/>
+<rect x="199.5" y="64" width="1" height="5"/>
+<rect x="203.5" y="64" width="1" height="5"/>
+<rect x="207.5" y="64" width="1" height="5"/>
+<rect x="211.5" y="64" width="1" height="5"/>
+<rect x="215.5" y="64" width="1" height="5"/>
+<rect x="219.5" y="64" width="1" height="5"/>
+<rect x="223.5" y="64" width="1" height="5"/>
+<rect x="227.5" y="64" width="1" height="5"/>
+<rect x="231.5" y="64" width="1" height="5"/>
+<rect x="235.5" y="64" width="1" height="5"/>
+<rect x="239.5" y="64" width="1" height="5"/>
+<rect x="243.5" y="64" width="1" height="5"/>
+</g><g fill="#FFFFFF">
+<rect x="-0.5" y="53" width="1" height="16"/>
+<rect x="3.5" y="41" width="1" height="28"/>
+<rect x="7.5" y="32" width="1" height="37"/>
+<rect x="11.5" y="41" width="1" height="28"/>
+<rect x="15.5" y="46" width="1" height="23"/>
+<rect x="19.5" y="59" width="1" height="10"/>
+<rect x="23.5" y="64" width="1" height="5"/>
+<rect x="27.5" y="57" width="1" height="12"/>
+<rect x="31.5" y="17" width="1" height="52"/>
+<rect x="35.5" y="24" width="1" height="45"/>
+<rect x="39.5" y="8" width="1" height="61"/>
+<rect x="43.5" y="17" width="1" height="52"/>
+<rect x="47.5" y="24" width="1" height="45"/>
+<rect x="51.5" y="36" width="1" height="33"/>
+<rect x="55.5" y="46" width="1" height="23"/>
+<rect x="59.5" y="8" width="1" height="61"/>
+<rect x="63.5" y="66" width="1" height="3"/>
+<rect x="67.5" y="64" width="1" height="5"/>
+<rect x="71.5" y="63" width="1" height="6"/>
+<rect x="75.5" y="59" width="1" height="10"/>
+<rect x="79.5" y="3" width="1" height="66"/>
+<rect x="83.5" y="24" width="1" height="45"/>
+<rect x="87.5" y="14" width="1" height="55"/>
+<rect x="91.5" y="43" width="1" height="26"/>
+<rect x="95.5" y="64" width="1" height="5"/>
+<rect x="99.5" y="41" width="1" height="28"/>
+<rect x="103.5" y="57" width="1" height="12"/>
+<rect x="107.5" y="55" width="1" height="14"/>
+<rect x="111.5" y="26" width="1" height="43"/>
+<rect x="115.5" y="36" width="1" height="33"/>
+<rect x="119.5" y="5" width="1" height="64"/>
+<rect x="123.5" y="19" width="1" height="50"/>
+</g></svg>
+              <p class="card__axis" aria-hidden="true">
+                <span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span><span>Now</span>
+              </p>
+            </article>
+
+            <article class="card card--leads">
+              <h3 class="card__title">The Manager Standard</h3>
+              <div class="card__stats">
+                <p class="stat"><span class="stat__label">Managers on one standard</span><span class="stat__value">677</span></p>
+                <p class="stat stat--wide"><span class="stat__label">Units, one talent review</span><span class="stat__value">36</span></p>
+              </div>
+              <svg class="card__chart card__chart--leads" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="238" height="109" viewBox="0 0 238 109" fill="none">
+<g fill="#FFFFFF">
+<circle cx="24.5" cy="3.5" r="3.5"/>
+<circle cx="66.5" cy="3.5" r="3.5"/>
+<circle cx="87.5" cy="3.5" r="3.5"/>
+<circle cx="129.5" cy="3.5" r="3.5"/>
+<circle cx="171.5" cy="3.5" r="3.5"/>
+<circle cx="213.5" cy="3.5" r="3.5"/>
+<circle cx="3.5" cy="20.5" r="3.5"/>
+<circle cx="24.5" cy="20.5" r="3.5"/>
+<circle cx="66.5" cy="20.5" r="3.5"/>
+<circle cx="87.5" cy="20.5" r="3.5"/>
+<circle cx="108.5" cy="20.5" r="3.5"/>
+<circle cx="129.5" cy="20.5" r="3.5"/>
+<circle cx="150.5" cy="20.5" r="3.5"/>
+<circle cx="171.5" cy="20.5" r="3.5"/>
+<circle cx="213.5" cy="20.5" r="3.5"/>
+<circle cx="234.5" cy="20.5" r="3.5"/>
+<circle cx="3.5" cy="37.5" r="3.5"/>
+<circle cx="24.5" cy="37.5" r="3.5"/>
+<circle cx="45.5" cy="37.5" r="3.5"/>
+<circle cx="108.5" cy="37.5" r="3.5"/>
+<circle cx="129.5" cy="37.5" r="3.5"/>
+<circle cx="192.5" cy="37.5" r="3.5"/>
+<circle cx="213.5" cy="37.5" r="3.5"/>
+<circle cx="24.5" cy="54.5" r="3.5"/>
+<circle cx="66.5" cy="54.5" r="3.5"/>
+<circle cx="87.5" cy="54.5" r="3.5"/>
+<circle cx="129.5" cy="54.5" r="3.5"/>
+<circle cx="150.5" cy="54.5" r="3.5"/>
+<circle cx="192.5" cy="54.5" r="3.5"/>
+<circle cx="213.5" cy="54.5" r="3.5"/>
+<circle cx="45.5" cy="71.5" r="3.5"/>
+<circle cx="66.5" cy="71.5" r="3.5"/>
+<circle cx="87.5" cy="71.5" r="3.5"/>
+<circle cx="150.5" cy="71.5" r="3.5"/>
+<circle cx="213.5" cy="71.5" r="3.5"/>
+<circle cx="234.5" cy="71.5" r="3.5"/>
+<circle cx="3.5" cy="88.5" r="3.5"/>
+<circle cx="24.5" cy="88.5" r="3.5"/>
+<circle cx="66.5" cy="88.5" r="3.5"/>
+<circle cx="129.5" cy="88.5" r="3.5"/>
+<circle cx="150.5" cy="88.5" r="3.5"/>
+<circle cx="192.5" cy="88.5" r="3.5"/>
+<circle cx="213.5" cy="88.5" r="3.5"/>
+<circle cx="24.5" cy="105.5" r="3.5"/>
+<circle cx="108.5" cy="105.5" r="3.5"/>
+<circle cx="129.5" cy="105.5" r="3.5"/>
+<circle cx="171.5" cy="105.5" r="3.5"/>
+<circle cx="234.5" cy="105.5" r="3.5"/>
+</g>
+<g fill="#3E332F">
+<circle cx="3.5" cy="3.5" r="3.5"/>
+<circle cx="45.5" cy="3.5" r="3.5"/>
+<circle cx="108.5" cy="3.5" r="3.5"/>
+<circle cx="150.5" cy="3.5" r="3.5"/>
+<circle cx="192.5" cy="3.5" r="3.5"/>
+<circle cx="234.5" cy="3.5" r="3.5"/>
+<circle cx="45.5" cy="20.5" r="3.5"/>
+<circle cx="192.5" cy="20.5" r="3.5"/>
+<circle cx="66.5" cy="37.5" r="3.5"/>
+<circle cx="87.5" cy="37.5" r="3.5"/>
+<circle cx="150.5" cy="37.5" r="3.5"/>
+<circle cx="171.5" cy="37.5" r="3.5"/>
+<circle cx="234.5" cy="37.5" r="3.5"/>
+<circle cx="3.5" cy="54.5" r="3.5"/>
+<circle cx="45.5" cy="54.5" r="3.5"/>
+<circle cx="108.5" cy="54.5" r="3.5"/>
+<circle cx="171.5" cy="54.5" r="3.5"/>
+<circle cx="234.5" cy="54.5" r="3.5"/>
+<circle cx="3.5" cy="71.5" r="3.5"/>
+<circle cx="24.5" cy="71.5" r="3.5"/>
+<circle cx="108.5" cy="71.5" r="3.5"/>
+<circle cx="129.5" cy="71.5" r="3.5"/>
+<circle cx="171.5" cy="71.5" r="3.5"/>
+<circle cx="192.5" cy="71.5" r="3.5"/>
+<circle cx="45.5" cy="88.5" r="3.5"/>
+<circle cx="87.5" cy="88.5" r="3.5"/>
+<circle cx="108.5" cy="88.5" r="3.5"/>
+<circle cx="171.5" cy="88.5" r="3.5"/>
+<circle cx="234.5" cy="88.5" r="3.5"/>
+<circle cx="3.5" cy="105.5" r="3.5"/>
+<circle cx="45.5" cy="105.5" r="3.5"/>
+<circle cx="66.5" cy="105.5" r="3.5"/>
+<circle cx="87.5" cy="105.5" r="3.5"/>
+<circle cx="150.5" cy="105.5" r="3.5"/>
+<circle cx="192.5" cy="105.5" r="3.5"/>
+<circle cx="213.5" cy="105.5" r="3.5"/>
+</g>
+</svg>
+            </article>
+
+            <article class="card card--sales">
+              <h3 class="card__title">Talent Marketplace</h3>
+              <div class="card__stats">
+                <p class="stat"><span class="stat__label">Internal moves</span><span class="stat__value stat__value--sm">1,031</span></p>
+                <p class="stat stat--wide"><span class="stat__label">Staff engaged</span><span class="stat__value stat__value--sm">90%</span></p>
+              </div>
+              <svg class="card__chart card__chart--sales" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="246" height="120" viewBox="0 0 246 120" fill="none">
+<rect x="3" y="0.5" width="242" height="1" fill="#FFFFFF" fill-opacity="0.1"/>
+<rect x="60" y="0.5" width="57" height="1" fill="#FFFFFF"/>
+<rect x="123" y="0.5" width="110" height="1" fill="#FFFFFF"/>
+<rect x="0" y="88" width="35" height="31" fill="#D9D9D9" fill-opacity="0.1"/>
+<rect x="0" y="88" width="35" height="2" fill="#FFFFFF"/>
+<rect x="42" y="57" width="35" height="62" fill="#D9D9D9" fill-opacity="0.1"/>
+<rect x="42" y="57" width="35" height="2" fill="#FFFFFF"/>
+<rect x="84" y="43" width="35" height="76" fill="#D9D9D9" fill-opacity="0.1"/>
+<rect x="84" y="43" width="35" height="2" fill="#FFFFFF"/>
+<rect x="126" y="74" width="35" height="45" fill="#D9D9D9" fill-opacity="0.1"/>
+<rect x="126" y="74" width="35" height="2" fill="#FFFFFF"/>
+<rect x="210" y="88" width="35" height="31" fill="#D9D9D9" fill-opacity="0.1"/>
+<rect x="210" y="88" width="35" height="2" fill="#FFFFFF"/>
+<rect x="168" y="28" width="35" height="91" fill="#FFFFFF"/>
+</svg>
+            </article>
+
+            <article class="card card--log">
+              <h3 class="card__title">Capability loop, running</h3>
+              <ul class="log">
+                <li class="log__row">
+                  <span class="log__line"><span class="log__tag">[SENSE]</span><span class="log__text">AI literacy scored on a validated research scale</span></span>
+                  <span class="log__state">DONE</span>
+                </li>
+                <li class="log__row">
+                  <span class="log__line"><span class="log__tag">[MAP]</span><span class="log__text">Roles broken into tasks; AI exposure rated</span></span>
+                </li>
+                <li class="log__row">
+                  <span class="log__line"><span class="log__tag">[GROW]</span><span class="log__text">Manager learning auto-assigned on role change</span></span>
+                </li>
+              </ul>
+            </article>
+
+            <article class="card card--trajectory">
+              <h3 class="card__title">Prove: did it move?</h3>
+              <div class="card__stats card__stats--trajectory">
+                <p class="stat"><span class="stat__label">Senior leaders retained</span><span class="stat__value stat__value--lg">98 of 116</span></p>
+                <p class="stat"><span class="stat__label">Staff in the marketplace</span><span class="stat__value stat__value--lg">90%</span></p>
+                <p class="stat"><span class="stat__label">Managers on one standard</span><span class="stat__value stat__value--lg">677</span></p>
+              </div>
+            </article>
+          </div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+    <!-- 2. The shift: pinned, three facts in turn, each with my answer -->
+  <section class="s-shift" id="shift" data-pin aria-labelledby="shift-title">
+    <div class="s-pin">
+      <div class="s-wrap">
+        <header class="s-head">
+          <p class="s-kicker">The shift</p>
+          <h2 class="s-title" id="shift-title" data-split>The work is changing faster than the <em>courses.</em></h2>
+          <p class="s-lede" data-rise>That's the problem I solve.</p>
+        </header>
+        <ol class="shift">
+          <li class="shift__step" data-step>
+            <p class="shift__num"><span data-scrub-count="22" data-suffix="%">22%</span></p>
+            <div class="shift__body">
+              <p class="shift__fact">of jobs disrupted by 2030.</p>
+              <p class="shift__answer"><span class="s-label">My answer</span> Every build starts with an SME intake on the one task that's going wrong, and the learning is scoped to that task. <a class="s-link" href="work/#axl">How I build</a> <span class="todo">Draft, Matt to confirm</span></p>
+            </div>
+          </li>
+          <li class="shift__step" data-step>
+            <p class="shift__num"><span data-scrub-count="39" data-suffix="%">39%</span></p>
+            <div class="shift__body">
+              <p class="shift__fact">of core skills changing.</p>
+              <p class="shift__answer"><span class="s-label">My answer</span> I rebuilt how courses get made, so a 10 to 45 minute course takes 2 to 3 hours of working time. That's how ~80 shipped in 12 months. <a class="s-link" href="work/#axl">See the model</a> <span class="todo">Draft, Matt to confirm</span></p>
+            </div>
+          </li>
+          <li class="shift__step" data-step>
+            <p class="shift__num"><span data-scrub-count="4" data-suffix="%">4%</span></p>
+            <div class="shift__body">
+              <p class="shift__fact">of HR teams planning past 2&nbsp;years.</p>
+              <p class="shift__answer"><span class="s-label">My answer</span> I build the systems that make planning ahead possible, like a skills architecture and a talent review that runs the same way in all 36 business units. <a class="s-link" href="work/#talent-marketplace">See the systems</a> <span class="todo">Draft, Matt to confirm</span></p>
+            </div>
+          </li>
+        </ol>
+        <div class="s-meter" aria-hidden="true"><span></span><span></span><span></span></div>
+        <p class="s-source">Sources: World Economic Forum, Future of Jobs Report 2025. SHRM. <span class="todo">Add the exact SHRM report title and year</span></p>
       </div>
     </div>
   </section>
 
-  <!-- 2. The Shift -->
-  <section class="section" aria-labelledby="shift-title">
-    <div class="container">
-      <div class="grid intro">
-        <div class="col-head">
-          <h2 id="shift-title">The work is changing faster than the courses.</h2>
-        </div>
-        <div class="col-side"><p class="t-body-l">That's the problem I solve.</p></div>
+  <!-- 3. Beliefs: vertical scroll drives the row of cards sideways -->
+  <section class="s-beliefs" id="beliefs" data-pin data-pin-x aria-labelledby="beliefs-title">
+    <div class="s-pin">
+      <div class="s-wrap s-wrap--row">
+        <header class="s-head s-head--row">
+          <p class="s-kicker">Point of view</p>
+          <h2 class="s-title" id="beliefs-title" data-split>7 beliefs I <em>work by.</em></h2>
+          <p class="beliefs__count" aria-hidden="true"><span data-belief-index>01</span> / 07</p>
+        </header>
       </div>
-      <div class="shift" data-stagger>
-        <div class="shift__row reveal">
-          <span class="t-stat shift__num">22%</span>
-          <div class="shift__body">
-            <p class="shift__text">of jobs disrupted by 2030.</p>
-            <p class="shift__by"><span class="t-label">My answer</span> Every build starts with an SME intake on the one task that's going wrong, and the learning is scoped to that task. <a class="link" href="work/#axl">How I build</a> <span class="todo">Draft, Matt to confirm</span></p>
+      <div class="beliefs" role="region" aria-label="7 beliefs" tabindex="0">
+        <div class="beliefs__track">
+        <article class="belief flip" style="--n: 0">
+          <div class="flip__face flip__front">
+            <span class="belief__num">01</span>
+            <div class="belief__text"><h3 class="belief__title">Nobody needs another course.</h3><p class="belief__proof">They need to do the job better next month.</p></div>
+            <button class="flip__btn" type="button" aria-expanded="false" aria-controls="belief-back-01">How I address it</button>
           </div>
-        </div>
-        <div class="shift__row reveal">
-          <span class="t-stat shift__num">39%</span>
-          <div class="shift__body">
-            <p class="shift__text">of core skills changing.</p>
-            <p class="shift__by"><span class="t-label">My answer</span> I rebuilt how courses get made, so a 10 to 45 minute course takes 2 to 3 hours of working time. That's how ~80 shipped in 12 months. <a class="link" href="work/#axl">See the model</a> <span class="todo">Draft, Matt to confirm</span></p>
+          <div class="flip__face flip__back" id="belief-back-01" inert>
+            <span class="belief__num">How I address it</span>
+            <div class="belief__text"><p class="flip__answer">Each AXL course targets one thing people need to do differently at work, and takes 2 to 3 hours of working time to build. <span class="todo">Draft, Matt to confirm</span></p><a class="s-link" href="work/#axl">See AXL</a></div>
+            <button class="flip__btn" type="button" aria-expanded="true" aria-controls="belief-back-01">Back to the belief</button>
           </div>
-        </div>
-        <div class="shift__row reveal">
-          <span class="t-stat shift__num">4%</span>
-          <div class="shift__body">
-            <p class="shift__text">of HR teams planning past 2&nbsp;years.</p>
-            <p class="shift__by"><span class="t-label">My answer</span> I build the systems that make planning ahead possible, like a skills architecture and a talent review that runs the same way in all 36 business units. <a class="link" href="work/#talent-marketplace">See the systems</a> <span class="todo">Draft, Matt to confirm</span></p>
+        </article>
+        <article class="belief flip" style="--n: 1">
+          <div class="flip__face flip__front">
+            <span class="belief__num">02</span>
+            <div class="belief__text"><h3 class="belief__title">Start with the work, not the learner.</h3><p class="belief__proof">Capability gaps live in the workflow, not the catalog.</p></div>
+            <button class="flip__btn" type="button" aria-expanded="false" aria-controls="belief-back-02">How I address it</button>
           </div>
+          <div class="flip__face flip__back" id="belief-back-02" inert>
+            <span class="belief__num">How I address it</span>
+            <div class="belief__text"><p class="flip__answer">The ER simulator came straight from the workflow. Managers were learning discipline conversations by getting them wrong with real people. <span class="todo">Draft, Matt to confirm</span></p><a class="s-link" href="work/#simulations">See the simulator</a></div>
+            <button class="flip__btn" type="button" aria-expanded="true" aria-controls="belief-back-02">Back to the belief</button>
+          </div>
+        </article>
+        <article class="belief flip" style="--n: 2">
+          <div class="flip__face flip__front">
+            <span class="belief__num">03</span>
+            <div class="belief__text"><h3 class="belief__title">Speed is a quality standard.</h3><p class="belief__proof">If it takes 6 months to build, the need already moved.</p></div>
+            <button class="flip__btn" type="button" aria-expanded="false" aria-controls="belief-back-03">How I address it</button>
+          </div>
+          <div class="flip__face flip__back" id="belief-back-03" inert>
+            <span class="belief__num">How I address it</span>
+            <div class="belief__text"><p class="flip__answer">Brand and adult-learning standards are built into my production model, so going faster doesn't mean cutting corners. It produced ~80 courses in 12 months. <span class="todo">Draft, Matt to confirm</span></p><a class="s-link" href="work/#axl">See the model</a></div>
+            <button class="flip__btn" type="button" aria-expanded="true" aria-controls="belief-back-03">Back to the belief</button>
+          </div>
+        </article>
+        <article class="belief flip" style="--n: 3">
+          <div class="flip__face flip__front">
+            <span class="belief__num">04</span>
+            <div class="belief__text"><h3 class="belief__title">Build it. Don't deck it.</h3><p class="belief__proof">A working prototype ends more debates than any slide.</p></div>
+            <button class="flip__btn" type="button" aria-expanded="false" aria-controls="belief-back-04">How I address it</button>
+          </div>
+          <div class="flip__face flip__back" id="belief-back-04" inert>
+            <span class="belief__num">How I address it</span>
+            <div class="belief__text"><p class="flip__answer">I build the first version myself. The ER simulator, the talent review tool, and the intake pipeline all started on my keyboard. <span class="todo">Draft, Matt to confirm</span></p><a class="s-link" href="lab/">Enter the Lab</a></div>
+            <button class="flip__btn" type="button" aria-expanded="true" aria-controls="belief-back-04">Back to the belief</button>
+          </div>
+        </article>
+        <article class="belief flip" style="--n: 4">
+          <div class="flip__face flip__front">
+            <span class="belief__num">05</span>
+            <div class="belief__text"><h3 class="belief__title">Measure behavior, not attendance.</h3><p class="belief__proof">Completions are vanity. Changed habits are value.</p></div>
+            <button class="flip__btn" type="button" aria-expanded="false" aria-controls="belief-back-05">How I address it</button>
+          </div>
+          <div class="flip__face flip__back" id="belief-back-05" inert>
+            <span class="belief__num">How I address it</span>
+            <div class="belief__text"><p class="flip__answer">The Manager Standard defines the behavior, pulses employees on it, and tests the learning against a comparison group. It covers 677 managers. <span class="todo">Draft, Matt to confirm</span></p><a class="s-link" href="work/#manager-standard">See the standard</a></div>
+            <button class="flip__btn" type="button" aria-expanded="true" aria-controls="belief-back-05">Back to the belief</button>
+          </div>
+        </article>
+        <article class="belief flip" style="--n: 5">
+          <div class="flip__face flip__front">
+            <span class="belief__num">06</span>
+            <div class="belief__text"><h3 class="belief__title">Talent moves inside or it walks out.</h3><p class="belief__proof">Mobility is retention with a strategy.</p></div>
+            <button class="flip__btn" type="button" aria-expanded="false" aria-controls="belief-back-06">How I address it</button>
+          </div>
+          <div class="flip__face flip__back" id="belief-back-06" inert>
+            <span class="belief__num">How I address it</span>
+            <div class="belief__text"><p class="flip__answer">I led the staff strategy and communications for a talent marketplace: skills profiles, growth plans, and open roles people can actually find. <span class="todo">Draft, Matt to confirm</span></p><a class="s-link" href="work/#talent-marketplace">See the marketplace</a></div>
+            <button class="flip__btn" type="button" aria-expanded="true" aria-controls="belief-back-06">Back to the belief</button>
+          </div>
+        </article>
+        <article class="belief flip" style="--n: 6">
+          <div class="flip__face flip__front">
+            <span class="belief__num">07</span>
+            <div class="belief__text"><h3 class="belief__title">AI is a job redesign problem.</h3><p class="belief__proof">Training people on tools without redesigning the work is theater.</p></div>
+            <button class="flip__btn" type="button" aria-expanded="false" aria-controls="belief-back-07">How I address it</button>
+          </div>
+          <div class="flip__face flip__back" id="belief-back-07" inert>
+            <span class="belief__num">How I address it</span>
+            <div class="belief__text"><p class="flip__answer">I start with an AI literacy self-assessment that scores each person and sends a learning path. Mapping AI exposure role by role comes next. <span class="todo">Draft, Matt to confirm</span></p><a class="s-link" href="work/#ai-capability">See the approach</a></div>
+            <button class="flip__btn" type="button" aria-expanded="true" aria-controls="belief-back-07">Back to the belief</button>
+          </div>
+        </article>
         </div>
       </div>
-      <p class="source t-label">Sources: World Economic Forum, Future of Jobs Report 2025. SHRM. <span class="todo">Add the exact SHRM report title and year</span></p>
+      <div class="s-wrap">
+        <p class="beliefs__hint">Keep scrolling for all 7. Flip a card to see the fix.</p>
+      </div>
+    </div>
+  </section>
+  <div class="s-wrap s-after"><a class="button button--glass" href="point-of-view/">Read the full point of view</a></div>
+
+  <!-- 4. The framework: a loop that draws itself, one move at a time -->
+  <section class="s-loop" id="framework" data-pin aria-labelledby="framework-title">
+    <div class="s-pin">
+      <div class="s-wrap loop-wrap">
+        <header class="s-head">
+          <p class="s-kicker">Capability architecture</p>
+          <h2 class="s-title" id="framework-title" data-split>It runs on data, and it <em>never stops.</em></h2>
+          <p class="s-lede" data-rise>Data shows what the work needs. The job architecture turns that into skills. Growth closes the gaps. Data shows whether it worked. Then it runs again.</p>
+        </header>
+        <div class="ring" aria-hidden="true">
+          <svg class="ring__svg" viewBox="0 0 400 400">
+            <circle class="ring__track" cx="200" cy="200" r="170"/>
+            <circle class="ring__draw" cx="200" cy="200" r="170" pathLength="1"/>
+          </svg>
+          <span class="ring__node" style="left: 50%; top: 7.5%">Sense</span>
+          <span class="ring__node" style="left: 92.5%; top: 50%">Map</span>
+          <span class="ring__node" style="left: 50%; top: 92.5%">Grow</span>
+          <span class="ring__node" style="left: 7.5%; top: 50%">Prove</span>
+        </div>
+        <ol class="loop" aria-label="The four moves, which repeat">
+          <li class="loop__move" data-step>
+            <span class="s-label">1 &middot; Sense</span>
+            <h3 class="loop__q">What's changing?</h3>
+            <p class="loop__how">Skills-change data from outside. Workforce signals from inside: assessments, pulse surveys, turnover, mobility.</p>
+            <a class="loop__proof" href="work/#ai-capability"><strong>AI literacy</strong> scored on a validated research scale</a>
+          </li>
+          <li class="loop__move" data-step>
+            <span class="s-label">2 &middot; Map</span>
+            <h3 class="loop__q">What does each role need now?</h3>
+            <p class="loop__how">Break each role into tasks. Rate how AI and technology change each one. Keep the job architecture current as the data moves.</p>
+            <a class="loop__proof" href="work/#manager-standard"><strong>677</strong> managers on one behavior standard</a>
+          </li>
+          <li class="loop__move" data-step>
+            <span class="s-label">3 &middot; Grow</span>
+            <h3 class="loop__q">How do people get there?</h3>
+            <p class="loop__how">Never a single event. Three layers run at the same time, below.</p>
+            <a class="loop__proof" href="work/#talent-marketplace"><strong>90%</strong> of staff engaged in a skills marketplace</a>
+          </li>
+          <li class="loop__move" data-step>
+            <span class="s-label">4 &middot; Prove</span>
+            <h3 class="loop__q">Did it move?</h3>
+            <p class="loop__how">Behavior against a comparison group, then business results. What we learn feeds the next round of Sense.</p>
+            <a class="loop__proof" href="work/#leadership-redefined"><strong>98</strong> of 116 senior leaders still at the university</a>
+          </li>
+        </ol>
+        <p class="loop__again">Then Sense again. The architecture is never finished.</p>
+      </div>
     </div>
   </section>
 
-  <!-- 3. Manifesto strip -->
-  <section class="section" aria-labelledby="beliefs-title">
-    <div class="container">
-      <div class="grid intro">
-        <div class="col-head">
-          <h2 id="beliefs-title">7 beliefs I work by.</h2>
-        </div>
-        
+  <!-- Grow: three layers -->
+  <section class="s-section" aria-labelledby="grow-title">
+    <div class="s-wrap">
+      <header class="s-head">
+        <p class="s-kicker">Grow</p>
+        <h2 class="s-title" id="grow-title" data-split>Learning is never <em>an event.</em></h2>
+      </header>
+      <div class="layers" data-stagger>
+        <article class="layer" data-rise>
+          <span class="layer__n">01</span>
+          <h3>Always on</h3>
+          <p>Constant engagement, so the whole workforce is always in something, between the moments that matter.</p>
+          <p class="layer__eg"><span class="s-label">Example</span> Anchors Edge, the always-on program I run. <span class="todo">Matt to add: what it is, cadence, reach</span></p>
+        </article>
+        <article class="layer" data-rise>
+          <span class="layer__n">02</span>
+          <h3>At the point of need</h3>
+          <p>Tools inside the work, there when the task is: simulators, job aids, AI assistants, learning that starts on a role change.</p>
+          <p class="layer__eg"><span class="s-label">Example</span> The employee relations simulator, and manager learning auto-assigned on role change. <a class="s-link" href="work/#simulations">See the tools</a></p>
+        </article>
+        <article class="layer" data-rise>
+          <span class="layer__n">03</span>
+          <h3>Somewhere to go</h3>
+          <p>A talent marketplace that speaks the job architecture's skills, so growth turns into gigs, mentors, and new roles. Its data shows which skills are moving and feeds the next Sense.</p>
+          <p class="layer__eg"><span class="s-label">Example</span> Skills profiles, growth plans, and open roles people can actually find. Short-term gigs come next. <a class="s-link" href="work/#talent-marketplace">See the marketplace</a></p>
+        </article>
       </div>
-    </div>
-    <div class="strip" role="region" aria-label="7 beliefs, scroll sideways" tabindex="0">
-      <article class="belief flip">
-        <div class="flip__face flip__front">
-          <div class="belief__text"><h3 class="t-h2">Nobody needs another course.</h3><p class="belief__proof">They need to do the job better next month.</p></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="false" aria-controls="belief-back-01">How I address it</button>
-        </div>
-        <div class="flip__face flip__back" id="belief-back-01" inert>
-          <span class="belief__num t-label">How I address it</span>
-          <div class="belief__text"><p class="flip__answer">Each AXL course targets one thing people need to do differently at work, and takes 2 to 3 hours of working time to build. <span class="todo">Draft, Matt to confirm</span></p><a class="link" href="work/#axl">See AXL</a></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="true" aria-controls="belief-back-01">Back to the belief</button>
-        </div>
-      </article>
-      <article class="belief flip">
-        <div class="flip__face flip__front">
-          <div class="belief__text"><h3 class="t-h2">Start with the work, not the learner.</h3><p class="belief__proof">Capability gaps live in the workflow, not the catalog.</p></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="false" aria-controls="belief-back-02">How I address it</button>
-        </div>
-        <div class="flip__face flip__back" id="belief-back-02" inert>
-          <span class="belief__num t-label">How I address it</span>
-          <div class="belief__text"><p class="flip__answer">The ER simulator came straight from the workflow. Managers were learning discipline conversations by getting them wrong with real people. <span class="todo">Draft, Matt to confirm</span></p><a class="link" href="work/#simulations">See the simulator</a></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="true" aria-controls="belief-back-02">Back to the belief</button>
-        </div>
-      </article>
-      <article class="belief flip">
-        <div class="flip__face flip__front">
-          <div class="belief__text"><h3 class="t-h2">Speed is a quality standard.</h3><p class="belief__proof">If it takes 6 months to build, the need already moved.</p></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="false" aria-controls="belief-back-03">How I address it</button>
-        </div>
-        <div class="flip__face flip__back" id="belief-back-03" inert>
-          <span class="belief__num t-label">How I address it</span>
-          <div class="belief__text"><p class="flip__answer">Brand and adult-learning standards are built into my production model, so going faster doesn't mean cutting corners. It produced ~80 courses in 12 months. <span class="todo">Draft, Matt to confirm</span></p><a class="link" href="work/#axl">See the model</a></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="true" aria-controls="belief-back-03">Back to the belief</button>
-        </div>
-      </article>
-      <article class="belief flip">
-        <div class="flip__face flip__front">
-          <div class="belief__text"><h3 class="t-h2">Build it. Don't deck it.</h3><p class="belief__proof">A working prototype ends more debates than any slide.</p></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="false" aria-controls="belief-back-04">How I address it</button>
-        </div>
-        <div class="flip__face flip__back" id="belief-back-04" inert>
-          <span class="belief__num t-label">How I address it</span>
-          <div class="belief__text"><p class="flip__answer">I build the first version myself. The ER simulator, the talent review tool, and the intake pipeline all started on my keyboard. <span class="todo">Draft, Matt to confirm</span></p><a class="link" href="lab/">Enter the Lab</a></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="true" aria-controls="belief-back-04">Back to the belief</button>
-        </div>
-      </article>
-      <article class="belief flip">
-        <div class="flip__face flip__front">
-          <div class="belief__text"><h3 class="t-h2">Measure behavior, not attendance.</h3><p class="belief__proof">Completions are vanity. Changed habits are value.</p></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="false" aria-controls="belief-back-05">How I address it</button>
-        </div>
-        <div class="flip__face flip__back" id="belief-back-05" inert>
-          <span class="belief__num t-label">How I address it</span>
-          <div class="belief__text"><p class="flip__answer">The Manager Standard defines the behavior, pulses employees on it, and tests the learning against a comparison group. It covers 677 managers. <span class="todo">Draft, Matt to confirm</span></p><a class="link" href="work/#manager-standard">See the standard</a></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="true" aria-controls="belief-back-05">Back to the belief</button>
-        </div>
-      </article>
-      <article class="belief flip">
-        <div class="flip__face flip__front">
-          <div class="belief__text"><h3 class="t-h2">Talent moves inside or it walks out.</h3><p class="belief__proof">Mobility is retention with a strategy.</p></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="false" aria-controls="belief-back-06">How I address it</button>
-        </div>
-        <div class="flip__face flip__back" id="belief-back-06" inert>
-          <span class="belief__num t-label">How I address it</span>
-          <div class="belief__text"><p class="flip__answer">I led the staff strategy and communications for a talent marketplace: skills profiles, growth plans, and open roles people can actually find. <span class="todo">Draft, Matt to confirm</span></p><a class="link" href="work/#talent-marketplace">See the marketplace</a></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="true" aria-controls="belief-back-06">Back to the belief</button>
-        </div>
-      </article>
-      <article class="belief flip">
-        <div class="flip__face flip__front">
-          <div class="belief__text"><h3 class="t-h2">AI is a job redesign problem.</h3><p class="belief__proof">Training people on tools without redesigning the work is theater.</p></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="false" aria-controls="belief-back-07">How I address it</button>
-        </div>
-        <div class="flip__face flip__back" id="belief-back-07" inert>
-          <span class="belief__num t-label">How I address it</span>
-          <div class="belief__text"><p class="flip__answer">I start with an AI literacy self-assessment that scores each person and sends a learning path. Mapping AI exposure role by role comes next. <span class="todo">Draft, Matt to confirm</span></p><a class="link" href="work/#ai-capability">See the approach</a></div>
-          <button class="flip__btn t-label" type="button" aria-expanded="true" aria-controls="belief-back-07">Back to the belief</button>
-        </div>
-      </article>
-    </div>
-    <div class="container">
-      <p class="strip-hint t-label">Scroll sideways for all 7. Flip a card to see the fix.</p>
-      <p style="margin-top:48px"><a class="btn btn--secondary" href="point-of-view/">Read the full point of view</a></p>
-    </div>
-  </section>
-
-  <!-- 4. The framework -->
-  <section class="section" id="framework" aria-labelledby="framework-title">
-    <div class="container">
-      <div class="grid intro">
-        <div class="col-head">
-          <h2 id="framework-title">Capability architecture runs on data, and it never stops.</h2>
-        </div>
-        <div class="col-side"><p class="t-muted">Data shows what the work needs. The job architecture turns that into skills. Growth closes the gaps. Data shows whether it worked. Then it runs again.</p></div>
-      </div>
-
-      <ol class="loop" aria-label="The four moves, which repeat">
-        <li class="loop__move">
-          <span class="loop__step t-label">1</span>
-          <h3 class="loop__verb">Sense</h3>
-          <p class="loop__q">What's changing?</p>
-          <p class="loop__how">Skills-change data from outside. Workforce signals from inside: assessments, pulse surveys, turnover, mobility.</p>
-          <a class="loop__proof" href="work/#ai-capability"><span class="loop__num">AI literacy</span> scored on a validated research scale</a>
-        </li>
-        <li class="loop__move">
-          <span class="loop__step t-label">2</span>
-          <h3 class="loop__verb">Map</h3>
-          <p class="loop__q">What does each role need now?</p>
-          <p class="loop__how">Break each role into tasks. Rate how AI and technology change each one. Keep the job architecture current as the data moves.</p>
-          <a class="loop__proof" href="work/#manager-standard"><span class="loop__num">677</span> managers on one behavior standard</a>
-        </li>
-        <li class="loop__move loop__move--grow">
-          <span class="loop__step t-label">3</span>
-          <h3 class="loop__verb">Grow</h3>
-          <p class="loop__q">How do people get there?</p>
-          <p class="loop__how">Never a single event. Three layers run at the same time, below.</p>
-          <a class="loop__proof" href="work/#talent-marketplace"><span class="loop__num">90%</span> of staff engaged in a skills marketplace</a>
-        </li>
-        <li class="loop__move">
-          <span class="loop__step t-label">4</span>
-          <h3 class="loop__verb">Prove</h3>
-          <p class="loop__q">Did it move?</p>
-          <p class="loop__how">Behavior against a comparison group, then business results. What we learn feeds the next round of Sense.</p>
-          <a class="loop__proof" href="work/#leadership-redefined"><span class="loop__num">98</span> of 116 senior leaders still at the university</a>
-        </li>
-      </ol>
-      <p class="loop__again t-label">Then Sense again. The architecture is never finished.</p>
-
-      <div class="grow" aria-labelledby="grow-title">
-        <h3 class="grow__title" id="grow-title">Learning is never an event.</h3>
-        <div class="grow__layers">
-          <article class="grow__layer">
-            <h4>Always on</h4>
-            <p>Constant engagement, so the whole workforce is always in something, between the moments that matter.</p>
-            <p class="grow__eg"><span class="t-label">Example</span> Anchors Edge, the always-on program I run. <span class="todo">Matt to add: what it is, cadence, reach</span></p>
-          </article>
-          <article class="grow__layer">
-            <h4>At the point of need</h4>
-            <p>Tools inside the work, there when the task is: simulators, job aids, AI assistants, learning that starts on a role change.</p>
-            <p class="grow__eg"><span class="t-label">Example</span> The employee relations simulator, and manager learning auto-assigned on role change. <a class="link" href="work/#simulations">See the tools</a></p>
-          </article>
-          <article class="grow__layer">
-            <h4>Somewhere to go</h4>
-            <p>A talent marketplace that speaks the job architecture's skills, so growth turns into gigs, mentors, and new roles. Its data shows which skills are moving and feeds the next Sense.</p>
-            <p class="grow__eg"><span class="t-label">Example</span> Skills profiles, growth plans, and open roles people can actually find. Short-term gigs come next. <a class="link" href="work/#talent-marketplace">See the marketplace</a></p>
-          </article>
-        </div>
-      </div>
-      <p style="margin-top:64px"><a class="btn btn--secondary" href="work/">See the work behind it</a></p>
+      <p class="s-cta" data-rise><a class="button button--glass" href="work/">See the work behind it</a></p>
     </div>
   </section>
 
   <!-- 6. From the Lab -->
-  <section class="section" aria-labelledby="lab-title">
-    <div class="container">
-      <div class="grid intro">
-        <div class="col-head">
-          <h2 id="lab-title">Things I built. Not things I commissioned.</h2>
+  <section class="s-section" id="lab" aria-labelledby="lab-title">
+    <div class="s-wrap">
+      <header class="s-head">
+        <p class="s-kicker">From the Lab</p>
+        <h2 class="s-title" id="lab-title" data-split>Things I built. Not things I <em>commissioned.</em></h2>
+        <p class="s-lede" data-rise>Scroll to watch a course go from sketch to shipped.</p>
+      </header>
+    </div>
+    <div class="resolve-track">
+      <div class="resolve-sticky">
+        <div class="resolve" role="img" aria-label="A wireframe of an AXL course page resolves into the finished, branded course as the page scrolls.">
+          <div class="resolve__layer">
+            <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="2" stroke-dasharray="8 8">
+              <rect x="40" y="40" width="1520" height="72" rx="8"/>
+              <rect x="40" y="144" width="360" height="816" rx="8"/>
+              <line x1="80" y1="200" x2="340" y2="200"/><line x1="80" y1="260" x2="300" y2="260"/><line x1="80" y1="320" x2="320" y2="320"/><line x1="80" y1="380" x2="280" y2="380"/>
+              <rect x="432" y="144" width="1128" height="420" rx="8"/>
+              <line x1="432" y1="144" x2="1560" y2="564"/><line x1="1560" y1="144" x2="432" y2="564"/>
+              <rect x="432" y="596" width="544" height="364" rx="8"/>
+              <rect x="1016" y="596" width="544" height="364" rx="8"/>
+              <line x1="472" y1="660" x2="900" y2="660"/><line x1="472" y1="720" x2="820" y2="720"/>
+              <line x1="1056" y1="660" x2="1480" y2="660"/><line x1="1056" y1="720" x2="1380" y2="720"/>
+            </svg>
+          </div>
+          <div class="resolve__layer resolve__final">
+            <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+              <defs><radialGradient id="rz" cx="50%" cy="100%" r="80%"><stop offset="0.7" stop-color="#FF503C" stop-opacity="0"/><stop offset="1" stop-color="#FF503C" stop-opacity="0.28"/></radialGradient></defs>
+              <rect width="1600" height="1000" fill="#0D1024"/>
+              <rect width="1600" height="1000" fill="url(#rz)"/>
+              <rect x="40" y="40" width="1520" height="72" rx="8" fill="#191C1F"/>
+              <circle cx="88" cy="76" r="8" fill="#EE6A5F"/><circle cx="114" cy="76" r="8" fill="#F5BD4F"/><circle cx="140" cy="76" r="8" fill="#61C454"/>
+              <rect x="640" y="62" width="320" height="28" rx="6" fill="#0C0F12"/>
+              <rect x="40" y="144" width="360" height="816" rx="12" fill="rgba(17,16,15,0.55)"/>
+              <rect x="72" y="184" width="296" height="44" rx="8" fill="rgba(255,255,255,0.12)"/>
+              <rect x="92" y="200" width="180" height="12" rx="3" fill="#FFFFFF"/>
+              <rect x="92" y="260" width="200" height="12" rx="3" fill="rgba(255,255,255,0.45)"/><rect x="92" y="320" width="160" height="12" rx="3" fill="rgba(255,255,255,0.45)"/><rect x="92" y="380" width="190" height="12" rx="3" fill="rgba(255,255,255,0.45)"/>
+              <rect x="432" y="144" width="1128" height="420" rx="12" fill="rgba(17,16,15,0.55)"/>
+              <rect x="480" y="200" width="560" height="44" rx="4" fill="#FFFFFF"/>
+              <rect x="480" y="268" width="680" height="14" rx="3" fill="rgba(255,255,255,0.5)"/><rect x="480" y="300" width="600" height="14" rx="3" fill="rgba(255,255,255,0.5)"/>
+              <rect x="480" y="480" width="190" height="48" rx="10" fill="#E9E9E9"/>
+              <rect x="432" y="596" width="544" height="364" rx="12" fill="rgba(17,16,15,0.55)"/>
+              <rect x="1016" y="596" width="544" height="364" rx="12" fill="rgba(17,16,15,0.55)"/>
+              <rect x="472" y="648" width="150" height="56" rx="4" fill="#FFFFFF"/>
+              <rect x="472" y="740" width="420" height="12" rx="3" fill="rgba(255,255,255,0.45)"/>
+              <rect x="1056" y="648" width="380" height="16" rx="3" fill="#FFFFFF"/><rect x="1056" y="690" width="300" height="12" rx="3" fill="rgba(255,255,255,0.45)"/>
+              <rect x="1056" y="760" width="440" height="8" rx="4" fill="rgba(255,255,255,0.15)"/><rect x="1056" y="760" width="300" height="8" rx="4" fill="#FF503C"/>
+            </svg>
+          </div>
+          <div class="resolve__seam" aria-hidden="true"></div>
         </div>
-        <div class="col-side"><p class="t-muted">Scroll to watch a course go from sketch to shipped.</p></div>
       </div>
-
-      <div class="resolve-track">
-        <div class="resolve-sticky">
-          <div class="resolve" role="img" aria-label="A wireframe of an AXL course page resolves into the finished, branded course as the page scrolls.">
-            <div class="resolve__layer">
-              <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#A89F94" stroke-width="2" stroke-dasharray="8 8">
-                <rect x="40" y="40" width="1520" height="72" rx="4"/>
-                <rect x="40" y="144" width="360" height="816" rx="4"/>
-                <line x1="80" y1="200" x2="340" y2="200"/><line x1="80" y1="260" x2="300" y2="260"/><line x1="80" y1="320" x2="320" y2="320"/><line x1="80" y1="380" x2="280" y2="380"/>
-                <rect x="432" y="144" width="1128" height="420" rx="4"/>
-                <line x1="432" y1="144" x2="1560" y2="564"/><line x1="1560" y1="144" x2="432" y2="564"/>
-                <rect x="432" y="596" width="544" height="364" rx="4"/>
-                <rect x="1016" y="596" width="544" height="364" rx="4"/>
-                <line x1="472" y1="660" x2="900" y2="660"/><line x1="472" y1="720" x2="820" y2="720"/>
-                <line x1="1056" y1="660" x2="1480" y2="660"/><line x1="1056" y1="720" x2="1380" y2="720"/>
-              </svg>
-            </div>
-            <div class="resolve__layer resolve__final">
-              <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
-                <rect width="1600" height="1000" fill="#1E1A17"/>
-                <rect x="40" y="40" width="1520" height="72" rx="4" fill="#2A2420"/>
-                <circle cx="88" cy="76" r="14" fill="#E8652B"/>
-                <rect x="120" y="68" width="220" height="16" rx="2" fill="#F2EDE4"/>
-                <rect x="40" y="144" width="360" height="816" rx="4" fill="#14110F" stroke="#3A322C"/>
-                <rect x="72" y="184" width="296" height="44" rx="4" fill="#2A2420"/>
-                <rect x="92" y="200" width="180" height="12" rx="2" fill="#F2EDE4"/>
-                <rect x="92" y="260" width="200" height="12" rx="2" fill="#A89F94"/><rect x="92" y="320" width="160" height="12" rx="2" fill="#A89F94"/><rect x="92" y="380" width="190" height="12" rx="2" fill="#A89F94"/>
-                <rect x="432" y="144" width="1128" height="420" rx="4" fill="#2A2420"/>
-                <rect x="480" y="200" width="520" height="40" rx="2" fill="#F2EDE4"/>
-                <rect x="480" y="264" width="680" height="14" rx="2" fill="#A89F94"/><rect x="480" y="296" width="600" height="14" rx="2" fill="#A89F94"/>
-                <rect x="480" y="480" width="180" height="48" rx="4" fill="#E8652B"/>
-                <rect x="432" y="596" width="544" height="364" rx="4" fill="#14110F" stroke="#3A322C"/>
-                <rect x="1016" y="596" width="544" height="364" rx="4" fill="#14110F" stroke="#3A322C"/>
-                <rect x="472" y="648" width="140" height="56" rx="2" fill="#F2A541"/>
-                <rect x="472" y="740" width="420" height="12" rx="2" fill="#A89F94"/>
-                <rect x="1056" y="648" width="380" height="16" rx="2" fill="#F2EDE4"/><rect x="1056" y="690" width="300" height="12" rx="2" fill="#A89F94"/>
-                <rect x="1056" y="760" width="440" height="8" rx="4" fill="#3A322C"/><rect x="1056" y="760" width="300" height="8" rx="4" fill="#F2A541"/>
-              </svg>
-            </div>
-            <div class="resolve__seam" aria-hidden="true"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cards" style="margin-top:96px" data-stagger>
-        <article class="case reveal">
-          <div class="case__media"><div class="placeholder"><span class="t-label">Screen recording</span><span class="todo">To capture</span></div></div>
-          <div class="case__body">
-            <span class="case__label t-label">Course production</span>
-            <h3 class="case__title"><a href="lab/#axl">AXL Course Sites</a></h3>
-            <p class="case__outcome">Interactive learning sites built in hours, not months.</p>
-          </div>
+    </div>
+    <div class="s-wrap">
+      <div class="tools" data-stagger>
+        <article class="tool" data-rise>
+          <span class="s-label">Course production</span>
+          <h3><a href="lab/#axl">AXL Course Sites</a></h3>
+          <p>Interactive learning sites built in hours, not months.</p>
         </article>
-        <article class="case reveal">
-          <div class="case__media"><div class="placeholder"><span class="t-label">Screen recording</span><span class="todo">To capture</span></div></div>
-          <div class="case__body">
-            <span class="case__label t-label">Assessment</span>
-            <h3 class="case__title"><a href="lab/#ai-literacy">AI Literacy Assessment</a></h3>
-            <p class="case__outcome">Scores you instantly. Sends your learning path.</p>
-          </div>
+        <article class="tool" data-rise>
+          <span class="s-label">Assessment</span>
+          <h3><a href="lab/#ai-literacy">AI Literacy Assessment</a></h3>
+          <p>Scores you instantly. Sends your learning path.</p>
         </article>
-        <article class="case reveal">
-          <div class="case__media"><div class="placeholder"><span class="t-label">Screen recording</span><span class="todo">To capture</span></div></div>
-          <div class="case__body">
-            <span class="case__label t-label">Simulation</span>
-            <h3 class="case__title"><a href="lab/#er-simulator">Employee Relations Simulator</a></h3>
-            <p class="case__outcome">Practice discipline conversations with real legal stakes.</p>
-          </div>
+        <article class="tool" data-rise>
+          <span class="s-label">Simulation</span>
+          <h3><a href="lab/#er-simulator">Employee Relations Simulator</a></h3>
+          <p>Practice discipline conversations with real legal stakes.</p>
         </article>
       </div>
-      <p style="margin-top:48px"><a class="btn btn--secondary" href="lab/">Enter the Lab</a></p>
+      <p class="s-cta" data-rise><a class="button button--glass" href="lab/">Enter the Lab</a></p>
     </div>
   </section>
 
-  <!-- Diagnostic teaser -->
-  <section class="section" id="diagnostic" aria-labelledby="diag-title">
-    <div class="container">
-      <div class="diag" style="padding-block:96px">
-        <h2 id="diag-title" style="max-width:20ch">Is your learning function a publisher or a capability engine?</h2>
-        <p class="t-body-l t-muted" style="margin-top:24px">6 questions. 2 minutes. An honest read.</p>
-        <p style="margin-top:48px"><a class="btn btn--secondary" href="diagnostic/">Take the diagnostic</a></p>
+  <!-- Diagnostic: the glow rises as the card comes into view -->
+  <section class="s-section" id="diagnostic" aria-labelledby="diag-title">
+    <div class="s-wrap">
+      <div class="diag-card" data-scrub>
+        <div class="diag-card__glow" aria-hidden="true"></div>
+        <p class="pill"><span class="pill__dot" aria-hidden="true"></span>6 questions &middot; 2 minutes</p>
+        <h2 class="s-title" id="diag-title" data-split>Is your learning function a publisher or a <em>capability engine?</em></h2>
+        <p class="s-lede" data-rise>An honest read, scored the moment you finish.</p>
+        <p data-rise><a class="button button--solid" href="diagnostic/">Take the diagnostic</a></p>
       </div>
     </div>
   </section>
 
-  <!-- 7. Healthcare roots -->
-  <section class="section" aria-labelledby="roots-title">
-    <div class="container">
+  <!-- 7. Healthcare roots: the words light up as you read down -->
+  <section class="s-section s-roots" aria-labelledby="roots-title" data-scrub>
+    <div class="s-wrap">
       <h2 class="visually-hidden" id="roots-title">Where I learned it</h2>
-      <div class="roots">
-        <div class="roots__photo" data-pending><div class="placeholder placeholder--bw"><span class="t-label">Black and white photo</span><span class="todo">To shoot</span></div></div>
-        <div class="roots__text reveal">
-          <p>Most of my career has been in healthcare, where a capability gap isn't an inconvenience. It's a patient outcome.</p>
-          <p class="t-body-l" style="font-family:var(--font-body);font-size:var(--fs-body-l);color:var(--text-2)">That's where I learned learning has to work the first time.</p>
-        </div>
-      </div>
+      <p class="roots__text" data-words>Most of my career has been in healthcare, where a capability gap isn't an inconvenience. It's a patient outcome.</p>
+      <p class="s-lede" data-rise>That's where I learned learning has to work the first time.</p>
     </div>
   </section>
 
-  <!-- 8. The Close -->
-  <section class="section close" aria-labelledby="close-title">
-    <div class="container">
-      <h2 class="close__lede" id="close-title">I'm better than no one.<br>But no one outworks, outbuilds, or outthinks me on this problem.</h2>
-      <p class="t-body-l">If you're done with learning that looks good on a dashboard and changes nothing, let's talk.</p>
-      <div class="close__actions">
-        <a class="btn btn--primary" href="contact/">Start a conversation</a>
-        <a class="btn btn--secondary" href="cv/">Download CV</a>
+  <!-- 8. The close -->
+  <section class="s-section s-close" aria-labelledby="close-title">
+    <div class="s-wrap">
+      <h2 class="close__title" id="close-title" data-split>I'm better than no one. But no one outworks, outbuilds, or outthinks me <em>on this problem.</em></h2>
+      <p class="s-lede" data-rise>If you're done with learning that looks good on a dashboard and changes nothing, let's talk.</p>
+      <div class="s-actions" data-rise>
+        <a class="button button--solid" href="contact/">Start a conversation</a>
+        <a class="button button--glass" href="cv/">Download CV</a>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="footer">
-  <div class="container footer__inner">
+<footer class="s-footer">
+  <div class="s-wrap s-footer__inner">
     <div>
-      <img class="footer__mark brand-mark--light" src="assets/img/brand/mark-128.png" width="77" height="48" alt=""><img class="footer__mark brand-mark--ink" src="assets/img/brand/mark-ink-128.png" width="77" height="48" alt="">
-      <p class="t-label" style="color:var(--text)">Matt Estes, Capability Architect</p>
-      <ul class="footer__nav t-label" style="margin-top:8px">
+      <a class="brand" href="./"><img class="brand__mark" src="assets/img/brand/mark-128.png" alt="" width="61" height="38"><span class="brand__name">Matt Estes</span></a>
+      <ul class="s-footer__nav">
         <li><a href="point-of-view/">Point of View</a></li>
         <li><a href="work/">Work</a></li>
         <li><a href="lab/">Lab</a></li>
@@ -411,17 +801,17 @@
         <li><a href="contact/">Contact</a></li>
       </ul>
     </div>
-    <div>
-      <ul class="footer__nav t-label">
+    <div class="s-footer__meta">
+      <ul class="s-footer__nav">
         <li><a href="https://www.linkedin.com/in/mattestes523/" rel="me">LinkedIn</a></li>
         <li><a href="mailto:mattestes523@gmail.com">mattestes523@gmail.com</a></li>
       </ul>
-      <p class="t-label" style="margin-top:8px">© 2026 Matt Estes. <a href="privacy/">Privacy</a></p>
+      <p>&copy; 2026 Matt Estes. <a href="privacy/">Privacy</a></p>
     </div>
   </div>
 </footer>
 
 <script src="assets/js/site.js"></script>
-<script src="assets/js/motion.js"></script>
+<script src="assets/v3/home.js"></script>
 </body>
 </html>
