@@ -285,7 +285,7 @@
 
       var result = el('div', { class: 'diag__result' }, [
         el('div', { class: 'diag__progress' }, [
-          el('span', { class: 't-label', text: 'Your readout · The ' + type.name }),
+          el('span', { class: 't-label', text: 'Your readout' }),
           el('span', { class: 't-label', text: 'Score ' + total + ' of 18' })
         ]),
         heading,

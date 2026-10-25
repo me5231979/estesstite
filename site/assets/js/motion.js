@@ -1,6 +1,6 @@
 // Motion layer: everything here shows how a thing is built.
-// Kinetic headlines, hero type that answers the pointer, blueprint hovers on
-// proof tiles, wireframe-to-screen cards, and an opt-in workshop sound set.
+// The hero redline, wireframe-to-screen cards, link hovers,
+// and an opt-in workshop sound set.
 (function () {
   var root = document.documentElement;
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -94,34 +94,6 @@
     return out;
   }
 
-  function splitWords(el) {
-    if (el.dataset.split) return;
-    el.dataset.split = 'words';
-    var i = 0;
-    (function walk(node) {
-      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
-        if (child.nodeType === 3) {
-          var parts = child.textContent.split(/(\s+)/);
-          var frag = document.createDocumentFragment();
-          parts.forEach(function (p) {
-            if (!p) return;
-            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(p)); return; }
-            var w = document.createElement('span');
-            w.className = 'w';
-            var inner = document.createElement('span');
-            inner.textContent = p;
-            inner.style.setProperty('--wi', i++);
-            w.appendChild(inner);
-            frag.appendChild(w);
-          });
-          node.replaceChild(frag, child);
-        } else if (child.nodeType === 1 && child.tagName !== 'BR') {
-          walk(child);
-        }
-      });
-    })(el);
-  }
-
   function splitLetters(el, hardSpaces) {
     var i = 0;
     var letters = [];
@@ -156,63 +128,13 @@
     return letters;
   }
 
-  /* ---------------- Kinetic headlines ---------------- */
-  var heads = document.querySelectorAll('.intro h2, .page-head h1, .close h2, .case-study__head h2, .diag h2');
-  if (!reduced && 'IntersectionObserver' in window) {
-    var hio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('is-set'); hio.unobserve(en.target); }
-      });
-    }, { threshold: 0.2 });
-    heads.forEach(function (h) {
-      if (h.classList.contains('visually-hidden')) return;
-      accessibleSplit(h, splitWords);
-      h.classList.add('kinetic');
-      hio.observe(h);
-    });
-  }
-
-  /* ---------------- Hero: letters answer the pointer ---------------- */
-  var hero = document.querySelector('.hero');
-  var heroTitle = hero && hero.querySelector('.t-hero');
-  if (heroTitle && !reduced) {
-    var letters = accessibleSplit(heroTitle, splitLetters);
-    heroTitle.classList.add('is-split');
-    requestAnimationFrame(function () { heroTitle.classList.add('is-in'); });
-
-    if (canHover) {
-      var px = -9999, py = -9999, raf = 0;
-      var centers = [];
-      function measure() {
-        centers = letters.map(function (l) {
-          var r = l.getBoundingClientRect();
-          return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-        });
-      }
-      function paint() {
-        raf = 0;
-        var base = parseFloat(getComputedStyle(heroTitle).getPropertyValue('--hero-wght')) || 300;
-        letters.forEach(function (l, i) {
-          var c = centers[i];
-          if (!c) return;
-          var d = Math.hypot(c.x - px, c.y - py);
-          var f = Math.max(0, 1 - d / 260);
-          f = f * f * (3 - 2 * f);
-          l.style.fontWeight = Math.round(base + (600 - base) * f);
-        });
-      }
-      hero.addEventListener('pointerenter', measure);
-      hero.addEventListener('pointermove', function (e) {
-        px = e.clientX; py = e.clientY;
-        if (!raf) raf = requestAnimationFrame(paint);
-      });
-      hero.addEventListener('pointerleave', function () {
-        px = py = -9999;
-        if (!raf) raf = requestAnimationFrame(paint);
-      });
-      window.addEventListener('scroll', function () { centers = []; px = py = -9999; letters.forEach(function (l) { l.style.fontWeight = ''; }); }, { passive: true });
-      window.addEventListener('resize', measure);
-    }
+  /* ---------------- Hero: the redline ---------------- */
+  // The page's one orchestrated moment: an ember line strikes through
+  // "L&D as we know it" shortly after load. Reduced motion shows it drawn.
+  var redline = document.querySelector('.hero .redline');
+  if (redline) {
+    if (reduced) redline.classList.add('is-struck');
+    else setTimeout(function () { redline.classList.add('is-struck'); }, 450);
   }
 
   // Hero film: plays only when motion is welcome, pauses off screen.
@@ -240,26 +162,6 @@
     });
   }
 
-  /* ---------------- Proof tiles: blueprint draws on hover ---------------- */
-  function blueprint(tile) {
-    var bp = document.createElement('span');
-    bp.className = 'blueprint';
-    bp.setAttribute('aria-hidden', 'true');
-    ['c tl', 'c tr', 'c br', 'c bl', 'dim', 'h', 'v'].forEach(function (cls, i) {
-      var s = document.createElement('span');
-      s.className = 'bp-' + cls.replace(' ', ' bp-');
-      s.style.setProperty('--pi', i);
-      bp.appendChild(s);
-    });
-    tile.insertBefore(bp, tile.firstChild);
-
-    var spec = document.createElement('span');
-    spec.className = 'spec t-label';
-    spec.setAttribute('aria-hidden', 'true');
-    spec.textContent = 'Spec ' + String(Array.prototype.indexOf.call(tile.parentNode.children, tile) + 1).padStart(2, '0');
-    tile.appendChild(spec);
-  }
-  document.querySelectorAll('.tile').forEach(blueprint);
 
   /* ---------------- Wireframe-to-screen media ---------------- */
   // Layouts on a 1600x1000 canvas: [x, y, w, h, kind].

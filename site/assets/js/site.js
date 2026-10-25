@@ -6,6 +6,11 @@
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  // Print buttons (the CSP blocks inline onclick handlers).
+  document.querySelectorAll('[data-print]').forEach(function (b) {
+    b.addEventListener('click', function () { window.print(); });
+  });
+
   // Nav: transparent over the hero, ink at 90% with blur after scroll.
   var nav = document.querySelector('.nav');
   function onScrollNav() {
@@ -117,9 +122,6 @@
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  // Hero: Fraunces weight moves 300 to 600 as the hero scrolls away.
-  var hero = document.querySelector('.hero');
-  var heroType = hero && hero.querySelector('.t-hero');
 
   // Signature: wireframe resolves into the finished screen as you scroll.
   var tracks = Array.prototype.slice.call(document.querySelectorAll('.resolve-track'));
@@ -135,11 +137,6 @@
   function frame() {
     ticking = false;
     onScrollNav();
-    if (heroType && !reduced.matches) {
-      var h = hero.offsetHeight || 1;
-      var p = Math.min(Math.max(window.scrollY / (h * 0.7), 0), 1);
-      heroType.style.setProperty('--hero-wght', Math.round(300 + 300 * p));
-    }
     tracks.forEach(function (track) {
       var target = track.querySelector('.resolve');
       if (!target) return;
