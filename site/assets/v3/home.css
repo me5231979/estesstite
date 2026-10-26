@@ -2295,3 +2295,82 @@ html:not(.pin) .loop { grid-column: 1 / -1; grid-template-columns: repeat(auto-f
   .lv-return { display: none; }
   .lv-again { transform: none; left: auto; margin-top: 12px; text-align: center; font-size: 12px; white-space: normal; }
 }
+
+/* ==========================================================================
+   CV: a timeline that draws as you read, then the supporting lists.
+   ========================================================================== */
+.cv-timeline { position: relative; list-style: none; margin: 56px 0 0; padding: 0 0 0 44px; display: grid; gap: 20px; }
+.cv-line { position: absolute; left: 11px; top: 8px; bottom: 8px; width: 1px; background: var(--hair); }
+.cv-line span { position: absolute; inset: 0; background: var(--coral); transform-origin: top; transform: scaleY(var(--tl, 0)); box-shadow: 0 0 10px rgba(255, 80, 60, 0.6); }
+.cv-item { position: relative; }
+.cv-dot { position: absolute; left: -38px; top: 30px; width: 11px; height: 11px; border-radius: 50%; background: #0D1024; border: 1.5px solid var(--coral); }
+.cv-item.is-current .cv-dot { background: var(--coral); box-shadow: 0 0 0 6px rgba(247, 127, 113, 0.18), 0 0 18px rgba(255, 80, 60, 0.6); }
+.cv-card { padding: 28px; border-radius: 23px; border: 1px solid var(--hair); background: var(--glass); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); transition: border-color 0.3s ease; }
+.cv-card:hover { border-color: rgba(255, 255, 255, 0.28); }
+.cv-card__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 24px; }
+.cv-org { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 2.6vw, 40px); line-height: 1; letter-spacing: -0.05em; }
+.cv-span { margin: 0; font-size: 14px; font-weight: 450; color: var(--muted-2); white-space: nowrap; }
+.cv-now { margin-left: 8px; padding: 3px 8px; border-radius: 5px; background: var(--coral); color: var(--color-ink); font-size: 11px; }
+.cv-meta { margin: 8px 0 0; font-size: 13px; font-weight: 450; color: var(--muted-2); }
+.cv-roles { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 6px; }
+.cv-roles li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 16px; padding: 8px 0; border-top: 1px solid var(--hair); }
+.cv-role { font-size: 16px; font-weight: 450; }
+.cv-date { font-size: 13px; font-weight: 450; color: var(--muted-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cv-summary { max-width: 70ch; margin: 18px 0 0; font-family: var(--font-display); font-size: clamp(19px, 1.5vw, 23px); line-height: 1.3; letter-spacing: -0.02em; }
+.cv-points { max-width: 80ch; margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.cv-points li { position: relative; padding-left: 20px; font-size: 15px; font-weight: 450; line-height: 1.5; color: var(--color-text-muted); }
+.cv-points li::before { content: ""; position: absolute; left: 2px; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--coral); }
+
+.cv-caps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 48px 0 0; padding: 0; list-style: none; }
+.cv-cap { padding: 24px; border-radius: 23px; border: 1px solid var(--hair); background: var(--glass); }
+.cv-cap h3 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1.05; letter-spacing: -0.045em; }
+.cv-cap p { margin: 10px 0 0; font-size: 15px; font-weight: 450; line-height: 1.45; color: var(--color-text-muted); }
+.cv-lists { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+.cv-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hair); }
+.cv-list li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--hair); font-size: 14px; font-weight: 450; line-height: 1.4; color: var(--color-text-muted); }
+.cv-list strong { display: block; font-weight: 450; color: #fff; }
+@media (max-width: 900px) {
+  .cv-timeline { padding-left: 28px; }
+  .cv-line { left: 5px; }
+  .cv-dot { left: -28px; }
+  .cv-card { padding: 20px; }
+  .cv-caps, .cv-lists { grid-template-columns: 1fr; }
+}
+
+/* Print / PDF: a clean paper CV, no chrome, no motion. */
+@media print {
+  @page { size: Letter; margin: 0.6in 0.6in 0.7in; }
+  html, body { background: #fff !important; color: #111 !important; }
+  .site-header, .s-footer, .skip-link, .s-close, .pg-hero .s-actions, .cv-line, .cv-dot, .s-section .s-lede { display: none !important; }
+  .pg-hero { padding: 0 0 12pt; }
+  .pg-hero::before, .s-close::before { display: none; }
+  .js [data-rise], .js [data-split] .w__in { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+  .s-wrap { width: 100%; }
+  .s-section { padding: 10pt 0; }
+  .s-kicker { padding: 0; border: 0; background: none; color: #C2412E; font-size: 9pt; margin: 0 0 4pt; text-transform: uppercase; letter-spacing: 0.08em; }
+  .s-kicker::before { display: none; }
+  .pg-title { font-size: 26pt; color: #111; max-width: none; }
+  .pg-title em, .s-title em, .close__title em { color: #C2412E; }
+  .pg-hero .s-lede { display: block !important; color: #333; font-size: 10.5pt; margin-top: 6pt; max-width: none; }
+  .s-title { font-size: 16pt; color: #111; }
+  .cv-timeline { margin-top: 8pt; padding: 0; gap: 8pt; }
+  .cv-card { padding: 0 0 8pt; border: 0; border-bottom: 0.5pt solid #ccc; border-radius: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; break-inside: avoid; }
+  .cv-org { font-size: 14pt; color: #111; }
+  .cv-span, .cv-meta, .cv-date { color: #555; font-size: 9pt; }
+  .cv-now { background: #C2412E; color: #fff; }
+  .cv-roles { margin-top: 4pt; gap: 0; }
+  .cv-roles li { padding: 2pt 0; border: 0; }
+  .cv-role { font-size: 10pt; color: #111; }
+  .cv-summary { font-size: 10.5pt; margin-top: 4pt; color: #111; }
+  .cv-points { margin-top: 3pt; gap: 1pt; }
+  .cv-points li { font-size: 9.5pt; color: #333; line-height: 1.35; }
+  .cv-points li::before { background: #C2412E; }
+  .cv-caps { grid-template-columns: repeat(3, 1fr); gap: 6pt; margin-top: 6pt; }
+  .cv-cap { padding: 0; border: 0; background: none; }
+  .cv-cap h3 { font-size: 11pt; color: #111; }
+  .cv-cap p { font-size: 9pt; color: #333; margin-top: 2pt; }
+  .cv-lists { gap: 14pt; break-inside: avoid; }
+  .cv-list, .cv-list li { border-color: #ccc; }
+  .cv-list li { padding: 4pt 0; font-size: 9pt; color: #333; }
+  .cv-list strong { color: #111; }
+}

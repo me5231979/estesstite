@@ -560,6 +560,14 @@
   var spyTargets = spyLinks.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
   var railBar = document.querySelector('.wk-rail__bar');
   var spyList = document.querySelector('.wk-list');
+  // CV timeline: the line fills as you read down it.
+  var timeline = document.querySelector('[data-timeline]');
+  function drawTimeline() {
+    if (!timeline) return;
+    var r = timeline.getBoundingClientRect();
+    timeline.style.setProperty('--tl', clamp01((window.innerHeight * 0.6 - r.top) / r.height).toFixed(3));
+  }
+
   function drawSpy() {
     if (!spyLinks.length) return;
     var line = window.innerHeight * 0.35, active = 0;
@@ -576,6 +584,7 @@
     queued = false;
     drawHeader();
     drawSpy();
+    drawTimeline();
     drawShift();
     drawBeliefs();
     drawLoop();

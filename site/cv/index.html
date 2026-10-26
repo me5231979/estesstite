@@ -1,163 +1,245 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://api.fontshare.com; img-src 'self' data:; font-src 'self' https://cdn.fontshare.com; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://api.fontshare.com; img-src 'self' data: https://d8j0ntlcm91z4.cloudfront.net; font-src 'self' https://cdn.fontshare.com; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CV · Career | Matt Estes</title>
+<title>CV | Matt Estes</title>
 <meta name="description" content="The career of Matt Estes, Capability Architect: sales, media, design, leadership, and building, from Cintas to Vanderbilt University.">
-<meta name="theme-color" content="#F7F3EC">
+<meta name="theme-color" content="#080A19">
 <link rel="icon" href="../assets/img/brand/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="../assets/img/brand/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CV · Career | Matt Estes">
-<meta property="og:description" content="Sales. Media. Design. Leadership. Builder.">
+<meta property="og:title" content="CV | Matt Estes">
+<meta property="og:description" content="The career of Matt Estes, Capability Architect: sales, media, design, leadership, and building, from Cintas to Vanderbilt University.">
 <meta property="og:image" content="https://me5231979.github.io/estesstite/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
+<script src="../assets/v3/flag.js"></script>
 <link rel="preload" href="../assets/fonts/stix-two-text.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@1&amp;display=swap">
-<link rel="stylesheet" href="../assets/css/site.css">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Matt Estes",
-  "jobTitle": "Capability Architect",
-  "description": "Matt Estes turns learning functions into capability engines and builds the tools to prove it.",
-  "email": "mailto:mattestes523@gmail.com",
-  "sameAs": ["https://www.linkedin.com/in/mattestes523/"],
-  "knowsAbout": ["Learning and development", "Leadership development", "Talent systems", "Internal mobility", "AI and the future of work"]
-}
-</script>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@1&amp;f[]=general-sans@400&amp;display=swap">
+<link rel="stylesheet" href="../assets/v3/home.css">
 </head>
-<body>
+<body class="v3-page">
 <a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="../" aria-label="Matt Estes, home">
+      <img class="brand__mark" src="../assets/img/brand/mark-128.png" alt="" aria-hidden="true" width="61" height="38">
+      <span class="brand__name">Matt Estes</span>
+    </a>
 
-<header class="nav">
-  <div class="container nav__inner">
-    <a class="nav__brand" href="../"><img class="brand-mark brand-mark--light" src="../assets/img/brand/mark-64.png" srcset="../assets/img/brand/mark-64.png 1x, ../assets/img/brand/mark-128.png 2x" width="51" height="32" alt=""><img class="brand-mark brand-mark--ink" src="../assets/img/brand/mark-ink-64.png" srcset="../assets/img/brand/mark-ink-64.png 1x, ../assets/img/brand/mark-ink-128.png 2x" width="51" height="32" alt=""><span>Matt Estes</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav__links">
-        <li><a href="../point-of-view/">Point of View</a></li>
-        <li><a href="../work/">Work</a></li>
-        <li><a href="../lab/">Lab</a></li>
-        <li><a href="../work-with-me/">Work With Me</a></li>
-        <li><a class="btn btn--primary btn--sm" href="../contact/">Let's talk</a></li>
-      </ul>
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link nav__link--has-menu" href="../point-of-view/">
+        Point of View
+        <svg class="nav__chevron" width="7" height="4" viewBox="-0.5 -0.5 7 4" fill="none" aria-hidden="true">
+          <path d="M0 0L3 3L6 0" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </a>
+      <a class="nav__link" href="../work/">Work</a>
+      <a class="nav__link" href="../lab/">Lab</a>
+      <a class="nav__link" href="../work-with-me/">Work With Me</a>
     </nav>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+
+    <div class="header-actions">
+      <a class="button button--ghost" href="../cv/">CV</a>
+      <a class="button button--solid" href="../contact/">Let's talk</a>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+      <span class="menu-toggle__bar"></span>
+      <span class="menu-toggle__bar"></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <a class="mobile-menu__link" href="../point-of-view/">Point of View</a>
+    <a class="mobile-menu__link" href="../work/">Work</a>
+    <a class="mobile-menu__link" href="../lab/">Lab</a>
+    <a class="mobile-menu__link" href="../work-with-me/">Work With Me</a>
+    <div class="mobile-menu__actions">
+      <a class="button button--ghost" href="../cv/">CV</a>
+      <a class="button button--solid" href="../contact/">Let's talk</a>
+    </div>
   </div>
 </header>
-<div class="menu" id="menu">
-  <nav aria-label="Mobile">
-    <ul>
-      <li><a href="../point-of-view/">Point of View</a></li>
-      <li><a href="../work/">Work</a></li>
-      <li><a href="../lab/">Lab</a></li>
-      <li><a href="../work-with-me/">Work With Me</a></li>
-    </ul>
-  </nav>
-  <a class="btn btn--primary" href="../contact/">Let's talk</a>
-</div>
-
 <main id="main">
 
-  <section class="page-head" aria-labelledby="page-title">
-    <div class="container">
-      <h1 id="page-title" style="margin-top:16px">The arc.</h1>
-      <p class="t-label" style="margin-top:24px">Sales. Media. Design. Leadership. Builder.</p>
-      <p class="page-head__summary">I've sold it, shot it, designed it, run it, and coded it. That's why I can tell you which part of your learning function is wasted effort.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:48px">
-        <button class="btn btn--primary" type="button" data-print>Download PDF</button>
-        <span class="todo">Designed PDF pending. Button opens print to PDF for now</span>
+  <section class="pg-hero" aria-labelledby="page-title">
+    <div class="s-wrap">
+      <p class="s-kicker" data-rise>CV</p>
+      <h1 class="pg-title" id="page-title" data-split>The arc. <em>Sales to systems.</em></h1>
+      <p class="s-lede" data-rise>Sales. Media. Design. Leadership. Builder. I've sold it, shot it, designed it, run it, and coded it. That's why I can tell you which part of your learning function is wasted effort.</p>
+      <div class="s-actions" data-rise>
+        <a class="button button--solid" href="matt-estes-cv.pdf" download>Download PDF</a>
+        <a class="button button--glass" href="../contact/">Start a conversation</a>
       </div>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="arc-title" data-pending>
-    <div class="container">
-      <div class="grid intro">
-        <div class="col-head">
-          <h2 id="arc-title">Career</h2>
-        </div>
-        <div class="col-side"><p><span class="todo">Approved timeline copy pending</span></p></div>
-      </div>
-      <ol class="timeline">
-        <li class="reveal">
-          <h3 class="t-h2">Vanderbilt University</h3>
-          <div class="timeline__row">
-            <div><p><span class="todo">Title, dates, and copy</span></p></div>
-            <p class="t-label t-muted">Current</p>
+  <section class="s-section cv-career" aria-labelledby="career-title">
+    <div class="s-wrap">
+      <header class="s-head">
+        <p class="s-kicker">Career</p>
+        <h2 class="s-title" id="career-title" data-split>Twenty years, <em>one direction.</em></h2>
+        <p class="s-lede" data-rise>From selling and shooting video to running enterprise learning, talent, and capability. Every step added a skill the next one needed.</p>
+      </header>
+      <ol class="cv-timeline" data-timeline>
+        <span class="cv-line" aria-hidden="true"><span></span></span>
+        <li class="cv-item is-current" data-rise>
+          <span class="cv-dot" aria-hidden="true"></span>
+          <div class="cv-card">
+            <header class="cv-card__head">
+              <h3 class="cv-org">Vanderbilt University</h3>
+              <p class="cv-span">2024 &ndash; Present <span class="cv-now">Now</span></p>
+            </header>
+            <ul class="cv-roles"><li><span class="cv-role">Senior Director, Learning, Talent, and Capability</span><span class="cv-date">Jul 2026 &ndash; Present</span></li><li><span class="cv-role">Director, Learning Innovation and Impact</span><span class="cv-date">Jul 2024 &ndash; Jul 2026</span></li></ul>
+            <p class="cv-summary">I lead the university's enterprise learning, talent, and capability strategy: the systems and solutions that help people grow, develop, and do their best work in an AI-enabled world.</p>
+            <ul class="cv-points"><li>Set the enterprise learning, talent, and capability agenda and align it with institutional goals, workforce needs, and future capability demands.</li><li>Built an AI-forward learning ecosystem using generative and agentic AI, an LXP, the LMS, and automation to deliver development in the flow of work.</li><li>Put a skills-based job architecture to work behind a skills-driven talent marketplace, role-based learning paths, and internal mobility.</li><li>Designed AI-augmented development models that speed up content creation and personalize learning at scale.</li><li>Built leadership and manager programs that strengthen performance management, communication, and accountability.</li><li>Created KPIs, ROI measures, and AI-assisted dashboards that turn workforce signals into executive insight.</li></ul>
           </div>
         </li>
-        <li class="reveal">
-          <h3 class="t-h2"><span class="todo">Roles between, in order</span></h3>
-          <div class="timeline__row">
-            <div><p>Cityblock Health, Evolent Health, APHSA, LEAD3R, Maxim Healthcare.</p><p><span class="todo">Order to confirm</span> <span class="todo">Title, dates, and copy for each</span></p></div>
-            <p></p>
+        <li class="cv-item" data-rise>
+          <span class="cv-dot" aria-hidden="true"></span>
+          <div class="cv-card">
+            <header class="cv-card__head">
+              <h3 class="cv-org">LEAD3R</h3>
+              <p class="cv-span">2023 &ndash; 2024</p>
+            </header>
+            <p class="cv-meta">Remote</p>
+            <ul class="cv-roles"><li><span class="cv-role">Director, Leader Effectiveness</span><span class="cv-date">Nov 2023 &ndash; Jul 2024</span></li></ul>
+            <p class="cv-summary">I architected leadership development for international clients, pairing human-centered design with digital-first delivery to drive measurable leadership capability.</p>
+            <ul class="cv-points"><li>Led cross-cultural leadership cohorts across Asia, Europe, and North America, including a Japan-based cohort adapted for local context.</li><li>Designed digital-first leadership journeys with AI-guided reflection, mobile-first modules, and collaborative virtual work.</li><li>Shaped growth-aligned RFP strategy that expanded the client pipeline and contributed to new partnerships.</li><li>Built evidence-based feedback loops to keep programs relevant, inclusive, and grounded in data.</li></ul>
           </div>
         </li>
-        <li class="reveal">
-          <h3 class="t-h2">Cintas</h3>
-          <div class="timeline__row">
-            <div><p><span class="todo">Title, dates, and copy</span></p></div>
-            <p></p>
+        <li class="cv-item" data-rise>
+          <span class="cv-dot" aria-hidden="true"></span>
+          <div class="cv-card">
+            <header class="cv-card__head">
+              <h3 class="cv-org">Cityblock Health</h3>
+              <p class="cv-span">2021 &ndash; 2023</p>
+            </header>
+            <p class="cv-meta">A Google-backed healthcare company</p>
+            <ul class="cv-roles"><li><span class="cv-role">Director of Learning Systems and Innovation</span><span class="cv-date">Feb 2023 &ndash; Jun 2023</span></li><li><span class="cv-role">Interim Vice President of Learning</span><span class="cv-date">Nov 2022 &ndash; Feb 2023</span></li><li><span class="cv-role">Learning Experience Design Manager</span><span class="cv-date">Sep 2021 &ndash; Nov 2022</span></li><li><span class="cv-role">Learning Experience Designer</span><span class="cv-date">Mar 2021 &ndash; Sep 2021</span></li></ul>
+            <p class="cv-summary">Four roles in two years, from designer to interim head of learning. I built the infrastructure that aligned care delivery, knowledge management, and clinical compliance in a fast-growing healthcare organization.</p>
+            <ul class="cv-points"><li>Led the development of 100+ clinical eLearning modules in four months, with subject matter experts, to protect compliance and plan partnerships.</li><li>Designed and launched the company's first intranet and knowledge system for 1,000+ employees.</li><li>Grew the learning library from 30 to 10,000+ curated assets.</li><li>Built standardized learner journeys that clarified roles and sped up onboarding across clinical teams.</li></ul>
+          </div>
+        </li>
+        <li class="cv-item" data-rise>
+          <span class="cv-dot" aria-hidden="true"></span>
+          <div class="cv-card">
+            <header class="cv-card__head">
+              <h3 class="cv-org">APHSA (American Public Human Services Association)</h3>
+              <p class="cv-span">2020 &ndash; 2021</p>
+            </header>
+            <p class="cv-meta">Contract</p>
+            <ul class="cv-roles"><li><span class="cv-role">Project Development Lead, eLearning</span><span class="cv-date">Dec 2020 &ndash; Dec 2021</span></li></ul>
+            <p class="cv-summary">I led the design and national launch of a federally aligned eLearning initiative for child welfare professionals across the United States.</p>
+            <ul class="cv-points"><li>Directed end-to-end development of a two-hour immersive learning journey for the National Electronic Interstate Compact Enterprise (NEICE).</li><li>Led change management and rollout to a 4,000-person frontline cohort.</li><li>Set up measurement of engagement, satisfaction, and application impact, with high Net Promoter Scores.</li></ul>
+          </div>
+        </li>
+        <li class="cv-item" data-rise>
+          <span class="cv-dot" aria-hidden="true"></span>
+          <div class="cv-card">
+            <header class="cv-card__head">
+              <h3 class="cv-org">14 West</h3>
+              <p class="cv-span">2019 &ndash; 2021</p>
+            </header>
+            <p class="cv-meta">Baltimore, Maryland</p>
+            <ul class="cv-roles"><li><span class="cv-role">Head of Learning and Development</span><span class="cv-date">Jul 2019 &ndash; Jan 2021</span></li></ul>
+            <p class="cv-summary">I drove learning innovation and digital transformation across a global digital publishing and marketing enterprise.</p>
+            <ul class="cv-points"><li>Designed a business-aligned learning strategy that contributed to a 10 percent lift in growth metrics.</li><li>Built workforce capability for the shift to one-to-one marketing and data-informed decisions.</li><li>Deployed a global learning management system serving 5,000+ international learners.</li></ul>
+          </div>
+        </li>
+        <li class="cv-item" data-rise>
+          <span class="cv-dot" aria-hidden="true"></span>
+          <div class="cv-card">
+            <header class="cv-card__head">
+              <h3 class="cv-org">Evolent Health</h3>
+              <p class="cv-span">2013 &ndash; 2019</p>
+            </header>
+            <p class="cv-meta">Arlington, Virginia</p>
+            <ul class="cv-roles"><li><span class="cv-role">Director of Instructional Design</span><span class="cv-date">Feb 2017 &ndash; Feb 2019</span></li><li><span class="cv-role">Associate Director, Training Media Production, Clinical Education</span><span class="cv-date">Oct 2013 &ndash; Feb 2017</span></li></ul>
+            <p class="cv-summary">I led national learning initiatives that enabled clinical scale, operational readiness, and regulatory excellence in a fast-growing value-based care company.</p>
+            <ul class="cv-points"><li>Rolled out enterprise learning strategy in 10+ new markets.</li><li>Built structured clinical onboarding for 250+ clinical and operational staff.</li><li>Tied learning to clinical KPIs to close skill gaps and improve care delivery outcomes.</li><li>Embedded NCQA-aligned training into frontline education.</li></ul>
+          </div>
+        </li>
+        <li class="cv-item" data-rise>
+          <span class="cv-dot" aria-hidden="true"></span>
+          <div class="cv-card">
+            <header class="cv-card__head">
+              <h3 class="cv-org">Erickson Living</h3>
+              <p class="cv-span">2013</p>
+            </header>
+            <p class="cv-meta">Catonsville, Maryland</p>
+            <ul class="cv-roles"><li><span class="cv-role">Instructional Designer</span><span class="cv-date">Feb 2013 &ndash; Oct 2013</span></li></ul>
+            <p class="cv-summary">I partnered with senior leadership to define and operationalize the organization's critical leadership capabilities.</p>
+            <ul class="cv-points"><li>Used design thinking to identify core leadership competencies and build programs around them.</li><li>Designed leadership development and employment law programs that strengthened consistency and risk management.</li></ul>
+          </div>
+        </li>
+        <li class="cv-item" data-rise>
+          <span class="cv-dot" aria-hidden="true"></span>
+          <div class="cv-card">
+            <header class="cv-card__head">
+              <h3 class="cv-org">Maxim Healthcare Group</h3>
+              <p class="cv-span">2007 &ndash; 2012</p>
+            </header>
+            <p class="cv-meta">Columbia, Maryland</p>
+            <ul class="cv-roles"><li><span class="cv-role">Multimedia and Video Productions Manager, Learning and Development</span><span class="cv-date">Mar 2011 &ndash; Oct 2012</span></li><li><span class="cv-role">Instructional Designer and Multimedia Production Specialist</span><span class="cv-date">Oct 2007 &ndash; Mar 2011</span></li><li><span class="cv-role">Internet Resource Specialist, Training</span><span class="cv-date">Feb 2007 &ndash; Oct 2007</span></li></ul>
+            <p class="cv-summary">I built and scaled digital learning and multimedia infrastructure for a workforce of more than 65,000 employees nationwide.</p>
+            <ul class="cv-points"><li>Built a multimedia function from the ground up, including the business case and budget.</li><li>Created audience-specific content that reached a 90 percent view rate.</li><li>Coordinated a statewide patient advocacy communication strategy with Government Affairs.</li></ul>
+          </div>
+        </li>
+        <li class="cv-item" data-rise>
+          <span class="cv-dot" aria-hidden="true"></span>
+          <div class="cv-card">
+            <header class="cv-card__head">
+              <h3 class="cv-org">Cintas Corporation</h3>
+              <p class="cv-span">2003 &ndash; 2006</p>
+            </header>
+            <p class="cv-meta">Sales</p>
+            <ul class="cv-roles"><li><span class="cv-role">New Business Development</span><span class="cv-date">Apr 2003 &ndash; May 2006</span></li></ul>
+            <p class="cv-summary">Where it started: a high-performing sales territory built on disciplined pipeline management and consultative selling.</p>
+            <ul class="cv-points"><li>Held an average of 20 prospect meetings a week and a 20 percent closing rate.</li><li>Built long-term client relationships through follow-up, service, and accountability.</li></ul>
           </div>
         </li>
       </ol>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="cap-title">
-    <div class="container">
-      <div class="grid intro">
-        <div class="col-head">
-          <h2 id="cap-title">6 capabilities.</h2>
-        </div>
-      </div>
-      <ul class="cv-list">
-        <li><span class="t-h3">Learning Design</span><span></span></li>
-        <li><span class="t-h3">Leadership Development</span><span></span></li>
-        <li><span class="t-h3">Talent Systems</span><span></span></li>
-        <li><span class="t-h3">AI and Future of Work</span><span></span></li>
-        <li><span class="t-h3">Org and Workforce Design</span><span></span></li>
-        <li><span class="t-h3">Media Production</span><span></span></li>
-      </ul>
+  <section class="s-section" aria-labelledby="caps-title">
+    <div class="s-wrap">
+      <header class="s-head">
+        <p class="s-kicker">Capabilities</p>
+        <h2 class="s-title" id="caps-title" data-split>Six things I <em>bring.</em></h2>
+      </header>
+      <ul class="cv-caps" data-stagger><li class="cv-cap" data-rise><h3>Learning Design</h3><p>Interactive, AI-built learning that changes how work gets done.</p></li><li class="cv-cap" data-rise><h3>Leadership Development</h3><p>Executive-led, results-based programs that produce real work.</p></li><li class="cv-cap" data-rise><h3>Talent Systems</h3><p>Skills architecture, talent review, succession, and internal mobility.</p></li><li class="cv-cap" data-rise><h3>AI and Future of Work</h3><p>AI fluency, AI-enabled learning, and work redesign.</p></li><li class="cv-cap" data-rise><h3>Org and Workforce Design</h3><p>Roles, skills, and structures that keep pace with change.</p></li><li class="cv-cap" data-rise><h3>Media Production</h3><p>Video, multimedia, and digital content from concept to delivery.</p></li></ul>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="edu-title">
-    <div class="container">
-      <div class="grid intro">
-        <div class="col-head">
-          <h2 id="edu-title">Education</h2>
-        </div>
-      </div>
-      <ul class="cv-list">
-        <li><span>B.S., Social Sciences, University of Maryland Global Campus</span><span class="t-label">2021 &ndash; 2026</span></li>
-        <li><span>A.A., Social Sciences, Howard Community College</span><span class="t-label">2019 &ndash; 2025</span></li>
-        <li><span>A.S., Multimedia and Web Design, The Art Institutes (120 credit hours)</span><span class="t-label">1999 &ndash; 2002</span></li>
-      </ul>
+  <section class="s-section" aria-label="Education, certifications, and speaking">
+    <div class="s-wrap cv-lists">
+      <div data-rise><p class="s-kicker">Education</p><ul class="cv-list"><li><span><strong>B.S., Social Sciences</strong>University of Maryland Global Campus</span><span class="cv-date">2021 &ndash; 2026</span></li><li><span><strong>A.A., Social Sciences</strong>Howard Community College</span><span class="cv-date">2019 &ndash; 2025</span></li><li><span><strong>A.S., Multimedia and Web Design</strong>The Art Institutes, 120 credit hours</span><span class="cv-date">1999 &ndash; 2002</span></li></ul></div>
+      <div data-rise><p class="s-kicker">Certifications</p><ul class="cv-list"><li><span><strong>Design Thinking and Innovation</strong>University of Virginia</span><span class="cv-date">2021</span></li><li><span><strong>Adobe Captivate Certified Professional</strong>Adobe</span><span class="cv-date">2019</span></li><li><span><strong>Training Certificate</strong>Association for Talent Development</span><span class="cv-date">2013</span></li><li><span><strong>Video for Training</strong>The Learning Guild</span><span class="cv-date">2011</span></li><li><span><strong>Designing Learning Certificate</strong>Association for Talent Development</span><span class="cv-date">2007</span></li></ul></div>
+      <div data-rise><p class="s-kicker">Speaking and publishing</p><ul class="cv-list"><li><span><strong>Speaker, mLearnCon</strong>The Learning Guild</span><span class="cv-date">2021</span></li><li><span><strong>Speaker, Online Learning Conference</strong>Training Magazine</span><span class="cv-date">2017</span></li><li><span><strong>Published, "Story Sync for the Classroom"</strong>Training Magazine</span><span class="cv-date">2017</span></li><li><span><strong>Speaker, Annual Assembly of Hospice and Palliative Care</strong>AAHPM</span><span class="cv-date">2017</span></li><li><span><strong>Speaker, mLearnCon</strong>The Learning Guild</span><span class="cv-date">2011</span></li></ul></div>
     </div>
   </section>
 
-  <section class="section close" aria-labelledby="close-title">
-    <div class="container">
-      <h2 class="close__lede" id="close-title">Want the rest of the story?</h2>
-      <div class="close__actions">
-        <a class="btn btn--primary" href="../contact/">Start a conversation</a>
+  <section class="s-section s-close" aria-labelledby="close-title">
+    <div class="s-wrap">
+      <h2 class="close__title" id="close-title" data-split>Want the rest <em>of the story?</em></h2>
+      <div class="s-actions" data-rise>
+        <a class="button button--solid" href="../contact/">Start a conversation</a>
+        <a class="button button--glass" href="matt-estes-cv.pdf" download>Download PDF</a>
       </div>
     </div>
   </section>
+
 </main>
 
-<footer class="footer">
-  <div class="container footer__inner">
+<footer class="s-footer">
+  <div class="s-wrap s-footer__inner">
     <div>
-      <img class="footer__mark brand-mark--light" src="../assets/img/brand/mark-128.png" width="77" height="48" alt=""><img class="footer__mark brand-mark--ink" src="../assets/img/brand/mark-ink-128.png" width="77" height="48" alt="">
-      <p class="t-label" style="color:var(--text)">Matt Estes, Capability Architect</p>
-      <ul class="footer__nav t-label" style="margin-top:8px">
+      <a class="brand" href="../"><img class="brand__mark" src="../assets/img/brand/mark-128.png" alt="" width="61" height="38"><span class="brand__name">Matt Estes</span></a>
+      <ul class="s-footer__nav">
         <li><a href="../point-of-view/">Point of View</a></li>
         <li><a href="../work/">Work</a></li>
         <li><a href="../lab/">Lab</a></li>
@@ -168,17 +250,17 @@
         <li><a href="../contact/">Contact</a></li>
       </ul>
     </div>
-    <div>
-      <ul class="footer__nav t-label">
+    <div class="s-footer__meta">
+      <ul class="s-footer__nav">
         <li><a href="https://www.linkedin.com/in/mattestes523/" rel="me">LinkedIn</a></li>
         <li><a href="mailto:mattestes523@gmail.com">mattestes523@gmail.com</a></li>
       </ul>
-      <p class="t-label" style="margin-top:8px">© 2026 Matt Estes. <a href="../privacy/">Privacy</a></p>
+      <p>&copy; 2026 Matt Estes. <a href="../privacy/">Privacy</a></p>
     </div>
   </div>
 </footer>
 
 <script src="../assets/js/site.js"></script>
-<script src="../assets/js/motion.js"></script>
+<script src="../assets/v3/home.js"></script>
 </body>
 </html>
