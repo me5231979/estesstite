@@ -2374,3 +2374,17 @@ html:not(.pin) .loop { grid-column: 1 / -1; grid-template-columns: repeat(auto-f
   .cv-list li { padding: 4pt 0; font-size: 9pt; color: #333; }
   .cv-list strong { color: #111; }
 }
+.cv-pillars { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 0; padding: 0; list-style: none; }
+.cv-pillars li { padding: 9px 14px; border-radius: 9px; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(10, 7, 7, 0.35); font-size: 14px; font-weight: 450; }
+.pg-hero .pg-title { max-width: 18ch; }
+@media print {
+  .cv-pillars { margin-top: 6pt; gap: 4pt; }
+  .cv-pillars li { padding: 2pt 6pt; border: 0.5pt solid #ccc; background: none; font-size: 9pt; color: #111; }
+}
+.cv-print-name { display: none; }
+@media print {
+  .cv-print-name { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 14pt; padding-bottom: 6pt; border-bottom: 1pt solid #111; }
+  .cv-print-name strong { font-family: var(--font-display); font-weight: 400; font-size: 20pt; letter-spacing: -0.04em; color: #111; }
+  .cv-print-name span { font-size: 9pt; color: #333; }
+  .pg-hero .s-kicker { display: none; }
+}
