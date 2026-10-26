@@ -2,152 +2,185 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://api.fontshare.com; img-src 'self' data:; font-src 'self' https://cdn.fontshare.com; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://api.fontshare.com; img-src 'self' data: https://d8j0ntlcm91z4.cloudfront.net; font-src 'self' https://cdn.fontshare.com; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lab · Things I Built | Matt Estes</title>
-<meta name="description" content="Things Matt Estes built himself, from AI-built course sites to simulators and talent tools, with what each is built with.">
+<title>The Lab | Matt Estes</title>
+<meta name="description" content="The kinds of tools Matt Estes builds himself: AI-built course sites, self-scoring assessments, practice simulators, talent calibration tools, intake pipelines, and AI operations assistants.">
 <meta name="theme-color" content="#080A19">
 <link rel="icon" href="../assets/img/brand/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="../assets/img/brand/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Lab · Things I Built | Matt Estes">
-<meta property="og:description" content="I build. Here's the evidence.">
+<meta property="og:title" content="The Lab | Matt Estes">
+<meta property="og:description" content="The kinds of tools Matt Estes builds himself: AI-built course sites, self-scoring assessments, practice simulators, talent calibration tools, intake pipelines, and AI operations assistants.">
 <meta property="og:image" content="https://me5231979.github.io/estesstite/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
+<script src="../assets/v3/flag.js"></script>
 <link rel="preload" href="../assets/fonts/stix-two-text.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="../assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@1&amp;display=swap">
-<link rel="stylesheet" href="../assets/css/site.css">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Matt Estes",
-  "jobTitle": "Capability Architect",
-  "description": "Matt Estes turns learning functions into capability engines and builds the tools to prove it.",
-  "email": "mailto:mattestes523@gmail.com",
-  "sameAs": ["https://www.linkedin.com/in/mattestes523/"],
-  "knowsAbout": ["Learning and development", "Leadership development", "Talent systems", "Internal mobility", "AI and the future of work"]
-}
-</script>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@1&amp;f[]=general-sans@400&amp;display=swap">
+<link rel="stylesheet" href="../assets/v3/home.css">
 </head>
-<body>
+<body class="v3-page">
 <a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="../" aria-label="Matt Estes, home">
+      <img class="brand__mark" src="../assets/img/brand/mark-128.png" alt="" aria-hidden="true" width="61" height="38">
+      <span class="brand__name">Matt Estes</span>
+    </a>
 
-<header class="nav">
-  <div class="container nav__inner">
-    <a class="nav__brand" href="../"><img class="brand-mark brand-mark--light" src="../assets/img/brand/mark-64.png" srcset="../assets/img/brand/mark-64.png 1x, ../assets/img/brand/mark-128.png 2x" width="51" height="32" alt=""><img class="brand-mark brand-mark--ink" src="../assets/img/brand/mark-ink-64.png" srcset="../assets/img/brand/mark-ink-64.png 1x, ../assets/img/brand/mark-ink-128.png 2x" width="51" height="32" alt=""><span>Matt Estes</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav__links">
-        <li><a href="../point-of-view/">Point of View</a></li>
-        <li><a href="../work/">Work</a></li>
-        <li><a href="../lab/" aria-current="page">Lab</a></li>
-        <li><a href="../work-with-me/">Work With Me</a></li>
-        <li><a class="btn btn--primary btn--sm" href="../contact/">Let's talk</a></li>
-      </ul>
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link nav__link--has-menu" href="../point-of-view/">
+        Point of View
+        <svg class="nav__chevron" width="7" height="4" viewBox="-0.5 -0.5 7 4" fill="none" aria-hidden="true">
+          <path d="M0 0L3 3L6 0" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </a>
+      <a class="nav__link" href="../work/">Work</a>
+      <a class="nav__link" aria-current="page" href="../lab/">Lab</a>
+      <a class="nav__link" href="../work-with-me/">Work With Me</a>
     </nav>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+
+    <div class="header-actions">
+      <a class="button button--ghost" href="../cv/">CV</a>
+      <a class="button button--solid" href="../contact/">Let's talk</a>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+      <span class="menu-toggle__bar"></span>
+      <span class="menu-toggle__bar"></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <a class="mobile-menu__link" href="../point-of-view/">Point of View</a>
+    <a class="mobile-menu__link" href="../work/">Work</a>
+    <a class="mobile-menu__link" aria-current="page" href="../lab/">Lab</a>
+    <a class="mobile-menu__link" href="../work-with-me/">Work With Me</a>
+    <div class="mobile-menu__actions">
+      <a class="button button--ghost" href="../cv/">CV</a>
+      <a class="button button--solid" href="../contact/">Let's talk</a>
+    </div>
   </div>
 </header>
-<div class="menu" id="menu">
-  <nav aria-label="Mobile">
-    <ul>
-      <li><a href="../point-of-view/">Point of View</a></li>
-      <li><a href="../work/">Work</a></li>
-      <li><a href="../lab/" aria-current="page">Lab</a></li>
-      <li><a href="../work-with-me/">Work With Me</a></li>
-    </ul>
-  </nav>
-  <a class="btn btn--primary" href="../contact/">Let's talk</a>
-</div>
-
 <main id="main">
 
-  <section class="page-head" aria-labelledby="page-title">
-    <div class="container">
-      <h1 id="page-title" style="margin-top:16px">I build.</h1>
-      <p class="page-head__summary">Here's the evidence.</p>
-      <p class="t-body-l" style="margin-top:24px">Most leaders in this field manage vendors. I'd rather build the thing myself, then hand it to the team.</p>
+  <section class="pg-hero" aria-labelledby="page-title">
+    <div class="s-wrap">
+      <p class="s-kicker" data-rise>The Lab</p>
+      <h1 class="pg-title" id="page-title" data-split>I build. <em>Here's what.</em></h1>
+      <p class="s-lede" data-rise>Most leaders in this field manage vendors. I'd rather build the first version myself, then hand it to the team. These are the kinds of things I make.</p>
     </div>
   </section>
 
-  <section aria-label="Builds" style="padding-bottom:160px">
-    <div class="container">
-      <div class="cards" data-stagger>
-        <article class="case reveal" id="axl">
-          <div class="case__media"><div class="placeholder"><span class="t-label">Screen recording</span><span class="todo">To capture</span></div></div>
-          <div class="case__body">
-            <h2 class="case__title t-h3"><a href="../work/#axl">AXL Course Sites</a></h2>
-            <p class="case__outcome">Interactive learning sites built in hours, not months.</p>
-            <p class="t-label t-muted" style="margin:8px 0 0">Built with</p>
-            <ul class="tags"><li>AI coding tools</li></ul>
+  <section class="s-section lb" aria-label="Things I build">
+    <div class="s-wrap">
+      <div class="lb-grid" data-stagger>
+        <article class="lb-card" id="course-sites" data-rise>
+          <div class="lb-mock" aria-hidden="true">
+            <svg class="lb-mock__wire" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="400" height="28" rx="3" pathLength="1"/><rect x="14" y="40" width="90" height="196" rx="3" pathLength="1"/><rect x="24" y="56" width="60" height="6" rx="3" pathLength="1"/><rect x="24" y="74" width="52" height="4" rx="3" pathLength="1"/><rect x="24" y="88" width="58" height="4" rx="3" pathLength="1"/><rect x="24" y="102" width="44" height="4" rx="3" pathLength="1"/><rect x="116" y="40" width="270" height="110" rx="3" pathLength="1"/><rect x="132" y="58" width="150" height="12" rx="3" pathLength="1"/><rect x="132" y="80" width="210" height="5" rx="3" pathLength="1"/><rect x="132" y="92" width="180" height="5" rx="3" pathLength="1"/><rect x="132" y="122" width="62" height="16" rx="3" pathLength="1"/><rect x="116" y="160" width="130" height="76" rx="3" pathLength="1"/><rect x="256" y="160" width="130" height="76" rx="3" pathLength="1"/><rect x="128" y="176" width="60" height="18" rx="3" pathLength="1"/><rect x="268" y="176" width="96" height="6" rx="3" pathLength="1"/><rect x="268" y="190" width="80" height="4" rx="3" pathLength="1"/></svg>
+            <svg class="lb-mock__built" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect width="400" height="250" fill="#0D1024"/><rect x="0" y="0" width="400" height="28" rx="3" fill="#191C1F"/><rect x="14" y="40" width="90" height="196" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="24" y="56" width="60" height="6" rx="3" fill="#FFFFFF"/><rect x="24" y="74" width="52" height="4" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="24" y="88" width="58" height="4" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="24" y="102" width="44" height="4" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="116" y="40" width="270" height="110" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="132" y="58" width="150" height="12" rx="3" fill="#FFFFFF"/><rect x="132" y="80" width="210" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="132" y="92" width="180" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="132" y="122" width="62" height="16" rx="3" fill="#F77F71"/><rect x="116" y="160" width="130" height="76" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="256" y="160" width="130" height="76" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="128" y="176" width="60" height="18" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="268" y="176" width="96" height="6" rx="3" fill="#FFFFFF"/><rect x="268" y="190" width="80" height="4" rx="3" fill="rgba(255,255,255,0.4)"/><circle cx="14" cy="14" r="4" fill="#EE6A5F"/><circle cx="27" cy="14" r="4" fill="#F5BD4F"/><circle cx="40" cy="14" r="4" fill="#61C454"/></svg>
+            <span class="lb-mock__seam"></span>
+          </div>
+          <div class="lb-card__body">
+            <span class="lb-card__n">01</span>
+            <h2 class="lb-card__title">AI-built course sites</h2>
+            <p class="lb-card__what">Interactive learning sites built in hours, not months.</p>
+            <p class="lb-card__why"><span class="s-label">Why it matters</span>Learning has to arrive while the need is still live. Building with AI and standards baked in makes that the default, not a rush job.</p>
+            <ul class="lb-tags"><li>AI coding tools</li><li>Adult-learning design</li></ul>
           </div>
         </article>
-        <article class="case reveal" id="ai-literacy">
-          <div class="case__media"><div class="placeholder"><span class="t-label">Screen recording</span><span class="todo">To capture</span></div></div>
-          <div class="case__body">
-            <h2 class="case__title t-h3"><a href="../work/#ai-capability">AI Literacy Assessment</a></h2>
-            <p class="case__outcome">Scores you instantly. Sends your learning path.</p>
-            <p class="t-label t-muted" style="margin:8px 0 0">Built with</p>
-            <ul class="tags"><li>Microsoft Forms</li><li>Power Automate</li></ul>
+        <article class="lb-card" id="assessments" data-rise>
+          <div class="lb-mock" aria-hidden="true">
+            <svg class="lb-mock__wire" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="400" height="28" rx="3" pathLength="1"/><rect x="100" y="44" width="200" height="10" rx="3" pathLength="1"/><rect x="100" y="62" width="150" height="5" rx="3" pathLength="1"/><rect x="100" y="84" width="200" height="26" rx="3" pathLength="1"/><rect x="100" y="116" width="200" height="26" rx="3" pathLength="1"/><rect x="100" y="148" width="200" height="26" rx="3" pathLength="1"/><rect x="110" y="93" width="8" height="8" rx="4" pathLength="1"/><rect x="110" y="125" width="8" height="8" rx="4" pathLength="1"/><rect x="110" y="157" width="8" height="8" rx="4" pathLength="1"/><rect x="126" y="95" width="110" height="4" rx="3" pathLength="1"/><rect x="126" y="127" width="90" height="4" rx="3" pathLength="1"/><rect x="126" y="159" width="120" height="4" rx="3" pathLength="1"/><rect x="100" y="190" width="200" height="6" rx="3" pathLength="1"/><rect x="100" y="190" width="130" height="6" rx="3" pathLength="1"/><rect x="100" y="206" width="70" height="16" rx="3" pathLength="1"/></svg>
+            <svg class="lb-mock__built" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect width="400" height="250" fill="#0D1024"/><rect x="0" y="0" width="400" height="28" rx="3" fill="#191C1F"/><rect x="100" y="44" width="200" height="10" rx="3" fill="#FFFFFF"/><rect x="100" y="62" width="150" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="100" y="84" width="200" height="26" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="100" y="116" width="200" height="26" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="100" y="148" width="200" height="26" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="110" y="93" width="8" height="8" rx="4" fill="#F77F71"/><rect x="110" y="125" width="8" height="8" rx="4" fill="#F77F71"/><rect x="110" y="157" width="8" height="8" rx="4" fill="#F77F71"/><rect x="126" y="95" width="110" height="4" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="126" y="127" width="90" height="4" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="126" y="159" width="120" height="4" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="100" y="190" width="200" height="6" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="100" y="190" width="130" height="6" rx="3" fill="#F77F71"/><rect x="100" y="206" width="70" height="16" rx="3" fill="#F77F71"/><circle cx="14" cy="14" r="4" fill="#EE6A5F"/><circle cx="27" cy="14" r="4" fill="#F5BD4F"/><circle cx="40" cy="14" r="4" fill="#61C454"/></svg>
+            <span class="lb-mock__seam"></span>
+          </div>
+          <div class="lb-card__body">
+            <span class="lb-card__n">02</span>
+            <h2 class="lb-card__title">Self-scoring assessments</h2>
+            <p class="lb-card__what">Take it, get your score, and receive your own learning path in the same minute.</p>
+            <p class="lb-card__why"><span class="s-label">Why it matters</span>People start where they actually are. Leaders get a real read on readiness instead of a completion count.</p>
+            <ul class="lb-tags"><li>Validated research scales</li><li>Workflow automation</li></ul>
           </div>
         </article>
-        <article class="case reveal" id="er-simulator">
-          <div class="case__media"><div class="placeholder"><span class="t-label">Screen recording</span><span class="todo">To capture</span></div></div>
-          <div class="case__body">
-            <h2 class="case__title t-h3"><a href="../work/#simulations">Employee Relations Simulator</a></h2>
-            <p class="case__outcome">Practice discipline conversations with real legal stakes.</p>
-            <p class="t-label t-muted" style="margin:8px 0 0">Built with</p>
-            <ul class="tags"><li>React</li></ul>
+        <article class="lb-card" id="simulators" data-rise>
+          <div class="lb-mock" aria-hidden="true">
+            <svg class="lb-mock__wire" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="400" height="28" rx="3" pathLength="1"/><rect x="20" y="46" width="200" height="40" rx="3" pathLength="1"/><rect x="32" y="58" width="150" height="5" rx="3" pathLength="1"/><rect x="32" y="70" width="110" height="5" rx="3" pathLength="1"/><rect x="180" y="96" width="200" height="40" rx="3" pathLength="1"/><rect x="192" y="108" width="150" height="5" rx="3" pathLength="1"/><rect x="192" y="120" width="100" height="5" rx="3" pathLength="1"/><rect x="20" y="146" width="200" height="40" rx="3" pathLength="1"/><rect x="32" y="158" width="160" height="5" rx="3" pathLength="1"/><rect x="32" y="170" width="90" height="5" rx="3" pathLength="1"/><rect x="20" y="204" width="110" height="22" rx="3" pathLength="1"/><rect x="140" y="204" width="110" height="22" rx="3" pathLength="1"/><rect x="260" y="204" width="120" height="22" rx="3" pathLength="1"/></svg>
+            <svg class="lb-mock__built" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect width="400" height="250" fill="#0D1024"/><rect x="0" y="0" width="400" height="28" rx="3" fill="#191C1F"/><rect x="20" y="46" width="200" height="40" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="32" y="58" width="150" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="32" y="70" width="110" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="180" y="96" width="200" height="40" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="192" y="108" width="150" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="192" y="120" width="100" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="20" y="146" width="200" height="40" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="32" y="158" width="160" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="32" y="170" width="90" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="20" y="204" width="110" height="22" rx="3" fill="#F77F71"/><rect x="140" y="204" width="110" height="22" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="260" y="204" width="120" height="22" rx="3" fill="rgba(255,255,255,0.14)"/><circle cx="14" cy="14" r="4" fill="#EE6A5F"/><circle cx="27" cy="14" r="4" fill="#F5BD4F"/><circle cx="40" cy="14" r="4" fill="#61C454"/></svg>
+            <span class="lb-mock__seam"></span>
+          </div>
+          <div class="lb-card__body">
+            <span class="lb-card__n">03</span>
+            <h2 class="lb-card__title">Practice simulators</h2>
+            <p class="lb-card__what">Rehearse the hard conversation, with real stakes, before it counts.</p>
+            <p class="lb-card__why"><span class="s-label">Why it matters</span>The first time someone handles a difficult moment shouldn't be with a real person. Practice moves the mistakes somewhere safe.</p>
+            <ul class="lb-tags"><li>React</li><li>AI role-play</li></ul>
           </div>
         </article>
-        <article class="case reveal" id="talent-review">
-          <div class="case__media"><div class="placeholder"><span class="t-label">Screen recording</span><span class="todo">To capture</span></div></div>
-          <div class="case__body">
-            <h2 class="case__title t-h3"><a href="../work/#talent-review">Talent Review Tool</a></h2>
-            <p class="case__outcome">9-box calibration tied to critical roles and skills.</p>
-            <p class="t-label t-muted" style="margin:8px 0 0">Built with</p>
-            <ul class="tags"><li>Excel</li></ul>
+        <article class="lb-card" id="talent-tools" data-rise>
+          <div class="lb-mock" aria-hidden="true">
+            <svg class="lb-mock__wire" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="400" height="28" rx="3" pathLength="1"/><rect x="20" y="42" width="170" height="170" rx="3" pathLength="1"/><rect x="20" y="42" width="56" height="56" rx="3" pathLength="1"/><rect x="77" y="42" width="56" height="56" rx="3" pathLength="1"/><rect x="134" y="42" width="56" height="56" rx="3" pathLength="1"/><rect x="20" y="99" width="56" height="56" rx="3" pathLength="1"/><rect x="77" y="99" width="56" height="56" rx="3" pathLength="1"/><rect x="134" y="99" width="56" height="56" rx="3" pathLength="1"/><rect x="20" y="156" width="56" height="56" rx="3" pathLength="1"/><rect x="77" y="156" width="56" height="56" rx="3" pathLength="1"/><rect x="134" y="156" width="56" height="56" rx="3" pathLength="1"/><rect x="210" y="42" width="170" height="10" rx="3" pathLength="1"/><rect x="210" y="62" width="150" height="5" rx="3" pathLength="1"/><rect x="210" y="80" width="170" height="24" rx="3" pathLength="1"/><rect x="210" y="110" width="170" height="24" rx="3" pathLength="1"/><rect x="210" y="140" width="170" height="24" rx="3" pathLength="1"/><rect x="220" y="89" width="90" height="5" rx="3" pathLength="1"/><rect x="220" y="119" width="70" height="5" rx="3" pathLength="1"/><rect x="220" y="149" width="100" height="5" rx="3" pathLength="1"/></svg>
+            <svg class="lb-mock__built" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect width="400" height="250" fill="#0D1024"/><rect x="0" y="0" width="400" height="28" rx="3" fill="#191C1F"/><rect x="20" y="42" width="170" height="170" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="20" y="42" width="56" height="56" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="77" y="42" width="56" height="56" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="134" y="42" width="56" height="56" rx="3" fill="#F77F71"/><rect x="20" y="99" width="56" height="56" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="77" y="99" width="56" height="56" rx="3" fill="#F77F71"/><rect x="134" y="99" width="56" height="56" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="20" y="156" width="56" height="56" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="77" y="156" width="56" height="56" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="134" y="156" width="56" height="56" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="210" y="42" width="170" height="10" rx="3" fill="#FFFFFF"/><rect x="210" y="62" width="150" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="210" y="80" width="170" height="24" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="210" y="110" width="170" height="24" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="210" y="140" width="170" height="24" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="220" y="89" width="90" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="220" y="119" width="70" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="220" y="149" width="100" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><circle cx="14" cy="14" r="4" fill="#EE6A5F"/><circle cx="27" cy="14" r="4" fill="#F5BD4F"/><circle cx="40" cy="14" r="4" fill="#61C454"/></svg>
+            <span class="lb-mock__seam"></span>
+          </div>
+          <div class="lb-card__body">
+            <span class="lb-card__n">04</span>
+            <h2 class="lb-card__title">Talent calibration tools</h2>
+            <p class="lb-card__what">Nine-box calibration tied to critical roles and skills, built the same way everywhere.</p>
+            <p class="lb-card__why"><span class="s-label">Why it matters</span>Consistent decisions and a bench you can see, so succession doesn't walk out the door with one leader.</p>
+            <ul class="lb-tags"><li>Skills architecture</li><li>Private by design</li></ul>
           </div>
         </article>
-        <article class="case reveal" id="intake-pipeline">
-          <div class="case__media"><div class="placeholder"><span class="t-label">Screen recording</span><span class="todo">To capture</span></div></div>
-          <div class="case__body">
-            <h2 class="case__title t-h3">Course Intake Pipeline</h2>
-            <p class="case__outcome">A request goes in. A built course comes out.</p>
-            <p class="t-label t-muted" style="margin:8px 0 0">Built with</p>
-            <ul class="tags"><li>Monday.com</li><li>AI coding tools</li></ul>
+        <article class="lb-card" id="pipelines" data-rise>
+          <div class="lb-mock" aria-hidden="true">
+            <svg class="lb-mock__wire" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="400" height="28" rx="3" pathLength="1"/><rect x="14" y="44" width="118" height="190" rx="3" pathLength="1"/><rect x="141" y="44" width="118" height="190" rx="3" pathLength="1"/><rect x="268" y="44" width="118" height="190" rx="3" pathLength="1"/><rect x="24" y="54" width="60" height="6" rx="3" pathLength="1"/><rect x="151" y="54" width="60" height="6" rx="3" pathLength="1"/><rect x="278" y="54" width="60" height="6" rx="3" pathLength="1"/><rect x="24" y="72" width="98" height="40" rx="3" pathLength="1"/><rect x="24" y="120" width="98" height="40" rx="3" pathLength="1"/><rect x="151" y="72" width="98" height="40" rx="3" pathLength="1"/><rect x="278" y="72" width="98" height="40" rx="3" pathLength="1"/><rect x="278" y="120" width="98" height="40" rx="3" pathLength="1"/><rect x="278" y="168" width="98" height="40" rx="3" pathLength="1"/></svg>
+            <svg class="lb-mock__built" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect width="400" height="250" fill="#0D1024"/><rect x="0" y="0" width="400" height="28" rx="3" fill="#191C1F"/><rect x="14" y="44" width="118" height="190" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="141" y="44" width="118" height="190" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="268" y="44" width="118" height="190" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="24" y="54" width="60" height="6" rx="3" fill="#FFFFFF"/><rect x="151" y="54" width="60" height="6" rx="3" fill="#FFFFFF"/><rect x="278" y="54" width="60" height="6" rx="3" fill="#FFFFFF"/><rect x="24" y="72" width="98" height="40" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="24" y="120" width="98" height="40" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="151" y="72" width="98" height="40" rx="3" fill="rgba(255,255,255,0.14)"/><rect x="278" y="72" width="98" height="40" rx="3" fill="#F77F71"/><rect x="278" y="120" width="98" height="40" rx="3" fill="#F77F71"/><rect x="278" y="168" width="98" height="40" rx="3" fill="#F77F71"/><circle cx="14" cy="14" r="4" fill="#EE6A5F"/><circle cx="27" cy="14" r="4" fill="#F5BD4F"/><circle cx="40" cy="14" r="4" fill="#61C454"/></svg>
+            <span class="lb-mock__seam"></span>
+          </div>
+          <div class="lb-card__body">
+            <span class="lb-card__n">05</span>
+            <h2 class="lb-card__title">Intake-to-course pipelines</h2>
+            <p class="lb-card__what">A request goes in. A built course comes out.</p>
+            <p class="lb-card__why"><span class="s-label">Why it matters</span>A clear front door and a predictable path turn learning requests into delivered work instead of a backlog.</p>
+            <ul class="lb-tags"><li>Work management</li><li>AI coding tools</li></ul>
           </div>
         </article>
-        <article class="case reveal" id="ops-command-center">
-          <div class="case__media"><div class="placeholder"><span class="t-label">Screen recording</span><span class="todo">To capture</span></div></div>
-          <div class="case__body">
-            <h2 class="case__title t-h3">Ops Command Center</h2>
-            <p class="case__outcome">A personal operations dashboard with a voice assistant.</p>
-            <p class="t-label t-muted" style="margin:8px 0 0">Built with</p>
-            <ul class="tags"><li>AI tools</li><li>ElevenLabs</li></ul>
+        <article class="lb-card" id="assistants" data-rise>
+          <div class="lb-mock" aria-hidden="true">
+            <svg class="lb-mock__wire" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="400" height="28" rx="3" pathLength="1"/><rect x="14" y="40" width="180" height="90" rx="3" pathLength="1"/><rect x="206" y="40" width="180" height="90" rx="3" pathLength="1"/><rect x="14" y="142" width="372" height="92" rx="3" pathLength="1"/><rect x="28" y="56" width="70" height="8" rx="3" pathLength="1"/><rect x="28" y="80" width="120" height="26" rx="3" pathLength="1"/><rect x="220" y="56" width="70" height="8" rx="3" pathLength="1"/><rect x="220" y="78" width="140" height="5" rx="3" pathLength="1"/><rect x="220" y="92" width="120" height="5" rx="3" pathLength="1"/><rect x="220" y="106" width="100" height="5" rx="3" pathLength="1"/><rect x="28" y="160" width="90" height="6" rx="3" pathLength="1"/><rect x="28" y="180" width="330" height="4" rx="3" pathLength="1"/><rect x="28" y="194" width="290" height="4" rx="3" pathLength="1"/><rect x="28" y="208" width="310" height="4" rx="3" pathLength="1"/></svg>
+            <svg class="lb-mock__built" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet"><rect width="400" height="250" fill="#0D1024"/><rect x="0" y="0" width="400" height="28" rx="3" fill="#191C1F"/><rect x="14" y="40" width="180" height="90" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="206" y="40" width="180" height="90" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="14" y="142" width="372" height="92" rx="3" fill="rgba(17,16,15,0.6)"/><rect x="28" y="56" width="70" height="8" rx="3" fill="#FFFFFF"/><rect x="28" y="80" width="120" height="26" rx="3" fill="#F77F71"/><rect x="220" y="56" width="70" height="8" rx="3" fill="#FFFFFF"/><rect x="220" y="78" width="140" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="220" y="92" width="120" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="220" y="106" width="100" height="5" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="28" y="160" width="90" height="6" rx="3" fill="#FFFFFF"/><rect x="28" y="180" width="330" height="4" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="28" y="194" width="290" height="4" rx="3" fill="rgba(255,255,255,0.4)"/><rect x="28" y="208" width="310" height="4" rx="3" fill="rgba(255,255,255,0.4)"/><circle cx="14" cy="14" r="4" fill="#EE6A5F"/><circle cx="27" cy="14" r="4" fill="#F5BD4F"/><circle cx="40" cy="14" r="4" fill="#61C454"/></svg>
+            <span class="lb-mock__seam"></span>
+          </div>
+          <div class="lb-card__body">
+            <span class="lb-card__n">06</span>
+            <h2 class="lb-card__title">AI operations assistants</h2>
+            <p class="lb-card__what">A command center for running a lean function, with a voice assistant built in.</p>
+            <p class="lb-card__why"><span class="s-label">Why it matters</span>A small team can cover a big surface when the routine runs itself and the important things surface on their own.</p>
+            <ul class="lb-tags"><li>AI tools</li><li>Voice</li></ul>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section close" aria-labelledby="close-title">
-    <div class="container">
-      <h2 class="close__lede" id="close-title">Every one of these started as a problem someone said would take a vendor and 6 months.</h2>
-      <div class="close__actions">
-        <a class="btn btn--primary" href="../contact/">Start a conversation</a>
+  <section class="s-section s-close" aria-labelledby="close-title">
+    <div class="s-wrap">
+      <h2 class="close__title" id="close-title" data-split>Every one of these started as a problem someone said would take a vendor and <em>six months.</em></h2>
+      <p class="s-lede" data-rise>Bring me the problem. I'll show you a working version in weeks.</p>
+      <div class="s-actions" data-rise>
+        <a class="button button--solid" href="../work-with-me/">Start a build sprint</a>
+        <a class="button button--glass" href="../contact/">Let's talk</a>
       </div>
     </div>
   </section>
+
 </main>
 
-<footer class="footer">
-  <div class="container footer__inner">
+<footer class="s-footer">
+  <div class="s-wrap s-footer__inner">
     <div>
-      <img class="footer__mark brand-mark--light" src="../assets/img/brand/mark-128.png" width="77" height="48" alt=""><img class="footer__mark brand-mark--ink" src="../assets/img/brand/mark-ink-128.png" width="77" height="48" alt="">
-      <p class="t-label" style="color:var(--text)">Matt Estes, Capability Architect</p>
-      <ul class="footer__nav t-label" style="margin-top:8px">
+      <a class="brand" href="../"><img class="brand__mark" src="../assets/img/brand/mark-128.png" alt="" width="61" height="38"><span class="brand__name">Matt Estes</span></a>
+      <ul class="s-footer__nav">
         <li><a href="../point-of-view/">Point of View</a></li>
         <li><a href="../work/">Work</a></li>
         <li><a href="../lab/">Lab</a></li>
@@ -158,17 +191,17 @@
         <li><a href="../contact/">Contact</a></li>
       </ul>
     </div>
-    <div>
-      <ul class="footer__nav t-label">
+    <div class="s-footer__meta">
+      <ul class="s-footer__nav">
         <li><a href="https://www.linkedin.com/in/mattestes523/" rel="me">LinkedIn</a></li>
         <li><a href="mailto:mattestes523@gmail.com">mattestes523@gmail.com</a></li>
       </ul>
-      <p class="t-label" style="margin-top:8px">© 2026 Matt Estes. <a href="../privacy/">Privacy</a></p>
+      <p>&copy; 2026 Matt Estes. <a href="../privacy/">Privacy</a></p>
     </div>
   </div>
 </footer>
 
 <script src="../assets/js/site.js"></script>
-<script src="../assets/js/motion.js"></script>
+<script src="../assets/v3/home.js"></script>
 </body>
 </html>

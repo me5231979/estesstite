@@ -13,7 +13,7 @@
           ['Week 2', 'Rank the 3 gaps that cost the most, in time, errors, or turnover.'],
           ['Week 4', 'Ship the first fix inside the workflow, not in a catalog.']
         ],
-        proof: 'Every AXL build starts with an SME intake on the task that is going wrong.'
+        proof: 'Every build I run starts with an intake on the one task that is going wrong.'
       },
       label: 'What gets built',
       q: 'How does your team decide what to build?',
@@ -29,7 +29,7 @@
           ['Week 2', 'Rebuild one stalled course live, with your SMEs in the room.'],
           ['Month 2', 'Your team ships on its own, in hours, without me at the keyboard.']
         ],
-        proof: 'I built this model and shipped ~80 courses in 12 months, 2 to 3 hours of working time each.'
+        proof: 'I run course development like product development, so a 10 to 45 minute course takes hours to build, not months.'
       },
       label: 'Speed to build',
       q: 'How long does a new course take to build?',
@@ -45,7 +45,7 @@
           ['Week 3', 'Launch a 5-item pulse and set up a comparison group.'],
           ['Day 90', 'Report the behavior change, not the attendance.']
         ],
-        proof: 'The Manager Standard I designed measures behavior with a pulse and a comparison group, across 677 managers.'
+        proof: 'I define the manager behavior, measure it with a short employee pulse, and test the learning against a comparison group.'
       },
       label: 'Measurement',
       q: 'How do you report success?',
@@ -61,7 +61,7 @@
           ['Week 4', 'Pulse employees on them. Auto-assign learning on role change.'],
           ['Quarter 1', 'Run a cohort against a comparison group. Show who got better.']
         ],
-        proof: 'I built this as the Manager Standard. It covers 677 managers across 36 business units.'
+        proof: 'I build this as one written standard, measured the same way across the whole organization.'
       },
       label: 'Managers',
       q: 'How do managers fit in?',
@@ -77,7 +77,7 @@
           ['Month 2', 'Post roles and short gigs inside first.'],
           ['Month 3', 'Count internal moves every month and report them as retention.']
         ],
-        proof: 'I led the staff strategy and communications for a talent marketplace built on this idea.'
+        proof: 'I build internal marketplaces on this idea: visible skills, findable roles, and gigs to try a role first.'
       },
       label: 'Internal mobility',
       q: 'How do people find their next role internally?',
@@ -93,7 +93,7 @@
           ['Week 3', 'Map AI exposure for one role, task by task.'],
           ['Week 6', 'Redesign that role\'s workflow, then train to the new one.']
         ],
-        proof: 'I built an AI literacy assessment on a validated research scale. It scores instantly and sends each person a path.'
+        proof: 'I start with a self-assessment on a validated research scale that scores instantly and sends each person a path.'
       },
       label: 'AI plan',
       q: 'What\'s your AI plan?',
@@ -150,7 +150,7 @@
       ['Week 3', 'Codify your standards into the build process itself.'],
       ['Quarter 1', 'Open the model to subject matter experts, with guardrails, not a queue.']
     ],
-    proof: 'It is where AXL goes next. The goal is quality that doesn\'t depend on who\'s at the keyboard.'
+    proof: 'Standards live inside the process, so quality doesn\'t depend on who\'s at the keyboard.'
   };
 
   function el(tag, attrs, children) {

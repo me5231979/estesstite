@@ -180,8 +180,9 @@
      real elapsed time, so they behave the same at 60Hz and 120Hz.
      ------------------------------------------------------------------ */
   var SETTLE = 9;        /* approach rate, per second */
-  var MAX_RATE = 0.40;   /* ceiling on timeline units per second */
+  var MAX_RATE = 0.55;   /* ceiling on timeline units per second */
   var EPSILON = 0.0004;  /* close enough to snap, so the ends stay exact */
+  var HOLD_FROM = 0.7;   /* share of the pin that plays the move; the rest holds */
 
   var current = 0;
   var frameId = null;
@@ -191,7 +192,10 @@
     if (!scene) return 0;
     var travel = scene.offsetHeight - window.innerHeight;
     if (travel <= 0) return 0;
-    return clamp01((window.scrollY - scene.offsetTop) / travel);
+    /* The move plays over the first part of the pin; the rest is a hold, so
+       the landed frame stays put for a beat instead of scrolling away the
+       moment it arrives. */
+    return clamp01((window.scrollY - scene.offsetTop) / (travel * HOLD_FROM));
   }
 
   function frame(now) {
@@ -403,7 +407,7 @@
     words.forEach(function (w) { w.classList.add('is-lit'); });
     var hdr = document.querySelector('.site-header');
     var sc = document.getElementById('scene');
-    var solid = function () { if (hdr && sc) hdr.classList.toggle('is-solid', window.scrollY > sc.offsetTop + sc.offsetHeight - window.innerHeight - 40); };
+    var solid = function () { if (hdr) hdr.classList.toggle('is-solid', window.scrollY > (sc ? sc.offsetTop + sc.offsetHeight - window.innerHeight - 40 : 24)); };
     window.addEventListener('scroll', solid, { passive: true });
     solid();
     return;
@@ -546,14 +550,32 @@
   var header = document.querySelector('.site-header');
   var scene = document.getElementById('scene');
   function drawHeader() {
-    if (!header || !scene) return;
-    header.classList.toggle('is-solid', window.scrollY > scene.offsetTop + scene.offsetHeight - window.innerHeight - 40);
+    if (!header) return;
+    var past = scene ? scene.offsetTop + scene.offsetHeight - window.innerHeight - 40 : 24;
+    header.classList.toggle('is-solid', window.scrollY > past);
+  }
+
+  // Work page rail: highlight the concept being read, fill the bar as you go.
+  var spyLinks = Array.prototype.slice.call(document.querySelectorAll('[data-spy]'));
+  var spyTargets = spyLinks.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  var railBar = document.querySelector('.wk-rail__bar');
+  var spyList = document.querySelector('.wk-list');
+  function drawSpy() {
+    if (!spyLinks.length) return;
+    var line = window.innerHeight * 0.35, active = 0;
+    spyTargets.forEach(function (el, i) { if (el && el.getBoundingClientRect().top <= line) active = i; });
+    spyLinks.forEach(function (a, i) { a.classList.toggle('is-active', i === active); });
+    if (railBar && spyList) {
+      var r = spyList.getBoundingClientRect();
+      railBar.style.setProperty('--read', clamp01((line - r.top) / r.height).toFixed(3));
+    }
   }
 
   var queued = false;
   function frame() {
     queued = false;
     drawHeader();
+    drawSpy();
     drawShift();
     drawBeliefs();
     drawLoop();

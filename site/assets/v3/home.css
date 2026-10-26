@@ -67,7 +67,7 @@
   /* Scroll distance that drives the hero -> platform camera move. Long enough
      that an ordinary scroll takes about as long as the reference animation's
      three seconds, rather than skipping past the move. */
-  --scene-travel: 300svh;
+  --scene-travel: 420svh;
 
   /* Colour */
   --color-void: #080A19;          /* artboard base fill                     */
@@ -2041,3 +2041,205 @@ html:not(.pin) .loop { grid-column: 1 / -1; grid-template-columns: repeat(auto-f
   color: rgba(255, 255, 255, 0.72);
 }
 @media (prefers-reduced-motion: reduce) { .lv-dot { animation: none; } }
+
+/* No app chrome: the camera lands on the framework itself, a frosted panel,
+   not a piece of software. Content moves up into the space the browser
+   toolbar used to take, and the panel is short enough to sit fully in frame. */
+.shot { height: calc(470 * var(--u-shot)); }
+.shot__window::before { width: 100%; border-radius: calc(23 * var(--u-shot)); border: 1px solid rgba(255, 255, 255, 0.12); }
+.lv-head { top: calc(30 * var(--u-shot)); }
+.lv-title { font-size: calc(30 * var(--u-shot)); }
+.lv-steps { top: calc(104 * var(--u-shot)); }
+.lv-return { top: calc(384 * var(--u-shot)); }
+.lv-again { top: calc(410 * var(--u-shot)); }
+.lv-proof span { margin: 0 0 calc(6 * var(--u-shot)); text-transform: none; color: var(--coral); }
+.lv-proof strong { font-size: calc(15 * var(--u-shot)); line-height: 1.2; letter-spacing: -0.025em; }
+.loop__proof { font-family: var(--font-display); font-size: clamp(22px, 2vw, 30px); line-height: 1.15; letter-spacing: -0.035em; color: rgba(255, 255, 255, 0.7); }
+.loop__proof .s-label { display: table; margin-bottom: 10px; font-family: var(--font-ui); letter-spacing: 0; color: var(--coral); }
+.loop__proof strong { display: inline; font: inherit; color: var(--color-white); }
+
+/* ==========================================================================
+   Inner v3 pages (Work, Lab): a horizon hero, then content in motion.
+   ========================================================================== */
+.v3-page .site-header { opacity: 1; }
+.pg-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(150px, 24svh, 240px) 0 clamp(80px, 12svh, 140px);
+}
+.pg-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--glow);
+  opacity: 0.8;
+}
+.pg-title {
+  max-width: 16ch;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(48px, 7vw, 112px);
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+.pg-title em { font-style: italic; color: var(--coral); }
+.pg-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
+.pg-chip {
+  padding: 10px 14px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(10, 7, 7, 0.35);
+  -webkit-backdrop-filter: blur(14.6px);
+  backdrop-filter: blur(14.6px);
+  font-size: 13px;
+  font-weight: 450;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+.pg-chip:hover { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.32); }
+
+/* Work: a rail that tracks where you are, concepts that build as you read. */
+.wk { padding: clamp(64px, 10svh, 120px) 0; }
+.wk__layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+.wk-rail { position: sticky; top: 120px; display: flex; gap: 16px; }
+.wk-rail ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.wk-rail a {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 450;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.45);
+  transition: color 0.3s ease, transform 0.4s var(--ease-out);
+}
+.wk-rail a span { font-size: 11px; color: rgba(255, 255, 255, 0.35); padding-top: 2px; }
+.wk-rail a:hover { color: rgba(255, 255, 255, 0.8); }
+.wk-rail a.is-active { color: #fff; transform: translateX(6px); }
+.wk-rail a.is-active span { color: var(--coral); }
+.wk-rail__bar { order: -1; position: relative; width: 1px; background: rgba(255, 255, 255, 0.12); }
+.wk-rail__bar span { position: absolute; left: -0.5px; top: 0; width: 2px; height: 100%; background: var(--coral); transform-origin: top; transform: scaleY(var(--read, 0)); box-shadow: 0 0 10px rgba(255, 80, 60, 0.6); }
+
+.wk-concept { padding-bottom: clamp(96px, 16svh, 180px); scroll-margin-top: 110px; }
+.wk-concept + .wk-concept { padding-top: clamp(48px, 8svh, 96px); border-top: 1px solid var(--hair); }
+.wk-num { margin: 0 0 16px; font-size: 13px; font-weight: 450; color: var(--coral); }
+.wk-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(44px, 5.4vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+}
+/* The shift: the old way is struck through as it arrives, the new way lands. */
+.wk-shift {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+  margin: 28px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.4vw, 36px);
+  letter-spacing: -0.04em;
+}
+.wk-shift__old { position: relative; color: rgba(255, 255, 255, 0.45); }
+.wk-shift__old::after {
+  content: "";
+  position: absolute;
+  left: -2px; right: -2px; top: 54%;
+  height: 2px;
+  background: var(--coral);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease-out) 0.5s;
+}
+.wk-shift.is-in .wk-shift__old::after { transform: scaleX(1); }
+.wk-shift__arrow { width: 40px; height: 1px; background: rgba(255, 255, 255, 0.4); position: relative; }
+.wk-shift__arrow::after { content: ""; position: absolute; right: 0; top: -4px; width: 8px; height: 8px; border-top: 1px solid rgba(255,255,255,.4); border-right: 1px solid rgba(255,255,255,.4); transform: rotate(45deg); }
+.wk-shift__new { font-style: italic; color: var(--coral); opacity: 0; transform: translateX(-12px); transition: opacity 0.6s ease 0.9s, transform 0.8s var(--ease-out) 0.9s; }
+.wk-shift.is-in .wk-shift__new { opacity: 1; transform: none; }
+.wk-why { margin-top: 40px; }
+.wk-why p { max-width: 60ch; margin: 12px 0 0; font-size: clamp(17px, 1.35vw, 21px); font-weight: 450; line-height: 1.5; letter-spacing: -0.015em; color: var(--color-text-muted); }
+.wk-how { margin-top: 48px; }
+.wk-steps { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 16px 0 0; padding: 0; list-style: none; }
+.wk-step {
+  position: relative;
+  padding: 24px;
+  border-radius: 23px;
+  border: 1px solid var(--hair);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  transition: border-color 0.3s ease, transform 0.5s var(--ease-out);
+}
+.wk-step::before { content: ""; position: absolute; left: 24px; right: 24px; top: -1px; height: 2px; background: var(--coral); transform: scaleX(0); transform-origin: left; transition: transform 0.8s var(--ease-out) calc(var(--i, 0) * 140ms + 300ms); }
+.wk-step.is-in::before { transform: scaleX(1); }
+.wk-step:hover { border-color: rgba(255, 255, 255, 0.3); transform: translateY(-4px); }
+.wk-step__n { font-size: 12px; font-weight: 450; color: var(--muted-2); }
+.wk-step h4 { margin: 14px 0 0; font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1.05; letter-spacing: -0.045em; }
+.wk-step p { margin: 12px 0 0; font-size: 15px; font-weight: 450; line-height: 1.5; color: var(--color-text-muted); }
+.wk-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 14px; margin-top: 14px; }
+.wk-example {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 28px;
+  border-radius: 23px;
+  border: 1px solid var(--hair);
+  background: #0A0C1C;
+}
+.wk-example::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(120% 100% at 0% 120%, rgba(255, 80, 60, 0.32), transparent 60%); }
+.wk-example p { margin: 14px 0 0; font-family: var(--font-display); font-size: clamp(20px, 1.6vw, 26px); line-height: 1.25; letter-spacing: -0.025em; }
+.wk-changes { padding: 28px; border-radius: 23px; border: 1px solid var(--hair); background: var(--glass); }
+.wk-changes ul { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
+.wk-changes li { position: relative; padding-left: 26px; font-size: 15px; font-weight: 450; line-height: 1.45; }
+.wk-changes li::before { content: ""; position: absolute; left: 0; top: 4px; width: 12px; height: 7px; border-left: 1.5px solid var(--coral); border-bottom: 1.5px solid var(--coral); transform: rotate(-45deg); }
+@media (max-width: 900px) {
+  .wk__layout { grid-template-columns: 1fr; }
+  .wk-rail { display: none; }
+  .wk-steps, .wk-grid { grid-template-columns: 1fr; }
+}
+
+/* Lab: each build draws as a wireframe, then the finished screen wipes in. */
+.lb-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.lb-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 23px;
+  border: 1px solid var(--hair);
+  background: var(--glass);
+  scroll-margin-top: 110px;
+  transition: border-color 0.3s ease;
+}
+.lb-card:hover { border-color: rgba(255, 255, 255, 0.3); }
+.lb-mock { position: relative; aspect-ratio: 16 / 10; background: #080A19; border-bottom: 1px solid var(--hair); overflow: hidden; }
+.lb-mock svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lb-mock__wire { fill: none; stroke: rgba(255, 255, 255, 0.4); stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.lb-mock__wire rect { vector-effect: non-scaling-stroke; transition: stroke-dashoffset 1.4s var(--ease-out) 0.2s; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.lb-card.is-in .lb-mock__wire rect { stroke-dashoffset: 0; }
+.lb-mock__built { clip-path: inset(0 100% 0 0); transition: clip-path 1.1s var(--ease-out) 1.4s; }
+.lb-card.is-in .lb-mock__built { clip-path: inset(0 0 0 0); }
+.lb-mock__seam { position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: var(--coral); box-shadow: 0 0 16px 2px rgba(255, 80, 60, 0.7); opacity: 0; }
+.lb-card.is-in .lb-mock__seam { animation: lb-seam 1.1s var(--ease-out) 1.4s both; }
+@keyframes lb-seam { 0% { left: 0; opacity: 1; } 85% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+.lb-card:hover .lb-mock__built { transform: scale(1.03); transition: clip-path 1.1s var(--ease-out) 1.4s, transform 0.8s var(--ease-out); }
+.lb-card__body { display: flex; flex-direction: column; gap: 12px; padding: 28px; flex: 1; }
+.lb-card__n { font-size: 12px; font-weight: 450; color: var(--coral); }
+.lb-card__title { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 2.6vw, 40px); line-height: 1; letter-spacing: -0.05em; }
+.lb-card__what { margin: 0; font-size: 16px; font-weight: 450; line-height: 1.45; color: #fff; }
+.lb-card__why { margin: 6px 0 0; font-size: 15px; font-weight: 450; line-height: 1.5; color: var(--color-text-muted); }
+.lb-card__why .s-label { display: table; margin-bottom: 8px; }
+.lb-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: auto 0 0; padding: 12px 0 0; list-style: none; }
+.lb-tags li { padding: 5px 9px; border-radius: 6px; background: rgba(255, 255, 255, 0.07); font-size: 12px; font-weight: 450; color: rgba(255, 255, 255, 0.65); }
+@media (max-width: 900px) { .lb-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .lb-mock__wire rect { stroke-dashoffset: 0; transition: none; }
+  .lb-mock__built { clip-path: none; transition: none; }
+  .wk-shift__old::after { transform: scaleX(1); transition: none; }
+  .wk-shift__new { opacity: 1; transform: none; transition: none; }
+  .wk-step::before { transform: scaleX(1); transition: none; }
+}
