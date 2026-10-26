@@ -20,6 +20,7 @@
 <link rel="preload" href="assets/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@1&amp;display=swap">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/v3/chrome.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -35,32 +36,47 @@
 </head>
 <body>
 
-<header class="nav">
-  <div class="container nav__inner">
-    <a class="nav__brand" href="./"><img class="brand-mark brand-mark--light" src="assets/img/brand/mark-64.png" srcset="assets/img/brand/mark-64.png 1x, assets/img/brand/mark-128.png 2x" width="51" height="32" alt=""><img class="brand-mark brand-mark--ink" src="assets/img/brand/mark-ink-64.png" srcset="assets/img/brand/mark-ink-64.png 1x, assets/img/brand/mark-ink-128.png 2x" width="51" height="32" alt=""><span>Matt Estes</span></a>
-    <nav aria-label="Primary">
-      <ul class="nav__links">
-        <li><a href="point-of-view/">Point of View</a></li>
-        <li><a href="work/">Work</a></li>
-        <li><a href="lab/">Lab</a></li>
-        <li><a href="work-with-me/">Work With Me</a></li>
-        <li><a class="btn btn--primary btn--sm" href="contact/">Let's talk</a></li>
-      </ul>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="./" aria-label="Matt Estes, home">
+      <img class="brand__mark" src="assets/img/brand/mark-128.png" alt="" aria-hidden="true" width="61" height="38">
+      <span class="brand__name">Matt Estes</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link nav__link--has-menu" href="point-of-view/">
+        Point of View
+        <svg class="nav__chevron" width="7" height="4" viewBox="-0.5 -0.5 7 4" fill="none" aria-hidden="true">
+          <path d="M0 0L3 3L6 0" stroke="currentColor" stroke-width="1"/>
+        </svg>
+      </a>
+      <a class="nav__link" href="work/">Work</a>
+      <a class="nav__link" href="lab/">Lab</a>
+      <a class="nav__link" href="work-with-me/">Work With Me</a>
     </nav>
-    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+
+    <div class="header-actions">
+      <a class="button button--ghost" href="cv/">CV</a>
+      <a class="button button--solid" href="contact/">Let's talk</a>
+    </div>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+      <span class="menu-toggle__bar"></span>
+      <span class="menu-toggle__bar"></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <a class="mobile-menu__link" href="point-of-view/">Point of View</a>
+    <a class="mobile-menu__link" href="work/">Work</a>
+    <a class="mobile-menu__link" href="lab/">Lab</a>
+    <a class="mobile-menu__link" href="work-with-me/">Work With Me</a>
+    <div class="mobile-menu__actions">
+      <a class="button button--ghost" href="cv/">CV</a>
+      <a class="button button--solid" href="contact/">Let's talk</a>
+    </div>
   </div>
 </header>
-<div class="menu" id="menu">
-  <nav aria-label="Mobile">
-    <ul>
-      <li><a href="point-of-view/">Point of View</a></li>
-      <li><a href="work/">Work</a></li>
-      <li><a href="lab/">Lab</a></li>
-      <li><a href="work-with-me/">Work With Me</a></li>
-    </ul>
-  </nav>
-  <a class="btn btn--primary" href="contact/">Let's talk</a>
-</div>
 
 <main id="main">
   <section class="hero" aria-labelledby="page-title">
@@ -72,12 +88,11 @@
   </section>
 </main>
 
-<footer class="footer">
-  <div class="container footer__inner">
+<footer class="s-footer">
+  <div class="s-wrap s-footer__inner">
     <div>
-      <img class="footer__mark brand-mark--light" src="assets/img/brand/mark-128.png" width="77" height="48" alt=""><img class="footer__mark brand-mark--ink" src="assets/img/brand/mark-ink-128.png" width="77" height="48" alt="">
-      <p class="t-label" style="color:var(--text)">Matt Estes, Capability Architect</p>
-      <ul class="footer__nav t-label" style="margin-top:8px">
+      <a class="brand" href="./"><img class="brand__mark" src="assets/img/brand/mark-128.png" alt="" width="61" height="38"><span class="brand__name">Matt Estes</span></a>
+      <ul class="s-footer__nav">
         <li><a href="point-of-view/">Point of View</a></li>
         <li><a href="work/">Work</a></li>
         <li><a href="lab/">Lab</a></li>
@@ -88,17 +103,18 @@
         <li><a href="contact/">Contact</a></li>
       </ul>
     </div>
-    <div>
-      <ul class="footer__nav t-label">
+    <div class="s-footer__meta">
+      <ul class="s-footer__nav">
         <li><a href="https://www.linkedin.com/in/mattestes523/" rel="me">LinkedIn</a></li>
         <li><a href="mailto:mattestes523@gmail.com">mattestes523@gmail.com</a></li>
       </ul>
-      <p class="t-label" style="margin-top:8px">© 2026 Matt Estes. <a href="privacy/">Privacy</a></p>
+      <p>&copy; 2026 Matt Estes. <a href="privacy/">Privacy</a></p>
     </div>
   </div>
 </footer>
 
 <script src="assets/js/site.js"></script>
+<script src="assets/v3/chrome.js"></script>
 <script src="assets/js/motion.js"></script>
 </body>
 </html>

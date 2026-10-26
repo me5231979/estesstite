@@ -1,0 +1,323 @@
+/* ==========================================================================
+   v3 chrome for the pages still on site.css: the homepage's header, mobile
+   menu, and footer, so every page shares one way to get around. Pulled from
+   home.css; .nav is scoped under .site-header so site.css's old fixed .nav
+   rules can't reach it.
+   ========================================================================== */
+:root {
+  --u-ui: clamp(0.93px, calc(100vw / 1644), 1.15px);
+  --gutter-start: clamp(24px, 2.129vw, 56px);
+  --gutter-end: clamp(26px, 2.311vw, 60px);
+  --hero-inset: 0px;
+  --color-white: #FFFFFF;
+  --color-ink: #0A0707;
+  --color-button-solid: #E9E9E9;
+  --color-nav-surface: rgba(10, 7, 7, 0.35);
+  --color-actions-surface: rgba(0, 0, 0, 0.35);
+  --color-text-muted: rgba(255, 255, 255, 0.8);
+  --hair: rgba(255, 255, 255, 0.12);
+  --muted-2: rgba(255, 255, 255, 0.56);
+  --wrap: min(1280px, calc(100% - var(--gutter-start) - var(--gutter-end)));
+  --font-ui: "Switzer", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+.s-wrap { width: var(--wrap); margin-inline: auto; }
+
+.site-header {
+  position: fixed;
+  z-index: 10;
+  top: calc(var(--hero-inset) + 29 * var(--u-ui));
+  left: var(--hero-inset);
+  right: var(--hero-inset);
+}
+
+.site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(24 * var(--u-ui));
+  padding-left: var(--gutter-start);
+  padding-right: var(--gutter-end);
+}
+
+/* Brand ------------------------------------------------------------------- */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(11.57 * var(--u-ui));
+  flex: none;
+  /* The design seats the wordmark 2px below the header's centre line. */
+  margin-top: calc(4 * var(--u-ui));
+}
+
+.brand__mark {
+  height: calc(38 * var(--u-ui));
+  width: auto;
+}
+
+.brand__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(30 * var(--u-ui));
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+  color: var(--color-white);
+  white-space: nowrap;
+}
+
+/* Primary navigation ------------------------------------------------------ */
+.site-header .nav {
+  /* Centred on the viewport rather than between its neighbours, which is how
+     the design places it. */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: calc(52 * var(--u-ui));
+  /* Fixed width in the design, with the items centred inside it. Kept as a
+     minimum so the pill still grows if the labels ever do. */
+  min-width: calc(343 * var(--u-ui));
+  padding: 0 calc(24 * var(--u-ui));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(30 * var(--u-ui));
+  border-radius: calc(11 * var(--u-ui));
+  background: var(--color-nav-surface);
+}
+
+.nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(5 * var(--u-ui));
+  font-family: var(--font-ui);
+  font-weight: 450;
+  font-size: calc(14 * var(--u-ui));
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.nav__link:hover {
+  color: var(--color-white);
+}
+
+.nav__chevron {
+  flex: none;
+  width: calc(7 * var(--u-ui));
+  height: calc(4 * var(--u-ui));
+  overflow: visible;
+}
+
+/* Header buttons ---------------------------------------------------------- */
+.header-actions {
+  display: flex;
+  align-items: center;
+  flex: none;
+  height: calc(52 * var(--u-ui));
+  padding: calc(3 * var(--u-ui));
+  gap: calc(5 * var(--u-ui));
+  border-radius: calc(13 * var(--u-ui));
+  background: var(--color-actions-surface);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(46 * var(--u-ui));
+  padding: 0 calc(24 * var(--u-ui));
+  border: 0;
+  border-radius: calc(11 * var(--u-ui));
+  font-family: var(--font-ui);
+  font-weight: 450;
+  font-size: calc(14 * var(--u-ui));
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.button--ghost {
+  min-width: calc(84 * var(--u-ui)); /* button widths from the design */
+  background: transparent;
+  color: var(--color-white);
+}
+
+.button--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.button--solid {
+  min-width: calc(131 * var(--u-ui));
+  background: var(--color-button-solid);
+  color: var(--color-ink);
+}
+
+.button--solid:hover {
+  background: var(--color-white);
+}
+
+/* Menu trigger — only used once the layout reflows ------------------------- */
+.menu-toggle {
+  display: none;
+  width: calc(52 * var(--u-ui));
+  height: calc(52 * var(--u-ui));
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: calc(13 * var(--u-ui));
+  background: var(--color-actions-surface);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.menu-toggle__bar {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--color-white);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.menu-toggle[aria-expanded='true'] .menu-toggle__bar:first-child {
+  transform: translateY(3.25px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded='true'] .menu-toggle__bar:last-child {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+.mobile-menu {
+  display: none;
+}
+
+/* ==========================================================================
+   Scene
+   The two designs are two framings of one photograph, so they are built as a
+   single pinned stage: the section is tall, its viewport sticks, and scroll
+   progress (--p, written by js/script.js) drives one continuous camera move
+   between them. At --p 0 the stage is the hero frame exactly; at --p 1 it is
+   the platform frame exactly.
+
+/* site.css's old .nav (fixed, full width, scroll state) must not leak in. */
+.site-header .nav, .site-header .nav.is-scrolled {
+  right: auto; bottom: auto; z-index: auto; border: 0;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  background: var(--color-nav-surface);
+  transition: none;
+}
+.site-header a { text-decoration: none; }
+.site-header .nav__link[aria-current="page"] { color: #fff; }
+
+@media (max-width: 900px) {
+  :root {
+    --u-ui: 1px;
+    --tablet-gutter: clamp(24px, 4vw, 36px);
+    --gutter-start: var(--tablet-gutter);
+    --gutter-end: var(--tablet-gutter);
+  }
+  .site-header {
+    top: 20px;
+  }
+
+  .site-header .nav,
+  .header-actions {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: min(360px, calc(100% - 2 * var(--tablet-gutter)));
+    margin: 10px var(--gutter-end) 0 auto;
+    padding: 14px;
+    border-radius: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(8, 10, 25, 0.78);
+    -webkit-backdrop-filter: blur(14.6px);
+    backdrop-filter: blur(14.6px);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+    transform-origin: top right;
+    animation: tablet-menu-in 0.2s ease-out both;
+  }
+
+  .mobile-menu[hidden] {
+    display: none;
+  }
+
+  .mobile-menu__link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    color: var(--color-text-muted);
+    transition: color 0.18s ease, background-color 0.18s ease;
+  }
+
+  .mobile-menu__link:hover,
+  .mobile-menu__link:focus-visible {
+    color: var(--color-white);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .mobile-menu__actions {
+    display: flex;
+    gap: 5px;
+    margin-top: 6px;
+  }
+
+  .mobile-menu__actions .button {
+    flex: 1;
+}
+@keyframes tablet-menu-in {
+  from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Footer --------------------------------------------------------------------- */
+.s-footer { padding-block: 56px; border-top: 1px solid var(--hair); font-size: 13px; font-weight: 450; color: var(--muted-2); }
+.s-footer__inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; }
+.s-footer .brand { margin: 0 0 16px; }
+.s-footer__nav { display: flex; flex-wrap: wrap; gap: 4px 20px; list-style: none; margin: 0; padding: 0; }
+.s-footer__nav a { display: inline-flex; min-height: 36px; align-items: center; transition: color 0.18s ease; }
+.s-footer__nav a:hover { color: var(--color-white); }
+.s-footer__meta { text-align: right; }
+.s-footer__meta .s-footer__nav { justify-content: flex-end; }
+.s-footer__meta p { margin: 8px 0 0; }
+@media (max-width: 900px) { .s-footer__meta { text-align: left; } .s-footer__meta .s-footer__nav { justify-content: flex-start; } }
+
+
+/* Header: clear over the hero, glass once the story scrolls beneath it. */
+.site-header { transition: background-color 0.35s ease, border-color 0.35s ease, -webkit-backdrop-filter 0.35s ease, backdrop-filter 0.35s ease; }
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: calc(-29 * var(--u-ui)) 0 calc(-14 * var(--u-ui));
+  z-index: -1;
+  background: rgba(8, 10, 25, 0.72);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--hair);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.site-header.is-solid::before { opacity: 1; }
+@media (max-width: 900px) {
+  .site-header::before { inset: -20px 0 -12px; }
+}

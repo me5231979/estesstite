@@ -2432,3 +2432,80 @@ html:not(.pin) .loop { grid-column: 1 / -1; grid-template-columns: repeat(auto-f
   .hero__over { animation: none; }
   .hero__over::after { animation: none; transform: none; }
 }
+
+/* ==========================================================================
+   Section guide: a quiet rail of dots, labels on hover, so you always know
+   where you are and can skip the pinned sections.
+   ========================================================================== */
+.guide { position: fixed; right: 18px; top: 50%; z-index: 9; transform: translateY(-50%); transition: opacity 0.3s ease; }
+.guide ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.guide a { position: relative; display: flex; align-items: center; justify-content: flex-end; width: 28px; height: 22px; }
+.guide a::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.28); transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; }
+.guide a:hover::after { background: rgba(255, 255, 255, 0.7); }
+.guide a.is-active::after { background: var(--coral); transform: scale(1.5); box-shadow: 0 0 10px rgba(255, 80, 60, 0.7); }
+.guide span {
+  position: absolute;
+  right: 26px;
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: rgba(8, 10, 25, 0.85);
+  border: 1px solid var(--hair);
+  font-size: 12px;
+  font-weight: 450;
+  white-space: nowrap;
+  color: #fff;
+  opacity: 0;
+  transform: translateX(6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.25s var(--ease-out);
+}
+.guide a:hover span, .guide a:focus-visible span, .guide a.is-active.is-flash span { opacity: 1; transform: none; }
+.guide.is-hidden, .drawer-open .guide { opacity: 0; pointer-events: none; }
+@media (max-width: 900px) { .guide { display: none; } }
+
+/* ==========================================================================
+   Peek drawer: "see the approach" opens beside the page instead of leaving it.
+   ========================================================================== */
+.drawer[hidden] { display: none; }
+.drawer { position: fixed; inset: 0; z-index: 50; }
+.drawer__scrim { position: absolute; inset: 0; background: rgba(4, 5, 15, 0.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); opacity: 0; transition: opacity 0.35s ease; }
+.drawer__panel {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: min(760px, 100%);
+  display: flex;
+  flex-direction: column;
+  background: #0A0C1D;
+  border-left: 1px solid var(--hair);
+  box-shadow: -30px 0 80px rgba(0, 0, 0, 0.45);
+  transform: translateX(100%);
+  transition: transform 0.55s var(--ease-out);
+}
+.drawer.is-open .drawer__scrim { opacity: 1; }
+.drawer.is-open .drawer__panel { transform: none; }
+.drawer__bar { display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--hair); }
+.drawer__kicker { margin-right: auto; font-size: 13px; font-weight: 450; color: var(--coral); }
+.drawer__full { font-size: 13px; font-weight: 450; color: var(--color-text-muted); transition: color 0.18s ease; }
+.drawer__full:hover { color: #fff; }
+.drawer__close {
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font: 400 22px/1 var(--font-ui);
+  cursor: pointer;
+  transition: background-color 0.18s ease;
+}
+.drawer__close:hover { background: rgba(255, 255, 255, 0.14); }
+.drawer__body { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 32px clamp(20px, 4vw, 44px) 56px; }
+.drawer__loading { color: var(--muted-2); font-size: 14px; }
+.drawer__body .wk-concept { padding: 0; border: 0; }
+.drawer__body .wk-title { font-size: clamp(38px, 4.6vw, 60px); }
+.drawer__body .wk-steps, .drawer__body .wk-grid { grid-template-columns: 1fr; }
+.drawer__body .lb-card { border: 0; background: none; }
+.drawer__body .lb-card__body { padding: 24px 0 0; }
+.drawer__next { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--hair); }
+.drawer-open, .drawer-open body { overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { .drawer__panel, .drawer__scrim { transition: none; } }

@@ -599,3 +599,183 @@
   // Web fonts change the cards' widths; re-measure once they land.
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { sizeBeliefs(); kick(); });
 })();
+
+/* ==========================================================================
+   Peek drawer and section guide (homepage)
+   --------------------------------------------------------------------------
+   Links into a Work concept or a Lab build open that piece in a drawer beside
+   the page, fetched from the real page so there is one source of truth. The
+   drawer is a history entry: Back, Esc, the scrim, or the close button all
+   return you exactly where you were. Modified clicks (new tab, etc.) and any
+   fetch failure fall through to the normal link.
+   ========================================================================== */
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------------- Drawer ---------------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('a[href^="work/#"], a[href^="lab/#"]'));
+  if (links.length && window.fetch && window.DOMParser) {
+    var cache = {};
+    var drawer = document.createElement('div');
+    drawer.className = 'drawer';
+    drawer.hidden = true;
+    drawer.innerHTML =
+      '<div class="drawer__scrim" data-close></div>' +
+      '<aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Details">' +
+        '<header class="drawer__bar"><span class="drawer__kicker"></span>' +
+        '<a class="drawer__full" href="#">Open full page &rarr;</a>' +
+        '<button class="drawer__close" type="button" aria-label="Close" data-close>&times;</button></header>' +
+        '<div class="drawer__body"></div>' +
+      '</aside>';
+    document.body.appendChild(drawer);
+    var panel = drawer.querySelector('.drawer__panel');
+    var body = drawer.querySelector('.drawer__body');
+    var kicker = drawer.querySelector('.drawer__kicker');
+    var full = drawer.querySelector('.drawer__full');
+    var closeBtn = drawer.querySelector('.drawer__close');
+    var opener = null;
+    var isOpen = false;
+
+    var load = function (page) {
+      if (!cache[page]) {
+        cache[page] = fetch(page, { credentials: 'same-origin' })
+          .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+          .then(function (html) { return new DOMParser().parseFromString(html, 'text/html'); });
+      }
+      return cache[page];
+    };
+
+    var render = function (href) {
+      var parts = href.split('#');
+      var page = parts[0], id = parts[1];
+      kicker.textContent = page.indexOf('lab') === 0 ? 'The Lab' : 'What I transform';
+      full.setAttribute('href', href);
+      body.innerHTML = '<p class="drawer__loading">Loading&hellip;</p>';
+      return load(page).then(function (doc) {
+        var src = doc.getElementById(id);
+        if (!src) throw new Error('missing ' + id);
+        var node = document.importNode(src, true);
+        node.removeAttribute('id');
+        var title = node.querySelector('h2');
+        if (title) { title.id = 'drawer-title'; panel.setAttribute('aria-labelledby', 'drawer-title'); panel.removeAttribute('aria-label'); }
+        body.innerHTML = '';
+        body.appendChild(node);
+        var next = document.createElement('p');
+        next.className = 'drawer__next';
+        next.innerHTML = '<a class="button button--solid" href="contact/">Talk about this</a>' +
+          '<a class="button button--glass" href="' + href + '">Open the full page</a>';
+        body.appendChild(next);
+        body.scrollTop = 0;
+        // Play the page's own arrival: rise, strike-through, wireframe.
+        var parts2 = node.querySelectorAll('[data-rise], [data-split]');
+        if (node.matches('[data-rise]')) node.classList.add('is-in');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            Array.prototype.forEach.call(parts2, function (el, i) {
+              el.style.setProperty('--rd', (reduced ? 0 : i * 70) + 'ms');
+              el.classList.add('is-in');
+            });
+            node.classList.add('is-in');
+          });
+        });
+      });
+    };
+
+    var show = function (href, from) {
+      opener = from || document.activeElement;
+      drawer.hidden = false;
+      root.classList.add('drawer-open');
+      requestAnimationFrame(function () { drawer.classList.add('is-open'); });
+      isOpen = true;
+      closeBtn.focus({ preventScroll: true });
+      return render(href);
+    };
+
+    var hide = function () {
+      if (!isOpen) return;
+      isOpen = false;
+      drawer.classList.remove('is-open');
+      root.classList.remove('drawer-open');
+      setTimeout(function () { if (!isOpen) drawer.hidden = true; }, reduced ? 0 : 450);
+      if (opener && opener.focus) opener.focus({ preventScroll: true });
+    };
+
+    var requestClose = function () {
+      if (history.state && history.state.drawer) history.back();
+      else hide();
+    };
+
+    links.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        e.stopPropagation();
+        var href = a.getAttribute('href');
+        if (!(history.state && history.state.drawer)) history.pushState({ drawer: href }, '');
+        else history.replaceState({ drawer: href }, '');
+        show(href, a).catch(function () { window.location.href = href; });
+      });
+    });
+
+    drawer.addEventListener('click', function (e) { if (e.target.closest('[data-close]')) requestClose(); });
+    window.addEventListener('popstate', function () { if (isOpen && !(history.state && history.state.drawer)) hide(); });
+    document.addEventListener('keydown', function (e) {
+      if (!isOpen) return;
+      if (e.key === 'Escape') { e.preventDefault(); requestClose(); return; }
+      if (e.key === 'Tab') {
+        var f = panel.querySelectorAll('a[href], button:not([disabled])');
+        if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+
+  /* ---------------- Section guide ---------------- */
+  var guide = document.querySelector('.guide');
+  if (!guide) return;
+  var scene = document.getElementById('scene');
+  var items = Array.prototype.slice.call(guide.querySelectorAll('a')).map(function (a) {
+    var kind = a.getAttribute('data-guide');
+    var el = document.getElementById(a.getAttribute('href').slice(1));
+    return { a: a, kind: kind, el: el };
+  });
+  function targetY(it) {
+    if (!it.el) return 0;
+    if (it.kind === 'top') return 0;
+    if (it.kind === 'map') return it.el.offsetTop + (it.el.offsetHeight - window.innerHeight) * 0.82;
+    return it.el.offsetTop;
+  }
+  items.forEach(function (it) {
+    it.a.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: targetY(it), behavior: reduced ? 'auto' : 'smooth' });
+    });
+  });
+  var lastActive = -1, flashTimer = null;
+  function draw() {
+    var y = window.scrollY + window.innerHeight * 0.4;
+    var active = 0;
+    items.forEach(function (it, i) {
+      var t = it.kind === 'map' && scene ? scene.offsetTop + (scene.offsetHeight - window.innerHeight) * 0.45 : targetY(it);
+      if (y >= t) active = i;
+    });
+    items.forEach(function (it, i) { it.a.classList.toggle('is-active', i === active); });
+    // Briefly show the label of the section you've just entered.
+    if (active !== lastActive && lastActive !== -1) {
+      var a = items[active].a;
+      a.classList.add('is-flash');
+      clearTimeout(flashTimer);
+      flashTimer = setTimeout(function () { a.classList.remove('is-flash'); }, 1400);
+      if (lastActive >= 0 && items[lastActive]) items[lastActive].a.classList.remove('is-flash');
+    }
+    lastActive = active;
+  }
+  var queued = false;
+  window.addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(function () { queued = false; draw(); }); } }, { passive: true });
+  window.addEventListener('resize', draw);
+  draw();
+})();
