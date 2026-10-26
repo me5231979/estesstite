@@ -2243,3 +2243,55 @@ html:not(.pin) .loop { grid-column: 1 / -1; grid-template-columns: repeat(auto-f
   .wk-shift__new { opacity: 1; transform: none; transition: none; }
   .wk-step::before { transform: scaleX(1); transition: none; }
 }
+
+/* ==========================================================================
+   Landing panel, readable: wider, bigger type, and its own layout on phones
+   rather than a scaled-down copy of the desktop one.
+   ========================================================================== */
+@media (min-width: 901px) {
+  .platform__content { top: 14%; width: calc(1120 * var(--u-shot)); }
+  .platform__title { width: calc(620 * var(--u-shot)); margin-top: calc(24 * var(--u-shot)); }
+  .shot { width: calc(1120 * var(--u-shot)); height: calc(556 * var(--u-shot)); margin-top: calc(32 * var(--u-shot)); }
+  .lv-head { left: calc(28 * var(--u-shot)); right: calc(28 * var(--u-shot)); top: calc(30 * var(--u-shot)); }
+  .lv-title { font-size: calc(40 * var(--u-shot)); }
+  .lv-sub { margin-top: calc(8 * var(--u-shot)); font-size: calc(16 * var(--u-shot)); }
+  .lv-steps { left: calc(24 * var(--u-shot)); top: calc(120 * var(--u-shot)); width: calc(1072 * var(--u-shot)); height: calc(344 * var(--u-shot)); gap: calc(18 * var(--u-shot)); }
+  .lv-step { padding: calc(22 * var(--u-shot)); border-radius: calc(20 * var(--u-shot)); }
+  .lv-step:not(:last-child)::after { right: calc(-13 * var(--u-shot)); width: calc(10 * var(--u-shot)); height: calc(10 * var(--u-shot)); }
+  .lv-n { font-size: calc(13 * var(--u-shot)); }
+  .lv-verb { font-size: calc(36 * var(--u-shot)); }
+  .lv-q { margin-top: calc(12 * var(--u-shot)); font-size: calc(18 * var(--u-shot)); line-height: 1.3; }
+  .lv-in-label { margin: calc(14 * var(--u-shot)) 0 0; font-size: calc(12 * var(--u-shot)); font-weight: 450; color: var(--muted-2); }
+  .lv-in { margin-top: calc(7 * var(--u-shot)); gap: calc(6 * var(--u-shot)); }
+  .lv-in li { padding: calc(5 * var(--u-shot)) calc(9 * var(--u-shot)); border-radius: calc(5 * var(--u-shot)); font-size: calc(13 * var(--u-shot)); color: rgba(255, 255, 255, 0.8); }
+  .lv-proof { padding-top: calc(12 * var(--u-shot)); }
+  .lv-proof span { margin-bottom: calc(6 * var(--u-shot)); font-size: calc(12 * var(--u-shot)); }
+  .lv-proof strong { font-size: calc(19 * var(--u-shot)); line-height: 1.2; }
+  .lv-return { left: calc(24 * var(--u-shot)); top: calc(464 * var(--u-shot)); width: calc(1072 * var(--u-shot)); height: calc(60 * var(--u-shot)); }
+  .lv-again { top: calc(518 * var(--u-shot)); font-size: calc(14 * var(--u-shot)); }
+}
+
+@media (max-width: 900px) {
+  /* Phones and tablets: the panel is real layout at real sizes. */
+  .platform__content { top: 92px; }
+  .platform__title { font-size: clamp(28px, 7vw, 40px) !important; }
+  .shot { width: 100%; height: auto; margin-top: 20px; }
+  .shot__window { position: relative; inset: auto; }
+  .shot__window::before { height: 100%; }
+  .loopview { position: relative; inset: auto; padding: 16px; }
+  .lv-head, .lv-steps, .lv-return, .lv-again { position: relative; left: auto; right: auto; top: auto; width: auto; height: auto; }
+  .lv-title { font-size: 24px; }
+  .lv-sub { font-size: 13px; margin-top: 4px; }
+  .lv-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
+  .lv-step { padding: 14px; border-radius: 14px; }
+  .lv-step::after { display: none; }
+  .lv-n { font-size: 11px; }
+  .lv-verb { font-size: 24px; }
+  .lv-q { font-size: 14px; margin-top: 6px; }
+  .lv-in-label, .lv-in { display: none; }
+  .lv-proof { margin-top: 10px; padding-top: 8px; }
+  .lv-proof span { font-size: 10px; margin-bottom: 4px; }
+  .lv-proof strong { font-size: 14px; }
+  .lv-return { display: none; }
+  .lv-again { transform: none; left: auto; margin-top: 12px; text-align: center; font-size: 12px; white-space: normal; }
+}
