@@ -283,6 +283,7 @@
 
   .mobile-menu__actions .button {
     flex: 1;
+  }
 }
 @keyframes tablet-menu-in {
   from { opacity: 0; transform: translateY(-8px) scale(0.98); }
@@ -321,3 +322,6 @@
 @media (max-width: 900px) {
   .site-header::before { inset: -20px 0 -12px; }
 }
+.s-footer a { color: inherit; text-decoration: none; }
+.s-footer .brand { color: var(--color-white); }
+.s-footer__nav a:hover, .s-footer p a:hover { color: var(--color-white); }
