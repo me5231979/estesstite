@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Readiness | Vanderbilt University</title>
+<meta name="description" content="Tell us how you use AI today and how comfortable it feels. Two minutes, no wrong answers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@400;500;600&family=Libre+Caslon+Display&display=swap">
+<style>
+  :root {
+    --vu-black: #1C1C1C;
+    --vu-gold: #CFAE70;
+    --vu-gold-grad: linear-gradient(135deg, #FEEEB6 0%, #CFAE70 45%, #B49248 100%);
+    --vu-oak: #8C6822;
+    --cream: #F5F3EF;
+    --line: #E4E4E4;
+    --ink-soft: #555;
+    --serif: 'Libre Caslon Display', 'Times New Roman', serif;
+    --sans: 'Inter', Arial, sans-serif;
+    --condensed: 'Antonio', Impact, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: var(--sans); color: var(--vu-black); background: var(--cream);
+    line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  .bar { background: var(--vu-black); padding: 1.1rem clamp(1.25rem, 5vw, 4rem);
+    display: flex; align-items: center; gap: .8rem; }
+  .bar svg { flex-shrink: 0; }
+  .bar span { color: #fff; font-family: var(--condensed); font-weight: 700;
+    text-transform: uppercase; letter-spacing: .14em; font-size: .82rem; }
+
+  main { max-width: 1200px; margin-inline: auto;
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 3rem) 4rem; }
+  .eyebrow { font-family: var(--condensed); font-weight: 700; text-transform: uppercase;
+    letter-spacing: .12em; font-size: .82rem; color: var(--vu-oak); margin-bottom: 1rem; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2rem, 5vw, 3.1rem);
+    line-height: 1.12; }
+  h1 em { font-style: italic; letter-spacing: .06em; margin-right: .08em;
+    background: var(--vu-gold-grad);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .lead { font-size: clamp(1rem, 1.5vw, 1.15rem); max-width: 62ch; color: var(--ink-soft);
+    margin: 1.25rem 0 2.25rem; }
+
+  .frame { background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--vu-gold);
+    border-radius: 6px; padding: .75rem; }
+  .frame iframe { display: block; width: 100%; height: min(1200px, 78vh);
+    min-height: 480px; border: none; }
+  .alt { margin-top: 1rem; font-size: .88rem; color: var(--ink-soft); }
+  .alt a { color: var(--vu-oak); }
+
+  footer { border-top: 1px solid var(--line); padding: 1.4rem clamp(1.25rem, 5vw, 3rem);
+    display: flex; flex-wrap: wrap; gap: .5rem 2rem; justify-content: space-between;
+    font-size: .85rem; color: var(--ink-soft); }
+  footer a { color: var(--vu-oak); }
+
+  @media print { .frame iframe { height: 480px; } }
+
+  /* intro video popup: inert until survey/intro.mp4 exists on the server */
+  .vmodal { position: fixed; inset: 0; background: rgba(20,20,20,.78); display: none;
+    align-items: center; justify-content: center; padding: 1.25rem; z-index: 90; }
+  .vmodal.open { display: flex; }
+  .vmodal__card { background: var(--vu-black); border-top: 3px solid var(--vu-gold);
+    border-radius: 8px; max-width: 860px; width: 100%; padding: 1rem; position: relative; }
+  .vmodal__card video { display: block; width: 100%; border-radius: 4px; background: #000; }
+  .vmodal__close { position: absolute; top: -.9rem; right: -.9rem; width: 2.2rem; height: 2.2rem;
+    border-radius: 50%; border: none; background: var(--vu-gold); color: var(--vu-black);
+    font-size: 1.1rem; font-weight: 700; cursor: pointer; line-height: 1; }
+  .vmodal__label { color: rgba(255,255,255,.75); font-family: var(--condensed); font-weight: 700;
+    text-transform: uppercase; letter-spacing: .12em; font-size: .75rem; margin: .7rem .2rem 0; }
+  .vlink { display: none; margin: -1.5rem 0 2.25rem; font-size: .92rem; }
+  .vlink a { color: var(--vu-oak); font-weight: 600; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <svg width="26" height="24" viewBox="0 0 34 31" aria-hidden="true"><path d="M0 0h9.5L17 17.5 24.5 0H34L19.5 31h-5L0 0z" fill="#CFAE70"/></svg>
+  <span>Vanderbilt University &middot; For Staff</span>
+</header>
+
+<main>
+  <p class="eyebrow">The AI-enabled Education Series &middot; AI readiness</p>
+  <h1>Where are you with <em>AI</em>?</h1>
+  <p class="lead">This survey asks how you use AI today and how comfortable it feels. It takes
+    about two minutes, it is not a test, and there are no wrong answers; honest beats
+    impressive. What you share shapes what comes next.</p>
+
+  <div class="frame">
+    <iframe src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=OX9aur7js0q0UGf6gPrsrSj0YUFCM_9NtEckOrGZTO9UOFVQQjdZUkJTMkNRRU9DV1JSOTAwNjFTVS4u&amp;embed=true"
+            title="AI readiness survey"
+            marginwidth="0" marginheight="0"
+            allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
+  </div>
+  <p class="alt">If the form doesn't load on your network,
+    <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=OX9aur7js0q0UGf6gPrsrSj0YUFCM_9NtEckOrGZTO9UOFVQQjdZUkJTMkNRRU9DV1JSOTAwNjFTVS4u"
+       target="_blank" rel="noopener">open it in a new tab</a> instead.</p>
+  <p class="alt" style="margin-top:.35rem">Survey adapted from the
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11544068/" target="_blank" rel="noopener">Meta
+    AI Literacy Scale (MAILS)</a>, a peer-reviewed measure of AI literacy and readiness.</p>
+  <p class="vlink" id="vlink"><a id="vlinkA">&#9658;&nbsp; Watch the one-minute intro</a></p>
+</main>
+
+<div class="vmodal" id="vmodal" role="dialog" aria-modal="true" aria-label="Introduction video">
+  <div class="vmodal__card">
+    <button class="vmodal__close" id="vclose" aria-label="Close the video">&times;</button>
+    <video id="vplayer" controls preload="metadata" src="intro.mp4"></video>
+    <p class="vmodal__label">AI at work &middot; a one-minute welcome</p>
+  </div>
+</div>
+
+<script>
+  /* The popup only arms itself if intro.mp4 is actually published next to this
+     page, so the page works unchanged until the video ships. */
+  (function () {
+    var modal = document.getElementById('vmodal');
+    var player = document.getElementById('vplayer');
+    var KEY = 'aiready-intro-seen';
+    function open() { modal.classList.add('open'); }
+    function close() {
+      modal.classList.remove('open');
+      player.pause();
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    }
+    document.getElementById('vclose').addEventListener('click', close);
+    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+    fetch('intro.mp4', { method: 'HEAD' }).then(function (r) {
+      if (!r.ok) return;
+      var link = document.getElementById('vlink');
+      link.style.display = 'block';
+      document.getElementById('vlinkA').addEventListener('click', open);
+      var seen = false;
+      try { seen = localStorage.getItem(KEY) === '1'; } catch (e) {}
+      if (!seen) open();
+    }).catch(function () {});
+  })();
+</script>
+
+<footer>
+  <span>The AI-enabled Education Series &middot; A Vanderbilt learning experience</span>
+  <span>Questions? <a href="mailto:chart@vanderbilt.edu">chart@vanderbilt.edu</a></span>
+</footer>
+
+</body>
+</html>
+
+
