@@ -2388,3 +2388,47 @@ html:not(.pin) .loop { grid-column: 1 / -1; grid-template-columns: repeat(auto-f
   .cv-print-name span { font-size: 9pt; color: #333; }
   .pg-hero .s-kicker { display: none; }
 }
+
+/* Hero headline on two lines; "is over." is the one thing that moves on its own:
+   an underline draws in after the reveal, then a slow shine passes through it. */
+@media (min-width: 901px) {
+  .hero__content { width: calc(1240 * var(--u-hero)); }
+  .hero__title .line { white-space: nowrap; }
+}
+.hero__over {
+  position: relative;
+  display: inline-block;
+  padding-right: 0.08em;
+  font-style: italic;
+  background: linear-gradient(100deg, #F77F71 0%, #F77F71 38%, #FFE1DA 50%, #FF6A52 62%, #F77F71 100%);
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: over-shine 6s ease-in-out 2.4s infinite;
+}
+.hero__over::after {
+  content: "";
+  position: absolute;
+  left: 0.02em;
+  right: 0.1em;
+  bottom: 0.02em;
+  height: 0.055em;
+  border-radius: 0.03em;
+  background: linear-gradient(90deg, #FF503C, #F77F71);
+  box-shadow: 0 0 0.25em rgba(255, 80, 60, 0.6);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: over-line 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.9s forwards;
+}
+.is-instant .hero__over::after { animation: none; transform: none; }
+@keyframes over-line { to { transform: scaleX(1); } }
+@keyframes over-shine {
+  0%, 55% { background-position: 100% 0; }
+  85%, 100% { background-position: 0% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__over { animation: none; }
+  .hero__over::after { animation: none; transform: none; }
+}
