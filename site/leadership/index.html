@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://api.fontshare.com; img-src 'self' data:; font-src 'self' https://cdn.fontshare.com; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://api.fontshare.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self' https://cdn.fontshare.com; media-src 'self'; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Leadership · How I Lead | Matt Estes</title>
 <meta name="description" content="How Matt Estes leads: a small team with a big surface, the first version built by hand, and decisions in writing.">
@@ -158,6 +158,7 @@
   </div>
 </footer>
 
+<script src="../assets/js/analytics.js"></script>
 <script src="../assets/js/site.js"></script>
 <script src="../assets/v3/chrome.js"></script>
 <script src="../assets/js/motion.js"></script>

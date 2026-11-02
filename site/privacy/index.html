@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://api.fontshare.com; img-src 'self' data:; font-src 'self' https://cdn.fontshare.com; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://api.fontshare.com; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com; font-src 'self' https://cdn.fontshare.com; media-src 'self'; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com; object-src 'none'; base-uri 'self'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy · How This Site Handles Data | Matt Estes</title>
-<meta name="description" content="How this site handles personal data: no cookies, no tracking, no analytics, and nothing collected unless you write to Matt Estes.">
+<meta name="description" content="How this site handles personal data: Google Analytics to count visits, no advertising, and nothing else collected unless you write to Matt Estes.">
 <meta name="theme-color" content="#080A19">
 <link rel="icon" href="../assets/img/brand/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="../assets/img/brand/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Privacy, Matt Estes">
-<meta property="og:description" content="How this site handles personal data: no cookies, no tracking, no analytics, and nothing collected unless you write to Matt Estes.">
+<meta property="og:description" content="How this site handles personal data: Google Analytics to count visits, no advertising, and nothing else collected unless you write to Matt Estes.">
 <meta property="og:image" content="https://me5231979.github.io/estesstite/assets/img/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="../assets/fonts/stix-two-text.woff2" as="font" type="font/woff2" crossorigin>
@@ -81,7 +81,7 @@
   <section class="page-head" aria-labelledby="page-title">
     <div class="container">
       <h1 id="page-title" style="margin-top:24px">Privacy, in plain words.</h1>
-      <p class="page-head__summary">This site sets no cookies, runs no tracking or analytics, and collects nothing unless you choose to write to me.</p>
+      <p class="page-head__summary">This site uses Google Analytics to see which pages people read. There is no advertising, and nothing else is collected unless you choose to write to me.</p>
       <p class="t-label t-muted" style="margin-top:24px">Last updated 24 October 2026 <span class="todo">Have counsel review before relying on this</span></p>
     </div>
   </section>
@@ -91,10 +91,13 @@
         <h2>Who is responsible</h2>
         <p>Matt Estes runs this site and is responsible for any personal data it handles. Write to <a class="link" href="mailto:mattestes523@gmail.com">mattestes523@gmail.com</a> with any question or request.</p>
         <h2>What this site collects</h2>
-        <p>Nothing, by itself. There are no cookies, no analytics, no advertising, no tracking pixels, and no third-party scripts. Fonts and media load from this site, not from outside services.</p>
+        <p>Visit counts, through Google Analytics. It tells me which pages people read, roughly where they come from, and what device they use. It sets first-party cookies to tell one visit from the next. I have turned off Google signals and ad personalization, so this data is not used for advertising. I can't see who you are.</p>
+        <p>Analytics does not load at all if your browser sends Global Privacy Control or Do Not Track. Google's own privacy policy covers how Google processes this data.</p>
+        <p>There is no advertising and there are no other tracking pixels. Apart from Google Analytics, fonts and media load from this site, not from outside services.</p>
         <p>The contact forms don't send anything to a server. They open your own email app with a draft. If you send it, I receive your email address and what you wrote, the same as any email.</p>
         <p>The Capability Diagnostic runs entirely in your browser. Your answers are never sent or stored.</p>
         <h2>What stays on your device</h2>
+        <p>Google Analytics stores its cookies in your browser. Clearing your cookies removes them.</p>
         <p>If you turn sound on, your browser remembers that choice in local storage on your own device. You asked for it, it never leaves your device, and clearing your browser data removes it.</p>
         <h2>Hosting</h2>
         <p>The site is hosted by GitHub Pages and may also be served by Vercel. Like any web host, they record technical data such as IP addresses in server logs to deliver and protect the site. Their own privacy policies cover that processing.</p>
@@ -134,6 +137,7 @@
   </div>
 </footer>
 
+<script src="../assets/js/analytics.js"></script>
 <script src="../assets/js/site.js"></script>
 <script src="../assets/v3/chrome.js"></script>
 <script src="../assets/js/motion.js"></script>
