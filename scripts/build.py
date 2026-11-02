@@ -1,6 +1,6 @@
 """Build the publishable site into dist/.
 
-Copies site/ plus learn/ and survey/, then removes everything that is only for
+Copies site/, then removes everything that is only for
 review: <span class="todo"> notes and any element marked data-pending. The
 source keeps them (and ?review still shows them locally); the published HTML
 never contains them, so crawlers and AI summaries can't quote them.
@@ -82,9 +82,6 @@ def main():
     if DIST.exists():
         shutil.rmtree(DIST)
     shutil.copytree(ROOT / 'site', DIST, ignore=lambda d, names: [n for n in names if Path(d) == ROOT / 'site' and n in SKIP])
-    for extra in ('learn', 'survey'):
-        if (ROOT / extra).exists():
-            shutil.copytree(ROOT / extra, DIST / extra, ignore=shutil.ignore_patterns('vercel.json'))
     left = 0
     for page in (DIST).rglob('*.html'):
         if page.relative_to(DIST).parts[0] in ('learn', 'survey'):
